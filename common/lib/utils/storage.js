@@ -1,0 +1,14 @@
+module.exports = {
+   /**
+    * User profile folder
+    */
+    PROFILE: 'profile',
+    /**
+    * Resource, news and article folder
+    */
+    RESOURCE: 'resource',
+    /**
+    * Enrolled Agent Profile folder
+    */
+    AGENT_PROFILE: 'agent_profile',
+}

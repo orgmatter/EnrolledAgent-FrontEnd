@@ -1,0 +1,105 @@
+const mongoose = require('mongoose')
+const crypto = require('crypto')
+const Constants = require('../utils/constants')
+const uid = require('uid')
+//
+const { Schema } = mongoose
+
+const UserSchema = new Schema({
+    email: String,
+    hash: String,
+    salt: String,
+    firstName: String,
+    lastName: String,
+    phone: String,
+    isEmailVerified: {
+        type: Boolean,
+        default: false
+    },
+    accountType: {
+        type: String,
+        default: Constants.ACCOUNT_TYPE.user
+    },
+    isActive: {
+        type: Boolean,
+        default: true
+    },
+    gender: {
+        type: String,
+        enum: ['male', 'female']
+    },
+    agent: {
+        type: { ref: 'agent', type: Schema.ObjectId }
+    },
+    country: String,
+    state: String,
+    city: String,
+    ip: String,
+    imageUrl: String,
+    updatedAt: {
+        type: Number,
+        default: Date.now()
+    },
+    createdAt: {
+        type: Number,
+        default: Date.now()
+    }
+})
+
+// UserSchema.index({ uid: 1 })
+
+const updateDate = function (next) {
+    this.updatedAt = Date.now()
+    next()
+}
+// update date for bellow 4 methods
+UserSchema.pre('save', updateDate)
+    .pre('update', updateDate)
+    .pre('findOneAndUpdate', updateDate)
+    .pre('findByIdAndUpdate', updateDate)
+
+UserSchema.methods.setPassword = function (password) {
+    this.salt = crypto.randomBytes(16).toString('hex')
+    this.hash = crypto
+        .pbkdf2Sync(password, this.salt, 10000, 512, 'sha512')
+        .toString('hex')
+}
+
+UserSchema.methods.validatePassword = function (password) {
+    const hash = crypto
+        .pbkdf2Sync(password, this.salt, 10000, 512, 'sha512')
+        .toString('hex')
+    return this.hash === hash
+}
+
+/**
+ * @param  {User} user
+ * @param  {string} token
+ * @return {object}
+ */
+UserSchema.methods.tokenPayload = function (user) {
+    return {
+        email: this.email,
+        id: this.id,
+        accountType: this.accountType
+    }
+}
+
+// UserSchema.methods.generateJWT = function (duration) {
+//   const today = new Date();
+//   const expirationDate = new Date(today);
+//   expirationDate.setDate(today.getDate() + duration || 60);
+//   return jwt.sign({
+//     email: this.email,
+//     id: this._id,
+//     name: this.name,
+//     accountType: this.accountType,
+//     exp: parseInt(expirationDate.getTime() / 1000, 10),
+//   }, process.env.SECRET);
+// };
+
+// UserSchema.methods.toAuthJSON = function(duration) {
+//   return this.generateJWT(duration);
+// };
+
+module.exports = mongoose.model('user', UserSchema)
