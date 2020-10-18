@@ -17,3 +17,6 @@ to start project
 ### linux and mac users run - `npm run dev`
 
 this should be run from the appropriate folder ie `admin` and `app`
+
+
+please avoid working on any backend file, the views for each part of the app is located in the views folder,
