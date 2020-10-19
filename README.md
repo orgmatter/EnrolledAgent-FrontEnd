@@ -35,4 +35,5 @@ merge master into your branch, fix any merge conflicts, push and do a pull reque
 
 #Linkedin  integration
 [https://www.linkedin.com/developers/]
+[https://www.linkedin.com/developers/apps/new]
 [https://docs.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/sign-in-with-linkedin]
