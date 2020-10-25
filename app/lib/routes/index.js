@@ -1,11 +1,10 @@
 const router = require("express").Router();
-const {Validator, Logger, Constants } = require("common");
+const { Validator, Logger, Constants } = require("common");
 const auth = require("../controllers/auth");
 
 const Log = new Logger("App:Router");
 
-
-router.use('/api', require("./api"));
+router.use("/api", require("./api"));
 
 router.use((req, res, next) => {
   req.locals = {};
@@ -17,7 +16,7 @@ router.use((req, res, next) => {
 
 router
   .get("/", (req, res) => {
-    res.render("page_404", { locals: req.locals });
+    res.render("index", { locals: req.locals });
   })
   .get("/unsubscribe", auth.unsubscribe)
   .get("/subscribe", auth.subscribe)
@@ -28,12 +27,10 @@ router
     res.redirect("/login");
   })
   .use((req, res, next) => {
-    if (
-      !(req.isAuthenticated() && req.user && req.user.accountType == "customer")
-    )
+    if (!(req.isAuthenticated() && req.user && req.user.accountType == "customer"))
       return res.render("login");
     next();
-  })
+  });
 
 // catch 404
 router.use((req, res) => {
@@ -48,7 +45,7 @@ router.use((req, res) => {
 // error handler
 router.use((err, req, res, next) => {
   Log.info(err);
-  console.log(err)
+  console.log(err);
   Log.info(req.headers);
   res.locals.message = err.message;
   res.locals.error = process.env.NODE_ENV === "development" ? err : {};
