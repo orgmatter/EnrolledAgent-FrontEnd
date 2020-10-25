@@ -7,7 +7,7 @@
     "test": "mocha",
     "build": "babel ./server -d dist",
     "start": "npm run build && node index.js",
-    "sass": "node-sass sass/app.scss -o ../public/stylesheets/",
+    "sass": "node-sass -r --output-style compressed sass/app.scss -o ../public/stylesheets/",
     "watch:sass": "npm run sass && npm run sass -- -w",
     "postdev": "npm run watch:sass",
     "dev": "DEBUG=server,api,email-templates nodemon --ignore public,node-modules,upload",
