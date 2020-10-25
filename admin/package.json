@@ -7,9 +7,12 @@
     "test": "mocha",
     "build": "babel ./server -d dist",
     "start": "npm run build && node index.js",
+    "poststart": "npm run sass",
+    "postdev": "npm run sass",
     "dev": "DEBUG=server,api,email-templates nodemon --ignore public,node-modules,upload",
     "dev-win": "set DEBUG=server,api,email-templates && nodemon --ignore public,node-modules,upload",
-    "lint": "eslint "
+    "lint": "eslint ",
+    "sass": "node-sass -w sass/admin.scss -o ../public/stylesheets/"
   },
   "repository": {
     "type": "git",
@@ -39,7 +42,9 @@
     "mongoose": "^5.9.21",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
+    "node-sass": "^4.14.1",
     "nodemailer-mailgun-transport": "^2.0.0",
+    "nodemon": "^2.0.6",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "redis": "^3.0.2",

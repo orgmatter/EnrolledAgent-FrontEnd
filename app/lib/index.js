@@ -1,20 +1,20 @@
-const express = require('express');
-const passport = require('passport')
-const {Middleware, Passport, Constants} =  require('common');
-const path =  require('path');
+const express = require("express");
+const passport = require("passport");
+const { Middleware, Passport, Constants } = require("common");
+const path = require("path");
 // initialize mongodb
-Middleware.MongoConnection
+Middleware.MongoConnection;
 
-const views = path.join(__dirname, '../views')
+const views = path.join(__dirname, "../views");
 
 const server = express();
 
-
 Middleware.app(server, views);
-Passport(server, passport, Constants.DOMAIN.user  )
+Passport(server, passport, Constants.DOMAIN.user);
 
-const router = require('./routes');
+const router = require("./routes");
 
+server.use(express.static(path.join(__dirname, "../../public")));
 server.use(router);
 
 module.exports = server;
