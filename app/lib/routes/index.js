@@ -16,7 +16,7 @@ router.use((req, res, next) => {
 
 router
   .get("/", (req, res) => {
-    res.render("index", { locals: req.locals });
+    res.render("home", { locals: req.locals });
   })
   .get("/unsubscribe", auth.unsubscribe)
   .get("/subscribe", auth.subscribe)
