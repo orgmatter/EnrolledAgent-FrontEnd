@@ -1,3 +1,33 @@
+//========= MEDIA QUERY MIXINS ==========//
+@mixin respond($breakpoint) {
+  //tablets in  landscape mode
+  @if $breakpoint == tab-land {
+    @media (max-width: 765px) {
+      @content;
+    }
+  }
+
+  //tablets in potriate mode && phones in landscape
+  @if $breakpoint == tab-port {
+    @media (max-width: 600px) {
+      @content;
+    }
+  }
+
+  //smart phones in potrain mode
+  @if $breakpoint == smart-phone {
+    @media (max-width: 450px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == smaller-phone {
+    @media (max-width: 320px) {
+      @content;
+    }
+  }
+}
+
 .signup,
 .login {
   // max-width: 1376px;
@@ -19,6 +49,9 @@
     box-sizing: border-box;
     -moz-box-sizing: border-box;
   }
+  @include respond(tab-land) {
+    font-size: 12px;
+  }
 }
 .signup {
   margin: 10px auto;
@@ -28,11 +61,25 @@
     }
     &--main {
       margin-bottom: 2rem;
+      @include respond(tab-land) {
+        margin-bottom: 1rem;
+      }
       &-head {
         font-size: 3rem;
         font-weight: 400;
         font-family: 'Libre Baskerville', serif;
         margin: 1rem 0;
+        line-height: 3.5rem;
+        @include respond(tab-land) {
+          font-size: 2rem;
+          line-height: 2.25rem;
+          margin: 0.5rem 0;
+        }
+      }
+    }
+    &--text {
+      @include respond(tab-land) {
+        text-align: justify;
       }
     }
   }
@@ -42,6 +89,10 @@
     margin: 50px 0;
     padding: 30px;
     text-align: left;
+    @include respond(tab-land) {
+      margin: 30px 0;
+      padding: 15px;
+    }
     &--head {
       font-weight: 700;
       font-size: 1.2rem;
@@ -54,8 +105,15 @@
       flex-wrap: wrap;
       justify-items: center;
       justify-content: space-between;
+      @include respond(tab-land) {
+        display: block;
+        text-align: center;
+      }
     }
     &--btn {
+      @include respond(tab-land) {
+        margin-bottom: 1rem;
+      }
       &-facebook {
         background: #1dc1ff;
       }
@@ -82,6 +140,9 @@
     border: none;
     color: #fff;
     position: relative;
+    @include respond(tab-land) {
+      width: 80%;
+    }
     &-img {
       z-index: 1;
       position: absolute;
@@ -175,7 +236,10 @@
   &__card {
     display: flex;
     max-width: 820px;
-
+    @include respond(tab-port) {
+      display: block;
+      width: 100%;
+    }
     &-left {
       width: 45%;
       max-width: 300px;
@@ -191,23 +255,64 @@
       background-position: top;
       color: #fff;
       text-align: left;
+
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      @include respond(tab-land) {
+        padding: 10px;
+      }
+
+      @include respond(tab-port) {
+        display: block;
+        padding: 20px 40px;
+        max-width: 600px;
+        width: 100%;
+        // text-align: center;
+      }
+      @include respond(smart-phone) {
+        padding: 20px;
+      }
     }
     &-right {
       width: 55%;
       max-width: 500px;
       padding: 20px 30px;
+      @include respond(tab-port) {
+        width: 100%;
+        max-width: 600px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        padding: 20px 10px;
+      }
     }
   }
 
+  &-right {
+    &__footer {
+      display: none;
+      @include respond(tab-port) {
+        display: block;
+      }
+    }
+  }
   &-left {
     &__banner {
       margin-bottom: 30px;
+      @include respond(tab-port) {
+        margin-bottom: 10px;
+      }
       &-img {
         width: 75%;
+        @include respond(tab-port) {
+          max-width: 300px;
+        }
       }
     }
     &__text {
       margin-bottom: 40px;
+      @include respond(tab-port) {
+        margin-bottom: 20px;
+      }
       &-head {
         font-weight: 700;
         font-size: 1.2rem;
@@ -215,9 +320,20 @@
     }
     &__btns {
       margin-bottom: 50px;
+      @include respond(tab-port) {
+        margin-bottom: 20px;
+      }
       &-btn {
         text-align: center;
         margin: 15px;
+        @include respond(tab-land) {
+          margin: 15px 0;
+        }
+      }
+    }
+    &__footer {
+      @include respond(tab-port) {
+        display: none;
       }
     }
   }
@@ -226,6 +342,9 @@
     text-align: left;
     &__head {
       margin-bottom: 20px;
+      @include respond(tab-port) {
+        display: none;
+      }
       &-main {
         font-size: 3rem;
         font-weight: 400;
@@ -248,6 +367,9 @@
     border: none;
     color: #fff;
     position: relative;
+    @include respond(tab-port) {
+      max-width: 300px;
+    }
   }
   &-form {
     margin: 0;
