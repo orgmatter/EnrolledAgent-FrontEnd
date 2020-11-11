@@ -13,7 +13,6 @@
     "dev": "DEBUG=server,api,email-templates nodemon --ignore public,node-modules,upload",
     "dev-win": "set DEBUG=server,api,email-templates && nodemon --ignore public,node-modules,upload",
     "lint": "eslint "
-    
   },
   "repository": {
     "type": "git",
