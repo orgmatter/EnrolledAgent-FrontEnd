@@ -20,7 +20,9 @@ router.use((req, res, next) => {
 
 router
   .get('/', (req, res) => {
-    res.render('test', { locals: req.locals });
+    res.render('test', { locals: req.locals })
+  .get("/", (req, res) => {
+    res.render("home", { locals: req.locals });
   })
   .get('/unsubscribe', auth.unsubscribe)
   .get('/subscribe', auth.subscribe)
