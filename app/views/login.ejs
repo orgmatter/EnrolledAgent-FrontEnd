@@ -2,10 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link
       href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap"
       rel="stylesheet"
@@ -13,8 +10,6 @@
     <link rel="stylesheet" href="/stylesheets/app.css" />
   </head>
   <body class="signup-body">
-    <%- include('partials/header.ejs') %>
-
     <div class="login">
       <div class="login__card">
         <div class="login__card-left">
@@ -27,9 +22,7 @@
           </div>
           <div class="login-left__text">
             <div class="login-left__text-head">Social Login</div>
-            <div class="login-left__text-main">
-              Signup using your favorite social platform
-            </div>
+            <div class="login-left__text-main">Signup using your favorite social platform</div>
           </div>
           <div class="login-left__btns">
             <div class="login-left__btns-btn">
@@ -68,18 +61,14 @@
           </div>
           <div class="login-left__footer">
             Need an account?
-            <a href="/signup" class="login-left__footer-link signup-link"
-              >Signup for free</a
-            >
+            <a href="/signup" class="login-left__footer-link signup-link">Signup for free</a>
           </div>
         </div>
         <div class="login__card-right">
           <div class="login-main">
             <div class="login-main__head">
               <div class="login-main__head-main">Log In</div>
-              <div class="login-main__head-text">
-                Sign Into EnrolledAgent.com
-              </div>
+              <div class="login-main__head-text">Sign Into EnrolledAgent.com</div>
             </div>
             <div class="login-main__text">
               <div class="login-main__text-head">Standard Login</div>
@@ -91,9 +80,7 @@
                     class="login-form__input"
                     placeholder="Email Address"
                   />
-                  <label for="lastname" class="signup-form__label"
-                    >Email Address</label
-                  >
+                  <label for="lastname" class="signup-form__label">Email Address</label>
                 </div>
 
                 <div class="signup-form__group">
@@ -103,21 +90,13 @@
                     class="login-form__input"
                     placeholder="Password"
                   />
-                  <label for="password" class="signup-form__label"
-                    >Password</label
-                  >
+                  <label for="password" class="signup-form__label">Password</label>
                 </div>
                 <div class="signup-form__row">
                   <div class="signup-form__checkbox">
                     <div class="signup-form__checkbox--group">
-                      <input
-                        type="checkbox"
-                        id="terms"
-                        class="signup-form__checkbox"
-                      />
-                      <label for="terms" class="signup-form__checkbox--label"
-                        >Remember me.</label
-                      >
+                      <input type="checkbox" id="terms" class="signup-form__checkbox" />
+                      <label for="terms" class="signup-form__checkbox--label">Remember me.</label>
                     </div>
                   </div>
                   <div class="signup-form__link">
@@ -125,22 +104,17 @@
                   </div>
                 </div>
                 <div class="login-form__btn">
-                  <button class="login-form__submit signup-btn" type="submit">
-                    Sign in
-                  </button>
+                  <button class="login-form__submit signup-btn" type="submit">Sign in</button>
                 </div>
               </form>
               <div class="login-right__footer">
                 Need an account?
-                <a href="/signup" class="login-left__footer-link signup-link"
-                  >Signup for free</a
-                >
+                <a href="/signup" class="login-left__footer-link signup-link">Signup for free</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <%- include('partials/footer.ejs') %>
   </body>
 </html>
