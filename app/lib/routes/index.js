@@ -18,6 +18,9 @@ router
   .get("/", (req, res) => {
     res.render("home", { locals: req.locals });
   })
+  .get("/claim", (req, res) => {
+    res.render("listings");
+  })
   .get("/unsubscribe", auth.unsubscribe)
   .get("/subscribe", auth.subscribe)
   .get("/verify/:token", auth.verify)
