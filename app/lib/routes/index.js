@@ -1,42 +1,39 @@
-const router = require('express').Router();
-const { Validator, Logger, Constants } = require('common');
-const auth = require('../controllers/auth');
+const router = require("express").Router();
+const { Validator, Logger, Constants } = require("common");
+const auth = require("../controllers/auth");
 
-const Log = new Logger('App:Router');
+const Log = new Logger("App:Router");
 
-router.use('/api', require('./api'));
+router.use("/api", require("./api"));
 
 router.use((req, res, next) => {
   req.locals = {};
-  req.locals.pageTitle = 'Home';
-  if (
-    req.isAuthenticated() &&
-    req.user &&
-    req.user.accountType == Constants.accountType.user
-  )
+  req.locals.pageTitle = "Home";
+  if (req.isAuthenticated() && req.user && req.user.accountType == Constants.accountType.user)
     req.locals.isAuthenticated = true;
   next();
 });
 
 router
-  .get('/', (req, res) => {
-    res.render('test', { locals: req.locals });
+  .get("/", (req, res) => {
+    res.render("home", { locals: req.locals });
   })
-  .get('/unsubscribe', auth.unsubscribe)
-  .get('/subscribe', auth.subscribe)
-  .get('/verify/:token', auth.verify)
-  .get('/signup', (req, res) => {
-    res.render('signup');
+  .get("/claim", (req, res) => {
+    res.render("listings");
   })
-  .get('/logout', (req, res) => {
+  .get("/unsubscribe", auth.unsubscribe)
+  .get("/subscribe", auth.subscribe)
+  .get("/verify/:token", auth.verify)
+  .get("/signup", (req, res) => {
+    res.render("signup");
+  })
+  .get("/logout", (req, res) => {
     req.logout();
-    res.redirect('/login');
+    res.redirect("/login");
   })
   .use((req, res, next) => {
-    if (
-      !(req.isAuthenticated() && req.user && req.user.accountType == 'customer')
-    )
-      return res.render('login');
+    if (!(req.isAuthenticated() && req.user && req.user.accountType == "customer"))
+      return res.render("login");
     next();
   });
 
@@ -44,8 +41,8 @@ router
 router.use((req, res) => {
   res.statusCode = 404;
   // console.log(req.url.split("/").pop());
-  res.render(req.path.split('/').pop(), { locals: req.locals }, (err, dat) => {
-    if (err) res.render('page_404');
+  res.render(req.path.split("/").pop(), { locals: req.locals }, (err, dat) => {
+    if (err) res.render("page_404");
     else res.send(dat);
   });
 });
@@ -56,9 +53,9 @@ router.use((err, req, res, next) => {
   console.log(err);
   Log.info(req.headers);
   res.locals.message = err.message;
-  res.locals.error = process.env.NODE_ENV === 'development' ? err : {};
+  res.locals.error = process.env.NODE_ENV === "development" ? err : {};
   res.status(err.status || 500);
-  res.render('page_500');
+  res.render("page_500");
 });
 
 module.exports = router;
