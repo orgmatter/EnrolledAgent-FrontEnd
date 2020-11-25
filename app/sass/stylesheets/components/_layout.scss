@@ -1,0 +1,39 @@
+.layout {
+  display: grid;
+  grid-template-columns: 20vw 80vw;
+  grid-template-rows: 61px 1fr;
+  grid-template-areas:
+    "sidebar navbar"
+    "sidebar mainsection";
+  height: 100vh;
+}
+
+.mainsection {
+  background-color: #f3f6f8;
+  width: 80vw;
+  min-height: calc(100vh - 61px);
+  grid-area: mainsection;
+  background-color: #f7f7f7;
+}
+
+.sidebar {
+  width: 20vw;
+  background-color: $main-blue;
+  grid-area: sidebar;
+  height: 100vh;
+  position: fixed;
+  bottom: 0;
+  z-index: 2;
+}
+
+.navbar {
+  width: 80vw;
+  background-color: #fff;
+  grid-area: navbar;
+  height: 60px;
+  box-shadow: 0px 3px 20px #00000029;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
