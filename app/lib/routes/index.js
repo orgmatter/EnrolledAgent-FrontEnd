@@ -21,6 +21,9 @@ router
   .get("/claim", (req, res) => {
     res.render("listings");
   })
+  .get("/dashboard", (req, res) => {
+    res.render("dashboard/dashboardhome");
+  })
   .get("/unsubscribe", auth.unsubscribe)
   .get("/subscribe", auth.subscribe)
   .get("/verify/:token", auth.verify)
