@@ -19,57 +19,56 @@ router.use((req, res, next) => {
 
 router
   .use((req, res, next) => {
-    console.log(req.isAuthenticated(), req.user)
+    console.log(req.isAuthenticated(), req.user);
     //   console.log(req.body, req.params)
-    next()
+    next();
   })
 
-
-  .get('/facebook/callback', function (req, res, next) {
-    passport.authenticate('facebook', function (err, user, info) {
-      handleSocial(req, res, next, err, user, info)
-    })(req, res, next)
+  .get("/facebook/callback", function (req, res, next) {
+    passport.authenticate("facebook", function (err, user, info) {
+      handleSocial(req, res, next, err, user, info);
+    })(req, res, next);
   })
-  .get('/google/callback', function (req, res, next) {
-    passport.authenticate('google', { scope: ['profile', 'email'], }, function (err, user, info) {
-      handleSocial(req, res, next, err, user, info)
-    })(req, res, next)
+  .get("/google/callback", function (req, res, next) {
+    passport.authenticate("google", { scope: ["profile", "email"] }, function (err, user, info) {
+      handleSocial(req, res, next, err, user, info);
+    })(req, res, next);
   })
-  .get('/linkedin/callback', function (req, res, next) {
-    passport.authenticate('linkedin', function (err, user, info) {
-      handleSocial(req, res, next, err, user, info)
-    })(req, res, next)
+  .get("/linkedin/callback", function (req, res, next) {
+    passport.authenticate("linkedin", function (err, user, info) {
+      handleSocial(req, res, next, err, user, info);
+    })(req, res, next);
   })
   // .get('/linkedin/callback', passport.authenticate('linkedin'), handleSocial)
   // .get('/google/callback', passport.authenticate('google', { scope: ['profile', 'email'], }), handleSocial)
   .get("/unsubscribe", unsubscribe)
   .get("/subscribe", subscribe)
   .get("/verify/:token", verify)
+  .get("/dashboard", (req, res) => {
+    res.render("dashboard/dashboardhome");
+  })
   .get("/signup", (req, res) => {
     res.render("signup");
   })
-  .get("/blog", (req, res)=>{
-    res.render("blog")
+  .get("/blog", (req, res) => {
+    res.render("blog");
   })
   .get("/logout", (req, res) => {
     req.logout();
     res.redirect("/login");
   })
   .get("/login", (req, res) => {
-    if (req.isAuthenticated() && req.user)
-      return res.redirect("/");
+    if (req.isAuthenticated() && req.user) return res.redirect("/");
     res.render("login");
   })
   .get("/register", (req, res) => {
-    if (req.isAuthenticated() && req.user)
-      return res.redirect("/");
+    if (req.isAuthenticated() && req.user) return res.redirect("/");
     res.render("signup");
   })
 
   // Authenticated Endpoints
   .use((req, res, next) => {
-    if (!(req.isAuthenticated() && req.user))
-      return res.redirect("/login");
+    if (!(req.isAuthenticated() && req.user)) return res.redirect("/login");
     next();
   })
 
@@ -78,7 +77,7 @@ router
   })
   .get("/claim", (req, res) => {
     res.render("listings");
-  })
+  });
 
 // catch 404
 router.use((req, res) => {
@@ -100,7 +99,5 @@ router.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render("page_500");
 });
-
-
 
 module.exports = router;
