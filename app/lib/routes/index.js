@@ -50,11 +50,14 @@ router
   .get("/unsubscribe", unsubscribe)
   .get("/subscribe", subscribe)
   .get("/verify/:token", verify)
+  .get("/dashboard", (req, res) => {
+    res.render("dashboard/dashboardhome");
+  })
   .get("/signup", (req, res) => {
     res.render("signup");
   })
-  .get("/blog", (req, res)=>{
-    res.render("blog")
+  .get("/blog", (req, res) => {
+    res.render("blog");
   })
   .get("/logout", (req, res) => {
     req.logout();
