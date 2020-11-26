@@ -47,7 +47,7 @@
   &__main {
     width: 100%;
     height: 85vh;
-    background-image: url(/assets/images/blog/main-img.png);
+    background-image: url(/assets/images/blog/news-img2.png);
     background-size: cover;
     background-position: top;
     color: #fff;
@@ -59,7 +59,7 @@
           rgba(0, 0, 0, 0.65),
           rgba(0, 0, 0, 0.65)
         ),
-        url(/assets/images/blog/main-img.png);
+        url(/assets/images/blog/news-img2.png);
     }
     &--items {
       position: absolute;
@@ -75,30 +75,56 @@
       width: 100%;
       max-width: 600px;
       margin: 0 auto;
+
       &-name {
         font-weight: lighter;
         font-size: 1.25rem;
+        @include respond(tab-land){
+          font-size: 1rem;
+        }
+        @include respond(tab-port){
+          font-size: 0.75rem;
+        }
       }
       &-head {
         font-weight: 600;
         font-size: 3rem;
         line-height: 3rem;
-        margin: 1rem 0 2rem;
+        margin: 1rem 0;
+        @include respond(tab-land){
+          font-size: 2rem;
+          line-height: 2rem;
+          margin: 0.5rem 0;
+        }
+        @include respond(tab-port){
+          font-size: 1.5rem;
+          line-height: 1.5rem;
+        }
       }
       &-body {
         display: none;
         font-size: 1.25rem;
         line-height: 2rem;
+        margin: 0 2rem;
+        @include respond(tab-land){
+          font-size: 1rem;
+          line-height: 1.5rem;
+          margin: 0 1rem
+        }
+        //@include respond(tab-land){
+        //  font-size: rem;
+        //  line-height: 1.5rem;
+        //}
       }
       &-underline {
         width: 30%;
         margin: 0 auto;
-        border-top: 3px solid #fff;
+        border-top: 2px solid #fff;
       }
     }
   }
   &__articles {
-    margin: 3rem;
+    margin: 3rem 0;
     &--head {
       position: relative;
       margin-bottom: 2rem;
@@ -109,10 +135,22 @@
       &-head {
         font-weight: 600;
         font-size: 2.5rem;
+        @include respond(tab-port){
+          font-size: 2rem;
+        }
+        @include respond(smart-phone){
+          font-size: 1.5rem;
+        }
       }
       &-text {
         color: #086cef;
         font-size: 1.5rem;
+        @include respond(tab-port){
+          font-size: 1.25rem;
+        }
+        @include respond(smart-phone){
+          font-size: 1rem;
+        }
       }
       &-rule {
         position: absolute;
@@ -133,11 +171,15 @@
     text-align: center;
     &--card {
       max-width: 300px;
+      margin: 0 auto;
       padding: 1rem 0.5rem 3rem;
     }
     &--head {
       font-weight: 600;
       margin: 1rem 0;
+      @include respond(tab-port){
+        margin: 0.75rem 0;
+      }
     }
     &--details {
       font-weight: lighter;
@@ -146,13 +188,19 @@
     &--body {
       margin: 1.5rem 0;
       line-height: 1.75rem;
+      @include respond(tab-port){
+        margin: 0.75rem 0;
+      }
     }
     &--button {
       position: relative;
+      @include respond(tab-port){
+        margin: 1rem 0;
+      }
       &-btn {
         background-color: #fff;
         border: 1px solid #000;
-        border-radius: none;
+        border-radius: 0;
         padding: 0.35rem 0.75rem;
       }
       &-rule {
@@ -164,6 +212,9 @@
         width: 100%;
         margin: 0 auto;
         border-top: 2px solid #000;
+        @include respond(tab-land){
+          border-top: 1px solid #000;
+        }
       }
     }
   }
@@ -176,6 +227,9 @@
     &--section {
       position: relative;
       margin: 0 auto;
+      &-head{
+        margin-top: 2rem;
+      }
     }
     &--head {
       position: relative;
@@ -206,6 +260,19 @@
     display: flex;
     flex-wrap: nowrap;
     margin: 0.75rem 0;
+    @include respond(tab-land){
+      max-width: 300px;
+      margin: 1rem auto;
+    }
+    &--section{
+      display: block;
+      @include respond(tab-land){
+        display: flex;
+        flex-wrap: wrap;
+        justify-items: left;
+        justify-content: space-between;
+      }
+    }
     &--image {
       width: 40%;
     }
@@ -226,6 +293,10 @@
     margin: 1rem auto;
     &--section{
       width: 100%;
+      @include respond(tab-land){
+        display: flex;
+        flex-wrap: wrap;
+      }
     }
     &--image{
       width: 100%;
@@ -241,6 +312,8 @@
   }
   &__comment {
     text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
     &--info {
       font-size: 0.75rem;
       margin-bottom: 1rem;
@@ -289,10 +362,11 @@
       padding-left: 0.5rem;
       &-head {
         font-weight: bold;
-        margin-bottom: 0.5rem
+        margin-bottom: 0.25rem
       }
       &-text {
         font-weight: lighter;
+        font-size: 0.75rem
       }
     }
   }
@@ -301,12 +375,18 @@
     display: block;
     width: 100%;
     margin: 2rem 0;
+    @include respond(tab-land){
+      margin: 1rem  0;
+    }
     &--btn {
       background-color: #fff;
       border: 1px solid #000;
       border-radius: 0;
       padding: 0.35rem 0.25rem;
       margin: 0.5rem;
+      @include respond(tab-land){
+        margin: 0.25rem;
+      }
       &-left {
         -webkit-box-shadow: -1px 1px 2px 0px rgba(0, 0, 0, 0.5);
         -moz-box-shadow: -1px 1px 2px 0px rgba(0, 0, 0, 0.5);
@@ -335,4 +415,7 @@
 }
 .blog-btn {
   height: 1.2rem;
+  @include respond(tab-land){
+    height: 0.9rem
+  }
 }

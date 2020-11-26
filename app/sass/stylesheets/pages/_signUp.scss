@@ -31,7 +31,6 @@
 .signup,
 .login {
   // max-width: 1376px;
-  max-width: 800px;
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
@@ -54,7 +53,11 @@
   }
 }
 .signup {
+  width: 80vw;
   margin: 10px auto;
+  @include respond(tab-land){
+    width: 100%;
+  }
   &__header {
     width: calc(100% + 16px);
     background: #01105b;
@@ -63,7 +66,7 @@
     margin-left: -8px;
     &--img{
       padding: 0.5rem;
-      height: 60px;
+      height: 80px;
       width: auto;
       @include respond(tab-land){
         height: 50px;
@@ -160,9 +163,15 @@
     @include respond(tab-land) {
       width: 80%;
     }
-    &-img {
-      z-index: 1;
+    &-icon{
       position: absolute;
+      top: 50%;
+      left: 1.5rem;
+      transform: translateY(-50%)
+    }
+    &-img{
+      height: 1.25rem;
+      width: 1.25rem;
     }
   }
 
@@ -248,18 +257,21 @@
   }
 }
 .login {
-  margin: 4rem auto 0;
   background-color: #fff;
+  margin: 0 auto;
+  max-width: 95%;
   &__card {
     display: flex;
-    max-width: 820px;
+    margin: 5vh auto;
+    height: 90vh;
     @include respond(tab-port) {
       display: block;
       width: 100%;
+      height: auto;
     }
     &-left {
-      width: 45%;
-      max-width: 300px;
+      width: 37.5%;
+      min-width: 300px;
       // margin-left: 1rem;
       padding: 20px 40px 20px 20px;
       background-image: linear-gradient(
@@ -291,8 +303,8 @@
       }
     }
     &-right {
-      width: 55%;
-      max-width: 500px;
+      width: 62.5%;
+      // min-width: 500px;
       padding: 20px 30px;
       @include respond(tab-port) {
         width: 100%;
@@ -319,7 +331,7 @@
         margin-bottom: 10px;
       }
       &-img {
-        width: 75%;
+        width: 100%;
         @include respond(tab-port) {
           max-width: 300px;
         }
@@ -389,12 +401,13 @@
     }
   }
   &-form {
-    margin: 0;
+
     &__input {
       width: 100%;
     }
     &__btn {
       text-align: center;
+      margin: 2rem 0;
     }
     &__submit {
     }
