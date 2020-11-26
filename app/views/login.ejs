@@ -59,32 +59,49 @@
           <div class="login-main__head-main">Log In</div>
           <div class="login-main__head-text">Sign Into EnrolledAgent.com</div>
         </div>
-        <div class="login-main__text">
-          <div class="login-main__text-head">Standard Login</div>
-          <form class="login-form__main signup-form">
-            <div class="login-form__group">
-              <input type="email" id="email" class="login-form__input" placeholder="Email Address" />
-              <label for="lastname" class="signup-form__label">Email Address</label>
-            </div>
+        
+            <div class="login-main__text">
+              <div class="login-main__text-head">Standard Login</div>
+              <form class="login-form__main signup-form">
+                <div class="login-form__group">
+                  <span class="form-error" id="email-validator"></span>
+                  <input
+                    type="email"
+                    id="email"
+                    class="login-form__input"
+                    placeholder="Email Address"
+                    onblur="validateEmail('email')"
+                  />
+                  <label for="lastname" class="signup-form__label">Email Address</label>
+                </div>
 
-            <div class="signup-form__group">
-              <input type="password" id="password" class="login-form__input" placeholder="Password" />
-              <label for="password" class="signup-form__label">Password</label>
-            </div>
-            <div class="signup-form__row">
-              <div class="signup-form__checkbox">
-                <div class="signup-form__checkbox--group">
-                  <input type="checkbox" id="terms" class="signup-form__checkbox" />
-                  <label for="terms" class="signup-form__checkbox--label">Remember me.</label>
+                <div class="signup-form__group">
+                  <span class="form-error" id="password-validator"></span>
+                  <input
+                    type="password"
+                    id="password"
+                    class="login-form__input"
+                    placeholder="Password"
+                    onblur="validateNonEmpty('password')"
+                  />
+                  <label for="password" class="signup-form__label">Password</label>
+                </div>
+                <div class="signup-form__row">
+                  <div class="signup-form__checkbox">
+                    <div class="signup-form__checkbox--group">
+                      <input type="checkbox" id="terms" class="signup-form__checkbox" />
+                      <label for="terms" class="signup-form__checkbox--label">Remember me.</label>
+                    </div>
+                  </div>
+                  <div class="signup-form__link">
+                    <a href="#" class="signup-link">forgot your password</a>
+                  </div>
+                </div>
+                <div class="login-form__btn">
+                  <button class="login-form__submit signup-btn" type="button" onclick="validateLoginForm()">Sign in</button>
+                  <button  id="login-submit-btn" type="submit" style="display: none"></button>
                 </div>
               </div>
-              <div class="signup-form__link">
-                <a href="#" class="signup-link">forgot your password</a>
-              </div>
-            </div>
-            <div class="login-form__btn">
-              <button class="login-form__submit signup-btn" type="submit">Sign in</button>
-            </div>
           </form>
           <div class="login-right__footer">
             Need an account?
@@ -194,7 +211,8 @@
     //   fjs.parentNode.insertBefore(js, fjs);
     // }(document, 'script', 'facebook-jssdk'));
   </script>
-  <!-- <script src="https://apis.google.com/js/platform.js?onload=startApp" async defer></script> -->
+  <!-- <script src="https://apis.google.com/js/platform.js?onload=startApp" async defer></script> -->'<script type="text/javascript" src="/js/validator.min.js"></script>
+    <script type="text/javascript" src="/js/signup-form-validator.js"></script>'
 </body>
 
 </html>

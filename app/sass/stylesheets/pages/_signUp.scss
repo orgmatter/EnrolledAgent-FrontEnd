@@ -55,7 +55,24 @@
 }
 .signup {
   margin: 10px auto;
+  &__header {
+    width: calc(100% + 16px);
+    background: #01105b;
+    text-align: center;
+    margin-top: -8px;
+    margin-left: -8px;
+    &--img{
+      padding: 0.5rem;
+      height: 60px;
+      width: auto;
+      @include respond(tab-land){
+        height: 50px;
+      }
+    }
+
+  }
   &__head {
+    margin-top: 2rem;
     &--link {
       font-size: 1.2rem;
     }
@@ -67,7 +84,7 @@
       &-head {
         font-size: 3rem;
         font-weight: 400;
-        font-family: 'Libre Baskerville', serif;
+        font-family: "Libre Baskerville", serif;
         margin: 1rem 0;
         line-height: 3.5rem;
         @include respond(tab-land) {
@@ -164,9 +181,9 @@
       justify-content: space-between;
     }
     &__input {
-      color: #e9dcdc;
+      color: #000;
       font-size: 1.05rem;
-      padding: 0.5rem 0.75rem;
+      padding: 0.5rem 0.25rem;
       border: none;
       border-bottom: 1px solid #949494;
       width: 100%;
@@ -231,7 +248,7 @@
   }
 }
 .login {
-  margin: auto;
+  margin: 4rem auto 0;
   background-color: #fff;
   &__card {
     display: flex;
@@ -348,7 +365,7 @@
       &-main {
         font-size: 3rem;
         font-weight: 400;
-        font-family: 'Libre Baskerville', serif;
+        font-family: "Libre Baskerville", serif;
         line-height: 3.5rem;
       }
     }
@@ -382,4 +399,8 @@
     &__submit {
     }
   }
+}
+.form-error {
+  font-size: 0.75rem;
+  color: red;
 }

@@ -48,6 +48,9 @@ router
   .get("/signup", (req, res) => {
     res.render("signup");
   })
+  .get("/blog", (req, res)=>{
+    res.render("blog")
+  })
   .get("/logout", (req, res) => {
     req.logout();
     res.redirect("/login");
