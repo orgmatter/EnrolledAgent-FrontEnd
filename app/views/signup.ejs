@@ -11,11 +11,15 @@
   </head>
 
   <body class="signup-body">
-  <div class="signup__header">
-    <img src="/assets/images/signup/banner-logo-white.png" alt="logo" class="signup__header--img" height="50">
-  </div>
+    <div class="signup__header">
+      <img
+        src="/assets/images/signup/banner-logo-white.png"
+        alt="logo"
+        class="signup__header--img"
+        height="50"
+      />
+    </div>
     <div class="signup">
-
       <div class="signup__head">
         <div class="signup__head--link">
           <a href="/" class="signup-link">Enrolled Agents</a>
@@ -110,8 +114,7 @@
             </div>
 
             <div class="signup-form__row">
-
-              <div class="signup-form__group">
+              <div class="signup-form__group special">
                 <span class="form-error" id="email-validator"></span>
                 <input
                   type="email"
@@ -151,7 +154,7 @@
               </div>
             </div>
             <div class="signup-form__agreement">
-              <div class="signup-form__checkbox">
+              <div class="signup-form__checkboxs">
                 <div class="signup-form__checkbox--group">
                   <input type="checkbox" id="terms" class="signup-form__checkbox" />
                   <label for="terms" class="signup-form__checkbox--label"
@@ -165,10 +168,14 @@
                   >
                 </div>
               </div>
-              <button class="signup-form__submit signup-btn" type="button" onclick="validateSignupForm()">
+              <button
+                class="signup-form__submit signup-btn"
+                type="button"
+                onclick="validateSignupForm()"
+              >
                 Create a Free Account
               </button>
-              <button  id="signup-submit-btn" type="submit" style="display: none"></button>
+              <button id="signup-submit-btn" type="submit" style="display: none"></button>
             </div>
           </div>
         </form>

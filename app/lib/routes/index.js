@@ -59,6 +59,9 @@ router
   .get("/blog", (req, res) => {
     res.render("blog");
   })
+  .get("/listings", (req, res) => {
+    res.render("listings");
+  })
   .get("/logout", (req, res) => {
     req.logout();
     res.redirect("/login");
@@ -80,9 +83,6 @@ router
 
   .get("/", (req, res) => {
     res.render("home", { locals: req.locals });
-  })
-  .get("/claim", (req, res) => {
-    res.render("listings");
   });
 
 // catch 404

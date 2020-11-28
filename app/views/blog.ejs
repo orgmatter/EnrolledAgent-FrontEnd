@@ -1,284 +1,401 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link
-            href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap"
-            rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap"
+      rel="stylesheet"
     />
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-</head>
-    <body class="blog">
-        <div class="blog__section--main">
-            <div id="blog-main" class="blog__main">
-                <div class="blog__main--items">
-                    <div class="blog__main--article">
-                        <div class="blog__main--article-name">
-                            <span class="blog-color-text-sky">Lorem ipsum</span> / Nov 21, 2020 / By Bkninja
-                        </div>
-                        <div class="blog__main--article-head">
-                            Lorem ipsum dolor sit
-                        </div>
-                        <hr id="article-rule" class="blog__main--article-underline">
-                        <div id="blog-article-body" class="blog__main--article-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                        </div>
-                    </div>
-                </div>
+    <%- include("./partials/head.ejs") %>
+  </head>
+  <body>
+    <%- include("./partials/header.ejs") %>
+    <div class="blog">
+      <div class="blog__section--main">
+        <div id="blog-main" class="blog__main">
+          <div class="blog__main--items">
+            <div class="blog__main--article">
+              <div class="blog__main--article-name">
+                <span class="blog-color-text-sky">Lorem ipsum</span> / Nov 21, 2020 / By Bkninja
+              </div>
+              <div class="blog__main--article-head">Lorem ipsum dolor sit</div>
+              <hr id="article-rule" class="blog__main--article-underline" />
+              <div id="blog-article-body" class="blog__main--article-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna
+              </div>
             </div>
-            <div class="blog__articles">
-                <div class="blog__articles--head">
-                    <div class="blog__articles--head-item">
-                        <div class="blog__articles--head-head">Latest Articles</div>
-                        <div class="blog__articles--head-text">Lorem ipsum dolor sit amet, conse</div>
-                    </div>
-                    <hr class="blog__articles--head-rule">
-                </div>
-                <div class="blog__article">
-                    <div class="blog__article--card">
-                    <div class="blog__article--image">
-                        <img src="/assets/images/blog/article-img1.png" alt="article image" class="blog__article--image-img">
-                    </div>
-                    <div class="blog__article--head">Lorem ipsum dolor sit</div>
-                    <div class="blog__article--details"><span style="color: #5082F6">Lorem ipsum</span> / Nov 01, 2020 / By Bkninja</div>
-                    <div class="blog__article--body">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna</div>
-                    <div class="blog__article--button">
-                        <button class="blog__article--button-btn">
-                            Read More
-                            <span class="blog-btn-right-angle">
-                                <img src="/assets/images/blog/right-arrow.svg" class="read-more-btn">
-                            </span>
-                        </button>
-                        <hr class="blog__article--button-rule">
-                    </div>
-                </div>
-                    <div class="blog__article--card">
-                        <div class="blog__article--image">
-                            <img src="/assets/images/blog/article-img2.png" alt="article image" class="blog__article--image-img">
-                        </div>
-                        <div class="blog__article--head">Lorem ipsum dolor sit</div>
-                        <div class="blog__article--details"><span style="color: #5082F6">Lorem ipsum</span> / Nov 01, 2020 / By Bkninja</div>
-                        <div class="blog__article--body">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna</div>
-                        <div class="blog__article--button">
-                            <button class="blog__article--button-btn">Read More
-                                <span class="blog-btn-right-angle">
-                                    <img src="/assets/images/blog/right-arrow.svg" class="read-more-btn">
-                                </span>
-                            </button>
-                            <hr class="blog__article--button-rule">
-                        </div>
-                    </div>
-                    <div class="blog__article--card">
-                        <div class="blog__article--image">
-                            <img src="/assets/images/blog/article-img1.png" alt="article image" class="blog__article--image-img">
-                        </div>
-                        <div class="blog__article--head">Lorem ipsum dolor sit</div>
-                        <div class="blog__article--details"><span style="color: #5082F6">Lorem ipsum</span> / Nov 01, 2020 / By Bkninja</div>
-                        <div class="blog__article--body">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna</div>
-                        <div class="blog__article--button">
-                            <button class="blog__article--button-btn">
-                                Read More
-                                <span class="blog-btn-right-angle">
-                                    <img src="/assets/images/blog/right-arrow.svg" class="read-more-btn">
-                                </span>
-                            </button>
-                            <hr class="blog__article--button-rule">
-                        </div>
-                    </div>
-                    <div class="blog__article--card">
-                        <div class="blog__article--image">
-                            <img src="/assets/images/blog/article-img2.png" alt="article image" class="blog__article--image-img">
-                        </div>
-                        <div class="blog__article--head">Lorem ipsum dolor sit</div>
-                        <div class="blog__article--details"><span style="color: #5082F6">Lorem ipsum</span> / Nov 01, 2020 / By Bkninja</div>
-                        <div class="blog__article--body">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna</div>
-                        <div class="blog__article--button">
-                            <button class="blog__article--button-btn">
-                                Read More
-                                <span class="blog-btn-right-angle">
-                                    <img src="/assets/images/blog/right-arrow.svg" class="read-more-btn">
-                                </span>
-                            </button>
-                            <hr class="blog__article--button-rule">
-                        </div>
-                    </div>
-                    <div class="blog__article--card">
-                        <div class="blog__article--image">
-                            <img src="/assets/images/blog/article-img1.png" alt="article image" class="blog__article--image-img">
-                        </div>
-                        <div class="blog__article--head">Lorem ipsum dolor sit</div>
-                        <div class="blog__article--details"><span style="color: #5082F6">Lorem ipsum</span> / Nov 01, 2020 / By Bkninja</div>
-                        <div class="blog__article--body">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna</div>
-                        <div class="blog__article--button">
-                            <button class="blog__article--button-btn">
-                                Read More
-                                <span class="blog-btn-right-angle">
-                                    <img src="/assets/images/blog/right-arrow.svg" class="read-more-btn">
-                                </span>
-                            </button>
-                            <hr class="blog__article--button-rule">
-                        </div>
-                    </div>
-                    <div class="blog__article--card">
-                        <div class="blog__article--image">
-                            <img src="/assets/images/blog/article-img2.png" alt="article image" class="blog__article--image-img">
-                        </div>
-                        <div class="blog__article--head">Lorem ipsum dolor sit</div>
-                        <div class="blog__article--details"><span style="color: #5082F6">Lorem ipsum</span> / Nov 01, 2020 / By Bkninja</div>
-                        <div class="blog__article--body">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna</div>
-                        <div class="blog__article--button">
-                            <button class="blog__article--button-btn">
-                                Read More
-                                <span class="blog-btn-right-angle">
-                                    <img src="/assets/images/blog/right-arrow.svg" class="read-more-btn">
-                                </span>
-                            </button>
-                            <hr class="blog__article--button-rule">
-                        </div>
-                    </div>
-                    <div class="blog__scroll">
-                        <button class="blog__scroll--btn blog__scroll--btn-left"><img src="/assets/images/blog/left-arrow.svg" class="blog-btn"></button>
-                        <button class="blog__scroll--btn blog__scroll--btn-right"><img src="/assets/images/blog/right-arrow.svg" class="blog-btn"> </button>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-        <div class="blog__sidebar">
-            <div class="blog__sidebar--section">
-                <div class="blog__sidebar--head">
-                    <div class="blog__sidebar--head-text">Latest News</div>
-                    <hr class="blog__sidebar--head-rule">
-                </div>
-                <div class="blog__news--section">
-                    <div class="blog__news">
-                        <div class="blog__news--image"><img src="/assets/images/blog/news-img1.png" alt="news image" class="blog__news--image-img"></div>
-                        <div class="blog__news--text">
-                            <div class="blog__news--text-head">Lorem ipsum dolor amet, cons</div>
-                            <div class="blog__news--text-details"><span class="blog-color-text-sky">Lorem ipsum</span> / Nov 01, 2020 / By Bkninja</div>
-                        </div>
-                    </div>
-                    <div class="blog__news">
-                        <div class="blog__news--image"><img src="/assets/images/blog/news-img2.png" alt="news image" class="blog__news--image-img"></div>
-                        <div class="blog__news--text">
-                            <div class="blog__news--text-head">Lorem ipsum dolor amet, cons</div>
-                            <div class="blog__news--text-details"><span class="blog-color-text-sky">Lorem ipsum</span> / Nov 01, 2020 / By Bkninja</div>
-                        </div>
-                    </div>
-                    <div class="blog__news">
-                        <div class="blog__news--image"><img src="/assets/images/blog/news-img3.png" alt="news image" class="blog__news--image-img"></div>
-                        <div class="blog__news--text">
-                            <div class="blog__news--text-head">Lorem ipsum dolor amet, cons</div>
-                            <div class="blog__news--text-details"><span class="blog-color-text-sky">Lorem ipsum</span> / Nov 01, 2020 / By Bkninja</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="blog__scroll">
-                    <button class="blog__scroll--btn blog__scroll--btn-left"><img src="/assets/images/blog/left-arrow.svg" class="blog-btn"></button>
-                    <button class="blog__scroll--btn blog__scroll--btn-right"><img src="/assets/images/blog/right-arrow.svg" class="blog-btn"> </button>
-                </div>
+        <div class="blog__articles">
+          <div class="blog__articles--head">
+            <div class="blog__articles--head-item">
+              <div class="blog__articles--head-head">Latest Articles</div>
+              <div class="blog__articles--head-text">Lorem ipsum dolor sit amet, conse</div>
             </div>
-            <div class="blog__sidebar--section blog__sidebar--section-head">
-                <div class="blog__sidebar--head">
-                    <div class="blog__sidebar--head-text">ADS</div>
-                    <hr class="blog__sidebar--head-rule">
-                </div>
-                <div class="blog__ad--section">
-                    <div class="blog__ad">
-                        <div class="blog__ad--image">
-                            <img src="/assets/images/blog/ads1.png" alt="advert image" class="blog__ad--image-img">
-                        </div>
-                        <div class="blog__ad--text">
-                            Lorem ipsum dolor
-                        </div>
-                    </div>
-                    <div class="blog__ad">
-                        <div class="blog__ad--image">
-                            <img src="/assets/images/blog/ads4.png" alt="advert image" class="blog__ad--image-img">
-                        </div>
-                        <div class="blog__ad--text">
-                            Lorem ipsum dolor
-                        </div>
-                    </div>
-                    <div class="blog__ad">
-                        <div class="blog__ad--image">
-                            <img src="/assets/images/blog/ads2.png" alt="advert image" class="blog__ad--image-img">
-                        </div>
-                        <div class="blog__ad--text">
-                            Lorem ipsum dolor
-                        </div>
-                    </div>
-                    <div class="blog__ad">
-                        <div class="blog__ad--image">
-                            <img src="/assets/images/blog/ads3.png" alt="advert image" class="blog__ad--image-img">
-                        </div>
-                        <div class="blog__ad--text">
-                            Lorem ipsum dolor
-                        </div>
-                    </div>
-                </div>
-                <div class="blog__scroll">
-                    <button class="blog__scroll--btn blog__scroll--btn-left"><img src="/assets/images/blog/left-arrow.svg" class="blog-btn"></button>
-                    <button class="blog__scroll--btn blog__scroll--btn-right"><img src="/assets/images/blog/right-arrow.svg" class="blog-btn"> </button>
-                </div>
+            <hr class="blog__articles--head-rule" />
+          </div>
+          <div class="blog__article">
+            <div class="blog__article--card">
+              <div class="blog__article--image">
+                <img
+                  src="/assets/images/blog/article-img1.png"
+                  alt="article image"
+                  class="blog__article--image-img"
+                />
+              </div>
+              <div class="blog__article--head">Lorem ipsum dolor sit</div>
+              <div class="blog__article--details">
+                <span style="color: #5082f6">Lorem ipsum</span> / Nov 01, 2020 / By Bkninja
+              </div>
+              <div class="blog__article--body">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                tempor invidunt ut labore et dolore magna
+              </div>
+              <div class="blog__article--button">
+                <button class="blog__article--button-btn">
+                  Read More
+                  <span class="blog-btn-right-angle">
+                    <img src="/assets/images/blog/right-arrow.svg" class="read-more-btn" />
+                  </span>
+                </button>
+                <hr class="blog__article--button-rule" />
+              </div>
             </div>
-            <div class="blog__sidebar--section blog__sidebar--section-head">
-                <div class="blog__sidebar--head">
-                    <div class="blog__sidebar--head-text">Latest Comments</div>
-                    <hr class="blog__sidebar--head-rule">
-                </div>
-
-                <div class="blog__comment">
-                    <div class="blog__comment--info">
-                        <img src="/assets/images/blog/commenter.png" alt="" class="blog__comment--info-commenter-img">
-                        <span class="blog__comment--info-nomage">
-                        <span class="blog__comment--info-commenter-name">Michael Rosedale</span> on
-                        <span class="blog__comment--info-date">Nov 1 2020</span>
-                            </span>
-                    </div>
-                    <div class="blog__comment--text">
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                    </div>
-                </div>
-
-                <div class="blog__scroll">
-                    <button class="blog__scroll--btn blog__scroll--btn-left"><img src="/assets/images/blog/left-arrow.svg" class="blog-btn"></button>
-                    <button class="blog__scroll--btn blog__scroll--btn-right"><img src="/assets/images/blog/right-arrow.svg" class="blog-btn"> </button>
-                </div>
+            <div class="blog__article--card">
+              <div class="blog__article--image">
+                <img
+                  src="/assets/images/blog/article-img2.png"
+                  alt="article image"
+                  class="blog__article--image-img"
+                />
+              </div>
+              <div class="blog__article--head">Lorem ipsum dolor sit</div>
+              <div class="blog__article--details">
+                <span style="color: #5082f6">Lorem ipsum</span> / Nov 01, 2020 / By Bkninja
+              </div>
+              <div class="blog__article--body">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                tempor invidunt ut labore et dolore magna
+              </div>
+              <div class="blog__article--button">
+                <button class="blog__article--button-btn">
+                  Read More
+                  <span class="blog-btn-right-angle">
+                    <img src="/assets/images/blog/right-arrow.svg" class="read-more-btn" />
+                  </span>
+                </button>
+                <hr class="blog__article--button-rule" />
+              </div>
             </div>
-            <div class="blog__sidebar--section blog__sidebar--section-head" >
-                <div class="blog__social--section">
-                    <div class="blog__social">
-                        <div class="blog__social--image">
-                            <img src="/assets/images/blog/twitter.svg" alt="" class="blog__social--image-img">
-                        </div>
-                        <div class="blog__social--details">
-                            <div class="blog__social--details-head">12345</div>
-                            <div class="blog__social--details-text">Followers</div>
-                        </div>
-                    </div>
-                    <div class="blog__social">
-                        <div class="blog__social--image">
-                            <img src="/assets/images/blog/facebook.svg" alt="" class="blog__social--image-img">
-                        </div>
-                        <div class="blog__social--details">
-                            <div class="blog__social--details-head">12345</div>
-                            <div class="blog__social--details-text">Followers</div>
-                        </div>
-                    </div>
-                    <div class="blog__social">
-                        <div class="blog__social--image">
-                            <img src="/assets/images/blog/instagram.svg" alt="" class="blog__social--image-img">
-                        </div>
-                        <div class="blog__social--details">
-                            <div class="blog__social--details-head">12345</div>
-                            <div class="blog__social--details-text">Followers</div>
-                        </div>
-                    </div>
-                </div>
+            <div class="blog__article--card">
+              <div class="blog__article--image">
+                <img
+                  src="/assets/images/blog/article-img1.png"
+                  alt="article image"
+                  class="blog__article--image-img"
+                />
+              </div>
+              <div class="blog__article--head">Lorem ipsum dolor sit</div>
+              <div class="blog__article--details">
+                <span style="color: #5082f6">Lorem ipsum</span> / Nov 01, 2020 / By Bkninja
+              </div>
+              <div class="blog__article--body">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                tempor invidunt ut labore et dolore magna
+              </div>
+              <div class="blog__article--button">
+                <button class="blog__article--button-btn">
+                  Read More
+                  <span class="blog-btn-right-angle">
+                    <img src="/assets/images/blog/right-arrow.svg" class="read-more-btn" />
+                  </span>
+                </button>
+                <hr class="blog__article--button-rule" />
+              </div>
             </div>
+            <div class="blog__article--card">
+              <div class="blog__article--image">
+                <img
+                  src="/assets/images/blog/article-img2.png"
+                  alt="article image"
+                  class="blog__article--image-img"
+                />
+              </div>
+              <div class="blog__article--head">Lorem ipsum dolor sit</div>
+              <div class="blog__article--details">
+                <span style="color: #5082f6">Lorem ipsum</span> / Nov 01, 2020 / By Bkninja
+              </div>
+              <div class="blog__article--body">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                tempor invidunt ut labore et dolore magna
+              </div>
+              <div class="blog__article--button">
+                <button class="blog__article--button-btn">
+                  Read More
+                  <span class="blog-btn-right-angle">
+                    <img src="/assets/images/blog/right-arrow.svg" class="read-more-btn" />
+                  </span>
+                </button>
+                <hr class="blog__article--button-rule" />
+              </div>
+            </div>
+            <div class="blog__article--card">
+              <div class="blog__article--image">
+                <img
+                  src="/assets/images/blog/article-img1.png"
+                  alt="article image"
+                  class="blog__article--image-img"
+                />
+              </div>
+              <div class="blog__article--head">Lorem ipsum dolor sit</div>
+              <div class="blog__article--details">
+                <span style="color: #5082f6">Lorem ipsum</span> / Nov 01, 2020 / By Bkninja
+              </div>
+              <div class="blog__article--body">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                tempor invidunt ut labore et dolore magna
+              </div>
+              <div class="blog__article--button">
+                <button class="blog__article--button-btn">
+                  Read More
+                  <span class="blog-btn-right-angle">
+                    <img src="/assets/images/blog/right-arrow.svg" class="read-more-btn" />
+                  </span>
+                </button>
+                <hr class="blog__article--button-rule" />
+              </div>
+            </div>
+            <div class="blog__article--card">
+              <div class="blog__article--image">
+                <img
+                  src="/assets/images/blog/article-img2.png"
+                  alt="article image"
+                  class="blog__article--image-img"
+                />
+              </div>
+              <div class="blog__article--head">Lorem ipsum dolor sit</div>
+              <div class="blog__article--details">
+                <span style="color: #5082f6">Lorem ipsum</span> / Nov 01, 2020 / By Bkninja
+              </div>
+              <div class="blog__article--body">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                tempor invidunt ut labore et dolore magna
+              </div>
+              <div class="blog__article--button">
+                <button class="blog__article--button-btn">
+                  Read More
+                  <span class="blog-btn-right-angle">
+                    <img src="/assets/images/blog/right-arrow.svg" class="read-more-btn" />
+                  </span>
+                </button>
+                <hr class="blog__article--button-rule" />
+              </div>
+            </div>
+            <div class="blog__scroll">
+              <button class="blog__scroll--btn blog__scroll--btn-left">
+                <img src="/assets/images/blog/left-arrow.svg" class="blog-btn" />
+              </button>
+              <button class="blog__scroll--btn blog__scroll--btn-right">
+                <img src="/assets/images/blog/right-arrow.svg" class="blog-btn" />
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="blog__sidebar">
+        <div class="blog__sidebar--section">
+          <div class="blog__sidebar--head">
+            <div class="blog__sidebar--head-text">Latest News</div>
+            <hr class="blog__sidebar--head-rule" />
+          </div>
+          <div class="blog__news--section">
+            <div class="blog__news">
+              <div class="blog__news--image">
+                <img
+                  src="/assets/images/blog/news-img1.png"
+                  alt="news image"
+                  class="blog__news--image-img"
+                />
+              </div>
+              <div class="blog__news--text">
+                <div class="blog__news--text-head">Lorem ipsum dolor amet, cons</div>
+                <div class="blog__news--text-details">
+                  <span class="blog-color-text-sky">Lorem ipsum</span> / Nov 01, 2020 / By Bkninja
+                </div>
+              </div>
+            </div>
+            <div class="blog__news">
+              <div class="blog__news--image">
+                <img
+                  src="/assets/images/blog/news-img2.png"
+                  alt="news image"
+                  class="blog__news--image-img"
+                />
+              </div>
+              <div class="blog__news--text">
+                <div class="blog__news--text-head">Lorem ipsum dolor amet, cons</div>
+                <div class="blog__news--text-details">
+                  <span class="blog-color-text-sky">Lorem ipsum</span> / Nov 01, 2020 / By Bkninja
+                </div>
+              </div>
+            </div>
+            <div class="blog__news">
+              <div class="blog__news--image">
+                <img
+                  src="/assets/images/blog/news-img3.png"
+                  alt="news image"
+                  class="blog__news--image-img"
+                />
+              </div>
+              <div class="blog__news--text">
+                <div class="blog__news--text-head">Lorem ipsum dolor amet, cons</div>
+                <div class="blog__news--text-details">
+                  <span class="blog-color-text-sky">Lorem ipsum</span> / Nov 01, 2020 / By Bkninja
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="blog__scroll">
+            <button class="blog__scroll--btn blog__scroll--btn-left">
+              <img src="/assets/images/blog/left-arrow.svg" class="blog-btn" />
+            </button>
+            <button class="blog__scroll--btn blog__scroll--btn-right">
+              <img src="/assets/images/blog/right-arrow.svg" class="blog-btn" />
+            </button>
+          </div>
+        </div>
+        <div class="blog__sidebar--section blog__sidebar--section-head">
+          <div class="blog__sidebar--head">
+            <div class="blog__sidebar--head-text">ADS</div>
+            <hr class="blog__sidebar--head-rule" />
+          </div>
+          <div class="blog__ad--section">
+            <div class="blog__ad">
+              <div class="blog__ad--image">
+                <img
+                  src="/assets/images/blog/ads1.png"
+                  alt="advert image"
+                  class="blog__ad--image-img"
+                />
+              </div>
+              <div class="blog__ad--text">Lorem ipsum dolor</div>
+            </div>
+            <div class="blog__ad">
+              <div class="blog__ad--image">
+                <img
+                  src="/assets/images/blog/ads4.png"
+                  alt="advert image"
+                  class="blog__ad--image-img"
+                />
+              </div>
+              <div class="blog__ad--text">Lorem ipsum dolor</div>
+            </div>
+            <div class="blog__ad">
+              <div class="blog__ad--image">
+                <img
+                  src="/assets/images/blog/ads2.png"
+                  alt="advert image"
+                  class="blog__ad--image-img"
+                />
+              </div>
+              <div class="blog__ad--text">Lorem ipsum dolor</div>
+            </div>
+            <div class="blog__ad">
+              <div class="blog__ad--image">
+                <img
+                  src="/assets/images/blog/ads3.png"
+                  alt="advert image"
+                  class="blog__ad--image-img"
+                />
+              </div>
+              <div class="blog__ad--text">Lorem ipsum dolor</div>
+            </div>
+          </div>
+          <div class="blog__scroll">
+            <button class="blog__scroll--btn blog__scroll--btn-left">
+              <img src="/assets/images/blog/left-arrow.svg" class="blog-btn" />
+            </button>
+            <button class="blog__scroll--btn blog__scroll--btn-right">
+              <img src="/assets/images/blog/right-arrow.svg" class="blog-btn" />
+            </button>
+          </div>
+        </div>
+        <div class="blog__sidebar--section blog__sidebar--section-head">
+          <div class="blog__sidebar--head">
+            <div class="blog__sidebar--head-text">Latest Comments</div>
+            <hr class="blog__sidebar--head-rule" />
+          </div>
 
-        <script type="text/javascript" src="/js/blog-page.js"></script>
-    </body>
+          <div class="blog__comment">
+            <div class="blog__comment--info">
+              <img
+                src="/assets/images/blog/commenter.png"
+                alt=""
+                class="blog__comment--info-commenter-img"
+              />
+              <span class="blog__comment--info-nomage">
+                <span class="blog__comment--info-commenter-name">Michael Rosedale</span> on
+                <span class="blog__comment--info-date">Nov 1 2020</span>
+              </span>
+            </div>
+            <div class="blog__comment--text">
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+            </div>
+          </div>
+
+          <div class="blog__scroll">
+            <button class="blog__scroll--btn blog__scroll--btn-left">
+              <img src="/assets/images/blog/left-arrow.svg" class="blog-btn" />
+            </button>
+            <button class="blog__scroll--btn blog__scroll--btn-right">
+              <img src="/assets/images/blog/right-arrow.svg" class="blog-btn" />
+            </button>
+          </div>
+        </div>
+        <div class="blog__sidebar--section blog__sidebar--section-head">
+          <div class="blog__social--section">
+            <div class="blog__social">
+              <div class="blog__social--image">
+                <img src="/assets/images/blog/twitter.svg" alt="" class="blog__social--image-img" />
+              </div>
+              <div class="blog__social--details">
+                <div class="blog__social--details-head">12345</div>
+                <div class="blog__social--details-text">Followers</div>
+              </div>
+            </div>
+            <div class="blog__social">
+              <div class="blog__social--image">
+                <img
+                  src="/assets/images/blog/facebook.svg"
+                  alt=""
+                  class="blog__social--image-img"
+                />
+              </div>
+              <div class="blog__social--details">
+                <div class="blog__social--details-head">12345</div>
+                <div class="blog__social--details-text">Followers</div>
+              </div>
+            </div>
+            <div class="blog__social">
+              <div class="blog__social--image">
+                <img
+                  src="/assets/images/blog/instagram.svg"
+                  alt=""
+                  class="blog__social--image-img"
+                />
+              </div>
+              <div class="blog__social--details">
+                <div class="blog__social--details-head">12345</div>
+                <div class="blog__social--details-text">Followers</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include("./partials/footer.ejs") %>
+    <script type="text/javascript" src="/js/blog-page.js"></script>
+  </body>
 </html>
