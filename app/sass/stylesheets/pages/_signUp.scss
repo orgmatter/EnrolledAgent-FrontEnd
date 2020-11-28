@@ -36,11 +36,13 @@
   font-size: 14px;
 
   &-body {
+    margin: 0;
     // base styles for the whole page
     background-color: #f6f6f6;
     line-height: 1.5rem;
     word-spacing: 1px;
-    max-width: 1377px;
+    width: 100vw;
+    // max-width: 1377px;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     -moz-osx-font-smoothing: grayscale;
@@ -53,9 +55,9 @@
   }
 }
 .signup {
-  width: 80vw;
+  width: 70vw;
   margin: 10px auto;
-  @include respond(tab-land){
+  @include respond(tab-land) {
     width: 100%;
   }
   &__header {
@@ -64,15 +66,14 @@
     text-align: center;
     margin-top: -8px;
     margin-left: -8px;
-    &--img{
+    &--img {
       padding: 0.5rem;
       height: 80px;
       width: auto;
-      @include respond(tab-land){
+      @include respond(tab-land) {
         height: 50px;
       }
     }
-
   }
   &__head {
     margin-top: 2rem;
@@ -107,11 +108,28 @@
   &__social,
   &__email {
     margin: 50px 0;
-    padding: 30px;
+    padding: 30px 60px;
     text-align: left;
     @include respond(tab-land) {
       margin: 30px 0;
       padding: 15px;
+    }
+    &--form {
+      .signup-form {
+        &__group {
+          width: 48%;
+        }
+        .special {
+          width: 65%;
+        }
+        &__checkboxs {
+          margin: 0 auto !important;
+          width: 50% !important;
+        }
+        &__checkbox--group {
+          justify-content: center;
+        }
+      }
     }
     &--head {
       font-weight: 700;
@@ -156,20 +174,21 @@
   }
   &-btn {
     height: 3rem;
-    width: 210px;
+    width: 280px;
+    border-radius: 3px;
     border: none;
     color: #fff;
     position: relative;
     @include respond(tab-land) {
       width: 80%;
     }
-    &-icon{
+    &-icon {
       position: absolute;
       top: 50%;
       left: 1.5rem;
-      transform: translateY(-50%)
+      transform: translateY(-50%);
     }
-    &-img{
+    &-img {
       height: 1.25rem;
       width: 1.25rem;
     }
@@ -237,10 +256,15 @@
       //display: inline-block;
     }
     &__checkbox {
-      font-size: 0.65rem;
+      // font-size: 0.65rem;
       // margin: 20px 0;
       &--group {
         margin: 5px 0;
+        display: flex;
+        align-items: center;
+        input {
+          margin: 0 10px 0 0;
+        }
       }
     }
 
@@ -258,27 +282,22 @@
 }
 .login {
   background-color: #fff;
-  margin: 0 auto;
-  max-width: 95%;
+  width: 100%;
+  height: 100vh;
   &__card {
     display: flex;
-    margin: 5vh auto;
-    height: 90vh;
+    height: 100vh;
     @include respond(tab-port) {
       display: block;
       width: 100%;
       height: auto;
     }
     &-left {
-      width: 37.5%;
+      width: 41.5%;
       min-width: 300px;
       // margin-left: 1rem;
-      padding: 20px 40px 20px 20px;
-      background-image: linear-gradient(
-          to bottom,
-          rgba(1, 16, 91, 0.8),
-          rgba(1, 16, 91, 0.8)
-        ),
+      padding: 70px 45px;
+      background-image: linear-gradient(to bottom, rgba(1, 16, 91, 0.8), rgba(1, 16, 91, 0.8)),
         url(/assets/images/signup/login-bg.png);
       background-size: cover;
       background-position: top;
@@ -303,9 +322,9 @@
       }
     }
     &-right {
-      width: 62.5%;
+      width: 58.5%;
       // min-width: 500px;
-      padding: 20px 30px;
+      padding: 50px 66px;
       @include respond(tab-port) {
         width: 100%;
         max-width: 600px;
@@ -326,12 +345,12 @@
   }
   &-left {
     &__banner {
-      margin-bottom: 30px;
+      margin-bottom: 80px;
       @include respond(tab-port) {
         margin-bottom: 10px;
       }
       &-img {
-        width: 100%;
+        width: 60%;
         @include respond(tab-port) {
           max-width: 300px;
         }
@@ -348,19 +367,24 @@
       }
     }
     &__btns {
-      margin-bottom: 50px;
       @include respond(tab-port) {
         margin-bottom: 20px;
       }
       &-btn {
-        text-align: center;
-        margin: 15px;
+        margin-bottom: 15px;
         @include respond(tab-land) {
           margin: 15px 0;
+        }
+        .login-btn {
+          height: 60px;
+          margin-bottom: 30px;
+          border-radius: 3px;
+          width: 80%;
         }
       }
     }
     &__footer {
+      margin-top: 120px;
       @include respond(tab-port) {
         display: none;
       }
@@ -380,8 +404,12 @@
         font-family: "Libre Baskerville", serif;
         line-height: 3.5rem;
       }
+      &-text {
+        margin-top: 15px;
+      }
     }
     &__text {
+      margin-top: 5rem;
       &-head {
         margin-bottom: 20px;
         font-weight: 700;
@@ -400,14 +428,20 @@
       max-width: 300px;
     }
   }
+  form {
+    margin-top: 5rem;
+    width: 90%;
+  }
   &-form {
-
     &__input {
       width: 100%;
     }
     &__btn {
-      text-align: center;
+      // text-align: center;
       margin: 2rem 0;
+      button {
+        width: 100%;
+      }
     }
     &__submit {
     }

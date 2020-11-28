@@ -30,6 +30,7 @@
 
 .blog {
   display: flex;
+  padding: 2.5rem 4.5rem;
   flex-wrap: nowrap;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -54,11 +55,7 @@
     position: relative;
     margin-bottom: 1rem;
     &:hover {
-      background-image: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0.65),
-          rgba(0, 0, 0, 0.65)
-        ),
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
         url(/assets/images/blog/news-img2.png);
     }
     &--items {
@@ -79,10 +76,10 @@
       &-name {
         font-weight: lighter;
         font-size: 1.25rem;
-        @include respond(tab-land){
+        @include respond(tab-land) {
           font-size: 1rem;
         }
-        @include respond(tab-port){
+        @include respond(tab-port) {
           font-size: 0.75rem;
         }
       }
@@ -91,12 +88,12 @@
         font-size: 3rem;
         line-height: 3rem;
         margin: 1rem 0;
-        @include respond(tab-land){
+        @include respond(tab-land) {
           font-size: 2rem;
           line-height: 2rem;
           margin: 0.5rem 0;
         }
-        @include respond(tab-port){
+        @include respond(tab-port) {
           font-size: 1.5rem;
           line-height: 1.5rem;
         }
@@ -106,10 +103,10 @@
         font-size: 1.25rem;
         line-height: 2rem;
         margin: 0 2rem;
-        @include respond(tab-land){
+        @include respond(tab-land) {
           font-size: 1rem;
           line-height: 1.5rem;
-          margin: 0 1rem
+          margin: 0 1rem;
         }
         //@include respond(tab-land){
         //  font-size: rem;
@@ -135,20 +132,20 @@
       &-head {
         font-weight: 600;
         font-size: 2.5rem;
-        @include respond(tab-port){
+        @include respond(tab-port) {
           font-size: 2rem;
         }
-        @include respond(smart-phone){
+        @include respond(smart-phone) {
           font-size: 1.5rem;
         }
       }
       &-text {
         color: #086cef;
         font-size: 1.5rem;
-        @include respond(tab-port){
+        @include respond(tab-port) {
           font-size: 1.25rem;
         }
-        @include respond(smart-phone){
+        @include respond(smart-phone) {
           font-size: 1rem;
         }
       }
@@ -177,7 +174,7 @@
     &--head {
       font-weight: 600;
       margin: 1rem 0;
-      @include respond(tab-port){
+      @include respond(tab-port) {
         margin: 0.75rem 0;
       }
     }
@@ -188,13 +185,13 @@
     &--body {
       margin: 1.5rem 0;
       line-height: 1.75rem;
-      @include respond(tab-port){
+      @include respond(tab-port) {
         margin: 0.75rem 0;
       }
     }
     &--button {
       position: relative;
-      @include respond(tab-port){
+      @include respond(tab-port) {
         margin: 1rem 0;
       }
       &-btn {
@@ -212,7 +209,7 @@
         width: 100%;
         margin: 0 auto;
         border-top: 2px solid #000;
-        @include respond(tab-land){
+        @include respond(tab-land) {
           border-top: 1px solid #000;
         }
       }
@@ -227,7 +224,7 @@
     &--section {
       position: relative;
       margin: 0 auto;
-      &-head{
+      &-head {
         margin-top: 2rem;
       }
     }
@@ -260,13 +257,13 @@
     display: flex;
     flex-wrap: nowrap;
     margin: 0.75rem 0;
-    @include respond(tab-land){
+    @include respond(tab-land) {
       max-width: 300px;
       margin: 1rem auto;
     }
-    &--section{
+    &--section {
       display: block;
-      @include respond(tab-land){
+      @include respond(tab-land) {
         display: flex;
         flex-wrap: wrap;
         justify-items: left;
@@ -291,17 +288,17 @@
     max-width: 300px;
     position: relative;
     margin: 1rem auto;
-    &--section{
+    &--section {
       width: 100%;
-      @include respond(tab-land){
+      @include respond(tab-land) {
         display: flex;
         flex-wrap: wrap;
       }
     }
-    &--image{
+    &--image {
       width: 100%;
     }
-    &--text{
+    &--text {
       font-size: 1.25rem;
       position: absolute;
       bottom: 2rem;
@@ -317,40 +314,38 @@
     &--info {
       font-size: 0.75rem;
       margin-bottom: 1rem;
-    &-commenter{
-      &-img{
-        height: 1.5rem;
-        width: 1.5rem;
-        border-radius: 10rem;
-      }
-      &-name {
-        font-weight: bolder;
+      &-commenter {
+        &-img {
+          height: 1.5rem;
+          width: 1.5rem;
+          border-radius: 10rem;
+        }
+        &-name {
+          font-weight: bolder;
+        }
       }
     }
-
-
-    }
-    &--text{
+    &--text {
       line-height: 1.75rem;
       font-style: italic;
     }
   }
-  &__social{
+  &__social {
     display: flex;
     flex-wrap: nowrap;
     margin: 1rem;
-    &--section{
+    &--section {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
     }
     &--image {
-      background-color: #086CEF;
+      background-color: #086cef;
       height: 50px;
       width: 50px;
       margin: 0 auto;
       position: relative;
-      &-img{
+      &-img {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -362,11 +357,11 @@
       padding-left: 0.5rem;
       &-head {
         font-weight: bold;
-        margin-bottom: 0.25rem
+        margin-bottom: 0.25rem;
       }
       &-text {
         font-weight: lighter;
-        font-size: 0.75rem
+        font-size: 0.75rem;
       }
     }
   }
@@ -375,8 +370,8 @@
     display: block;
     width: 100%;
     margin: 2rem 0;
-    @include respond(tab-land){
-      margin: 1rem  0;
+    @include respond(tab-land) {
+      margin: 1rem 0;
     }
     &--btn {
       background-color: #fff;
@@ -384,7 +379,7 @@
       border-radius: 0;
       padding: 0.35rem 0.25rem;
       margin: 0.5rem;
-      @include respond(tab-land){
+      @include respond(tab-land) {
         margin: 0.25rem;
       }
       &-left {
@@ -415,7 +410,7 @@
 }
 .blog-btn {
   height: 1.2rem;
-  @include respond(tab-land){
-    height: 0.9rem
+  @include respond(tab-land) {
+    height: 0.9rem;
   }
 }

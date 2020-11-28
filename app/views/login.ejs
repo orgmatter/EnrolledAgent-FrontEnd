@@ -64,7 +64,6 @@
               <div class="login-main__text-head">Standard Login</div>
               <form class="login-form__main signup-form">
                 <div class="login-form__group">
-                  <span class="form-error" id="email-validator"></span>
                   <input
                     type="email"
                     id="email"
@@ -73,10 +72,10 @@
                     onblur="validateEmail('email')"
                   />
                   <label for="lastname" class="signup-form__label">Email Address</label>
+                  <span class="form-error" id="email-validator"></span>
                 </div>
 
                 <div class="signup-form__group">
-                  <span class="form-error" id="password-validator"></span>
                   <input
                     type="password"
                     id="password"
@@ -84,7 +83,9 @@
                     placeholder="Password"
                     onblur="validateNonEmpty('password')"
                   />
+
                   <label for="password" class="signup-form__label">Password</label>
+                  <span class="form-error" id="password-validator"></span>
                 </div>
                 <div class="signup-form__row">
                   <div class="signup-form__checkbox">
@@ -94,12 +95,18 @@
                     </div>
                   </div>
                   <div class="signup-form__link">
-                    <a href="#" class="signup-link">forgot your password</a>
+                    <a href="#" class="signup-link">Forgot your password</a>
                   </div>
                 </div>
                 <div class="login-form__btn">
-                  <button class="login-form__submit signup-btn" type="button" onclick="validateLoginForm()">Sign in</button>
-                  <button  id="login-submit-btn" type="submit" style="display: none"></button>
+                  <button
+                    class="login-form__submit signup-btn"
+                    type="button"
+                    onclick="validateLoginForm()"
+                  >
+                    Sign in
+                  </button>
+                  <button id="login-submit-btn" type="submit" style="display: none"></button>
                 </div>
               </div>
           </form>
