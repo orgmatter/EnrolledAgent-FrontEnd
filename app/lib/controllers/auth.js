@@ -356,7 +356,7 @@ class AuthController {
       res.locals = {...locals, message}
       if(String(req.url).includes('register'))
       return res.redirect('/register');
-      return res.redirect('/login');
+      return res.redirect('/');
       // return res.render('login', { message })
     }
     // Successful authentication, redirect home.
