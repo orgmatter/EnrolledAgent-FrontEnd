@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap"
       rel="stylesheet"
@@ -85,7 +86,7 @@
           account?
           <a href="/login" class="signup-link">Login to your account</a>
         </div>
-        <form class="signup__email--form">
+        <form class="signup__email--form" id="signup-form">
           <div class="signup-form">
             <div class="signup-form__row">
               <div class="signup-form__group">
@@ -170,7 +171,7 @@
               </div>
               <button
                 class="signup-form__submit signup-btn"
-                type="button"
+                type="submit"
                 onclick="validateSignupForm()"
               >
                 Create a Free Account
@@ -182,8 +183,15 @@
       </div>
     </div>
 
-    <script type="text/javascript" src="/javascripts/script.js"></script>
     <script type="text/javascript" src="/js/validator.min.js"></script>
     <script type="text/javascript" src="/js/signup-form-validator.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+      integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="text/javascript" src="/javascripts/signup.js"></script>
   </body>
 </html>

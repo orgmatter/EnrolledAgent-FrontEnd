@@ -53,11 +53,11 @@ router
   .get("/dashboard", (req, res) => {
     res.render("dashboard/dashboardhome");
   })
-  .get("/signup", (req, res) => {
-    res.render("signup");
-  })
   .get("/blog", (req, res) => {
     res.render("blog");
+  })
+  .get("/", (req, res) => {
+    res.render("home", { locals: req.locals });
   })
   .get("/listings", (req, res) => {
     res.render("listings");
@@ -79,10 +79,6 @@ router
   .use((req, res, next) => {
     if (!(req.isAuthenticated() && req.user)) return res.redirect("/login");
     next();
-  })
-
-  .get("/", (req, res) => {
-    res.render("home", { locals: req.locals });
   });
 
 // catch 404
