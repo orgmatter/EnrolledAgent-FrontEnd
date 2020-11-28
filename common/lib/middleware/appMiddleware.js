@@ -8,12 +8,12 @@ const config = require('../config')
 const SessionUtil = require('../utils/session_util')
 const helmet = require('helmet')
 
-const passport = require('passport')
+// const passport = require('passport')
 const flash = require('connect-flash')
 
 module.exports = (server, view) => {
     server.use(Express.static(path.resolve(config.STORAGE)))
-    server.use(Express.static(path.resolve(config.STORAGE, 'assets')))
+    // server.use(Express.static(path.resolve(config.STORAGE, 'assets')))
 
     server.use(logger('dev'))
     server.use(Express.json())

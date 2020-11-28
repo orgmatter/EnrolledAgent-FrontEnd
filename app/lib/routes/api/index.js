@@ -4,15 +4,14 @@ const {
   Middleware,
   FileManager,
 } = require("common");
-const auth = require("../../controllers/auth");
+const {register, changePassword, login, update} = require("../../controllers/auth");
 
 router
   
-  .post("/register", auth.register)
-  .get("/verify", auth.verify)
-  .post("/changepass", auth.changePassword)
-  .post("/login", auth.login)
-  .put("/update-profile", FileManager.upload, auth.update);
+  .post("/register", register)
+  .post("/changepass", changePassword)
+  .post("/login", login)
+  .put("/update-profile", FileManager.upload, update);
 
 router.use(Middleware.Four04Handler)
 router.use(Middleware.ErrorHandler);

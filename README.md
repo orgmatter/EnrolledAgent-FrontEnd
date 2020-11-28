@@ -26,6 +26,8 @@ to start work, pull from master, create a branch with name of page you are worki
 when you are done, commit, switch to master pull latest updates, switch back to your branch, 
 merge master into your branch, fix any merge conflicts, push and do a pull request to master.
 
+ensure to set the full path to the public folder on your .env file
+
 [https://developer.twitter.com/en/docs/authentication/guides/log-in-with-twitter]
 
 
