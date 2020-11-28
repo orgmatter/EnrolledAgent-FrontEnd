@@ -16,10 +16,6 @@ const UserSchema = new Schema({
         type: Boolean,
         default: false
     },
-    accountType: {
-        type: String,
-        default: Constants.ACCOUNT_TYPE.user
-    },
     isActive: {
         type: Boolean,
         default: true
@@ -36,6 +32,14 @@ const UserSchema = new Schema({
     city: String,
     ip: String,
     imageUrl: String,
+    providers: [{
+        type: String,
+        enum: [
+            Constants.PROVIDERS.FACEBOOK,
+            Constants.PROVIDERS.GOOGLE,
+            Constants.PROVIDERS.LINKEDIN,
+        ]
+    }],
     updatedAt: {
         type: Number,
         default: Date.now()
@@ -66,6 +70,7 @@ UserSchema.methods.setPassword = function (password) {
 }
 
 UserSchema.methods.validatePassword = function (password) {
+    if (!this.hash || !this.salt) return false
     const hash = crypto
         .pbkdf2Sync(password, this.salt, 10000, 512, 'sha512')
         .toString('hex')
@@ -81,7 +86,7 @@ UserSchema.methods.tokenPayload = function (user) {
     return {
         email: this.email,
         id: this.id,
-        accountType: this.accountType
+        accountType: this.accountType,
     }
 }
 

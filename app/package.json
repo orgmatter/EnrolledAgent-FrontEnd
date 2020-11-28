@@ -1,5 +1,5 @@
 {
-  "name": "porple_pages",
+  "name": "enrolled_agents",
   "version": "0.0.1",
   "description": "An agent listing application",
   "main": "index.js",
@@ -7,11 +7,11 @@
     "test": "mocha",
     "build": "babel ./server -d dist",
     "start": "npm run build && node index.js",
-    "sass": "node-sass -r --output-style compressed sass/stylesheets/style.scss -o ../public/stylesheets/",
+    "sass": "node-sass  --output-style compressed sass/stylesheets/style.scss -o ../public/stylesheets/",
     "watch:sass": "npm run sass && npm run sass -- -w",
     "postdev": "npm run sass",
-    "dev": "DEBUG=server,api,email-templates nodemon --ignore public,node-modules,upload",
-    "dev-win": "set DEBUG=server,api,email-templates && nodemon --ignore public,node-modules,upload",
+    "dev": "concurrently \"npm run watch:sass\" \"DEBUG=server,api,email-templates nodemon --ignore public,node-modules,upload\"",
+    "dev-win": "concurrently \"npm run watch:sass\" \"set DEBUG=server,api,email-templates && nodemon --ignore public,node-modules,upload\"",
     "lint": "eslint "
   },
   "repository": {
@@ -43,7 +43,6 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
     "node-sass": "^4.14.1",
-    "node-sass-middleware": "^0.11.0",
     "nodemailer-mailgun-transport": "^2.0.0",
     "nodemon": "^2.0.6",
     "passport": "^0.4.1",
@@ -51,5 +50,8 @@
     "redis": "^3.0.2",
     "uid": "^1.0.0",
     "validator": "^13.1.1"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0"
   }
 }

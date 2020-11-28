@@ -4,7 +4,7 @@ const {
   } = require("common");
 
   /**
-   * Gets all audio record
+   * Gets 
    * @param  {Express.Request} req
    * @param  {Express.Response} res
    * @param  {function} next

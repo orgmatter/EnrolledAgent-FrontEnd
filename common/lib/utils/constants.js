@@ -32,10 +32,9 @@ module.exports = {
     normal: '3',
     low: '5'
   },
-  CHAT_SESSION: {
-    WAITING: 'waiting',
-    ACTIVE: 'active',
-    ENDED: 'ended',
-    ABANDONED: 'abandoned'
+  PROVIDERS: {
+    GOOGLE: 'google',
+    LINKEDIN: 'linkedin',
+    FACEBOOK: 'facebook'
   }
 }

@@ -14,6 +14,8 @@ const mgTransport = mg({
   // proxy: 'http://user:pass@localhost:8080' // optional proxy, default is false
 })
 
+const baseurl = config.APP_URL
+
 const client = nodemailer.createTransport(mgTransport)
 /**
  * Handles sending mail with mailgun api
@@ -45,6 +47,7 @@ class MailService {
   sendMail(data, done) {
     if(!data.locals.email)
     data.locals.email = data.reciever
+    data.locals.baseurl = baseurl
     this.email
         .send({
           template: data.template || 'welcome',

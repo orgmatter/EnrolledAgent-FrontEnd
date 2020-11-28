@@ -10,7 +10,7 @@ module.exports = {
   REQUIRED_EMAIL_PASSWORD: 'email and password are required',
   REQUIRED_PASSWORD: 'password is required',
   EMAIL_IN_USE: (email) =>
-    `an account with email ${email} already exists`,
+    `an account with email ${email} already exists, if you previously logged in using any public providers, you can try reseting your password instead`,
   INVALID_PASSWORD: 'password must be atleast 6 characters long, must ' +
     'contain a lowercase letter, an uppercase letter letter, and either '+
     'a number or a special character',

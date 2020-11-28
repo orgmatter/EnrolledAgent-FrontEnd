@@ -5,5 +5,5 @@
  */
 module.exports = {
   LOGIN: 'login',
-  VERIFY_EMAIL: 'verify_email',
+  VERIFY_EMAIL: 'verifyEmail',
 }
