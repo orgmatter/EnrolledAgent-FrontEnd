@@ -14,7 +14,7 @@ const Log = new Logger('Common:Passport')
  * @param  {Express} server
  */
 module.exports = (server, passport) => {
-    console.log('passport', passport)
+    // console.log('passport', passport)
     Log.info('initializing passport' + passport)
     server.use(passport.initialize())
     server.use(passport.session())
