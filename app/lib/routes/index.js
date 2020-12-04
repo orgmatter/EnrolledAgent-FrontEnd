@@ -21,6 +21,9 @@ router
   .get("/claim", (req, res) => {
     res.render("listings");
   })
+  .get("/career-center", (req, res) => {
+    res.render("careerCenter");
+  })
   .get("/dashboard", (req, res) => {
     res.render("dashboard/dashboardhome");
   })
