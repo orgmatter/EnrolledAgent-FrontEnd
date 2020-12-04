@@ -62,6 +62,9 @@ router
   .get("/listings", (req, res) => {
     res.render("listings");
   })
+  .get("/tax", (req, res) => {
+    res.render("tax");
+  })
   .get("/logout", (req, res) => {
     req.logout();
     res.redirect("/login");
