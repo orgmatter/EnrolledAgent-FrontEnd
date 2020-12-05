@@ -3,24 +3,22 @@
   &-btn-right-arrow {
     height: 0.75rem;
     padding-left: 10px;
-
   }
   &-link {
     text-decoration: none;
-    color: #2699FB;
+    color: #2699fb;
   }
-  &-form{
+  &-form {
     &__input {
       width: 100%;
       padding: 0.5rem 1rem;
-      &-input{
+      &-input {
         width: 100%;
         padding: 0.75rem;
         font-size: 1.2rem;
         border-radius: 0.25rem;
         border: none;
       }
-
     }
     &__checkbox {
       width: 100%;
@@ -37,7 +35,6 @@
     }
     &__label {
       display: block;
-      text-wrap: none;
       cursor: pointer;
     }
   }
@@ -46,22 +43,18 @@
     border: none;
     font-size: 1.2rem;
     border-radius: 0.25rem;
-    background-color: #01105B;
+    background-color: #01105b;
     color: #fff;
   }
 
   &__main {
     height: 90vh;
     width: 100%;
-    background-image: linear-gradient(
-                    to bottom,
-                    rgba(0,0,0,0.65),
-                    rgba(0,0,0,0.65)
-    ),
-    url(/assets/images/ccenter/businesspeople-standing.png);
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+      url("/assets/images/ccenter/businesspeople-standing.png");
     background-size: cover;
     background-position: top;
-    &--items{
+    &--items {
       position: absolute;
       width: 100%;
       top: 50%;
@@ -70,12 +63,12 @@
       text-align: center;
       color: #fff;
     }
-    &--head{
+    &--head {
       font-size: 3rem;
       font-weight: 400;
-      font-family: 'Libre Baskerville', serif;
+      font-family: "Libre Baskerville", serif;
       line-height: 3.5rem;
-      @include respond(tab-port){
+      @include respond(tab-port) {
         font-size: 2.5rem;
         line-height: 3rem;
       }
@@ -86,8 +79,8 @@
       line-height: 2rem;
       margin-bottom: 2rem;
       margin-top: 0.5rem;
-      color: #BFBFBF;
-      @include respond(tab-port){
+      color: #bfbfbf;
+      @include respond(tab-port) {
         font-size: 1.25rem;
         line-height: 1.5rem;
         margin-top: 0.25rem;
@@ -97,7 +90,7 @@
       display: flex;
       flex-wrap: nowrap;
       justify-content: center;
-      @include respond(tab-port){
+      @include respond(tab-port) {
         display: block;
       }
       &--items {
@@ -105,44 +98,44 @@
           display: flex;
           flex-wrap: nowrap;
           justify-content: left;
-          @include respond(smart-phone){
+          @include respond(smart-phone) {
             display: block;
           }
         }
       }
       &--button {
         padding: 0.5rem 1rem;
-        &-btn{
+        &-btn {
           padding: 0.75rem 2rem;
           border: none;
           font-size: 1.2rem;
           border-radius: 0.25rem;
-          background-color: #01105B;
+          background-color: #01105b;
           color: #fff;
           text-transform: capitalize;
         }
       }
     }
   }
-  &__featured-jobs{
+  &__featured-jobs {
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
     background-color: #fff;
     width: 100%;
     margin: 2rem 0 3rem;
-    @include respond(tab-land){
+    @include respond(tab-land) {
       display: block;
     }
   }
-  &__resume{
+  &__resume {
     width: 40%;
-    background-color: #F5F5F5;
+    background-color: #f5f5f5;
     padding: 1rem;
     margin: 1rem 5%;
     text-align: center;
     order: 2;
-    @include respond(tab-land){
+    @include respond(tab-land) {
       margin: 2rem auto;
       width: 95%;
       max-width: 400px;
@@ -152,17 +145,17 @@
       font-weight: 600;
       line-height: 2.5rem;
     }
-    &--image{
+    &--image {
       padding: 1rem 0;
-      &-img{
+      &-img {
         width: 100%;
         max-width: 400px;
       }
     }
-    &--label{
+    &--label {
       display: block;
       cursor: pointer;
-      &-img{
+      &-img {
         // height: 2rem;
         width: 3rem;
       }
@@ -172,21 +165,15 @@
     }
     &--button {
       padding: 1rem 0;
-      &-btn {
-
-      }
-    }
-    &--form{
-
     }
   }
   &__jobs {
     width: 40%;
-    background-color: #F5F5F5;
+    background-color: #f5f5f5;
     padding: 1rem;
     margin: 1rem 5%;
     order: 1;
-    @include respond(tab-land){
+    @include respond(tab-land) {
       width: 95%;
       max-width: 400px;
       margin: 2rem auto;
@@ -215,7 +202,7 @@
     }
   }
   &__job {
-    &-card{
+    &-card {
       padding: 0.75rem;
       background-color: #fff;
       width: 100%;
@@ -227,7 +214,7 @@
         padding: 0.5rem 0 0.25rem;
       }
     }
-    &-title{
+    &-title {
       font-weight: 600;
     }
     &-date {
@@ -235,7 +222,7 @@
       text-align: center;
       font-size: 0.65rem;
       line-height: 0.75rem;
-      background-color: #01105B;
+      background-color: #01105b;
       color: #fff;
       padding: 0.25rem;
     }
@@ -244,16 +231,16 @@
       font-size: 0.9rem;
       padding: 0 0 0.5rem;
     }
-    &-link{
+    &-link {
       padding-top: 0.25rem;
     }
   }
-  &__featured-services{
+  &__featured-services {
     background-color: #fff;
     width: 100%;
     margin: 2rem 0;
     padding-bottom: 5rem;
-    &--head{
+    &--head {
       margin-left: 12.5vw;
       margin-bottom: 1rem;
       font-size: 1.5rem;
@@ -272,10 +259,10 @@
   &__service--card {
     width: 300px;
     margin: 0.5rem;
-    background-color: #F5F5F5;
+    background-color: #f5f5f5;
     text-align: center;
-    &-image{
-      &-img{
+    &-image {
+      &-img {
         width: 100%;
       }
     }
@@ -309,20 +296,20 @@
       display: flex;
       flex-wrap: nowrap;
       justify-content: space-evenly;
-      @include respond(tab-port){
+      @include respond(tab-port) {
         display: block;
       }
     }
     &--card {
       margin: 2rem 0;
-      &-group{
+      &-group {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
         width: 100%;
       }
-      &-icon{
-        &-img{
+      &-icon {
+        &-img {
           width: 2.5rem;
           height: 2.5rem;
         }
@@ -333,7 +320,7 @@
         word-spacing: 5px;
         line-height: 4rem;
         padding: 0.5rem 0;
-        @include respond(tab-land){
+        @include respond(tab-land) {
           font-size: 2.5rem;
           line-height: 3.2rem;
         }
@@ -341,7 +328,7 @@
       &-text {
         font-size: 1.5rem;
         font-weight: lighter;
-        @include respond(tab-land){
+        @include respond(tab-land) {
           font-size: 1.25rem;
         }
       }
@@ -354,14 +341,14 @@
     padding: 5rem 0;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    @include respond(tab-land){
+    @include respond(tab-land) {
       display: block;
     }
-    &--head{
+    &--head {
       -moz-box-sizing: border-box;
       box-sizing: border-box;
       width: 35%;
-      @include respond(tab-land){
+      @include respond(tab-land) {
         margin: 0.5rem;
         width: 100%;
       }
@@ -379,11 +366,10 @@
 
     &--form {
       width: 55%;
-      @include respond(tab-land){
+      @include respond(tab-land) {
         width: 100%;
       }
     }
-
   }
   &__form {
     -moz-box-sizing: border-box;
@@ -394,12 +380,12 @@
       font-size: 1.2rem;
       margin: 0.5rem;
       padding: 1rem;
-      color: #9B9B9B;
+      color: #9b9b9b;
       line-height: 2rem;
       border: none;
       border-radius: 5px;
       box-shadow: 0px 8px 16px #00000029;
-      @include respond(tab-land){
+      @include respond(tab-land) {
         padding: 0.5rem;
         font-size: 1.05rem;
       }
@@ -410,7 +396,7 @@
         width: 95%;
       }
     }
-    &--input{
+    &--input {
       -moz-box-sizing: border-box;
       box-sizing: border-box;
       @include respond(smart-phone) {
@@ -420,7 +406,7 @@
         display: flex;
         flex-wrap: nowrap;
         width: 100%;
-        @include respond(smart-phone){
+        @include respond(smart-phone) {
           display: block;
         }
       }
