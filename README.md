@@ -1,44 +1,49 @@
-Requirements to run project
+npRequirements to run project
 
 ##
+
 install Redis databse
 install mongo database
 
 copy .env.example to form .env
 
 Run npm install in the following folders
-## common, admin, app
 
+## common, admin, app
 
 install nodemon by running `npm i -g nodemon`
 
-to start project 
+to start project
+
 ### windows users run - `npm run dev-win`
+
 ### linux and mac users run - `npm run dev`
 
 this should be run from the appropriate folder ie `admin` and `app`
 
-
 please avoid working on any backend file, the views for each part of the app is located in the views folder,
 
-
 to start work, pull from master, create a branch with name of page you are working on,
-when you are done, commit, switch to master pull latest updates, switch back to your branch, 
+when you are done, commit, switch to master pull latest updates, switch back to your branch,
 merge master into your branch, fix any merge conflicts, push and do a pull request to master.
 
 ensure to set the full path to the public folder on your .env file
+<<<<<<< HEAD
 
 [https://developer.twitter.com/en/docs/authentication/guides/log-in-with-twitter]
+=======
+>>>>>>> f8ffb5bcc42fb8a1d6c19708964f12b1a17bf6b9
 
+[https://developer.twitter.com/en/docs/authentication/guides/log-in-with-twitter]
 
 #Google sigin integration
 [https://developers.google.com/identity/sign-in/web/backend-auth]
 
-
-#Linkedin  integration
+#Linkedin integration
 [https://www.linkedin.com/developers/]
 [https://www.linkedin.com/developers/apps/new]
 [https://docs.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/sign-in-with-linkedin]
+<<<<<<< HEAD
 
 	{
 				"role" : "dbOwner",
@@ -109,3 +114,5 @@ ensure to set the full path to the public folder on your .env file
 			"SCRAM-SHA-256"
 		]
 	}
+=======
+>>>>>>> f8ffb5bcc42fb8a1d6c19708964f12b1a17bf6b9

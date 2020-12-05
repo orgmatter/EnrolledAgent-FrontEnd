@@ -6,10 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="google-signin-client_id"
     content="741006543327-25ja66l3saja40lp120i7oii1020d5i4.apps.googleusercontent.com">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
+      <link href="/images/favicon.png" rel="shortcut icon" type="image/png" />
+  <link href="/images/apple-touch-icon.png" rel="apple-touch-icon" />
+  <link href="/images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72" />
+  <link href="/images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114" />
+  <link href="/images/apple-touch-icon-144x144.png" rel="apple-touch-icon" sizes="144x144" />
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap" rel="stylesheet" />
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <link rel="stylesheet" href="/stylesheets/style.css" />
+  <title>Login | Enrolled Agents</title>
 </head>
 
 <body class="signup-body">
@@ -27,20 +33,20 @@
         <div class="login-left__btns">
           <div class="login-left__btns-btn">
             <button class="signup__social--btn-facebook login-btn" onclick="facebookLogin()">
-              <span><img src="/assets/images/signup/facebook.svg" class="signup-btn-img" height="14px" width="14px"
+              <span class="signup-btn-icon"><img src="/assets/images/signup/facebook.svg" class="signup-btn-img" height="14px" width="14px"
                   alt="facebook logo" /></span>Facebook Login
             </button>
           </div>
           <div class="login-left__btns-btn">
             <!-- <div id="my-signin2"></div> -->
             <button class="signup__social--btn-google login-btn" onclick="googleLogin()" id="my-signin2b">
-              <span><img src="/assets/images/signup/google.svg" class="signup-btn-img" height="14px" width="14px"
+              <span class="signup-btn-icon"><img src="/assets/images/signup/google.svg" class="signup-btn-img" height="14px" width="14px"
                   alt="Google plus logo" /></span>Google Login
             </button>
           </div>
           <div class="login-left__btns-btn">
             <button class="signup__social--btn-linkedin login-btn" onclick="linkedinLogin()">
-              <span><img src="/assets/images/signup/linkedin.svg" class="signup-btn-img" height="14px" width="14px"
+              <span class="signup-btn-icon"><img src="/assets/images/signup/linkedin.svg" class="signup-btn-img" height="14px" width="14px"
                   alt="facebook logo" /></span>Linkedin Login
             </button>
           </div>
@@ -53,49 +59,63 @@
         Need an account?
         <a href="/signup" class="login-left__footer-link signup-link">Signup for free</a>
       </div>
-
+    
       <div class="login__card-right">
         <div class="login-main">
-          <div class="login-main__head">
-            <div class="login-main__head-main">Log In</div>
-            <div class="login-main__head-text">Sign Into EnrolledAgent.com</div>
-          </div>
+        <div class="login-main__head">
+          <div class="login-main__head-main">Log In</div>
+          <div class="login-main__head-text">Sign Into EnrolledAgent.com</div>
+        </div>
+        
+            <div class="login-main__text">
+              <div class="login-main__text-head">Standard Login</div>
+              <form class="login-form__main signup-form" id='login-form'>
+                <div class="login-form__group">
+                  <input
+                    type="email"
+                    id="email"
+                    class="login-form__input"
+                    placeholder="Email Address"
+                    onblur="validateEmail('email')"
+                  />
+                  <label for="lastname" class="signup-form__label">Email Address</label>
+                  <span class="form-error" id="email-validator"></span>
+                </div>
 
-          <div class="login-main__text">
-            <div class="login-main__text-head">Standard Login</div>
-            <form class="login-form__main signup-form" id='login-form'>
-              <div class="login-form__group">
-                <input type="email" id="email" class="login-form__input" placeholder="Email Address"
-                  onblur="validateEmail('email')" />
-                <label for="lastname" class="signup-form__label">Email Address</label>
-                <span class="form-error" id="email-validator"></span>
-              </div>
+                <div class="signup-form__group">
+                  <input
+                    type="password"
+                    id="password"
+                    class="login-form__input"
+                    placeholder="Password"
+                    onblur="validateNonEmpty('password')"
+                  />
 
-              <div class="signup-form__group">
-                <input type="password" id="password" class="login-form__input" placeholder="Password"
-                  onblur="validateNonEmpty('password')" />
-
-                <label for="password" class="signup-form__label">Password</label>
-                <span class="form-error" id="password-validator"></span>
-              </div>
-              <div class="signup-form__row">
-                <div class="signup-form__checkbox">
-                  <div class="signup-form__checkbox--group">
-                    <input type="checkbox" id="terms" class="signup-form__checkbox" />
-                    <label for="terms" class="signup-form__checkbox--label">Remember me.</label>
+                  <label for="password" class="signup-form__label">Password</label>
+                  <span class="form-error" id="password-validator"></span>
+                </div>
+                <div class="signup-form__row">
+                  <div class="signup-form__checkbox">
+                    <div class="signup-form__checkbox--group">
+                      <input type="checkbox" id="terms" class="signup-form__checkbox" />
+                      <label for="terms" class="signup-form__checkbox--label">Remember me.</label>
+                    </div>
+                  </div>
+                  <div class="signup-form__link">
+                    <a href="#" class="signup-link">Forgot your password</a>
                   </div>
                 </div>
-                <div class="signup-form__link">
-                  <a href="#" class="signup-link">Forgot your password</a>
+                <div class="login-form__btn">
+                  <button
+                    class="login-form__submit signup-btn"
+                    type="button"
+                    onclick="validateLoginForm()"
+                  >
+                    Sign in
+                  </button>
+                  <button id="login-submit-btn" type="submit" style="display: none"></button>
                 </div>
               </div>
-              <div class="login-form__btn">
-                <button class="login-form__submit signup-btn" type="button" onclick="validateLoginForm()">
-                  Sign in
-                </button>
-                <button id="login-submit-btn" type="submit" style="display: none"></button>
-              </div>
-          </div>
           </form>
           <div class="login-right__footer">
             Need an account?

@@ -137,7 +137,7 @@ section#home {
           height: 50px;
           border-radius: 5px;
           color: $main-blue;
-          font-size: 20px;
+          font-size: 16px;
         }
         .btn1 {
           width: 140px;
@@ -157,10 +157,10 @@ section#home {
             width: 100%;
             border: none;
             color: $main-blue;
-            font-size: 20px;
+            font-size: 16px;
             &::placeholder {
               color: $main-blue;
-              font-size: 20px;
+              font-size: 16px;
             }
           }
         }
@@ -209,12 +209,13 @@ section#home {
           margin: 0 auto;
           h3 {
             color: $main-blue;
-            font-size: 40px;
+            font-size: 30px;
             font-weight: 700;
+            margin-top: 10px;
           }
           p {
             color: #000;
-            font-size: 20px;
+            font-size: 16px;
             margin-bottom: 0;
             line-height: 24px;
           }
@@ -240,7 +241,7 @@ section#home {
         }
         h3 {
           color: #fac207;
-          font-size: 46px;
+          font-size: 42px;
         }
       }
       &-2 {
@@ -283,13 +284,13 @@ section#home {
     }
     &-div1 {
       h2 {
-        font-size: 40px;
+        font-size: 2.5rem;
         color: #000;
         margin-bottom: 30px;
       }
       p {
-        font-size: 26px;
-        line-height: 40px;
+        font-size: 18px;
+        line-height: 30px;
         color: #000;
       }
     }
@@ -374,7 +375,7 @@ section#home {
       }
       p {
         color: #000000;
-        font-size: 26px;
+        font-size: 20px;
         line-height: 40px;
         margin-bottom: 70px;
       }
@@ -449,7 +450,7 @@ section#home {
       }
       p {
         color: #000000;
-        font-size: 25px;
+        font-size: 20px;
         line-height: 40px;
         margin-bottom: 100px;
       }

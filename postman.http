@@ -1,0 +1,32 @@
+## to use this file you can install Rest Io vs code plugin
+
+POST  http://localhost:3000/api/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "ekeh.wisdom@gmail.com",
+    "password": "password"
+}
+
+###
+
+POST  http://localhost:3000/api/register HTTP/1.1
+content-type: application/json
+
+{
+    "email": "ekeh.wisdom@gmail.com",
+    "password": "password",
+    "firstName": "sdfghj",
+    "lastName": "Dsghgdf",
+    "subscribeToNewsletter": true
+}
+
+###
+
+GET  https://8473483b0802.ngrok.io/ HTTP/1.1
+cookie: G_ENABLED_IDPS=google; G_AUTHUSER_H=0; connect.sid=s%3Ad8e78c26-4432-4eb1-98df-73e1db18d96d.bGQg9i0Hk7b6nPqH94TqC%2FiHlRtknQhhUJiUTBMMrBA; fbm_3409949415737092=base_domain=; fbsr_3409949415737092=SFBb8lCNQ2TyPVZOeTNIYrKjt1MhgTnJM4wwgS2_KsE.eyJ1c2VyX2lkIjoiNDg0OTMwMjc3NTExMjI2NSIsImNvZGUiOiJBUURnZmRMWjZYMEFSQWdzMk5ROUpXTjMxcG5HNUlFbDBSaXRyeFhQLVRQWDFIZlpyZmNhdmtUdnBCcmJucVpYUVpyXzlwS01rZnhmRkJJSGlxY193WnFfWkliUVc1bkRPYUlieDhkVjJfZ1RaR2RWLU5ocTdUQmcyUmxnTGlDaHdVRXFxWnU3MVlXRzVfakNGWlR0U1g3WnBWYkJLQjVuLUp6ZmNqLVJJQ3F2U2hKYnlJUnZqRDB3d1NfWG56WnlhSHhLZVhPWE9lQUhRU0xDcmNkcENGUGZQVTFibmE5LW82OTQ2eTc2TVp4RnZVR2s4dGs2Y2dnR2RKREZqYmxvakE1UDFhTkt5eUF3d28zR1V4d2FFdjBNR2VUYWN2SjhQaXN0QWxDcWFBZjQxWGNleHg4b2hyTVVuNF9raHh2d1FWS0NSUGNKWjAwODJwZnRDMUhMUXJjOCIsImFsZ29yaXRobSI6IkhNQUMtU0hBMjU2IiwiaXNzdWVkX2F0IjoxNjA2NTU4NTgzfQ
+
+# {
+#     "name": "sample",
+#     "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+# }
