@@ -25,7 +25,7 @@ class SessionUtil {
       store: this.store,
       secret: this.secret,
       resave: true,
-      cookie: { maxAge: hour * 24 * 2 , domain,  },
+      cookie: { maxAge: hour * 24 * 2, },
       saveUninitialized: true
     })
   }

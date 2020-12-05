@@ -27,6 +27,13 @@ module.exports = {
   SECRET: process.env.SECRET,
   DB_URL: `mongodb://${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`,
   DB_OPTIONS: DB_OPTIONS,
+  APP_URL: process.env.APP_URL,
   API_KEY: process.env.API_KEY,
   STORAGE: process.env.STORAGE,
+  FACEBOOK_APP_ID: process.env.FACEBOOK_APP_ID,
+  FACEBOOK_APP_SECRET: process.env.FACEBOOK_APP_SECRET,
+  GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+  GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+  LINKEDIN_KEY: process.env.LINKEDIN_KEY,
+  LINKEDIN_SECRET: process.env.LINKEDIN_SECRET
 }

@@ -16,18 +16,23 @@ const log = new Logger('common:ErrorHandler')
  * @param  {function} next
  * @return {null}
  */
-module.exports = function(err, req, res, next) {
+module.exports = function (err, req, res, next) {
   log.info(JSON.stringify(err))
+
+  if (err.code === 'EBADCSRFTOKEN') return res.status(403).json({ error: { message: 'Invalid Token', code: 8000 } })
+
+  // handle CSRF token errors here
+  // res.status(403)
   if (res.statusCode < 400) res.status(400)
-  if (err instanceof Exception) return res.json({error: err})
+  if (err instanceof Exception) return res.json({ error: err })
   if (
     err instanceof UnauthorizedError ||
     err instanceof JsonWebTokenError
   ) {
     return res.status(401).json({
       error: new Exception(
-          ErrorMessage.UNAUTHORIZED,
-          ErrorCodes.UNAUTHORIZED_TOKEN
+        ErrorMessage.UNAUTHORIZED,
+        ErrorCodes.UNAUTHORIZED_TOKEN
       )
     })
   }
@@ -45,38 +50,38 @@ module.exports = function(err, req, res, next) {
   })
 }
 
-const handleMulter = function(err, req, res, next) {
+const handleMulter = function (err, req, res, next) {
   console.log(err.code)
   switch (err.code) {
     case 'LIMIT_FILE_SIZE':
       return res.status(413).json({
         error: new Exception(
-            ErrorMessage.FILE_TOO_LARGE,
-            ErrorCodes.FILE_TOO_LARGE
+          ErrorMessage.FILE_TOO_LARGE,
+          ErrorCodes.FILE_TOO_LARGE
         )
       })
       break
     case 'LIMIT_UNEXPECTED_FILE':
       return res.status(400).json({
         error: new Exception(
-            'An unexpected error occured could not upload this file',
-            ErrorCodes.FILE_TOO_LARGE
+          'An unexpected error occured could not upload this file',
+          ErrorCodes.FILE_TOO_LARGE
         )
       })
       break
     default:
       return res.status(400).json({
         error: new Exception(
-            'An unexpected error occured could not upload this file',
-            ErrorCodes.FILE_TOO_LARGE
+          'An unexpected error occured could not upload this file',
+          ErrorCodes.FILE_TOO_LARGE
         )
       })
       break
   }
   return res.status(401).json({
     error: new Exception(
-        ErrorMessage.UNAUTHORIZED,
-        ErrorCodes.UNAUTHORIZED_TOKEN
+      ErrorMessage.UNAUTHORIZED,
+      ErrorCodes.UNAUTHORIZED_TOKEN
     )
   })
 }

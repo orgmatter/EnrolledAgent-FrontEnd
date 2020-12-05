@@ -5,6 +5,7 @@ const Exception = require('./exception')
 const ErrorCodes = require('./errorCodes')
 const ErrorMessage = require('./errorMessage')
 const Validator = require('./validators')
+const Constants = require('./constants')
 const Logger = require('./logger')
 const log = new Logger('auth:porple')
 
@@ -39,27 +40,13 @@ exports.formatUser = function (user, token) {
   }
 }
 
-exports.userToSession = function (user) {console.log(user)
-  let { name } = user
-  if (user.firstName) name = `${user.firstName} ${user.lastName}`
-  let companyName, companyId
-  if (user.company && user.company._id) companyId = user.company._id
-  else if(user.company &&  typeof user.company === 'string') 
-  companyId = user.company
-
-  if (user.company && user.company.name)
-    companyName = user.company.name
-  else companyName = user.companyName
-
+exports.userToSession = function (user, accountType) {
   return {
     id: user.id,
     email: user.email,
     imageUrl: user.imageUrl,
-    jobTitle: user.jobTitle,
-    company: companyId,
-    companyName,
-    name: name || '',
-    accountType: user.accountType || 'customer'
+    firstName: user.firstName,
+    accountType: accountType || Constants.ACCOUNT_TYPE.user
   }
 }
 

@@ -21,6 +21,8 @@ const updateDate = function (next) {
   this.updatedAt = Date.now()
   next()
 }
+
+
 Sponsor.pre('save', updateDate)
   .pre('update', updateDate)
   .pre('findOneAndUpdate', updateDate)

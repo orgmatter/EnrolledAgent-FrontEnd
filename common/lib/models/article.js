@@ -8,10 +8,6 @@ const Article = new Schema({
   author: String,
   title: String,
   imageUrl: String,
-  sponsor: {
-    ref: 'sponsor',
-    type: Schema.ObjectId
-  },
   updatedAt: {
     type: Number,
     default: Date.now()

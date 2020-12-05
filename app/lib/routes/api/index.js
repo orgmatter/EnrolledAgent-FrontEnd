@@ -1,20 +1,18 @@
 const router = require("express").Router();
-const {
-  Logger,
-  Middleware,
-  FileManager,
-} = require("common");
-const auth = require("../../controllers/auth");
+const { Logger, Middleware, FileManager } = require("common");
+const { register, changePassword, login, update, subscribe } = require("../../controllers/auth");
+const ContactController = require("../../controllers/contact");
 
 router
-  
-  .post("/register", auth.register)
-  .get("/verify", auth.verify)
-  .post("/changepass", auth.changePassword)
-  .post("/login", auth.login)
-  .put("/update-profile", FileManager.upload, auth.update);
 
-router.use(Middleware.Four04Handler)
+  .post("/register", register)
+  .post("/changepass", changePassword)
+  .post("/subscribe", ContactController.subscribe)
+  .post("/contact", ContactController.create)
+  .post("/login", login)
+  .put("/update-profile", FileManager.upload, update);
+
+router.use(Middleware.Four04Handler);
 router.use(Middleware.ErrorHandler);
 
 module.exports = router;

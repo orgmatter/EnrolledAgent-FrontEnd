@@ -32,7 +32,7 @@ class Logger {
     this.debug(`${Chalk.red('ERROR:')} ${message}`)
     if (stacktrace) {
       debug(
-          `${Chalk.red('STACK_TRACE:')} ${JSON.stringify(stactrace)}`
+          `${Chalk.red('STACK_TRACE:')} ${JSON.stringify(stacktrace)}`
       )
     }
   }

@@ -1,0 +1,33 @@
+GET http://localhost:3001/api/resource
+content-type: application/json
+
+###
+
+GET http://localhost:3001/api/resource/5fcb3505878e241c2fb2d3e3
+content-type: application/json
+
+
+###
+
+POST http://localhost:3001/api/resource
+content-type: application/json
+
+{ "body": "safjdksddjfjsdjfjsdfjsdfjdfjdfdjfdf dfjadsjfajfsdnfnadsjfasdjfdsjfnsdf",
+ "actionLink": "https://google.com", 
+ "sponsor": "5fcb860453e1f85520af81dd",
+  "actionText": "Download", 
+  "author" :"Peter",
+   "title": "dfssag", 
+   "imageUrl": "FDagf" }
+
+
+###
+
+PUT http://localhost:3001/api/resource/5fcb3505878e241c2fb2d3e3
+content-type: application/json
+
+
+###
+
+DELETE http://localhost:3001/api/resource/5fcb3505878e241c2fb2d3e3
+content-type: application/json

@@ -1,6 +1,16 @@
 html {
   overflow-x: hidden;
 }
+
+section#home {
+  position: relative;
+
+  div.rev_slider.fullwidthabanner {
+    max-height: 680px !important;
+    height: 680px !important;
+  }
+}
+
 .home {
   h1,
   h2,
@@ -96,6 +106,124 @@ html {
       }
     }
   }
+
+  .home-section {
+    background-color: transparent;
+    position: absolute;
+    top: 12vh;
+    left: 0;
+    right: 0;
+
+    &-top {
+      text-align: center;
+      h2 {
+        font-family: "Baskerville Old Face" !important;
+        font-size: 80px;
+        line-height: 80px;
+        color: #fff;
+      }
+      .desc {
+        font-size: 26px;
+        color: #bfbfbf;
+      }
+      &-input-div {
+        height: 100px;
+        background-color: rgba(255, 255, 255, 0.19);
+        margin-top: 25px;
+        display: flex;
+        align-items: center;
+        padding: 0 45px 0 17px;
+        button {
+          height: 50px;
+          border-radius: 5px;
+          color: $main-blue;
+          font-size: 16px;
+        }
+        .btn1 {
+          width: 140px;
+          background-color: #fff;
+          margin-right: 14px;
+        }
+        .input {
+          width: 530px;
+          height: 50px;
+          background-color: #fff;
+          border-radius: 5px;
+          margin-right: 16px;
+          display: flex;
+          align-items: center;
+          padding: 0 25px;
+          input {
+            width: 100%;
+            border: none;
+            color: $main-blue;
+            font-size: 16px;
+            &::placeholder {
+              color: $main-blue;
+              font-size: 16px;
+            }
+          }
+        }
+        .btn2 {
+          width: 220px;
+          background-color: $main-blue;
+          margin-right: 14px;
+          color: #fff;
+        }
+        .btn3 {
+          width: 200px;
+          background-color: #fff;
+        }
+      }
+    }
+    &-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-column-gap: 30px;
+      width: 85%;
+      margin: 100px auto 0;
+      .card-div {
+        height: 280px;
+        background-color: #fff;
+        box-shadow: 0px 8px 18px #0000000f;
+        border-radius: 3px;
+        .top {
+          position: relative;
+          padding: 10px 10px 0;
+          p {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #efecec;
+            font-size: 60px;
+            font-weight: 700;
+            line-height: 50px;
+          }
+          img {
+            margin-top: 10px;
+            height: 100px;
+          }
+        }
+        .bottom {
+          width: 80%;
+          margin: 0 auto;
+          h3 {
+            color: $main-blue;
+            font-size: 30px;
+            font-weight: 700;
+            margin-top: 10px;
+          }
+          p {
+            color: #000;
+            font-size: 16px;
+            margin-bottom: 0;
+            line-height: 24px;
+          }
+        }
+      }
+    }
+  }
+
   .cta {
     background-color: #000;
     &_body {
@@ -113,7 +241,7 @@ html {
         }
         h3 {
           color: #fac207;
-          font-size: 46px;
+          font-size: 42px;
         }
       }
       &-2 {
@@ -156,13 +284,13 @@ html {
     }
     &-div1 {
       h2 {
-        font-size: 40px;
+        font-size: 2.5rem;
         color: #000;
         margin-bottom: 30px;
       }
       p {
-        font-size: 26px;
-        line-height: 40px;
+        font-size: 18px;
+        line-height: 30px;
         color: #000;
       }
     }
@@ -221,6 +349,15 @@ html {
 
   .image-aside {
     height: 900px;
+    .side {
+      position: absolute;
+      top: 7vh;
+      left: -9vw;
+      height: 200px;
+      width: 200px;
+      border: 25px solid rgba(168, 203, 250, 0.29);
+      border-radius: 50%;
+    }
     .container-fluid {
       padding: 140px 0 150px 50px;
     }
@@ -238,7 +375,7 @@ html {
       }
       p {
         color: #000000;
-        font-size: 26px;
+        font-size: 20px;
         line-height: 40px;
         margin-bottom: 70px;
       }
@@ -267,9 +404,28 @@ html {
   }
 
   .image-aside2 {
+    margin-top: 200px;
     height: 900px;
     .container-fluid {
       padding: 140px 30px 150px;
+    }
+    .side {
+      position: absolute;
+      top: 10vh;
+      left: -7vw;
+      height: 200px;
+      width: 200px;
+      border: 25px solid #f6f6f6;
+      border-radius: 50%;
+    }
+    .side2 {
+      position: absolute;
+      bottom: 17vh;
+      right: -7vw;
+      height: 200px;
+      width: 200px;
+      border: 25px solid rgba(168, 203, 250, 0.29);
+      border-radius: 50%;
     }
     .flex {
       display: flex;
@@ -294,7 +450,7 @@ html {
       }
       p {
         color: #000000;
-        font-size: 25px;
+        font-size: 20px;
         line-height: 40px;
         margin-bottom: 100px;
       }
