@@ -73,8 +73,8 @@ exports.authenticateWithProvider = async function (user, provider, done) {
 
         if (!usr.imageUrl || user.imageUrl) usr.imageUrl = user.imageUrl
     }
-    user.lastLogin = Date()
-    await user.save()
+    usr.lastLogin = Date()
+    await usr.save()
 
 
     done(null, Helper.userToSession(usr))
