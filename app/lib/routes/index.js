@@ -65,6 +65,12 @@ router
   .get("/tax", (req, res) => {
     res.render("tax");
   })
+  .get("/category/:category", (req, res) => {
+    res.render("categoryPage");
+  })
+  .get("/practice-exchange", (req, res) => {
+    res.render("practiceExchange");
+  })
   .get("/logout", (req, res) => {
     req.logout();
     res.redirect("/login");
