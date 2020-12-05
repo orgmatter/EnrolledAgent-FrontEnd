@@ -6,4 +6,5 @@
 module.exports = {
   LOGIN: 'login',
   VERIFY_EMAIL: 'verifyEmail',
+  CONTACT: 'contact',
 }

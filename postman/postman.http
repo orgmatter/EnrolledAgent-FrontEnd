@@ -8,10 +8,12 @@ content-type: application/json
     "password": "password"
 }
 
+
 ###
 
 POST  http://localhost:3000/api/register HTTP/1.1
 content-type: application/json
+Accept: application/json
 
 {
     "email": "ekeh.wisdom@gmail.com",

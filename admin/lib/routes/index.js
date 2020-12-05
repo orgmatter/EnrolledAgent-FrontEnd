@@ -1,7 +1,10 @@
 const router = require("express").Router();
 const passport = require("passport");
 const user = require("../controllers/users");
-const seeder = require("../seed");
+const seeder = require("../seed")
+const SponsorController = require('../controllers/sponsor')
+const ArticleController = require('../controllers/article')
+
 const {
   Exception,
   Constants,
@@ -40,19 +43,24 @@ router
 
     })(req, res, next);
   })
-  .use((req, res, next) => {
-    if (
-      req.isAuthenticated() &&
-      req.user.accountType == 'ADMIN'
-    ) {
-      const { imageUrl, name, email } = req.user;
-      console.log(req.locals);
-      req.locals = { imageUrl, name, email };
-      next();
-    } else res.render("login", );
-  })
 
-  .use(require('./api'))
+  
+  // .use((req, res, next) => {
+  //   if (
+  //     req.isAuthenticated() &&
+  //     req.user.accountType == 'ADMIN'
+  //   ) {
+  //     const { imageUrl, name, email } = req.user;
+  //     console.log(req.locals);
+  //     req.locals = { imageUrl, name, email };
+  //     next();
+  //   } else res.render("login", );
+  // })
+
+  .use('/api', require('./api'))
+
+  .get('/',   SponsorController.getAll)
+  .get('/:id', SponsorController.get)
 
   .get("/users", user.getAll)
 

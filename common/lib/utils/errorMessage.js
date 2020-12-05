@@ -35,6 +35,6 @@ module.exports = {
   NO_PRIVILEGE:
     'You do not have required privilege to perform this operation',
   FILE_TOO_LARGE: 'File too large, please upload a smaller file',
-  NOT_FOUND: 'could not find this resource',
+  NOT_FOUND: 'The requested document was not found',
   REQUIRED_PIN: 'A valid store pin is required to continue',
 }

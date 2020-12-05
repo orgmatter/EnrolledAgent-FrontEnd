@@ -2,12 +2,24 @@ const router = require("express").Router();
 const passport = require("passport");
 const { Validator, Logger, Constants } = require("common");
 const { app } = require("common/lib/middleware");
-// const auth = require("../controllers/auth");
-const { handleSocial, verify, subscribe, unsubscribe } = require("../controllers/auth");
+const CityController = require("../controllers/city");
+const { handleSocial, verify, user } = require("../controllers/auth");
+const ContactController = require("../controllers/contact");
+const ResourceController = require("../controllers/resource");
+const ArticleController = require("../controllers/article");
 
 const Log = new Logger("App:Router");
 
-router.use("/api", require("./api"));
+router
+  .use((req, res, next) => {
+    // console.log( req.isAuthenticated())
+    // console.log(req.session)
+    req.locals = {}
+    if (req.csrfToken)
+      res.cookie("XSRF-TOKEN", req.csrfToken());
+    next();
+  })
+  .use("/api", require("./api"))
 
 router.use((req, res, next) => {
   req.locals = {};
@@ -39,23 +51,25 @@ router
       handleSocial(req, res, next, err, user, info);
     })(req, res, next);
   })
-  // .get('/linkedin/callback', passport.authenticate('linkedin'), handleSocial)
-  // .get('/google/callback', passport.authenticate('google', { scope: ['profile', 'email'], }), handleSocial)
-  .get("/unsubscribe", unsubscribe)
-  .get("/subscribe", subscribe)
+
+  .get("/unsubscribe", ContactController.unsubscribe)
   .get("/verify/:token", verify)
-  .get("/dashboard", (req, res) => {
-    res.render("dashboard/dashboardhome");
+  .get("/dashboard", ResourceController.random, (req, res) => {
+    res.render("dashboard/dashboardhome",  { locals: req.locals });
   })
   .get("/blog", (req, res) => {
     res.render("blog");
   })
-  .get("/", (req, res) => {
+  .get("/", CityController.get, ResourceController.random, (req, res) => {
+    // console.log(req.locals)
+    // extract message if this page was redirected to from another page
+    if (req.app.locals && req.app.locals.message) req.locals.infoMessage = req.app.locals.message
     res.render("home", { locals: req.locals });
   })
   .get("/listings", (req, res) => {
     res.render("listings");
   })
+
   .get("/logout", (req, res) => {
     req.logout();
     res.redirect("/login");
@@ -73,20 +87,25 @@ router
   .use((req, res, next) => {
     if (!(req.isAuthenticated() && req.user)) return res.redirect("/login");
     next();
-  });
+  })
+
+  .get("/profile", user, (req, res) => {
+    res.render("profile", { locals: req.locals });
+  })
 
 // catch 404
 router.use((req, res) => {
   res.statusCode = 404;
   // console.log(req.url.split("/").pop());
-  res.render(req.path.split("/").pop(), { locals: req.locals }, (err, dat) => {
-    if (err) res.render("page_404");
-    else res.send(dat);
-  });
+  // res.render(req.path.split("/").pop(), { locals: req.locals }, (err, dat) => {
+  res.render("page_404");
+  // else res.send(dat);
+  // });
 });
 
 // error handler
 router.use((err, req, res, next) => {
+  // if (err.code === 'EBADCSRFTOKEN') return res.status(403).json({ error: { message: 'Invalid Token', code: 8000 } })
   Log.info(err);
   console.log(err);
   Log.info(req.headers);

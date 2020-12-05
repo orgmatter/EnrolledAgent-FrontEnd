@@ -1,11 +1,12 @@
 const async = require('async')
+const mongoose  = require('mongoose')
 
 /**
  *
  * @param  {Express.Response} res
- * @param  {function} next
+ * @param  {Function} next
  * @param  {mongoose.Collection} Collection
- * @param {object}  options - { perPage, page, query, progections}
+ * @param {JSON}  options - { perPage, page, query, progections}
  */
 module.exports = async (res, next, Collection, options, done) => {
   const {
@@ -21,9 +22,9 @@ module.exports = async (res, next, Collection, options, done) => {
   // const pop = populate || []
 
   const countAll = (callback) =>
-    Collection.countDocuments(query)
+    Collection.estimatedDocumentCount(query)
         .then((doc) => callback(null, doc))
-        .catch((err) => callback(err, null))
+        // .catch((err) => callback(err, null))
 
   const findQuery = (callback) =>
     Collection.find(query, projections)
@@ -33,7 +34,7 @@ module.exports = async (res, next, Collection, options, done) => {
         .populate(populate)
         .exec()
         .then((doc) => callback(null, doc))
-        .catch((err) => callback(err, null))
+        // .catch((err) => callback(err, null))
 
   async.parallel([countAll, findQuery], (err, doc) => {
     if (err) return next(err)

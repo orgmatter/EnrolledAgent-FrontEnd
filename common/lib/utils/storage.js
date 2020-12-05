@@ -1,7 +1,7 @@
 module.exports = {
-   /**
-    * User profile folder
-    */
+    /**
+     * User profile folder
+     */
     PROFILE: 'profile',
     /**
     * Resource, news and article folder
@@ -10,5 +10,11 @@ module.exports = {
     /**
     * Enrolled Agent Profile folder
     */
-    AGENT_PROFILE: 'agent_profile',
+    AGENT_PROFILE: 'agentProfile',
+
+    /**
+   * Resouce sponsor
+   */
+    SPONSOR: 'sponsor',
+
 }

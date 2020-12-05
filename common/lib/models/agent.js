@@ -7,16 +7,13 @@ const { Schema } = mongoose
 
 const AgentSchema = new Schema({
 
-  name: String,
+  firstName: String,
+  lastName: String,
   email: String,
-  phone: String,
-  isEmailVerified: {
-    type: Boolean,
-    default: false
-  },
+  phone: String, 
   isClaimed: {
     type: Boolean,
-    default: true
+    default: false
   },
   gender: {
     type: String,
@@ -38,10 +35,17 @@ const AgentSchema = new Schema({
     type: Number,
     default: Date.now()
   }
-})
+}, { toJSON: { virtuals: true } })
 
 AgentSchema.set('toObject', { virtuals: true })
 AgentSchema.set('toJSON', { virtuals: true })
+
+AgentSchema.index({
+  zipcode: 'text',
+  city: 'text', 
+  state: 'text',
+  country: 'text'
+})
 
 
 const updateDate = function (next) {
@@ -54,6 +58,13 @@ AgentSchema.pre('save', updateDate)
   .pre('findOneAndUpdate', updateDate)
   .pre('findByIdAndUpdate', updateDate)
 
+
+  AgentSchema.virtual('reviewCount', {
+    ref: 'review',
+    localField: '_id',
+    foreignField: 'agent',
+    count: true
+  })
 
 
 module.exports = mongoose.model('agent', AgentSchema)

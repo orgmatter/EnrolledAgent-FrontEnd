@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="google-signin-client_id"
     content="741006543327-25ja66l3saja40lp120i7oii1020d5i4.apps.googleusercontent.com">
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap" rel="stylesheet" />
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <link rel="stylesheet" href="/stylesheets/style.css" />
@@ -53,63 +53,49 @@
         Need an account?
         <a href="/signup" class="login-left__footer-link signup-link">Signup for free</a>
       </div>
-    
+
       <div class="login__card-right">
         <div class="login-main">
-        <div class="login-main__head">
-          <div class="login-main__head-main">Log In</div>
-          <div class="login-main__head-text">Sign Into EnrolledAgent.com</div>
-        </div>
-        
-            <div class="login-main__text">
-              <div class="login-main__text-head">Standard Login</div>
-              <form class="login-form__main signup-form" id='login-form'>
-                <div class="login-form__group">
-                  <input
-                    type="email"
-                    id="email"
-                    class="login-form__input"
-                    placeholder="Email Address"
-                    onblur="validateEmail('email')"
-                  />
-                  <label for="lastname" class="signup-form__label">Email Address</label>
-                  <span class="form-error" id="email-validator"></span>
-                </div>
+          <div class="login-main__head">
+            <div class="login-main__head-main">Log In</div>
+            <div class="login-main__head-text">Sign Into EnrolledAgent.com</div>
+          </div>
 
-                <div class="signup-form__group">
-                  <input
-                    type="password"
-                    id="password"
-                    class="login-form__input"
-                    placeholder="Password"
-                    onblur="validateNonEmpty('password')"
-                  />
+          <div class="login-main__text">
+            <div class="login-main__text-head">Standard Login</div>
+            <form class="login-form__main signup-form" id='login-form'>
+              <div class="login-form__group">
+                <input type="email" id="email" class="login-form__input" placeholder="Email Address"
+                  onblur="validateEmail('email')" />
+                <label for="lastname" class="signup-form__label">Email Address</label>
+                <span class="form-error" id="email-validator"></span>
+              </div>
 
-                  <label for="password" class="signup-form__label">Password</label>
-                  <span class="form-error" id="password-validator"></span>
-                </div>
-                <div class="signup-form__row">
-                  <div class="signup-form__checkbox">
-                    <div class="signup-form__checkbox--group">
-                      <input type="checkbox" id="terms" class="signup-form__checkbox" />
-                      <label for="terms" class="signup-form__checkbox--label">Remember me.</label>
-                    </div>
-                  </div>
-                  <div class="signup-form__link">
-                    <a href="#" class="signup-link">Forgot your password</a>
+              <div class="signup-form__group">
+                <input type="password" id="password" class="login-form__input" placeholder="Password"
+                  onblur="validateNonEmpty('password')" />
+
+                <label for="password" class="signup-form__label">Password</label>
+                <span class="form-error" id="password-validator"></span>
+              </div>
+              <div class="signup-form__row">
+                <div class="signup-form__checkbox">
+                  <div class="signup-form__checkbox--group">
+                    <input type="checkbox" id="terms" class="signup-form__checkbox" />
+                    <label for="terms" class="signup-form__checkbox--label">Remember me.</label>
                   </div>
                 </div>
-                <div class="login-form__btn">
-                  <button
-                    class="login-form__submit signup-btn"
-                    type="button"
-                    onclick="validateLoginForm()"
-                  >
-                    Sign in
-                  </button>
-                  <button id="login-submit-btn" type="submit" style="display: none"></button>
+                <div class="signup-form__link">
+                  <a href="#" class="signup-link">Forgot your password</a>
                 </div>
               </div>
+              <div class="login-form__btn">
+                <button class="login-form__submit signup-btn" type="button" onclick="validateLoginForm()">
+                  Sign in
+                </button>
+                <button id="login-submit-btn" type="submit" style="display: none"></button>
+              </div>
+          </div>
           </form>
           <div class="login-right__footer">
             Need an account?
@@ -221,14 +207,37 @@
   </script>
   <!-- <script src="https://apis.google.com/js/platform.js?onload=startApp" async defer></script> -->
   <script type="text/javascript" src="/js/validator.min.js"></script>
-    <script type="text/javascript" src="/js/signup-form-validator.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
-      integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
-      crossorigin="anonymous"
-    ></script>
-    <script type="text/javascript" src="/javascripts/login.js"></script>
+  <script type="text/javascript" src="/js/signup-form-validator.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+    integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/javascripts/login.js"></script>
+
+  <script>
+    function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+    function makeRequest(params) {
+      console.log(document.cookie, getCookie('XSRF-TOKEN'))
+      fetch('/api/login', {
+        credentials: 'same-origin', // <-- includes cookies in the request
+        headers: {
+          "CSRF-Token":  getCookie('XSRF-TOKEN'), 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        method: 'POST',
+        body: JSON.stringify({
+          "email": "ekeh.wisdom@gmail.com",
+          "password": "password"
+        })
+      })
+    }
+    makeRequest()
+  </script>
 </body>
 
 </html>

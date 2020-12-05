@@ -32,6 +32,7 @@ const UserSchema = new Schema({
     city: String,
     ip: String,
     imageUrl: String,
+    lastLogin: Date,
     providers: [{
         type: String,
         enum: [

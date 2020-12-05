@@ -1,0 +1,22 @@
+
+POST  http://localhost:3000/api/contact HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+{
+    "email": "ekeh.wisdom@gmail.com",
+    "name": "wehhrqhhq",
+    "subject": "Test",
+    "message": "sfdgd fdghjsfhgs gfgajdfgfs zgfhgfgjfg fdhg",
+    "phone": "fdsadfghdshfgh"
+}
+
+
+###
+
+POST  http://localhost:3000/api/subscribe HTTP/1.1
+content-type: application/json
+
+{
+    "email": "ekeh.wisdom@gmail.com"
+}

@@ -1,4 +1,7 @@
 const config = require('../../config')
+const ErrorMessage = require('../../utils/errorMessage')
+const ErrorCodes = require('../../utils/errorCodes')
+const Exception = require('../../utils/exception')
 const Constants = require('../../utils/constants')
 const CustomStrategy = require('passport-custom').Strategy
 const AdminUser = require('../../models/admin_user')
@@ -20,7 +23,9 @@ module.exports = class LocalLoginStrategy {
                     const {
                         body: { email, password }
                     } = req
-                    if (!email && !password) {
+                    console.log(req.body)
+                    if (!email || !password) {
+                        req.statusCode = 422 
                         return done(
                             new Exception(
                                 ErrorMessage.REQUIRED_EMAIL_PASSWORD,
@@ -31,7 +36,9 @@ module.exports = class LocalLoginStrategy {
                     User.findOne({
                         email: email
                         // domain: Constants.DOMAIN.customer
-                    }).then((user) => {
+                    }).then((user) => { 
+                        user.lastLogin = Date()
+                         user.save()
                         // Log.info(!(user && user.email))
                         authenticateUser(user, password, done)
                     })

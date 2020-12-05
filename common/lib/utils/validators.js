@@ -47,7 +47,7 @@ exports.isNumber = (value) => validator.isNumeric(value)
  * Verifues that value is a url
  * @param {String} value 
  */
-exports.isUrl = (value) => validator.isURL(value, {
-  protocols: ['https'],
+exports.isUrl = (value, protocols) => validator.isURL(value, {
+  protocols:protocols|| ['https'],
   allow_underscores: true,
 })

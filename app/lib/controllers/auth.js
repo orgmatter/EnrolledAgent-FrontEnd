@@ -127,46 +127,15 @@ class AuthController {
       EmailList.create({ email })
   }
 
-  unsubscribe = async (req, res, next) => {
-    const { email } = req.query
-    EmailList.findOneAndUpdate({ email }, { unsubscribed: true }).then((doc) => {
-      res.render("index", {
-        infoMessage: `${email} has been unsubscribed from recieving mails from porplepages`,
-      })
-    })
-  }
 
-  subscribe = async (req, res, next) => {
-    const { email } = req.body
 
-    if (!Validator.email(email))
-      return next(
-        new Exception(
-          "Please provide a valid email",
-          ErrorCodes.INCORRECT_PASSWORD
-        )
-      )
 
-    if (await EmailList.exists({ email }))
-      EmailList.findOneAndUpdate({ email }, { unsubscribed: false }).exec()
-    else EmailList.create({ email }).exec()
-
-    res.json({
-      data: {
-        infoMessage: `${email} has been subscribed to porplepages mailing list`,
-      },
-    })
-  }
-  // const unsubscribe = async (req, res) => {
-  //   const {email} = req.params
-  //   EmailList.findOneAndUpdate({email}, {unsubscribed: true})
-  //   .then((doc)=> {
-  //     res.render("login", {
-  //       message: `{email} has been unsubscribed from recieving mails from porplepages`,
-  //     })
-  //   })
-  // }
-
+  /**
+   * Verify a users mail
+   * @param  {Express.Request} req
+   * @param  {Express.Response} res
+   * @param  {Function} next
+   */
   verify = async (req, res) => {
     const { token } = req.params
     let decoded
@@ -207,6 +176,12 @@ class AuthController {
     res.redirect("/")
   }
 
+  /**
+   * Change password
+   * @param  {Express.Request} req
+   * @param  {Express.Response} res
+   * @param  {Function} next
+   */
   changePassword = async function (req, res, next) {
     if (req.isAuthenticated() && Validator.isMongoId(req.user.id)) {
       const {
@@ -249,6 +224,7 @@ class AuthController {
     }
   }
 
+
   /**
    * Get user profile
    * @param  {Express.Request} req
@@ -258,9 +234,8 @@ class AuthController {
   user = async function (req, res, next) {
     const { id } = req.user
     User.findById(id).then((doc) => {
-      // console.log(doc)
-      if (doc) res.render("update-profile", { data: doc, locals: req.locals })
-      else res.render("page_404")
+      req.locals.user = doc
+      next()
     })
   }
 
@@ -324,8 +299,9 @@ class AuthController {
    */
   login = async function (req, res, next) {
     passport.authenticate(Constants.DOMAIN.user, (err, user, info) => {
+      console.log(err, user, info)
       if (err) {
-        // console.log(err)
+        console.log(err)
         res.status(400)
         return next(err)
       }
@@ -337,13 +313,23 @@ class AuthController {
           res.status(400)
           return next(err)
         }
-        return res.json({ data: { message: `Welcome back ${user.name}` } })
+        return res.json({ data: { message: `Welcome back ${user.firstName}` } })
       })
     })(req, res, next)
   }
 
+
+  /**
+   * handle Social login
+   * @param  {Express.Request} req
+   * @param  {Express.Response} res
+   * @param  {function} next
+   * @param  {} err
+   * @param  {} user
+   * @param  {} info
+   */
   handleSocial = function (req, res, next, err, user, info) {
-    console.log(err, user, next)
+    // console.log(err, user, next)
     let message
     if (err) {
       if (err instanceof Exception)
@@ -353,9 +339,9 @@ class AuthController {
       }
       // console.log(err)
       res.status(400)
-      res.locals = {...locals, message}
-      if(String(req.url).includes('register'))
-      return res.redirect('/register');
+      res.locals = { ...locals, message }
+      if (String(req.url).includes('register'))
+        return res.redirect('/register');
       return res.redirect('/');
       // return res.render('login', { message })
     }
