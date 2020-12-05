@@ -1,248 +1,262 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #tax .top-header {
-    background:linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0) 100%), url(/assets/files/tax-top-img.png) no-repeat center center/cover;
-    height: 405px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-family: "Baskerville Old Face" !important;
-    
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%),
+    url("/assets/files/tax-top-img.png") no-repeat center center/cover;
+  height: 405px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Baskerville Old Face" !important;
 }
 
-#tax .top-header h1{
-color: white;
-font-size: 80px;
-font-family: "Baskerville Old Face" !important;
+#tax .top-header h1 {
+  color: white;
+  font-size: 80px;
+  font-family: "Baskerville Old Face" !important;
 }
 
 #tax .top-header p {
-    color: #bfbfbf;
-    font-size: 30px;
-    font-family: Arial, Helvetica, sans-serif;
-    letter-spacing: 0px;
-
+  color: #bfbfbf;
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0px;
 }
 
 #card-section {
-    background: #fff;
-    padding-top: 3rem ;
+  background: #fff;
+  padding-top: 3rem;
 }
 
-#card-section .cards{
-    margin: 1rem 0;
+#card-section .cards {
+  margin: 1.5rem 0;
+  padding-right: 3rem;
+  padding-left: 3rem;
+  .card-image-div {
+    width: 100%;
+    height: 270px;
+    max-width: 100%;
+  }
 }
 
 #card-section img {
-    height: 351px;
-    text-align: left;
-    letter-spacing: 0px;
+  height: 100%;
+  width: 100%;
+  text-align: left;
+  letter-spacing: 0px;
+  object-fit: cover;
 }
 
 #card-section h3 {
-    padding: 1rem 0 .5rem;
-    color: #000;
-    font-size: 2rem;
-    font-weight: bold;
+  padding: 1rem 0 0.5rem;
+  color: #000;
+  font-size: 1.6rem;
+  font-weight: bold;
 }
 
 #card-section small {
-    color: #828282;
-    font-size: 1.125rem;
-    font-weight: normal;
-    padding: .5rem 0;
+  color: #828282;
+
+  font-weight: normal;
+  padding: 0.5rem 0;
 }
 
 #card-section p {
-    font-size: 1rem;
-    text-align: left;
-    font-weight: normal;
-    color: black;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: .5rem 0;
+  text-align: left;
+  font-weight: normal;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0.5rem 0;
 }
 
 #card-section .b-ton {
-    font-size: 1.2rem;
-    color: #fff;
-    padding: .75rem 1.5rem;
-    margin: .5rem 0;
-    background: #01105B;
-    box-shadow: 0px 8px 18px #0000000F;;
-    border: 1px solid #000;
-    transition: all .3s ease-in-out;
+  font-size: 15px;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  margin: 0.5rem 0;
+  background: #01105b;
+  box-shadow: 0px 8px 18px #0000000f;
+  border: 1px solid #000;
+  transition: all 0.3s ease-in-out;
 }
 
 #card-section .b-ton:hover {
-    transform: scale(1.03);
+  transform: scale(1.03);
 }
 
 #card-section .b-ton span {
-    padding-left: 2rem;
+  padding-left: 2rem;
 }
 
 #card-section .pagination {
-    margin: 2rem 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-} 
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
 #card-section .pagination .pagination__left a,
-#card-section .pagination .pagination__right a{
-    font-size: 2rem;
-    color: #000;
-    border: 1px solid #000;
-    margin: .5rem;
-    padding: .2rem 1rem;
-    font-weight: bold;
-    transition: all .3s ease-in-out;
+#card-section .pagination .pagination__right a {
+  font-size: 2rem;
+  color: #000;
+  border: 1px solid #000;
+  margin: 0.5rem;
+  padding: 0.2rem 1rem;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
 }
 
 #card-section .pagination .pagination__left:hover,
 #card-section .pagination .pagination__right:hover {
-    transform: scale(1.03);
-    outline: none;
+  transform: scale(1.03);
+  outline: none;
 }
-
 
 // end of tax section
 
 #cities-section {
-    background-image:url("/assets/files/433.png"),
-    linear-gradient(rgba(12, 31, 124, 0.75), rgba(1, 16, 91, 0.75)) ;
-    background-blend-mode: overlay;
-    height: auto;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    font-family: Arial, Helvetica, sans-serif;
-    
+  background-image: url("/assets/files/433.png"),
+    linear-gradient(rgba(1, 16, 91, 0.75), rgba(1, 16, 91, 0.75));
+  background-blend-mode: overlay;
+  height: 730px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  .container {
+    padding-top: 20px;
+  }
 }
 
-#cities-section h2, #cities-section p, #cities-section a {
-    color: #fff;
-    font-size: 3.75rem;
-    font-weight: bold;    
+#cities-section h2,
+#cities-section p,
+#cities-section a {
+  color: #fff;
 }
 
-#cities-section h2, #cities-section p {
-    text-align: center;
+#cities-section h2 {
+  font-size: 46px;
 }
 
 #cities-section p {
-    font-size: 2.18rem;
-    font-weight: normal;
-    margin-bottom: .5rem;
+  font-size: 26px;
+  margin-bottom: 40px;
 }
 
+.city-group {
+  width: 80%;
+  margin: 0 auto 50px;
+}
 
 #cities-section .city-row a {
-    display: inline-block;
-    width: 100%;
-    padding-top: .3rem;
-    font-size: 1rem;
-    font-weight: normal;
-    transition: all 0.3s ease-in;
+  display: block;
+  text-align: left;
+  font-size: 16px;
+  transition: all 0.3s ease-in;
 }
 
 #cities-section .city-row a:hover {
-    text-decoration: underline;
-    font-size: 1rem;
+  text-decoration: underline;
+  font-size: 16px;
 }
 
 @media (max-width: 500px) {
-    #cities-section .city-group {
-        display: flex !important;
-        flex-wrap: wrap;
-    }
+  #cities-section .city-group {
+    display: flex !important;
+    flex-wrap: wrap;
+  }
 
-    #cities-section .city-row {
-        flex: 1 1 50%;
-
-    }
+  #cities-section .city-row {
+    flex: 1 1 50%;
+  }
 }
 
-#cities-section .cities-link  {
-    display: inline-block;
-    color: #fff;
-    font-size: 16px;
-    box-shadow: 0px 8px 18px #0000000f;
-    border: 2px solid #ffffff;
-    padding: 20px 15px;
-    border-radius: 3px;
-    align-self: center;
-    margin: 2rem 0 0 0;
-    transition: all 0.3s ease-in-out;
+#cities-section .cities-link {
+  color: #fff;
+  font-size: 16px;
+  box-shadow: 0px 8px 18px #0000000f;
+  border: 2px solid #ffffff;
+  padding: 20px 15px;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
 }
 
 #cities-section .cities-link span {
-    color: #fff;
-    font-size: 16px;
-    padding-left: 1rem;
+  color: #fff;
+  font-size: 16px;
+  padding-left: 1rem;
 }
 
 #cities-section .cities-link:hover {
-    transform: scale(1.04);
+  transform: scale(1.04);
 }
 
 // form section
 #form h2 {
-    font-size: 3rem;
-    font-weight: bold;
-    color: black;
-    text-align: left;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: black;
+  text-align: left;
 }
 
 #form p {
-    font-size: 1.5rem;
-    font-weight: normal;
-    color: black;
+  font-size: 18px;
+  font-weight: normal;
+  color: black;
 }
 
-#form input{
-    width: 100%;
-    padding: 1.5rem 1rem  ;
-    background: #fff;
-    box-shadow: 0px 8px 16px #00000029;;
-    border: none;
-    z-index: 1;
-    margin-bottom: 2rem;
+#form input {
+  width: 100%;
+  padding: 1.5rem 1rem;
+  background: #fff;
+  box-shadow: 0px 8px 16px #00000029;
+  border: none;
+  z-index: 1;
+  margin-bottom: 2rem;
 }
 #form textarea {
-    width: 100%;
-    padding: 1.5rem 1rem  ;
-    background: #fff;
-    box-shadow: 0px 8px 16px #00000029;;
-    border: none;
-    z-index: 1;
-    width: 100%;
-    height: 15.6rem;
+  width: 100%;
+  padding: 1.5rem 1rem;
+  background: #fff;
+  box-shadow: 0px 8px 16px #00000029;
+  border: none;
+  z-index: 1;
+  width: 100%;
+  height: 15.6rem;
 }
 
 #form .b-ton {
-    margin-top: 2rem;
-    font-size: 1.2rem;
-    color: #fff;
-    padding: 1rem 1.5rem;
-    background: #01105B;
-    box-shadow: 0px 8px 18px #0000000F;;
-    border: 1px solid #000;
-    transition: all .3s ease-in-out;
+  margin-top: 2rem;
+  font-size: 15px;
+  color: #fff;
+  padding: 1rem 1.5rem;
+  background: #01105b;
+  box-shadow: 0px 8px 18px #0000000f;
+  border: 1px solid #000;
+  transition: all 0.3s ease-in-out;
 }
 
 #form .b-ton:hover {
-    transform: scale(1.03);
+  transform: scale(1.03);
 }
 
 #form .b-ton span {
-    padding-left: 2rem;
+  padding-left: 2rem;
 }
-
