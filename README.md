@@ -28,11 +28,8 @@ when you are done, commit, switch to master pull latest updates, switch back to 
 merge master into your branch, fix any merge conflicts, push and do a pull request to master.
 
 ensure to set the full path to the public folder on your .env file
-<<<<<<< HEAD
 
 [https://developer.twitter.com/en/docs/authentication/guides/log-in-with-twitter]
-=======
->>>>>>> f8ffb5bcc42fb8a1d6c19708964f12b1a17bf6b9
 
 [https://developer.twitter.com/en/docs/authentication/guides/log-in-with-twitter]
 
@@ -43,11 +40,8 @@ ensure to set the full path to the public folder on your .env file
 [https://www.linkedin.com/developers/]
 [https://www.linkedin.com/developers/apps/new]
 [https://docs.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/sign-in-with-linkedin]
-<<<<<<< HEAD
 
 	{
-				"role" : "dbOwner",
-				"db" : "admin"
 			},
 			{
 				"role" : "userAdminAnyDatabase",
@@ -114,5 +108,5 @@ ensure to set the full path to the public folder on your .env file
 			"SCRAM-SHA-256"
 		]
 	}
-=======
->>>>>>> f8ffb5bcc42fb8a1d6c19708964f12b1a17bf6b9
+
+142.93.4.146
