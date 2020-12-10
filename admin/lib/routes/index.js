@@ -59,13 +59,18 @@ router
 
   .use('/api', require('./api'))
 
-  .get('/',   SponsorController.getAll)
-  .get('/:id', SponsorController.get)
+  // .get('/',   SponsorController.getAll)
+  // .get('/:id', SponsorController.get)
 
   .get("/users", user.getAll)
 
+  //dashboard
+  .get("/dashboard", (req, res) => {
+    res.render("dashboard");
+  })
 
-
+  //View Agents
+  
 
 
 // catch 404
