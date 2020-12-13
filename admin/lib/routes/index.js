@@ -64,13 +64,15 @@ router
 
   .get("/users", user.getAll)
 
-  //dashboard
-  .get("/dashboard", (req, res) => {
-    res.render("dashboard");
+  //Agents
+  .get("/enrolled-agents", (req, res) => {
+    res.render("agents/index");
+  })
+  
+  .get("/view-profile", (req, res) => {
+    res.render("agents/view-profile");
   })
 
-  //View Agents
-  
 
 
 // catch 404
