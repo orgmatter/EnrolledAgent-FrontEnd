@@ -86,9 +86,23 @@ router
     res.render("blog/edit");
   })
   .get("/create-article", (req, res) => {
-    res.render("blog/edit");
+    res.render("blog/create");
+  })
+  .get("/article-status", (req, res) => {
+    res.render("blog/status");
   })
 
+    // Blog Categories
+    .get("/view-blog-categories", (req, res) => {
+      res.render("blog/category/index");
+    })
+    .get("/edit-blog-category", (req, res) => {
+      res.render("blog/category/edit");
+    })
+    .get("/create-blog-category", (req, res) => {
+      res.render("blog/category/create");
+    })
+   
 
 
 // catch 404
