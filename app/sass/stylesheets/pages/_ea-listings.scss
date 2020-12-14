@@ -1,0 +1,250 @@
+#ea-listings-top {
+
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%),
+          url("/assets/files/ea-listing-top-img.png") no-repeat center center/cover;
+        height: 405px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-family: "Baskerville Old Face" !important;
+    
+}
+
+#ea-listings-top h1 {
+    color: white;
+    font-size: 80px;
+    font-family: "Baskerville Old Face" !important;
+  }
+  
+  #ea-listings-top p {
+    color: #bfbfbf;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 0px;
+  }
+
+  // input section
+  #input .input-num {
+    display: flex;
+    
+  }
+  #input input {
+    border: 1px solid #707070;
+    border-radius: 7px;
+    height: 45px;
+  }
+
+  #input ::placeholder {
+    color: #000;
+    padding-left: .5rem;
+  }
+
+  #input .input-num #num {
+    width: 50px;
+    height: 40px;
+    color: red;
+    // padding: 1rem;
+
+  }
+
+
+  #input .input-num p {
+    font-size: 20px;
+    letter-spacing: 0px;
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 1rem;
+
+  }
+
+  #input .input-text {
+    display: flex;
+    
+  }
+
+  #input .input-text #search {
+    width: 506px;
+    margin-right: 1rem;
+  }
+
+  #input .input-text #order, #input .input-text #descend {
+    width: 152px;
+    margin-right: 1rem;
+    padding-left: .5rem;
+    border-radius: 7px;
+    height: 45px;
+
+  }
+
+
+  #input .input-text p {
+    font-size: 20px;
+    letter-spacing: 0px;
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-right: 1rem;
+    
+  }
+
+
+
+
+  #premium .premium-box {
+    margin: 1rem 0;
+    background: #f6f6f6;
+    box-shadow: 0px 8px 18px #0000001F;
+    padding: 1rem 1rem;
+    border-radius: 10px;
+  }
+
+  #premium .img {
+    height: 140px;
+    width: 140px;
+   
+   
+  }
+
+  #premium .img img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 20px;
+
+  }
+
+
+  #premium .txt h3 {
+    text-align: left;
+    font-size:  20px;
+    padding-top: 1.5rem;
+    font-weight: bold;
+    font-family: arial;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+  }
+
+  #premium .txt p {
+    font-size: 20px;
+    letter-spacing: 0px;
+    color: #2699FB;
+  }
+
+  #premium .mid-div h4 {
+    text-align: left;
+    font-size: 20px;
+    padding-top: 1.7rem;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 0px;
+    color: #000;
+
+  }
+
+  #premium .mid-div img {
+    width: 150px;
+    height: 26px;
+  }
+  #premium .mid-div span {
+    text-align: left;
+    font-size: 16px;
+    padding-top: .5rem;
+    margin-left: 1rem;
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+
+  }
+
+  #premium .b-tons {
+    padding-top: 2rem;
+  
+
+  }
+
+  #premium .btn-blu {
+    background: #01105b;
+    border: 1px solid #01105B;
+    border-radius: 7px;
+    color: #fff;
+    width: 149px;
+    font-size: 18px;
+    transition: all .3s ease-in-out;
+  }
+
+  #premium .btn-wht {
+    color: #01105b;
+    border: 1px solid #01105B;
+    border-radius: 7px;
+    font-size: 18px;
+    width: 149px;
+    transition: all .3s ease-in-out;
+  }
+  #premium .btn-blu:hover,   #premium .btn-wht:hover {
+    transform: scale(1.02);
+
+  }
+
+  .contain {
+    padding: 0 2rem;
+  }
+
+  #bottom .b-ton-1 {
+    width: 142px;
+    border: 1px solid #707070;
+
+  }
+
+  #bottom .b-ton-2,
+  #bottom .b-ton-3,
+  #bottom .b-ton-4,
+  #bottom .b-ton-5,
+  #bottom .b-ton-6 {
+    border: 1px solid #707070;
+    width: 46px;
+    margin-left: .3rem;
+  }
+
+  #bottom .b-ton-7 {
+    width: 97px;
+    border: 1px solid #707070;
+    margin-left: .3rem;
+
+  }
+
+  #bottom .b-ton {
+    transition: all .2s ease-in-out;
+  }
+  
+  #bottom .b-ton-blu, #bottom .b-ton-2 {
+    background: #086cef;
+    color: #fff;
+  }
+
+  #bottom .b-ton:hover {
+    transform: scale(1.02);
+  }
+
+  @media (max-width: 700px ) {
+    #input .input-text {
+      display: flex;
+      flex-direction: column;
+    }
+    #input .input-text #search {
+      width: 300px;
+    }
+    #input .input-text #order,   #input .input-text #descend {
+      margin-top: 1rem;
+    }
+
+    // premium section
+
+    #premium .btn-blu,  #premium .btn-wht {
+      margin-top: .5rem;
+    }
+  }
+
+
+
