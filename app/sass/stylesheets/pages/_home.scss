@@ -10,6 +10,11 @@ section#home {
     height: 680px !important;
   }
 }
+.home-body {
+  .login {
+    display: none !important;
+  }
+}
 
 .home {
   h1,
