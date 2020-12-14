@@ -15,7 +15,7 @@
 // });
 
 
-alert("working");
+// alert("working");
 
 var $tests = $('.sidebar-link.active').parent().parent().closest(".sidebar-main-title").css({"color": "red", "border": "2px solid red"});
 console.log($tests);
