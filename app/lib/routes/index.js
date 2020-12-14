@@ -68,6 +68,12 @@ router.use((req, res, next) => {
       .get("/blog", (req, res) => {
         res.render("blog");
       })
+      .get("/ea-listings", (req, res) => {
+        res.render("ea-listings");
+      })
+      .get("/page-15", (req, res) => {
+        res.render("page-15");
+      })
       .get("/", CityController.get, ResourceController.random, (req, res) => {
         // console.log(req.locals)
         // extract message if this page was redirected to from another page
@@ -108,7 +114,7 @@ router.use((req, res, next) => {
       .get("/profile", user, (req, res) => {
         res.render("profile", { locals: req.locals });
       })
-
+    
     // catch 404
     router.use((req, res) => {
       res.statusCode = 404;
