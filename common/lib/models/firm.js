@@ -70,7 +70,7 @@ FirmSchema.pre('save', updateDate)
     count: true
   })
 
-  AgentSchema.virtual('owner', {
+  FirmSchema.virtual('owner', {
     ref: 'user',
     localField: '_id',
     foreignField: 'firm',
@@ -78,4 +78,4 @@ FirmSchema.pre('save', updateDate)
   })
 
 
-module.exports = mongoose.model('agent', FirmSchema)
+module.exports = mongoose.model('firm', FirmSchema)
