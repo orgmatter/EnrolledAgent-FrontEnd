@@ -2,9 +2,9 @@
 
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%),
       url("/assets/files/page-15-top-img.png") no-repeat center center/cover;
-    height: 405px;
-    display: flex;
-    flex-direction: column;
+    // height: 405px;
+    // display: flex;
+    // flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -12,51 +12,78 @@
 
 }
 
-#local-agent-top h1 {
-  color: white;
-  font-size: 80px;
-  font-family: "Baskerville Old Face" !important;
+.home-section {
+  background-color: transparent;
+  position: absolute;
+  top: 12vh;
+  left: 0;
+  right: 0;
+
+  &-top {
+    text-align: center;
+    h2 {
+      font-family: "Baskerville Old Face" !important;
+      font-size: 80px;
+      line-height: 80px;
+      color: #fff;
+    }
+    .desc {
+      font-size: 26px;
+      color: #bfbfbf;
+    }
+    &-input-div {
+      height: 100px;
+      background-color: rgba(255, 255, 255, 0.19);
+      margin-top: 25px;
+      display: flex;
+      align-items: center;
+      padding: 0 45px 0 17px;
+      button {
+        height: 50px;
+        border-radius: 5px;
+        color: $main-blue;
+        font-size: 16px;
+      }
+      .btn1 {
+        width: 140px;
+        background-color: #fff;
+        margin-right: 14px;
+      }
+      .input {
+        width: 530px;
+        height: 50px;
+        background-color: #fff;
+        border-radius: 5px;
+        margin-right: 16px;
+        display: flex;
+        align-items: center;
+        padding: 0 25px;
+        input {
+          width: 100%;
+          border: none;
+          color: $main-blue;
+          font-size: 16px;
+          &::placeholder {
+            color: $main-blue;
+            font-size: 16px;
+          }
+        }
+      }
+      .btn2 {
+        width: 220px;
+        background-color: $main-blue;
+        margin-right: 14px;
+        color: #fff;
+      }
+      .btn3 {
+        width: 200px;
+        background-color: #fff;
+      }
+    }
+  }
+
 }
 
-#local-agent-top p {
-  color: #bfbfbf;
-  font-size: 30px;
-  font-family: Arial, Helvetica, sans-serif;
-  letter-spacing: 0px;
-}
-
-#local-agent-top .form-flex {
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-  opacity: .19;
-}
-#local-agent-top  input {
-  height: 74px;
-  border-radius: 5px;
-  background: #fff;
-  z-index: 10;
-  
-}
-
-#local-agent-top #zip-code {
-  padding-left:1rem ;
-  width:300px;
-  background: #fff !important;
-}
-
-#local-agent-top #last-name {
-  width: 450px;
-  padding-left: 1rem;
-}
-
-#local-agent-top input[type=button] {
-  background: #01105b;
-  opacity: 1 !important;
-  color: #fff;
-}
 
 #section-2 {
   display: flex;
@@ -113,6 +140,33 @@
 
 #section-2 .b-ton-blu span {
   margin-left: 2rem;
+}
+
+// section-2 media querry
+
+@media (max-width:800px) {
+  #section-2 {
+    background: url(/assets/files/section-2-img.png)no-repeat center center/cover;
+    display: block;
+    margin: 1rem 1.5rem;
+  }
+  #section-2 img {
+    display: none;
+
+  }
+  #section-2 text {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  #section-2 .text h3 {
+    margin-left: 0;
+  }
+
+  #section-2 .b-ton-blu {
+    width: 230px;
+  }
 }
 
 // cities section
@@ -220,7 +274,7 @@
   padding-top: 1rem;
   font-size: 20px;
   font-weight: normal;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif; 
   letter-spacing: 0px;
   color: #086cee;
 }
