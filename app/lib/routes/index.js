@@ -73,8 +73,8 @@ router.use((req, res, next) => {
       .get("/ea-listings", (req, res) => {
         res.render("ea-listings");
       })
-      .get("/page-15", (req, res) => {
-        res.render("page-15");
+      .get("/local-agent", (req, res) => {
+        res.render("local-agent");
       })
       .get("/", CityController.get, ResourceController.random, (req, res) => {
         // console.log(req.locals)
