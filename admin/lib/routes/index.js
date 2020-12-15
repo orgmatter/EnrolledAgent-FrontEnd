@@ -59,13 +59,50 @@ router
 
   .use('/api', require('./api'))
 
-  .get('/',   SponsorController.getAll)
-  .get('/:id', SponsorController.get)
+  // .get('/',   SponsorController.getAll)
+  // .get('/:id', SponsorController.get)
 
   .get("/users", user.getAll)
 
+  //Agents
+  .get("/enrolled-agents", (req, res) => {
+    res.render("agents/index");
+  })
+  .get("/view-profile", (req, res) => {
+    res.render("agents/view-profile");
+  })
+  .get("/approve-claim-listing", (req, res) => {
+    res.render("agents/requests");
+  })
+  .get("/upload-agents-list", (req, res) => {
+    res.render("agents/uploadAgents");
+  })
 
+  // Blog Articles
+  .get("/view-articles", (req, res) => {
+    res.render("blog/index");
+  })
+  .get("/edit-article", (req, res) => {
+    res.render("blog/edit");
+  })
+  .get("/create-article", (req, res) => {
+    res.render("blog/create");
+  })
+  .get("/article-status", (req, res) => {
+    res.render("blog/status");
+  })
 
+    // Blog Categories
+    .get("/view-blog-categories", (req, res) => {
+      res.render("blog/category/index");
+    })
+    .get("/edit-blog-category", (req, res) => {
+      res.render("blog/category/edit");
+    })
+    .get("/create-blog-category", (req, res) => {
+      res.render("blog/category/create");
+    })
+   
 
 
 // catch 404
