@@ -1,11 +1,8 @@
 const mongoose = require('mongoose')
-const crypto = require('crypto')
-const Constants = require('../utils/constants')
-const uid = require('uid')
-//
+
 const { Schema } = mongoose
 
-const AgentSchema = new Schema({
+const FirmSchema = new Schema({
 
   firstName: String,
   lastName: String,
@@ -32,6 +29,7 @@ const AgentSchema = new Schema({
   state: String,
   city: String,
   zipcode: String,
+  website: String,
   imageUrl: String,
   updatedAt: {
     type: Number,
@@ -43,10 +41,10 @@ const AgentSchema = new Schema({
   }
 }, { toJSON: { virtuals: true } })
 
-AgentSchema.set('toObject', { virtuals: true })
-AgentSchema.set('toJSON', { virtuals: true })
+FirmSchema.set('toObject', { virtuals: true })
+FirmSchema.set('toJSON', { virtuals: true })
 
-AgentSchema.index({
+FirmSchema.index({
   zipcode: 'text',
   city: 'text', 
   state: 'text',
@@ -59,24 +57,25 @@ const updateDate = function (next) {
   next()
 }
 // update date for bellow 4 methods
-AgentSchema.pre('save', updateDate)
+FirmSchema.pre('save', updateDate)
   .pre('update', updateDate)
   .pre('findOneAndUpdate', updateDate)
   .pre('findByIdAndUpdate', updateDate)
 
 
-  AgentSchema.virtual('reviewCount', {
+  FirmSchema.virtual('reviewCount', {
     ref: 'review',
     localField: '_id',
     foreignField: 'agent',
     count: true
   })
+
   AgentSchema.virtual('owner', {
     ref: 'user',
     localField: '_id',
-    foreignField: 'agent',
+    foreignField: 'firm',
     justOne: true,
   })
 
 
-module.exports = mongoose.model('agent', AgentSchema)
+module.exports = mongoose.model('agent', FirmSchema)

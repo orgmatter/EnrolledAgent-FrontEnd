@@ -7,6 +7,7 @@ const { handleSocial, verify, user } = require("../controllers/auth");
 const ContactController = require("../controllers/contact");
 const ResourceController = require("../controllers/resource");
 const ArticleController = require("../controllers/article");
+const AgentController = require("../controllers/agent");
 
 const Log = new Logger("App:Router");
 
@@ -30,8 +31,9 @@ router.use((req, res, next) => {
 })
 
 
-  .use((req, res, next) => {
+  .use( (req, res, next) => {
     console.log(req.isAuthenticated(), req.user);
+    
     //   console.log(req.body, req.params)
     next();
   })
@@ -80,7 +82,11 @@ router.use((req, res, next) => {
       .get("/tax", (req, res) => {
         res.render("tax");
       })
-      .get("/category/:category", (req, res) => {
+
+      .get("/resource/:category", ResourceController.getAll, (req, res) => {
+        res.render("categoryPage");
+      })
+      .get("/resources", ResourceController.getAll, (req, res) => {
         res.render("categoryPage");
       })
       .get("/practice-exchange", (req, res) => {

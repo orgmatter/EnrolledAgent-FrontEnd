@@ -10,6 +10,7 @@ const {
 } = require("common")
 
 const BaseController = require('../controllers/baseController');
+Agent.ensureIndexes()
 
 class AgentController extends BaseController {
 
@@ -26,15 +27,18 @@ class AgentController extends BaseController {
     async getAll(req, res, next) {
         const { page, perpage, q, search } = req.query
         let query = Helper.parseQuery(q) || {}
-        if (search) query = { title: { $regex: search, $options: 'i' } }
+        if (search) query = { $text: { $search: search } }
+
+        // query = {}
 
         DB.Paginate(res, next, Agent, {
             perPage: perpage,
             query,
             page,
-            populate: ['reviewCount']
+            populate: [{ path: 'reviewCount', select: ['rating'] }, { path: 'owner', select: ['_id', 'firstName'] }]
         }, (data) => {
             req.locals.agents = data
+            // console.log(data)
             next()
         })
 
@@ -53,7 +57,7 @@ class AgentController extends BaseController {
         const data = await Resource.find({},)
             .skip(random)
             .limit(10)
-            .populate('reviewCount')
+            .populate([{ path: 'reviewCount', select: ['rating'] }, { path: 'owner', select: ['_id', 'firstName'] }])
             .sort()
             .exec()
         req.locals.agents = data

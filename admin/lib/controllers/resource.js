@@ -6,7 +6,7 @@ const {
     Validator,
     Helper,
     DB,
-    Models: { Resource, Sponsor },
+    Models: { Resource, Sponsor, Category },
 } = require("common");
 
 const BaseController = require('../controllers/baseController');
@@ -15,13 +15,23 @@ class ResourceController extends BaseController {
 
 
     async create(req, res, next) {
-        const { body, actionLink, sponsor, actionText, author, title, imageUrl } = req.body
+        const { body, actionLink, sponsor, actionText, author, title, imageUrl, category } = req.body
 
         if (!Validator.isMongoId(sponsor) || !(await Sponsor.exists({ _id: sponsor }))) {
             res.status(422)
             return next(
                 new Exception(
                     'Please provide a valid sponsor',
+                    ErrorCodes.REQUIRED
+                )
+            )
+        }
+
+        if (!Validator.isMongoId(category) || !(await Category.exists({ _id: category }))) {
+            res.status(422)
+            return next(
+                new Exception(
+                    'Please provide a valid category',
                     ErrorCodes.REQUIRED
                 )
             )
@@ -59,7 +69,7 @@ class ResourceController extends BaseController {
             )
         }
 
-        const b = { body, actionLink, sponsor, actionText, author, title }
+        const b = { body, actionLink, sponsor, actionText, author, title, category }
 
         if (Validator.isUrl(imageUrl)) b.imageUrl = imageUrl
 

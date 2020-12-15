@@ -6,6 +6,10 @@ const Article = new Schema({
   body: String,
   preview: String,
   author: String,
+  approved: {
+    type: Boolean,
+    default: false
+  },
   title: String,
   imageUrl: String,
   updatedAt: {
