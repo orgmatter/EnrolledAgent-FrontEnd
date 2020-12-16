@@ -55,6 +55,12 @@ router
   .get("/career-center", (req, res) => {
     res.render("careerCenter");
   })
+  .get("/contact", (req, res) => {
+    res.render("contact");
+  })
+  .get("/about-us", (req, res) => {
+    res.render("about");
+  })
   .get("/unsubscribe", ContactController.unsubscribe)
   .get("/verify/:token", verify)
   .get("/dashboard", ResourceController.random, (req, res) => {
