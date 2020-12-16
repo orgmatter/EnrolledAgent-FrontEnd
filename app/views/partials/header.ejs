@@ -29,7 +29,12 @@
               >
             </li>
             <li class="m-0 pl-0 pr-10">
-              <a href="/login" class="text-white ajaxload-popup">
+              <a href="/register" class="text-white ajaxload-popup"
+                ><i class="fa fa-edit mr-5"></i>New Account</a
+              >
+            </li>
+            <li class="m-0 pl-0 pr-10">
+              <a href="/claim-listing" class="text-white ajaxload-popup">
                 <i class="fa fa-edit mr-5"></i>Enrolled Agent Start Here</a
               >
             </li>
@@ -51,14 +56,83 @@
           id="menuzord"
         >
           <ul class="row menuzord-menu">
-            <li class="myNav-flex-item mr-60"><a>Find an Enrolled Agent</a></li>
-            <li class="myNav-flex-item mr-60"><a>Ask an EA</a></li>
-            <li class="myNav-flex-item mr-60"><a href="/blog">News & Articles</a></li>
+            <li class="myNav-flex-item mr-50">
+              <a>Find an Enrolled Agent</a>
+              <ul class="dropdown my-dropdown">
+                <li>
+                  <a class="dropdown-link">Certified Enrolled Agent</a>
+                  <ul class="dropdown my-dropdown-child">
+                    <li><a class="dropdown-link-child">EA Search</a></li>
+                    <li><a class="dropdown-link-child">EAs by State</a></li>
+                    <li><a class="dropdown-link-child">All EAs</a></li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a class="dropdown-link">Accounting Firms</a>
+                  <ul class="dropdown my-dropdown-child">
+                    <li><a class="dropdown-link-child">Accounting Firms Search</a></li>
+                    <li><a class="dropdown-link-child">Accounting Firms by State</a></li>
+                    <li><a class="dropdown-link-child">All Accounting Firms</a></li>
+                  </ul>
+                </li>
+
+                <li><a class="dropdown-link">Resources</a></li>
+                <li><a class="dropdown-link">Help</a></li>
+              </ul>
+            </li>
+            <li class="myNav-flex-item mr-50"><a href="/ask-ea">Ask an EA</a></li>
+            <li class="myNav-flex-item mr-50"><a href="/blog">News & Articles</a></li>
             <li class="myNav-flex-item">
               <a>Resources</a>
-              <ul class="dropdown">
+              <ul class="dropdown my-dropdown">
+                <p class="category-header-text">View By Category</p>
+
+                <li><a class="dropdown-link" href="/category/tax">Tax</a></li>
                 <li>
-                  <a href="index-mp-layout1.html">Layout1</a>
+                  <a class="dropdown-link" href="/category/tools%20and%20technology"
+                    >Tools & Technology</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-link" href="/category/education%20and%20CPE"
+                    >Education & CPE</a
+                  >
+                </li>
+                <li><a class="dropdown-link" href="/category/events">Events</a></li>
+                <li>
+                  <a class="dropdown-link" href="/category/business%20opportunities"
+                    >Business Opportunities</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-link" href="#">Browse All Resources</a>
+                </li>
+
+                <p class="category-header-text m-26">More</p>
+                <li>
+                  <a class="dropdown-link" href="/career-center">Enrolled Agent Center</a>
+                </li>
+                <li>
+                  <a class="dropdown-link" href="/offshore-team">Offshore Staffing/Hiring</a>
+                </li>
+                <li>
+                  <a class="dropdown-link" href="/practice-exchange">Practice Exchange / Sales</a>
+                </li>
+                <li>
+                  <a class="dropdown-link" href="#">Resources for Accountants</a>
+                </li>
+                <li>
+                  <a class="dropdown-link" href="#">Create Your Free EA List</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!-- <li>
+                  <a href="index-mp-layout1.html">Tax</a>
                   <ul class="dropdown dropdown-left">
                     <li><a href="index-mp-layout1.html">Layout1</a></li>
                     <li><a href="index-mp-layout2.html">Layout2</a></li>
@@ -67,18 +141,7 @@
                     <li><a href="index-mp-layout5.html">Layout5</a></li>
                     <li><a href="index-mp-layout6.html">Layout6</a></li>
                   </ul>
-                </li>
-                <li><a href="index-mp-layout2.html">Layout2</a></li>
-                <li><a href="index-mp-layout3.html">Layout3</a></li>
-                <li><a href="index-mp-layout4.html">Layout4</a></li>
-                <li><a href="index-mp-layout5.html">Layout5</a></li>
-                <li><a href="index-mp-layout6.html">Layout6</a></li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
+                </li> -->
   </nav>
 
   <script type="text/javascript" src="/javascripts/navbar.js"></script>

@@ -84,21 +84,33 @@ router
     if (req.app.locals && req.app.locals.message) req.locals.infoMessage = req.app.locals.message;
     res.render("home", { locals: req.locals });
   })
-  .get("/listings", (req, res) => {
+  .get("/claim-listing", (req, res) => {
     res.render("listings");
   })
-  .get("/tax", (req, res) => {
-    res.render("tax");
+  .get("/offshore-team", (req, res) => {
+    res.render("offshoreTeam");
   })
   .get("/resource/:category", ResourceController.getAll, (req, res) => {
-    res.render("categoryPage");
+    res.render("categoryPage", {
+      name: req.params.category,
+    });
   })
   .get("/resources", ResourceController.getAll, (req, res) => {
     res.render("categoryPage");
   })
+  .get("/ask-ea", (req, res) => {
+    res.render("askEA");
+  })
   .get("/practice-exchange", (req, res) => {
     res.render("practiceExchange");
   })
+  .get("/find-enrolled-agents", (req, res) => {
+    res.render("findEA");
+  })
+  .get("/license-verification", (req, res) => {
+    res.render("license-verification");
+  })
+
   .get("/logout", (req, res) => {
     req.logout();
     res.redirect("/login");
