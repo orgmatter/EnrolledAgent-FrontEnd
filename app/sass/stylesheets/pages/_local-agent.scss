@@ -1,15 +1,13 @@
 #local-agent-top {
-
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%),
-      url("/assets/files/page-15-top-img.png") no-repeat center center/cover;
-    // height: 405px;
-    // display: flex;
-    // flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-family: "Baskerville Old Face" !important;
-
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%),
+    url("/assets/files/page-15-top-img.png") no-repeat center center/cover;
+  // height: 405px;
+  // display: flex;
+  // flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Baskerville Old Face" !important;
 }
 
 .home-section {
@@ -34,7 +32,8 @@
     &-input-div {
       height: 100px;
       background-color: rgba(255, 255, 255, 0.19);
-      margin-top: 25px;
+      margin: 25px auto 0;
+      width: 1000px;
       display: flex;
       align-items: center;
       padding: 0 45px 0 17px;
@@ -81,9 +80,7 @@
       }
     }
   }
-
 }
-
 
 #section-2 {
   display: flex;
@@ -133,8 +130,8 @@
   text-align: left;
   font-size: 16px;
   margin: 2rem 0;
-  padding-top: .5rem ;
-  padding-bottom: .5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   width: 35%;
 }
 
@@ -144,15 +141,14 @@
 
 // section-2 media querry
 
-@media (max-width:800px) {
+@media (max-width: 800px) {
   #section-2 {
-    background: url(/assets/files/section-2-img.png)no-repeat center center/cover;
+    background: url(/assets/files/section-2-img.png) no-repeat center center/cover;
     display: block;
     margin: 1rem 1.5rem;
   }
   #section-2 img {
     display: none;
-
   }
   #section-2 text {
     display: flex;
@@ -250,7 +246,7 @@
   transform: scale(1.04);
 }
 
-// top rated 
+// top rated
 
 .top-rated {
   display: flex;
@@ -259,7 +255,6 @@
   align-items: center;
   text-align: center;
   margin: 3rem 0;
-
 }
 
 .top-rated h3 {
@@ -274,7 +269,7 @@
   padding-top: 1rem;
   font-size: 20px;
   font-weight: normal;
-  font-family: Arial, Helvetica, sans-serif; 
+  font-family: Arial, Helvetica, sans-serif;
   letter-spacing: 0px;
   color: #086cee;
 }
@@ -287,8 +282,8 @@
   font-size: 16px;
   margin: 2rem 0;
   border: 1px solid #01105b;
-  padding-top: .5rem ;
-  padding-bottom: .5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .top-rated .b-ton-wht span {
@@ -381,13 +376,11 @@
 }
 
 @media (max-width: 800px) {
-
   .resources-grid {
     display: grid;
     grid-template-columns: 1fr;
     grid-column-gap: 4%;
-    grid-template-areas:
-     "resources-grid-box ";
+    grid-template-areas: "resources-grid-box ";
     width: 90%;
     margin: 50px auto 50px;
   }

@@ -72,11 +72,16 @@ router
   .get("/blog", (req, res) => {
     res.render("blog");
   })
-  .get("/ea-listings", (req, res) => {
-    res.render("ea-listings");
+  .get("/ea-listings", AgentController.getAll, (req, res) => {
+    console.log("locals are", req.locals.agents.data);
+    res.render("ea-listings", { locals: req.locals });
   })
-  .get("/local-agent", (req, res) => {
-    res.render("local-agent");
+  .get("/find-agent", (req, res) => {
+    res.render("local-agent", { locals: req.locals });
+  })
+  .get("/search-results", AgentController.getAll, (req, res) => {
+    console.log("locals ", req.locals);
+    res.render("search-results", { locals: req.locals });
   })
   .get("/", CityController.get, ResourceController.random, (req, res) => {
     // console.log(req.locals)
@@ -87,19 +92,19 @@ router
   .get("/claim-listing", (req, res) => {
     res.render("listings");
   })
+  .get("/ask-ea", (req, res) => {
+    res.render("askEa");
+  })
   .get("/offshore-team", (req, res) => {
     res.render("offshoreTeam");
   })
   .get("/resource/:category", ResourceController.getAll, (req, res) => {
-    res.render("categoryPage", {
+    res.render("category", {
       name: req.params.category,
     });
   })
   .get("/resources", ResourceController.getAll, (req, res) => {
     res.render("categoryPage");
-  })
-  .get("/ask-ea", (req, res) => {
-    res.render("askEA");
   })
   .get("/practice-exchange", (req, res) => {
     res.render("practiceExchange");
