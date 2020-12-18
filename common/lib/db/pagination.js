@@ -22,7 +22,7 @@ module.exports = async (res, next, Collection, options, done) => {
   // const pop = populate || []
 
   const countAll = (callback) =>
-    Collection.estimatedDocumentCount(query)
+    Collection.countDocuments(query)
         .then((doc) => callback(null, doc))
         // .catch((err) => callback(err, null))
 

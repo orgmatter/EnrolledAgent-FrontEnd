@@ -163,6 +163,23 @@ exports.generateCode = function () {
 }
 
 /**
+ * format a string removing all white spaces
+ * @param {String} text
+ * @return {String} 
+ */
+exports.generateSlug = function (text) {
+  let slug = String(text)
+  if (!slug) return
+  slug = slug
+  .trim()
+  .replace(' ', '-')
+  .toLowerCase()
+  .replace(' ', '-')
+  .replace(' ', '-')
+  return slug
+}
+
+/**
  * get the users ip address
  * @param  {Express.Request} req
  * @return {string}

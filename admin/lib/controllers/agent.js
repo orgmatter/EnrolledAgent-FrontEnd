@@ -12,10 +12,13 @@ const {
 const BaseController = require('../controllers/baseController');
 
 class AgentController extends BaseController {
-
+    sanitizeBody(body){
+        delete body.rating
+        return body
+    }
     async create(req, res, next) {
         const { firstName, lastName, city, state,
-            zipcode, country, phone,
+            zipcode, country, phone, bio,
             address1,
             address2,
             address3, } = req.body
@@ -30,77 +33,85 @@ class AgentController extends BaseController {
             )
         }
 
-        let sponsor = await Agent.create({ name, link })
+        let agent = await Agent.create({
+            firstName, lastName, city, state,
+            zipcode, country, phone, bio,
+            address1,
+            address2,
+            address3,
+        })
 
         if (req.file) {
             const imageUrl = await FileManager.saveFile(
-                Storages.SPONSOR,
+                Storages.AGENT_PROFILE,
                 req.file
             )
-            sponsor.imageUrl = imageUrl
-            await sponsor.save()
+            agent.imageUrl = imageUrl
+            await agent.save()
         }
-        super.handleResult(sponsor, res, next)
+        super.handleResult(agent, res, next)
 
     }
 
 
     async update(req, res, next) {
-        const { body: { name, link }, params: { id } } = req
-        if (!BaseController.checkId('Invalid sponsor id', req, res, next)) return
+        const { params: { id } } = req
+        if (!BaseController.checkId('Invalid agent id', req, res, next)) return
 
-        const body = {}
-        if (name) body.name = name
-        if (link) body.link = link
+        const body = sanitizeBody(req.body)
 
-        let sponsor = await Agent.findByIdAndUpdate(id, body, { new: true })
+        let agent = await Agent.findByIdAndUpdate(id, body, { new: true })
 
         if (req.file) {
             const imageUrl = await FileManager.saveFile(
-                Storages.SPONSOR,
+                Storages.AGENT_PROFILE,
                 req.file
             )
-            if (sponsor.imageUrl && imageUrl) FileManager.deleteFile(sponsor.imageUrl)
+            if (agent.imageUrl && imageUrl) FileManager.deleteFile(agent.imageUrl)
 
-            sponsor.imageUrl = imageUrl
-            await sponsor.save()
+            agent.imageUrl = imageUrl
+            await agent.save()
         }
-        super.handleResult(sponsor, res, next)
+        super.handleResult(agent, res, next)
 
     }
 
 
-    async delete(req, res, next) {
-        const { id } = req.params
-        if (!BaseController.checkId('Invalid sponsor id', req, res, next)) return
+    // async delete(req, res, next) {
+    //     const { id } = req.params
+    //     if (!BaseController.checkId('Invalid agent id', req, res, next)) return
 
-        let sponsor = await Agent.findByIdAndDelete(id).exec()
-        if (sponsor && sponsor.imageUrl) FileManager.deleteFile(sponsor.imageUrl)
-        super.handleResult(sponsor, res, next)
-    }
+    //     let agent = await Agent.findByIdAndDelete(id).exec()
+    //     if (agent && agent.imageUrl) FileManager.deleteFile(agent.imageUrl)
+    //     super.handleResult(agent, res, next)
+    // }
 
     async get(req, res, next) {
         const { id } = req.params
 
-        if (!BaseController.checkId('Invalid sponsor id', req, res, next)) return
-        let sponsor = await Agent.findById(id).exec()
+        if (!BaseController.checkId('Invalid agent id', req, res, next)) return
+        let agent = await Agent.findById(id).exec()
 
-        super.handleResult(sponsor.toJSON(), res, next)
+        super.handleResult(agent.toJSON(), res, next)
 
     }
 
     async getAll(req, res, next) {
         const { page, perpage, q, search } = req.query
         let query = Helper.parseQuery(q) || {}
-        if (search) query = { title: { $regex: search, $options: 'i' } }
+        if (search) query = { $text: { $search: search } }
+
+        // query = {}
 
         DB.Paginate(res, next, Agent, {
             perPage: perpage,
             query,
             page,
-            populate: ['reviewCount'],
+            populate: [{ path: 'reviewCount', select: ['rating'] }, { path: 'owner', select: ['_id', 'firstName'] }]
         }, (data) => {
-            super.handleResultPaginated({ ...data }, res, next)
+            req.locals.agents = data
+            // console.log(data)
+            next()
         })
 
     }

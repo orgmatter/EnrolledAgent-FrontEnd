@@ -6,10 +6,13 @@ const {
     Validator,
     Helper,
     DB,
-    Models: { Resource },
+    Models: { Resource, Category },
 } = require("common")
 
-const BaseController = require('../controllers/baseController');
+const BaseController = require('../controllers/baseController')
+
+Resource.ensureIndexes()
+Category.ensureIndexes()
 
 class ResourceController extends BaseController {
 
@@ -25,14 +28,23 @@ class ResourceController extends BaseController {
     async getAll(req, res, next) {
         const { page, perpage, q, search } = req.query
         let query = Helper.parseQuery(q) || {}
-        if (search) query = { title: { $regex: search, $options: 'i' } }
-
+        if (search) query = { $text: { $search: search } }
+        if (req.params.category) {
+            const category = await Category.findOne({ slug: req.params.category }).exec()
+            // console.log(category)
+            if (category) {
+                query.category = category._id
+                req.locals.category = category
+            } else return next()
+        }
         DB.Paginate(res, next, Resource, {
             perPage: perpage,
             query,
             page,
+            // populate: { path: 'category', match: { slug: 'tax' } }
         }, (data) => {
             req.locals.resource = data
+            // console.log(data)
             next()
         })
 

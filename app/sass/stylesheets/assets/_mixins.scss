@@ -1,0 +1,29 @@
+//========= MEDIA QUERY MIXINS ==========//
+@mixin respond($breakpoint) {
+  //tablets in  landscape mode
+  @if $breakpoint == tab-land {
+    @media (max-width: 765px) {
+      @content;
+    }
+  }
+
+  //tablets in potriate mode && phones in landscape
+  @if $breakpoint == tab-port {
+    @media (max-width: 600px) {
+      @content;
+    }
+  }
+
+  //smart phones in potrain mode
+  @if $breakpoint == smart-phone {
+    @media (max-width: 450px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == smaller-phone {
+    @media (max-width: 320px) {
+      @content;
+    }
+  }
+}

@@ -14,6 +14,10 @@ const Resource = new Schema({
     ref: 'sponsor',
     type: Schema.ObjectId
   },
+  category: {
+    ref: 'category',
+    type: Schema.ObjectId
+  },
   updatedAt: {
     type: Number,
     default: Date.now()
@@ -24,7 +28,12 @@ const Resource = new Schema({
   }
 })
 
-Resource.index({ title: 2, author: 1})
+Resource.index({
+  title: 'text',
+  author: 'text', 
+  'category.name': 'text',
+  'category.slug': 'text',
+})
 
 const updateDate = function (next) {
   this.updatedAt = Date.now()

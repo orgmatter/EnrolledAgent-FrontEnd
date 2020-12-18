@@ -10,10 +10,16 @@ const AgentSchema = new Schema({
   firstName: String,
   lastName: String,
   email: String,
+  bio: String,
   phone: String, 
   isClaimed: {
     type: Boolean,
     default: false
+  },
+  rating: { // to be calculated by cronjob
+    type: Number,
+    min: 1,
+    max: 5
   },
   gender: {
     type: String,
@@ -64,6 +70,12 @@ AgentSchema.pre('save', updateDate)
     localField: '_id',
     foreignField: 'agent',
     count: true
+  })
+  AgentSchema.virtual('owner', {
+    ref: 'user',
+    localField: '_id',
+    foreignField: 'agent',
+    justOne: true,
   })
 
 

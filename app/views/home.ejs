@@ -2,7 +2,7 @@
 <html dir="ltr" lang="en">
   <%- include("./partials/homeHead.ejs") %>
 
-  <body class="">
+  <body class="home-body">
     <div id="wrapper" class="clearfix home">
       <%- include("./partials/header.ejs") %>
       <!-- Start main-content -->
@@ -198,15 +198,15 @@
                       Zip Code
                   </button> 
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <p>Zip Code</p>
-                    <p>State</p>
+                    <p id="zip">Zip Code</p>
+                <p id="state">State</p>
                   </div>
                 </div>
                 <div class="input">
-                  <input type='text' placeholder="Enter Your Zip Code"/>
+                  <input id="zipInput" type='text' placeholder="Enter Your Zip Code"/>
                 </div>
-                <button class="btn2">Find</button>
-                <button class="btn3">Advanced Search</button>
+                <button id="submitBtn" class="btn2">Find</button>
+                <a class="btn3" href='/find-agent'>Advanced Search</a>
               </div>
               <div class="home-section-grid">
                 <div class="card-div">
@@ -770,67 +770,8 @@
                 }
               }); /*ready*/
             </script>
-    <script src="/js/chart.js"></script>
-    <!-- JS | Custom script for all pages -->
+            <script type="text/javascript" src="/javascripts/findAgent.js"></script>
     <script src="/js/custom.js"></script>
-        <script
-      type="text/javascript"
-      src="js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js"
-    ></script>
 
-    <script
-      type="text/javascript"
-      src="js/revolution-slider/js/extensions/revolution.extension.layeranimation.min.js"
-    ></script>
-
-    <script
-      type="text/javascript"
-      src="js/revolution-slider/js/extensions/revolution.extension.navigation.min.js"
-    ></script>
-
-    <script
-      type="text/javascript"
-      src="js/revolution-slider/js/extensions/revolution.extension.parallax.min.js"
-    ></script>
-    
-    <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  
-      (Load Extensions only on Local File Systems ! 
-       The following part can be removed on Server for On Demand Loading) -->
-    <!-- <script
-      type="text/javascript"
-      src="/js/revolution-slider/js/extensions/revolution.extension.actions.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/js/revolution-slider/js/extensions/revolution.extension.carousel.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/js/revolution-slider/js/extensions/revolution.extension.kenburn.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/js/revolution-slider/js/extensions/revolution.extension.layeranimation.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/js/revolution-slider/js/extensions/revolution.extension.migration.min.js"
-    ></script> -->
-    <!-- <script
-      type="text/javascript"
-      src="/js/revolution-slider/js/extensions/revolution.extension.navigation.min.js"
-    ></script> -->
-    <!-- <script
-      type="text/javascript"
-      src="/js/revolution-slider/js/extensions/revolution.extension.parallax.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/js/revolution-slider/js/extensions/revolution.extension.video.min.js"
-    ></script> -->
   </body>
 </html>

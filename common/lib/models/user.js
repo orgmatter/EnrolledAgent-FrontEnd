@@ -27,6 +27,9 @@ const UserSchema = new Schema({
     agent: {
         type: { ref: 'agent', type: Schema.ObjectId }
     },
+    firm: {
+        type: { ref: 'firm', type: Schema.ObjectId }
+    },
     country: String,
     state: String,
     city: String,

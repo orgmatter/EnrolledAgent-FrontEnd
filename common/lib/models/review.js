@@ -12,6 +12,10 @@ const Reveiw = new Schema({
     ref: 'user',
     type: Schema.ObjectId
   },
+  firm: {
+    ref: 'firm',
+    type: Schema.ObjectId
+  },
   agent: {
     ref: 'agent',
     type: Schema.ObjectId
