@@ -1,0 +1,287 @@
+#single {
+    background: #f6f6f6;
+}
+// colummns {
+    #single .part-1, #single .part-2 {
+        margin-top: 1rem;
+    }
+
+    #single .part-1 {
+        margin-right: .5rem;
+    }
+    #single .part-2 {
+        margin-left: .5rem;
+        border-radius: 6px;
+        box-shadow: 0px 3px 6px #00000029;
+    }
+
+    @media (max-width: 800px) {
+            #single .part-1 {
+                margin-right: 0;
+            }
+
+            #single .part-2 {
+                margin-left: 0;
+            }
+    }
+// aside section
+#single .cards {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 6px;
+    box-shadow: 0px 3px 6px #00000029;
+}
+//first aside card
+#single .face-card {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#single .face-card h4 {
+    margin-top: .5rem 0;
+    font-size: 20px;
+    font-style: italic;
+}
+
+#single .face-card h2 {
+    font-size: 30px;
+    color: #000;
+}
+
+#single .face-card p {
+    color: #2699fb;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+#single .face-card .star-img {
+    width: 178px;
+    height: 24px;
+    align-self: center;
+}
+
+#single .face-card small {
+    font-size: 14px;
+}
+
+#single .face-card h5 b {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#single .face-card h5 {
+    font-weight: normal;
+    font-size: 16px;
+    margin: 1rem 0;
+}
+
+#single .face-card .b-ton {
+    border: 1px solid #b8b8b8;
+    margin: 1rem 0;
+    width: 225px;
+    color: #000;
+    align-self: center;
+    transition: all .2s ease-in-out;
+}
+
+#single .face-card .b-ton:hover {
+    transform: scale(1.02);
+}
+// second aside card
+
+#single .btn-div {
+    margin: 5rem 0;
+
+}
+
+#single .btn-div .b-ton {
+        color: #fff;
+        background: #2699fb;
+        font-size: 25px;
+        border: none;
+        box-shadow: 0px 3px 6px #00000029;
+}
+
+#single .personal-card {
+    margin-bottom: 5rem;
+     padding: 1rem ;
+}
+
+#single .personal-card h3 {
+    font-size: 30px;
+    font-weight: bold;
+    padding-bottom: 1rem;
+    color: #000;
+   
+}
+
+#single .personal-card h3 span {
+    border-bottom: 3px solid #2699fb;
+}
+
+#single .personal-card span {
+    font-weight: bold;
+}
+
+#single .personal-card p {
+    font-size: 14px;
+}
+
+#single .personal-card p a {
+    color: #2699fb;
+}
+#single .personal-card p a i {
+    margin: 0 .3rem;
+    font-size: 1rem;
+    transition: all .3s ease-in-out;
+}
+
+#single .personal-card p a i:hover {
+    transform: scale(1.1);
+}
+
+#single .personal-card .b-ton-group .b-ton {
+    border: 1px solid #B8B8B8;
+    color: #000;
+    transition: all .2s ease-in-out;
+}
+
+#single .personal-card .b-ton-group .b-ton:hover {
+    transform: scale(1.02);
+}
+
+#single .personal-card .b-ton-group .b-ton .left {
+    margin-right: .5rem;
+}
+#single .personal-card .b-ton-group .b-ton .right {
+    margin-left: .5rem;
+}
+
+#single .last-card  {
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+#single .last-card .link-1{
+    display: block;
+font-style: italic;
+text-decoration: underline;
+color: #000;
+font-size: 18px;
+font-weight: normal;
+ transition: all .3s ease-out;
+}
+
+#single .last-card .link-2 {
+    background: #E4F0FB 0% 0% no-repeat padding-box;
+    border-radius: 6px;
+    color: #2699FB;
+    font-size: 14px;
+    margin-top: 1rem;
+    border: none;
+    transition: all .3s ease-out;
+}
+
+#single .last-card .link-1:hover,
+#single .last-card .link-2:hover {
+    transform: scale(1.03);
+}
+
+
+// right column
+#single .part-2 {
+    background: #fff;
+    padding: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 0px 3px 6px #00000029;
+}
+
+//about- card
+#single .part-2 .about, 
+#single .part-2 .accountant {
+border-bottom: 1px dotted #999;
+}
+
+#single .part-2 .about h3,
+ #single .part-2 .accountant h3,
+ #single .part-2 .client h3 {
+    // padding-bottom: 2rem 0 !important;
+    font-size: 30px;
+    font-weight: bold;
+    color: #000;
+}
+
+#single .part-2 .about h3 span,
+#single .part-2 .accountant h3 span,
+#single .part-2 .client h3 span {
+    border-bottom: 3px solid #2699fb;
+}
+#single .part-2 .about p{
+    margin: 1rem 0;
+}
+
+#single .part-2 .about p,
+#single .part-2 .accountant p {
+    // padding-top: 2rem;
+    color: #070707;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+#single .part-2 .accountant h3,
+#single .part-2 .client h3 {
+    margin: 1rem 0;
+}
+
+#single .part-2 .client .b-ton {
+    color: #fff;
+    background: #2699fb;
+    border: #2699fb;
+    font-size: 12px;
+    font-weight: normal;
+    margin-left: 70%;
+    transition: all .3s ease-in-out;
+}
+
+#single .part-2 .client .b-ton:hover {
+    transform: scale(1.02);
+}
+
+#single .part-2 .client .review{
+    background: #fff;
+    border: 2px solid #d4d4d4;
+    margin: 1rem 0;
+}
+
+#single .part-2 .client .date {
+// height: 40px;
+width: 60px;
+background: #01105b;
+color: #fff;
+font-size: 14px;
+font-weight: normal;
+}
+ #single .part-2 .client .head {
+     padding:  1rem 2rem;
+ }
+
+#single .part-2 .client .head p {
+    color: #000;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+#single .part-2 .client .head p img {
+    width: 100px;
+    height: 15px;
+}
+
+#single .part-2 .client .head .icon {
+    color: #2699fb;
+
+}
+
+#single .part-2 .client .text {
+    padding: 1rem ;
+}
