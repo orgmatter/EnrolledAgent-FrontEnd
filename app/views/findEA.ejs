@@ -9,7 +9,7 @@
     />
     <%- include("./partials/head.ejs") %>
   </head>
-  <body class="">
+  <body  onload="onload()" class="">
     <%- include("./partials/header.ejs") %>
     <div class="findEA">
       <div class="findEA-banner">
@@ -967,5 +967,24 @@
     <%- include("./partials/footer.ejs") %>
     <script type="text/javascript" src="/js/ccenter.js"></script>
      <script src="/js/custom.js"></script>
+     <script>
+      function search() {
+        const input = document.getElementById("search").value
+        // console.log(input)
+        window.location = `/ea-listings/?search=${input}`
+      }
+      function onload() {
+        const input = document.getElementById("search")
+        const urlParams = new URLSearchParams(window.location.search);
+        const _search = urlParams.get('search');
+        input.value = _search
+        input.addEventListener("keyup", function (event) {
+          // Number 13 is the "Enter" key on the keyboard
+          if (event.keyCode === 13) {
+            search()
+          }})
+          // console.log(_search)
+        }
+    </script>
   </body>
 </html>
