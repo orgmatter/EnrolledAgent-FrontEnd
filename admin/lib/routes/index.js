@@ -27,7 +27,7 @@ router
   .post("/login", (req, res, next) => {
     passport.authenticate(Constants.DOMAIN.admin, (err, user, info) => {
       if (err) {
-        res.status(500);
+        // res.status(400);
         return next(err);
       }
       if (!user) {
@@ -102,6 +102,10 @@ router
     .get("/create-blog-category", (req, res) => {
       res.render("blog/category/create");
     })
+
+    .get("/", (req, res) => {
+      res.render("index");
+    })
    
 
 
@@ -124,7 +128,7 @@ router.use((req, res) => {
 // error handler
 // I added this to return json @wiseminds
 router.use((err, req, res, next) => {
-
+  if(res.statusCode < 400)  res.status(400);
   Log.info(err);
   if (err instanceof Exception) return res.json({ error: err });
 

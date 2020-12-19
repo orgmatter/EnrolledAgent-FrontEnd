@@ -2,7 +2,7 @@
 <html dir="ltr" lang="en">
   <%- include("./partials/homeHead.ejs") %>
 
-  <body class="home-body">
+  <body  onload="onload()" class="home-body">
     <div id="wrapper" class="clearfix home">
       <%- include("./partials/header.ejs") %>
       <!-- Start main-content -->
@@ -192,7 +192,11 @@
             <div class="row home-section-top">
               <h2>Find An Enrolled Agent</h2>
               <p class='desc'>Search and Engage More Than 60,000 Enrolled Agents for Free.</p>
+              
+                
+
               <div class="row home-section-top-input-div">
+                
                 <div class="dropdown">
                   <button class="btn btn1 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Zip Code
@@ -203,9 +207,9 @@
                   </div>
                 </div>
                 <div class="input">
-                  <input id="zipInput" type='text' placeholder="Enter Your Zip Code"/>
+                  <input id="search" type='text' placeholder="Enter Your Zip Code"/>
                 </div>
-                <button id="submitBtn" class="btn2">Find</button>
+                <button id="submitBtn" onclick="search()" class="btn2">Find</button>
                 <a class="btn3" href='/find-agent'>Advanced Search</a>
               </div>
               <div class="home-section-grid">
@@ -772,6 +776,26 @@
             </script>
             <script type="text/javascript" src="/javascripts/findAgent.js"></script>
     <script src="/js/custom.js"></script>
+
+    <script>
+      function search() {
+        const input = document.getElementById("search").value
+        // console.log(input)
+        window.location = `/ea-listings/?search=${input}`
+      }
+      function onload() {
+        const input = document.getElementById("search")
+        const urlParams = new URLSearchParams(window.location.search);
+        const _search = urlParams.get('search');
+        input.value = _search
+        input.addEventListener("keyup", function (event) {
+          // Number 13 is the "Enter" key on the keyboard
+          if (event.keyCode === 13) {
+            search()
+          }})
+          // console.log(_search)
+        }
+    </script>
 
   </body>
 </html>

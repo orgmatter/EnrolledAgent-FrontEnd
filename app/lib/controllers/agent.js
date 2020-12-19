@@ -16,8 +16,11 @@ class AgentController extends BaseController {
 
     async get(req, res, next) {
         const { id } = req.params
-        const agent = await Agent.findById(id).exec()
+        let agent
+        if(Validator.isMongoId(id))
+         agent = await Agent.findById(id).exec()
 
+         if(!agent) return res.render('page_404')
         res.locals.agent = agent
 
         next()
@@ -27,7 +30,7 @@ class AgentController extends BaseController {
     async getAll(req, res, next) {
         const { page, perpage, q, search } = req.query
         let query = Helper.parseQuery(q) || {}
-        if (search) query = { $text: { $search: search } }
+        if (search) query = { $text: { $search: search }, }
 
         // query = {}
 

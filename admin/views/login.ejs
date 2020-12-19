@@ -7,20 +7,20 @@
 
       <div class="row">
         <div class="col-12">     
-          <div class="login-card">
+          <div class="login-card" id="login-box">
             <div>
               <div><a class="logo" href=""><img class="img-fluid for-light" src="admin/assets/images/logo/login.png" alt="looginpage"><img class="img-fluid for-dark" src="admin/assets/images/logo/logo_dark.png" alt="looginpage"></a></div>
               <div class="login-main"> 
-                <form class="theme-form" method="post" action="/login">
+                <form class="theme-form" @submit.prevent="login">
                   <h4>Sign in to account</h4>
                   <p>Enter your email & password to login</p>
                   <div class="form-group">
                     <label class="col-form-label">Email Address</label>
-                    <input class="form-control" type="email" required="" placeholder="Test@gmail.com">
+                    <input class="form-control" type="email" required="" v-model="email" placeholder="Test@gmail.com">
                   </div>
                   <div class="form-group">
                     <label class="col-form-label">Password</label>
-                    <input class="form-control" type="password" name="login[password]" required="" placeholder="*********">
+                    <input class="form-control" type="password" v-model="password" name="login[password]" required="" placeholder="*********">
                     <div class="show-hide"><span class="show">                         </span></div>
                   </div>
                   <div class="form-group mb-0">
@@ -28,7 +28,7 @@
                       <input id="checkbox1" type="checkbox">
                       <label class="text-muted" for="checkbox1">Remember password</label>
                     </div><a class="link" href="forget-password.html">Forgot password?</a>
-                    <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+                    <button class="btn btn-primary btn-block" :disabled="loading" type="submit"> {{label}} </button>
                   </div>
                   <h6 class="text-muted mt-4 or"></h6>
                 
@@ -41,6 +41,61 @@
       </div>
     </div>
     <%- include('authLayout/scripts.ejs') %> 
-    <!-- <script type="text/javascript" src="/javascripts/script.js"></script> -->
+  
+    
+  <script>
+    const vueApp = new Vue({
+      el: "#login-box",
+      data: function () {
+        return {
+          loading: false,
+          email: "",
+          label: "Sign In",
+          password: "",
+          checked: true,
+        };
+      },
+      mounted() { },
+      methods: {
+        async login() {
+          // let check = this.validateLoginData({
+          //   companyId: 'this.companyId',
+          //   email: this.email,
+          //   password: this.password,
+          // });
+
+          
+          this.showLoader()
+          this.label = "Signing in"
+          let requestBody = {
+            email: this.email,
+            password: this.password,
+          };
+
+          // let res = await this.loadData(this.LOGINURL+'/5f0d3ed457f7ec31603b0bee',requestBody,'POST');
+          let res = await this.loadData(
+            '/login',
+            requestBody,
+            "POST"
+          );
+
+          this.label = "Sign In",
+          this. hideLoader()
+          if (!res) return;
+
+          this.toast.success(res.data.message, "Success");
+          setTimeout(() => {
+            // console.log(window.location.href.split('/').reverse()[0])
+            if (window.location.href.split('/').reverse()[0] != 'login')
+              window.location.reload();
+            else window.location.href = "/";
+          }, 1500);
+        }
+      },
+      mixins: [admin],
+    });
+
+
+  </script>
   </body>
 </html>

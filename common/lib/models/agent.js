@@ -33,6 +33,7 @@ const AgentSchema = new Schema({
   city: String,
   zipcode: String,
   imageUrl: String,
+  website: String,
   updatedAt: {
     type: Number,
     default: Date.now()
@@ -50,7 +51,9 @@ AgentSchema.index({
   zipcode: 'text',
   city: 'text', 
   state: 'text',
-  country: 'text'
+  country: 'text',
+  firstName: 'text',
+  lastName: 'text',
 })
 
 
