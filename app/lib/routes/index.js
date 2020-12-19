@@ -89,7 +89,7 @@ router
     res.render("local-agent", { locals: req.locals });
   })
   .get("/search-results", AgentController.getAll, (req, res) => {
-    console.log("locals ", req.locals);
+    // console.log("locals ", req.locals);
     res.render("search-results", { locals: req.locals });
   })
   .get("/", CityController.get, ResourceController.random, (req, res) => {
@@ -104,6 +104,10 @@ router
   })
   .get("/ask-ea", (req, res) => {
     res.render("askEa");
+  })
+  .get("/agent/:id",AgentController.get, (req, res) => {
+    console.log(req.locals)
+    res.render("single-agent-details");
   })
   .get("/offshore-team", (req, res) => {
     res.render("offshoreTeam");

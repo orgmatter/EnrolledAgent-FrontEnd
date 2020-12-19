@@ -33,6 +33,7 @@ const AgentSchema = new Schema({
   city: String,
   zipcode: String,
   imageUrl: String,
+  website: String,
   updatedAt: {
     type: Number,
     default: Date.now()
