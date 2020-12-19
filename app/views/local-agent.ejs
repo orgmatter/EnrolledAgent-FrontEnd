@@ -2,7 +2,7 @@
 <html dir="ltr" lang="en">
   <%- include("./partials/head.ejs") %>
 
-  <body id="page-15">
+  <body onload="onload()" id="page-15">
     <%- include("./partials/header.ejs") %>
 
     <section id="local-agent-top">
@@ -28,9 +28,9 @@
               </div>
             </div>
             <div class="input">
-              <input type="text" placeholder="Enter zip code" id="zipInput" />
+              <input type="text" placeholder="Enter zip code" id="search" />
             </div>
-            <button class="btn2" id="submitBtn">Find</button>
+            <button class="btn2" onclick="search()" id="submitBtn">Find</button>
             <!-- <button class="btn3">Advanced Search</button> -->
           </div>
         </div>
@@ -261,5 +261,24 @@
     <%- include("./partials/footer.ejs") %>
     <script type="text/javascript" src="/javascripts/findAgent.js"></script>
     <script src="/js/custom.js"></script>
+
+    <script>
+      function search() {
+        const input = document.getElementById("search").value
+        window.location = `/ea-listings/?search=${input}`
+      }
+      function onload() {
+        const input = document.getElementById("search")
+        const urlParams = new URLSearchParams(window.location.search);
+        const _search = urlParams.get('search');
+        input.value = _search
+        input.addEventListener("keyup", function (event) {
+          // Number 13 is the "Enter" key on the keyboard
+          if (event.keyCode === 13) {
+            search()
+          }})
+          // console.log(_search)
+        }
+    </script>
   </body>
 </html>
