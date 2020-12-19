@@ -103,7 +103,7 @@ router
     res.render("listings");
   })
   .get("/ask-ea", (req, res) => {
-    res.render("askEa");
+    res.render("askEA");
   })
   .get("/agent/:id",AgentController.get, (req, res) => {
     console.log(req.locals)
