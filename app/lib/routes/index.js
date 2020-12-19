@@ -26,7 +26,11 @@ router
   .use((req, res, next) => {
     req.locals = {query: req.query};
     req.locals.pageTitle = "Home";
-    if (req.isAuthenticated() && req.user && req.user.accountType == Constants.ACCOUNT_TYPE.user)
+    if (
+      req.isAuthenticated() &&
+      req.user &&
+      req.user.accountType == Constants.ACCOUNT_TYPE.user
+    )
       req.locals.isAuthenticated = true;
     next();
   })
@@ -44,9 +48,13 @@ router
     })(req, res, next);
   })
   .get("/google/callback", function (req, res, next) {
-    passport.authenticate("google", { scope: ["profile", "email"] }, function (err, user, info) {
-      handleSocial(req, res, next, err, user, info);
-    })(req, res, next);
+    passport.authenticate(
+      "google",
+      { scope: ["profile", "email"] },
+      function (err, user, info) {
+        handleSocial(req, res, next, err, user, info);
+      }
+    )(req, res, next);
   })
   .get("/linkedin/callback", function (req, res, next) {
     passport.authenticate("linkedin", function (err, user, info) {
@@ -87,7 +95,8 @@ router
   .get("/", CityController.get, ResourceController.random, (req, res) => {
     // console.log(req.locals)
     // extract message if this page was redirected to from another page
-    if (req.app.locals && req.app.locals.message) req.locals.infoMessage = req.app.locals.message;
+    if (req.app.locals && req.app.locals.message)
+      req.locals.infoMessage = req.app.locals.message;
     res.render("home", { locals: req.locals });
   })
   .get("/claim-listing", (req, res) => {
@@ -128,6 +137,10 @@ router
   .get("/register", (req, res) => {
     if (req.isAuthenticated() && req.user) return res.redirect("/");
     res.render("signup");
+  })
+  .get("/single-agent-details", (req, res) => {
+    if (req.isAuthenticated() && req.user) return res.redirect("/");
+    res.render("single-agent-details");
   })
 
   // Authenticated Endpoints
