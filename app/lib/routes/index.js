@@ -14,8 +14,9 @@ const Log = new Logger("App:Router");
 router
   .use((req, res, next) => {
     // console.log( req.isAuthenticated())
-    // console.log(req.session)
-    req.locals = {};
+    // console.log(req)
+    
+    // req.locals = {query: req.query};
     if (req.csrfToken) res.cookie("XSRF-TOKEN", req.csrfToken());
     next();
   })
@@ -23,7 +24,7 @@ router
 
 router
   .use((req, res, next) => {
-    req.locals = {};
+    req.locals = {query: req.query};
     req.locals.pageTitle = "Home";
     if (req.isAuthenticated() && req.user && req.user.accountType == Constants.ACCOUNT_TYPE.user)
       req.locals.isAuthenticated = true;
@@ -73,7 +74,7 @@ router
     res.render("blog");
   })
   .get("/ea-listings", AgentController.getAll, (req, res) => {
-    console.log("locals are", req.locals.agents.data);
+    // console.log("locals are", req.locals.agents);
     res.render("ea-listings", { locals: req.locals });
   })
   .get("/find-agent", (req, res) => {

@@ -49,6 +49,7 @@ module.exports = async (res, next, Collection, options, done) => {
       next: p < pages && pages > 0,
       total,
       page: p,
+      perPage: pp,
       status: err == null ? 'success' : 'error'
     })
   })

@@ -50,7 +50,9 @@ AgentSchema.index({
   zipcode: 'text',
   city: 'text', 
   state: 'text',
-  country: 'text'
+  country: 'text',
+  firstName: 'text',
+  lastName: 'text',
 })
 
 

@@ -27,7 +27,7 @@ class AgentController extends BaseController {
     async getAll(req, res, next) {
         const { page, perpage, q, search } = req.query
         let query = Helper.parseQuery(q) || {}
-        if (search) query = { $text: { $search: search } }
+        if (search) query = { $text: { $search: search }, }
 
         // query = {}
 
