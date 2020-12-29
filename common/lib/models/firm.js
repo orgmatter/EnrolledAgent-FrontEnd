@@ -31,15 +31,7 @@ const FirmSchema = new Schema({
   zipcode: String,
   website: String,
   imageUrl: String,
-  updatedAt: {
-    type: Number,
-    default: Date.now()
-  },
-  createdAt: {
-    type: Number,
-    default: Date.now()
-  }
-}, { toJSON: { virtuals: true } })
+}, { toJSON: { virtuals: true }, timestamps: true })
 
 FirmSchema.set('toObject', { virtuals: true })
 FirmSchema.set('toJSON', { virtuals: true })
@@ -51,16 +43,7 @@ FirmSchema.index({
   country: 'text'
 })
 
-
-const updateDate = function (next) {
-  this.updatedAt = Date.now()
-  next()
-}
-// update date for bellow 4 methods
-FirmSchema.pre('save', updateDate)
-  .pre('update', updateDate)
-  .pre('findOneAndUpdate', updateDate)
-  .pre('findByIdAndUpdate', updateDate)
+ 
 
 
   FirmSchema.virtual('reviewCount', {

@@ -36,5 +36,5 @@ module.exports = {
     GOOGLE: 'google',
     LINKEDIN: 'linkedin',
     FACEBOOK: 'facebook'
-  }
+  }, 
 }
