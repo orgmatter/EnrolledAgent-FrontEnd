@@ -2,7 +2,7 @@
 <html dir="ltr" lang="en">
   <%- include("./partials/homeHead.ejs") %>
 
-  <body  onload="onload()" class="home-body">
+  <body class="home-body">
     <div id="wrapper" class="clearfix home">
       <%- include("./partials/header.ejs") %>
       <!-- Start main-content -->
@@ -207,7 +207,7 @@
                   </div>
                 </div>
                 <div class="input">
-                  <input id="search" type='text' placeholder="Enter Your Zip Code"/>
+                  <input id="zipInput" type='text' placeholder="Enter Your Zip Code"/>
                 </div>
                 <button id="submitBtn" onclick="search()" class="btn2">Find</button>
                 <a class="btn3" href='/find-agent'>Advanced Search</a>
