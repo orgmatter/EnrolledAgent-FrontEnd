@@ -9,7 +9,7 @@ const config = require('../config')
 module.exports = (server) => {
   server.use(logger('dev'))
   server.use(Express.json())
-  server.use(Express.urlencoded({extended: false}))
+  server.use(Express.urlencoded({extended: true}))
   server.use(Express.static(path.resolve(config.STORAGE)))
   server.use(cors())
 }
