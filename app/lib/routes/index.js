@@ -108,9 +108,9 @@ router
       name: req.params.category,
     });
   })
-  .get("/resources", ResourceController.getAll, (req, res) => {
-    res.render("categoryPage");
-  })
+  // .get("/resources", ResourceController.getAll, (req, res) => {
+  //   res.render("category");
+  // })
   .get("/practice-exchange", (req, res) => {
     res.render("practiceExchange");
   })
@@ -133,10 +133,10 @@ router
     if (req.isAuthenticated() && req.user) return res.redirect("/");
     res.render("signup");
   })
-  .get("/single-agent-details", (req, res) => {
-    if (req.isAuthenticated() && req.user) return res.redirect("/");
-    res.render("single-agent-details");
-  })
+  // .get("/single-agent-details", (req, res) => {
+  //   if (req.isAuthenticated() && req.user) return res.redirect("/");
+  //   res.render("single-agent-details");
+  // })
 
   // Authenticated Endpoints
   .use((req, res, next) => {
