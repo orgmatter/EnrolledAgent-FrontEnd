@@ -158,16 +158,16 @@ var THEMEMASCOT = {};
 
   THEMEMASCOT.initialize = {
     init: function () {
-      THEMEMASCOT.bmiCalculator.init();
+      // THEMEMASCOT.bmiCalculator.init();
       THEMEMASCOT.initialize.TM_toggleNavSearchIcon();
       THEMEMASCOT.initialize.TM_fixedFooter();
-      THEMEMASCOT.initialize.TM_datePicker();
+      //THEMEMASCOT.initialize.TM_datePicker();
       THEMEMASCOT.initialize.TM_ddslick();
       THEMEMASCOT.initialize.TM_sliderRange();
       // THEMEMASCOT.initialize.TM_loadBSParentModal();
       // THEMEMASCOT.initialize.TM_demoSwitcher();
       THEMEMASCOT.initialize.TM_platformDetect();
-      THEMEMASCOT.initialize.TM_onLoadPopupPromoBox();
+      // THEMEMASCOT.initialize.TM_onLoadPopupPromoBox();
       THEMEMASCOT.initialize.TM_customDataAttributes();
       THEMEMASCOT.initialize.TM_parallaxBgInit();
       THEMEMASCOT.initialize.TM_resizeFullscreen();
@@ -255,11 +255,11 @@ var THEMEMASCOT = {};
     /* ---------------------------------------------------------------------- */
     /* ------------------------------ Date Picker  -------------------------- */
     /* ---------------------------------------------------------------------- */
-    TM_datePicker: function () {
-      $(".date-picker").datepicker();
-      $(".time-picker").timepicker();
-      $(".datetime-picker").datetimepicker();
-    },
+    // TM_datePicker: function () {
+    //   $(".date-picker").datepicker();
+    //  // $(".time-picker").timepicker();
+    //   $(".datetime-picker").datetimepicker();
+    // },
 
     /* ---------------------------------------------------------------------- */
     /* -------------------------------- ddslick  ---------------------------- */

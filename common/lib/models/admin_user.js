@@ -42,29 +42,12 @@ const UserSchema = new Schema({
   city: String,
   zipcode: String,
   imageUrl: String,
-  updatedAt: {
-    type: Number,
-    default: Date.now()
-  },
-  createdAt: {
-    type: Number,
-    default: Date.now()
-  }
-})
+   
+},  { timestamps: true })
 
 UserSchema.set('toObject', { virtuals: true })
 UserSchema.set('toJSON', { virtuals: true })
-// UserSchema.index({ uid: 1 })
-
-const updateDate = function (next) {
-  this.updatedAt = Date.now()
-  next()
-}
-// update date for bellow 4 methods
-UserSchema.pre('save', updateDate)
-  .pre('update', updateDate)
-  .pre('findOneAndUpdate', updateDate)
-  .pre('findByIdAndUpdate', updateDate)
+ 
 
 UserSchema.methods.setPassword = function (password) {
   this.salt = crypto.randomBytes(16).toString('hex')

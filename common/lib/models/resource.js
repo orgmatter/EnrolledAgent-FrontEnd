@@ -17,16 +17,8 @@ const Resource = new Schema({
   category: {
     ref: 'category',
     type: Schema.ObjectId
-  },
-  updatedAt: {
-    type: Number,
-    default: Date.now()
-  },
-  createdAt: {
-    type: Number,
-    default: Date.now()
   }
-})
+},  { timestamps: true })
 
 Resource.index({
   title: 'text',
@@ -34,14 +26,6 @@ Resource.index({
   'category.name': 'text',
   'category.slug': 'text',
 })
-
-const updateDate = function (next) {
-  this.updatedAt = Date.now()
-  next()
-}
-Resource.pre('save', updateDate)
-  .pre('update', updateDate)
-  .pre('findOneAndUpdate', updateDate)
-  .pre('findByIdAndUpdate', updateDate)
+ 
 
 module.exports = mongoose.model('resource', Resource)

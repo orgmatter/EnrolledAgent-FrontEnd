@@ -11,7 +11,7 @@
     <section id="ea-listings-top">
       <div class="container">
         <h1>Search Results</h1>
-        <p>Showing all enrolled agents in</p>
+        <p>Showing all enrolled agents in <%= locals.query.q.split(":")[1] %></p>
 
         <!-- <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p> -->
       </div>
@@ -65,8 +65,7 @@
           <p><img src="/assets/files/star-rating.png" alt="" /> <span> 2 reviews</span></p>
         </div>
         <div class="col-md-4 col-sm-12 b-tons">
-          <a href="" class="btn btn-lg btn-blu mt-2"> View profile</a>
-          <a href="" class="btn btn-lg btn-wht mt-2"> Website</a>
+          <a href="/agent/<%= e.id %> " class="btn btn-lg btn-blu mt-2"> View profile</a>
         </div>
       </div>
       <% }) %>

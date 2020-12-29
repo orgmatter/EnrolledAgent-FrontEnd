@@ -9,25 +9,8 @@ const EmailListSchema = new mongoose.Schema({
   unsubscribed: {
     type: Boolean,
     default: false
-  },
-  updatedAt: {
-    type: Number,
-    default: Date.now()
-  },
-  createdAt: {
-    type: Number,
-    default: Date.now()
   }
-})
-
-const updateDate = function (next) {
-  this.updatedAt = Date.now()
-  next()
-}
-
-EmailListSchema.pre('save', updateDate)
-  .pre('update', updateDate)
-  .pre('findOneAndUpdate', updateDate)
-  .pre('findByIdAndUpdate', updateDate)
+},  { timestamps: true })
+ 
 
 module.exports = mongoose.model('email_list', EmailListSchema)

@@ -97,7 +97,7 @@ router
     res.render("askEA");
   })
   .get("/agent/:id", AgentController.get, (req, res) => {
-    console.log(req.locals);
+    console.log("agent>>>>", req.locals);
     res.render("single-agent-details");
   })
   .get("/offshore-team", (req, res) => {
