@@ -14,9 +14,9 @@ $(document).ready(function () {
       const startNum = 1 + multiplier;
       const endNum = +data.length;
       resNum.textContent = `${startNum} - ${endNum}`;
-      console.log("start", startNum);
-      console.log("end", endNum);
-      console.log(">>>", data.length);
+      // console.log("start", startNum);
+      // console.log("end", endNum);
+      // console.log(">>>", data.length);
     }
   })();
 
@@ -70,9 +70,9 @@ $(document).ready(function () {
   function checkFragment() {
     const search = window.location.search || "?page=1";
     const splitSearch = search.split("&");
-    console.log("search", search);
-    console.log("searchsplit", splitSearch);
-    console.log(">>>", search.substring(1, 5));
+    // console.log("search", search);
+    // console.log("searchsplit", splitSearch);
+    // console.log(">>>", search.substring(1, 5));
     if (splitSearch[1]) {
       $("#pagination").pagination("selectPage", parseInt(splitSearch[1].split("=")[1]));
     } else if (search.substring(1, 5) === "page") {
