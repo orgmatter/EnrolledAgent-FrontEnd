@@ -16,10 +16,9 @@ const {
 
 class BaseController {
 
-
     static checkId(message, req, res, next) {
         const { id } = req.params
-        if (!Validator.isMongoId(id)) {
+        if (!(id  && Validator.isMongoId(id))) {
             res.status(422)
             next(
                 new Exception(

@@ -1,5 +1,5 @@
 const { Models: { AdminUser, User, Agent, City, Sponsor }, Validator, Logger, Helper } = require('common')
-const { Resource, Article, Category } = require('common/lib/models')
+const { Resource, Article, Re, ResourceCategory } = require('common/lib/models')
 const agents = require('./agents')
 
 const seedUsers = process.env.SEED_USERS
@@ -47,7 +47,7 @@ const createCategory = async (category) => {
     const slug = Helper.generateSlug(category)
     console.log(slug)
 
-    const cat = await Category.findOneAndUpdate({ slug, },
+    const cat = await ResourceCategory.findOneAndUpdate({ slug, },
         {
             name: category, slug,
         }, { upsert: true, new: true }).exec()
@@ -64,7 +64,7 @@ const createArticle = async (article) => {
 
 const createUser = async (email) => {
     if (!(await User.exists({ email })))
-        AdminUser.create({ email, accountType: 'USER', name: 'Admin', isEmailVerified: true, status: 'super_admin' })
+        User.create({ email, accountType: 'USER', name: 'Admin', isEmailVerified: true, status: 'super_admin' })
             .then((user) => {
                 user.setPassword('Password2020')
                 user.save()
@@ -130,17 +130,17 @@ module.exports = async () => {
     if (Agents != null)
         createAgents();
 
-    if (await Category.estimatedDocumentCount({}) <  1) {
-        category.forEach( c => {console.log(c)
-         createCategory(c).then((cat)=>{console.log(cat)
-        Resources.forEach(r => createResource(r, cat._id))
-        })
-    })
-    }
+    // if (await ResourceCategory.estimatedDocumentCount({}) <  1) {
+    //     category.forEach( c => {console.log(c)
+    //      createCategory(c).then((cat)=>{console.log(cat)
+    //     Resources.forEach(r => createResource(r, cat._id))
+    //     })
+    // })
+    // }
 
-    if (await Article.estimatedDocumentCount({}) < 4) {
-        Articles.forEach(r => createArticle(r))
-    }
+    // if (await Article.estimatedDocumentCount({}) < 4) {
+    //     Articles.forEach(r => createArticle(r))
+    // }
 
 
 }

@@ -15,7 +15,7 @@ class SponsorController extends BaseController {
 
     async create(req, res, next) {
         const { name, link } = req.body
-
+        console.log('status',req.body, req.headers, req.file, req.files)
         if (!name || !link) {
             res.status(422)
             return next(
@@ -81,7 +81,7 @@ class SponsorController extends BaseController {
         if (!BaseController.checkId('Invalid sponsor id', req, res, next)) return
         let sponsor = await Sponsor.findById(id).exec()
    
-        super.handleResult(sponsor.toJSON(), res, next)
+        super.handleResult(sponsor, res, next)
 
     }
 

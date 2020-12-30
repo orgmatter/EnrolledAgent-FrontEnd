@@ -1,36 +1,57 @@
 const {
     Exception,
     ErrorCodes,
-    Models: { Category },
+    DB,
     Helper,
-} = require("common")
+} = require("common");
+const mongoose  = require('mongoose')
 
 const BaseController = require('../controllers/baseController');
 
 class CategoryController extends BaseController {
+ 
+    /**
+     * @param  {mongoose.Model} model
+     */
+    constructor(model) {
+        super()
+        this.Model = model
+    }
 
-    async create(req, res, next) {
+     create = async (req, res, next)=> {
         const { name, description } = req.body
+
+        console.log(req.body)
 
         if (!name || !description) {
             res.status(422)
             return next(
                 new Exception(
-                    'Category name is required',
+                    'Category name and description is required',
                     ErrorCodes.REQUIRED
                 )
             )
         }
         const slug = Helper.generateSlug(name)
 
-        const category = await Category.create({ name, description, slug })
+        if (await this.Model.exists({slug})) {
+            res.status(422)
+            return next(
+                new Exception(
+                    'Category already exists',
+                    ErrorCodes.REQUIRED
+                )
+            )
+        }
+
+        const category = await this.Model.create({ name, description, slug })
 
         super.handleResult(category, res, next)
 
     }
 
 
-    async update(req, res, next) {
+     update = async (req, res, next)=> {
         const { body: { name, description }, params: { id } } = req
         if (!BaseController.checkId('Invalid category id', req, res, next)) return
 
@@ -41,36 +62,46 @@ class CategoryController extends BaseController {
         }
         if (description) body.description = description
 
-        let category = await Category.findByIdAndUpdate(id, body, { new: true })
+        let category = await this.Model.findByIdAndUpdate(id, body, { new: true })
         super.handleResult(category, res, next)
 
     }
 
 
-    async delete(req, res, next) {
+     delete = async (req, res, next) =>{
         const { id } = req.params
         if (!BaseController.checkId('Invalid category id', req, res, next)) return
 
-        let category = await Category.findByIdAndDelete(id).exec()
+        let category = await this.Model.findByIdAndDelete(id).exec()
         super.handleResult(category, res, next)
     }
 
-    async get(req, res, next) {
+     get = async (req, res, next) => {
+        console.log(super.delete )
         const { id } = req.params
- 
+
         if (!BaseController.checkId('Invalid category id', req, res, next)) return
-        let category = await Category.findById(id).exec()
-   
-        super.handleResult(category.toJSON(), res, next)
+        let category = await this.Model.findById(id).exec()
+
+        super.handleResult(category, res, next)
 
     }
 
-    async getAll(req, res, next) {
-        const cat = await Category.find({})
-        .exec()
-        req.locals.category = cat
-        next()
+     getAll = async (req, res, next) =>{
+        const { page, perpage, q, search } = req.query
+        let query = Helper.parseQuery(q) || {}
+        if (search) query = { title: { $regex: search, $options: 'i' } }
+
+        DB.Paginate(res, next, this.Model, {
+            perPage: perpage,
+            query,
+            page,
+        }, (data) => {
+            super.handleResultPaginated({ ...data }, res, next)
+        })
+
     }
+
 }
 
-module.exports = new CategoryController()
+module.exports = CategoryController

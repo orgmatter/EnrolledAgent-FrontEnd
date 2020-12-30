@@ -1,4 +1,3 @@
-const { text } = require('express')
 const mongoose = require('mongoose')
 
 const CategorySchema = new mongoose.Schema({
@@ -16,4 +15,4 @@ const CategorySchema = new mongoose.Schema({
 
 CategorySchema.index({slug: 'text', name: 'text'})
 
-module.exports = mongoose.model('category', CategorySchema)
+module.exports = mongoose.model('resource_category', CategorySchema)

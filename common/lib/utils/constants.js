@@ -37,4 +37,9 @@ module.exports = {
     LINKEDIN: 'linkedin',
     FACEBOOK: 'facebook'
   }, 
+  ARTICLE_STATUS: {
+    pending: 'pending',
+    approved: 'approved',
+    rejected: 'rejected'
+  }, 
 }
