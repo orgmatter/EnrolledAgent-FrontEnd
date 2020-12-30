@@ -6,13 +6,12 @@ const {
     Validator,
     Helper,
     DB,
-    Models: { Resource, Category },
+    Models: { Resource, ResourceCategory },
 } = require("common")
 
 const BaseController = require('../controllers/baseController')
 
 Resource.ensureIndexes()
-Category.ensureIndexes()
 
 class ResourceController extends BaseController {
 
@@ -30,7 +29,7 @@ class ResourceController extends BaseController {
         let query = Helper.parseQuery(q) || {}
         if (search) query = { $text: { $search: search } }
         if (req.params.category) {
-            const category = await Category.findOne({ slug: req.params.category }).exec()
+            const category = await ResourceCategory.findOne({ slug: req.params.category }).exec()
             // console.log(category)
             if (category) {
                 query.category = category._id
