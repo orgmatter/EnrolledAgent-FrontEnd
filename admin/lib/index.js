@@ -9,6 +9,7 @@ const server = express();
 
 Middleware.api(server);
 // Passport(server, passport, Constants.DOMAIN.admin);
+server.use(express.raw())
 
 server.use(require("./routes"))
 
