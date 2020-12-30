@@ -87,6 +87,7 @@ generateHash = async function (file) {
 /**
  * upload a single file to the server and save to temp directory
  */
+exports.none =  multer().any()
 exports.upload = uploader.single('avatar')
 exports.any = uploader.any()
 exports.array = uploader.array('avatar[]')

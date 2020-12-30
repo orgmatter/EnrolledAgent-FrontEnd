@@ -6,7 +6,7 @@ const {
     Validator,
     Helper,
     DB,
-    Models: { Resource, Sponsor, Category },
+    Models: { Resource, Sponsor, ResourceCategory },
 } = require("common");
 
 const BaseController = require('../controllers/baseController');
@@ -15,9 +15,9 @@ class ResourceController extends BaseController {
 
 
     async create(req, res, next) {
-        const { body, actionLink, sponsor, actionText, author, title, imageUrl, category } = req.body
+        const { body, actionLink, sponsor, actionText, title, imageUrl, category } = req.body
 
-        if (!Validator.isMongoId(sponsor) || !(await Sponsor.exists({ _id: sponsor }))) {
+        if (!sponsor || !Validator.isMongoId(sponsor) || !(await Sponsor.exists({ _id: sponsor }))) {
             res.status(422)
             return next(
                 new Exception(
@@ -27,7 +27,7 @@ class ResourceController extends BaseController {
             )
         }
 
-        if (!Validator.isMongoId(category) || !(await Category.exists({ _id: category }))) {
+        if (!category || !Validator.isMongoId(category) || !(await ResourceCategory.exists({ _id: category }))) {
             res.status(422)
             return next(
                 new Exception(
@@ -59,17 +59,17 @@ class ResourceController extends BaseController {
         }
 
 
-        if (!Validator.isUrl(actionLink,   ['https'])) {
+        if (!Validator.isUrl(actionLink, ['https'])) {
             res.status(422)
             return next(
                 new Exception(
-                    'Please provide a valid action link',
+                    'Please provide an action link starting with https',
                     ErrorCodes.REQUIRED
                 )
             )
         }
 
-        const b = { body, actionLink, sponsor, actionText, author, title, category }
+        const b = { body, actionLink, sponsor, actionText, title, category, imageUrl }
 
         if (Validator.isUrl(imageUrl)) b.imageUrl = imageUrl
 
@@ -92,6 +92,15 @@ class ResourceController extends BaseController {
         const { body, params: { id } } = req
         if (!BaseController.checkId('Invalid resource id', req, res, next)) return
 
+
+        if (body.sponsor, !Validator.isMongoId(body.sponsor) || !(await Sponsor.exists({ _id: body.sponsor }))) {
+            delete body.sponsor
+        }
+
+        if (body.category, !Validator.isMongoId(body.category) || !(await ResourceCategory.exists({ _id: body.category }))) {
+            delete body.category
+        }
+
         let resource = await Resource.findByIdAndUpdate(id, body, { new: true })
 
         if (req.file) {
@@ -99,12 +108,12 @@ class ResourceController extends BaseController {
                 Storages.RESOURCE,
                 req.file
             )
-            if (resource.imageUrl && imageUrl) FileManager.deleteFile(resource.imageUrl)
+            if (resource.imageUrl && imageUrl && !Validator.isUrl(resource.imageUrl)) FileManager.deleteFile(resource.imageUrl)
 
             resource.imageUrl = imageUrl
             await resource.save()
         }
-        super.handleResult(sponsor, res, next)
+        super.handleResult(resource, res, next)
 
     }
 
@@ -114,17 +123,16 @@ class ResourceController extends BaseController {
         if (!BaseController.checkId('Invalid resource id', req, res, next)) return
 
         let resource = await Resource.findByIdAndDelete(id).exec()
-        if (resource && resource.imageUrl) FileManager.deleteFile(resource.imageUrl)
+        if (resource && resource.imageUrl && !Validator.isUrl(resource.imageUrl)) FileManager.deleteFile(resource.imageUrl)
         super.handleResult(resource, res, next)
     }
 
 
     async get(req, res, next) {
         const { id } = req.params
-        let resource = await Resource.findById(id).exec()
-        req.locals.resource = resource
-        next()
-
+        if (!BaseController.checkId('Invalid resource id', req, res, next)) return
+        const resource = await Resource.findById(id).exec()
+        super.handleResult(resource, res, next)
     }
 
 
@@ -139,8 +147,7 @@ class ResourceController extends BaseController {
             query,
             page,
         }, (data) => {
-            req.locals.resource = data
-            next()
+            super.handleResultPaginated({ ...data }, res, next)
         })
 
     }

@@ -4,8 +4,6 @@ const { Schema } = mongoose
 
 const Resource = new Schema({
   body: String,
-  preview: String,
-  author: String,
   title: String,
   imageUrl: String,
   actionText: String,
