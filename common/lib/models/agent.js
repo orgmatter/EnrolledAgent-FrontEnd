@@ -1,6 +1,25 @@
 const mongoose = require('mongoose')
  
+const slug = require('mongoose-slug-updater')
+
 const { Schema } = mongoose
+
+ 
+mongoose.plugin(slug)
+
+const generateSlug = function (text) {
+  let slug = String(text)
+  if (!slug) return
+  slug = slug
+  .replace(/[^a-zA-Z ]/g, "")
+  .trim()
+  .replace(' ', '-')
+  .toLowerCase()
+  .replace(' ', '-')
+  .replace(' ', '-')
+  return slug
+}
+
 
 const AgentSchema = new Schema({
 
@@ -22,6 +41,8 @@ const AgentSchema = new Schema({
     type: String,
     enum: ['male', 'female']
   },
+  stateSlug: { type: String, slug: "state", index: true, transform: v => generateSlug(v) },
+  cityslug: { type: String, slug: "name", index: true, transform: v => generateSlug(v) },
   address1: String,
   address2: String,
   address3: String,

@@ -1,8 +1,15 @@
 const mongoose = require('mongoose')
 
 const slug = require('mongoose-slug-updater')
- 
-mongoose.plugin(slug)
+
+options = {
+  separator: "-",
+  lang: "en",
+  truncate: 120,
+  backwardCompatible: true //support for the old options names used in the mongoose-slug-generator
+}
+
+mongoose.plugin(slug, options)
 
 const generateSlug = function (text) {
   let slug = String(text)
@@ -33,4 +40,4 @@ const CategorySchema = new mongoose.Schema({
 CategorySchema.index({slug: 'text', name: 'text'})
 CategorySchema.index({slug: 1, name: 1})
 
-module.exports = mongoose.model('articleCategory', CategorySchema)
+module.exports = mongoose.model('question_category', CategorySchema)

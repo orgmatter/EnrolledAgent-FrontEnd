@@ -16,6 +16,10 @@ const Article = new Schema({
       Constants.ARTICLE_STATUS.rejected,
     ]
   },
+  category: {
+    ref: 'articleCategory',
+    type: Schema.ObjectId
+  },
   title: String,
   imageUrl: String,
 }, { timestamps: true })
