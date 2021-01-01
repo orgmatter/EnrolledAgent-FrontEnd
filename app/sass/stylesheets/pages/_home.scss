@@ -479,7 +479,15 @@ section#home {
       }
     }
   }
-
+  #search__dropdown{
+    cursor: pointer;
+  }
+  #search__dropdown p{
+    padding: 5%;
+  }
+  #search__dropdown p:hover{
+    background-color:grey;
+  }
   #team {
     .title {
       color: #000;
