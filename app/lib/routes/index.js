@@ -13,10 +13,6 @@ const Log = new Logger("App:Router");
 
 router
   .use((req, res, next) => {
-    // console.log( req.isAuthenticated())
-    // console.log(req)
-
-    // req.locals = {query: req.query};
     if (req.csrfToken) res.cookie("XSRF-TOKEN", req.csrfToken());
     next();
   })
@@ -32,9 +28,7 @@ router
   })
 
   .use((req, res, next) => {
-    console.log(req.isAuthenticated(), req.user);
-
-    //   console.log(req.body, req.params)
+    // console.log(req.isAuthenticated(), req.user)
     next();
   })
 
@@ -77,14 +71,15 @@ router
     // console.log("locals are", req.locals.agents);
     res.render("ea-listings", { locals: req.locals });
   })
-  .get("/find-agent", (req, res) => {
-    res.render("local-agent", { locals: req.locals });
+  .get("/find-agent", CityController.get, AgentController.popular, (req, res) => {
+    res.render("find-agent", { locals: req.locals });
   })
   .get("/search-results", AgentController.getAll, (req, res) => {
     console.log("locals ", req.locals);
     res.render("search-results", { locals: req.locals });
   })
-  .get("/", CityController.get, ResourceController.random, (req, res) => {
+
+  .get("/", CityController.get, AgentController.popular, ResourceController.random, (req, res) => {
     // console.log(req.locals)
     // extract message if this page was redirected to from another page
     if (req.app.locals && req.app.locals.message) req.locals.infoMessage = req.app.locals.message;
@@ -100,22 +95,44 @@ router
     console.log("agent>>>>", req.locals);
     res.render("single-agent-details");
   })
+  .get("/agents/all-states", CityController.allStates, CityController.get, AgentController.get, (req, res) => {
+    console.log(req.locals);
+    res.render("states", { locals: req.locals });
+  })
+  .get("/agents/:state", CityController.state, CityController.forState, AgentController.popularInState, AgentController.get, (req, res) => {
+    console.log(req.locals);
+    res.render("single-state", { locals: req.locals });
+  })
+  .get("/agents/:state/:city", AgentController.city, (req, res) => {
+    console.log(req.locals);
+    res.render("city", { locals: req.locals });
+  })
+  // .get("/city/:slug", AgentController.city, (req, res) => {
+  //   console.log("locals ", req.locals);
+  //   res.render("city", { locals: req.locals });
+  // })
   .get("/offshore-team", (req, res) => {
     res.render("offshoreTeam");
   })
-  .get("/resource/:category", ResourceController.getAll, (req, res) => {
+  .get("/resource", CityController.get, ResourceController.getAll, (req, res) => {
     res.render("category", {
-      name: req.params.category,
+      name: 'Resources', locals: req.locals
+    })
+  })
+  .get("/resource/:category", CityController.get, ResourceController.getAll, (req, res) => {
+    res.render("category", {
+      name: req.params.category, locals: req.locals
     });
+
   })
   // .get("/resources", ResourceController.getAll, (req, res) => {
   //   res.render("category");
   // })
-  .get("/practice-exchange", (req, res) => {
+  .get("/practice-exchange", CityController.get, (req, res) => {
     res.render("practiceExchange");
   })
-  .get("/find-enrolled-agents", (req, res) => {
-    res.render("findEA");
+  .get("/find-enrolled-agents", CityController.get, AgentController.popular, (req, res) => {
+    res.render("find-agent");
   })
   .get("/license-verification", (req, res) => {
     res.render("license-verification");

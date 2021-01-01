@@ -52,7 +52,7 @@ class ContactController  {
         let admin = await AdminUser.find({}).exec()
 
         if(admin && admin.length > 0 ){
-        console.log( admin.map(a=> a.email))
+        // console.log( admin.map(a=> a.email))
 
         new MailService().sendMail(
             {

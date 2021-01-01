@@ -1,0 +1,32 @@
+
+      <div class="section-content team">
+        <div class="row">
+          <% if(locals.popular && locals.popular.length> 0){ %>
+            <% locals.popular.map((e, id)=> { %>
+          <div class="col-sm-6 col-md-3">
+            <div class="single-member maxwidth400 mb-30">
+              <div class="team-thumb">
+                <img src="/assets/files/18270627@2x.png" alt="" class="img-fullwidth" />
+                <h4 class="text-uppercase font-raleway text-white font-20 line-bottom-center m-0">
+                  <%= e.firstName %> <%= e.lastName %> <span class="text-white font-12 ml-5 small"></span>
+                </h4>
+
+              </div>
+              <div class="team-bottom-part bg-white p-15 team-bottom">
+                <p class="mb-10 team-bottom-name"><%= e.city %>, <%= e.state %></p>
+                <div class="team-bottom-flex">
+                  <div class="team-bottom-flex-div1">
+                    <img src="/assets/files/stars.svg" alt="" class="img-fullwidth" />
+                    <p>2 Reviews</p>
+                  </div>
+                  <div class="team-bottom-flex-div2">
+                    <a href="#">View Profile</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% })} %>
+         
+        </div>
+      </div>

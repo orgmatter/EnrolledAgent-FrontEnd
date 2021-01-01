@@ -1,12 +1,12 @@
 const router = require("express").Router();
-const seeder = require("../seed") 
+const seeder = require("../../seeder/seed") 
 
 const {
    Middleware
 } = require("common");
 
 
-seeder()
+// seeder()
 
 router
   .use(require('./auth'))

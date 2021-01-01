@@ -11,6 +11,10 @@ const QuestionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  category: {
+    ref: 'question_category',
+    type: Schema.ObjectId
+  },
   user: {
     ref: 'user',
     type: Schema.ObjectId
