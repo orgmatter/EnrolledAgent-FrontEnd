@@ -16,9 +16,7 @@
       <div class="main-content">
         <!-- Section: home -->
       
-
-
-        <div style=" padding: 300px;">
+        <div id="vmap" style="width: 800px; height: 400px; margin: auto; margin-top: 5%; margin-bottom: 5%; padding: 300px;">
         </div>
 
         <div class="findEA-locations" style="height: 100%;">
@@ -228,6 +226,19 @@
                                                     }
                                                 </script>
 
+                                               
+                                               
+                                               <script type="text/javascript" src="/javascripts/jvmap/jquery.vmap.js"></script>
+                                               <script type="text/javascript" src="/javascripts/jvmap/maps/jquery.vmap.usa.js"></script>
+                                               <script type="text/javascript">
+                                                        jQuery(document).ready(function() {
+                                                        jQuery('#vmap').vectorMap({ 
+                                                            map: 'usa_en',
+                                                            backgroundColor: 'none',
+                                                    
+                                                             });
+                                                        });
+                                            </script>
     </body>
 
 </html>
