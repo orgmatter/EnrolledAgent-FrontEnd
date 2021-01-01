@@ -13,7 +13,7 @@ const helmet = require('helmet')
 const flash = require('connect-flash')
 
 module.exports = (server, view) => {
-    // server.use(Express.static(path.resolve(config.STORAGE)))
+    server.use(Express.static(path.resolve(config.STORAGE)))
     // server.use(Express.static(path.resolve(config.STORAGE, 'assets')))
 
     server.use(logger('dev'))

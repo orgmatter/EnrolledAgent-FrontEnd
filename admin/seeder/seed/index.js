@@ -4,7 +4,7 @@ const { Models: { AdminUser, User, Agent, City, Sponsor, Resource, Article, Reso
 const seedUsers = process.env.SEED_USERS
 const seedAdmin = process.env.SEED_ADMIN
 const Agents = require('../data/agents')
-const States = require('./states.json')
+const States = require('../data/states.json')
 
 const createAdmin = async (email) => {
     if (!(await AdminUser.exists({ email })))
