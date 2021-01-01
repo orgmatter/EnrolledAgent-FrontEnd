@@ -1,0 +1,65 @@
+<% function capitalizeFirstLetter(str) {%>
+    <% str=str.toLowerCase().split(' '); %>
+<%  for (var i = 0; i < str.length; i++) {%>
+  <% str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); %>
+<% } %>
+<%  return str.join(' '); %>
+<% } %>
+
+<section class="states">
+    <div class="container">
+      <!-- <h2 class="cities-header">Popular Cities</h2>
+      <p class="cities-desc">Find an EA in one of our most requested areas.</p> -->
+      <div class="row ncities-grid">
+        <div class="col-md-3">
+          <% if (typeof locals !=='undefined' && locals.states && locals.states.length> 0) { %>
+            <% const {states} = locals %>
+            <% let span = 16 %>
+            <% if(states.length <= span) span = states.length %>
+              <% for(let i=0; i < span; i++) { %>
+                <% const  {name, slug}  = states[i] %>
+                  <a href="/agents/<%= slug %>">
+                    <%= capitalizeFirstLetter(name || '') %>
+                  </a>
+                  <% }} %> 
+        </div>
+        <div class="col-md-3">
+          <% if (typeof locals !=='undefined' && locals.states && locals.states.length> 31) { %>
+            <% const {states} = locals %>
+            <% let span = 32 %>
+            <% if(states.length <= span) span = states.length %>
+              <% for(let i=16; i < span; i++) { %>
+                <% const  {name, slug}  = states[i] %>
+                  <a href="/agents/<%= slug %>">
+                    <%= capitalizeFirstLetter(name || '') %>
+                  </a>
+                  <% }} %> 
+        </div>
+        <div class="col-md-3">
+          <% if (typeof locals !=='undefined' && locals.states && locals.states.length> 47) { %>
+            <% const {states} = locals %>
+            <% let span = 48 %>
+            <% if(states.length <= span) span = states.length %>
+              <% for(let i=32; i < span; i++) { %>
+                <% const  {name, slug}  = states[i] %>
+                <a href="/agents/<%= slug %>">
+                    <%= capitalizeFirstLetter(name || '') %>
+                  </a>
+                  <% }} %> 
+        </div>
+        <div class="col-md-3">
+          <% if (typeof locals !=='undefined' && locals.states && locals.states.length> 48) { %>
+            <% const {states} = locals %>
+              <% for(let i = 48; i < states.length; i++) { %>
+                <% const  {name, slug,}  = states[i] %>
+                <a href="/agents/<%= slug %>">
+                    <%= capitalizeFirstLetter(name || '') %>
+                  </a>
+                  <% }} %> 
+        </div>
+      </div>
+      <div class="row">
+         
+      </div>
+    </div>
+  </section>

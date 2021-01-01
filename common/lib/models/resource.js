@@ -13,7 +13,7 @@ const Resource = new Schema({
     type: Schema.ObjectId
   },
   category: {
-    ref: 'category',
+    ref: 'resource_category',
     type: Schema.ObjectId
   }
 },  { timestamps: true })

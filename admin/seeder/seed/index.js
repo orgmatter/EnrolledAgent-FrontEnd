@@ -1,18 +1,10 @@
-const { Models: { AdminUser, User, Agent, City, Sponsor }, Validator, Logger, Helper } = require('common')
-const { Resource, Article, Re, ResourceCategory } = require('common/lib/models')
-const agents = require('./agents')
+const { Models: { AdminUser, User, Agent, City, Sponsor, Resource, Article, ResourceCategory }, Validator, Helper } = require('common')
+
 
 const seedUsers = process.env.SEED_USERS
 const seedAdmin = process.env.SEED_ADMIN
-const Agents = require('./agents')
+const Agents = require('../data/agents')
 const States = require('./states.json')
-const Resources = require('./resource')
-const Articles = require('./article')
-const log = new Logger('seeder')
-
-const category = [
-    'Tax', 'Tools And Technology', 'Events', 'Education', 'Business'
-];
 
 const createAdmin = async (email) => {
     if (!(await AdminUser.exists({ email })))
@@ -30,7 +22,7 @@ const createResource = async (resource, category) => {
         {
             name: 'Dummy sponsor', imageUrl: 'https://cpadirectory.nyc3.cdn.digitaloceanspaces.com/public/admin_uploads/resources/83/main-image/83_1607096042.jpg',
             link: 'https://google.com',
-            
+
         }, { upsert: true }).exec()
 
     // console.log(sponsor)
@@ -51,7 +43,7 @@ const createCategory = async (category) => {
         {
             name: category, slug,
         }, { upsert: true, new: true }).exec()
-console.log(cat)
+    console.log(cat)
     return cat
 }
 
@@ -130,17 +122,17 @@ module.exports = async () => {
     if (Agents != null)
         createAgents();
 
-    // if (await ResourceCategory.estimatedDocumentCount({}) <  1) {
-    //     category.forEach( c => {console.log(c)
-    //      createCategory(c).then((cat)=>{console.log(cat)
-    //     Resources.forEach(r => createResource(r, cat._id))
-    //     })
-    // })
-    // }
 
-    // if (await Article.estimatedDocumentCount({}) < 4) {
-    //     Articles.forEach(r => createArticle(r))
-    // }
+    if (await City.exists({ slug: { $exists: false } })) {
+        City.find({ slug: { $exists: false } }).then(doc => {
+            doc = doc.map(d => {
+                d.slug = Helper.generateSlug(d.name)
+                return d
+            })
+            doc.forEach(dd => City.findByIdAndUpdate(dd._id, { slug: dd.slug }).exec())
+
+        })
+    }
 
 
 }

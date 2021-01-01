@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-const slug = require('mongoose-slug-updater') 
+
+const slug = require('mongoose-slug-updater')
 
 options = {
   separator: "-",
@@ -23,24 +24,20 @@ const generateSlug = function (text) {
   return slug
 }
 
-const CitySchema = new mongoose.Schema({
+const CategorySchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
     unique: true
   },
-  state: String,
-  stateSlug: { type: String, slug: "state", index: true, transform: v => generateSlug(v) },
   slug: { type: String, slug: "name", index: true, transform: v => generateSlug(v) },
-  count: {
-    type: Number,
-    default: 0
-  },
-
+  description: {
+    type: String,
+  }
+  
 })
 
-CitySchema.index({
-  name: 1,
-  slug: 1,  
-})
-module.exports = mongoose.model('city', CitySchema)
+CategorySchema.index({slug: 'text', name: 'text'})
+CategorySchema.index({slug: 1, name: 1})
+
+module.exports = mongoose.model('question_category', CategorySchema)

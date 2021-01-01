@@ -171,6 +171,7 @@ exports.generateSlug = function (text) {
   let slug = String(text)
   if (!slug) return
   slug = slug
+  .replace(/[^a-zA-Z ]/g, "")
   .trim()
   .replace(' ', '-')
   .toLowerCase()
