@@ -16,6 +16,7 @@ module.exports = {
   Resource: require('./resource'),
   ResourceCategory: require('./resourceCategory'),
   Sponsor: require('./sponsor'),
+  State: require('./state'),
   Question: require('./question'),
   User: require('./user'),
   Verification: require('./verification'),

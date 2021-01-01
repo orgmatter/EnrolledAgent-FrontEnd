@@ -256,9 +256,9 @@ var THEMEMASCOT = {};
     /* ------------------------------ Date Picker  -------------------------- */
     /* ---------------------------------------------------------------------- */
     TM_datePicker: function () {
-      $(".date-picker").datepicker();
-      $(".time-picker").timepicker();
-      $(".datetime-picker").datetimepicker();
+      // $(".date-picker").datepicker();
+      // $(".time-picker").timepicker();
+      // $(".datetime-picker").datetimepicker();
     },
 
     /* ---------------------------------------------------------------------- */

@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <%- include("./partials/homeHead.ejs") %>
+<%- include("./partials/homeHead.ejs") %>
 
   <body class="home-body">
+    <% function capitalizeFirstLetter(str) {%>
+      <% str=str.toLowerCase().split(' '); %>
+  <%  for (var i = 0; i < str.length; i++) {%>
+    <% str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); %>
+  <% } %>
+  <%  return str.join(' '); %>
+  <% } %>
     <div id="wrapper" class="clearfix home">
       <%- include("./partials/header.ejs") %>
       <!-- Start main-content -->
@@ -62,152 +69,85 @@
                     <div
                       class="tp-caption tp-shape tp-shapewrapper tp-resizeme rs-parallaxlevel-0 bg-theme-colored-transparent-1"
                       id="slide-1-layer-1"
-                      data-x="['center','center','center','center']"
-                      data-hoffset="['0','0','0','0']"
-                      data-y="['middle','middle','middle','middle']"
-                      data-voffset="['0','0','0','0']"
-                      data-width="full"
-                      data-height="full"
-                      data-whitespace="normal"
-                      data-transform_idle="o:1;"
-                      data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;"
-                      data-transform_out="opacity:0;s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
-                      data-start="500"
-                      data-basealign="slide"
-                      data-responsive_offset="on"
-                      style="
+                      data-x="[' center','center','center','center']" data-hoffset="['0','0','0','0']"
+        data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-width="full"
+        data-height="full" data-whitespace="normal" data-transform_idle="o:1;"
+        data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;"
+        data-transform_out="opacity:0;s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;" data-start="500"
+        data-basealign="slide" data-responsive_offset="on" style="
                         z-index: 5;
                         background-color: rgba(0, 0, 0, 0.7);
-                      "
-                    ></div>
-                  </li>
-                  <!-- SLIDE 2 -->
-                  <li
-                    data-index="rs-2"
-                    data-transition="fade"
-                    data-slotamount="default"
-                    data-easein="default"
-                    data-easeout="default"
-                    data-masterspeed="default"
-                    data-thumb="images/bg/bg2.jpg"
-                    data-rotate="0"
-                    data-fstransition="fade"
-                    data-saveperformance="off"
-                    data-title="Web Show"
-                    data-description=""
-                  >
-                    <!-- MAIN IMAGE -->
-                    <img
-                      src="/images/bg/bg2.jpg"
-                      alt=""
-                      data-bgposition="center center"
-                      data-bgfit="cover"
-                      data-bgrepeat="no-repeat"
-                      data-bgparallax="10"
-                      class="rev-slidebg"
-                      data-no-retina
-                    />
-                    <!-- LAYERS -->
-                    <!-- LAYER NR. 1 -->
-                    <div
-                      class="tp-caption tp-shape tp-shapewrapper tp-resizeme rs-parallaxlevel-0 bg-theme-colored-transparent-1"
-                      id="slide-2-layer-1"
-                      data-x="['center','center','center','center']"
-                      data-hoffset="['0','0','0','0']"
-                      data-y="['middle','middle','middle','middle']"
-                      data-voffset="['0','0','0','0']"
-                      data-width="full"
-                      data-height="full"
-                      data-whitespace="normal"
-                      data-transform_idle="o:1;"
-                      data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;"
-                      data-transform_out="opacity:0;s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
-                      data-start="500"
-                      data-basealign="slide"
-                      data-responsive_offset="on"
-                      style="
+                      ">
+        </div>
+        </li>
+        <!-- SLIDE 2 -->
+        <li data-index="rs-2" data-transition="fade" data-slotamount="default" data-easein="default"
+          data-easeout="default" data-masterspeed="default" data-thumb="images/bg/bg2.jpg" data-rotate="0"
+          data-fstransition="fade" data-saveperformance="off" data-title="Web Show" data-description="">
+          <!-- MAIN IMAGE -->
+          <img src="/images/bg/bg2.jpg" alt="" data-bgposition="center center" data-bgfit="cover"
+            data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina />
+          <!-- LAYERS -->
+          <!-- LAYER NR. 1 -->
+          <div class="tp-caption tp-shape tp-shapewrapper tp-resizeme rs-parallaxlevel-0 bg-theme-colored-transparent-1"
+            id="slide-2-layer-1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+            data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-width="full"
+            data-height="full" data-whitespace="normal" data-transform_idle="o:1;"
+            data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;"
+            data-transform_out="opacity:0;s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;" data-start="500"
+            data-basealign="slide" data-responsive_offset="on" style="
                         z-index: 5;
                         background-color: rgba(0, 0, 0, 0.7);
-                      "
-                    ></div>
-                  </li>
-                  <!-- SLIDE 3 -->
-                  <li
-                    data-index="rs-3"
-                    data-transition="fade"
-                    data-slotamount="default"
-                    data-easein="default"
-                    data-easeout="default"
-                    data-masterspeed="default"
-                    data-thumb="/images/bg/bg3.jpg"
-                    data-rotate="0"
-                    data-fstransition="fade"
-                    data-saveperformance="off"
-                    data-title="Web Show"
-                    data-description=""
-                  >
-                    <!-- MAIN IMAGE -->
-                    <img
-                      src="/images/bg/bg3.jpg"
-                      alt=""
-                      data-bgposition="center 40%"
-                      data-bgfit="cover"
-                      data-bgrepeat="no-repeat"
-                      data-bgparallax="10"
-                      class="rev-slidebg"
-                      data-no-retina
-                    />
-                    <!-- LAYERS -->
-                    <!-- LAYER NR. 1 -->
-                    <div
-                      class="tp-caption tp-shape tp-shapewrapper tp-resizeme rs-parallaxlevel-0 bg-theme-colored-transparent-1"
-                      id="slide-3-layer-1"
-                      data-x="['center','center','center','center']"
-                      data-hoffset="['0','0','0','0']"
-                      data-y="['middle','middle','middle','middle']"
-                      data-voffset="['0','0','0','0']"
-                      data-width="full"
-                      data-height="full"
-                      data-whitespace="normal"
-                      data-transform_idle="o:1;"
-                      data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;"
-                      data-transform_out="opacity:0;s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
-                      data-start="500"
-                      data-basealign="slide"
-                      data-responsive_offset="on"
-                      style="
+                      "></div>
+        </li>
+        <!-- SLIDE 3 -->
+        <li data-index="rs-3" data-transition="fade" data-slotamount="default" data-easein="default"
+          data-easeout="default" data-masterspeed="default" data-thumb="/images/bg/bg3.jpg" data-rotate="0"
+          data-fstransition="fade" data-saveperformance="off" data-title="Web Show" data-description="">
+          <!-- MAIN IMAGE -->
+          <img src="/images/bg/bg3.jpg" alt="" data-bgposition="center 40%" data-bgfit="cover" data-bgrepeat="no-repeat"
+            data-bgparallax="10" class="rev-slidebg" data-no-retina />
+          <!-- LAYERS -->
+          <!-- LAYER NR. 1 -->
+          <div class="tp-caption tp-shape tp-shapewrapper tp-resizeme rs-parallaxlevel-0 bg-theme-colored-transparent-1"
+            id="slide-3-layer-1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+            data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-width="full"
+            data-height="full" data-whitespace="normal" data-transform_idle="o:1;"
+            data-transform_in="opacity:0;s:1500;e:Power3.easeInOut;"
+            data-transform_out="opacity:0;s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;" data-start="500"
+            data-basealign="slide" data-responsive_offset="on" style="
                         z-index: 5;
                         background-color: rgba(0, 0, 0, 0.7);
-                      "
-                    ></div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <!-- END REVOLUTION SLIDER -->
-          </div>
+                      "></div>
+        </li>
+        </ul>
+        </div>
+        </div>
+        <!-- END REVOLUTION SLIDER -->
+        </div>
 
-                  <section class="home-section">
+        <section class="home-section">
           <div class="container">
             <div class="row home-section-top">
               <h2>Find An Enrolled Agent</h2>
               <p class='desc'>Search and Engage More Than 60,000 Enrolled Agents for Free.</p>
-              
-                
+
+
 
               <div class="row home-section-top-input-div">
-                
+
                 <div class="dropdown">
-                  <button class="btn btn1 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Zip Code
-                  </button> 
+                  <button class="btn btn1 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Zip Code
+                  </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <p id="zip">Zip Code</p>
-                <p id="state">State</p>
+                    <p id="state">State</p>
                   </div>
                 </div>
                 <div class="input">
-                  <input id="zipInput" type='text' placeholder="Enter Your Zip Code"/>
+                  <input id="zipInput" type='text' placeholder="Enter Your Zip Code" />
                 </div>
                 <button id="submitBtn" onclick="search()" class="btn2">Find</button>
                 <a class="btn3" href='/find-agent'>Advanced Search</a>
@@ -216,7 +156,7 @@
                 <div class="card-div">
                   <div class="top">
                     <p>01</p>
-                    <img src='assets/files/049.svg' alt='Enrolled-agent-icon'/>
+                    <img src='assets/files/049.svg' alt='Enrolled-agent-icon' />
                   </div>
                   <div class="bottom">
                     <h3>60,000</h3>
@@ -226,7 +166,7 @@
                 <div class="card-div">
                   <div class="top">
                     <p>02</p>
-                    <img src='assets/files/048.svg' alt='Enrolled-agent-icon'/>
+                    <img src='assets/files/048.svg' alt='Enrolled-agent-icon' />
                   </div>
                   <div class="bottom">
                     <h3>Convenient</h3>
@@ -236,7 +176,7 @@
                 <div class="card-div">
                   <div class="top">
                     <p>03</p>
-                    <img src='assets/files/verified.svg' alt='Enrolled-agent-icon'/>
+                    <img src='assets/files/verified.svg' alt='Enrolled-agent-icon' />
                   </div>
                   <div class="bottom">
                     <h3>Verified</h3>
@@ -259,15 +199,15 @@
                 <image src="/assets/files/image-left.png" alt="Enrolled-agent" />
               </div>
               <div class="image-aside2-div2">
-                <h2>The simplest way to search and access your next Enrolled Agent on 
+                <h2>The simplest way to search and access your next Enrolled Agent on
                   the go anytime, anywhere.</h2>
                 <p>
-                  Search our online directory of licensed and verified Enrolled Agents. 
-                  See details of the Enrolled Agents and find the one that best suits your needs. 
-                  Read reviews from clients attended to in your community. All Enrolled Agents 
+                  Search our online directory of licensed and verified Enrolled Agents.
+                  See details of the Enrolled Agents and find the one that best suits your needs.
+                  Read reviews from clients attended to in your community. All Enrolled Agents
                   listed have been vetted to ensure accurate profile and licensure.
                 </p>
-                <a href="#">Search for Your Enrolled Agent</a>
+                <a href="/find-agent">Search for Your Enrolled Agent</a>
               </div>
             </div>
             <div class="side2"></div>
@@ -290,103 +230,33 @@
             </div>
             <div class="section-content team">
               <div class="row">
+                <% if(locals.popular && locals.popular.length> 0){ %>
+                  <% locals.popular.map((e, id)=> { %>
                 <div class="col-sm-6 col-md-3">
                   <div class="single-member maxwidth400 mb-30">
                     <div class="team-thumb">
                       <img src="/assets/files/18270627@2x.png" alt="" class="img-fullwidth" />
-                      <h4
-                        class="text-uppercase font-raleway text-white font-20 line-bottom-center m-0"
-                      >
-                        Michael Rosedale <span class="text-white font-12 ml-5 small"></span>
+                      <h4 class="text-uppercase font-raleway text-white font-20 line-bottom-center m-0">
+                        <%= e.firstName %> <%= e.lastName %> <span class="text-white font-12 ml-5 small"></span>
                       </h4>
 
                     </div>
                     <div class="team-bottom-part bg-white p-15 team-bottom">
-                      <p class="mb-10 team-bottom-name">Boca Raton, FL</p>
+                      <p class="mb-10 team-bottom-name"><%= e.city %>, <%= e.state %></p>
                       <div class="team-bottom-flex">
                         <div class="team-bottom-flex-div1">
                           <img src="/assets/files/stars.svg" alt="" class="img-fullwidth" />
                           <p>2 Reviews</p>
                         </div>
                         <div class="team-bottom-flex-div2">
-                          <a href="#">View Profile</a>
+                          <a href="/agent/<%= e._id %>">View Profile</a>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-sm-6 col-md-3">
-                  <div class="single-member maxwidth400 mb-30">
-                    <div class="team-thumb">
-                      <img src="/assets/files/2303@2x.png" alt="" class="img-fullwidth" />
-                      <h4
-                        class="text-uppercase font-raleway text-white font-20 line-bottom-center m-0"
-                      >
-                        Oliver Queen <span class="text-white font-12 ml-5"></span>
-                      </h4>
-                    </div>
-                    <div class="team-bottom-part bg-white p-15 team-bottom">
-                      <p class="mb-10 team-bottom-name">Boca Raton, FL</p>
-                      <div class="team-bottom-flex">
-                        <div class="team-bottom-flex-div1">
-                          <img src="/assets/files/stars.svg" alt="" class="img-fullwidth" />
-                          <p>2 Reviews</p>
-                        </div>
-                        <div class="team-bottom-flex-div2">
-                          <a href="#">View Profile</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                  <div class="single-member maxwidth400 mb-30">
-                    <div class="team-thumb">
-                      <img src="/assets/files/651699-POYZ5I-961@2x.png" alt="" class="img-fullwidth" />
-                      <h4
-                        class="text-uppercase font-raleway text-white font-20 line-bottom-center m-0"
-                      >
-                        Oliver Queen <span class="text-white font-12 ml-5"></span>
-                      </h4>
-                    </div>
-                   <div class="team-bottom-part bg-white p-15 team-bottom">
-                      <p class="mb-10 team-bottom-name">Boca Raton, FL</p>
-                      <div class="team-bottom-flex">
-                        <div class="team-bottom-flex-div1">
-                          <img src="/assets/files/stars.svg" alt="" class="img-fullwidth" />
-                          <p>2 Reviews</p>
-                        </div>
-                        <div class="team-bottom-flex-div2">
-                          <a href="#">View Profile</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                  <div class="single-member maxwidth400 mb-30">
-                    <div class="team-thumb">
-                      <img src="/assets/files/552945-PK36UT-910@2x.png" alt="" class="img-fullwidth" />
-                      <h4
-                        class="text-uppercase font-raleway text-white font-20 line-bottom-center m-0"
-                      >
-                        Oliver Queen <span class="text-white font-12 ml-5"></span>
-                      </h4>
-                    </div>
-                    <div class="team-bottom-part bg-white p-15 team-bottom">
-                      <p class="mb-10 team-bottom-name">Boca Raton, FL</p>
-                      <div class="team-bottom-flex">
-                        <div class="team-bottom-flex-div1">
-                          <img src="/assets/files/stars.svg" alt="" class="img-fullwidth" />
-                          <p>2 Reviews</p>
-                        </div>
-                        <div class="team-bottom-flex-div2">
-                          <a href="#">View Profile</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <% })} %>
+               
               </div>
             </div>
           </div>
@@ -414,388 +284,150 @@
           </div>
         </section>
 
-        <section class="cities">
-          <div class="container">
-            <h2 class="cities-header">Popular Cities</h2>
-            <p class="cities-desc">Find an EA in one of our most requested areas.</p>
-            <div class="row cities-grid">
-              <div class="col-md-3">
-                <a href="#">Albany</a>
-                <a href="#">Asheville</a>
-                <a href="#">Atlanta</a>
-                <a href="#">Austin</a>
-                <a href="#">Baltimore</a>
-                <a href="#">Birmingham</a>
-                <a href="#">Boston</a>
-                <a href="#">Charlotte</a>
-                <a href="#">Chicago</a>
-                <a href="#">Cincinnati </a>
-                <a href="#">Cleveland</a>
-                <a href="#">Columbus</a>
-                <a href="#">Dallas</a>
-                <a href="#">Denver</a>
-                <a href="#">Detroit</a>
-                <a href="#">El Paso</a>
-              </div>
-              <div class="col-md-3">
-                <a href="#">Fort Lauderdale</a>
-                <a href="#">Fort Worth</a>
-                <a href="#">Fresno</a>
-                <a href="#">Grand Rapids</a>
-                <a href="#">Greensboro</a>
-                <a href="#">Harrisburg</a>
-                <a href="#">Hartford</a>
-                <a href="#">Houston</a>
-                <a href="#">Indianapolis</a>
-                <a href="#">Jacksonville</a>
-                <a href="#">Kansas City</a>
-                <a href="#">Las Vegas</a>
-                <a href="#">Long Beach</a>
-                <a href="#">Los Angeles</a>
-                <a href="#">Louisville</a>
-                <a href="#">Madison</a>
-              </div>
-              <div class="col-md-3">
-                <a href="#">Memphis</a>
-                <a href="#">Miami</a>
-                <a href="#">Milwaukee</a>
-                <a href="#">Minneapolis</a>
-                <a href="#">Modesto</a>
-                <a href="#">Nashville</a>
-                <a href="#">New Orleans</a>
-                <a href="#">New York</a>
-                <a href="#">Norfolk</a>
-                <a href="#">Oklahoma City</a>
-                <a href="#">Orlando</a>
-                <a href="#">Philadelphia</a>
-                <a href="#">Phoenix</a>
-                <a href="#">Pittsburgh</a>
-                <a href="#">Portland</a>
-                <a href="#">Providence</a>
-              </div>
-              <div class="col-md-3">
-                <a href="#">Raleigh</a>
-                <a href="#">Richmond</a>
-                <a href="#">Sacramento</a>
-                <a href="#">Saint Louis</a>
-                <a href="#">Saint Paul</a>
-                <a href="#">Salem</a>
-                <a href="#">Salt Lake City</a>
-                <a href="#">San Antonio</a>
-                <a href="#">San Diego</a>
-                <a href="#">San Francisco</a>
-                <a href="#">San Jose</a>
-                <a href="#">Seattle</a>
-                <a href="#">Tampa</a>
-                <a href="#">Tucson</a>
-                <a href="#">Virginia Beach</a>
-                <a href="#">Washington DC</a>
-              </div>
-            </div>
-            <div class="row">
-              <a href="#" class="cities-link">Find More Local EAs</a>
-            </div>
-          </div>
-        </section>
+        <%- include("./partials/cities.ejs") %>
 
-        <section class="form">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-5 form-div1">
-                <h2>Request a call Back</h2>
-                <p>
-                  Please fill out the form and press the submit button. We will get back to you with
-                  1-2 business days
-                </p>
-              </div>
-              <form class="col-md-7 form-div2">
-                <div class="row mb-30">
-                  <div class="col-md-6 form-div2-formgroup mr-20">
-                    <input type="text" placeholder="Full Name*" required />
-                  </div>
-                  <div class="col-md-6 form-div2-formgroup">
-                    <input type="email" placeholder="Email*" required />
-                  </div>
-                </div>
-                <div class="row mb-30">
-                  <div class="col-md-6 form-div2-formgroup mr-20">
-                    <input type="text" placeholder="Subject*" required />
-                  </div>
-                  <div class="col-md-6 form-div2-formgroup">
-                    <input type="tel" placeholder="Phone Number" />
-                  </div>
-                </div>
-                <div class="row mb-50">
-                  <div class="col-md-12 form-div2-formtextarea">
-                    <textarea placeholder="Message*"></textarea>
-                  </div>
-                </div>
-                <button type="submit">Submit Now</button>
-              </form>
-            </div>
-          </div>
-        </section>
+       
+         <%- include("./partials/newsletter.ejs") %>
+         
 
-        <section class="cta">
-          <div class="cta_body">
-            <div class="row">
-              <div class="col-md-5 cta_body-1">
-                <p>Newsletter dolor sit amet,</p>
-                <h3>consetetur sadipscing elitr,</h3>
-              </div>
-              <div class="col-md-7 cta_body-2">
-                <div>
-                  <input type="email" placeholder="Your email Address" />
-                </div>
-              </form>
-            </div>
+         <%- include("./partials/resources.ejs") %>
+      
+        </div>
+        <!-- end main-content -->
+        <%- include("./partials/footer.ejs") %>
           </div>
-        </section>
+          <!-- end wrapper -->
 
-        <section class="resources">
-          <div class="container-fluid">
-            <h2 class="resources-header">Resources</h2>
-            <p class="resources-sub">Valuable information provided by our sponsors.</p>
-            <div class="resources-grid">
-              <div class="resources-grid-box">
-                <p class="resources-grid-box-intro">Provided By:</p>
-                <img
-                  class="resources-grid-box-image"
-                  src="/assets/files/stanbic.png"
-                  alt="stanbic-logo"
-                />
-                <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
-                <p class="resources-grid-box-desc">
-                  Save up to 20% on Quickfinder products. Find tax resources for efficiency and
-                  accuracy, year-round...
-                </p>
-                <div class="arrow">
-                  <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
-                </div>
-              </div>
-              <div class="resources-grid-box">
-                <p class="resources-grid-box-intro">Provided By:</p>
-                <img
-                  class="resources-grid-box-image"
-                  src="/assets/files/stanbic.png"
-                  alt="stanbic-logo"
-                />
-                <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
-                <p class="resources-grid-box-desc">
-                  Save up to 20% on Quickfinder products. Find tax resources for efficiency and
-                  accuracy, year-round...
-                </p>
-                <div class="arrow">
-                  <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
-                </div>
-              </div>
-              <div class="resources-grid-box">
-                <p class="resources-grid-box-intro">Provided By:</p>
-                <img
-                  class="resources-grid-box-image"
-                  src="/assets/files/stanbic.png"
-                  alt="stanbic-logo"
-                />
-                <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
-                <p class="resources-grid-box-desc">
-                  Save up to 20% on Quickfinder products. Find tax resources for efficiency and
-                  accuracy, year-round...
-                </p>
-                <div class="arrow">
-                  <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
-                </div>
-              </div>
-              <div class="resources-grid-box">
-                <p class="resources-grid-box-intro">Provided By:</p>
-                <img
-                  class="resources-grid-box-image"
-                  src="/assets/files/stanbic.png"
-                  alt="stanbic-logo"
-                />
-                <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
-                <p class="resources-grid-box-desc">
-                  Save up to 20% on Quickfinder products. Find tax resources for efficiency and
-                  accuracy, year-round...
-                </p>
-                <div class="arrow">
-                  <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
-                </div>
-              </div>
-              <div class="resources-grid-box">
-                <p class="resources-grid-box-intro">Provided By:</p>
-                <img
-                  class="resources-grid-box-image"
-                  src="/assets/files/stanbic.png"
-                  alt="stanbic-logo"
-                />
-                <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
-                <p class="resources-grid-box-desc">
-                  Save up to 20% on Quickfinder products. Find tax resources for efficiency and
-                  accuracy, year-round...
-                </p>
-                <div class="arrow">
-                  <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
-                </div>
-              </div>
-              <div class="resources-grid-box">
-                <p class="resources-grid-box-intro">Provided By:</p>
-                <img
-                  class="resources-grid-box-image"
-                  src="/assets/files/stanbic.png"
-                  alt="stanbic-logo"
-                />
-                <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
-                <p class="resources-grid-box-desc">
-                  Save up to 20% on Quickfinder products. Find tax resources for efficiency and
-                  accuracy, year-round...
-                </p>
-                <div class="arrow">
-                  <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
-                </div>
-              </div>
-            </div>
-            <div class="btn-div">
-              <button>
-                See All Resources
-                <img src="/assets/files/down-arrow-small.svg" alt="arrow" />
-              </button>
-            </div>
-          </div>
-        </section>
-      </div>
-      <!-- end main-content -->
-      <%- include("./partials/footer.ejs") %>
-    </div>
-    <!-- end wrapper -->
-
-    <!-- Footer Scripts -->
-    <!-- JS | Chart-->
-    <script type="text/javascript">
-              var tpj = jQuery;
-              var revapi34;
-              tpj(document).ready(function () {
-                if (tpj("#rev_slider_home").revolution == undefined) {
-                  revslider_showDoubleJqueryError("#rev_slider_home");
-                } else {
-                  revapi34 = tpj("#rev_slider_home")
-                    .show()
-                    .revolution({
-                      sliderType: "standard",
-                      jsFileLocation: "js/revolution-slider/js/",
-                      sliderLayout: "fullwidth",
-                      dottedOverlay: "none",
-                      delay: 5000,
-                      navigation: {
-                        keyboardNavigation: "on",
-                        keyboard_direction: "horizontal",
-                        mouseScrollNavigation: "off",
-                        onHoverStop: "off",
-                        touch: {
-                          touchenabled: "on",
-                          swipe_threshold: 75,
-                          swipe_min_touches: 1,
-                          swipe_direction: "horizontal",
-                          drag_block_vertical: false,
+          <!-- Footer Scripts -->
+          <!-- JS | Chart-->
+          <script type="text/javascript">
+            var tpj = jQuery;
+            var revapi34;
+            tpj(document).ready(function () {
+              if (tpj("#rev_slider_home").revolution == undefined) {
+                revslider_showDoubleJqueryError("#rev_slider_home");
+              } else {
+                revapi34 = tpj("#rev_slider_home")
+                  .show()
+                  .revolution({
+                    sliderType: "standard",
+                    jsFileLocation: "js/revolution-slider/js/",
+                    sliderLayout: "fullwidth",
+                    dottedOverlay: "none",
+                    delay: 5000,
+                    navigation: {
+                      keyboardNavigation: "on",
+                      keyboard_direction: "horizontal",
+                      mouseScrollNavigation: "off",
+                      onHoverStop: "off",
+                      touch: {
+                        touchenabled: "on",
+                        swipe_threshold: 75,
+                        swipe_min_touches: 1,
+                        swipe_direction: "horizontal",
+                        drag_block_vertical: false,
+                      },
+                      arrows: {
+                        style: "zeus",
+                        enable: false,
+                        hide_onmobile: true,
+                        hide_under: 600,
+                        hide_onleave: true,
+                        hide_delay: 200,
+                        hide_delay_mobile: 1200,
+                        tmp:
+                          '<div class="tp-title-wrap">    <div class="tp-arr-imgholder"></div> </div>',
+                        left: {
+                          h_align: "left",
+                          v_align: "center",
+                          h_offset: 30,
+                          v_offset: 0,
                         },
-                        arrows: {
-                          style: "zeus",
-                          enable: false,
-                          hide_onmobile: true,
-                          hide_under: 600,
-                          hide_onleave: true,
-                          hide_delay: 200,
-                          hide_delay_mobile: 1200,
-                          tmp:
-                            '<div class="tp-title-wrap">    <div class="tp-arr-imgholder"></div> </div>',
-                          left: {
-                            h_align: "left",
-                            v_align: "center",
-                            h_offset: 30,
-                            v_offset: 0,
-                          },
-                          right: {
-                            h_align: "right",
-                            v_align: "center",
-                            h_offset: 30,
-                            v_offset: 0,
-                          },
-                        },
-                        bullets: {
-                          enable: false,
-                          hide_onmobile: true,
-                          hide_under: 600,
-                          style: "metis",
-                          hide_onleave: true,
-                          hide_delay: 200,
-                          hide_delay_mobile: 1200,
-                          direction: "horizontal",
-                          h_align: "center",
-                          v_align: "bottom",
-                          h_offset: 0,
-                          v_offset: 30,
-                          space: 5,
-                          tmp:
-                            '<span class="tp-bullet-img-wrap"><span class="tp-bullet-image"></span></span>',
+                        right: {
+                          h_align: "right",
+                          v_align: "center",
+                          h_offset: 30,
+                          v_offset: 0,
                         },
                       },
-                      viewPort: {
-                        enable: true,
-                        outof: "pause",
-                        visible_area: "80%",
+                      bullets: {
+                        enable: false,
+                        hide_onmobile: true,
+                        hide_under: 600,
+                        style: "metis",
+                        hide_onleave: true,
+                        hide_delay: 200,
+                        hide_delay_mobile: 1200,
+                        direction: "horizontal",
+                        h_align: "center",
+                        v_align: "bottom",
+                        h_offset: 0,
+                        v_offset: 30,
+                        space: 5,
+                        tmp:
+                          '<span class="tp-bullet-img-wrap"><span class="tp-bullet-image"></span></span>',
                       },
-                      responsiveLevels: [1240, 1024, 778, 480],
-                      gridwidth: [1240, 1024, 778, 480],
-                      gridheight: [600, 550, 500, 450],
-                      lazyType: "none",
-                      parallax: {
-                        type: "scroll",
-                        origo: "enterpoint",
-                        speed: 400,
-                        levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50],
-                      },
-                      shadow: 0,
-                      spinner: "off",
-                      stopLoop: "off",
-                      stopAfterLoops: -1,
-                      stopAtSlide: -1,
-                      shuffle: "off",
-                      autoHeight: "off",
-                      hideThumbsOnMobile: "off",
-                      hideSliderAtLimit: 0,
-                      hideCaptionAtLimit: 0,
-                      hideAllCaptionAtLilmit: 0,
-                      debugMode: false,
-                      fallbacks: {
-                        simplifyAll: "off",
-                        nextSlideOnWindowFocus: "off",
-                        disableFocusListener: false,
-                      },
-                    });
+                    },
+                    viewPort: {
+                      enable: true,
+                      outof: "pause",
+                      visible_area: "80%",
+                    },
+                    responsiveLevels: [1240, 1024, 778, 480],
+                    gridwidth: [1240, 1024, 778, 480],
+                    gridheight: [600, 550, 500, 450],
+                    lazyType: "none",
+                    parallax: {
+                      type: "scroll",
+                      origo: "enterpoint",
+                      speed: 400,
+                      levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50],
+                    },
+                    shadow: 0,
+                    spinner: "off",
+                    stopLoop: "off",
+                    stopAfterLoops: -1,
+                    stopAtSlide: -1,
+                    shuffle: "off",
+                    autoHeight: "off",
+                    hideThumbsOnMobile: "off",
+                    hideSliderAtLimit: 0,
+                    hideCaptionAtLimit: 0,
+                    hideAllCaptionAtLilmit: 0,
+                    debugMode: false,
+                    fallbacks: {
+                      simplifyAll: "off",
+                      nextSlideOnWindowFocus: "off",
+                      disableFocusListener: false,
+                    },
+                  });
+              }
+            }); /*ready*/
+          </script>
+          <script type="text/javascript" src="/javascripts/findAgent.js"></script>
+          <script src="/js/custom.js"></script>
+
+          <script>
+            function search() {
+              const input = document.getElementById("search").value
+              // console.log(input)
+              window.location = `/ea-listings/?search=${input}`
+            }
+            function onload() {
+              const input = document.getElementById("search")
+              const urlParams = new URLSearchParams(window.location.search);
+              const _search = urlParams.get('search');
+              input.value = _search
+              input.addEventListener("keyup", function (event) {
+                // Number 13 is the "Enter" key on the keyboard
+                if (event.keyCode === 13) {
+                  search()
                 }
-              }); /*ready*/
-            </script>
-            <script type="text/javascript" src="/javascripts/findAgent.js"></script>
-    <script src="/js/custom.js"></script>
-
-    <script>
-      function search() {
-        const input = document.getElementById("search").value
-        // console.log(input)
-        window.location = `/ea-listings/?search=${input}`
-      }
-      function onload() {
-        const input = document.getElementById("search")
-        const urlParams = new URLSearchParams(window.location.search);
-        const _search = urlParams.get('search');
-        input.value = _search
-        input.addEventListener("keyup", function (event) {
-          // Number 13 is the "Enter" key on the keyboard
-          if (event.keyCode === 13) {
-            search()
-          }})
-          // console.log(_search)
-        }
-    </script>
+              })
+              // console.log(_search)
+            }
+          </script>
 
   </body>
+
 </html>

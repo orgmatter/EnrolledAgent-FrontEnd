@@ -7,7 +7,8 @@
     "test": "mocha",
     "dev": "DEBUG=server,api,email-templates nodemon --ignore public,node-modules,upload",
     "dev-win": "set DEBUG=server,api,email-templates && nodemon --ignore public,node-modules,upload",
-    "lint": "eslint "
+    "lint": "eslint ",
+    "generate-city": "node seeder/index.js -c"
   },
   "repository": {
     "type": "git",
@@ -42,7 +43,8 @@
     "nodemon": "^2.0.6",
     "redis": "^3.0.2",
     "uid": "^1.0.0",
-    "validator": "^13.1.1"
+    "validator": "^13.1.1",
+    "yargs": "^16.2.0"
   },
   "devDependencies": {
     "concurrently": "^5.3.0"

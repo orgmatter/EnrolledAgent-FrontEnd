@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap" rel="stylesheet" />
+  <%- include("./partials/head.ejs") %>
+</head>
+
+<body onload="onload()" class="">
+  <% function capitalizeFirstLetter(str) {%>
+    <% str=str.toLowerCase().split(' '); %>
+<%  for (var i = 0; i < str.length; i++) {%>
+<% str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); %>
+<% } %>
+<%  return str.join(' '); %>
+<% } %>
+    <%- include("./partials/header.ejs") %>
+    <div class="findEA">
+      <div class="findEA-banner">
+        <div class="findEA-banner__item">
+          <div class="findEA-banner__item--head"><%= capitalizeFirstLetter(locals.state.name)  %> EAs</div>
+          <div class="findEA-banner__item--text">
+          
+            <%if(locals.state && locals.state.name){%>
+             find agent by city in <%= capitalizeFirstLetter(locals.state.name)  %> 
+           
+            <% } %> 
+          </div>
+          <div class="findEA-banner__item--button">
+            <button class="findEA-banner__item--button-btn findEA-btn">
+              Alabama Accounting Firns
+              <span class="findEA-btn-right-angle">
+                <img
+                  src="/assets/images/findEA/right-arrow-white.svg"
+                  alt=""
+                  class="findEA-btn-right-arrow-right"
+                />
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="findEA-search">
+        <!-- <form action="" class="findEA-search__form"> -->
+          <!-- <div class="form__group">
+            <select name="records-per-page" id="" class="form__select findEA-select">
+              <option value="10" selected="selected">10</option>
+              <option value="20">20</option>
+              <option value="20">50</option>
+              <option value="20">100</option>
+              <option value="20">200</option>
+            </select>
+            <label for="records-per-page" class="form__label"> records per page</label>
+          </div> -->
+          <!-- <div class="form__group">
+            <label for="search-ea" class="form__label">Search: </label>
+            <input name="search-ea" type="text" class="form__input findEA-input" />
+          </div>
+        </form> -->
+      </div>
+      <div class="findEA-locations">
+            
+          <div class="findEA-locations__group">
+            <% if (typeof locals !=='undefined' && locals.cities && locals.cities.data && locals.cities.data.length> 0) { %>
+              <% const cities = locals.cities.data %>
+              <% let span = 15 %>
+              <% if(cities.length <= span) span = cities.length %>
+                <% for(let i=0; i < span; i++) { %>
+                  <% const  {name, slug, stateSlug}  = cities[i] %>
+                  <div class="findEA-locations__item">
+                    <a  href="/agents/<%= stateSlug %>/<%= slug %>" class="findEA-link">
+                      <span class="findEA-btn-right-angle">
+                        <img
+                          src="/assets/images/findEA/right-arrow-black.svg"
+                          alt=""
+                          class="findEA-btn-right-arrow-left"
+                        />
+                      </span>
+                      <%= capitalizeFirstLetter(name || '') %>
+                    </a>
+                  </div> 
+                    <% }} %> 
+          </div>
+          <div class="findEA-locations__group">
+            <% if (typeof locals !=='undefined' && locals.cities && locals.cities.data && locals.cities.data.length> 15) { %>
+              <% const cities = locals.cities.data %>
+              <% let span = 30 %>
+              <% if(cities.length <= span) span = cities.length %>
+                <% for(let i = 15; i < span; i++) { %>
+                  <% const  {name, slug, stateSlug}  = cities[i] %>
+                  <div class="findEA-locations__item">
+                    <a  href="/agents/<%= stateSlug %>/<%= slug %>" class="findEA-link">
+                      <span class="findEA-btn-right-angle">
+                        <img
+                          src="/assets/images/findEA/right-arrow-black.svg"
+                          alt=""
+                          class="findEA-btn-right-arrow-left"
+                        />
+                      </span>
+                      <%= capitalizeFirstLetter(name || '') %>
+                    </a>
+                  </div> 
+                    <% }} %> 
+          </div> 
+          <div class="findEA-locations__group">
+            <% if (typeof locals !=='undefined' && locals.cities && locals.cities.data && locals.cities.data.length> 30) { %>
+              <% const cities = locals.cities.data %>
+                <% for(let i = 30; i < cities.length; i++) { %>
+                  <% const  {name, slug, stateSlug}  = cities[i] %>
+                  <div class="findEA-locations__item">
+                    <a  href="/agents/<%= stateSlug %>/<%= slug %>" class="findEA-link">
+                      <span class="findEA-btn-right-angle">
+                        <img
+                          src="/assets/images/findEA/right-arrow-black.svg"
+                          alt=""
+                          class="findEA-btn-right-arrow-left"
+                        />
+                      </span>
+                      <%= capitalizeFirstLetter(name || '') %>
+                    </a>
+                  </div> 
+                    <% }} %> 
+       
+        </div>
+       
+      </div>
+       
+      
+      <div class="findEA-pagination">
+        <div class="findEA-pagination__button">
+          <button class="findEA-btn">View All States</button>
+          
+        </div>
+  <% if( typeof locals.cities !==' undefined' ) { %>
+      <% const { cities: {page, pages, perPage, total}, query}=locals %>
+        <div class="findEA-pagination__info">showing  <%= (((page || 0) -1) * (perPage || 0))+ 1 || 0%> to  <%=  Math.min((page || 1) * (perPage || 0), total) || 0%> of <%= total || 0%> entries</div>
+        <%- include("./partials/pagination.ejs", {page, pages, query }) %>
+          <% } %>
+
+
+            <!-- <div class="findEA-pagination__buttons">
+              <button class="findEA-btn findEA-pagination__buttons-btn">
+                <span class="findEA-btn-right-angle">
+                  <img src="/assets/images/findEA/left-arrow.svg" alt="" class="findEA-btn-right-arrow-left" />
+                </span>
+                <span class="findEA-pagination__buttons-txt"> Previous </span>
+              </button>
+              <button class="findEA-btn findEA-pagination__buttons-btn findEA-pagination__buttons-btn-selected">
+                1
+              </button>
+              <button class="findEA-btn findEA-pagination__buttons-btn">2</button>
+              <button class="findEA-btn findEA-pagination__buttons-btn">3</button>
+              <button class="findEA-btn findEA-pagination__buttons-btn">4</button>
+              <button class="findEA-btn findEA-pagination__buttons-btn">5</button>
+              <button class="findEA-btn findEA-pagination__buttons-btn">
+                <span class="findEA-pagination__buttons-txt"> Next </span>
+                <span class="findEA-btn-right-angle">
+                  <img src="/assets/images/findEA/right-arrow.svg" alt="" class="findEA-btn-right-arrow-right" />
+                </span>
+              </button>
+            </div> -->
+            </div>
+            <div class="findEA-suggested">
+              <div class="findEA-suggested__head">
+                <div class="findEA-suggested__head--head">Popular Agents in <%= capitalizeFirstLetter(locals.state.name)
+                    %>
+                </div>
+
+                <!-- <div class="findEA-suggested__head--text">Find a local Certified Public Accountant</div> -->
+              </div>
+              <div class="findEA-suggested__body">
+
+                <% if(locals.popular && locals.popular.length> 0){ %>
+                  <% locals.popular.map((e, id)=> { %>
+                    <div class="findEA-suggested__item">
+                      <div class="findEA-suggested__item--image">
+                        <img src="/assets/images/findEA/smiler.jpg" alt="michael Rosdale"
+                          class="findEA-suggested__item--image-img" />
+                      </div>
+                      <div class="findEA-suggested__item--container">
+                        <div class="findEA-suggested__item--name"><%= e.firstName %> <%= e.lastName %></div>
+                        <div class="findEA-suggested__item--location"><%= e.city %>, <%= e.state %></div>
+                        <div class="findEA-suggested__item--rating">
+                          <img src="/assets/images/findEA/star-filled.svg" alt="Rating" class="findEA-star-rating" />
+                          <img src="/assets/images/findEA/star-filled.svg" alt="Rating" class="findEA-star-rating" />
+                          <img src="/assets/images/findEA/star-filled.svg" alt="Rating" class="findEA-star-rating" />
+                          <img src="/assets/images/findEA/star-empty.svg" alt="Rating" class="findEA-star-rating" />
+                          <img src="/assets/images/findEA/star-empty.svg" alt="Rating" class="findEA-star-rating" />
+                        </div>
+                        <div class="findEA-suggested__item--button">
+                          <a href="/agent/<%= e._id%>" class="findEA-btn findEA-suggested__item--button-btn">View Profile</a>
+                        </div>
+                      </div>
+                    </div>
+                    <% })} %>
+
+              </div>
+            </div>
+            </div>
+
+            <%- include("./partials/footer.ejs") %>
+              <script type="text/javascript" src="/js/ccenter.js"></script>
+              <script src="/js/custom.js"></script>
+              <script>
+                function search() {
+                  const input = document.getElementById("search").value
+                  // console.log(input)
+                  window.location = `/ea-listings/?search=${input}`
+                }
+                function onload() {
+                  const input = document.getElementById("search")
+                  const urlParams = new URLSearchParams(window.location.search);
+                  const _search = urlParams.get(' search'); input.value = _search input.addEventListener("keyup", function (event) { // Number 13 is the "Enter" key on the keyboard if (event.keyCode===13) { search() }}) // console.log(_search) }
+              </script>
+</body>
+
+</html>
