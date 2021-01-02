@@ -1,0 +1,217 @@
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.section-wrapper {
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+a {
+  color: #61a0ec;
+}
+
+.caret-img {
+  max-width: 8px;
+}
+
+.small-arrow {
+  width: 12px;
+}
+
+.page-banner {
+  background-color: #edebee;
+
+  .page-banner_image {
+    position: relative;
+    width: 100%;
+    height: 340px;
+    background: url('/assets/files/firmBg.png') center center no-repeat;
+    background-size: cover;
+    font-family: serif;
+    z-index: 0;
+    text-align: center;
+
+    .page-banner_title {
+      transform: translateY(10%);
+      margin-bottom: 90px;
+      h2 {
+      font-size: 68px;
+      font-family: serif;
+      font-weight: 500;  
+      color: #000;
+   }
+
+   h4 {
+     font-size: 20px;
+   }
+    }
+
+    
+
+   .acct-firms-btn {
+     padding: 12px;
+     color: white;
+     border-radius: 3px;
+     background: #01105b;
+     font-family: "Arial";
+   }
+  }
+  
+}
+
+.alabama-acct-firmlist {
+  height: 630px;
+  background: #ffffff;
+
+  .top-margin {
+    margin-top: 40px;
+  }
+
+  .records {
+    width: 50px;
+    height: 30px;
+    
+  }
+
+  .search-bar {
+    width: 250px;
+    height: 30px;
+    
+  }
+
+  .select-by-order {
+    width: 100px;
+    height: 30px;
+    margin-left: -35px;
+  }
+
+  .select-by-flow {
+    width: 100px;
+    height: 30px;
+    margin-left: -30px;
+  }
+
+
+  .states-list a{
+    display: block;
+    color: #086CEF;
+  }
+
+  .btn-div {
+    margin-left: -50px;
+  }
+
+  .btn-pages {
+    height: 40px;
+    border: 2px solid #c6c6c6;
+    border-radius: 2px;
+  }
+
+  .btn-previous {
+    width: 100px;
+  }
+
+  .btn-page-num {
+    width: 30px;
+  }
+
+  .btn-next {
+    width: 70px;
+  }
+
+  .left-margin {
+    margin-left: 40px;
+  }
+
+  .additional-tp-mar {
+    margin-top: 80px;
+  }
+
+  .small-tp-mar {
+    margin-top: 10px;
+  }
+}
+
+.view-states-btn{
+    background-color: #086CEF;
+    &:hover{
+        color: #fff;
+        background-color: $main-blue;
+    }
+}
+
+.pop-alab-firms {
+  height: 900px;
+  width: 100%;
+  background: #f6f6f6;
+  padding-top: 50px;
+  text-align: center;
+
+  .find-local-cert-acct{
+      color: #086CEF;
+      font-size: 20px;
+  }
+ 
+  .acct-grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-column-gap: 30px;
+      grid-row-gap: 100px;
+  }
+
+  .acct-profile {
+    width: 100%;
+    max-width: 350px;
+    height: 250px;
+    background: #ffffff;
+  }
+
+  .acct-pic-div {
+    // position: absolute;
+    // top: -56px;
+    // left: 140px;
+    margin: -56px auto 0;
+    width: 112px;
+    height: 112px;
+    // background: url('') top center no-repeat;
+
+    img {
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .ratings {
+    margin-top: 20px;
+  }
+
+  .star-ratings {
+    margin: 10px auto;
+    width: 120px;
+  }
+
+  .top-padding {
+    padding-top: 100px;
+  }
+
+  .btn-v-prof {
+    width: 110px;
+    height: 30px;
+    border-radius: 3px;
+    background: #01105b;
+    color: #ffffff;
+    margin-top: 20px;
+    padding: 12px;
+  }
+
+  h3 {
+    font-weight: 600;
+  }
+}

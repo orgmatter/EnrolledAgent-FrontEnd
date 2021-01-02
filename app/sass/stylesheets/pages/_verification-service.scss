@@ -1,0 +1,179 @@
+#verification .verification-top .logo {
+  text-align: center;
+}
+#verification .verification-top .logo img {
+  margin: 1rem auto;
+  height: 60px;
+  width: 462px;
+}
+#verification .verification-top .verification-top-text h3 {
+  font-size: 80px;
+  font-family: "Baskerville Old Face";
+  color: #000;
+  font-weight: bold;
+  margin: 0.8rem;
+  text-align: center;
+}
+#verification .verification-top .verification-top-text p {
+  font-size: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #000;
+  font-weight: normal;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+#payment {
+  background: #f6f6f6;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#payment .payment-top {
+  text-align: center;
+}
+
+#payment .payment-top h3 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+#payment .payment-top p {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+#payment .cards {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+#payment .cards .img-bg {
+  width: 300px;
+  height: 158px;
+  background: #fff;
+  display: flex;
+  margin-bottom: 1rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  //   margin: 1rem 2rem;
+}
+
+// verification form
+
+#payment .payment-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#payment .card-no,
+#payment .state {
+  display: flex;
+  justify-content: space-between;
+}
+
+#payment .payment-top h4,
+#payment .payment-form h4 {
+  // text-align: flex-start;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+#payment label,
+#payment input,
+.card-no .card-img {
+  display: block;
+  text-align: left;
+}
+
+#payment input {
+  border: 1px solid #828282;
+}
+#payment label {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+#payment .state input {
+  width: 170px;
+}
+#payment .card-no .card-num input {
+  width: 280px;
+}
+.card-no .card-img {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  background: #fff;
+  height: 50px;
+  padding: 0.5rem;
+  border: 1px solid #828282;
+  margin-top: 0.4rem !important;
+}
+
+#payment input {
+  width: 400px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+#payment .b-tons {
+  margin: 5rem;
+}
+
+#payment .b-tons .b-ton {
+  color: #fff;
+  background: #01105b;
+  box-shadow: 0px 8px 18px #0000000f;
+  padding: 1rem 5rem;
+}
+
+@media (max-width: 600px) {
+  #verification .verification-top .logo img {
+    margin: 1rem auto;
+    height: 50px;
+    width: 400px;
+  }
+
+  #verification .verification-top .verification-top-text h3 {
+    font-size: 60px;
+  }
+  #payment input {
+    width: 300px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  #payment .state input {
+    width: 140px;
+  }
+
+  #payment .card-no .card-num input {
+    width: 180px;
+  }
+
+  .card-no .card-img {
+    height: 42px;
+  }
+  #payment .b-tons .b-ton {
+    color: #fff;
+    background: #01105b;
+    box-shadow: 0px 8px 18px #0000000f;
+    padding: 1rem 3rem;
+  }
+}
+
+@media (max-width: 350px) {
+  #payment .b-tons .b-ton {
+    color: #fff;
+    background: #01105b;
+    box-shadow: 0px 8px 18px #0000000f;
+    padding: 1rem 1.5rem;
+  }
+}

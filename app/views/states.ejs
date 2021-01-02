@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-<%- include("./partials/homeHead.ejs") %>
+    
+<%- include("./partials/head.ejs") %>
+
 
     <body class="home-body">
         <% function capitalizeFirstLetter(str) {%>
@@ -16,9 +18,7 @@
       <div class="main-content">
         <!-- Section: home -->
       
-
-
-        <div style=" padding: 300px;">
+        <div id="vmap" style="width: 800px; height: 400px; margin: auto; margin-top: 5%; margin-bottom: 5%; padding: 300px;">
         </div>
 
         <div class="findEA-locations" style="height: 100%;">
@@ -42,8 +42,7 @@
                                     <% }} %>
                                         </div>
                                         <div class="findEA-locations__group">
-                                            <% if (typeof locals !=='undefined' && locals.states && locals.states &&
-                                                locals.states.length> 20) { %>
+                                            <% if (typeof locals !=='undefined' && locals.states && locals.states && locals.states.length> 20) { %>
                                                 <% const states=locals.states %>
                                                     <% let span=40 %>
                                                         <% if(states.length <=span) span=states.length %>
@@ -63,8 +62,7 @@
                                                                     <% }} %>
                                         </div>
                                         <div class="findEA-locations__group">
-                                            <% if (typeof locals !=='undefined' && locals.states && locals.states &&
-                                                locals.states.length> 40) { %>
+                                            <% if (typeof locals !=='undefined' && locals.states && locals.states && locals.states.length> 40) { %>
                                                 <% const states=locals.states %>
                                                     <% for(let i=40; i < states.length; i++) { %>
                                                         <% const {name, slug} = states[i] %>
@@ -100,111 +98,8 @@
 
                                                 <!-- Footer Scripts -->
                                                 <!-- JS | Chart-->
-                                                <script type="text/javascript">
-                                                    var tpj = jQuery;
-                                                    var revapi34;
-                                                    tpj(document).ready(function () {
-                                                        if (tpj("#rev_slider_home").revolution == undefined) {
-                                                            revslider_showDoubleJqueryError("#rev_slider_home");
-                                                        } else {
-                                                            revapi34 = tpj("#rev_slider_home")
-                                                                .show()
-                                                                .revolution({
-                                                                    sliderType: "standard",
-                                                                    jsFileLocation: "js/revolution-slider/js/",
-                                                                    sliderLayout: "fullwidth",
-                                                                    dottedOverlay: "none",
-                                                                    delay: 5000,
-                                                                    navigation: {
-                                                                        keyboardNavigation: "on",
-                                                                        keyboard_direction: "horizontal",
-                                                                        mouseScrollNavigation: "off",
-                                                                        onHoverStop: "off",
-                                                                        touch: {
-                                                                            touchenabled: "on",
-                                                                            swipe_threshold: 75,
-                                                                            swipe_min_touches: 1,
-                                                                            swipe_direction: "horizontal",
-                                                                            drag_block_vertical: false,
-                                                                        },
-                                                                        arrows: {
-                                                                            style: "zeus",
-                                                                            enable: false,
-                                                                            hide_onmobile: true,
-                                                                            hide_under: 600,
-                                                                            hide_onleave: true,
-                                                                            hide_delay: 200,
-                                                                            hide_delay_mobile: 1200,
-                                                                            tmp:
-                                                                                '<div class="tp-title-wrap">    <div class="tp-arr-imgholder"></div> </div>',
-                                                                            left: {
-                                                                                h_align: "left",
-                                                                                v_align: "center",
-                                                                                h_offset: 30,
-                                                                                v_offset: 0,
-                                                                            },
-                                                                            right: {
-                                                                                h_align: "right",
-                                                                                v_align: "center",
-                                                                                h_offset: 30,
-                                                                                v_offset: 0,
-                                                                            },
-                                                                        },
-                                                                        bullets: {
-                                                                            enable: false,
-                                                                            hide_onmobile: true,
-                                                                            hide_under: 600,
-                                                                            style: "metis",
-                                                                            hide_onleave: true,
-                                                                            hide_delay: 200,
-                                                                            hide_delay_mobile: 1200,
-                                                                            direction: "horizontal",
-                                                                            h_align: "center",
-                                                                            v_align: "bottom",
-                                                                            h_offset: 0,
-                                                                            v_offset: 30,
-                                                                            space: 5,
-                                                                            tmp:
-                                                                                '<span class="tp-bullet-img-wrap"><span class="tp-bullet-image"></span></span>',
-                                                                        },
-                                                                    },
-                                                                    viewPort: {
-                                                                        enable: true,
-                                                                        outof: "pause",
-                                                                        visible_area: "80%",
-                                                                    },
-                                                                    responsiveLevels: [1240, 1024, 778, 480],
-                                                                    gridwidth: [1240, 1024, 778, 480],
-                                                                    gridheight: [600, 550, 500, 450],
-                                                                    lazyType: "none",
-                                                                    parallax: {
-                                                                        type: "scroll",
-                                                                        origo: "enterpoint",
-                                                                        speed: 400,
-                                                                        levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50],
-                                                                    },
-                                                                    shadow: 0,
-                                                                    spinner: "off",
-                                                                    stopLoop: "off",
-                                                                    stopAfterLoops: -1,
-                                                                    stopAtSlide: -1,
-                                                                    shuffle: "off",
-                                                                    autoHeight: "off",
-                                                                    hideThumbsOnMobile: "off",
-                                                                    hideSliderAtLimit: 0,
-                                                                    hideCaptionAtLimit: 0,
-                                                                    hideAllCaptionAtLilmit: 0,
-                                                                    debugMode: false,
-                                                                    fallbacks: {
-                                                                        simplifyAll: "off",
-                                                                        nextSlideOnWindowFocus: "off",
-                                                                        disableFocusListener: false,
-                                                                    },
-                                                                });
-                                                        }
-                                                    }); /*ready*/
-                                                </script>
-                                                <script type="text/javascript" src="/javascripts/findAgent.js"></script>
+                                               
+                                                
                                                 <script src="/js/custom.js"></script>
 
                                                 <script>
@@ -227,7 +122,27 @@
                                                         // console.log(_search)
                                                     }
                                                 </script>
-
+ <script type="text/javascript" src="/javascripts/jvmap/jquery.vmap.min.js"></script>
+    <script type="text/javascript" src="/javascripts/jvmap/maps/jquery.vmap.usa.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+        jQuery('#vmap').vectorMap({ 
+          map: 'usa_en',
+          enableZoom: true,
+          showTooltip: true,
+          selectedColor: null,
+          hoverColor: null,
+          colors: {
+            mo: '#C9DFAF',
+            fl: '#C9DFAF',
+            or: '#C9DFAF'
+          },
+        });
+    });
+ </script>
+                                               
+                                                
+                                               
     </body>
 
 </html>
