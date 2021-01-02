@@ -122,7 +122,24 @@
                                                         // console.log(_search)
                                                     }
                                                 </script>
-
+ <script type="text/javascript" src="/javascripts/jvmap/jquery.vmap.min.js"></script>
+    <script type="text/javascript" src="/javascripts/jvmap/maps/jquery.vmap.usa.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+        jQuery('#vmap').vectorMap({ 
+          map: 'usa_en',
+          enableZoom: true,
+          showTooltip: true,
+          selectedColor: null,
+          hoverColor: null,
+          colors: {
+            mo: '#C9DFAF',
+            fl: '#C9DFAF',
+            or: '#C9DFAF'
+          },
+        });
+    });
+ </script>
                                                
                                                 
                                                
