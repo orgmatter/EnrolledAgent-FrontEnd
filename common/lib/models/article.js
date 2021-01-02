@@ -20,6 +20,14 @@ const Article = new Schema({
     ref: 'articleCategory',
     type: Schema.ObjectId
   },
+  user: {
+    ref: 'user',
+    type: Schema.ObjectId
+  }, 
+  sponsor: {
+    ref: 'sponsor',
+    type: Schema.ObjectId
+  },
   title: String,
   imageUrl: String,
 }, { timestamps: true })
