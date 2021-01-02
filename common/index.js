@@ -6,6 +6,7 @@ module.exports = {
   ErrorMessage: require('./lib/utils/errorMessage'),
   EmailTemplates: require('./lib/utils/emailTemplates'),
   Constants: require('./lib/utils/constants'),
+  CSVParser: require('./lib/service/csvParser'),
   MailService: require('./lib/service/mailService'),
   JwtManager: require('./lib/service/jwtManager'),
   LogService: require('./lib/service/logService'),
