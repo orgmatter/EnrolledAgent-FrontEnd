@@ -1,0 +1,214 @@
+#acct-top {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%),
+    url("/assets/files/need-accountant.png") no-repeat center center/cover;
+  // height: 405px;
+  // display: flex;
+  // flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Baskerville Old Face" !important;
+}
+
+#acct-top h2 {
+  color: #ffffff;
+  font-size: 80px;
+  font-family: "Baskerville Old Face";
+  text-align: left;
+}
+
+#acct-top h5 {
+  color: #c5c5c5;
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: left;
+}
+
+#acct-top p {
+  color: #ffffff;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: left;
+  margin-top: 1rem;
+}
+
+#acct-form {
+  background: #f6f6f6;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+#acct-form .acct-form-top h3 {
+  font-size: 40px;
+  font-weight: bold;
+  margin-top: 1rem;
+  color: #000;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#acct-form .acct-form-top p {
+  font-size: 22px;
+  font-weight: normal;
+  color: #000;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#acct-form .main-form .first-flex,
+#acct-form .main-form .second-flex,
+#acct-form .main-form .third-flex,
+#acct-form .main-form .fourth-flex,
+#acct-form .main-form small,
+#acct-form .main-form .text-area {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  margin: 2rem auto;
+}
+
+#acct-form .main-form .first-flex input,
+#acct-form .main-form .second-flex input,
+#acct-form .main-form .fourth-flex input,
+#acct-form .main-form .third-flex .state-flex input,
+#acct-form .main-form .text-area #method {
+  width: 450px;
+  padding: 1rem;
+  border: 1px solid #ababab;
+  border-radius: 4px;
+  background: #fff;
+}
+
+#acct-form .main-form .third-flex .inner-flex {
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+}
+#acct-form .main-form .third-flex .inner-flex input {
+  padding: 1rem;
+  border: 1px solid #ababab;
+  border-radius: 4px;
+  background: #fff;
+  width: 225px;
+}
+
+#acct-form .main-form ::placeholder {
+  color: #000;
+  font-size: 15px;
+}
+
+#acct-form .main-form small {
+  color: #000;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 1rem auto 0 auto;
+}
+
+#acct-form .main-form .text-area {
+  display: block;
+  text-align: left;
+}
+
+#acct-form .main-form .text-area textarea {
+  resize: none;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ababab;
+  border-radius: 4px;
+  margin-top: 0;
+  height: 250px;
+}
+
+#acct-form .main-form .text-area #method {
+  margin: 2rem 0 1rem 0;
+}
+
+#acct-form .main-form .text-area p {
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  color: #000;
+}
+
+#acct-form .main-form .b-tons {
+  text-align: center;
+  margin: 5rem 0;
+}
+
+#acct-form .main-form .b-tons a {
+  background: #01105b;
+  color: #fff;
+  font-size: 16px;
+  padding: 1rem 5rem;
+  box-shadow: 0px 8px 18px #0000000f;
+}
+
+#last-section {
+  background: #f6f6f6;
+  text-align: left;
+  margin-bottom: 3rem;
+}
+
+#last-section p {
+  font-size: 14px;
+  color: #a2a2a2;
+  margin: 1rem 0;
+}
+
+// media querries
+@media (max-width: 600px) {
+  #acct-top h2 {
+    color: #ffffff;
+    font-size: 60px;
+    font-family: "Baskerville Old Face";
+    text-align: left;
+  }
+
+  #acct-form .main-form .first-flex,
+  #acct-form .main-form .second-flex,
+  #acct-form .main-form .third-flex,
+  #acct-form .main-form .fourth-flex {
+    flex-wrap: wrap;
+  }
+
+  #acct-form .main-form .first-flex input,
+  #acct-form .main-form .second-flex input,
+  #acct-form .main-form .fourth-flex input,
+  #acct-form .main-form .third-flex .state-flex input,
+  #acct-form .main-form .third-flex .inner-flex input,
+  #acct-form .main-form .text-area #method {
+    margin: 1rem;
+  }
+
+  #acct-form .main-form .first-flex,
+  #acct-form .main-form .second-flex,
+  #acct-form .main-form .third-flex,
+  #acct-form .main-form .fourth-flex,
+  #acct-form .main-form .third-flex .state-flex {
+    margin: 0;
+  }
+
+  #acct-form .main-form .third-flex .state-flex input,
+  #acct-form .main-form .text-area #method {
+    width: 285px;
+  }
+  #acct-form .main-form .text-area #method {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 350px) {
+  #acct-form .main-form .b-tons a {
+    background: #01105b;
+    color: #fff;
+    font-size: 14px;
+    padding: 1rem;
+    box-shadow: 0px 8px 18px #0000000f;
+  }
+}

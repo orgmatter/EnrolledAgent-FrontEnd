@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+    <meta name="pages" content="1" />
+  <meta name="data" content="<%= [] %> " />
+  <meta name="page" content="1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <%- include("./partials/head.ejs") %>
+  <body>
+    <%- include("./partials/header.ejs") %>
+    <div class="page-banner">
+      <div class="page-banner_image section-wrapper">
+        <div class="page-banner_title">
+          <h2 class="page-heading">Alabama Accounting Firms</h2>
+          <h4 class="subheading">Lorem Ipsum dolor sit amet, consentetur sadipscing elitir.</h4>
+        </div>
+        <a href="" class="acct-firms-btn">Alabama Accounting Firms</a>
+      </div>
+    </div>
+    <div class="alabama-acct-firmlist section-wrapper">
+      <div class="container top-margin">
+        <!-- <div class="row">
+          <div class="col-md-6">
+            <select name="records" id="" class="records">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+            <label for="records">Records per state</label>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-7">
+                <label for="search">Search:</label>
+                <input type="text" class="search-bar">
+              </div>
+              <div class="col-md-2">
+                <select name="order" id="" class="select-by-order">
+                  <option value="1">Order By</option>
+                  <option value="2">2</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <select name="flow" id="" class="select-by-flow">
+                  <option value="1">Descending</option>
+                  <option value="2">Ascending</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div> -->
+         <div class="row top-margin section-wrapper">
+          <div class="col-md-4 states-list">
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Abbeville Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Alaska Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Arizona Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Arkansas Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Carlifornia Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Colorado Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Connecticut Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Delaware Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> D.C Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Florida Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Georgia Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Hawaii Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Idaho Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Ilinois Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Indiana Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Iowa Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Kansas Accountants</a>
+          </div>
+          <div class="col-md-4 states-list">
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Kentucky Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Louisiana Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Maine Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Maryland Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Massachusetts Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Michigan Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Minnesota Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Mississippi Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Missouri Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Montana Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Nebraska Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Nevada Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> New Hampshire Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> New Jersey Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> New Mexico Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> New York Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> North Carolina Accountants</a>
+          </div>
+          <div class="col-md-4 states-list">
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> North Dakota Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Ohio Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Oklahoma Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Oregon Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Pennsylvania Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Rhode Island Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> South Carolina Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> South Dakota Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Tennessee Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Texas Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Utah Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Vermont Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Virginia Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Washington Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> West Virginia Accountants</a>
+            <a href=""><img src="/assets/files/angle-right-solid.svg" alt="" class="caret-img"> Wiscosin Accountants</a>
+          </div>
+        </div> 
+        <div class="row top-margin additional-tp-mar">
+          <div class="col-md-6">
+            <a class="btn btn-lg btn-primary left-margin view-states-btn">View all States</a>
+          </div>
+         
+          <div class="col-md-6 btn-div">
+              <nav class="MyPagination">
+                 <ul class="pagination">
+                     <ul id="pagination" class="pagination-sm"></ul>
+                 </ul>
+                </nav>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="pop-alab-firms">
+      <div class="container">
+        <h2>Popular Accounting Firms in Alabama</h2>
+        <a href="/find-agent" class="find-local-cert-acct">Find a local and Certified Public Accountant</a>
+        <div class="row top-padding">
+            <% if(locals.popular.length > 0) { %>
+                
+                    <div class="acct-grid">
+                        <% locals.popular.map((e, id) => { %>
+                        <div class="acct-profile">
+                            <div class="acct-pic-div">
+                                <img src="/assets/files/18270627@2x.png"  alt="" class="acct-pic">
+                            </div>
+                            <div class="ratings">
+                                <h3 class="accountant-name"><%= e.firstName %> <%= e.lastName %></h3>
+                                <h4><%= e.city %>, <%= e.state %></h4>
+                            </div>
+                            <div class="star-ratings">
+                                <img src="/assets/files/Group 5985.png" alt="" class="star-rating_starNo">
+                            </div>
+                            <div class="mt-20">
+                            <a href="/agent/<%= e._id %>" class="btn-v-prof">View Profile</a>
+                            </div>
+                        </div>
+                         <% }) %>  
+                    </div>
+                 
+            <% } else { %>
+                <p>No data available.</p>
+            <% } %>
+        </div>
+      </div>
+    </div>
+    
+    <%- include("./partials/footer.ejs") %>
+    
+    <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
+    <script src="/javascripts/pagination.js"></script>
+     <script src="/js/custom.js"></script>
+  </body>
+</html>
