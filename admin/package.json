@@ -8,7 +8,10 @@
     "dev": "DEBUG=server,api,email-templates nodemon --ignore public,node-modules,upload",
     "dev-win": "set DEBUG=server,api,email-templates && nodemon --ignore public,node-modules,upload",
     "lint": "eslint ",
-    "generate-city": "node seeder/index.js -c"
+    "seed-city": "node seeder/index.js -c",
+    "seeder-help": "node seeder/index.js -h",
+    "recreate-index": "node seeder/index.js -i",
+    "seed-agents": "node seeder/index.js -a"
   },
   "repository": {
     "type": "git",
