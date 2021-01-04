@@ -48,6 +48,8 @@ class AuthController {
 
         AdminUser.findOne({ email: email })
             .then((user) => {
+                user.lastLogin = new Date()
+                user.save()
                 log.info(!(user && user.email))
                 if (!(user != null && user.email != null)) {
                     return next(

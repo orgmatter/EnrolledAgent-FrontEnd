@@ -12,7 +12,7 @@ const argv = yargs
     })
     .option('index', {
         alias: 'i',
-        description: 'Delete and recreate indexes, enter Model name separated by comma',
+        description: 'Delete and recreate indexes, enter Model name separated by comma, you can specify all to generate for all',
         type: 'string',
     })
     .option('user', {
