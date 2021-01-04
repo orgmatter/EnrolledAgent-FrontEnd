@@ -27,7 +27,7 @@ const generateSlug = function (text) {
 const CategorySchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: true, index: true,
     unique: true
   },
   slug: { type: String, slug: "name", index: true, transform: v => generateSlug(v) },

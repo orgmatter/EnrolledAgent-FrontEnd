@@ -23,8 +23,8 @@ const generateSlug = function (text) {
 
 const AgentSchema = new Schema({
 
-  firstName: String,
-  lastName: String,
+  firstName:  { type: String, index: true},
+  lastName:  { type: String, index: true},
   email: String,
   bio: String,
   phone: String,
@@ -42,24 +42,14 @@ const AgentSchema = new Schema({
     enum: ['male', 'female']
   },
   stateSlug: { type: String, slug: "state", index: true, transform: v => generateSlug(v) },
-  cityslug: { type: String, slug: "city", index: true, transform: v => generateSlug(v) },
-  stateCode: String,
-  education: String,
-  professionalMembership: [String],
-  education: String,
-  phone: String,
-  lisense: String,
-  lisenseProof: String,
-  industry: [String],
-  service: [String],
-  languages: [String],
+  cityslug: { type: String, slug: "name", index: true, transform: v => generateSlug(v) },
   address1: String,
   address2: String,
   address3: String,
-  country: String,
-  state: String,
-  city: String,
-  zipcode: String,
+  country:  { type: String, index: true},
+  state:  { type: String, index: true},
+  city:  { type: String, index: true},
+  zipcode:  { type: String, index: true},
   imageUrl: String,
   website: String,
 }, { toJSON: { virtuals: true }, timestamps: true })
@@ -75,6 +65,15 @@ AgentSchema.index({
   firstName: 'text',
   lastName: 'text',
 })
+
+// AgentSchema.index({
+//   zipcode: 1,
+//   city: 1,
+//   state: 1,
+//   country: 1,
+//   firstName:1,
+//   lastName: 1,
+// })
 
 AgentSchema.virtual('reviewCount', {
   ref: 'review',

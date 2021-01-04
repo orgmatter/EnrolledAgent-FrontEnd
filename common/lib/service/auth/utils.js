@@ -52,7 +52,7 @@ exports.authenticateUser = function (user, password, done) {
  * @param  {string} provider
  */
 exports.authenticateWithProvider = async function (user, provider, done) {
-    console.log(user, provider)
+    // console.log(user, provider)
     const { email } = user
     if (!email) done({ message: 'Sorry cannot validate your profile, please try again' })
     var usr = await User.findOne({ email })
@@ -65,15 +65,13 @@ exports.authenticateWithProvider = async function (user, provider, done) {
     })
 
 
-
-
     else {
         if (usr.providers && !usr.providers.includes(provider))
             usr.providers.push(provider)
 
         if (!usr.imageUrl || user.imageUrl) usr.imageUrl = user.imageUrl
     }
-    usr.lastLogin = Date()
+    usr.lastLogin = new Date()
     await usr.save()
 
 

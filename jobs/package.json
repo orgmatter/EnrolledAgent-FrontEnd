@@ -1,0 +1,48 @@
+{
+  "name": "jobs",
+  "version": "0.0.2",
+  "description": " ",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node index.js",
+    "dev": "DEBUG=server,api,email-templates,enrolled* nodemon --ignore public,node-modules,upload"
+  },
+  "keywords": [
+    "pubsub",
+    "queue"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/bamyx-it-solutions/enrolled-agents.git"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/bamyx-it-solutions/enrolled-agents/issues"
+  },
+  "homepage": "https://gitlab.com/bamyx-it-solutions/enrolled-agents#readme",
+  "author": "Wisdom Ekeh",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-google": "^0.14.0",
+    "grunt": "^1.1.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-eslint": "^22.0.0",
+    "grunt-mocha": "^1.2.0",
+    "grunt-mocha-test": "^0.13.3",
+    "prettier": "2.0.4",
+    "prettier-eslint": "^9.0.1"
+  },
+  "dependencies": {
+    "async": "^3.2.0",
+    "common": "file:../common",
+    "concat-stream": "^2.0.0",
+    "cron": "^1.8.2",
+    "dotenv": "^8.2.0",
+    "moment": "^2.26.0",
+    "node-redis-pubsub": "^4.0.0",
+    "payment_module": "file:../payment",
+    "should": "^13.2.3",
+    "uid": "^1.0.0"
+  }
+}
