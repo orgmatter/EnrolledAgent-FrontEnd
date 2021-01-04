@@ -48,9 +48,7 @@ class AuthController {
 
         AdminUser.findOne({ email: email })
             .then((user) => {
-                user.lastLogin = new Date()
-                user.save()
-                log.info(!(user && user.email))
+               
                 if (!(user != null && user.email != null)) {
                     return next(
                         new Exception(
@@ -85,6 +83,9 @@ class AuthController {
                         )
                     )
                 }
+                user.lastLogin = new Date()
+                user.save()
+                log.info(!(user && user.email))
 
                 const token = jwt.signToken(Helper.userToSession(user, Constants.ACCOUNT_TYPE.admin))
                 user.token = token
