@@ -1,9 +1,13 @@
 const express = require("express");
-const { Middleware} = require("common");
- 
+const { Middleware, Models } = require("common");
+const { models } = require("mongoose");
+
 
 // initialize mongodb
 Middleware.MongoConnection;
+Middleware.createIndex
+.then(console.log)
+.catch(console.log)
 
 const server = express();
 
