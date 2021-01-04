@@ -26,7 +26,7 @@ module.exports = (server, view) => {
     server.use(userAgent.express())
     server.use(cookieParser(config.SECRET))
     server.use(SessionUtil.newSession)
-    server.use(csrf())
+    // server.use(csrf())
 
     // view engine setup
     server.set('views', view)

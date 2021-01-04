@@ -63,11 +63,11 @@ module.exports = class LocalLoginStrategy {
                             )
                         )
                     }
-                    AdminUser.findOne({
+                    User.findOne({
                         email: email,
                     }).then((user) => {
-                        // Log.info(!(user && user.email))
-
+                        user.lastLogin = new Date()
+                        user.save()
                         authenticateUser(user, password, done)
                     })
                 })

@@ -28,7 +28,7 @@ const CategorySchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    unique: true
+    unique: true, index: true
   },
   slug: { type: String, slug: "name", index: true, transform: v => generateSlug(v) },
   description: {

@@ -10,7 +10,7 @@ const {
 } = require("common");
 
 const BaseController = require("../controllers/baseController");
-Agent.ensureIndexes();
+Agent.syncIndexes();
 
 class AgentController extends BaseController {
   async get(req, res, next) {
