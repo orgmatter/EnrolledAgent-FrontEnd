@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const slug = require('mongoose-slug-updater') 
+const slug = require('mongoose-slug-updater')
 
 options = {
   separator: "-",
@@ -14,12 +14,12 @@ const generateSlug = function (text) {
   let slug = String(text)
   if (!slug) return
   slug = slug
-  .replace(/[^a-zA-Z ]/g, "")
-  .trim()
-  .replace(' ', '-')
-  .toLowerCase()
-  .replace(' ', '-')
-  .replace(' ', '-')
+    .replace(/[^a-zA-Z ]/g, "")
+    .trim()
+    .replace(' ', '-')
+    .toLowerCase()
+    .replace(' ', '-')
+    .replace(' ', '-')
   return slug
 }
 
@@ -27,20 +27,21 @@ const CitySchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    unique: true
+    index: true
   },
-  state: String,
+  state: { type: String, index: true },
   stateSlug: { type: String, slug: "state", index: true, transform: v => generateSlug(v) },
   slug: { type: String, slug: "name", index: true, transform: v => generateSlug(v) },
   count: {
     type: Number,
-    default: 0
+    default: 0,
+    index: true
   },
 
 })
 
 CitySchema.index({
   name: 1,
-  slug: 1,  
-})
+  state: 1,
+}, )
 module.exports = mongoose.model('city', CitySchema)

@@ -1,175 +1,198 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <%- include("./partials/head.ejs") %>
+<%- include("./partials/head.ejs") %>
 
   <body>
     <%- include("./partials/header.ejs") %>
 
-    <section id="single">
-      <div class="container">
-        <div class="row">
-          <aside class="col-md-4 part-1">
-            <div class="face-card cards">
-              <img src="/assets/files/person-img.png" alt="img" />
-              <h4>Premium Member</h4>
-              <h2><%= locals.agent.firstName || "N/A" %> <%= locals.agent.lastName || "N/A" %></h2>
-              <p><%= locals.agent.city || "N/A" %></p>
-              <img class="star-img" src="/assets/files/star-rating.png" alt="" />
-              <small>2 reviews</small>
-              <h5><b>Service Offered:</b> General Accounting Service.</h5>
-              <a href="/claim-listing" class="btn btn-lg b-ton">Is this your listing? Claim now</a>
-            </div>
-
-            <div class="btn-div">
-              <a href="tel:<%= locals.agent.phone%>" class="btn btn-primary btn-block b-ton">
-                Call Now</a
-              >
-            </div>
-
-            <div class="personal-card cards text-center">
-              <h3><span>Personal</span> Info</h3>
-              <p><span>Address:</span> <%= locals.agent.address1 || "N/A" %></p>
-              <p><span>Phone number:</span> <%= locals.agent.phone || "N/A" %></p>
-              <p>
-                <span>Social:</span>
-                <a href="#"><i class="fa fa-instagram"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-facebook-f"></i></a>
-                <a href="#"><i class="fa fa-globe"></i></a>
-              </p>
-              <div class="b-ton-group">
-                <a href="#" class="btn b-ton left">
-                  <i class="fa fa-map-marker-alt"></i> Get Direction</a
-                >
-                <a href="#" class="btn b-ton right">
-                  <i class="fa fa-download"></i> Download contact</a
-                >
+      <section id="single">
+        <div class="container">
+          <div class="row">
+            <aside class="col-md-4 part-1">
+              <div class="face-card cards">
+                <img src="/assets/files/person-img.png" alt="img" />
+                <h4>Premium Member</h4>
+                <h2>
+                  <%= locals.agent.firstName || "N/A" %>
+                    <%= locals.agent.lastName || "N/A" %>
+                </h2>
+                <p>
+                  <%= locals.agent.city || "N/A" %>
+                </p>
+                <img class="star-img" src="/assets/files/star-rating.png" alt="" />
+                <small>2 reviews</small>
+                <h5><b>Service Offered:</b> General Accounting Service.</h5>
+                <a href="/claim-listing" class="btn btn-lg b-ton">Is this your listing? Claim now</a>
               </div>
-            </div>
 
-            <div class="cards last-card text-center">
-              <a class="link-1" href="#">Visit website</a>
+              <div class="btn-div">
+                <a href="tel:<%= locals.agent.phone%>" class="btn btn-primary btn-block b-ton">
+                  Call Now</a>
+              </div>
 
-              <a href="/find-agent" class="btn btn-primary link-2">
-                <i class="fa fa-search"></i>
-                Find a Local EA
-              </a>
-            </div>
-          </aside>
-          <main class="col-md-7 part-2">
-            <div class="about">
-              <h3>
-                <span>About </span><%= locals.agent.firstName || "N/A" %> <%= locals.agent.lastName
-                || "N/A" %>
-              </h3>
-              <p>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-                eos et accusamundefined nonumy eirmod tempor invidunt ut labore et dolore magna
-                aliquyam erat, sed diam voluptua. At vero eos et accusamundefined Lorem ipsum dolor
-                sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                accusamundefined nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                erat, sed diam voluptua. At vero eos et accusamundefined
-              </p>
-            </div>
+              <div class="personal-card cards text-center">
+                <h3><span>Personal</span> Info</h3>
+                <p><span>Address:</span>
+                  <%= locals.agent.address1 || "N/A" %>
+                </p>
+                <p><span>Phone number:</span>
+                  <%= locals.agent.phone || "N/A" %>
+                </p>
+                <p>
+                  <span>Social:</span>
+                  <a href="#"><i class="fa fa-instagram"></i></a>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                  <a href="#"><i class="fa fa-facebook-f"></i></a>
+                  <a href="#"><i class="fa fa-globe"></i></a>
+                </p>
+                <div class="b-ton-group">
+                  <a href="#" class="btn b-ton left">
+                    <i class="fa fa-map-marker-alt"></i> Get Direction</a>
+                  <a href="#" class="btn b-ton right">
+                    <i class="fa fa-download"></i> Download contact</a>
+                </div>
+              </div>
 
-            <div class="accountant">
-              <h3><span>Account</span>ant Details</h3>
-              <p class="mt-3">
-                Education and Degree<br />
-                Master in Accounting Master in Science of Taxation
-              </p>
-              <p class="mt-3">
-                Languages spoken<br />
-                <%= locals.agent.firstName || "N/A" %> <%= locals.agent.lastName || "N/A" %>
-                provides accounting services to clients in the following language(s):
-              </p>
+              <div class="cards last-card text-center">
+                <a class="link-1" href="#">Visit website</a>
 
-              <p class="mt-3">
-                English <br />
-                Specialties and Skills: <br />
-                Contact the accountant directly to find out about learn more about their skills and
-                specialties, since not all may be listed. All CPAs, including <%=
-                locals.agent.firstName || "N/A" %> <%= locals.agent.lastName || "N/A" %>, have at
-                the minimum an undergraduate degree in accounting verified by the state board of
-                accountancy, and have passed a rigorous national exam. All certified public
-                accountants must also adhere to mandated continuing education requirements, set by
-                the state in which they are licensed.
-              </p>
+                <a href="/find-agent" class="btn btn-primary link-2">
+                  <i class="fa fa-search"></i>
+                  Find a Local EA
+                </a>
+              </div>
+            </aside>
+            <main class="col-md-7 part-2">
+              <div class="about">
+                <h3>
+                  <span>About </span>
+                  <%= locals.agent.firstName || "N/A" %>
+                    <%= locals.agent.lastName || "N/A" %>
+                </h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                  tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+                  eos et accusamundefined nonumy eirmod tempor invidunt ut labore et dolore magna
+                  aliquyam erat, sed diam voluptua. At vero eos et accusamundefined Lorem ipsum dolor
+                  sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                  labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+                  accusamundefined nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+                  erat, sed diam voluptua. At vero eos et accusamundefined
+                </p>
+              </div>
 
-              <p class="mt-3">
-                Basic Accounting Services
-                <br />
-                Industry Specialties <br />
-                No Industry Specialties <br />Professional Memberships American Institute of
-                Certified Public Accountants Florida Institute of Certified Public Accountants
-              </p>
-            </div>
+              <div class="accountant">
+                <h3><span>Account</span>ant Details</h3>
+                <p class="mt-3">
+                  Education and Degree<br />
+                  Master in Accounting Master in Science of Taxation
+                </p>
+                <p class="mt-3">
+                  Languages spoken<br />
+                  <%= locals.agent.firstName || "N/A" %>
+                    <%= locals.agent.lastName || "N/A" %>
+                      provides accounting services to clients in the following language(s):
+                </p>
 
-            <div class="client">
-              <h3><span>Client Re</span>views</h3>
-              <a href="#" class="btn b-ton"> <i class="fa fa-pencil"></i> Write a Review</a>
-              <div class="review">
-                <div class="head row">
-                  <div class="col-md-2 date text-center">
-                    28 <br />
-                    FEB
+                <p class="mt-3">
+                  English <br />
+                  Specialties and Skills: <br />
+                  Contact the accountant directly to find out about learn more about their skills and
+                  specialties, since not all may be listed. All CPAs, including <%= locals.agent.firstName || "N/A" %>
+                    <%= locals.agent.lastName || "N/A" %>, have at
+                      the minimum an undergraduate degree in accounting verified by the state board of
+                      accountancy, and have passed a rigorous national exam. All certified public
+                      accountants must also adhere to mandated continuing education requirements, set by
+                      the state in which they are licensed.
+                </p>
+
+                <p class="mt-3">
+                  Basic Accounting Services
+                  <br />
+                  Industry Specialties <br />
+                  No Industry Specialties <br />Professional Memberships American Institute of
+                  Certified Public Accountants Florida Institute of Certified Public Accountants
+                </p>
+              </div>
+
+              <div class="client">
+                <h3><span>Client Re</span>views</h3>
+                <a href="#" class="btn b-ton"> <i class="fa fa-pencil"></i> Write a Review</a>
+                <div class="review">
+                  <div class="head row">
+                    <div class="col-md-2 date text-center">
+                      28 <br />
+                      FEB
+                    </div>
+                    <div class="col-md-8">
+                      <p>
+                        Reviewed by <b>Marc K.</b> in Brooklyn,NY <br />Accounting
+                        <img src="/assets/files/star-rating.png" alt="" />
+                      </p>
+                    </div>
+                    <div class="col-md-2 icon">
+                      <i class="fa fa-heart fa-2x"></i>
+                    </div>
                   </div>
-                  <div class="col-md-8">
+                  <div class="text">
                     <p>
-                      Reviewed by <b>Marc K.</b> in Brooklyn,NY <br />Accounting
-                      <img src="/assets/files/star-rating.png" alt="" />
+                      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                      deserunt mollit anim id est eopksio laborum. Sed ut perspiciatis unde omnis
+                      istpoe natus error sit voluptatem.Excepteur sint occaecat cupidatat non
+                      proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum.
+                      Sed ut perspiciatis unde omnis istpoe natus error sit voluptatem.
                     </p>
                   </div>
-                  <div class="col-md-2 icon">
-                    <i class="fa fa-heart fa-2x"></i>
-                  </div>
                 </div>
-                <div class="text">
-                  <p>
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est eopksio laborum. Sed ut perspiciatis unde omnis
-                    istpoe natus error sit voluptatem.Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum.
-                    Sed ut perspiciatis unde omnis istpoe natus error sit voluptatem.
-                  </p>
-                </div>
-              </div>
 
-              <div class="review">
-                <div class="head row">
-                  <div class="col-md-2 date text-center">
-                    28 <br />
-                    FEB
+                <div class="review">
+                  <div class="head row">
+                    <div class="col-md-2 date text-center">
+                      28 <br />
+                      FEB
+                    </div>
+                    <div class="col-md-8">
+                      <p>
+                        Reviewed by <b>Marc K.</b> in Brooklyn,NY <br />Accounting
+                        <img src="/assets/files/star-rating.png" alt="" />
+                      </p>
+                    </div>
+                    <div class="col-md-2 icon">
+                      <i class="fa fa-heart fa-2x"></i>
+                    </div>
                   </div>
-                  <div class="col-md-8">
+                  <div class="text">
                     <p>
-                      Reviewed by <b>Marc K.</b> in Brooklyn,NY <br />Accounting
-                      <img src="/assets/files/star-rating.png" alt="" />
+                      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                      deserunt mollit anim id est eopksio laborum. Sed ut perspiciatis unde omnis
+                      istpoe natus error sit voluptatem.Excepteur sint occaecat cupidatat non
+                      proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum.
+                      Sed ut perspiciatis unde omnis istpoe natus error sit voluptatem.
                     </p>
                   </div>
-                  <div class="col-md-2 icon">
-                    <i class="fa fa-heart fa-2x"></i>
-                  </div>
-                </div>
-                <div class="text">
-                  <p>
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est eopksio laborum. Sed ut perspiciatis unde omnis
-                    istpoe natus error sit voluptatem.Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum.
-                    Sed ut perspiciatis unde omnis istpoe natus error sit voluptatem.
-                  </p>
                 </div>
               </div>
-            </div>
-          </main>
+            </main>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- footer section -->
-    <%- include("./partials/footer.ejs") %>
+      <!-- footer section -->
+
+      <%- include("./partials/footer.ejs") %>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+
+          (async () => {
+            const response = await axios({
+              url: '/api/review',
+              method: 'post',
+              body: {agent: '', rating: 3, message: ''}
+            })
+
+            console.log(response)
+          })()
+        </script>
   </body>
+
 </html>
