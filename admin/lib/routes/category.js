@@ -1,9 +1,10 @@
 const router = require("express").Router();
-const {  Models: { ArticleCategory, ResourceCategory } } = require("common");
+const {  Models: { ArticleCategory, ResourceCategory, QuestionCategory } } = require("common");
 
 const CategoryController = require('../controllers/category')
 const ArticleCategoryController = new CategoryController(ArticleCategory)
 const ResourceCategoryController = new CategoryController(ResourceCategory)
+const QuestionCategoryController = new CategoryController(QuestionCategory)
 
 router
     .get('/resource/',  ResourceCategoryController.getAll)
@@ -17,5 +18,12 @@ router
     .put('/article/:id',  ArticleCategoryController.update)
     .post('/article',   ArticleCategoryController.create)
     .delete('/article/:id', ArticleCategoryController.delete)
+
+
+    .get('/question/', QuestionCategoryController.getAll)
+    .get('/question/:id', QuestionCategoryController.get)
+    .put('/question/:id',  QuestionCategoryController.update)
+    .post('/question',   QuestionCategoryController.create)
+    .delete('/question/:id', QuestionCategoryController.delete)
 
 module.exports = router

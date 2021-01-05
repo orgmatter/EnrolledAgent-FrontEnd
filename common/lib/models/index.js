@@ -18,6 +18,7 @@ module.exports = {
   Sponsor: require('./sponsor'),
   State: require('./state'),
   Question: require('./question'),
+  QuestionCategory: require('./questionCategory'),
   User: require('./user'),
   Verification: require('./verification'),
 }
