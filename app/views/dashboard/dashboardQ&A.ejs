@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="/assets/files/favicon.png" rel="shortcut icon" type="image/png" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" />
+    <!-- CSS | Main style file -->
+    <link href="/css/style-main.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <%-include("../partials/sidebar.ejs")%> <%-include("../partials/navbar.ejs")%>
+      <div class="mainsection">
+        <section class="dashboard">
+          <div class="dashboard-answers">
+            <h2 class="dashboard-answers_heading">My Answers</h2>
+            <h4>View recent ask an Enrolled Agents answers provided by your listings.</h4>
+          </div>
+          <div class="dashboard-grid">
+           <!-- <div class="dashboard-grid-div">
+              <p class="dashboard-grid-div-name">John Smith</p>
+              <p class="dashboard-grid-div-role">Enrolled Agents</p>
+              <img src="/assets/files/stars.svg" alt="stars-icon" />
+              <p class="dashboard-grid-div-review">0 Review</p>
+              <p class="dashboard-grid-div-service">
+                <span>Service Offered:</span> General Accounting Services
+              </p>
+              <div class="dashboard-grid-div-review_link"><a>Write a Review</a></div>
+              <div class="dashboard-grid-div-claim">
+                <a>Is this Your Listing ? Claim it Now!</a>
+              </div>-->
+            </div>
+            <div class="dashboard-grid-div2">
+               <div class="wrapper">
+                <h3 class="dashboard-grid-div2-head">Answered Questions</h3>
+                <p class="dashboard-grid-div2-desc">
+                  Below is a list of questions recently answered by your account profiles. Not all answers provided may be shown.
+                </p>
+                <h3 class="dashboard-grid-div2-question"><span>Question:</span> Installment Plan - Refund</h3>
+                <p>I found out after settling a lawsuit that the $9,000 I would receive would be considered income. So I did not submit this 1099 on my 2019 taxes. I was notified that they received it (the IRS) and then they added it on to my taxes and i owe roughly $2,500. I set up an installment plan to pay for this over the next year.</p>
+                <p>Asked by Dan F. on Jan 4 2021</p>
+                <h3 class="dashboard-grid-div2-answer">Answer:</h3>
+                <p>I found out after settling a lawsuit that the $9,000 I would receive would be considered income. So I did not submit this 1099 on my 2019 taxes. I was notified that they received it (the IRS) and then they added it on to my taxes and i owe roughly $2,500. I set up an installment plan to pay for this over the next year. The question is; is that I show the IRS will owe me about $9,000 refund this year- Will they just take the $2,500 out of it or will they not give me a refund at all- what happens exactly? Thanks</p>
+                <hr>
+               </div>
+               <div class="wrapper">
+                <h3 class="dashboard-grid-div2-head">Answered Questions</h3>
+                <p class="dashboard-grid-div2-desc">
+                  Below is a list of questions recently answered by your account profiles. Not all answers provided may be shown.
+                </p>
+                <h3 class="dashboard-grid-div2-question"><span>Question:</span> Installment Plan - Refund</h3>
+                <p>I found out after settling a lawsuit that the $9,000 I would receive would be considered income. So I did not submit this 1099 on my 2019 taxes. I was notified that they received it (the IRS) and then they added it on to my taxes and i owe roughly $2,500. I set up an installment plan to pay for this over the next year.</p>
+                <p>Asked by Dan F. on Jan 4 2021</p>
+                <h3 class="dashboard-grid-div2-answer">Answer:</h3>
+                <p>I found out after settling a lawsuit that the $9,000 I would receive would be considered income. So I did not submit this 1099 on my 2019 taxes. I was notified that they received it (the IRS) and then they added it on to my taxes and i owe roughly $2,500. I set up an installment plan to pay for this over the next year. The question is; is that I show the IRS will owe me about $9,000 refund this year- Will they just take the $2,500 out of it or will they not give me a refund at all- what happens exactly? Thanks</p>
+                <hr>
+               </div>
+               <div class="wrapper">
+                <h3 class="dashboard-grid-div2-head">Answered Questions</h3>
+                <p class="dashboard-grid-div2-desc">
+                  Below is a list of questions recently answered by your account profiles. Not all answers provided may be shown.
+                </p>
+                <h3 class="dashboard-grid-div2-question"><span>Question:</span> Installment Plan - Refund</h3>
+                <p>I found out after settling a lawsuit that the $9,000 I would receive would be considered income. So I did not submit this 1099 on my 2019 taxes. I was notified that they received it (the IRS) and then they added it on to my taxes and i owe roughly $2,500. I set up an installment plan to pay for this over the next year.</p>
+                <p>Asked by Dan F. on Jan 4 2021</p>
+                <h3 class="dashboard-grid-div2-answer">Answer:</h3>
+                <p>I found out after settling a lawsuit that the $9,000 I would receive would be considered income. So I did not submit this 1099 on my 2019 taxes. I was notified that they received it (the IRS) and then they added it on to my taxes and i owe roughly $2,500. I set up an installment plan to pay for this over the next year. The question is; is that I show the IRS will owe me about $9,000 refund this year- Will they just take the $2,500 out of it or will they not give me a refund at all- what happens exactly? Thanks</p>
+               </div>
+            </div>
+          </div>
+        </section>
+       <!-- <section class="resources">
+          <div class="container-fluid">
+            <h2 class="resources-header">Resources</h2>
+            <p class="resources-sub">Valuable information provided by our sponsors.</p>
+            <div class="resources-grid">
+              <div class="resources-grid-box">
+                <p class="resources-grid-box-intro">Provided By:</p>
+                <img
+                  class="resources-grid-box-image"
+                  src="/assets/files/stanbic.png"
+                  alt="stanbic-logo"
+                />
+                <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
+                <p class="resources-grid-box-desc">
+                  Save up to 20% on Quickfinder products. Find tax resources for efficiency and
+                  accuracy, year-round...
+                </p>
+                <div class="arrow">
+                  <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
+                </div>
+              </div>
+              <div class="resources-grid-box">
+                <p class="resources-grid-box-intro">Provided By:</p>
+                <img
+                  class="resources-grid-box-image"
+                  src="/assets/files/stanbic.png"
+                  alt="stanbic-logo"
+                />
+                <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
+                <p class="resources-grid-box-desc">
+                  Save up to 20% on Quickfinder products. Find tax resources for efficiency and
+                  accuracy, year-round...
+                </p>
+                <div class="arrow">
+                  <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
+                </div>
+              </div>
+              <div class="resources-grid-box">
+                <p class="resources-grid-box-intro">Provided By:</p>
+                <img
+                  class="resources-grid-box-image"
+                  src="/assets/files/stanbic.png"
+                  alt="stanbic-logo"
+                />
+                <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
+                <p class="resources-grid-box-desc">
+                  Save up to 20% on Quickfinder products. Find tax resources for efficiency and
+                  accuracy, year-round...
+                </p>
+                <div class="arrow">
+                  <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
+                </div>
+              </div>
+              <div class="resources-grid-box">
+                <p class="resources-grid-box-intro">Provided By:</p>
+                <img
+                  class="resources-grid-box-image"
+                  src="/assets/files/stanbic.png"
+                  alt="stanbic-logo"
+                />
+                <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
+                <p class="resources-grid-box-desc">
+                  Save up to 20% on Quickfinder products. Find tax resources for efficiency and
+                  accuracy, year-round...
+                </p>
+                <div class="arrow">
+                  <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
+                </div>
+              </div>
+              <div class="resources-grid-box">
+                <p class="resources-grid-box-intro">Provided By:</p>
+                <img
+                  class="resources-grid-box-image"
+                  src="/assets/files/stanbic.png"
+                  alt="stanbic-logo"
+                />
+                <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
+                <p class="resources-grid-box-desc">
+                  Save up to 20% on Quickfinder products. Find tax resources for efficiency and
+                  accuracy, year-round...
+                </p>
+                <div class="arrow">
+                  <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
+                </div>
+              </div>
+              <div class="resources-grid-box">
+                <p class="resources-grid-box-intro">Provided By:</p>
+                <img
+                  class="resources-grid-box-image"
+                  src="/assets/files/stanbic.png"
+                  alt="stanbic-logo"
+                />
+                <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
+                <p class="resources-grid-box-desc">
+                  Save up to 20% on Quickfinder products. Find tax resources for efficiency and
+                  accuracy, year-round...
+                </p>
+                <div class="arrow">
+                  <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
+                </div>
+              </div>
+            </div>
+            <div class="btn-div">
+              <button>
+                See All Resources
+                <img src="/assets/files/down-arrow-small.svg" alt="arrow" />
+              </button>
+            </div>
+          </div>
+        </section>-->
+      </div>
+    </div>
+  </body>
+</html>

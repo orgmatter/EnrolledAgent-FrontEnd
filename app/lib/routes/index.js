@@ -59,8 +59,16 @@ router
   .get("/unsubscribe", ContactController.unsubscribe)
   .get("/verify/:token", verify)
   .get("/dashboard", ResourceController.random, (req, res) => {
-    res.render("dashboard/dashboardhome", { locals: req.locals });
+    res.render("dashboard/dashboardhome", { locals: req.locals });  
   })
+  .get("/answers", ResourceController.random, (req, res) => {
+    res.render("dashboard/dashboardQ&A", { locals: req.locals });  
+  })
+  .get("/clientLeads", ResourceController.random, (req, res) => {
+    res.render("dashboard/clientLeads", { locals: req.locals });  
+  })
+  
+  
   // .get('/linkedin/callback', passport.authenticate('linkedin'), handleSocial)
   // .get('/google/callback', passport.authenticate('google', { scope: ['profile', 'email'], }), handleSocial)
 
