@@ -76,7 +76,6 @@ router
     res.render("dashboard/clientLeads", { locals: req.locals });
   })
 
-  .get("/dashboardmessages", ResourceController.random, (req, res) => {
   .get("/dashboard/messages", ResourceController.random, (req, res) => {
     res.render("dashboard/dashboardmessages", { locals: req.locals });
   })
