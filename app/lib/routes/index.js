@@ -77,7 +77,11 @@ router
   })
 
   .get("/dashboardmessages", ResourceController.random, (req, res) => {
+  .get("/dashboard/messages", ResourceController.random, (req, res) => {
     res.render("dashboard/dashboardmessages", { locals: req.locals });
+  })
+  .get("/dashboard/article", ResourceController.random, (req, res) => {
+    res.render("dashboard/dashboardarticle", { locals: req.locals });
   })
   // .get("/about-us", (req, res) => {
   //   res.render("about");
