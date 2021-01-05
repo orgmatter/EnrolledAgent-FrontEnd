@@ -4,10 +4,10 @@ const Controller = require('../controllers/sponsor')
 const BaseController = require('../controllers/baseController')
 
 router
-    .get('/', BaseController.authHandler, Controller.getAll)
-    .get('/:id',BaseController.authHandler, Controller.get)
-    .put('/:id', BaseController.authHandler, FileManager.upload, Controller.update)
-    .post('/', BaseController.authHandler, FileManager.upload, Controller.create)
-    .delete('/:id', BaseController.authHandler, Controller.delete)
+    .get('/',   Controller.getAll)
+    .get('/:id', Controller.get)
+    .put('/:id',   FileManager.upload, Controller.update)
+    .post('/',  FileManager.upload, Controller.create)
+    .delete('/:id',   Controller.delete)
 
 module.exports = router

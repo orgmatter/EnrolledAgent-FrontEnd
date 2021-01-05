@@ -10,6 +10,7 @@ const Logger = require('./logger')
 const log = new Logger('auth:porple')
 
 const moment = require('moment')
+const { reject } = require('async')
 /**
  * get date in day, month and year
  */
@@ -171,18 +172,31 @@ exports.generateSlug = function (text) {
   let slug = String(text)
   if (!slug) return
   slug = slug
-  .trim()
-  .replace(' ', '-')
-  .toLowerCase()
-  .replace(' ', '-')
-  .replace(' ', '-')
+    .replace(/[^a-zA-Z ]/g, "")
+    .trim()
+    .replace(' ', '-')
+    .toLowerCase()
+    .replace(' ', '-')
+    .replace(' ', '-')
   return slug
 }
 
 /**
  * get the users ip address
  * @param  {Express.Request} req
- * @return {string}
+ * @return {String}
  */
 exports.getIp = (req) =>
   req.headers['x-real-ip'] || req.connection.remoteAddress
+
+
+/**
+* returns a Promise that resolves after a delay
+* @return {Number} time in milliseconds
+*/
+exports.delay = (time = 1000)=> {
+  return new Promise((resolve, reject)=>{
+    if(!time) reject('invalid time')
+    setTimeout(resolve, time)
+  })
+}

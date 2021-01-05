@@ -1,23 +1,18 @@
 const router = require("express").Router();
-const user = require("../controllers/users");
-const seeder = require("../seed")
-const SponsorController = require('../controllers/sponsor')
-const ArticleController = require('../controllers/article')
 
 const {
-  Exception,
-  Constants,
-  Logger, Middleware
+   Middleware
 } = require("common");
 
-const Log = new Logger("Admin:Router");
 
-seeder()
 
 router
-
-
-  .use( require('./auth'))
+  .use(require('./auth'))
+  .use(require('./resource'))
+  .use('/sponsor', require('./sponsor'))
+  .use('/category', require('./category'))
+  .use('/article', require('./article'))
+  
 
 
   .use(Middleware.ExtractToken.token.unless([]))

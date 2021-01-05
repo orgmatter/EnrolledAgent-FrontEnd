@@ -5,6 +5,7 @@ module.exports = {
   api: require('./apiMiddleware'),
   app: require('./appMiddleware'),
   guard: require('./apiGuard'),
+  createIndex: require('./createIndex'),
   ExtractToken: require('./extractToken'),
   StoreAuth: require('./storeAuth'),
   Socket: require('./socket')

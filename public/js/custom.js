@@ -255,11 +255,11 @@ var THEMEMASCOT = {};
     /* ---------------------------------------------------------------------- */
     /* ------------------------------ Date Picker  -------------------------- */
     /* ---------------------------------------------------------------------- */
-    // TM_datePicker: function () {
-    //   $(".date-picker").datepicker();
-    //  // $(".time-picker").timepicker();
-    //   $(".datetime-picker").datetimepicker();
-    // },
+    TM_datePicker: function () {
+      // $(".date-picker").datepicker();
+      // $(".time-picker").timepicker();
+      // $(".datetime-picker").datetimepicker();
+    },
 
     /* ---------------------------------------------------------------------- */
     /* -------------------------------- ddslick  ---------------------------- */
