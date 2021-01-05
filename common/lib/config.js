@@ -5,10 +5,7 @@ const DB_OPTIONS = {
   useFindAndModify: false,
   useUnifiedTopology: true,
   autoIndex: false,
-  auto_reconnect: true,
-  // auth: {authSource: 'admin'},
-  // user: process.env.DB_USER,
-  // pass: process.env.DB_PASS,
+  auto_reconnect: true, 
   // reconnectTries: 10,
   // reconnectInterval: 500, // Reconnect every 500ms
   poolSize: 50,
@@ -16,6 +13,12 @@ const DB_OPTIONS = {
   connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
   // socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
   family: 4 // Use IPv4, skip trying IPv6
+}
+
+if(process.env.NODE_ENV == 'production'){
+  DB_OPTIONS.auth = {authSource: 'admin'};
+  DB_OPTIONS.user = process.env.DB_USER
+  DB_OPTIONS.pass = process.env.DB_PASS
 }
 
 module.exports = {
