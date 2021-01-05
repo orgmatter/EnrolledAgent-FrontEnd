@@ -1,0 +1,121 @@
+.mainsection .body {
+  background: #f7f7f7;
+  padding-bottom: 50px;
+}
+.mainsection .article-top {
+  margin: 2rem 0 4rem;
+  text-align: center;
+}
+.mainsection .article-top h3 {
+  font-family: Baskerville Old Face;
+  font-weight: bold;
+  font-size: 50px;
+  color: #212121;
+}
+.mainsection .article-top p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  padding: 0 4%;
+  font-size: 20px;
+  color: #000;
+}
+
+.mainsection .article-top .b-ton {
+  margin-top: 1rem;
+}
+
+.mainsection .article-top .b-ton a {
+  box-shadow: 0px 3px 6px #313131a1;
+  border: 1px solid #01105b;
+  border-radius: 6px;
+  padding: 0.7rem 2rem;
+  text-align: center;
+  font-size: 22px;
+  color: #fff;
+  background: #01105b;
+}
+
+.controls {
+  margin-top: 5rem;
+  text-align: center;
+}
+.controls img {
+  background: #fff;
+  height: 50px;
+  width: 50px;
+  padding: 1rem;
+  border: 1px solid #000;
+  transition: all 0.3s ease-in-out;
+}
+
+.controls img:hover {
+  transform: scale(1.03);
+}
+
+// card-section
+.mainsection .article-cards {
+  margin: 2rem 7%;
+  background: #ffffff;
+  //
+  // margin-bottom: 3rem;
+}
+
+.mainsection .article-cards img {
+  width: 100%;
+  // height: 400px;
+  object-fit: cover;
+}
+
+.mainsection .article-cards .text-part {
+  padding: 2%;
+  border: 2px solid #d4d4d4;
+}
+
+.mainsection hr {
+  margin: 0 7%;
+  border-top: 1px dotted #707070;
+}
+
+.mainsection .article-cards .head-flex {
+  display: flex;
+  margin-bottom: 1rem;
+}
+.mainsection .article-cards .head-flex .date {
+  background: #01105b;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  padding: 1%;
+  margin-right: 2%;
+}
+
+.mainsection .article-cards .head-flex .title h4 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #000;
+}
+.mainsection .article-cards .head-flex .title small {
+  font-size: 14px;
+  font-weight: normal;
+  color: #000;
+}
+.mainsection .article-cards .head-flex .content p {
+  font-size: 18px;
+  font-weight: normal;
+  color: #000;
+  margin: 1rem 0;
+}
+
+@media (max-width: 500px) {
+  .mainsection .article-top h3 {
+    font-size: 40px;
+  }
+  .mainsection .article-top p {
+    font-size: 18px;
+  }
+  .mainsection .article-cards .head-flex .title h4 {
+    font-size: 25px;
+    font-weight: bold;
+    color: #000;
+  }
+}
