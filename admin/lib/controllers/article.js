@@ -80,6 +80,7 @@ class ArticleController extends BaseController {
             action: LogAction.ARTICLE_CREATED,
             category: LogCategory.ARTICLE,
             resource: resource._id,
+            ip: Helper.getIp(req),
             message: 'Article created'
         })
 
@@ -112,6 +113,7 @@ class ArticleController extends BaseController {
             action: LogAction.ARTICLE_UPDATED,
             category: LogCategory.ARTICLE,
             resource: resource._id,
+            ip: Helper.getIp(req),
             message: 'Article Updated'
         })
 
@@ -130,6 +132,7 @@ class ArticleController extends BaseController {
             action: LogAction.ARTICLE_DELETED,
             category: LogCategory.ARTICLE,
             resource: resource._id,
+            ip: Helper.getIp(req),
             message: 'Article deleted'
         })
     }
@@ -161,6 +164,7 @@ class ArticleController extends BaseController {
             action: LogAction.ARTICLE_STATUS_CHANGED,
             category: LogCategory.ARTICLE,
             resource: resource._id,
+            ip: Helper.getIp(req),
             message: 'Article Status changed'
         })
     }

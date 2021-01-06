@@ -63,9 +63,9 @@ const handleSubmit = (e) => {
       .then((res) => {
         notyf.success(res.data.data.message || "Signup successful");
         console.log(res);
-        // setTimeout(() => {
-        //   window.location.href = "/login";
-        // }, 3000);
+        setTimeout(() => {
+          window.location.href = "/login";
+        }, 500);
       })
       .catch((err) => {
         notyf.error(err.response.data.message || "Something went wrong");

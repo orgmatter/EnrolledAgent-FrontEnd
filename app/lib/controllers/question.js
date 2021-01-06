@@ -1,12 +1,59 @@
 const {
     Helper,
     DB,
-    Models: { Article },
-} = require("common")
+    Models: { Article, QuestionCategory, Question },
+} = require("common");
 
 const BaseController = require('./baseController');
 
-class ArticleController extends BaseController {
+class QuestionController extends BaseController {
+
+    async create(req, res, next) {
+        const { body, title, category } = req.body
+
+        if (!category || !Validator.isMongoId(category) || !(await QuestionCategory.exists({ _id: category }))) {
+            res.status(422)
+            return next(
+                new Exception(
+                    'Please select a valid category',
+                    ErrorCodes.REQUIRED
+                )
+            )
+        }
+
+        if (!title || !body) {
+            res.status(422)
+            return next(
+                new Exception(
+                    'title and body is required',
+                    ErrorCodes.REQUIRED
+                )
+            )
+        }
+        const b = { body, title, category, }
+        if (req.user && req.user.id) b.user = req.user.id
+
+
+        let resource = await Question.create(b)
+        super.handleResult(resource, res, next)
+
+    }
+
+    async update(req, res, next) {
+        const { params: { id } } = req
+        if (!BaseController.checkId('Invalid resource id', req, res, next)) return
+
+        const body = sanitizeBody(req.body)
+
+        if (body.category, !Validator.isMongoId(body.category) || !(await QuestionCategory.exists({ _id: body.category }))) {
+            delete body.category
+        }
+
+        let resource = await Question.findByIdAndUpdate(id, body, { new: true })
+            .populate(['category'])
+
+        super.handleResult(resource, res, next)
+    }
 
 
     async get(req, res, next) {
@@ -14,7 +61,6 @@ class ArticleController extends BaseController {
         let resource = await Article.findById(id).exec()
         req.locals.article = resource
         next()
-
     }
 
     async getAll(req, res, next) {
@@ -47,7 +93,7 @@ class ArticleController extends BaseController {
         const data = await Article.find({},)
             .skip(random)
             .limit(10)
-            .sort({createdAt: -1})
+            .sort({ createdAt: -1 })
             .exec()
         req.locals.articles = data
         next()
@@ -55,4 +101,4 @@ class ArticleController extends BaseController {
 
 }
 
-module.exports = new ArticleController()
+module.exports = new QuestionController()

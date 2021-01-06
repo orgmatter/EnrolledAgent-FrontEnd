@@ -23,7 +23,7 @@ module.exports = class LocalLoginStrategy {
                     const {
                         body: { email, password }
                     } = req
-                    console.log(req.body)
+                    // console.log(req.body)
                     if (!email || !password) {
                         req.statusCode = 422 
                         return done(

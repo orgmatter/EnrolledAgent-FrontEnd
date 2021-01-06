@@ -3,18 +3,19 @@ const { Logger, Middleware, FileManager } = require("common");
 const { register, changePassword, login, update, subscribe } = require("../../controllers/auth");
 const ContactController = require("../../controllers/contact");
 const ReviewController = require("../../controllers/review");
+const AgentController = require("../../controllers/agent");
 
 router
-
   .post("/register", register)
   .post("/changepass", changePassword)
   .post("/subscribe", ContactController.subscribe)
   .post("/contact", ContactController.create)
   .post("/login", login)
   .post("/review", ReviewController.createReview)
-  .put("/update-profile", FileManager.upload, update);
+  .post("/claim-listing/:id", AgentController.claim)
+  .put("/update-profile", FileManager.upload, update)
 
-router.use(Middleware.Four04Handler);
-router.use(Middleware.ErrorHandler);
+  .use(Middleware.Four04Handler)
+  .use(Middleware.ErrorHandler);
 
-module.exports = router;
+module.exports = router

@@ -3,11 +3,14 @@ const {
     ErrorCodes,
     FileManager,
     Storages,
+    LogAction,
+    LogCategory,
     Validator,
+    Constants,
     Helper,
     DB,
     CSVParser,
-    Models: { Agent },
+    Models: { Agent, Log },
 } = require("common")
 const path = require("path")
 const { createAgent } = require('../../lib/agentUtils');
@@ -15,19 +18,17 @@ const { createAgent } = require('../../lib/agentUtils');
 const BaseController = require('../controllers/baseController');
 const STORAGE = process.env.STORAGE
 
-const sanitizeBody = (body)=> {
+const sanitizeBody = (body) => {
     delete body.rating
-    delete body.isClaimed
+    delete body.owner
     return body
 }
 class AgentController extends BaseController {
-   
+
     async create(req, res, next) {
-        const { firstName, lastName, city, state,
-            zipcode, country, phone, bio,
-            address1,
-            address2,
-            address3, } = req.body
+        const { firstName, lastName, email, bio, phone, gender, address1, address2, address3, state,
+            city, zipcode, licence, website, fax, facebook, linkedin, twitter, instagram, googleBusiness, ptin,
+            showAddress, society, education, lang, industry, maxServicePrice, minServicePrice, } = req.body
 
         if (!firstName || !lastName || !state) {
             res.status(422)
@@ -40,11 +41,9 @@ class AgentController extends BaseController {
         }
 
         let agent = await Agent.create({
-            firstName, lastName, city, state,
-            zipcode, country, phone, bio,
-            address1,
-            address2,
-            address3,
+            firstName, lastName, email, bio, phone, gender, address1, address2, address3, state,
+            city, zipcode, licence, website, fax, facebook, linkedin, twitter, instagram, googleBusiness, ptin,
+            showAddress, society, education, lang, industry, maxServicePrice, minServicePrice,
         })
 
         if (req.file) {
@@ -56,6 +55,14 @@ class AgentController extends BaseController {
             await agent.save()
         }
         super.handleResult(agent, res, next)
+        await Log.create({
+            user: req.user.id,
+            action: LogAction.AGENT_CREATED,
+            category: LogCategory.AGENT,
+            resource: agent._id,
+            ip: Helper.getIp(req),
+            message: 'Agent Created'
+        })
 
     }
 
@@ -64,8 +71,8 @@ class AgentController extends BaseController {
         const { params: { id } } = req
         if (!BaseController.checkId('Invalid agent id', req, res, next)) return
 
-        const body = sanitizeBody(req.body) || {'': ''}
-        console.log(body)
+        const body = sanitizeBody(req.body) || { '': '' }
+        // console.log(body)
 
         let agent = await Agent.findByIdAndUpdate(id, body, { new: true })
 
@@ -80,17 +87,16 @@ class AgentController extends BaseController {
             await agent.save()
         }
         super.handleResult(agent, res, next)
+        await Log.create({
+            user: req.user.id,
+            action: LogAction.AGENT_UPDATED,
+            category: LogCategory.AGENT,
+            resource: agent._id,
+            ip: Helper.getIp(req),
+            message: 'Agent Updated'
+        })
     }
 
-
-    // async delete(req, res, next) {
-    //     const { id } = req.params
-    //     if (!BaseController.checkId('Invalid agent id', req, res, next)) return
-
-    //     let agent = await Agent.findByIdAndDelete(id).exec()
-    //     if (agent && agent.imageUrl) FileManager.deleteFile(agent.imageUrl)
-    //     super.handleResult(agent, res, next)
-    // }
 
     async get(req, res, next) {
         const { id } = req.params
@@ -98,7 +104,15 @@ class AgentController extends BaseController {
         if (!BaseController.checkId('Invalid agent id', req, res, next)) return
         let agent = await Agent.findById(id).exec()
 
-        super.handleResult(agent.toJSON(), res, next)
+        super.handleResult(agent, res, next)
+        await Log.create({
+            user: req.user.id,
+            action: LogAction.AGENT_DELETED,
+            category: LogCategory.AGENT,
+            resource: agent._id,
+            ip: Helper.getIp(req),
+            message: 'Agent Deleted'
+        })
 
     }
 
@@ -135,7 +149,7 @@ class AgentController extends BaseController {
         )
         // console.log(req.file, req.files)
         CSVParser.parse(path.join(STORAGE, file), async (err, data) => {
-          
+
             if (err) {
                 // console.log('parsing csv returned an error', err)
                 FileManager.deleteFile(file)
@@ -147,7 +161,7 @@ class AgentController extends BaseController {
                 )
             }
 
-            res.json({ data: {message: 'Your uploaded file is currently being processed, wait a few minutes and confirm uploaded agents were correctly created'} })
+            res.json({ data: { message: 'Your uploaded file is currently being processed, wait a few minutes and confirm uploaded agents were correctly created' } })
 
             for (let index = 0; index < data.length; index++) {
                 const agent = data[index];
@@ -158,7 +172,14 @@ class AgentController extends BaseController {
             }
 
             FileManager.deleteFile(file)
-
+            await Log.create({
+                user: req.user.id,
+                action: LogAction.AGENT_UPLOADED,
+                category: LogCategory.AGENT,
+                resource: agent._id,
+                ip: Helper.getIp(req),
+                message: 'Agents Uploaded'
+            })
         })
     }
 }

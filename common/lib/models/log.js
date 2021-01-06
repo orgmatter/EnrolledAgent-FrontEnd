@@ -12,7 +12,7 @@ const LogSchema = new Schema({
   },
   device: String,
   user: {
-    ref: 'admin_user',
+    // ref: 'admin_user',
     type: Schema.ObjectId
   }, 
 }, { timestamps: true })
