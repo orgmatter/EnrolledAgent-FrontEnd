@@ -232,11 +232,13 @@ class AuthController {
    * @param  {function} next
    */
   user = async function (req, res, next) {
-    const { id } = req.user
-    User.findById(id).then((doc) => {
-      req.locals.user = doc
-      next()
-    })
+    if (req.user && req.user.id) {
+      const { id } = req.user
+      User.findById(id).then((doc) => {
+        req.locals.user = doc
+        next()
+      })
+    } else next()
   }
 
   /**
