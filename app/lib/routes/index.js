@@ -66,64 +66,6 @@ router
   })
   .get("/unsubscribe", ContactController.unsubscribe)
   .get("/verify/:token", verify)
-  .get("/dashboard", user, (req, res) => {
-    // console.log("user>>>", req.locals);
-    res.render("dashboard/dashboardhome", { 
-      locals: req.locals,
-      page_name: "dashboard",
-      sub_page_name: "dashboard"
-     });
-  })
-
-  .get("/dashboard/messages", user, (req, res) => {
-    res.render("dashboard/dashboardmessages", { 
-      locals: req.locals,
-      page_name: "messages",
-      sub_page_name: "messages"
-
-    });
-  })
-  .get("/dashboard/my-articles", user, (req, res) => {
-    res.render("dashboard/dashboardarticle", { 
-      locals: req.locals,
-      page_name: "articles",
-      sub_page_name: "myArticles"
-    });
-  })
-  // .get("/about-us", (req, res) => {
-  //   res.render("about");
-  // })
-  .get("/dashboard/submit-answer", (req, res) => {
-    res.render("dashboard/submitAnswer", { locals: req.locals });
-  })
-  .get("/dashboard/create-article",user, (req, res) => {
-    res.render("dashboard/createArticle", { 
-      locals: req.locals,
-      page_name: "articles",
-      sub_page_name: "newArticle"
-     });
-  })
-  .get("/dashboard/answer-questions", user, (req, res) => {
-    res.render("dashboard/answerQuestion", { 
-      locals: req.locals,
-      page_name: "ask",
-      sub_page_name: "answer"
-    });
-  })
-  .get("/dashboard/my-answers", user, (req, res) => {
-    res.render("dashboard/dashboardQ&A", { 
-      locals: req.locals ,
-      page_name: "ask",
-      sub_page_name: "myAnswers"
-    });
-  })
-  .get("/dashboard/my-leads", user, (req, res) => {
-    res.render("dashboard/clientLeads", { 
-      locals: req.locals,
-      page_name: "ask",
-      sub_page_name: "myLeads"
-    });
-  })
 
   // .get('/linkedin/callback', passport.authenticate('linkedin'), handleSocial)
   // .get('/google/callback', passport.authenticate('google', { scope: ['profile', 'email'], }), handleSocial)
@@ -263,23 +205,6 @@ router
   .get("/license-verification", (req, res) => {
     res.render("license-verification");
   })
-
-  .get("/dashboard/account-settings", user, (req, res) => {
-    res.render("account-setup", {
-      avatarUrl: "/assets/images/img-placeholder.jpg",
-      locals: req.locals,
-      page_name: "account",
-      sub_page_name: "account"
-    });
-  })
-
-  .get("/dashboard/help",user, (req, res) => {
-    res.render("faqs", {
-      locals: req.locals,
-      page_name: "help",
-      sub_page_name: "help"
-    });
-  })
   .get("/logout", (req, res) => {
     req.logout();
     res.redirect("/login");
@@ -302,6 +227,81 @@ router
   .use((req, res, next) => {
     if (!(req.isAuthenticated() && req.user)) return res.redirect("/login");
     next();
+  })
+    .get("/dashboard", user, (req, res) => {
+    console.log("user>>>", req.locals);
+    res.render("dashboard/dashboardhome", { 
+      locals: req.locals,
+      page_name: "dashboard",
+      sub_page_name: "dashboard"
+     });
+  })
+
+  .get("/dashboard/messages", user, (req, res) => {
+    res.render("dashboard/dashboardmessages", { 
+      locals: req.locals,
+      page_name: "messages",
+      sub_page_name: "messages"
+
+    });
+  })
+  .get("/dashboard/my-articles", user, (req, res) => {
+    res.render("dashboard/dashboardarticle", { 
+      locals: req.locals,
+      page_name: "articles",
+      sub_page_name: "myArticles"
+    });
+  })
+    .get("/dashboard/account-settings", user, (req, res) => {
+    res.render("dashboard/account-setup", {
+      avatarUrl: "/assets/images/img-placeholder.jpg",
+      locals: req.locals,
+      page_name: "account",
+      sub_page_name: "account"
+    });
+  })
+
+  .get("/dashboard/help",user, (req, res) => {
+    res.render("dashboard/faqs", {
+      locals: req.locals,
+      page_name: "help",
+      sub_page_name: "help"
+    });
+  })
+  .get("/dashboard/submit-answer", user, (req, res) => {
+    res.render("dashboard/submitAnswer", { 
+      locals: req.locals,
+      page_name: "ask",
+      sub_page_name: "answer"
+     });
+  })
+  .get("/dashboard/create-article",user, (req, res) => {
+    res.render("dashboard/createArticle", { 
+      locals: req.locals,
+      page_name: "articles",
+      sub_page_name: "newArticle"
+     });
+  })
+  .get("/dashboard/answer-questions", user, (req, res) => {
+    res.render("dashboard/answerQuestion", { 
+      locals: req.locals,
+      page_name: "ask",
+      sub_page_name: "answer"
+    });
+  })
+  .get("/dashboard/my-answers", user, (req, res) => {
+    res.render("dashboard/dashboardQ&A", { 
+      locals: req.locals ,
+      page_name: "ask",
+      sub_page_name: "myAnswers"
+    });
+  })
+  .get("/dashboard/my-leads", user, (req, res) => {
+    res.render("dashboard/clientLeads", { 
+      locals: req.locals,
+      page_name: "ask",
+      sub_page_name: "myLeads"
+    });
   })
 
   .get("/profile", user, (req, res) => {
