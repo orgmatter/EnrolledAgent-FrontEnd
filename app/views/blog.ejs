@@ -17,11 +17,11 @@
           <div class="blog__main--items">
             <div class="blog__main--article">
               <div class="blog__main--article-name">
-                <span class="blog-color-text-sky">Lorem ipsum</span> / Nov 21, 2020 / By <%= locals.articles.data[0].author %> 
+                <span class="blog-color-text-sky">Lorem ipsum</span> / Nov 21, 2020 / By EnrolledAgent
               </div>
-              <div class="blog__main--article-head"><%= locals.articles.data[0].title %> </div>
+              <div class="blog__main--article-head">Lorem ipsum </div>
               <hr id="article-rule" class="blog__main--article-underline" />
-              <div id="blog-article-body" class="blog__main--article-body"><%= locals.articles.data[0].body %> 
+              <div id="blog-article-body" class="blog__main--article-body"> Lorem ipsum dolor sit amet, conse Lorem ipsum dolor sit amet, conse
               </div>
             </div>
           </div>
@@ -79,6 +79,7 @@
             <hr class="blog__sidebar--head-rule" />
           </div>
           <div class="blog__news--section">
+            <% if (locals.articles.total > 0) { %>
             <a href="/blog/<%= locals.articles.data[0]._id %>" class="blog__news">
               <div class="blog__news--image">
                 <img
@@ -124,6 +125,9 @@
                 </div>
               </div>
             </a>
+            <%} else { %>
+          <p>No articles available</p>
+          <%}%>
           </div>
           <div class="blog__scroll">
             <button class="blog__scroll--btn blog__scroll--btn-left">

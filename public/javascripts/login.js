@@ -59,7 +59,7 @@ const handleSubmit = (e) => {
       notyf.success(res.data.data.message || "Login successful");
       setTimeout(() => {
         window.location.href = "/dashboard";
-      }, 3000);
+      }, 500);
     })
     .catch((err) => {
       console.log(err);
