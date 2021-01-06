@@ -4,27 +4,65 @@
     <div class="sidebar_top-avatar-div">
       <img alt="enrolled-agents-avatar" src="/assets/files/avatar.png" />
     </div>
-    <p class="sidebar_top-name">Welcome, Juliet</p>
-    <p class="sidebar_top-email">JulietWills@gmail.com</p>
+    <p class="sidebar_top-name">Welcome, <%= locals.user.firstName  %> </p>
+    <p class="sidebar_top-email"><%= locals.user.email  %></p>
   </div>
   <div class="sidebar_bottom">
-    <div class="sidebar_bottom-item active">
-      <a href="#" class="sidebar_bottom-item-link">My Listings</a>
+    <div <% if (page_name === 'dashboard') {%>class="sidebar_bottom-item active"<%}%>class="sidebar_bottom-item">
+      <a href="/dashboard" class="sidebar_bottom-item-link">My Listings</a>
     </div>
-    <div class="sidebar_bottom-item">
-      <a href="#" class="sidebar_bottom-item-link">Ask an EA</a>
+    <div <% if (page_name === 'ask') {%>class="sidebar_bottom-item active"<%}%>class="sidebar_bottom-item" 
+      data-toggle="collapse" href="#submenu1" aria-expanded="false">
+      <a href="#" class="sidebar_bottom-item-link" >
+        Ask an EA
+      </a>
     </div>
-    <div class="sidebar_bottom-item">
+    <div <% if (page_name === 'ask') { %>class="collapse show" <% } %> class="collapse" id="submenu1" aria-expanded="false">
+        <div class="sidebar_bottom-item">
+            <a href="/dashboard/answer-questions"  <% if (sub_page_name === 'answer') { %>
+              class="sidebar_bottom-item-link sub-active" <% } %>
+                class="sidebar_bottom-item-link">Answer Tax Questions
+            </a>
+        </div>
+        <div class="sidebar_bottom-item">
+            <a href="/dashboard/my-answers"  <% if (sub_page_name === 'myAnswers') { %>
+              class="sidebar_bottom-item-link sub-active" <% } %>
+                class="sidebar_bottom-item-link">My Answers
+            </a>
+        </div>
+        <div class="sidebar_bottom-item">
+            <a href="/dashboard/my-leads"  <% if (sub_page_name === 'myLeads') { %>
+              class="sidebar_bottom-item-link sub-active" <% } %>
+                class="sidebar_bottom-item-link">My Leads
+            </a>
+        </div>
+      </div>
+    <div <% if (page_name === 'articles') {%>class="sidebar_bottom-item active"<%}%>class="sidebar_bottom-item" 
+      data-toggle="collapse" href="#submenu2" aria-expanded="false">
       <a href="#" class="sidebar_bottom-item-link">Articles</a>
     </div>
-    <div class="sidebar_bottom-item">
-      <a href="#" class="sidebar_bottom-item-link">My Messages</a>
+    <div <% if (page_name === 'articles') { %>class="collapse show" <% } %> class="collapse" id="submenu2" aria-expanded="false">
+        <div class="sidebar_bottom-item">
+            <a href="/dashboard/create-article"  <% if (sub_page_name === 'newArticle') { %>
+              class="sidebar_bottom-item-link sub-active" <% } %>
+                class="sidebar_bottom-item-link">New Article
+            </a>
+        </div>
+        <div class="sidebar_bottom-item">
+            <a href="/dashboard/my-articles"  <% if (sub_page_name === 'myArticles') { %>
+              class="sidebar_bottom-item-link sub-active" <% } %>
+                class="sidebar_bottom-item-link">My Articles
+            </a>
+        </div>
+      </div>
+    <div <% if (page_name === 'messages') {%>class="sidebar_bottom-item active"<%}%>class="sidebar_bottom-item">
+      <a href="/dashboard/messages" class="sidebar_bottom-item-link">My Messages</a>
     </div>
-    <div class="sidebar_bottom-item">
-      <a href="#" class="sidebar_bottom-item-link">Account Details</a>
+    <div <% if (page_name === 'account') {%>class="sidebar_bottom-item active"<%}%>class="sidebar_bottom-item">
+      <a href="/dashboard/account-settings" class="sidebar_bottom-item-link">Account Details</a>
     </div>
-    <div class="sidebar_bottom-item">
-      <a href="#" class="sidebar_bottom-item-link">Help</a>
+    <div <% if (page_name === 'help') {%>class="sidebar_bottom-item active"<%}%>class="sidebar_bottom-item">
+      <a href="/dashboard/help" class="sidebar_bottom-item-link">Help</a>
     </div>
     <div class="sidebar_bottom-item">
       <a href="#" class="sidebar_bottom-item-link">Logout</a>

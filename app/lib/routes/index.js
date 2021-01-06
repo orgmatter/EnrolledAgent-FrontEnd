@@ -66,25 +66,65 @@ router
   })
   .get("/unsubscribe", ContactController.unsubscribe)
   .get("/verify/:token", verify)
-  .get("/dashboard", ResourceController.random, (req, res) => {
-    res.render("dashboard/dashboardhome", { locals: req.locals });
-  })
-  .get("/answers", ResourceController.random, (req, res) => {
-    res.render("dashboard/dashboardQ&A", { locals: req.locals });
-  })
-  .get("/clientLeads", ResourceController.random, (req, res) => {
-    res.render("dashboard/clientLeads", { locals: req.locals });
+  .get("/dashboard", user, (req, res) => {
+    console.log("user>>>", req.locals);
+    res.render("dashboard/dashboardhome", { 
+      locals: req.locals,
+      page_name: "dashboard",
+      sub_page_name: "dashboard"
+     });
   })
 
-  .get("/dashboard/messages", ResourceController.random, (req, res) => {
-    res.render("dashboard/dashboardmessages", { locals: req.locals });
+  .get("/dashboard/messages", user, (req, res) => {
+    res.render("dashboard/dashboardmessages", { 
+      locals: req.locals,
+      page_name: "messages",
+      sub_page_name: "messages"
+
+    });
   })
-  .get("/dashboard/article", ResourceController.random, (req, res) => {
-    res.render("dashboard/dashboardarticle", { locals: req.locals });
+  .get("/dashboard/my-articles", user, (req, res) => {
+    res.render("dashboard/dashboardarticle", { 
+      locals: req.locals,
+      page_name: "articles",
+      sub_page_name: "myArticles"
+    });
   })
   // .get("/about-us", (req, res) => {
   //   res.render("about");
   // })
+  .get("/dashboard/submit-answer", (req, res) => {
+    res.render("dashboard/submitAnswer", { locals: req.locals });
+  })
+  .get("/dashboard/create-article",user, (req, res) => {
+    res.render("dashboard/createArticle", { 
+      locals: req.locals,
+      page_name: "articles",
+      sub_page_name: "newArticle"
+     });
+  })
+  .get("/dashboard/answer-questions", user, (req, res) => {
+    res.render("dashboard/answerQuestion", { 
+      locals: req.locals,
+      page_name: "ask",
+      sub_page_name: "answer"
+    });
+  })
+  .get("/dashboard/my-answers", user, (req, res) => {
+    res.render("dashboard/dashboardQ&A", { 
+      locals: req.locals ,
+      page_name: "ask",
+      sub_page_name: "myAnswers"
+    });
+  })
+  .get("/dashboard/my-leads", user, (req, res) => {
+    res.render("dashboard/clientLeads", { 
+      locals: req.locals,
+      page_name: "ask",
+      sub_page_name: "myLeads"
+    });
+  })
+
   // .get('/linkedin/callback', passport.authenticate('linkedin'), handleSocial)
   // .get('/google/callback', passport.authenticate('google', { scope: ['profile', 'email'], }), handleSocial)
 
@@ -224,14 +264,21 @@ router
     res.render("license-verification");
   })
 
-  .get("/account-setup", (req, res) => {
+  .get("/dashboard/account-settings", user, (req, res) => {
     res.render("account-setup", {
-      avatarUrl: "/assets/images/img-placeholder.jpg"
+      avatarUrl: "/assets/images/img-placeholder.jpg",
+      locals: req.locals,
+      page_name: "account",
+      sub_page_name: "account"
     });
   })
 
-  .get("/faqs", (req, res) => {
-    res.render("faqs");
+  .get("/dashboard/help",user, (req, res) => {
+    res.render("faqs", {
+      locals: req.locals,
+      page_name: "help",
+      sub_page_name: "help"
+    });
   })
   .get("/logout", (req, res) => {
     req.logout();

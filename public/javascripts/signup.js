@@ -28,20 +28,32 @@ const notyf = new Notyf({
   ],
 });
 
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
 const handleSubmit = (e) => {
   e.preventDefault();
   if (terms.checked) {
-    const formData = {
-      firstName: fName.value,
-      lastName: lName.value,
+    const data = {
       email: email.value,
       password: password.value,
+      firstName: fName.value,
+      // lastName: lName.value,
     };
 
     axios({
       method: "POST",
-      url: `${baseUrl}/register`,
-      data: JSON.stringify(formData),
+      url: `${baseUrl}/api/register`,
+      credentials: 'same-origin', // <-- includes cookies in the request
+        headers: {
+          "CSRF-Token":  getCookie('XSRF-TOKEN'), 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+      data: JSON.stringify(data),
       //   headers: {
       //     "CSRF-Token": token,
       //     Accept: "application/json",
@@ -49,15 +61,18 @@ const handleSubmit = (e) => {
       //   },
     })
       .then((res) => {
-        notyf.success("Signup successful!");
-        setTimeout(() => {
-          window.location.href = "/login";
-        }, 3000);
+        notyf.success(res.data.data.message || "Signup successful");
+        console.log(res);
+        // setTimeout(() => {
+        //   window.location.href = "/login";
+        // }, 3000);
       })
       .catch((err) => {
-        notyf.error("Something went wrong");
+        notyf.error(err.response.data.message || "Something went wrong");
+        console.log(err);
       });
   } else {
+    notyf.error("Please accept terms and conditions")
     console.log("accept terms");
   }
 };
