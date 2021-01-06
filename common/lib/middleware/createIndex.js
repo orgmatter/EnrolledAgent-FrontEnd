@@ -7,7 +7,7 @@ module.exports =
             if (Models.hasOwnProperty(model)) {
                 const Model = Models[model]
                 // if (Model.syncIndexes)
-                    Model.syncIndexes()
+                  await  Model.syncIndexes()
                         .then(resolve)
                         .catch(reject)
                     await  Helper.delay(2000)

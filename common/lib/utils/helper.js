@@ -36,7 +36,6 @@ exports.formatUser = function (user, token) {
     delete u.salt
     delete u.hash
     delete u.resetToken
-    u.token = token
     return u
   }
 }

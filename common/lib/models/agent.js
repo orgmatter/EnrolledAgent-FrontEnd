@@ -42,7 +42,7 @@ const AgentSchema = new Schema({
     enum: ['male', 'female']
   },
   stateSlug: { type: String, slug: "state", index: true, transform: v => generateSlug(v) },
-  cityslug: { type: String, slug: "name", index: true, transform: v => generateSlug(v) },
+  citySlug: { type: String, slug: "city", index: true, transform: v => generateSlug(v) },
   address1: String,
   address2: String,
   address3: String,
@@ -65,15 +65,7 @@ AgentSchema.index({
   firstName: 'text',
   lastName: 'text',
 })
-
-// AgentSchema.index({
-//   zipcode: 1,
-//   city: 1,
-//   state: 1,
-//   country: 1,
-//   firstName:1,
-//   lastName: 1,
-// })
+ 
 
 AgentSchema.virtual('reviewCount', {
   ref: 'review',
