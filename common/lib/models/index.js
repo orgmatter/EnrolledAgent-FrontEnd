@@ -7,6 +7,7 @@ module.exports = {
   Answer: require('./answer'),
   ArticleCategory: require('./articleCategory'),
   City: require('./city'),
+  ClaimListing: require('./claimListing'),
   Comment: require('./comment'),
   Contact: require('./contact'),
   EmailList: require('./email_list'),

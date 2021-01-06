@@ -9,5 +9,7 @@ router
     .put('/:id', FileManager.upload, AgentController.update)
     .put('/', FileManager.upload, AgentController.create)
     .post('/upload', FileManager.csv, AgentController.upload)
+    .post('/', FileManager.csv, AgentController.create)
+   
 
 module.exports = router

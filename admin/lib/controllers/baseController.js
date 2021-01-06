@@ -18,7 +18,7 @@ class BaseController {
 
     static checkId(message, req, res, next) {
         const { id } = req.params
-        if (!(id  && Validator.isMongoId(id))) {
+        if (!(id && Validator.isMongoId(id))) {
             res.status(422)
             next(
                 new Exception(
@@ -98,7 +98,9 @@ class BaseController {
      * @param  {Express.Response} res
      * @param  {Function} next
      */
-    async create(req, res, next) { }
+    async create(req, res, next) {
+        res.json({ data: { message: 'This endpoint is not yet implemented' } })
+    }
 
     /**
      * get a single record from the database
@@ -106,7 +108,9 @@ class BaseController {
      * @param  {Express.Response} res
      * @param  {Function} next
      */
-    async get(req, res, next) { }
+    async get(req, res, next) {
+        res.json({ data: { message: 'This endpoint is not yet implemented' } })
+    }
 
     /**
      * Get all record on the database in paginateed format
@@ -114,7 +118,9 @@ class BaseController {
      * @param  {Express.Response} res
      * @param  {Function} next
      */
-    async getAll(req, res, next) { }
+    async getAll(req, res, next) {
+        res.json({ data: { message: 'This endpoint is not yet implemented' } })
+    }
 
     /**
      * Update a record on the database
@@ -122,7 +128,9 @@ class BaseController {
      * @param  {Express.Response} res
      * @param  {Function} next
      */
-    async update(req, res, next) { }
+    async update(req, res, next) {
+        res.json({ data: { message: 'This endpoint is not yet implemented' } })
+    }
 
     /**
      * Delete a record ofrom the database
@@ -130,7 +138,10 @@ class BaseController {
      * @param  {Express.Response} res
      * @param  {Function} next
      */
-    async delete(req, res, next) { }
+    async delete(req, res, next) {
+        res.json({ data: { message: 'This endpoint is not yet implemented' } })
+    }
+
 }
 
 module.exports = BaseController

@@ -4,9 +4,11 @@ const {
     FileManager,
     Storages,
     Validator,
+    LogAction,
+    LogCategory,
     Helper,
     DB,
-    Models: { Sponsor },
+    Models: { Sponsor, Log },
 } = require("common")
 
 const BaseController = require('../controllers/baseController');
@@ -38,6 +40,15 @@ class SponsorController extends BaseController {
         }
         super.handleResult(sponsor, res, next)
 
+        await Log.create({
+            user: req.user.id,
+            action: LogAction.SPONSOR_CREATED,
+            category: LogCategory.SPONSOR,
+            resource: sponsor._id,
+            ip: Helper.getIp(req),
+            message: 'Sponsor Created'
+        })
+
     }
 
 
@@ -62,6 +73,15 @@ class SponsorController extends BaseController {
             await sponsor.save()
         }
         super.handleResult(sponsor, res, next)
+        await Log.create({
+            user: req.user.id,
+            action: LogAction.SPONSOR_UPDATED,
+            category: LogCategory.SPONSOR,
+            resource: sponsor._id,
+            ip: Helper.getIp(req),
+            message: 'Sponsor Updated'
+        })
+
 
     }
 
@@ -73,6 +93,15 @@ class SponsorController extends BaseController {
         let sponsor = await Sponsor.findByIdAndDelete(id).exec()
         if (sponsor  && sponsor.imageUrl) FileManager.deleteFile(sponsor.imageUrl)
         super.handleResult(sponsor, res, next)
+        await Log.create({
+            user: req.user.id,
+            action: LogAction.SPONSOR_DELETED,
+            category: LogCategory.SPONSOR,
+            resource: resource._id,
+            ip: Helper.getIp(req),
+            message: 'Sponsor Deleted'
+        })
+
     }
 
     async get(req, res, next) {

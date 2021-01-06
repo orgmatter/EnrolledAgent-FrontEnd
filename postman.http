@@ -23,6 +23,7 @@ content-type: application/json
 
 ###
 
+
 GET  https://8473483b0802.ngrok.io/ HTTP/1.1
 cookie: G_ENABLED_IDPS=google; G_AUTHUSER_H=0; connect.sid=s%3Ad8e78c26-4432-4eb1-98df-73e1db18d96d.bGQg9i0Hk7b6nPqH94TqC%2FiHlRtknQhhUJiUTBMMrBA; fbm_3409949415737092=base_domain=; fbsr_3409949415737092=SFBb8lCNQ2TyPVZOeTNIYrKjt1MhgTnJM4wwgS2_KsE.eyJ1c2VyX2lkIjoiNDg0OTMwMjc3NTExMjI2NSIsImNvZGUiOiJBUURnZmRMWjZYMEFSQWdzMk5ROUpXTjMxcG5HNUlFbDBSaXRyeFhQLVRQWDFIZlpyZmNhdmtUdnBCcmJucVpYUVpyXzlwS01rZnhmRkJJSGlxY193WnFfWkliUVc1bkRPYUlieDhkVjJfZ1RaR2RWLU5ocTdUQmcyUmxnTGlDaHdVRXFxWnU3MVlXRzVfakNGWlR0U1g3WnBWYkJLQjVuLUp6ZmNqLVJJQ3F2U2hKYnlJUnZqRDB3d1NfWG56WnlhSHhLZVhPWE9lQUhRU0xDcmNkcENGUGZQVTFibmE5LW82OTQ2eTc2TVp4RnZVR2s4dGs2Y2dnR2RKREZqYmxvakE1UDFhTkt5eUF3d28zR1V4d2FFdjBNR2VUYWN2SjhQaXN0QWxDcWFBZjQxWGNleHg4b2hyTVVuNF9raHh2d1FWS0NSUGNKWjAwODJwZnRDMUhMUXJjOCIsImFsZ29yaXRobSI6IkhNQUMtU0hBMjU2IiwiaXNzdWVkX2F0IjoxNjA2NTU4NTgzfQ
 
@@ -30,3 +31,33 @@ cookie: G_ENABLED_IDPS=google; G_AUTHUSER_H=0; connect.sid=s%3Ad8e78c26-4432-4eb
 #     "name": "sample",
 #     "time": "Wed, 21 Oct 2015 18:27:50 GMT"
 # }
+
+###
+
+POST  http://localhost:3000/api/review HTTP/1.1
+content-type: application/json
+
+{
+    "email": "ekeh.wisdom@gmail.com",
+    "body": "asdhfajfd adhjdghjh",
+    "title": "sdfdffdf",
+    "firstName": "sdfghj",
+    "lastName": "Dsghgdf",
+    "rating": 4,
+    "agent": "5ff4913a99f914d7a47aa605"
+}
+
+###
+
+POST  http://localhost:3000/api/claim-listing/5ff4913a99f914d7a47aa605 HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiN2EzYTExYjVjYWE4ZDY2ZGU4ZGU2YmY4YzAyMDE1ZTYwMjJmZTUxNzBlYWU1NTJiY2Q4MGY3NDgwMjBjMGM5NjIzZTFkZWRjMTA2NGRiMjg2YzM0MjI1MDU1NGYwYzhkYzFmYjhhMTBkZDI5YjZlMTFiNTBmMTIwM2MzYTg2ODVlOGE0NTljOGU2NWJmYmY4NmFiNDg5ODJmN2JlMGYxZDNhZWQ0OWI3NDEzYzUzODYyMTI0MDMyZTM2NWYzYmRiM2IxNmRhNDNmY2VjZWFiNjc2MmExZjZmMmU3ZThjZjNiNDU0NmQyYmJmYzU1NWY2OTk4MGVkYzhkMTRkMzU4MmM2ZjU0MmVlNWQwYTZiY2RlMGQwZWY2MGU1OWIwZDY2MmI3OTYzNmRlZDY4MTZlODZlNzA1ZjJmYTk2NTBlOWFhZmQ5M2MzMzQ3YThjOTEyZDUiLCJpc3MiOiJjb20ud2lzZW1pbmRzc29sdXRpb25zIiwiYXVkIjoiVVNFUiIsImlhdCI6MTYwOTkyNzk2MywiZXhwIjoxNjA5OTcxMTYzfQ.5ew78L6gXGHbHXPxrohtMdQeNCoZ_kfSjaKB3L1yfZU
+
+{
+     "jobRole": "dvsfbfhg",
+      "companySize": "dsgfhtfg",
+      "companyName": "SDFgfhgdfag",
+      "companyRevenue": "Sdgfmnsasf",
+      "organizationType": "Sgfdhfsdfasd",
+      "annualTax": "SFgdfhsgdfagsd"
+}
