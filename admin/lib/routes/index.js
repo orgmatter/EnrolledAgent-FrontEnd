@@ -11,9 +11,12 @@ router
   .use(Middleware.ExtractToken.token.unless([]))
   .use(Middleware.ExtractToken.decodeData)
   .use(require('./resource'))
+  .use(require('./claim'))
   .use('/sponsor', require('./sponsor'))
+  .use('/log', require('./log'))
   .use('/category', require('./category'))
   .use('/article', require('./article'))
+  .use('/agent', require('./agent'))
   .use('/question', require('./question'))
   
 

@@ -71,11 +71,11 @@ router
   // .get('/google/callback', passport.authenticate('google', { scope: ['profile', 'email'], }), handleSocial)
 
   .get("/blog", ArticleController.getAll, (req, res) => {
-    console.log("articles>>>", req.locals.articles.data);
+    // console.log("articles>>>", req.locals.articles.data);
     res.render("blog", { locals: req.locals });
   })
   .get("/blog/:id", ArticleController.get, (req, res) => {
-    console.log("articles>>>", req.locals);
+    // console.log("articles>>>", req.locals);
     res.render("singleBlog", { locals: req.locals.article });
   })
   .get("/ea-listings", AgentController.getAll, (req, res) => {
@@ -91,7 +91,7 @@ router
     }
   )
   .get("/search-results", AgentController.getAll, (req, res) => {
-    console.log("locals ", req.locals);
+    // console.log("locals ", req.locals);
     res.render("search-results", { locals: req.locals });
   })
 
@@ -101,7 +101,7 @@ router
     AgentController.popular,
     ResourceController.random,
     (req, res) => {
-      console.log("locals", req.locals);
+      // console.log("locals", req.locals);
       // extract message if this page was redirected to from another page
       if (req.app.locals && req.app.locals.message)
         req.locals.infoMessage = req.app.locals.message;
@@ -115,7 +115,7 @@ router
     res.render("askEA");
   })
   .get("/agent/:id", AgentController.get, (req, res) => {
-    console.log("agent>>>>", req.locals);
+    // console.log("agent>>>>", req.locals);
     res.render("single-agent-details", { locals: req.locals });
   })
   .get(
@@ -124,7 +124,7 @@ router
     CityController.get,
     AgentController.get,
     (req, res) => {
-      console.log(req.locals);
+      // console.log(req.locals);
       res.render("states", { locals: req.locals });
     }
   )
@@ -135,12 +135,12 @@ router
     AgentController.popularInState,
     AgentController.get,
     (req, res) => {
-      console.log(req.locals);
+      // console.log(req.locals);
       res.render("single-state", { locals: req.locals });
     }
   )
   .get("/agents/:state/:city", AgentController.city, (req, res) => {
-    console.log(req.locals);
+    // console.log(req.locals);
     res.render("city", { locals: req.locals });
   })
   // .get("/city/:slug", AgentController.city, (req, res) => {
@@ -183,7 +183,7 @@ router
     CityController.get,
     AgentController.popular,
     (req, res) => {
-      console.log("data>>>>>", req.locals);
+      // console.log("data>>>>>", req.locals);
       res.render("singleFirm", { locals: req.locals });
     }
   )

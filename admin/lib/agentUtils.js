@@ -50,7 +50,7 @@ exports.createAgent = async (data) => {
             
             Agent.create(ag)
                 .then((a) => {
-                    console.log(a.firstName, 'Agent created')
+                    // console.log(a.firstName, 'Agent created')
                     resolve()
                 })
                 .catch(reject)

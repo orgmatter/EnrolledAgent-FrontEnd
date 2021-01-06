@@ -3,8 +3,10 @@ const {
     ErrorCodes,
     Validator,
     Helper,
+    LogAction,
+    LogCategory,
     DB,
-    Models: { Question, Answer, QuestionCategory },
+    Models: { Question, Answer, QuestionCategory, Log },
 } = require("common");
 
 
@@ -72,6 +74,15 @@ class QuestionController extends BaseController {
 
         super.handleResult(resource, res, next)
 
+        await Log.create({
+            user: req.user.id,
+            action: LogAction.QUESTION_ANSWER,
+            category: LogCategory.QUESTION,
+            resource: resource._id,
+            ip: Helper.getIp(req),
+            message: 'Resource Answer'
+        })
+
 
     }
 
@@ -85,6 +96,17 @@ class QuestionController extends BaseController {
                 Answer.deleteMany({ question: doc.id }).exec()
             })
         super.handleResult(resource, res, next)
+
+
+        await Log.create({
+            user: req.user.id,
+            action: LogAction.QUESTION_DELETED,
+            category: LogCategory.QUESTION,
+            resource: resource._id,
+            ip: Helper.getIp(req),
+            message: 'Resource Deleted'
+        })
+
     }
 
 

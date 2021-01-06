@@ -13,6 +13,11 @@ const Reveiw = new Schema({
     ref: 'user',
     type: Schema.ObjectId
   },
+  firstName: String,
+  lastName: String,
+  state: String,
+  city: String,
+  email: String,
   firm: {
     ref: 'firm',
     type: Schema.ObjectId

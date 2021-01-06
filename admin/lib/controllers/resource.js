@@ -5,6 +5,8 @@ const {
     Storages,
     Validator,
     Helper,
+    LogAction,
+    LogCategory,
     DB,
     Models: { Resource, Sponsor, ResourceCategory },
 } = require("common");
@@ -93,6 +95,15 @@ class ResourceController extends BaseController {
         }
         super.handleResult(resource, res, next)
 
+        await Log.create({
+            user: req.user.id,
+            action: LogAction.RESOURCE_CREATED,
+            category: LogCategory.RESOURCE,
+            resource: resource._id,
+            ip: Helper.getIp(req),
+            message: 'Resource Created'
+        })
+
     }
 
     async update(req, res, next) {
@@ -124,6 +135,15 @@ class ResourceController extends BaseController {
         }
         super.handleResult(resource, res, next)
 
+        await Log.create({
+            user: req.user.id,
+            action: LogAction.RESOURCE_UPDATED,
+            category: LogCategory.RESOURCE,
+            resource: resource._id,
+            ip: Helper.getIp(req),
+            message: 'Resource Updated'
+        })
+
     }
 
     async delete(req, res, next) {
@@ -132,6 +152,15 @@ class ResourceController extends BaseController {
         let resource = await Resource.findByIdAndDelete(id).exec()
         if (resource && resource.imageUrl && !Validator.isUrl(resource.imageUrl)) FileManager.deleteFile(resource.imageUrl)
         super.handleResult(resource, res, next)
+
+        await Log.create({
+            user: req.user.id,
+            action: LogAction.RESOURCE_DELETED,
+            category: LogCategory.RESOURCE,
+            resource: resource._id,
+            ip: Helper.getIp(req),
+            message: 'Resource Deleted'
+        })
     }
 
     async get(req, res, next) {

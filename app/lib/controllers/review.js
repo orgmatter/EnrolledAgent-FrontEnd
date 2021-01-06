@@ -1,4 +1,4 @@
-const { DB, Models: { Agent, Review }, Validator, Exception, ErrorCodes, ErrorMessage } = require("common")
+const { DB, Models: { Agent, Review, Firm }, Validator, Exception, ErrorCodes, ErrorMessage } = require("common")
 
 /**
 * Manage Review
@@ -13,21 +13,30 @@ class ReviewController {
     * @param  {function} next
     */
     createReview = async function (req, res, next) {
-        const { rating, message, agent, firm } = req.body;
+        const { rating, message, agent, firm , email, firstName, lastName,  } = req.body;
+        let usr, type = 'agent'
+        if(req.user && req.user.id) usr = req.user.id
 
-        if (!Validator.isMongoId(agent) || !(await Agent.exists({ _id: agent })))
+        if (!email || !Validator.email(email))
+        return next(new Exception("Please input a valid email", ErrorCodes.REQUIRED));
+
+        if (!agent && !firm)
+        return next(new Exception("Invalid request", ErrorCodes.REQUIRED));
+
+        if (agent && (!Validator.isMongoId(agent) || !(await Agent.exists({ _id: agent }))))
             return next(new Exception("Invalid request", ErrorCodes.REQUIRED));
+    
+         if (firm && (!Validator.isMongoId(firm) || !(await Firm.exists({ _id: firm }))))
+            return next(new Exception("Invalid request", ErrorCodes.REQUIRED));    
 
         if (!rating || !Number(rating) || Number(rating) < 1 || Number(rating) > 5)
             return next(new Exception("Please select an appropriate rating", ErrorCodes.REQUIRED));
+        if(firm)type = 'firm'
+        if (await Review.exists({ email, agent }))
+            return next(new Exception("You have previously reviewd this " + type, ErrorCodes.REQUIRED));
 
-        if (!(req.isAuthenticated() && req.user && req.user.accountType == "customer"))
-            return next(new Exception("You need to be loged in to rate a company", ErrorCodes.REQUIRED));
-
-        if (await Review.exists({ user: req.user.id, agent }))
-            return next(new Exception("You have previously reviewd this agent", ErrorCodes.REQUIRED));
-
-        Review.create({ rating, message, agent, firm, user: req.user.id }).then((doc) => {
+        Review.create({ rating, message, agent, firm, user: usr, firstName, lastName, email })
+        .then((doc) => {
             res.json({ data: { message: 'your rating was added successfully' } })
         })
     }

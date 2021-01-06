@@ -24,12 +24,12 @@ const UserSchema = new Schema({
         type: String,
         enum: ['male', 'female']
     },
-    agent: {
-        type: { ref: 'agent', type: Schema.ObjectId }
-    },
-    firm: {
-        type: { ref: 'firm', type: Schema.ObjectId }
-    },
+    // agent: {
+    //     type: { ref: 'agent', type: Schema.ObjectId }
+    // },
+    // firm: {
+    //     type: { ref: 'firm', type: Schema.ObjectId }
+    // },
     country: String,
     state: String,
     city: String,

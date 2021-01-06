@@ -13,24 +13,29 @@ module.exports = {
   ARTICLE_DELETED: 'article.deleted',
   ARTICLE_STATUS_CHANGED: 'article.status_changed',
 
-  PRODUCT_CREATED: 'product.create',
-  PRODUCT_UPDATED: 'product.updated',
-  PRODUCT_DELETED: 'product.deleted',
+  RESOURCE_CREATED: 'resource.create',
+  RESOURCE_UPDATED: 'resource.updated',
+  RESOURCE_DELETED: 'resource.deleted',
+  RESOURCE_STATUS_CHANGED: 'resource.status_changed',
 
-  SERVICE_CREATED: 'service.create',
-  SERVICE_UPDATED: 'service.updated',
-  SERVICE_DELETED: 'service.deleted',
+  SPONSOR_CREATED: 'sponor.create',
+  SPONSOR_UPDATED: 'sponor.updated',
+  SPONSOR_DELETED: 'sponor.deleted',
 
-  RENT_CREATED: 'rent.create',
-  RENT_UPDATED: 'rent.updated',
-  RENT_DELETED: 'rent.deleted',
+  CATEGORY_CREATED: 'category.create',
+  CATEGORY_UPDATED: 'service.updated',
+  CATEGORY_DELETED: 'service.deleted',
 
-  BANK_UPDATED: 'bank.update',
-  BANK_CREATED: 'bank.create',
+  QUESTION_ANSWER: 'question.answer',
+  QUESTION_UPDATED: 'question.updated',
+  QUESTION_DELETED: 'question.deleted',
 
-  BOOST_CREATED: 'boost.create',
-  BOOST_UPDATED: 'boost.updated',
-  BOOST_DELETED: 'boost.deleted',
-  CHARGE_SUCCESS: 'charge.success',
-  INVEST_ERROR: 'investment.error'
+  AGENT_UPLOADED: 'agent.upload',
+  AGENT_CREATED: 'agent.create',
+  AGENT_UPDATED: 'agent.updated',
+  AGENT_DELETED: 'agent.deleted',
+  AGENT_DELETED: 'agent.listing.approve',
+  AGENT_DELETED: 'agent.liosting.decline',
+
+  
 }

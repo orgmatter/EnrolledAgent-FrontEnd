@@ -28,10 +28,11 @@ const Article = new Schema({
     ref: 'sponsor',
     type: Schema.ObjectId
   },
-  title: String,
+  title: {type: String, index: true},
   imageUrl: String,
 }, { timestamps: true })
-Article.index({ title: 2, author: 1, })
+
+Article.index({ title: 'text', body: 'text', })
 
 
 module.exports = mongoose.model('article', Article)
