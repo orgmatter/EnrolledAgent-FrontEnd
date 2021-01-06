@@ -25,6 +25,7 @@ class AuthController {
         const { email, password } = req.body
 
         log.info(email, password)
+        console.log(req.body)
 
         if (!email || !password) {
             res.status(422)
@@ -89,8 +90,8 @@ class AuthController {
 
                 const token = jwt.signToken(Helper.userToSession(user, Constants.ACCOUNT_TYPE.admin))
                 user.token = token
-                const data = Helper.formatUser(user, token)
-                res.json({ data })
+                const data = Helper.formatUser(user)
+                res.json({ data, token })
                 // log that an account was created login was succesful
 
                 Log.create({

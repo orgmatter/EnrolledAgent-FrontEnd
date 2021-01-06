@@ -55,7 +55,7 @@ class CategoryController extends BaseController {
         const { body: { name, description }, params: { id } } = req
         if (!BaseController.checkId('Invalid category id', req, res, next)) return
 
-        const body = {}
+        const body = {'': ''}
         if (name) {
             body.name = name
             body.slug = Helper.generateSlug(name)

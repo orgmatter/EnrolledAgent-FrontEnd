@@ -22,7 +22,11 @@ router
   .use((req, res, next) => {
     req.locals = { query: req.query };
     req.locals.pageTitle = "Home";
-    if (req.isAuthenticated() && req.user && req.user.accountType == Constants.ACCOUNT_TYPE.user)
+    if (
+      req.isAuthenticated() &&
+      req.user &&
+      req.user.accountType == Constants.ACCOUNT_TYPE.user
+    )
       req.locals.isAuthenticated = true;
     next();
   })
@@ -38,9 +42,13 @@ router
     })(req, res, next);
   })
   .get("/google/callback", function (req, res, next) {
-    passport.authenticate("google", { scope: ["profile", "email"] }, function (err, user, info) {
-      handleSocial(req, res, next, err, user, info);
-    })(req, res, next);
+    passport.authenticate(
+      "google",
+      { scope: ["profile", "email"] },
+      function (err, user, info) {
+        handleSocial(req, res, next, err, user, info);
+      }
+    )(req, res, next);
   })
   .get("/linkedin/callback", function (req, res, next) {
     passport.authenticate("linkedin", function (err, user, info) {
@@ -61,6 +69,22 @@ router
   .get("/dashboard", ResourceController.random, (req, res) => {
     res.render("dashboard/dashboardhome", { locals: req.locals });
   })
+  .get("/answers", ResourceController.random, (req, res) => {
+    res.render("dashboard/dashboardQ&A", { locals: req.locals });
+  })
+  .get("/clientLeads", ResourceController.random, (req, res) => {
+    res.render("dashboard/clientLeads", { locals: req.locals });
+  })
+
+  .get("/dashboard/messages", ResourceController.random, (req, res) => {
+    res.render("dashboard/dashboardmessages", { locals: req.locals });
+  })
+  .get("/dashboard/article", ResourceController.random, (req, res) => {
+    res.render("dashboard/dashboardarticle", { locals: req.locals });
+  })
+  // .get("/about-us", (req, res) => {
+  //   res.render("about");
+  // })
   // .get('/linkedin/callback', passport.authenticate('linkedin'), handleSocial)
   // .get('/google/callback', passport.authenticate('google', { scope: ['profile', 'email'], }), handleSocial)
 
@@ -76,20 +100,32 @@ router
     // console.log("locals are", req.locals.agents);
     res.render("ea-listings", { locals: req.locals });
   })
-  .get("/find-agent", CityController.get, AgentController.popular, (req, res) => {
-    res.render("find-agent", { locals: req.locals });
-  })
+  .get(
+    "/find-agent",
+    CityController.get,
+    AgentController.popular,
+    (req, res) => {
+      res.render("find-agent", { locals: req.locals });
+    }
+  )
   .get("/search-results", AgentController.getAll, (req, res) => {
     console.log("locals ", req.locals);
     res.render("search-results", { locals: req.locals });
   })
 
-  .get("/", CityController.get, AgentController.popular, ResourceController.random, (req, res) => {
-     console.log("locals", req.locals)
-    // extract message if this page was redirected to from another page
-    if (req.app.locals && req.app.locals.message) req.locals.infoMessage = req.app.locals.message;
-    res.render("home", { locals: req.locals });
-  })
+  .get(
+    "/",
+    CityController.get,
+    AgentController.popular,
+    ResourceController.random,
+    (req, res) => {
+      console.log("locals", req.locals);
+      // extract message if this page was redirected to from another page
+      if (req.app.locals && req.app.locals.message)
+        req.locals.infoMessage = req.app.locals.message;
+      res.render("home", { locals: req.locals });
+    }
+  )
   .get("/claim-listing", (req, res) => {
     res.render("listings");
   })
@@ -132,31 +168,51 @@ router
   .get("/offshore-team", (req, res) => {
     res.render("offshoreTeam");
   })
-  .get("/resource", CityController.get, ResourceController.getAll, (req, res) => {
-    res.render("category", {
-      name: "Resources",
-      locals: req.locals,
-    });
-  })
-  .get("/resource/:category", CityController.get, ResourceController.getAll, (req, res) => {
-    res.render("category", {
-      name: req.params.category,
-      locals: req.locals,
-    });
-  })
+  .get(
+    "/resource",
+    CityController.get,
+    ResourceController.getAll,
+    (req, res) => {
+      res.render("category", {
+        name: "Resources",
+        locals: req.locals,
+      });
+    }
+  )
+  .get(
+    "/resource/:category",
+    CityController.get,
+    ResourceController.getAll,
+    (req, res) => {
+      res.render("category", {
+        name: req.params.category,
+        locals: req.locals,
+      });
+    }
+  )
   // .get("/resources", ResourceController.getAll, (req, res) => {
   //   res.render("category");
   // })
   .get("/practice-exchange", CityController.get, (req, res) => {
     res.render("practiceExchange");
   })
-  .get("/states/:state", CityController.get, AgentController.popular, (req, res) => {
-    console.log("data>>>>>", req.locals);
-    res.render("singleFirm", {locals: req.locals})
-  })
-  .get("/find-enrolled-agents", CityController.get, AgentController.popular, (req, res) => {
-    res.render("find-agent");
-  })
+  .get(
+    "/states/:state",
+    CityController.get,
+    AgentController.popular,
+    (req, res) => {
+      console.log("data>>>>>", req.locals);
+      res.render("singleFirm", { locals: req.locals });
+    }
+  )
+  .get(
+    "/find-enrolled-agents",
+    CityController.get,
+    AgentController.popular,
+    (req, res) => {
+      res.render("find-agent");
+    }
+  )
   .get("/need-accountant", (req, res) => {
     res.render("need-accountant");
   })

@@ -45,11 +45,11 @@ class SponsorController extends BaseController {
         const { body: { name, link }, params: { id } } = req
         if (!BaseController.checkId('Invalid sponsor id', req, res, next)) return
 
-        const body = {}
+        const body = {'': ''}
         if (name) body.name = name
         if (link) body.link = link
 
-        let sponsor = await Sponsor.findByIdAndUpdate(id, body, { new: true })
+        let sponsor = await Sponsor.findByIdAndUpdate(id, body, { new: true }).exec()
 
         if (req.file) {
             const imageUrl = await FileManager.saveFile(

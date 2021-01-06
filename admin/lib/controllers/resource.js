@@ -89,9 +89,10 @@ class ResourceController extends BaseController {
 
 
     async update(req, res, next) {
-        const { body, params: { id } } = req
+        const { params: { id } } = req
         if (!BaseController.checkId('Invalid resource id', req, res, next)) return
 
+        const body = sanitizeBody(req.body)  || {'': ''}
 
         if (body.sponsor, !Validator.isMongoId(body.sponsor) || !(await Sponsor.exists({ _id: body.sponsor }))) {
             delete body.sponsor

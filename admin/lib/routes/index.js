@@ -12,6 +12,7 @@ router
   .use('/sponsor', require('./sponsor'))
   .use('/category', require('./category'))
   .use('/article', require('./article'))
+  .use('/agent', require('./agent'))
   
 
 

@@ -1,0 +1,79 @@
+.mainsection .body {
+  background: #f7f7f7;
+  padding-bottom: 50px;
+}
+.mainsection .message-top {
+  margin: 2rem 0;
+  text-align: center;
+}
+.mainsection .message-top h3 {
+  font-family: Baskerville Old Face;
+  font-weight: bold;
+  font-size: 50px;
+  color: #212121;
+}
+.mainsection .message-top p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  color: #000;
+}
+
+// card-section
+.mainsection .message-cards {
+  margin: 2rem 7%;
+  background: #ffffff;
+  box-shadow: 0px 0px 10px #00000029;
+  border-radius: 5px;
+  padding: 2%;
+  // margin-bottom: 3rem;
+}
+
+.mainsection hr {
+  margin: 0 7%;
+  border-top: 1px dotted #707070;
+}
+
+.mainsection .message-cards .head-flex {
+  display: flex;
+  margin-bottom: 1rem;
+}
+.mainsection .message-cards .head-flex .date {
+  background: #01105b;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  padding: 1%;
+  margin-right: 2%;
+}
+
+.mainsection .message-cards .head-flex .title h4 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #000;
+}
+.mainsection .message-cards .head-flex .title small {
+  font-size: 14px;
+  font-weight: normal;
+  color: #000;
+}
+.mainsection .message-cards .head-flex .content p {
+  font-size: 18px;
+  font-weight: normal;
+  color: #000;
+  margin: 1rem 0;
+}
+
+@media (max-width: 500px) {
+  .mainsection .message-top h3 {
+    font-size: 40px;
+  }
+  .mainsection .message-top p {
+    font-size: 18px;
+  }
+  .mainsection .message-cards .head-flex .title h4 {
+    font-size: 25px;
+    font-weight: bold;
+    color: #000;
+  }
+}

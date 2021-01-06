@@ -38,6 +38,20 @@ const uploader = multer({
 })
 
 
+const csv = multer({
+  storage,
+  // file mimit is 1mb
+  // limits: { fileSize: 1024 * 1024 },
+  fileFilter(req, file, cb) {
+    if (
+      !file.originalname.match(/\.(csv)$/i)
+    ) {
+      return cb(new Exception('Please upload a csv file'))
+    } else cb(null, true)
+  }
+})
+
+
 const uploader2 = multer({
   storage,
   // file mimit is 2mb
@@ -87,8 +101,9 @@ generateHash = async function (file) {
 /**
  * upload a single file to the server and save to temp directory
  */
-exports.none =  multer().any()
+exports.none = multer().any()
 exports.upload = uploader.single('avatar')
+exports.csv = csv.single('doc')
 exports.any = uploader.any()
 exports.array = uploader.array('avatar[]')
 exports.fields = uploader2.fields([

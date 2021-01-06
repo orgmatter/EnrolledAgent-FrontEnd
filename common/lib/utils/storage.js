@@ -17,4 +17,9 @@ module.exports = {
    */
     SPONSOR: 'sponsor',
 
+    /**
+   * Documents
+   */
+    DOCS: 'doc',
+
 }
