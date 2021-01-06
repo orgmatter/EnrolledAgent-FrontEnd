@@ -1,5 +1,6 @@
 @import "./components/font";
 @import "./components/colors";
+@import"./components/tinyMce";
 @import "./components/layout";
 @import "./components/sidebar";
 @import "./components/navbar";
@@ -11,6 +12,9 @@
 @import "./pages/ccenter";
 @import "./pages/home";
 @import "./pages/dashboard";
+@import "./pages/dashboardmessages";
+@import "./pages/dashboardarticle";
+@import "./pages/submitAnswer";
 @import "./pages/blog";
 @import "./pages/tax";
 @import "./pages/category";
@@ -30,3 +34,8 @@
 @import "./pages/states";
 @import "./pages/singleBlog";
 @import "./pages/singleFirm";
+@import "./pages/dashboardQ&A";
+@import "./pages/clientLeads";
+@import "./pages/accountSetup";
+@import "./pages/faqs";
+@import "./pages/createArticle";

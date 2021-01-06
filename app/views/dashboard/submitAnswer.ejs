@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="/assets/files/favicon.png" rel="shortcut icon" type="image/png" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" />
+    <!-- CSS | Main style file -->
+    <link href="/css/style-main.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    <script src='https://cdn.tiny.cloud/1/voz160wv09tvdc9icbaf8p7hbz5l7r1xo766o8kv2lnzqs8e/tinymce/5/tinymce.min.js' referrerpolicy="origin">
+  </script>
+  <script>
+    tinymce.init({
+      selector: '#mytextarea',
+      height : 300,
+      menubar: false,
+      plugins: [
+    'advlist autolink lists link image charmap print preview anchor',
+    'searchreplace visualblocks code fullscreen',
+    'insertdatetime media table paste code help wordcount'
+  ],
+  toolbar: 'undo redo ' +
+  'bold italic | alignleft aligncenter ' +
+  'alignright alignjustify | bullist numlist outdent indent | ' +
+  'removeformat',
+   });
+  </script>
+  </head>
+  <body>
+    <div class="layout">
+      <%-include("../partials/sidebar.ejs")%> <%-include("../partials/navbar.ejs")%>
+      <div class="mainsection">
+        <section class="submitAnswer">
+            <div class="submitAnswer_top">
+                <h2 class="submitAnswer_top-header">Submit an Answer</h2>
+                <p>Can you provide an answer for this tax question?</p>
+                <p class="submitAnswer_top-desc">
+                    Answering tax questions for our site visitors raises your Enrolled Agents site 
+                    reputation, as well as improving your placement in our search results. <br />
+                    Your listing profile will also appear along with the answer in our archive, 
+                    generating links and traffic to your page.
+                </p>
+                <a class="submitAnswer_top-btn" href="#">Back to Questions</a>
+            </div>
+            <div class="submitAnswer_middle">
+                <p class="submitAnswer_middle-question"><span>Question:</span> Installment Plan - Refund</p>
+                <p class="submitAnswer_middle-text">I found out after settling a lawsuit that the $9,000 I 
+                    would receive would be considered income. So I did not submit this 1099 on my 2019 taxes. 
+                    I was notified that they received it (the IRS) and then they added it on to my taxes and 
+                    I owe roughly $2,500. I set up an installment plan to pay for this over the next year. 
+                    My question is; is that I show the IRS will owe me about a $9,000 refund this year - 
+                    will they just take the $2,500 out of it or will they not give me a refund at all - 
+                    what happens exactly? Thanks
+                </p>
+                <p class="submitAnswer_middle-meta">Asked by Dan F. on January 04, 2021</p>
+                <h5>Answer As<span>*</span></h5>
+                <div class="submitAnswer_middle-select">
+                    <select>
+                        <option disabled>Select a Profile</option>
+                    </select>
+                </div>
+                <p class="submitAnswer_middle-info">
+                    Choose the profile or firm who will answer this question. The profile you 
+                    select will earn the reputation points for answering this question.
+                </p>
+                <h4>Your Answer</h4>
+                <p class="submitAnswer_middle-info">Provide your answer to the question here.</p>
+                <form action="">
+                    <textarea id="mytextarea" name="mytextarea"></textarea>
+                    <div class="submitAnswer_middle-btn-div">
+                        <input type="submit" value="Submit" class="createArticle_middle-btn-div-link" />
+                    </div>
+                </form>
+            </div>
+            <div class="submitAnswer_footer">
+                <p class="submitAnswer_footer-red">You will earn +1 reputation for this answer.</p>
+                <p class="submitAnswer_footer-info">
+                    <span>Note:</span> By choosing to publish this answer, you are giving permission for Enrolled 
+                    Agent to post your content on our site, as well make any grammatical changes 
+                    and/or search related optimizations as our editors see fit. You will still 
+                    earn reputation for every question answered regardless of edits, which will improve 
+                    your position in all searches on our site. If for any reason your answer is not approved, 
+                    any earned repscore will be reverted. Any suspected abuse of our system, use of 
+                    inappropriate language, or unsavory responses may lead to deactivation of your account, 
+                    a loss of reputation score, or both.
+                </p>
+            </div>
+        </section>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  </body>
+</html>
