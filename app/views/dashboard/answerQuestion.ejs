@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="/assets/files/favicon.png" rel="shortcut icon" type="image/png" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" />
+    <!-- CSS | Main style file -->
+    <link href="/css/style-main.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    
+  </head>
+  <body>
+    <div class="layout">
+      <%-include("../partials/sidebar.ejs")%> <%-include("../partials/navbar.ejs")%>
+      <div class="mainsection">
+        <section class="createArticle">
+            <div class="createArticle_top">
+                <h2 class="createArticle_top-header">Ask An EA</h2>
+                <p>Answer simple tax questions submitted by our users, earn reputation points, 
+                    and build your profile. 
+                </p>
+                <p style="margin-bottom: 30px;">Providing answers to tax questions posted by our users is the fastest way to 
+                    promote your listing to the top of our search results. Every question <br />you answer 
+                    provides your account with repscore, one of the determining factors we use to 
+                    order our search results.
+               </p>
+                <div class="createArticle_top-btn-div">
+                    <a class="createArticle_top-btn-div-link" href="#">Help</a>
+                </div>
+            </div>
+            <div class="createArticle_card-div">
+                <div class="question-card">
+                    <p class="question-card-text"><span>Question:</span> Installment Plan - Refund</p>
+                    <div class="question-card-flex">
+                        <div class="question-card-flex-1">
+                            <p class="question-card-flex-1-category">Payments and Penalties</p>
+                            <p class="question-card-flex-1-badge">Not Yet Answered</p>
+                        </div>
+                        <div class="question-card-flex-2">
+                            <a href="#" class="question-card-flex-2-link">Answer Question</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

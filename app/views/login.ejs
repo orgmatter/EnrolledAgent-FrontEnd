@@ -162,16 +162,13 @@
 
 
     function googleLogin() {
-      window
-        .location = 'google/callback'
+      window.location = 'google/callback'
     }
     function facebookLogin() {
-      window
-        .location = 'facebook/callback'
+      window.location = 'facebook/callback'
     }
     function linkedinLogin() {
-      window
-        .location = 'linkedin/callback'
+      window.location = 'linkedin/callback'
     }
     // function onSuccess(googleUser) {
     //   console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
@@ -230,7 +227,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
     integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
     crossorigin="anonymous"></script>
-  <script type="text/javascript" src="/javascripts/login.js"></script>
+ <!-- // <script type="text/javascript" src="/javascripts/login.js"></script> -->
 
   <script>
     function getCookie(name) {
@@ -252,9 +249,16 @@
           "email": "ekeh.wisdom@gmail.com",
           "password": "password"
         })
+      }).then((res) => {
+        console.log(res);
+      }).catch((err) => {
+        console.log(err);
       })
     }
-    // makeRequest()
+    const loginForm = document.getElementById("login-form");
+
+    loginForm.addEventListener("submit", makeRequest());
+     
   </script>
 </body>
 

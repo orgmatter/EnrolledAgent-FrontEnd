@@ -85,6 +85,16 @@ router
   // .get("/about-us", (req, res) => {
   //   res.render("about");
   // })
+  .get("/dashboard/submit-answer", (req, res) => {
+    res.render("dashboard/submitAnswer", { locals: req.locals });
+  })
+  .get("/dashboard/create-article", (req, res) => {
+    res.render("dashboard/createArticle", { locals: req.locals });
+  })
+  .get("/dashboard/answer-questions", (req, res) => {
+    res.render("dashboard/answerQuestion", { locals: req.locals });
+  })
+
   // .get('/linkedin/callback', passport.authenticate('linkedin'), handleSocial)
   // .get('/google/callback', passport.authenticate('google', { scope: ['profile', 'email'], }), handleSocial)
 

@@ -1,0 +1,106 @@
+.mainsection{
+    .submitAnswer{
+        padding: 27px 29px 100px 33px;
+        font-family: Arial;
+        &_top{
+            text-align: center!important;
+            &-header {
+                font-family: "Baskerville Old Face"!important;
+                font-weight: 400;
+                font-size: 46px;
+                margin-bottom: 29px;
+                color: #212121;
+            }
+            &-desc{
+                margin-bottom: 52px;
+            }
+            &-btn{
+                padding: 23px 35px 18px;
+                background-color: $main-blue;
+                color: #fff;
+                font-size: 16px;
+                border-radius: 3px;
+                &:hover{
+                    transform: translateY(10px);
+                }
+            }
+        }  
+        
+        &_middle{
+            box-shadow: 0px 0px 10px #00000029;
+            border-radius: 5px;
+            padding: 24px 31px 56px 50px;
+            margin: 47px 0 33px;
+            background-color: #fff;
+            &-question{
+                color: #000;
+                font-size: 16px;
+                span{
+                    font-weight: bold;
+                }
+            }
+            &-text, &-meta{
+                width: 95%;
+                color: #5A5A5A;
+            }
+            h5, h4 {
+                font-size: 16px;
+                color: #000;
+                margin: 20px 0 10px;
+                span{
+                    color: red;
+                }
+            }
+            &-select{
+                border-bottom: 1px solid #000;
+                width: 60%;
+                padding-bottom: 10px;
+                select{
+                    border: none;
+                    width: 90%;
+                    background-color: transparent;
+                }
+            }
+            &-info{
+                color: #5A5A5A;
+                font-size: 12px;
+                margin-top: 10px;
+            }
+            &-btn-div{
+                display: flex;
+                justify-content: center;
+
+                &-link{
+                padding: 13px 35px 10px;
+                background-color: $main-blue;
+                color: #fff;
+                font-size: 16px;
+                border-radius: 3px;
+                transition: .5s;
+                    &:hover{
+                        transform: translateY(-5px);
+                        transition: .5s;
+                    }
+                }
+            }
+            
+        }
+        &_footer{
+            margin-top: 33px;
+            &-red{
+                font-weight: bold;
+                color: #C90000;
+                text-align: center;
+            }
+            &-info{
+                color: #5A5A5A;
+                width: 95%;
+                span{
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+
+    
