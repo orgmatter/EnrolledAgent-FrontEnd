@@ -7,8 +7,17 @@ const {
     Helper,
     Constants,
     DB,
-    Models: { Article },
+    Models: { Article, Sponsor, ArticleCategory },
 } = require("common");
+
+
+
+const sanitizeBody = (body)=> {
+    delete body.rating
+    delete body.isClaimed
+    return body
+}
+
 
 const BaseController = require('../controllers/baseController');
 
@@ -16,7 +25,27 @@ class ArticleController extends BaseController {
 
 
     async create(req, res, next) {
-        const { body, preview, author, title } = req.body
+        const { body, preview, author, title, sponsor, category } = req.body
+
+        if (!sponsor || !Validator.isMongoId(sponsor) || !(await Sponsor.exists({ _id: sponsor }))) {
+            res.status(422)
+            return next(
+                new Exception(
+                    'Please provide a valid sponsor',
+                    ErrorCodes.REQUIRED
+                )
+            )
+        }
+
+        if (!category || !Validator.isMongoId(category) || !(await ArticleCategory.exists({ _id: category }))) {
+            res.status(422)
+            return next(
+                new Exception(
+                    'Please provide a valid category',
+                    ErrorCodes.REQUIRED
+                )
+            )
+        }
 
         if (!title || !body) {
             res.status(422)
@@ -50,7 +79,7 @@ class ArticleController extends BaseController {
             )
         }
 
-        const b = { body, author, title, preview }
+        const b = { body, author, title, preview, sponsor, category }
 
 
 
@@ -70,12 +99,12 @@ class ArticleController extends BaseController {
 
 
     async update(req, res, next) {
-        const { body, params: { id } } = req
+        const { params: { id } } = req
         if (!BaseController.checkId('Invalid airticle id', req, res, next)) return
 
-        delete body.status
+       const body = sanitizeBody(req.body)
 
-        let resource = await Article.findByIdAndUpdate(id, body, { new: true })
+        let resource = await Article.findByIdAndUpdate(id, body || {}, { new: true })
 
         if (req.file) {
             const imageUrl = await FileManager.saveFile(
