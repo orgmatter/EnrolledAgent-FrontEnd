@@ -7,6 +7,9 @@ const LogSchema = new Schema({
   ip: String,
   action: String,
   message: String,
+  resource:  {
+    type: Schema.ObjectId
+  },
   device: String,
   user: {
     ref: 'admin_user',

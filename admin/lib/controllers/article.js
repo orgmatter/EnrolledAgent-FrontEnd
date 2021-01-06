@@ -7,14 +7,16 @@ const {
     Helper,
     Constants,
     DB,
-    Models: { Article, Sponsor, ArticleCategory },
+    LogAction,
+    LogCategory,
+    Models: { Article, Log, Sponsor, ArticleCategory },
 } = require("common");
 
 
 
 const sanitizeBody = (body)=> {
-    delete body.rating
-    delete body.isClaimed
+    delete body.status
+    body[''] = ''
     return body
 }
 
@@ -57,28 +59,6 @@ class ArticleController extends BaseController {
             )
         }
 
-
-        if (!actionLink || !actionText) {
-            res.status(422)
-            return next(
-                new Exception(
-                    'Action link and action text is required',
-                    ErrorCodes.REQUIRED
-                )
-            )
-        }
-
-
-        if (!Validator.isUrl(actionLink, ['https'])) {
-            res.status(422)
-            return next(
-                new Exception(
-                    'Please provide a valid action link',
-                    ErrorCodes.REQUIRED
-                )
-            )
-        }
-
         const b = { body, author, title, preview, sponsor, category }
 
 
@@ -95,6 +75,14 @@ class ArticleController extends BaseController {
         }
         super.handleResult(resource, res, next)
 
+        await Log.create({
+            user: req.user.id,
+            action: LogAction.ARTICLE_CREATED,
+            category: LogCategory.ARTICLE,
+            resource: resource._id,
+            message: 'Article created'
+        })
+
     }
 
 
@@ -105,6 +93,7 @@ class ArticleController extends BaseController {
        const body = sanitizeBody(req.body)
 
         let resource = await Article.findByIdAndUpdate(id, body || {}, { new: true })
+        .populate(['sponsor', 'category'])
 
         if (req.file) {
             const imageUrl = await FileManager.saveFile(
@@ -118,6 +107,14 @@ class ArticleController extends BaseController {
         }
         super.handleResult(resource, res, next)
 
+        await Log.create({
+            user: req.user.id,
+            action: LogAction.ARTICLE_UPDATED,
+            category: LogCategory.ARTICLE,
+            resource: resource._id,
+            message: 'Article Updated'
+        })
+
     }
 
 
@@ -128,6 +125,13 @@ class ArticleController extends BaseController {
         let resource = await Article.findByIdAndDelete(id).exec()
         if (resource && resource.imageUrl) FileManager.deleteFile(resource.imageUrl)
         super.handleResult(resource, res, next)
+        await Log.create({
+            user: req.user.id,
+            action: LogAction.ARTICLE_DELETED,
+            category: LogCategory.ARTICLE,
+            resource: resource._id,
+            message: 'Article deleted'
+        })
     }
 
     async status(req, res, next) {
@@ -148,14 +152,25 @@ class ArticleController extends BaseController {
             )
         }
 
-        let resource = await Article.findByIdAndUpdate(id, { status }, { new: true }).exec()
+        let resource = await Article.findByIdAndUpdate(id, { status }, { new: true })
+        .populate(['sponsor', 'category'])
+        .exec()
         super.handleResult(resource, res, next)
+        await Log.create({
+            user: req.user.id,
+            action: LogAction.ARTICLE_STATUS_CHANGED,
+            category: LogCategory.ARTICLE,
+            resource: resource._id,
+            message: 'Article Status changed'
+        })
     }
 
 
     async get(req, res, next) {
         const { id } = req.params
-        let resource = await Article.findById(id).exec()
+        let resource = await Article.findById(id)
+        .populate(['sponsor', 'category'])
+        .exec()
         super.handleResult(resource, res, next)
     }
 
@@ -170,6 +185,7 @@ class ArticleController extends BaseController {
             perPage: perpage,
             query,
             page,
+            populate: ['sponsor', 'category']
         }, (data) => {
             super.handleResultPaginated(data, res, next)
         })

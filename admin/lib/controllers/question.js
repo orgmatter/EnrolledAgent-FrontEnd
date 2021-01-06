@@ -1,21 +1,19 @@
 const {
     Exception,
     ErrorCodes,
-    FileManager,
-    Storages,
     Validator,
     Helper,
-    Constants,
     DB,
-    Models: { Question, Sponsor, QuestionCategory },
+    Models: { Question, Answer, QuestionCategory },
 } = require("common");
-const { QuestionCategory } = require("common/lib/models");
 
 
 
-const sanitizeBody = (body)=> {
-    delete body.rating
-    delete body.isClaimed
+const sanitizeBody = (body) => {
+    delete body.user
+    delete body.answer
+    body[''] = ''
+
     return body
 }
 
@@ -24,44 +22,36 @@ const BaseController = require('../controllers/baseController');
 
 class QuestionController extends BaseController {
 
+    /**
+     * Set an answer as the answer to a question
+     * @param  {Express.Request} req
+     * @param  {Express.Response} res
+     * @param  {Function} next
+     */
+    async setAnswer(req, res, next) {
+        const { body: { title, user, answer }, params: { id } } = req
 
-    async create(req, res, next) {
-        const { body, title, sponsor, user } = req.body
-
-        if (!category || !Validator.isMongoId(category) || !(await QuestionCategory.exists({ _id: category }))) {
+        if (!id || !Validator.isMongoId(id) || !(await Question.exists({ _id: id }))) {
             res.status(422)
             return next(
                 new Exception(
-                    'Please provide a valid category',
+                    'Question not found on the server',
                     ErrorCodes.REQUIRED
                 )
             )
         }
 
-        if (!title || !body) {
+        if (!answer || !Validator.isMongoId(answer) || !(await Answer.exists({ _id: answer, question: id }))) {
             res.status(422)
             return next(
                 new Exception(
-                    'title and body is required',
+                    'Please provide a valid answer for this question',
                     ErrorCodes.REQUIRED
                 )
             )
         }
 
-
-        if (!actionLink || !actionText) {
-            res.status(422)
-            return next(
-                new Exception(
-                    'Action link and action text is required',
-                    ErrorCodes.REQUIRED
-                )
-            )
-        }
-
-        const b = { body, title, user, category }
-
-        let resource = await Question.create(b)
+        let resource = await Question.findByIdAndUpdate(id, { answer }, { new: true })
 
         super.handleResult(resource, res, next)
 
@@ -72,21 +62,16 @@ class QuestionController extends BaseController {
         const { params: { id } } = req
         if (!BaseController.checkId('Invalid airticle id', req, res, next)) return
 
-       const body = sanitizeBody(req.body)
+        const body = sanitizeBody(req.body)
 
-        let resource = await Question.findByIdAndUpdate(id, body || {}, { new: true })
-
-        if (req.file) {
-            const imageUrl = await FileManager.saveFile(
-                Storages.RESOURCE,
-                req.file
-            )
-            if (resource.imageUrl && imageUrl) FileManager.deleteFile(resource.imageUrl)
-
-            resource.imageUrl = imageUrl
-            await resource.save()
+        if (body.category && !(await QuestionCategory.exists({ _id: body.category }))) {
+            delete body.category
         }
+
+        let resource = await Question.findByIdAndUpdate(id, body, { new: true })
+
         super.handleResult(resource, res, next)
+
 
     }
 
@@ -95,32 +80,13 @@ class QuestionController extends BaseController {
         const { id } = req.params
         if (!BaseController.checkId('Invalid article id', req, res, next)) return
 
-        let resource = await Question.findByIdAndDelete(id).exec()
-        if (resource && resource.imageUrl) FileManager.deleteFile(resource.imageUrl)
+        let resource = await Question.findByIdAndDelete(id).then(
+            (doc) => {
+                Answer.deleteMany({ question: doc.id }).exec()
+            })
         super.handleResult(resource, res, next)
     }
 
-    async status(req, res, next) {
-        const { body: { status, id } } = req
-        req.params.id = id
-        // console.log('status', (status in {'pending': 1}))
-        if (!BaseController.checkId('Invalid article id', req, res, next)) return
-
-        /// verify that the status is part of our accepted status
-        if (!(status in Constants.ARTICLE_STATUS)) {
-
-            res.status(422)
-            return next(
-                new Exception(
-                    'Please provide a valid status',
-                    ErrorCodes.REQUIRED
-                )
-            )
-        }
-
-        let resource = await Question.findByIdAndUpdate(id, { status }, { new: true }).exec()
-        super.handleResult(resource, res, next)
-    }
 
 
     async get(req, res, next) {
@@ -140,6 +106,7 @@ class QuestionController extends BaseController {
             perPage: perpage,
             query,
             page,
+            populate: ['user', 'answer', 'answers']
         }, (data) => {
             super.handleResultPaginated(data, res, next)
         })

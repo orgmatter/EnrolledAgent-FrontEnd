@@ -7,10 +7,11 @@ module.exports = {
   USER_UPDATE: 'user.update',
   EMAIL_VERIFIED: 'user.email_verified',
   PASSWORD_RESET: 'user.password_reset',
-  STORE_CREATED: 'store.create',
-  STORE_UPDATED: 'store.updated',
-  STORE_DELETED: 'store.deleted',
-  STORE_PIN_RESET: 'store.pin_reset',
+
+  ARTICLE_CREATED: 'article.create',
+  ARTICLE_UPDATED: 'article.updated',
+  ARTICLE_DELETED: 'article.deleted',
+  ARTICLE_STATUS_CHANGED: 'article.status_changed',
 
   PRODUCT_CREATED: 'product.create',
   PRODUCT_UPDATED: 'product.updated',

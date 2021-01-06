@@ -11,8 +11,16 @@ const {
 
 const BaseController = require('../controllers/baseController');
 
-class ResourceController extends BaseController {
 
+const sanitizeBody = (body) => {
+    delete body.user
+    delete body.answer
+    body[''] = ''
+
+    return body
+}
+
+class ResourceController extends BaseController {
 
     async create(req, res, next) {
         const { body, actionLink, sponsor, actionText, title, imageUrl, category } = req.body
@@ -87,12 +95,11 @@ class ResourceController extends BaseController {
 
     }
 
-
     async update(req, res, next) {
         const { params: { id } } = req
         if (!BaseController.checkId('Invalid resource id', req, res, next)) return
 
-        const body = sanitizeBody(req.body)  || {'': ''}
+        const body = sanitizeBody(req.body)
 
         if (body.sponsor, !Validator.isMongoId(body.sponsor) || !(await Sponsor.exists({ _id: body.sponsor }))) {
             delete body.sponsor
@@ -103,6 +110,7 @@ class ResourceController extends BaseController {
         }
 
         let resource = await Resource.findByIdAndUpdate(id, body, { new: true })
+        .populate(['sponsor', 'category'])
 
         if (req.file) {
             const imageUrl = await FileManager.saveFile(
@@ -118,25 +126,22 @@ class ResourceController extends BaseController {
 
     }
 
-
     async delete(req, res, next) {
         const { id } = req.params
         if (!BaseController.checkId('Invalid resource id', req, res, next)) return
-
         let resource = await Resource.findByIdAndDelete(id).exec()
         if (resource && resource.imageUrl && !Validator.isUrl(resource.imageUrl)) FileManager.deleteFile(resource.imageUrl)
         super.handleResult(resource, res, next)
     }
 
-
     async get(req, res, next) {
         const { id } = req.params
         if (!BaseController.checkId('Invalid resource id', req, res, next)) return
-        const resource = await Resource.findById(id).exec()
+        const resource = await Resource.findById(id)
+        .populate(['sponsor', 'category'])
+        .exec()
         super.handleResult(resource, res, next)
     }
-
-
 
     async getAll(req, res, next) {
         const { page, perpage, q, search } = req.query
@@ -147,10 +152,10 @@ class ResourceController extends BaseController {
             perPage: perpage,
             query,
             page,
+            populate: ['sponsor', 'category']
         }, (data) => {
             super.handleResultPaginated({ ...data }, res, next)
         })
-
     }
 }
 
