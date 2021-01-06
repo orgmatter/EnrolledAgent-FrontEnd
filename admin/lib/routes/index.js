@@ -8,16 +8,17 @@ const {
 
 router
   .use(require('./auth'))
+  .use(Middleware.ExtractToken.token.unless([]))
+  .use(Middleware.ExtractToken.decodeData)
   .use(require('./resource'))
   .use('/sponsor', require('./sponsor'))
   .use('/category', require('./category'))
   .use('/article', require('./article'))
-  .use('/agent', require('./agent'))
+  .use('/question', require('./question'))
   
 
 
-  .use(Middleware.ExtractToken.token.unless([]))
-  .use(Middleware.ExtractToken.decodeData)
+
 
   // send all remaining request to the default router
   .use(Middleware.Four04Handler)

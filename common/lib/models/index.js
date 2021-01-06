@@ -4,6 +4,7 @@ module.exports = {
   AdminUser: require('./admin_user'),
   Agent: require('./agent'),
   Article: require('./article'),
+  Answer: require('./answer'),
   ArticleCategory: require('./articleCategory'),
   City: require('./city'),
   Comment: require('./comment'),
