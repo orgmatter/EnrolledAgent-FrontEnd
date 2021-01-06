@@ -225,7 +225,9 @@ router
   })
 
   .get("/account-setup", (req, res) => {
-    res.render("account-setup");
+    res.render("account-setup", {
+      avatarUrl: "/assets/images/img-placeholder.jpg"
+    });
   })
 
   .get("/faqs", (req, res) => {

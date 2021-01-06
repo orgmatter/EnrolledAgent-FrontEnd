@@ -24,20 +24,20 @@
                 <div class="form__group">
                     <div class="avatar">
                         <div class="avatar__preview">
+                            <!--
                             <img
                                 id="avatar-preview"
                                 src="/assets/images/img-placeholder.jpg"
                                 alt="profile picture"
                                 class="avatar__preview--image"
                             />
-<!--
+                            -->
                             <img
                                 id="avatar-preview"
-                                src="avatarUrl "
+                                src="<%=avatarUrl%>"
                                 alt="profile picture"
                                 class="avatar__preview--image"
                             />
--->
                         </div>
                         <div class="avatar__edit">
                             <input
@@ -103,7 +103,7 @@
                 </div>
                 <div class="form__row ">
                     <div class="form__group">
-                        <button class="asetup-btn form__button-btn">
+                        <button class="asetup-btn form__button-btn asetup-form-main-btn">
                             Send Password Reset
                         </button>
                     </div>
@@ -184,7 +184,7 @@
                     </div>
                     <div class="form__row">
                         <div class="form__group">
-                            <button class="asetup-btn form__button-btn">
+                            <button class="asetup-btn form__button-btn  asetup-form-main-btn">
                                 Save Contact Preferences
                             </button>
                         </div>
@@ -202,6 +202,9 @@
   document.getElementById('avatar-input').addEventListener('change', ()=>{
     let imageFile = document.getElementById('avatar-input').files[0]
     avatarUrl = URL.createObjectURL(imageFile);
+    /*
+    the above is not working tho I cannot edit ejs variable from here.
+     */
   })
 
 </script>
