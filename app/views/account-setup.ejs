@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="/assets/files/favicon.png" rel="shortcut icon" type="image/png" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" />
+    <!-- CSS | Main style file -->
+    <link href="/css/style-main.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+</head>
+<body>
+<div class="layout">
+    <%-include("./partials/sidebar.ejs")%> <%-include("./partials/navbar.ejs")%>
+    <div class="mainsection">
+        <div class="asetup">
+            <section class="asetup-head">
+                <div class="asetup-head__title">My Account</div>
+                <div class="asetup-head__details">Update account details forJuliet Willian</div>
+            </section>
+            <section class="asetup-form">
+                <div class="form__row">
+                <div class="form__group">
+                    <div class="avatar">
+                        <div class="avatar__preview">
+                            <!--
+                            <img
+                                id="avatar-preview"
+                                src="/assets/images/img-placeholder.jpg"
+                                alt="profile picture"
+                                class="avatar__preview--image"
+                            />
+                            -->
+                            <img
+                                id="avatar-preview"
+                                src="<%=avatarUrl%>"
+                                alt="profile picture"
+                                class="avatar__preview--image"
+                            />
+                        </div>
+                        <div class="avatar__edit">
+                            <input
+                                    id="avatar-input"
+                                    class="avatar__input"
+                                    type="file"
+                                    accept=".png, .jpg, .jpeg .JPG"
+                            />
+                            <label class="avatar__label" for="avatar-input">
+                                Change Image
+                                <span class="">
+                                    <button class="asetup-btn avatar__label--img">
+                                        <img src="/assets/images/edit2.svg" alt="edit avatar">
+                                    </button>
+                                </span>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+                </div>
+                <div class="form__row">
+                <div class="form__group">
+                    <div class="form__details">
+                    <div class="form__details--head">
+                        Account Details
+                    </div>
+                    <div class="form__details--text">
+                        View and update your Enrolled Agent account details.
+                    </div>
+                </div>
+                </div>
+                </div>
+                <div class="form__row">
+                    <div class="form__group">
+                        <label for="full-name" class="form__label">Full Name</label>
+                        <input type="text" id="full-name" name="full-name" class="form__input" value="Firstname Lastname" disabled />
+                    </div>
+                    <div class="form__group">
+                        <label for="username" class="form__label">Username</label>
+                        <input type="text" id="username" class="form__input" value="Username" disabled />
+                    </div>
+                </div>
+                <div class="form__row">
+                    <div class="form__group">
+                        <label for="email" class="form__label">Email Address</label>
+                        <input type="text" id="email" class="form__input" value="example@123.org" disabled />
+                    </div>
+                    <div class="form__group">
+                        <label for="account-created" class="form__label">Account Created</label>
+                        <input type="text" id="account-created" class="form__input" value="Tuesday, November 6, 1900" disabled />
+                    </div>
+                </div>
+                <div class="form__row">
+                    <div class="form__group">
+                        <label for="verified" class="form__label">Verified</label>
+                        <input type="text" id="verified" class="form__input" value="Tuesday, November 6, 1900" disabled />
+                    </div>
+                    <div class="form__group">
+                        <label for="last-login" class="form__label">Last Login</label>
+                        <input type="text" id="last-login" class="form__input" value="Tuesday, November 6, 1900" disabled />
+                    </div>
+                </div>
+                <div class="form__row ">
+                    <div class="form__group">
+                        <button class="asetup-btn form__button-btn asetup-form-main-btn">
+                            Send Password Reset
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="asetup-form asetup-form-contact">
+                <div class="contact-preferences">
+                    <div class="form__details">
+                        <div class="form__details--head">
+                            Contact Preferences
+                        </div>
+                        <div class="form__details--text">
+                            Let us know when and how you want to be updated about details of your account. Choose your prefered contact method, as well as which actions you want to receive notifications for. If you would like to receive text messages, you will need to add a phone number to your account.
+                        </div>
+                    </div>
+                    <div class="help-button">
+                        <button class="asetup-btn help-button__btn">
+                            <img src="/assets/images/information.svg" alt="help" class="asetup-btn-img">
+                            Help
+                        </button>
+                    </div>
+                    <div class="form__row">
+                    <div class="form__group">
+                            <label for="phone-number" class="form__label form__label-contact">Phone-number</label>
+                            <input type="text" id="phone-number" class="form__input" placeholder="(US) Phone Number" />
+                            <div class="form__input--info">Only US Numbers are Supported at this time.</div>
+                    </div>
+                    </div>
+                    <div class="form__row">
+                    <div class="form__group">
+                        <div class="form__input--head">Contact Me:</div>
+                        <div class="">
+                            <input type="checkbox" id="for-review" class="form__checkbox" />
+                            <label for="for-review" class="form__label form__checkbox-label">After a customer leaves a review</label>
+                        </div>
+                        <div class="">
+                            <input type="checkbox" id="for-message" class="form__checkbox" />
+                            <label for="for-message" class="form__label form__checkbox-label">When I receive a message</label>
+                        </div>
+                        <div class="">
+                            <input type="checkbox" id="for-published" class="form__checkbox" />
+                            <label for="for-published" class="form__label form__checkbox-label">When my article is published</label>
+                        </div>
+                        <div class="">
+                            <input type="checkbox" id="for-new-accountant" class="form__checkbox" />
+                            <label for="for-new-accountant" class="form__label form__checkbox-label">When an accountant is added to a firm I own.</label>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="form__row">
+                        <div class="form__group">
+                            <div class="form__input--head">Newsletter Subscription:</div>
+                            <div class="">
+                                <input type="checkbox" id="after-review" class="form__checkbox" />
+                                <label for="after-review" class="form__label form__checkbox-label">After a customer leaves a review</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__row">
+                        <div class="form__group">
+                            <div class="form__input--head">
+                                I prefer to be contacted by:
+                                <span>
+                                    <button class="asetup-btn asetup-btn-icon ">
+                                        <img src="/assets/images/question.svg" alt="help" class="">
+                                    </button>
+                                </span>
+                            </div>
+                            <div class="">
+                                <select type="checkbox" id="after-review" class="form__select" >
+                                    <option value="email" selected>Email</option>
+                                    <option value="phone">Telephone</option>
+                                </select>
+                                <label for="after-review" class="form__label form__checkbox-label">After a customer leaves a review</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__row">
+                        <div class="form__group">
+                            <button class="asetup-btn form__button-btn  asetup-form-main-btn">
+                                Save Contact Preferences
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+<script>
+  var avatarUrl = "/assets/images/img-placeholder.jpg"
+  var uploadedImageSource;
+  document.getElementById('avatar-input').addEventListener('change', ()=>{
+    let imageFile = document.getElementById('avatar-input').files[0]
+    avatarUrl = URL.createObjectURL(imageFile);
+    /*
+    the above is not working tho I cannot edit ejs variable from here.
+     */
+  })
+
+</script>
+
+</body>
+</html>

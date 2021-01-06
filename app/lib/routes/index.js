@@ -224,6 +224,15 @@ router
     res.render("license-verification");
   })
 
+  .get("/account-setup", (req, res) => {
+    res.render("account-setup", {
+      avatarUrl: "/assets/images/img-placeholder.jpg"
+    });
+  })
+
+  .get("/faqs", (req, res) => {
+    res.render("faqs");
+  })
   .get("/logout", (req, res) => {
     req.logout();
     res.redirect("/login");
@@ -236,6 +245,7 @@ router
     if (req.isAuthenticated() && req.user) return res.redirect("/");
     res.render("signup");
   })
+
   // .get("/single-agent-details", (req, res) => {
   //   if (req.isAuthenticated() && req.user) return res.redirect("/");
   //   res.render("single-agent-details");
