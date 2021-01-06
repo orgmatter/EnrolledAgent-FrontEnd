@@ -227,39 +227,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
     integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
     crossorigin="anonymous"></script>
- <!-- // <script type="text/javascript" src="/javascripts/login.js"></script> -->
+  <script type="text/javascript" src="/javascripts/login.js"></script>
 
-  <script>
-    function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-}
-    function makeRequest(params) {
-      console.log(document.cookie, getCookie('XSRF-TOKEN'))
-      fetch('/api/login', {
-        credentials: 'same-origin', // <-- includes cookies in the request
-        headers: {
-          "CSRF-Token":  getCookie('XSRF-TOKEN'), 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        method: 'POST',
-        body: JSON.stringify({
-          "email": "ekeh.wisdom@gmail.com",
-          "password": "password"
-        })
-      }).then((res) => {
-        console.log(res);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
-    const loginForm = document.getElementById("login-form");
-
-    loginForm.addEventListener("submit", makeRequest());
-     
-  </script>
 </body>
 
 </html>

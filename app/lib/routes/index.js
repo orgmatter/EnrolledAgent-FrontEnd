@@ -66,21 +66,24 @@ router
   })
   .get("/unsubscribe", ContactController.unsubscribe)
   .get("/verify/:token", verify)
-  .get("/dashboard", ResourceController.random, (req, res) => {
-    res.render("dashboard/dashboardhome", { locals: req.locals });
-  })
-  .get("/answers", ResourceController.random, (req, res) => {
-    res.render("dashboard/dashboardQ&A", { locals: req.locals });
-  })
-  .get("/clientLeads", ResourceController.random, (req, res) => {
-    res.render("dashboard/clientLeads", { locals: req.locals });
+  .get("/dashboard", user, (req, res) => {
+    console.log("user>>>", req.locals);
+    res.render("dashboard/dashboardhome", { 
+      locals: req.locals,
+      page_name: "dashboard",
+      sub_page_name: "dashboard"
+     });
   })
 
-  .get("/dashboard/messages", ResourceController.random, (req, res) => {
+  .get("/dashboard/messages", user, (req, res) => {
     res.render("dashboard/dashboardmessages", { locals: req.locals });
   })
-  .get("/dashboard/article", ResourceController.random, (req, res) => {
-    res.render("dashboard/dashboardarticle", { locals: req.locals });
+  .get("/dashboard/my-articles", user, (req, res) => {
+    res.render("dashboard/dashboardarticle", { 
+      locals: req.locals,
+      page_name: "articles",
+      sub_page_name: "myArticles"
+    });
   })
   // .get("/about-us", (req, res) => {
   //   res.render("about");
@@ -88,11 +91,33 @@ router
   .get("/dashboard/submit-answer", (req, res) => {
     res.render("dashboard/submitAnswer", { locals: req.locals });
   })
-  .get("/dashboard/create-article", (req, res) => {
-    res.render("dashboard/createArticle", { locals: req.locals });
+  .get("/dashboard/create-article",user, (req, res) => {
+    res.render("dashboard/createArticle", { 
+      locals: req.locals,
+      page_name: "articles",
+      sub_page_name: "newArticle"
+     });
   })
-  .get("/dashboard/answer-questions", (req, res) => {
-    res.render("dashboard/answerQuestion", { locals: req.locals });
+  .get("/dashboard/answer-questions", user, (req, res) => {
+    res.render("dashboard/answerQuestion", { 
+      locals: req.locals,
+      page_name: "ask",
+      sub_page_name: "answer"
+    });
+  })
+  .get("/dashboard/my-answers", user, (req, res) => {
+    res.render("dashboard/dashboardQ&A", { 
+      locals: req.locals ,
+      page_name: "ask",
+      sub_page_name: "myAnswers"
+    });
+  })
+  .get("/dashboard/my-leads", user, (req, res) => {
+    res.render("dashboard/clientLeads", { 
+      locals: req.locals,
+      page_name: "ask",
+      sub_page_name: "myLeads"
+    });
   })
 
   // .get('/linkedin/callback', passport.authenticate('linkedin'), handleSocial)

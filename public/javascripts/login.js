@@ -33,7 +33,7 @@ function getCookie(name) {
 
 const handleSubmit = (e) => {
   e.preventDefault();
-  const formData = {
+  const data = {
     email: email.value,
     password: password.value,
   };
@@ -47,7 +47,7 @@ const handleSubmit = (e) => {
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-    data: JSON.stringify(formData),
+    data: JSON.stringify(data),
     //   headers: {
     //     "CSRF-Token": token,
     //     Accept: "application/json",
@@ -56,14 +56,14 @@ const handleSubmit = (e) => {
   })
     .then((res) => {
       console.log(res);
-      notyf.success("Login successful!");
-      // setTimeout(() => {
-      //   window.location.href = "/dashboard";
-      // }, 3000);
+      notyf.success(res.data.data.message || "Login successful");
+      setTimeout(() => {
+        window.location.href = "/dashboard";
+      }, 3000);
     })
     .catch((err) => {
       console.log(err);
-      notyf.error("Something went wrong");
+      notyf.error(err.response.data.message || "Something went wrong");
     });
 };
 
