@@ -25,6 +25,12 @@ const notyf = new Notyf({
   ],
 });
 
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
 const handleSubmit = (e) => {
   e.preventDefault();
   const formData = {
@@ -34,7 +40,13 @@ const handleSubmit = (e) => {
 
   axios({
     method: "POST",
-    url: `${baseUrl}/login`,
+    url: `${baseUrl}/api/login`,
+    credentials: 'same-origin', // <-- includes cookies in the request
+        headers: {
+          "CSRF-Token":  getCookie('XSRF-TOKEN'), 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
     data: JSON.stringify(formData),
     //   headers: {
     //     "CSRF-Token": token,
@@ -45,9 +57,9 @@ const handleSubmit = (e) => {
     .then((res) => {
       console.log(res);
       notyf.success("Login successful!");
-      setTimeout(() => {
-        window.location.href = "/dashboard";
-      }, 3000);
+      // setTimeout(() => {
+      //   window.location.href = "/dashboard";
+      // }, 3000);
     })
     .catch((err) => {
       console.log(err);
