@@ -1,20 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <link
-                href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap"
-                rel="stylesheet"
-        />
-        <%- include("./partials/head.ejs") %>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link href="/assets/files/favicon.png" rel="shortcut icon" type="image/png" />
+        <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" />
+        <!-- CSS | Main style file -->
+        <link href="/css/style-main.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
     </head>
     <body>
-    <%- include("./partials/header.ejs") %>
-    <!--
-        Input ALL YOUR PAGE CONTENT HERE
-    -->
-        <div class="faqs">This is the FAQs page</div>
-    <%- include("./partials/footer.ejs") %>
+    <div class="layout">
+        <%-include("./partials/sidebar.ejs")%> <%-include("./partials/navbar.ejs")%>
+        <div class="mainsection">
+            <div class="faqs">
+                <section class="faqs-head">
+                    <div class="faqs-head__head">
+                        FAQs
+                    </div>
+                    <div class="faqs-head__text">
+                        Welcome to our FAQ series, designed to help you get the most out of your Enrolled Agent account.
+                    </div>
+                    <div class="faqs-head__button">
+                        <button class="faqs-btn">Contact us for assistance</button>
+                    </div>
+                </section>
+                <section class="faqs-links">
+                    <ul>
+                        <li class="faqs-link"><a href="#createAccount" class="faqs-link-elem">Create An Account</a></li>
+                        <li class="faqs-link"><a href="#createAccount" class="faqs-link-elem">Find Your Listing</a></li>
+                        <li class="faqs-link"><a href="#createAccount" class="faqs-link-elem">Claim Your Listing</a></li>
+                        <li class="faqs-link"><a href="#createAccount" class="faqs-link-elem">Update Your Listing</a></li>
+                        <li class="faqs-link"><a href="#createAccount" class="faqs-link-elem">Find Your Listing</a></li>
+                        <li class="faqs-link"><a href="#createAccount" class="faqs-link-elem">Claim Your Listing</a></li>
+                        <li class="faqs-link"><a href="#createAccount" class="faqs-link-elem">Update Your Listing</a></li>
+                    </ul>
+                </section>
+                <div class="faqs-view-all"><a href="">View All FAQ</a></div>
+                <section class="faqs-item">
+                    <div class="faqs-item__head">
+                        Create An Account
+                    </div>
+                    <div class="faqs-item__text">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam officia dolor rerum enim doloremque iusto eos atque tempora dignissimos similique, quae, maxime sit accusantium delectus, maiores officiis vitae fuga sunt repellendus. Molestiae quae, ducimus ut tenetur nobis id quam autem quibusdam commodi inventore laborum libero officiis, accusantium a laboriosam cumque consequatur voluptates fuga assumenda corporis amet. Vitae placeat architecto ipsa cumque fugiat, atque molestiae perferendis quasi quaerat iste voluptate quas dicta corporis, incidunt quibusdam quia odit unde, rem harum quis! Optio debitis veniam quibusdam, culpa quia, aperiam cupiditate perspiciatis repellat similique saepe magnam quaerat iusto obcaecati doloremque, dolor praesentium a!</p>
+                        <p>Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget nisi a mi suscipit tincidunt. Ut tempus dictum risus. Pellentesque viverra sagittis quam at mattis. Suspendisse potenti. Aliquam sit amet gravida nibh, facilisis gravida odio. Phasellus auctor velit at lacus blandit, commodo iaculis justo viverra. Etiam vitae est arcu. Mauris vel congue dolor. Aliquam eget mi mi. Fusce quam tortor, commodo ac dui quis, bibendum viverra erat. Maecenas mattis lectus enim, quis tincidunt dui molestie euismod. Curabitur et diam tristique, accumsan nunc eu, hendrerit tellus.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
     </body>
 </html>

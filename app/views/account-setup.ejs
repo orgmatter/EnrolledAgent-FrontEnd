@@ -29,15 +29,15 @@
                                 src="/assets/images/img-placeholder.jpg"
                                 alt="profile picture"
                                 class="avatar__preview--image"
-                                height="100px"
                             />
-<!--                            <img-->
-<!--                                id="avatar-preview"-->
-<!--                                src="avatarUrl "-->
-<!--                                alt="profile picture"-->
-<!--                                class="avatar__preview&#45;&#45;image"-->
-<!--                                height="100px"-->
-<!--                            />-->
+<!--
+                            <img
+                                id="avatar-preview"
+                                src="avatarUrl "
+                                alt="profile picture"
+                                class="avatar__preview--image"
+                            />
+-->
                         </div>
                         <div class="avatar__edit">
                             <input
@@ -46,7 +46,7 @@
                                     type="file"
                                     accept=".png, .jpg, .jpeg .JPG"
                             />
-                            <label class="avatar__label" for="avatar">
+                            <label class="avatar__label" for="avatar-input">
                                 Change Image
                                 <span class="">
                                     <button class="asetup-btn avatar__label--img">
@@ -195,18 +195,16 @@
         </div>
     </div>
 </div>
-<!--
+
 <script>
   var avatarUrl = "/assets/images/img-placeholder.jpg"
   var uploadedImageSource;
   document.getElementById('avatar-input').addEventListener('change', ()=>{
-    console.log('this is ', this);
-    // this.imageFile = document.getElementById().imageFile.files[0];
-    // const imgSrc = URL.createObjectURL(this.imageFile);
-    // console.log('the ==> ', imgSrc)
+    let imageFile = document.getElementById('avatar-input').files[0]
+    avatarUrl = URL.createObjectURL(imageFile);
   })
 
 </script>
--->
+
 </body>
 </html>

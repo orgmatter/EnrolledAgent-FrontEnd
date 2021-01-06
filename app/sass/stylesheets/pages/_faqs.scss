@@ -1,3 +1,161 @@
 .faqs {
+  background-color: #f7f7f7;
+  padding: 3rem 3rem;
+  &-btn {
+    display: inline-block;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 1rem 2rem rgba(#000, 0.1);
+    color: #fff;
+    background-color: #01105b;
+  }
+  a {
+    color: inherit;
+  }
+  &-head {
+    text-align: center;
+    max-width: 450px;
+    margin: 0 auto;
+    &__head {
+      font-family: "Libre Baskerville", serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      line-height: 3rem;
+      @include respond(tab-port) {
+        font-size: 1.75rem;
+        line-height: 2.25rem;
+      }
+    }
+
+    &__text {
+      font-size: 0.85rem;
+    }
+
+    &__button {
+      margin: 1rem 0 2rem;
+    }
+  }
+  &-links {
+    background-color: #fff;
+    // box-shadow: 0px 0px 10px #00000029;
+    border: 1px solid #a8a8a8;
+
+    &-elem {
+      color: #000;
+    }
+  }
+  &-link {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.5rem;
+    &:not(:last-child) {
+      border-bottom: 1px solid #a8a8a8;
+    }
+  }
+  &-view-all {
+    text-align: center;
+    color: #086cef;
+    margin-bottom: 1rem;
+    font-style: italic;
+    font-size: 0.85rem;
+  }
+  &-item {
+    background-color: #fff;
+    box-shadow: 0px 0px 5px #00000029;
+    padding: 1.5rem;
+    &__head {
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 3rem;
+      margin-bottom: 0.5rem;
+      //@include respond(tab-port) {
+      //  font-size: 2.5rem;
+      //  line-height: 3rem;
+      //}
+    }
+    &__text {
+      font-size: 0.85rem;    }
+  }
+}
+.faqs {
+  background-color: #f7f7f7;
+  padding: 3rem 3rem;
+  &-btn {
+    display: inline-block;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 1rem 2rem rgba(#000, 0.1);
+    color: #fff;
+    background-color: #01105b;
+  }
+  a {
+    color: inherit;
+  }
+  &-head {
+    text-align: center;
+    max-width: 450px;
+    margin: 0 auto;
+    &__head {
+      font-family: "Libre Baskerville", serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      line-height: 3rem;
+      @include respond(tab-port) {
+        font-size: 1.75rem;
+        line-height: 2.25rem;
+      }
+    }
+
+    &__text {
+      font-size: 0.85rem;
+    }
+
+    &__button {
+      margin: 1rem 0 2rem;
+    }
+  }
+  &-links {
+    background-color: #fff;
+    // box-shadow: 0px 0px 10px #00000029;
+    border: 1px solid #a8a8a8;
+
+    &-elem {
+      color: #000;
+    }
+  }
+  &-link {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.5rem;
+    &:not(:last-child) {
+      border-bottom: 1px solid #a8a8a8;
+    }
+  }
+  &-view-all {
+    text-align: center;
+    color: #086cef;
+    margin-bottom: 1rem;
+    font-style: italic;
+    font-size: 0.85rem;
+  }
+  &-item {
+    background-color: #fff;
+    box-shadow: 0px 0px 5px #00000029;
+    padding: 1.5rem;
+    &__head {
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 3rem;
+      margin-bottom: 0.5rem;
+      //@include respond(tab-port) {
+      //  font-size: 2.5rem;
+      //  line-height: 3rem;
+      //}
+    }
+    &__text {
+      font-size: 0.85rem;
+      text-align: justify;
+    }
+  }
 
 }
