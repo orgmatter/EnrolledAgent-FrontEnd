@@ -1,0 +1,199 @@
+.asetup {
+  background-color: #f7f7f7;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+  &-btn {
+    display: inline-block;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 1rem 2rem rgba(#000, 0.1);
+    color: #fff;
+    background-color: #01105b;
+    &-img {
+      width: 1rem;
+      height: 1rem;
+    }
+    &-icon {
+      padding: 0;
+      border: none;
+      background: none;
+      img {
+        height:1.25rem;
+        width: 1.25rem
+      }
+    }
+  }
+  &-head {
+    margin: 1.5rem 0 2rem;
+    text-align: center;
+
+    &__title {
+      font-family: "Libre Baskerville", serif;
+      font-size: 2.5rem;
+      line-height: 3rem;
+      font-weight: 600;
+    }
+  }
+
+  &-form {
+    margin: 2rem 0;
+    background-color: white;
+    box-shadow: 0px 0px 10px #00000029;
+    &-contact {
+      padding: 1rem;
+    }
+    .avatar {
+      position: relative;
+      &__edit {
+        //position: absolute;
+        //right: 0;
+        //bottom: 0;
+        //z-index: 1;
+      }
+      &__input {
+        display: none;
+      }
+      &__label {
+        font-size: 1rem;
+        text-align: center;
+        cursor: pointer;
+        font-weight: normal;
+        color: #2699FB;
+        transition: all 0.2s ease-in-out;
+        &--img {
+          padding: 0;
+          border: none;
+          background: none;
+          img {
+            height: 1rem;
+            width: 1rem;
+          }
+        }
+
+      }
+
+      &__preview {
+        width: 7.5rem;
+        height: 7.5rem;
+        position: relative;
+        border-radius: 100%;
+        border: 2px solid #f8f8f8;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+        &--image {
+          width: 100%;
+          height: 100%;
+          border-radius: 100%;
+        }
+      }
+    }
+    .form__details {
+      &--head {
+        font-weight: 600;
+        font-size: 1.75rem;
+      }
+      &--text {
+        font-size: 0.75rem;
+      }
+    }
+    .form__row {
+      display: block;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      &:last-child {
+        padding-bottom: 3rem;
+      }
+    }
+
+    .form__group {
+      display: inline-block;
+      padding: 1rem 1rem;
+      width: 49.5%;
+
+      &-full-width {
+        width: 99%;
+      }
+
+      @include respond(tab-port) {
+        width: 100%;
+        padding: 0.5rem 1rem;
+      }
+    }
+
+    .form__input,
+    .form__select{
+      padding: 1rem 0.5rem;
+      border-radius: 0.15rem;
+      border: 1px solid #ABABAB;
+      font-size: 1.05rem;
+      width: 100%;
+      display: inline-block;
+      background-color: #fff;
+      &--head{
+        font-size: 1.25rem;
+        font-weight: 600;
+        padding-bottom: 0.5rem;
+      }
+    }
+
+    .form__label {
+      font-weight: bold;
+      font-size: 0.85rem;
+      &-contact {
+        display: none;
+      }
+    }
+    .form__checkbox {
+      padding: 0.25rem;
+      &-label {
+        font-size: 0.85rem;
+        font-weight: normal;
+      }
+    }
+    .form__button {
+      //padding: 0 0 3rem;
+      //text-align: center;
+    }
+
+    input[type=checkbox] + label {
+      display: block;
+      margin: 0.2rem;
+      cursor: pointer;
+      padding: 0.2rem;
+    }
+    input[type=checkbox] {
+      display: none;
+    }
+    input[type=checkbox] + label:before {
+      content: "\2714";
+      font-size: 1.25rem;
+      line-height: 1.25rem;
+      border: 1px solid #000;
+      border-radius: 0.2em;
+      display: inline-block;
+      width: 1rem;
+      height: 1rem;
+      padding-left: 0.05rem;
+      padding-bottom: 0.15rem;
+      margin-right: 0.2rem;
+      vertical-align: bottom;
+      color: transparent;
+      transition: .2s;
+    }
+
+    input[type=checkbox] + label:active:before {
+      transform: scale(0);
+    }
+
+    input[type=checkbox]:checked + label:before {
+      background-color: #2699FB;
+      border-color: #2699FB;
+      color: #fff;
+    }
+
+  }
+  .help-button {
+    margin: 2rem 0;
+  }
+}

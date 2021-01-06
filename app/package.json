@@ -26,7 +26,7 @@
   "homepage": "https://gitlab.com/bamyx-it-solutions/enrolled-agents#readme",
   "dependencies": {
     "async": "^3.2.0",
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "chalk": "^4.1.0",
     "common": "file:../common",
     "connect-redis": "^4.0.4",
