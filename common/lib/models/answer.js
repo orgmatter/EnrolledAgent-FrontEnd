@@ -2,7 +2,7 @@ const { text } = require('express')
 const mongoose = require('mongoose')
 const { Schema } = mongoose
 
-const CommentSchema = new mongoose.Schema({
+const AnswerSchema = new mongoose.Schema({
   message: {
     type: String,
     required: true,
@@ -15,8 +15,7 @@ const CommentSchema = new mongoose.Schema({
     ref: 'question',
     type: Schema.ObjectId
   },
-  
 })
 
 
-module.exports = mongoose.model('answer', CommentSchema)
+module.exports = mongoose.model('answer', AnswerSchema)
