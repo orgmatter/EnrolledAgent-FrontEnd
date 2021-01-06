@@ -37,8 +37,10 @@ module.exports = class LocalLoginStrategy {
                         email: email
                         // domain: Constants.DOMAIN.customer
                     }).then((user) => { 
+                        if(user){
                         user.lastLogin = Date()
                          user.save()
+                        }
                         // Log.info(!(user && user.email))
                         authenticateUser(user, password, done)
                     })
