@@ -31,17 +31,17 @@ const notyf = new Notyf({
 const handleSubmit = (e) => {
   e.preventDefault();
   if (terms.checked) {
-    const formData = {
-      firstName: fName.value,
-      lastName: lName.value,
+    const data = {
       email: email.value,
       password: password.value,
+      firstName: fName.value,
+      lastName: lName.value,
     };
 
     axios({
       method: "POST",
       url: `${baseUrl}/register`,
-      data: JSON.stringify(formData),
+      data: JSON.stringify(data),
       //   headers: {
       //     "CSRF-Token": token,
       //     Accept: "application/json",
@@ -50,12 +50,14 @@ const handleSubmit = (e) => {
     })
       .then((res) => {
         notyf.success("Signup successful!");
-        setTimeout(() => {
-          window.location.href = "/login";
-        }, 3000);
+        console.log(res);
+        // setTimeout(() => {
+        //   window.location.href = "/login";
+        // }, 3000);
       })
       .catch((err) => {
         notyf.error("Something went wrong");
+        console.log(err);
       });
   } else {
     console.log("accept terms");
