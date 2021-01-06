@@ -76,7 +76,12 @@ router
   })
 
   .get("/dashboard/messages", user, (req, res) => {
-    res.render("dashboard/dashboardmessages", { locals: req.locals });
+    res.render("dashboard/dashboardmessages", { 
+      locals: req.locals,
+      page_name: "messages",
+      sub_page_name: "messages"
+
+    });
   })
   .get("/dashboard/my-articles", user, (req, res) => {
     res.render("dashboard/dashboardarticle", { 
@@ -259,14 +264,21 @@ router
     res.render("license-verification");
   })
 
-  .get("/account-setup", (req, res) => {
+  .get("/dashboard/account-settings", user, (req, res) => {
     res.render("account-setup", {
-      avatarUrl: "/assets/images/img-placeholder.jpg"
+      avatarUrl: "/assets/images/img-placeholder.jpg",
+      locals: req.locals,
+      page_name: "account",
+      sub_page_name: "account"
     });
   })
 
-  .get("/faqs", (req, res) => {
-    res.render("faqs");
+  .get("/dashboard/help",user, (req, res) => {
+    res.render("faqs", {
+      locals: req.locals,
+      page_name: "help",
+      sub_page_name: "help"
+    });
   })
   .get("/logout", (req, res) => {
     req.logout();
