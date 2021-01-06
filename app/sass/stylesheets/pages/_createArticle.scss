@@ -1,0 +1,172 @@
+.mainsection{
+    .createArticle{
+        padding: 27px 29px 100px 33px;
+        font-family: Arial;
+        &_top{
+            text-align: center!important;
+            color: #000;
+            &-header {
+                font-family: "Baskerville Old Face"!important;
+                font-weight: 400;
+                font-size: 46px;
+                margin-bottom: 29px;
+                color: #212121;
+            }
+            &-desc{
+                margin-bottom: 40px;
+                font-weight: bold;
+            }
+            &-btn-div{
+                display: flex;
+                justify-content: center;
+                
+                &-link{
+                padding: 13px 35px 10px;
+                background-color: $main-blue;
+                color: #fff;
+                font-size: 16px;
+                border-radius: 3px;
+                transition: .5s;
+                    &:hover{
+                        transform: translateY(-5px);
+                        transition: .5s;
+                    }
+                }
+            }
+        }
+        &_middle{
+            box-shadow: 0px 0px 10px #00000029;
+            border-radius: 5px;
+            padding: 24px 31px 56px 50px;
+            margin: 47px 0 33px;
+            background-color: #fff;
+
+            &-section {
+                background-color: #F1EFEF;
+                padding: 39px 0 49px 64px;
+
+                &-header{
+                    color: #086CEF;
+                    font-size: 18px;
+                    margin-bottom: 20px;
+                }
+            }
+
+            &-info{
+                color: #5A5A5A;
+                font-weight: bold;
+                margin: 20px 0 50px;
+            }
+
+            &-red{
+                font-weight: bold;
+                color: #C90000;
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            &-btn-div{
+                display: flex;
+                justify-content: center;
+
+                &-link{
+                padding: 13px 35px 10px;
+                background-color: $main-blue;
+                color: #fff;
+                font-size: 16px;
+                border-radius: 3px;
+                transition: .5s;
+                outline: none;
+                border: none;
+                    &:hover{
+                        transform: translateY(-5px);
+                        transition: .5s;
+                    }
+                }
+            }
+
+            &-field{
+                margin-bottom: 20px;
+                h4{
+                font-size: 16px;
+                color: #000;
+                margin: 20px 0 0;
+                    span{
+                        color: red;
+                    }
+                }
+                input, select{
+                    width: 50%;
+                    background-color: transparent;
+                    border: none;
+                    border-bottom: 1px solid #000;
+                    margin-bottom: 10px;
+                    padding: 10px;
+                    &:focus{
+                        box-shadow: none;
+                    }
+                }
+                textarea{
+                    margin-top: 10px;
+                    background-color: #fff;
+                    width: 450px;
+                    height: 250px;
+                    resize: none;
+                    padding: 10px;
+                    font-family: Arial;
+                    border: 1px solid #707070;
+                }
+                p{
+                    color: #5A5A5A;
+                    font-size: 12px;
+                }
+            }
+        }
+        &_card-div{
+            margin-top: 50px;
+            .question-card{
+                box-shadow: 0px 0px 10px #00000029;
+                border-radius: 5px;
+                background-color: #fff;
+                padding: 19px 68px 22px 63px;
+                &-text{
+                    font-size: 16px;
+                    margin-bottom: 5px;
+                    span{  
+                        font-weight: bold;
+                    }
+                }
+                &-flex{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    &-1{
+                        max-width: 50%;
+                        &-badge{
+                            background-color: #717171;
+                            font-size: 12px;
+                            color: #fff;
+                            padding: 5px 10px;
+                            text-align: center;
+                            border-radius: 3px;
+                        }
+                    }
+                    &-2{
+                        &-link{
+                            padding: 13px 35px 10px;
+                            background-color: $main-blue;
+                            color: #fff;
+                            font-size: 16px;
+                            border-radius: 3px;
+                            transition: .5s;
+                            &:hover{
+                                transform: translateY(-5px);
+                                transition: .5s;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

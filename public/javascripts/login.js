@@ -25,17 +25,29 @@ const notyf = new Notyf({
   ],
 });
 
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
 const handleSubmit = (e) => {
   e.preventDefault();
-  const formData = {
+  const data = {
     email: email.value,
     password: password.value,
   };
 
   axios({
     method: "POST",
-    url: `${baseUrl}/login`,
-    data: JSON.stringify(formData),
+    url: `${baseUrl}/api/login`,
+    credentials: 'same-origin', // <-- includes cookies in the request
+        headers: {
+          "CSRF-Token":  getCookie('XSRF-TOKEN'), 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+    data: JSON.stringify(data),
     //   headers: {
     //     "CSRF-Token": token,
     //     Accept: "application/json",
@@ -44,14 +56,14 @@ const handleSubmit = (e) => {
   })
     .then((res) => {
       console.log(res);
-      notyf.success("Login successful!");
+      notyf.success(res.data.data.message || "Login successful");
       setTimeout(() => {
         window.location.href = "/dashboard";
       }, 3000);
     })
     .catch((err) => {
       console.log(err);
-      notyf.error("Something went wrong");
+      notyf.error(err.response.data.message || "Something went wrong");
     });
 };
 

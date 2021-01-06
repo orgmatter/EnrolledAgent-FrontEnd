@@ -162,16 +162,13 @@
 
 
     function googleLogin() {
-      window
-        .location = 'google/callback'
+      window.location = 'google/callback'
     }
     function facebookLogin() {
-      window
-        .location = 'facebook/callback'
+      window.location = 'facebook/callback'
     }
     function linkedinLogin() {
-      window
-        .location = 'linkedin/callback'
+      window.location = 'linkedin/callback'
     }
     // function onSuccess(googleUser) {
     //   console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
@@ -232,30 +229,6 @@
     crossorigin="anonymous"></script>
   <script type="text/javascript" src="/javascripts/login.js"></script>
 
-  <script>
-    function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-}
-    function makeRequest(params) {
-      console.log(document.cookie, getCookie('XSRF-TOKEN'))
-      fetch('/api/login', {
-        credentials: 'same-origin', // <-- includes cookies in the request
-        headers: {
-          "CSRF-Token":  getCookie('XSRF-TOKEN'), 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        method: 'POST',
-        body: JSON.stringify({
-          "email": "ekeh.wisdom@gmail.com",
-          "password": "password"
-        })
-      })
-    }
-    // makeRequest()
-  </script>
 </body>
 
 </html>

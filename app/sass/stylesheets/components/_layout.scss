@@ -11,7 +11,8 @@
 .mainsection {
   background-color: #f3f6f8;
   width: 80vw;
-  min-height: calc(100vh - 61px);
+  // min-height: calc(100vh - 61px);
+  height: 100%!important;
   grid-area: mainsection;
   background-color: #f7f7f7;
 }
