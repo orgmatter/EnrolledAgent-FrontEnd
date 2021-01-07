@@ -41,7 +41,7 @@ const handleSubmit = (e) => {
       email: email.value,
       password: password.value,
       firstName: fName.value,
-      // lastName: lName.value,
+      lastName: lName.value,
     };
 
     axios({
@@ -68,12 +68,11 @@ const handleSubmit = (e) => {
         }, 500);
       })
       .catch((err) => {
-        notyf.error(err.response.data.message || "Something went wrong");
-        console.log(err);
+        notyf.error(err.response.data.error.message || "Something went wrong");
+        console.log(err.response.data.error.message);
       });
   } else {
     notyf.error("Please accept terms and conditions")
-    console.log("accept terms");
   }
 };
 
