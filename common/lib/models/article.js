@@ -24,6 +24,10 @@ const Article = new Schema({
     type: Boolean,
     default: true
   },
+  featured: {
+    type: Boolean,
+    default: false
+  },
   // user: {
   //   ref: 'user',
   //   type: Schema.ObjectId

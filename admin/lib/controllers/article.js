@@ -27,7 +27,7 @@ class ArticleController extends BaseController {
 
 
     async create(req, res, next) {
-        const { body, preview, author, title, sponsor, category } = req.body
+        const { body, preview, author, title, sponsor, category, featured } = req.body
 
         if (!sponsor || !Validator.isMongoId(sponsor) || !(await Sponsor.exists({ _id: sponsor }))) {
             res.status(422)
@@ -59,7 +59,7 @@ class ArticleController extends BaseController {
             )
         }
 
-        const b = { body, author, title, preview, sponsor, category }
+        const b = { body, author, title, preview, sponsor, category , featured}
 
 
 
@@ -67,7 +67,7 @@ class ArticleController extends BaseController {
 
         if (req.file) {
             const imageUrl = await FileManager.saveFile(
-                Storages.RESOURCE,
+                Storages.ARTICLE,
                 req.file
             )
             resource.imageUrl = imageUrl
@@ -98,7 +98,7 @@ class ArticleController extends BaseController {
 
         if (req.file) {
             const imageUrl = await FileManager.saveFile(
-                Storages.RESOURCE,
+                Storages.ARTICLE,
                 req.file
             )
             if (resource.imageUrl && imageUrl) FileManager.deleteFile(resource.imageUrl)

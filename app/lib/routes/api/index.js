@@ -4,6 +4,8 @@ const AuthController = require("../../controllers/auth");
 const ContactController = require("../../controllers/contact");
 const ReviewController = require("../../controllers/review");
 const AgentController = require("../../controllers/agent");
+const ArticleController = require("../../controllers/article");
+const QuestionController = require("../../controllers/question");
 
 router
   .post("/register", AuthController.register)
@@ -15,6 +17,11 @@ router
   .post("/claim-listing/:id", AgentController.claim)
   .put("/update-profile", FileManager.upload, AuthController.update)
   .put("/update-agent", FileManager.upload, AgentController.update)
+  .post("/ask", FileManager.none, QuestionController.create)
+  .post("/answer", FileManager.none, QuestionController.answer)
+  .post("/article", FileManager.upload, ArticleController.create)
+  .put("/article/:id", FileManager.upload, ArticleController.update)
+  .put("/delete/:id", FileManager.upload, ArticleController.delete)
 
   .use(Middleware.Four04Handler)
   .use(Middleware.ErrorHandler);
