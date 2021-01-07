@@ -61,3 +61,28 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiN2EzYTExY
       "organizationType": "Sgfdhfsdfasd",
       "annualTax": "SFgdfhsgdfagsd"
 }
+
+###
+
+POST  http://localhost:3000/api/ask HTTP/1.1
+content-type: application/json
+
+{
+    "email": "ekeh.wisdom@gmail.com",
+    "body": "asdhfajfd adhjdghjh",
+    "title": "sdfdffdf",
+    "firstName": "sdfghj",
+    "lastName": "Dsghgdf",
+    "phone": "09902836879233",
+    "category": "5ff49bf3353419e7d6044c64"
+}
+
+###
+
+POST  http://localhost:3000/api/answer HTTP/1.1
+content-type: application/json
+
+{
+    "message": "Dsghghjgjhggdf",
+    "question": "5ff7878fde0fbc2a277699e2"
+}

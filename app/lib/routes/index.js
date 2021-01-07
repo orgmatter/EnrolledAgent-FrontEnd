@@ -8,6 +8,7 @@ const ContactController = require("../controllers/contact");
 const ResourceController = require("../controllers/resource");
 const ArticleController = require("../controllers/article");
 const AgentController = require("../controllers/agent");
+const QuestionController = require("../controllers/question");
 
 const Log = new Logger("App:Router");
 
@@ -111,7 +112,10 @@ router
   .get("/claim-listing", (req, res) => {
     res.render("listings");
   })
-  .get("/ask-ea", (req, res) => {
+  .get("/ask-ea", QuestionController.getAll, (req, res) => {
+    res.render("askEA");
+  })
+  .get("/ask-ea/:category", QuestionController.getAll, (req, res) => {
     res.render("askEA");
   })
   .get("/new-question", (req, res) => {

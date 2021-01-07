@@ -13,7 +13,7 @@ class ReviewController {
     * @param  {function} next
     */
     createReview = async function (req, res, next) {
-        const { rating, message, agent, firm , email, firstName, lastName,  } = req.body;
+        const { rating, message, agent, firm , email, firstName, lastName, city, state  } = req.body;
         let usr, type = 'agent'
         if(req.user && req.user.id) usr = req.user.id
 
@@ -34,8 +34,9 @@ class ReviewController {
         if(firm)type = 'firm'
         if (await Review.exists({ email, agent }))
             return next(new Exception("You have previously reviewd this " + type, ErrorCodes.REQUIRED));
+            
 
-        Review.create({ rating, message, agent, firm, user: usr, firstName, lastName, email })
+        Review.create({ rating, message, agent, firm, user: usr, firstName, lastName, email, city, state })
         .then((doc) => {
             res.json({ data: { message: 'your rating was added successfully' } })
         })

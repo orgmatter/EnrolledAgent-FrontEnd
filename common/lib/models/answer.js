@@ -7,15 +7,19 @@ const AnswerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  user: {
-    ref: 'user',
+  agent: {
+    ref: 'agent',
     type: Schema.ObjectId
+  },
+  byAdmin: {
+    type: Boolean,
+    default: false
   },
   question: {
     ref: 'question',
     type: Schema.ObjectId
   },
-})
+}, { timestamps: true })
 
 
 module.exports = mongoose.model('answer', AnswerSchema)

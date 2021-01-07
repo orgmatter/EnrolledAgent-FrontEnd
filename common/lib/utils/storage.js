@@ -1,4 +1,8 @@
 module.exports = {
+     /**
+     * news and article
+     */
+    ARTICLE: 'article',
     /**
      * User profile folder
      */

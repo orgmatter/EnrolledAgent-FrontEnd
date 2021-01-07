@@ -69,6 +69,10 @@ const AgentSchema = new Schema({
   maxServicePrice: {
     type: Number,
   },
+  premium: {
+    type: Boolean,
+    default: false
+  },
   minServicePrice: {
     type: Number,
   },

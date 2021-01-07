@@ -22,14 +22,22 @@ const QuestionSchema = new mongoose.Schema({
     ref: 'user',
     type: Schema.ObjectId
   },
+  firstName: String, lastName: String, phone: String, email: String,
   answer: {
     ref: 'answer',
     type: Schema.ObjectId
   },
 
-})
+}, { timestamps: true })
+
 QuestionSchema.set('toObject', { virtuals: true })
 QuestionSchema.set('toJSON', { virtuals: true })
+
+QuestionSchema.index({
+  title: 'text',
+  body: 'text',
+})
+
 
 QuestionSchema.virtual('answers', {
   ref: 'answer',
