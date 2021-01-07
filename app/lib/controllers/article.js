@@ -4,10 +4,12 @@ const {
     Exception,
     ErrorMessage,
     ErrorCodes,
+    FileManager,
     LogAction,
+    Validator,
     Storages,
     LogCategory,
-    Models: { Article, Agent, Log },
+    Models: { Article, Agent, Log, ArticleCategory },
 } = require("common");
 
 const BaseController = require('./baseController');
@@ -60,7 +62,8 @@ class ArticleController extends BaseController {
 
         const b = { body, title, preview, sponsor, category, agent: agent._id }
 
-
+        if (req.body.imageUrl && Validator.isUrl(req.body.imageUrl))
+            b.imageUrl = req.body.imageUrl
 
         let resource = await Article.create(b)
 
@@ -103,6 +106,7 @@ class ArticleController extends BaseController {
                 )
             )
         }
+
         let article = await Article.findById(id).exec()
         if (article.agent != agent._id) {
             res.status(422)
