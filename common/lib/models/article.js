@@ -20,8 +20,16 @@ const Article = new Schema({
     ref: 'articleCategory',
     type: Schema.ObjectId
   },
-  user: {
-    ref: 'user',
+  visible: {
+    type: Boolean,
+    default: true
+  },
+  // user: {
+  //   ref: 'user',
+  //   type: Schema.ObjectId
+  // }, 
+  agent: {
+    ref: 'agent',
     type: Schema.ObjectId
   }, 
   sponsor: {

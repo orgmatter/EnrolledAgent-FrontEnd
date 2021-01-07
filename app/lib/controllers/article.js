@@ -1,12 +1,175 @@
 const {
     Helper,
     DB,
-    Models: { Article },
-} = require("common")
+    Exception,
+    ErrorMessage,
+    ErrorCodes,
+    LogAction,
+    LogCategory,
+    Models: { Article, Agent, Log },
+} = require("common");
 
 const BaseController = require('./baseController');
 
+const sanitizeBody = (body)=> {
+    delete body.status
+    delete body.agent
+    body[''] = ''
+    return body
+}
 class ArticleController extends BaseController {
+
+
+    async create(req, res, next) {
+        const { body, preview, author, title, sponsor, category } = req.body
+
+        if (!(req.isAuthenticated() && req.user))
+            return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
+
+         let agent = await Agent.findOne({owner: req.user.id}).exec()
+         if (!agent || !agent._id) {
+            res.status(422)
+            return next(
+                new Exception(
+                    'Only verified agents can create articles',
+                    ErrorCodes.REQUIRED
+                )
+            )
+        }   
+
+        if (!category || !Validator.isMongoId(category) || !(await ArticleCategory.exists({ _id: category }))) {
+            res.status(422)
+            return next(
+                new Exception(
+                    'Please provide a valid category',
+                    ErrorCodes.REQUIRED
+                )
+            )
+        }
+
+        if (!title || !body) {
+            res.status(422)
+            return next(
+                new Exception(
+                    'title and body is required',
+                    ErrorCodes.REQUIRED
+                )
+            )
+        }
+
+        const b = { body, title, preview, sponsor, category, agent: agent._id }
+
+
+
+        let resource = await Article.create(b)
+
+        if (req.file) {
+            const imageUrl = await FileManager.saveFile(
+                Storages.RESOURCE,
+                req.file
+            )
+            resource.imageUrl = imageUrl
+            await resource.save()
+        }
+        super.handleResult(resource, res, next)
+
+        await Log.create({
+            user: req.user.id,
+            action: LogAction.ARTICLE_CREATED,
+            category: LogCategory.ARTICLE,
+            resource: resource._id,
+            ip: Helper.getIp(req),
+            message: 'Article created'
+        })
+
+    }
+
+
+    async update(req, res, next) {
+        const { params: { id } } = req
+        if (!BaseController.checkId('Invalid airticle id', req, res, next)) return
+
+        if (!(req.isAuthenticated() && req.user))
+            return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
+
+            let agent = await Agent.findOne({owner: req.user.id}).exec()
+            if (!agent || !agent._id) {
+               res.status(422)
+               return next(
+                   new Exception(
+                       'Only verified agents can update articles',
+                       ErrorCodes.REQUIRED
+                   )
+               )
+           }     
+           let article = await Article.findById(id).exec()
+           if (article.agent != agent._id) {
+            res.status(422)
+            return next(
+                new Exception(
+                    'You can only update articles linked to your agent profile',
+                    ErrorCodes.REQUIRED
+                )
+            )
+        }     
+
+        const body = sanitizeBody(req.body)
+
+        let resource = await Article.findByIdAndUpdate(id, body || {}, { new: true })
+            .populate(['sponsor', 'category'])
+
+        if (req.file) {
+            const imageUrl = await FileManager.saveFile(
+                Storages.RESOURCE,
+                req.file
+            )
+            if (resource.imageUrl && imageUrl) FileManager.deleteFile(resource.imageUrl)
+
+            resource.imageUrl = imageUrl
+            await resource.save()
+        }
+        super.handleResult(resource, res, next)
+
+        await Log.create({
+            user: req.user.id,
+            action: LogAction.ARTICLE_UPDATED,
+            category: LogCategory.ARTICLE,
+            resource: resource._id,
+            ip: Helper.getIp(req),
+            message: 'Article Updated'
+        })
+
+    }
+
+    /**
+     * get articles belonging to an agent
+     * @param  {Express.Request} req
+     * @param  {Express.Response} res
+     * @param  {Function} next
+     */
+    async agentArticles(req, res, next) {
+        const { page, perpage, q, search } = req.query
+        let query = Helper.parseQuery(q) || {}
+        if (search) query = { title: { $regex: search, $options: 'i' } }
+        let agent
+        if (req.isAuthenticated() && req.user){
+            agent  = await Agent.findOne({owner: req.user.id}).exec()
+        }
+        
+       
+        if (agent && agent._id){
+        DB.Paginate(res, next, Article, {
+            perPage: perpage,
+            query: {agent: agent._id},
+            page,
+        }, (data) => {
+            req.locals.agentArticles = data
+            next()
+        })
+        } else next()
+
+    }
+
 
 
     async get(req, res, next) {
@@ -47,7 +210,7 @@ class ArticleController extends BaseController {
         const data = await Article.find({},)
             .skip(random)
             .limit(10)
-            .sort({createdAt: -1})
+            .sort({ createdAt: -1 })
             .exec()
         req.locals.articles = data
         next()

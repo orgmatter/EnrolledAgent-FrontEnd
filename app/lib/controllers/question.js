@@ -6,6 +6,15 @@ const {
 
 const BaseController = require('./baseController');
 
+
+const sanitizeBody = (body) => {
+    delete body.user
+    delete body.answer
+    delete body.visible
+    body[''] = ''
+    return body
+}
+
 class QuestionController extends BaseController {
 
     async create(req, res, next) {
@@ -35,7 +44,7 @@ class QuestionController extends BaseController {
 
 
         let resource = await Question.create(b)
-        super.handleResult(resource, res, next)
+        super.handleResult({ message: 'Your question has been posted successfully' }, res, next)
 
     }
 
@@ -45,14 +54,13 @@ class QuestionController extends BaseController {
 
         const body = sanitizeBody(req.body)
 
-        if (body.category, !Validator.isMongoId(body.category) || !(await QuestionCategory.exists({ _id: body.category }))) {
+        if (body.category && (!Validator.isMongoId(body.category) || !(await QuestionCategory.exists({ _id: body.category })))) {
             delete body.category
         }
 
-        let resource = await Question.findByIdAndUpdate(id, body, { new: true })
-            .populate(['category'])
+        let resource = await Question.findByIdAndUpdate(id, body, { new: true }).exec()
 
-        super.handleResult(resource, res, next)
+        super.handleResult({ message: 'Your question has been updated successfully' }, res, next)
     }
 
 
