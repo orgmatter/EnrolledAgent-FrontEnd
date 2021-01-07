@@ -1,7 +1,6 @@
-body {
+.offshoreTeam{
   font-family: sans-serif, Arial, Helvetica;
   color: #000000;
-}
 
 * {
   box-sizing: border-box;
@@ -31,8 +30,11 @@ a:hover,
 }
 
 .wrapper {
-  padding-right: 18px;
-  padding-left: 18px;
+  padding: 200px 18px;
+}
+
+.form-wrapper{
+  padding: 0 30px 18px
 }
 
 .wrapper2 {
@@ -46,10 +48,16 @@ img {
 }
 
 .get-started-btn {
-  padding: 10px 60px;
+  padding: 15px 60px;
   background: #01105b;
   color: white;
-  border-radius: 0;
+  border-radius: 3px;
+  transition: .5s;
+  &:hover{
+    transform: translateY(-5px);
+    color: #fff;
+    transition: .5s;
+  }
 }
 
 .btn-center {
@@ -58,12 +66,12 @@ img {
 
 .background-image {
   .page-heading_large-image {
-    position: relative;
     width: 100%;
-    height: 100vh;
-    background: url("/assets/images/11.png") top center no-repeat,
-      url("/assets/images/bg2.png") top center no-repeat;
-    background-blend-mode: multiply;
+    height: 80vh;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+        url("/assets/images/11.png");
+    background-repeat: no-repeat;
+  background-position: center center;
     background-size: cover;
   }
   /*
@@ -88,16 +96,7 @@ img {
   }
 
   .page-heading {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(55%);
-    z-index: 4;
-    width: 100%;
     text-align: center;
-    @media (min-width: 1200px) {
-      transform: translateY(-5%);
-    }
   }
 
   sup {
@@ -109,18 +108,17 @@ img {
 
   .page-heading_title {
     color: #ffffff;
-    font-family: serif;
+    font-family: Baskerville Old Face;
     font-weight: 500;
     line-height: 0.9;
     @media (min-width: 1200px) {
       width: 1000px;
-      font-size: 68px;
+      font-size: 80px;
       margin-left: 70px;
     }
   }
 
   .page-heading_subtitle {
-    font-family: serif;
     font-size: 20px;
     color: white;
     margin: 10px auto;
@@ -132,60 +130,27 @@ img {
       padding: 0;
     }
   }
-
-  /*
-  @media (min-width: 1200px) {
-
-    .page-heading {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translateY(-5%);
-      z-index: 4;
-      width: 100%;
-      text-align: center;
-    }
-
-    .page-heading_title {  
-      width: 1000px;
-      line-height: 0.90;
-      font-size: 68px;
-      font-weight: 500;
-      margin-left: 70px;
-      
-    }
-
-    .page-heading_subtitle {
-      width: 600px;
-      color: #bfbfbf;
-      font-size: 21px;
-      margin: 25px 250px;
-      padding: 0;
-    }
-    
-    .page-heading_get-started {
-      margin: 20px 500px;
-    }
-    
-  }
-  */
 }
 
 .enrolled-stats {
-  height: 100px;
-  position: relative;
-  top: -6em;
+  height: 150px;
   background-color: #f6f6f6;
   color: #000000;
+  display: flex;
+  align-items: center;
 }
 
 .enrolled-stats_section {
   h2 {
     color: #086cef;
+    font-size: 50px;
   }
 
   h4 {
     font-weight: 600;
+    color: #000000;
+    font-size: 26px;
+    
   }
 
   &-tp-mg {
@@ -202,37 +167,31 @@ img {
   }
 
   .neg-left-mar {
-    margin-left: -80px;
-    margin-top: -30px;
+     margin-left: -100px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   .create-account_lg-scr {
-    position: relative;
-    height: 2100px;
     width: 100%;
-    margin-top: -90px;
     @media (min-width: 1200px) {
-      position: relative;
-      top: 0;
-      height: 1850px;
+
     }
   }
 
   .create-account_description {
     text-align: left;
     @media (min-width: 1200px) {
-      margin-top: -10px;
-      margin-left: -75px;
-      margin-bottom: 70px;
-      padding-right: 0;
+      margin: 150px 0 70px -70px; 
     }
-
     p {
       font-size: 15px;
       margin-bottom: 30px;
       @media (min-width: 1200px) {
         font-size: 20px;
-        font-weight: 300;
+        font-weight: 400;
         text-align: left;
         margin-bottom: 40px;
       }
@@ -242,9 +201,10 @@ img {
   .create-account_description h5 {
     font-size: 18px;
     font-weight: 600;
-    margin-top: 30px;
+    margin: 30px 0 15px;
+    color: #000;
     @media (min-width: 1200px) {
-      font-size: 40px;
+      font-size: 50px;
       font-weight: 600;
       text-align: left;
       line-height: 1.1;
@@ -258,24 +218,34 @@ img {
     }
   }
 
-  .video-section {
-    margin-left: -30px;
+  
+
+  @media (min-width: 1200px) {
+    .additional-left-mar {
+      margin-left: -30px;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.video-section {
+  
     @media (min-width: 1200px) {
-      margin-left: 40px;
+    
     }
   }
 
   .video-section_div {
-    margin: 30px 0 20px 60px;
+   text-align: center;
   }
 
   .video-section_vid-player {
     width: 90%;
     height: 250px;
-    margin-left: 60px;
+    margin: 0 auto;
     @media (min-width: 1200px) {
       height: 450px;
-      margin-left: 75px;
+      
     }
   }
 
@@ -283,6 +253,7 @@ img {
     font-size: 19px;
     font-weight: 600;
     text-align: left;
+    color: #000;
 
     @media (min-width: 1200px) {
       font-size: 40px;
@@ -294,6 +265,8 @@ img {
     font-size: 17px;
     font-weight: 500;
     text-align: left;
+    color: #000;
+    margin-bottom: 30px;
 
     @media (min-width: 1200px) {
       font-size: 27px;
@@ -301,90 +274,28 @@ img {
     }
   }
 
-  @media (min-width: 1200px) {
-    /*
-    .create-account_lg-scr {
-      position: relative;
-      top: 0;
-      height: 1850px; 
-    }
-
-    .no-top-margin-for-sm-scr {
-      margin-top: 50px;
-    }
-   
-    
-    .btn-positioning {
-      margin-left: 0px;
-      
-    }
- 
-    .create-account_description {
-      margin-top: -10px;
-      margin-left: -75px;
-      margin-bottom: 70px;
-    }
-
-    .create-account_description h5 {
-      font-size: 40px;
-      font-weight: 600;
-      text-align: left;
-      line-height: 1.1;
-    }
-
-    .create-account_description p {
-      font-size: 20px;
-      font-weight: 300;
-      text-align: left;
-      margin-bottom: 40px;
-    }
-
-    .video-section {
-      margin-left: 40px;
-    }
-
-    .video-section_div {
-      
-    }
-
-    .video-section_div h2 {
-      font-size: 40px;
-      font-weight: 600;
-      text-align: center;
-    }
-
-    .video-section_div h4 {
-      font-size: 27px;
-      font-weight: 500;
-      text-align: center;
-    }
-
-    .video-section_vid-player {
-      width: 90%;
-      height: 450px;
-      margin-left: 75px;
-    }
- */
-    .additional-left-mar {
-      margin-left: -30px;
-      margin-bottom: 0;
-    }
-  }
-}
-
 .create-account_div1 {
   height: 100%;
 }
 
 .section-paddings {
-  padding-top: 80px;
-  padding-right: 10px;
+  padding: 80px 0 100px;
+ // padding-right: 10px;
 }
 
 .buttons {
-  padding: 10px 15px;
+  padding: 15px 20px;
   background: #01105b;
   color: #ffffff;
+  border-radius: 3px;
+  transition: .5s;
+  font-size: 18px;
+  &:hover{
+    transform: translateY(-5px);
+    color: #fff;
+    transition: .5s;
+  }
+
 }
 
 .btn-get-started {
@@ -400,14 +311,33 @@ img {
 }
 
 .create-account-push-down {
-  margin-top: 40px;
+  margin-top: 100px;
 }
 
 .create-account2 {
-  position: relative;
-  top: -30px;
-  max-width: 100%;
-  height: 650px;
+  h5 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 30px 0 15px;
+    color: #000;
+    @media (min-width: 1200px) {
+      font-size: 50px;
+      font-weight: 600;
+      text-align: left;
+      line-height: 1.1;
+    }
+  }
+   p {
+      font-size: 15px;
+      margin-bottom: 30px;
+      @media (min-width: 1200px) {
+        font-size: 20px;
+        font-weight: 400;
+        text-align: left;
+        margin-bottom: 40px;
+      }
+    }
+
 }
 
 .large-screen-display {
@@ -429,26 +359,49 @@ img {
 }
 
 .wrapper2 {
-  margin-left: 30px;
+  margin: 0 30px;
 }
 
 .enrolled-procedures {
   .enrolled-procedures_steps {
-    position: relative;
-    width: 100%;
-    height: 470px;
     background: #f6f6f6;
     @media (min-width: 1200px) {
-      height: 500px;
+     
       h4 {
         font-size: 22px;
         font-weight: 500;
+        color: #000;
+        margin-bottom: 60px;
       }
+    }
+    &-2{
+      &_signup {
+      font-size: 19px;
+      color: #000;
+      @media (min-width: 1200px) {
+        font-size: 22px;
+      }
+    }
+    &_description {
+      font-size: 12px;
+      color: #000;
+      @media (min-width: 1200px) {
+        font-size: 14px;
+      }
+    }
     }
     &-1_signup {
       font-size: 19px;
+      color: #000;
       @media (min-width: 1200px) {
         font-size: 22px;
+      }
+    }
+    &-1_description {
+      font-size: 12px;
+      color: #000;
+      @media (min-width: 1200px) {
+        font-size: 14px;
       }
     }
   }
@@ -457,8 +410,8 @@ img {
     font-size: 20px;
     font-weight: 600;
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin-top: 40px;
+     color: #000;
     @media (min-width: 1200px) {
       font-size: 48px;
     }
@@ -476,20 +429,31 @@ img {
   }
 
   &_steps-1-img {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    margin-left: -40px;
-    margin-top: 40px;
-    margin-bottom: 30px;
-    height: 80px;
-    width: 80px;
+    height: 100px;
+    width: 100px;
+    margin: 0 auto 40px;
+    background: transparent radial-gradient(closest-side at 50% 50%, #005492 43%, #035693 44%, #4582AF 53%, #7DA8C7 62%, #ACC7DB 71%, #D0DFEA 80%, #E9F0F6 87%, #F9FBFC 94%, #FFFFFF 100%) 0% 0% no-repeat padding-box;
+    mix-blend-mode: multiply;
     border-radius: 50px;
     border: #4e87b1 solid 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .radial{
+      background: #FFFFFF;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 80px;
+      width: 80px;
+    }
+
     h3 {
       color: #01105b;
       font-weight: 600;
-      transform: translateY(65%);
+      font-size: 30px;
     }
   }
 
@@ -499,27 +463,42 @@ img {
       font-size: 18px;
     }
   }
-
-  .btn-pos-center {
-    margin-left: 170px;
+  .get-started-button-div{
+    display: flex;
+    justify-content: center;
+    .btn-pos-center {
     margin-bottom: 50px;
     @media (min-width: 1200px) {
-      margin-left: 470px;
-      margin-bottom: 50px;
+      margin-bottom: 70px;
     }
   }
 }
+  }
+
+  
 
 .enrolled-offers {
-  background: url("/assets/images/4.png") top center no-repeat,
-    url("/assets/images/bg2.png") top center no-repeat;
-  background-blend-mode: multiply;
-  background-size: cover;
-  height: 500px;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.74), rgba(0, 0, 0, 0.74)),
+        url("/assets/images/4.png");
+    background-repeat: no-repeat;
+  background-position: center center;
+    background-size: cover;
   color: #d6d6d6;
   margin-top: -30px;
   @media (min-width: 1200px) {
-    height: 450px;
+   
+  }
+
+  &_section{
+    h4{
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    p{
+      font-weight: 400;
+      color: #fff;
+      font-size: 15px;
+    }
   }
 
   h2,
@@ -527,10 +506,6 @@ img {
   h4,
   h5 {
     color: #ffffff;
-  }
-
-  a {
-    line-height: 2;
   }
 
   h2 {
@@ -565,12 +540,14 @@ img {
     font-family: sans-serif;
     font-size: 48px;
     font-weight: 600;
+    color: #000;
   }
 
   h4 {
     font-family: sans-serif;
     font-size: 28px;
     font-weight: 500;
+    color: #000;
   }
 
   input,
@@ -601,7 +578,7 @@ img {
   }
 
   .additional-left-mar-for-txt-lab {
-    margin-left: 80px;
+    margin-left: 90px;
   }
 
   .optional-message {
@@ -613,7 +590,7 @@ img {
     border-radius: 0;
     @media (min-width: 1200px) {
       width: 955px;
-      margin-left: 75px;
+      margin-left: 90px;
     }
   }
 
@@ -633,4 +610,6 @@ img {
 .btn-pull-center {
   margin-left: 470px;
   margin-bottom: 50px;
+}
+
 }

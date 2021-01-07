@@ -285,3 +285,51 @@ font-weight: normal;
 #single .part-2 .client .text {
     padding: 1rem ;
 }
+.modal{
+    &-content{
+        padding: 20px 30px;
+    }
+    &-header{
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0;
+        h5{
+            width: 100%;
+        }
+    }
+    &-body{
+        padding: 0;
+        &-div{
+            margin-bottom: 30px;
+            label{
+                font-size: 14px;
+                display: block;
+                color: #000;
+                span{
+                        color: red;
+                    }
+            }
+            textarea{
+                height: 200px;
+                width: 100%;
+                margin-top: 10px;
+                font-family: Arial, Helvetica, sans-serif;
+                padding: 10px;
+            }
+        }
+        
+    }
+    &-title {
+        font-size: 20px;
+        color: #000;
+    }
+    @media (min-width: 768px){
+    .modal-dialog {
+        width: 800px;
+        margin: 80px auto 30px;
+    }
+}
+}
+
