@@ -8,6 +8,7 @@ const ContactController = require("../controllers/contact");
 const ResourceController = require("../controllers/resource");
 const ArticleController = require("../controllers/article");
 const AgentController = require("../controllers/agent");
+const QuestionController = require("../controllers/question");
 
 const Log = new Logger("App:Router");
 
@@ -111,8 +112,14 @@ router
   .get("/claim-listing", (req, res) => {
     res.render("listings");
   })
-  .get("/ask-ea", (req, res) => {
+  .get("/ask-ea", QuestionController.getAll, (req, res) => {
     res.render("askEA");
+  })
+  .get("/ask-ea/:category", QuestionController.getAll, (req, res) => {
+    res.render("askEA");
+  })
+  .get("/new-question", (req, res) => {
+    res.render("newQuestions");
   })
   .get("/agent/:id", AgentController.get, (req, res) => {
     // console.log("agent>>>>", req.locals);
@@ -228,79 +235,78 @@ router
     if (!(req.isAuthenticated() && req.user)) return res.redirect("/login");
     next();
   })
-    .get("/dashboard", user, (req, res) => {
+  .get("/dashboard", user, (req, res) => {
     console.log("user>>>", req.locals);
-    res.render("dashboard/dashboardhome", { 
+    res.render("dashboard/dashboardhome", {
       locals: req.locals,
       page_name: "dashboard",
-      sub_page_name: "dashboard"
-     });
+      sub_page_name: "dashboard",
+    });
   })
 
   .get("/dashboard/messages", user, (req, res) => {
-    res.render("dashboard/dashboardmessages", { 
+    res.render("dashboard/dashboardmessages", {
       locals: req.locals,
       page_name: "messages",
-      sub_page_name: "messages"
-
+      sub_page_name: "messages",
     });
   })
   .get("/dashboard/my-articles", user, (req, res) => {
-    res.render("dashboard/dashboardarticle", { 
+    res.render("dashboard/dashboardarticle", {
       locals: req.locals,
       page_name: "articles",
-      sub_page_name: "myArticles"
+      sub_page_name: "myArticles",
     });
   })
-    .get("/dashboard/account-settings", user, (req, res) => {
+  .get("/dashboard/account-settings", user, (req, res) => {
     res.render("dashboard/account-setup", {
       avatarUrl: "/assets/images/img-placeholder.jpg",
       locals: req.locals,
       page_name: "account",
-      sub_page_name: "account"
+      sub_page_name: "account",
     });
   })
 
-  .get("/dashboard/help",user, (req, res) => {
+  .get("/dashboard/help", user, (req, res) => {
     res.render("dashboard/faqs", {
       locals: req.locals,
       page_name: "help",
-      sub_page_name: "help"
+      sub_page_name: "help",
     });
   })
   .get("/dashboard/submit-answer", user, (req, res) => {
-    res.render("dashboard/submitAnswer", { 
+    res.render("dashboard/submitAnswer", {
       locals: req.locals,
       page_name: "ask",
-      sub_page_name: "answer"
-     });
+      sub_page_name: "answer",
+    });
   })
-  .get("/dashboard/create-article",user, (req, res) => {
-    res.render("dashboard/createArticle", { 
+  .get("/dashboard/create-article", user, (req, res) => {
+    res.render("dashboard/createArticle", {
       locals: req.locals,
       page_name: "articles",
-      sub_page_name: "newArticle"
-     });
+      sub_page_name: "newArticle",
+    });
   })
   .get("/dashboard/answer-questions", user, (req, res) => {
-    res.render("dashboard/answerQuestion", { 
+    res.render("dashboard/answerQuestion", {
       locals: req.locals,
       page_name: "ask",
-      sub_page_name: "answer"
+      sub_page_name: "answer",
     });
   })
   .get("/dashboard/my-answers", user, (req, res) => {
-    res.render("dashboard/dashboardQ&A", { 
-      locals: req.locals ,
+    res.render("dashboard/dashboardQ&A", {
+      locals: req.locals,
       page_name: "ask",
-      sub_page_name: "myAnswers"
+      sub_page_name: "myAnswers",
     });
   })
   .get("/dashboard/my-leads", user, (req, res) => {
-    res.render("dashboard/clientLeads", { 
+    res.render("dashboard/clientLeads", {
       locals: req.locals,
       page_name: "ask",
-      sub_page_name: "myLeads"
+      sub_page_name: "myLeads",
     });
   })
 

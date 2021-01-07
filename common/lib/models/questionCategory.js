@@ -35,7 +35,7 @@ const CategorySchema = new mongoose.Schema({
     type: String,
   }
   
-})
+}, { timestamps: true })
 
 CategorySchema.index({slug: 'text', name: 'text'})
 CategorySchema.index({slug: 1, name: 1})

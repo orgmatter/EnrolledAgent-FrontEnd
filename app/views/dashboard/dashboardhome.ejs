@@ -4,11 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link href="/assets/files/favicon.png" rel="shortcut icon" type="image/png" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link
+      href="/assets/files/favicon.png"
+      rel="shortcut icon"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" />
     <!-- CSS | Main style file -->
     <link href="/css/style-main.css" rel="stylesheet" type="text/css" />
@@ -16,33 +28,40 @@
   </head>
   <body>
     <div class="layout">
-      <%-include("../partials/sidebar.ejs")%> 
+      <%-include("../partials/sidebar.ejs")%>
       <%-include("../partials/navbar.ejs")%>
       <div class="mainsection">
         <section class="dashboard">
           <h2>Dashboard</h2>
           <div class="dashboard-grid">
             <div class="dashboard-grid-div">
-              <p class="dashboard-grid-div-name"><%= locals.user.firstName  %> <%= locals.user.lastName  %></p>
+              <p class="dashboard-grid-div-name">
+                <%= locals.user.firstName %> <%= locals.user.lastName %>
+              </p>
               <p class="dashboard-grid-div-role">Enrolled Agents</p>
               <img src="/assets/files/stars.svg" alt="stars-icon" />
               <p class="dashboard-grid-div-review">0 Review</p>
               <p class="dashboard-grid-div-service">
                 <span>Service Offered:</span> General Accounting Services
               </p>
-              <div class="dashboard-grid-div-review_link"><a>Write a Review</a></div>
+              <div class="dashboard-grid-div-review_link">
+                <a>Write a Review</a>
+              </div>
               <div class="dashboard-grid-div-claim">
                 <a>Is this Your Listing ? Claim it Now!</a>
               </div>
             </div>
             <div class="dashboard-grid-div2">
-              <p class="dashboard-grid-div2-head"><span>Step 2:</span> Claim Your Listing!</p>
-              <p class="dashboard-grid-div2-desc">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-                eos et accusamundefined nonumy eirmod tempor invidunt ut labore et dolore magna
-                aliquyam erat, sed diam voluptua. At vero eos et accusamundefined
+              <p class="dashboard-grid-div2-head">
+                <span>Step 2:</span> Claim Your Listing!
               </p>
+              <p class="dashboard-grid-div2-desc">
+                Excited about advertising your practice as an Enrolled Agent for
+                free? Show your practice before thousands of potential clients
+                by claiming your listing. Attract local customers seeking your
+                service.
+              </p>
+
               <form class="dashboard-grid-div2-form">
                 <div class="dashboard-grid-div2-form-div1">
                   <div class="dashboard-grid-div2-form-div1-select">
@@ -68,7 +87,9 @@
         <section class="resources">
           <div class="container-fluid">
             <h2 class="resources-header">Resources</h2>
-            <p class="resources-sub">Valuable information provided by our sponsors.</p>
+            <p class="resources-sub">
+              Valuable information provided by our sponsors.
+            </p>
             <div class="resources-grid">
               <div class="resources-grid-box">
                 <p class="resources-grid-box-intro">Provided By:</p>
@@ -77,13 +98,17 @@
                   src="/assets/files/stanbic.png"
                   alt="stanbic-logo"
                 />
-                <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
+                <h3 class="resources-grid-box-topic">
+                  Build Your Perfect Quickfinder Library
+                </h3>
                 <p class="resources-grid-box-desc">
-                  Save up to 20% on Quickfinder products. Find tax resources for efficiency and
-                  accuracy, year-round...
+                  Save up to 20% on Quickfinder products. Find tax resources for
+                  efficiency and accuracy, year-round...
                 </p>
                 <div class="arrow">
-                  <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
+                  <a href="#"
+                    ><img src="/assets/files/down-arrow-small.svg" alt="arrow"
+                  /></a>
                 </div>
               </div>
               <div class="resources-grid-box">
@@ -93,13 +118,17 @@
                   src="/assets/files/stanbic.png"
                   alt="stanbic-logo"
                 />
-                <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
+                <h3 class="resources-grid-box-topic">
+                  Build Your Perfect Quickfinder Library
+                </h3>
                 <p class="resources-grid-box-desc">
-                  Save up to 20% on Quickfinder products. Find tax resources for efficiency and
-                  accuracy, year-round...
+                  Save up to 20% on Quickfinder products. Find tax resources for
+                  efficiency and accuracy, year-round...
                 </p>
                 <div class="arrow">
-                  <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
+                  <a href="#"
+                    ><img src="/assets/files/down-arrow-small.svg" alt="arrow"
+                  /></a>
                 </div>
               </div>
               <div class="resources-grid-box">
@@ -109,13 +138,17 @@
                   src="/assets/files/stanbic.png"
                   alt="stanbic-logo"
                 />
-                <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
+                <h3 class="resources-grid-box-topic">
+                  Build Your Perfect Quickfinder Library
+                </h3>
                 <p class="resources-grid-box-desc">
-                  Save up to 20% on Quickfinder products. Find tax resources for efficiency and
-                  accuracy, year-round...
+                  Save up to 20% on Quickfinder products. Find tax resources for
+                  efficiency and accuracy, year-round...
                 </p>
                 <div class="arrow">
-                  <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
+                  <a href="#"
+                    ><img src="/assets/files/down-arrow-small.svg" alt="arrow"
+                  /></a>
                 </div>
               </div>
               <div class="resources-grid-box">
@@ -125,13 +158,17 @@
                   src="/assets/files/stanbic.png"
                   alt="stanbic-logo"
                 />
-                <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
+                <h3 class="resources-grid-box-topic">
+                  Build Your Perfect Quickfinder Library
+                </h3>
                 <p class="resources-grid-box-desc">
-                  Save up to 20% on Quickfinder products. Find tax resources for efficiency and
-                  accuracy, year-round...
+                  Save up to 20% on Quickfinder products. Find tax resources for
+                  efficiency and accuracy, year-round...
                 </p>
                 <div class="arrow">
-                  <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
+                  <a href="#"
+                    ><img src="/assets/files/down-arrow-small.svg" alt="arrow"
+                  /></a>
                 </div>
               </div>
               <div class="resources-grid-box">
@@ -141,13 +178,17 @@
                   src="/assets/files/stanbic.png"
                   alt="stanbic-logo"
                 />
-                <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
+                <h3 class="resources-grid-box-topic">
+                  Build Your Perfect Quickfinder Library
+                </h3>
                 <p class="resources-grid-box-desc">
-                  Save up to 20% on Quickfinder products. Find tax resources for efficiency and
-                  accuracy, year-round...
+                  Save up to 20% on Quickfinder products. Find tax resources for
+                  efficiency and accuracy, year-round...
                 </p>
                 <div class="arrow">
-                  <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
+                  <a href="#"
+                    ><img src="/assets/files/down-arrow-small.svg" alt="arrow"
+                  /></a>
                 </div>
               </div>
               <div class="resources-grid-box">
@@ -157,13 +198,17 @@
                   src="/assets/files/stanbic.png"
                   alt="stanbic-logo"
                 />
-                <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
+                <h3 class="resources-grid-box-topic">
+                  Build Your Perfect Quickfinder Library
+                </h3>
                 <p class="resources-grid-box-desc">
-                  Save up to 20% on Quickfinder products. Find tax resources for efficiency and
-                  accuracy, year-round...
+                  Save up to 20% on Quickfinder products. Find tax resources for
+                  efficiency and accuracy, year-round...
                 </p>
                 <div class="arrow">
-                  <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
+                  <a href="#"
+                    ><img src="/assets/files/down-arrow-small.svg" alt="arrow"
+                  /></a>
                 </div>
               </div>
             </div>
@@ -177,14 +222,20 @@
         </section>
       </div>
     </div>
-     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
