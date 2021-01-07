@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <%- include("./partials/head.ejs") %>
+  </head>
+  <body class="">
+    <%- include("./partials/header.ejs") %>
+    <main class="newQuestion row">
+      <div class="lvc8n-contact left-side col-md-8">
+        <div class="lvc8n-contact__head"></div>
+        <div class="lvc8n-contact__form">
+          <div class="form__row">
+            <div class="form__group">
+              <input
+                type="text"
+                name="agent-first-name"
+                class="form__input"
+                placeholder="First Name*"
+              />
+              <label for="agent-first-name" class="form__label"
+                >First Name*</label
+              >
+            </div>
+            <div class="form__group">
+              <input
+                type="text"
+                id="agent-last-name"
+                class="form__input"
+                placeholder="Last Name*"
+              />
+              <label for="agent-last-name" class="form__label"
+                >Last Name*</label
+              >
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="form__group">
+              <input
+                type="email"
+                id="agent-email"
+                class="form__input"
+                placeholder="Email Address*"
+              />
+              <label for="agent-email" class="form__label"
+                >Email Address*</label
+              >
+            </div>
+            <div class="form__group">
+              <input
+                type="text"
+                id="agent-phone-number"
+                class="form__input"
+                placeholder="Phone Number*"
+              />
+              <label for="agent-phone-number" class="form__label"
+                >Phone number*</label
+              >
+            </div>
+          </div>
+          <div class="form__row">
+            <!-- <div class="form__group form__group-inner">
+              <input
+                type="text"
+                id="agent-city"
+                class="form__input form__input-small form__input-small-left"
+                placeholder="City*"
+              />
+              <label for="agent-city" class="form__label">City*</label>
+              <input
+                type="text"
+                id="agent-zipcode"
+                class="form__input form__input-small"
+                placeholder="Zip Code*"
+              />
+              <label for="agent-zip-code" class="form__label">Zip Code*</label>
+            </div> -->
+            <div class="form__group">
+              <select name="state" id="agent-state" class="form__select">
+                <option value="" disabled selected>
+                  Select a Question Category
+                </option>
+                <option value="state1">Question 1</option>
+                <option value="state2">Question 2</option>
+                <option value="state3">Question 3</option>
+                <option value="state4">Question 4</option>
+                <option value="state5">Question 5</option>
+                <option value="state5">Question 6</option>
+                <option value="state5">Question 7</option>
+                <option value="state5">Question 8</option>
+                <option value="state5">Question 9</option>
+                <option value="state5">Question 10</option>
+                <option value="state5">Question 11</option>
+                <option value="state5">Question 12</option>
+              </select>
+              <!--                            <label for="state" class="form__label">Phone number*</label>-->
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="form__group">
+              <input
+                type="text"
+                id="license"
+                class="form__input"
+                placeholder="Question Title*"
+              />
+              <label for="license" class="form__label">Question Title*</label>
+            </div>
+            <!-- <div class="form__group">
+              <select name="state" id="agent-state" class="form__select">
+                <option value="" disabled selected>
+                  Preferred Contact Method
+                </option>
+                <option value="state1">email</option>
+                <option value="state2">Phone</option>
+                <option value="state5">wapp</option>
+              </select>
+              <!--                            <label for="state" class="form__label">Phone number*</label>-->
+            <!-- </div> -->
+          </div>
+          <div class="form__row">
+            <div class="form__group form__group-full-width">
+              <label for="" class="form__textarea-label"
+                >Your Question Details (optional)</label
+              >
+              <textarea name="" class="form__textarea"></textarea>
+            </div>
+          </div>
+          <div class="lvc8n-contact__button">
+            <button class="lvc8n-btn lvc8n-contact__button-btn b-ton">
+              Submit Your Question
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="category_grid-side right-side col-md-3">
+        <div class="category_grid-side-archives">
+          <h4>Archives</h4>
+          <a href="#">Excepteur sint occaecat</a>
+          <a href="#">Excepteur sint occaecat</a>
+          <a href="#">Excepteur sint occaecat</a>
+          <a href="#">Excepteur sint occaecat</a>
+          <a href="#">Excepteur sint occaecat</a>
+        </div>
+        <div class="category_grid-side-ads">
+          <img src="/assets/files/13061.png" alt="enrolled-agent" />
+        </div>
+        <div class="category_grid-side-recent">
+          <h4>Recent Articles</h4>
+          <div class="category_grid-side-recent-div">
+            <a href="#">
+              <p>
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                qui officia deserunt mollit anim id est eopksio laborum.
+              </p>
+              <p class="category_grid-side-recent-div-bold">Nov, 26, 2020</p>
+            </a>
+          </div>
+          <div class="category_grid-side-recent-div">
+            <a href="#">
+              <p>
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                qui officia deserunt mollit anim id est eopksio laborum.
+              </p>
+              <p class="category_grid-side-recent-div-bold">Nov, 26, 2020</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- <div class="lvc8n-contact__disclaimer">
+        <span style="font-weight: bold">Note:</span>
+        CPA directory's public CPA search should not be used for license verification purposes. Many
+        CAPs have opted out of the publicly accessible directory for various reasons including those
+        of privacy. Agencies and individuals that wish to verify a CPA's license should use this CPA
+        license verification service.
+      </div> -->
+    <!-- </div> -->
+    <%- include("./partials/footer.ejs") %>
+    <script type="text/javascript" src="/js/ccenter.js"></script>
+    <script src="/js/custom.js"></script>
+  </body>
+</html>
