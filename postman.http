@@ -86,3 +86,48 @@ content-type: application/json
     "message": "Dsghghjgjhggdf",
     "question": "5ff7878fde0fbc2a277699e2"
 }
+
+###
+
+POST  http://localhost:3000/api/article/comment/5feb11d015b6e0de7d4f9894 HTTP/1.1
+content-type: application/json
+
+{
+    "message": "Dsghghjgjhggdf",
+     "email": "ekeh.wisdom@gmail.com",
+    "body": "asdhfajfd adhjdghjh",
+    "title": "sdfdffdf",
+    "firstName": "sdfghj",
+    "lastName": "Dsghgdf",
+    "phone": "09902836879233"
+}
+
+
+###
+
+POST  http://localhost:3000/api/offshore HTTP/1.1
+content-type: application/json
+
+{
+    "message": "Dsghghjgjhggdf",
+     "email": "ekeh.wisdom@gmail.com",
+    "body": "asdhfajfd adhjdghjh",
+    "title": "sdfdffdf",
+    "firstName": "sdfghj",
+    "lastName": "Dsghgdf",
+    "phone": "09902836879233"
+}
+
+###
+POST  http://localhost:3000/api/licence HTTP/1.1
+content-type: application/json
+
+{
+    "message": "Dsghghjgjhggdf",
+     "email": "ekeh.wisdom@gmail.com",
+    "body": "asdhfajfd adhjdghjh",
+    "title": "sdfdffdf",
+    "firstName": "sdfghj",
+    "lastName": "Dsghgdf",
+    "phone": "09902836879233"
+}

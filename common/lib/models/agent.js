@@ -104,4 +104,10 @@ AgentSchema.virtual('reviewCount', {
   count: true
 })
 
+AgentSchema.virtual('review', {
+  ref: 'review',
+  localField: '_id',
+  foreignField: 'agent',
+})
+
 module.exports = mongoose.model('agent', AgentSchema)

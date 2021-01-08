@@ -27,7 +27,7 @@ class ArticleController extends BaseController {
 
 
     async create(req, res, next) {
-        const { body, preview, author, title, sponsor, category, featured } = req.body
+        const { body, preview, author, title, sponsor, category, featured,  } = req.body
 
         if (!sponsor || !Validator.isMongoId(sponsor) || !(await Sponsor.exists({ _id: sponsor }))) {
             res.status(422)
@@ -60,6 +60,9 @@ class ArticleController extends BaseController {
         }
 
         const b = { body, author, title, preview, sponsor, category , featured}
+
+        if(req.body.imageUrl && Validator.isUrl(req.body.imageUrl))
+        b.imageUrl = req.body.imageUrl
 
 
 

@@ -18,49 +18,54 @@ Agent.syncIndexes();
 class AgentController extends BaseController {
 
   async update(req, res, next) {
-    const { params: { id } } = req
-    if (!BaseController.checkId('Invalid agent id', req, res, next)) return
 
     const body = req.body || { '': '' }
     delete body.rating
     delete body.owner
 
     if (!(req.isAuthenticated() && req.user))
-    return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
+      return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
 
-    let agent = await Agent.findById(id).exec()
+    let agent = await Agent.findOne({ owner: req.user.id }).exec()
+    if (!agent || !agent._id) {
+      res.status(422)
+      return next(
+        new Exception(
+          'Only verified agents can delete articles',
+          ErrorCodes.REQUIRED
+        )
+      )
+    }
 
-    if(!agent)
-    return next(new Exception('Agent not found', ErrorCodes.NO_PRIVILEGE))
 
 
-    if(agent.owner != req.user.id)
-    return next(new Exception('You can only update your listing', ErrorCodes.NO_PRIVILEGE))
-    
-    
+    if (!agent || agent.owner != req.user.id)
+      return next(new Exception('You can only update your listing', ErrorCodes.NO_PRIVILEGE))
 
-     agent = await Agent.findByIdAndUpdate(id, body, { new: true })
+
+
+    agent = await Agent.findByIdAndUpdate(agent._id, body, { new: true })
 
     if (req.file) {
-        const imageUrl = await FileManager.saveFile(
-            Storages.AGENT_PROFILE,
-            req.file
-        )
-        if (agent.imageUrl && imageUrl) FileManager.deleteFile(agent.imageUrl)
+      const imageUrl = await FileManager.saveFile(
+        Storages.AGENT_PROFILE,
+        req.file
+      )
+      if (agent.imageUrl && imageUrl) FileManager.deleteFile(agent.imageUrl)
 
-        agent.imageUrl = imageUrl
-        await agent.save()
+      agent.imageUrl = imageUrl
+      await agent.save()
     }
     super.handleResult(agent, res, next)
     await Log.create({
-        user: req.user.id,
-        action: LogAction.AGENT_UPDATED,
-        category: LogCategory.AGENT,
-        resource: agent._id,
-        ip: Helper.getIp(req),
-        message: 'Agent Updated'
+      user: req.user.id,
+      action: LogAction.AGENT_UPDATED,
+      category: LogCategory.AGENT,
+      resource: agent._id,
+      ip: Helper.getIp(req),
+      message: 'Agent Updated'
     })
-}
+  }
 
 
   async claim(req, res, next) {
@@ -77,7 +82,7 @@ class AgentController extends BaseController {
       return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
 
 
-     await ClaimListing.create({
+    await ClaimListing.create({
       jobRole,
       companySize,
       companyName,
@@ -95,8 +100,15 @@ class AgentController extends BaseController {
   async get(req, res, next) {
     const { id } = req.params;
     let agent;
-    if (Validator.isMongoId(id)) agent = await Agent.findById(id).exec();
+    if (Validator.isMongoId(id)) agent = await Agent.findById(id)
+      .populate([
+        { path: "review" },
+        { path: "reviewCount", select: ["rating"] },
+        { path: "owner", select: ["_id", "firstName"] },
+      ])
+      .exec();
     req.locals.agent = agent;
+    console.log(agent)
     next();
   }
 

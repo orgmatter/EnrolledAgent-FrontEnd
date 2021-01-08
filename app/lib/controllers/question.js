@@ -67,7 +67,7 @@ class QuestionController extends BaseController {
         const { question, message } = req.body
 
         if (!(req.isAuthenticated() && req.user))
-        return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
+            return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
 
         let agent = await Agent.findOne({ owner: req.user.id }).exec()
         if (!agent || !agent._id) {
@@ -100,7 +100,7 @@ class QuestionController extends BaseController {
             )
         }
 
-         await Answer.create({ agent, message, question })
+        await Answer.create({ agent, message, question })
         super.handleResult({ message: 'Your question has been posted successfully' }, res, next)
 
     }
@@ -175,6 +175,23 @@ class QuestionController extends BaseController {
         console.log(data)
         next()
     }
+
+     /**
+     * get question categorirs
+     * @param  {Express.Request} req
+     * @param  {Express.Response} res
+     * @param  {Function} next
+     */
+    async category(req, res, next) {
+        const data = await QuestionCategory.find({})
+            .sort({ priority: -1 })
+            .exec()
+        req.locals.resourceCategory = data
+        console.log(data)
+        next()
+
+    }
+
 
 }
 

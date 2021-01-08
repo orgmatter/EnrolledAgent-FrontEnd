@@ -43,6 +43,54 @@ class ReviewController {
     }
 
 
+    /**
+     * Breakdown rating for an agent
+     * @param  {Express.Request} req
+     * @param  {Express.Response} res
+     * @param  {function} next
+     */
+    analysis = async function (req, res, next) {
+        const { params: { id }, } = req;
+        const agent = await Agent.findOne({ _id: id }).exec()
+
+        if (agent && agent._id) {
+
+            const one = await Review.countDocuments({ company: agent._id, rating: 1 }).exec()
+            const two = await Review.countDocuments({ company: agent._id, rating: 2 }).exec()
+            const three = await Review.countDocuments({ company: agent._id, rating: 3 }).exec()
+            const four = await Review.countDocuments({ company: agent._id, rating: 4 }).exec()
+            const five = await Review.countDocuments({ company: agent._id, rating: 5 }).exec()
+            const count = await Review.countDocuments({ company: agent._id, }).exec()
+
+            Review
+                .aggregate([
+                    { $match: { agent: agent._id } },
+                    {
+                        $group:
+                        {
+                            _id: null,
+                            avgRating: { $avg: '$rating' },
+                        },
+                    },
+
+                ])
+                .then((doc) => {
+                    // console.log(doc, one, two, three, four, five)
+                    let avgRating = 0
+                    if (doc && doc.length > 0 && doc[0].avgRating) {
+                        avgRating = Number(doc[0].avgRating || 0).toPrecision(2)
+                        avgRating = Number(avgRating)
+                    }
+                    req.locals.reviewAnalysis = { one, two, three, four, five, count, avgRating }
+                    console.log(req.locals.reviewAnalysis)
+                    // if (doc && doc[0] && doc[0].count) req.locals.monthlySub = doc[0].count;
+                    next();
+                });
+        } else next()
+    };
+
+
+
 }
 
 module.exports = new ReviewController()

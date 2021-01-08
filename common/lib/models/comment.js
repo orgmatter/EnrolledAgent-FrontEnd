@@ -11,8 +11,18 @@ const CommentSchema = new mongoose.Schema({
     ref: 'user',
     type: Schema.ObjectId
   },
+  article: {
+    ref: 'article',
+    type: Schema.ObjectId
+  },
+  firstName: String,
+  lastName: String,
+  state: String,
+  city: String,
+  email: String,
+  phone: String,
   
-})
+}, { timestamps: true })
 
 
 module.exports = mongoose.model('comment', CommentSchema)

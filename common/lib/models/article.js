@@ -46,5 +46,25 @@ const Article = new Schema({
 
 Article.index({ title: 'text', body: 'text', })
 
+Article.set('toObject', { virtuals: true })
+Article.set('toJSON', { virtuals: true })
+
+
+
+
+Article.virtual('comment', {
+  ref: 'comment',
+  localField: '_id',
+  foreignField: 'agent',
+})
+
+Article.virtual('commentCount', {
+  ref: 'comment',
+  localField: '_id',
+  foreignField: 'agent',
+  count: true
+})
+
+
 
 module.exports = mongoose.model('article', Article)

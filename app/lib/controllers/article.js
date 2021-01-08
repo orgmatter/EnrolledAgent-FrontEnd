@@ -4,10 +4,12 @@ const {
     Exception,
     ErrorMessage,
     ErrorCodes,
+    FileManager,
     LogAction,
+    Validator,
     Storages,
     LogCategory,
-    Models: { Article, Agent, Log },
+    Models: { Article, Agent, Log, ArticleCategory, Comment },
 } = require("common");
 
 const BaseController = require('./baseController');
@@ -60,7 +62,8 @@ class ArticleController extends BaseController {
 
         const b = { body, title, preview, sponsor, category, agent: agent._id }
 
-
+        if (req.body.imageUrl && Validator.isUrl(req.body.imageUrl))
+            b.imageUrl = req.body.imageUrl
 
         let resource = await Article.create(b)
 
@@ -88,7 +91,7 @@ class ArticleController extends BaseController {
 
     async update(req, res, next) {
         const { params: { id } } = req
-        if (!BaseController.checkId('Invalid airticle id', req, res, next)) return
+        if (!BaseController.checkId('Invalid article id', req, res, next)) return
 
         if (!(req.isAuthenticated() && req.user))
             return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
@@ -103,6 +106,7 @@ class ArticleController extends BaseController {
                 )
             )
         }
+
         let article = await Article.findById(id).exec()
         if (article.agent != agent._id) {
             res.status(422)
@@ -139,6 +143,36 @@ class ArticleController extends BaseController {
             ip: Helper.getIp(req),
             message: 'Article Updated'
         })
+
+    }
+
+    async comment(req, res, next) {
+        const { params: { id }, body: {phone, email, firstName, lastName, city, state, message} } = req
+        if (!BaseController.checkId('Invalid article id', req, res, next)) return
+
+        if (!(await Article.exists({_id: id}))) {
+            res.status(422)
+            return next(
+                new Exception(
+                    'Invalid article reference',
+                    ErrorCodes.REQUIRED
+                )
+            )
+        }
+
+        if (!message ) {
+            res.status(422)
+            return next(
+                new Exception(
+                    'Message must not be empty',
+                    ErrorCodes.REQUIRED
+                )
+            )
+        }
+ 
+        await Comment.create({article: id, phone, email, firstName, lastName, city, state, message})
+
+        super.handleResult({message: 'your comment was created successfully'}, res, next)
 
     }
 
@@ -206,6 +240,8 @@ class ArticleController extends BaseController {
                 perPage: perpage,
                 query: { agent: agent._id },
                 page,
+                sort: {createdAt: -1},
+                populate: ['category']
             }, (data) => {
                 req.locals.agentArticles = data
                 next()
@@ -218,7 +254,9 @@ class ArticleController extends BaseController {
 
     async get(req, res, next) {
         const { id } = req.params
-        let resource = await Article.findById(id).exec()
+        let resource = await Article.findById(id)
+        .populate(['category'])
+        .exec()
         req.locals.article = resource
         next()
 
@@ -232,11 +270,50 @@ class ArticleController extends BaseController {
         DB.Paginate(res, next, Article, {
             perPage: perpage,
             query,
+            sort: {createdAt: -1},
             page,
+            populate: ['category']
         }, (data) => {
             req.locals.articles = data
             next()
         })
+
+    }
+
+    async latest(req, res, next) {
+        const data = await Article.find({},)
+            .limit(10)
+            .sort({ createdAt: -1 })
+            .populate(['category'])
+            .exec()
+        req.locals.latestArticle = data
+        next()
+
+    }
+
+    async featured(req, res, next) {
+        const data = await Article.find({},)
+            .limit(10)
+            .sort({ createdAt: -1 })
+            .populate(['category'])
+            .exec()
+        req.locals.featuredArticle = data
+        next()
+
+    }
+    /**
+     * get Article categorirs
+     * @param  {Express.Request} req
+     * @param  {Express.Response} res
+     * @param  {Function} next
+     */
+    async category(req, res, next) {
+        const data = await ArticleCategory.find({})
+            .sort({ priority: -1 })
+            .exec()
+        req.locals.articleCategory = data
+        // console.log(data)
+        next()
 
     }
 
@@ -255,6 +332,7 @@ class ArticleController extends BaseController {
             .skip(random)
             .limit(10)
             .sort({ createdAt: -1 })
+            .populate(['category'])
             .exec()
         req.locals.articles = data
         next()

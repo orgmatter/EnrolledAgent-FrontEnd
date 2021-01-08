@@ -9,6 +9,7 @@ const ResourceController = require("../controllers/resource");
 const ArticleController = require("../controllers/article");
 const AgentController = require("../controllers/agent");
 const QuestionController = require("../controllers/question");
+const ReviewController = require("../controllers/review");
 
 const Log = new Logger("App:Router");
 
@@ -32,7 +33,7 @@ router
     next();
   })
 
-  .use((req, res, next) => {
+  .use(ArticleController.category, ResourceController.category, QuestionController.category, (req, res, next) => {
     // console.log(req.isAuthenticated(), req.user)
     next();
   })
@@ -121,7 +122,7 @@ router
   .get("/new-question", (req, res) => {
     res.render("newQuestions");
   })
-  .get("/agent/:id", AgentController.get, (req, res) => {
+  .get("/agent/:id", ReviewController.analysis, AgentController.get, (req, res) => {
     // console.log("agent>>>>", req.locals);
     res.render("single-agent-details", { locals: req.locals });
   })
