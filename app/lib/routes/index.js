@@ -93,7 +93,7 @@ router
     }
   )
   .get("/search-results", AgentController.getAll, (req, res) => {
-    // console.log("locals ", req.locals);
+     console.log("locals ", req.locals);
     res.render("search-results", { locals: req.locals });
   })
 
