@@ -73,7 +73,7 @@ router
   // .get('/google/callback', passport.authenticate('google', { scope: ['profile', 'email'], }), handleSocial)
 
   .get("/blog", ArticleController.getAll, (req, res) => {
-    // console.log("articles>>>", req.locals.articles.data);
+    // console.log("articles>>>", req.locals);
     res.render("blog", { locals: req.locals });
   })
   .get("/blog/:id", ArticleController.get, (req, res) => {
