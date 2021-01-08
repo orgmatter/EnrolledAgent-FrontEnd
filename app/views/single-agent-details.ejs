@@ -131,15 +131,62 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <div class="modal-body-div">
-                          <label>Select Your Rating<span>*</span></label>
-                        </div>
-                        <div class="modal-body-div">
-                          <label>Your Review<span>*</span></label>
-                          <textarea placeholder="Your review will let others know more about your Enrolled Agent"
-                          required  maxlength="1500"></textarea>
-                          <p>1500 maximum characters </p>
-                        </div>
+                        <form action="">
+                          <div class="modal-body-div">
+                            <label class="modal-body-div-label">Select Your Rating<span>*</span></label>
+                            <div class="rate">
+                              <input type="radio" id="star5" name="rate" value="5" />
+                              <label for="star5" title="text">5 stars</label>
+                              <input type="radio" id="star4" name="rate" value="4" />
+                              <label for="star4" title="text">4 stars</label>
+                              <input type="radio" id="star3" name="rate" value="3" />
+                              <label for="star3" title="text">3 stars</label>
+                              <input type="radio" id="star2" name="rate" value="2.5" />
+                              <label for="star2" title="text">2 stars</label>
+                              <input type="radio" id="star1" name="rate" value="1" />
+                              <label for="star1" title="text">1 star</label>
+                            </div>
+                          </div>
+                          <div class="modal-body-div">
+                            <label class="modal-body-div-label">Your Review<span>*</span></label>
+                            <textarea placeholder="Your review will let others know more about your Enrolled Agent"
+                            required  maxlength="1500"></textarea>
+                            <p>1500 maximum characters </p>
+                          </div>
+                          <div class="modal-body-div">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <input class="modal-body-div-input" type="text" required placeholder="First Name*"/>
+                              </div>
+                              <div class="col-md-6 pl-20">
+                                <input class="modal-body-div-input" type="text" required placeholder="Last Name*"/>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-body-div">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <input class="modal-body-div-input" type="text" required placeholder="City*"/>
+                              </div>
+                              <div class="col-md-6 pl-20">
+                                 <input class="modal-body-div-input" type="text" required placeholder="State*"/>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-body-div">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <input class="modal-body-div-input" type="email" required placeholder="Email Address*"/>
+                              </div>
+                              <div class="col-md-6 pl-20">
+                                <select required>
+                                  <option disabled selected>Service Reviewed</option>
+                                  <option value=""></option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

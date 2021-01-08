@@ -303,13 +303,20 @@ font-weight: normal;
         padding: 0;
         &-div{
             margin-bottom: 30px;
-            label{
+            &-label{
                 font-size: 14px;
                 display: block;
                 color: #000;
+                font-weight: 400!important;
                 span{
                         color: red;
                     }
+            }
+            &-input, select{
+                width: 350px;
+                height: 45px;
+                border: 1px solid #222;
+                padding: 0 10px;
             }
             textarea{
                 height: 200px;
