@@ -18,7 +18,9 @@ class ResourceController extends BaseController {
 
     async get(req, res, next) {
         const { id } = req.params
-        let resource = await Resource.findById(id).exec()
+        let resource = await Resource.findById(id)
+        .populate(['sponsor', 'category'])
+        .exec()
         req.locals.resource = resource
         next()
 
@@ -40,12 +42,28 @@ class ResourceController extends BaseController {
             perPage: perpage,
             query,
             page,
-            // populate: { path: 'category', match: { slug: 'tax' } }
+            populate: ['sponsor', 'category'] 
         }, (data) => {
             req.locals.resource = data
             // console.log(data)
             next()
         })
+
+    }
+
+     /**
+     * get resource categorirs
+     * @param  {Express.Request} req
+     * @param  {Express.Response} res
+     * @param  {Function} next
+     */
+    async category(req, res, next) {
+        const data = await ResourceCategory.find({})
+            .sort({ priority: -1 })
+            .exec()
+        req.locals.resourceCategory = data
+        console.log(data)
+        next()
 
     }
 
@@ -63,7 +81,7 @@ class ResourceController extends BaseController {
         const data = await Resource.find({},)
             .skip(random)
             .limit(10)
-            .populate('sponsor')
+            .populate(['sponsor', 'category'])
             .exec()
         req.locals.resource = data
         next()

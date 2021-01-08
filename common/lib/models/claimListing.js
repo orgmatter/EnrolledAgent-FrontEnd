@@ -27,7 +27,7 @@ const ClaimListingSchema = new mongoose.Schema({
     ref: 'agent',
     type: Schema.ObjectId
   }
-})
+}, { timestamps: true })
 
 
 module.exports = mongoose.model('claimListing', ClaimListingSchema)

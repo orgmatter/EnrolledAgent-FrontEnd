@@ -30,6 +30,10 @@ const CategorySchema = new mongoose.Schema({
     required: true, index: true,
     unique: true
   },
+  priority: {
+    type: Number,
+    default: 1
+  },
   slug: { type: String, slug: "name", index: true, transform: v => generateSlug(v) },
   description: {
     type: String,

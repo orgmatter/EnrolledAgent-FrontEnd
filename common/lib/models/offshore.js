@@ -2,7 +2,7 @@ const Constants = require('../utils/constants')
 const mongoose = require('mongoose')
 const { Schema } = mongoose
 
-const LicenceVerificationSchema = new mongoose.Schema({
+const OffshoreSchema = new mongoose.Schema({
   user: {
     ref: 'user',
     type: Schema.ObjectId
@@ -15,15 +15,9 @@ const LicenceVerificationSchema = new mongoose.Schema({
   state: String,
   zipcode: String,
   firmName: String,
-  transaction: {
-    ref: 'transaction',
-    type: Schema.ObjectId
-  },
-  agentFirstName: String,
-  agentLastName: String,
-  agentCity: String,
-  agentZipcode: String,
-  licence: String,
+  businessSize: String,
+  staffNeeded: String,
+  hireUrgency: String,
   message: String,
   preferredContact: {
       type: String,
@@ -33,4 +27,4 @@ const LicenceVerificationSchema = new mongoose.Schema({
 }, { timestamps: true })
 
 
-module.exports = mongoose.model('licenceVerification', LicenceVerificationSchema)
+module.exports = mongoose.model('offshore', OffshoreSchema)

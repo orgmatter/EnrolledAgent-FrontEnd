@@ -13,6 +13,8 @@ module.exports = {
   EmailList: require('./email_list'),
   Firm: require('./firm'),
   Log: require('./log'),
+  LicenseVerification: require('./licenseVerification'),
+  Offshore: require('./offshore'),
   Review: require('./review'),
   Role: require('./role'),
   Resource: require('./resource'),

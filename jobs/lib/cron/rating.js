@@ -1,15 +1,15 @@
-const { DB, Models: { Subscription, Company }, Validator } = require("common");
+const { DB, Models: { Subscription, Agent }, Validator } = require("common");
 const BaseCron = require("./baseCron");
 
 class RatingJob extends BaseCron {
 
     /**
-       * for every company compute rating
+       * for every agent compute rating
        * @param {Number} page
        * @param {function} done
        */
     async runJob(page = 1, done) {
-        this.getCompanies(
+        this.getAgents(
             page,
             1,
             {},
@@ -19,12 +19,14 @@ class RatingJob extends BaseCron {
                     done(err)
                 } else {
                     const { data, pages, page } = result
-                    for (const company of data) {
-                        if (company && company.review && company.review.length > 0)
-                            await this.updateRating(company._id, company.review)
-                        await setTimeout(function () { }, 1000)
+                    for (let index = 0; index < data.length; index++) {
+                        const agent = data[index]
+                        console.log(agent)
+                        if (agent && agent.review && agent.review.length > 0)
+                            await this.updateRating(agent._id, agent.review)
+                        await setTimeout(function () { }, 100)
                     }
-                    await setTimeout(function () { }, 5000)
+                    await setTimeout(function () { }, 500)
                     if (pages > page) {
                         // console.log('running job again', page)
                         this.runJob(page + 1, done)
@@ -42,8 +44,8 @@ class RatingJob extends BaseCron {
      * @param  {object} query
      * @param  {function} done
      */
-    async getCompanies(page = 1, perPage = 10, query, done) {
-        DB.Paginate({}, done, Company, {
+    async getAgents(page = 1, perPage = 10, query, done) {
+        DB.Paginate({}, done, Agent, {
             perPage,
             query,
             page,
@@ -69,7 +71,7 @@ class RatingJob extends BaseCron {
         })
         rating /= review.length
 
-        await Company.findByIdAndUpdate(id, {
+        await Agent.findByIdAndUpdate(id, {
             rating
         }).exec()
     }
