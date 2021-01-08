@@ -25,7 +25,7 @@ const sanitizeBody = (body) => {
 class ResourceController extends BaseController {
 
     async create(req, res, next) {
-        const { body, actionLink, sponsor, actionText, title, imageUrl, category } = req.body
+        const { body, actionLink, sponsor, actionText, title, category } = req.body
 
         if (!sponsor || !Validator.isMongoId(sponsor) || !(await Sponsor.exists({ _id: sponsor }))) {
             res.status(422)
@@ -79,9 +79,9 @@ class ResourceController extends BaseController {
             )
         }
 
-        const b = { body, actionLink, sponsor, actionText, title, category, imageUrl }
-
-        if (Validator.isUrl(imageUrl)) b.imageUrl = imageUrl
+        const b = { body, actionLink, sponsor, actionText, title, category }
+        if(req.body.imageUrl && Validator.isUrl(req.body.imageUrl))
+        b.imageUrl = req.body.imageUrl
 
         let resource = await Resource.create(b)
 

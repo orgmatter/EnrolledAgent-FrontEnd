@@ -21,7 +21,7 @@ router
   .post("/answer", FileManager.none, QuestionController.answer)
   .post("/article", FileManager.upload, ArticleController.create)
   .put("/article/:id", FileManager.upload, ArticleController.update)
-  .put("/delete/:id", FileManager.upload, ArticleController.delete)
+  .delete("/article/:id", FileManager.upload, ArticleController.delete)
 
   .use(Middleware.Four04Handler)
   .use(Middleware.ErrorHandler);
