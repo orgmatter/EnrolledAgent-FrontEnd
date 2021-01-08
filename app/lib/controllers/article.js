@@ -147,7 +147,7 @@ class ArticleController extends BaseController {
     }
 
     async comment(req, res, next) {
-        const { params: { id }, body: {phone, email, firstName, lastName, city, state, message} } = req
+        const { params: { id }, body: {phone, email, name, city, state, message} } = req
         if (!BaseController.checkId('Invalid article id', req, res, next)) return
 
         if (!(await Article.exists({_id: id}))) {
@@ -170,7 +170,7 @@ class ArticleController extends BaseController {
             )
         }
  
-        await Comment.create({article: id, phone, email, firstName, lastName, city, state, message})
+        await Comment.create({article: id, phone, email, name, city, state, message})
 
         super.handleResult({message: 'your comment was created successfully'}, res, next)
 
