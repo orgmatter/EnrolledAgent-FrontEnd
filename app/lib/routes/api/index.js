@@ -6,6 +6,7 @@ const ReviewController = require("../../controllers/review");
 const AgentController = require("../../controllers/agent");
 const ArticleController = require("../../controllers/article");
 const QuestionController = require("../../controllers/question");
+const LicenceController = require("../../controllers/licence");
 
 router
   .post("/register", AuthController.register)
@@ -17,9 +18,12 @@ router
   .post("/claim-listing/:id", AgentController.claim)
   .put("/update-profile", FileManager.upload, AuthController.update)
   .put("/update-agent", FileManager.upload, AgentController.update)
+  .post("/licence", FileManager.none, LicenceController.create)
   .post("/ask", FileManager.none, QuestionController.create)
+  .post("/offshore", FileManager.none, ContactController.offshore)
   .post("/answer", FileManager.none, QuestionController.answer)
   .post("/article", FileManager.upload, ArticleController.create)
+  .post("/article/comment/:id", FileManager.none, ArticleController.comment)
   .put("/article/:id", FileManager.upload, ArticleController.update)
   .delete("/article/:id", FileManager.upload, ArticleController.delete)
 

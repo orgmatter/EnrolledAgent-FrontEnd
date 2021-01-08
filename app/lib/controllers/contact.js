@@ -1,77 +1,125 @@
 const {
-    Exception,
-    ErrorCodes,
-    FileManager,
-    Storages,
-    MailService, EmailTemplates,
-    Validator,
-    Helper,
-    DB,
-    Models: { Contact, AdminUser, EmailList },
+  Exception,
+  ErrorCodes,
+  FileManager,
+  Storages,
+  MailService, EmailTemplates,
+  Validator,
+  Helper,
+  DB,
+  Models: { Contact, AdminUser, EmailList, Offshore },
 } = require("common")
 
 
-class ContactController  {
+class ContactController {
 
-    async create(req, res, next) {
-        const { name, email, subject, message, phone } = req.body
+  async create(req, res, next) {
+    const { name, email, subject, message, phone } = req.body
 
-        if (!name || !email || !phone) {
-            res.status(422)
-            return next(
-                new Exception(
-                    'Name and email is required',
-                    ErrorCodes.REQUIRED
-                )
-            )
-        }
-
-        if (!Validator.email(email)) {
-            res.status(422)
-            return next(
-                new Exception(
-                    'Please provide a valid email',
-                    ErrorCodes.REQUIRED
-                )
-            )
-        }
-
-
-        if (!subject || !message) {
-            res.status(422)
-            return next(
-                new Exception(
-                    'Subject and Message is required',
-                    ErrorCodes.REQUIRED
-                )
-            )
-        }
-
-        await Contact.create({ name, email, subject, message, phone }).then()
-
-        let admin = await AdminUser.find({}).exec()
-
-        if(admin && admin.length > 0 ){
-        // console.log( admin.map(a=> a.email))
-
-        new MailService().sendMail(
-            {
-                // secret: config.PUB_SUB_SECRET,
-                template: EmailTemplates.CONTACT,
-                reciever: admin.map(a=> a.email),
-                subject: subject,
-                locals: { name: name, phone, message, userEmail: email },
-            },
-            (res) => {
-                if (res == null) return
-                log.error("Error sending mail", res)
-            }
-        )}
-
-        res.json({message: 'Thank you for contacting us, your message will be attended to appropriately'})
-
-
+    if (!name || !email || !phone) {
+      res.status(422)
+      return next(
+        new Exception(
+          'Name and email is required',
+          ErrorCodes.REQUIRED
+        )
+      )
     }
+
+    if (!Validator.email(email)) {
+      res.status(422)
+      return next(
+        new Exception(
+          'Please provide a valid email',
+          ErrorCodes.REQUIRED
+        )
+      )
+    }
+
+
+    if (!subject || !message) {
+      res.status(422)
+      return next(
+        new Exception(
+          'Subject and Message is required',
+          ErrorCodes.REQUIRED
+        )
+      )
+    }
+
+    await Contact.create({ name, email, subject, message, phone }).then()
+
+    let admin = await AdminUser.find({}).exec()
+
+    if (admin && admin.length > 0) {
+      // console.log( admin.map(a=> a.email))
+
+      new MailService().sendMail(
+        {
+          // secret: config.PUB_SUB_SECRET,
+          template: EmailTemplates.CONTACT,
+          reciever: admin.map(a => a.email),
+          subject: subject,
+          locals: { name: name, phone, message, userEmail: email },
+        },
+        (res) => {
+          if (res == null) return
+          log.error("Error sending mail", res)
+        }
+      )
+    }
+
+    res.json({ message: 'Thank you for contacting us, your message will be attended to appropriately' })
+
+
+  }
+
+
+  async offshore(req, res, next) {
+    const { firstName,
+      lastName,
+      email,
+      phone,
+      city,
+      state,
+      zipcode,
+      businessSize,
+      staffNeeded,
+      hireUrgency,
+      message,
+      preferredContact } = req.body
+
+    if (!firstName) {
+      res.status(422)
+      return next(
+        new Exception(
+          'firstName is required',
+          ErrorCodes.REQUIRED
+        )
+      )
+    }
+
+
+
+    await Offshore.create({
+      firstName,
+      lastName,
+      email,
+      phone,
+      city,
+      state,
+      zipcode,
+      businessSize,
+      staffNeeded,
+      hireUrgency,
+      message,
+      preferredContact
+    }).then()
+
+    res.json({ message: 'Your request has been submitted, your message will be attended to appropriately' })
+
+
+  }
 
 
   /**
@@ -102,17 +150,17 @@ class ContactController  {
     })
   }
 
-    /**
- * usubscribe a user to mailing list
- * @param  {Express.Request} req
- * @param  {Express.Response} res
- * @param  {Function} next
- */
-unsubscribe = async (req, res, next) => {
+  /**
+* usubscribe a user to mailing list
+* @param  {Express.Request} req
+* @param  {Express.Response} res
+* @param  {Function} next
+*/
+  unsubscribe = async (req, res, next) => {
     const { email } = req.query
-    const e = await EmailList.findOneAndUpdate({ email }, { unsubscribed: true }).exec( )
-    if(e)
-    req.app.locals.message = `${email} has been unsubscribed from recieving mails from Enrolled Agents`;
+    const e = await EmailList.findOneAndUpdate({ email }, { unsubscribed: true }).exec()
+    if (e)
+      req.app.locals.message = `${email} has been unsubscribed from recieving mails from Enrolled Agents`;
 
     res.redirect('/')
   }

@@ -30,12 +30,16 @@ const CategorySchema = new mongoose.Schema({
     required: true,
     unique: true, index: true
   },
+  priority: {
+    type: Number,
+    default: 1
+  },
   slug: { type: String, slug: "name", index: true, transform: v => generateSlug(v) },
   description: {
     type: String,
   }
   
-})
+}, { timestamps: true })
 
 CategorySchema.index({slug: 'text', name: 'text'})
 CategorySchema.index({slug: 1, name: 1})

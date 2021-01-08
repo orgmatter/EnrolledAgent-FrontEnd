@@ -19,7 +19,7 @@ class CategoryController extends BaseController {
     }
 
      create = async (req, res, next)=> {
-        const { name, description } = req.body
+        const { name, description , priority} = req.body
 
         console.log(req.body)
 
@@ -44,7 +44,7 @@ class CategoryController extends BaseController {
             )
         }
 
-        const category = await this.Model.create({ name, description, slug })
+        const category = await this.Model.create({ name, description, slug, priority })
 
         super.handleResult(category, res, next)
 
@@ -52,15 +52,16 @@ class CategoryController extends BaseController {
 
 
      update = async (req, res, next)=> {
-        const { body: { name, description }, params: { id } } = req
+        const { body: { name, description, priority }, params: { id } } = req
         if (!BaseController.checkId('Invalid category id', req, res, next)) return
 
         const body = {'': ''}
         if (name) {
             body.name = name
-            body.slug = Helper.generateSlug(name)
+            // body.slug = Helper.generateSlug(name)
         }
         if (description) body.description = description
+        if (priority && Number(priority)) body.priority = priority
 
         let category = await this.Model.findByIdAndUpdate(id, body, { new: true })
         super.handleResult(category, res, next)
