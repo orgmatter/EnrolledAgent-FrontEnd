@@ -149,7 +149,7 @@
                 <div class="input">
                   <input id="zipInput" type='text' placeholder="Enter Your Zip Code" />
                 </div>
-                <button id="submitBtn" onclick="search()" class="btn2">Find</button>
+                <button id="submitBtn" class="btn2">Find</button>
                 <a class="btn3" href='/find-agent'>Advanced Search</a>
               </div>
               <div class="home-section-grid">
@@ -399,28 +399,6 @@ Would you have a quack attend to your medical issues? I know you wouldn't . How 
           </script>
           <script type="text/javascript" src="/javascripts/findAgent.js"></script>
           <script src="/js/custom.js"></script>
-
-          <script>
-            function search() {
-              const input = document.getElementById("search").value
-              // console.log(input)
-              window.location = `/ea-listings/?search=${input}`
-            }
-            function onload() {
-              const input = document.getElementById("search")
-              const urlParams = new URLSearchParams(window.location.search);
-              const _search = urlParams.get('search');
-              input.value = _search
-              input.addEventListener("keyup", function (event) {
-                // Number 13 is the "Enter" key on the keyboard
-                if (event.keyCode === 13) {
-                  search()
-                }
-              })
-              // console.log(_search)
-            }
-          </script>
-
   </body>
 
 </html>
