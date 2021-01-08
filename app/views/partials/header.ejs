@@ -12,7 +12,7 @@
                 >
               </li>
               <li class="m-0 pl-10 pr-10">
-                <a href="#" class="text-white">
+                <a href="mailto:info@enrolledagent.com" class="text-white">
                   <i class="fa fa-envelope-o text-theme-colored2 mr-5"></i>
                   info@enrolledagent.com</a
                 >
@@ -24,14 +24,29 @@
         <div class="col-md-4">
           <ul class="list-inline sm-pull-none sm-text-center text-right text-white mb-sm-20 mt-10">
             <li class="m-0 pl-10">
+              <% if(locals.isAuthenticated)  { %>
+                
+              <a href="/dashboard" class="text-white"
+                ><i class="fa fa-user-o mr-5 text-white"></i> Dashboard</a
+              >
+             <% } else { %>
               <a href="/login" class="text-white"
                 ><i class="fa fa-user-o mr-5 text-white"></i> Log in</a
               >
+             <%}%> 
             </li>
             <li class="m-0 pl-0 pr-10">
+              <% if(locals.isAuthenticated)  { %>
+                
+              <a href="/logout" class="text-white"
+                ><i class="fa fa-user-o mr-5 text-white"></i> Logout</a
+              >
+             <% } else { %>
               <a href="/register" class="text-white"
                 ><i class="fa fa-edit mr-5"></i>New Account</a
               >
+             <%}%> 
+              
             </li>
             <li class="m-0 pl-0 pr-10">
               <a href="/claim-listing" class="text-white">
@@ -70,14 +85,14 @@
                   </ul>
                 </li>
 
-                <li>
+                <!-- <li>
                   <a class="dropdown-link">Accounting Firms</a>
                   <ul class="dropdown my-dropdown-child">
                     <li><a class="dropdown-link-child">Accounting Firms Search</a></li>
                     <li><a class="dropdown-link-child">Accounting Firms by State</a></li>
                     <li><a class="dropdown-link-child">All Accounting Firms</a></li>
                   </ul>
-                </li>
+                </li> -->
 
                 <li><a href="/resource" class="dropdown-link">Resources</a></li>
                 <li><a class="dropdown-link">Help</a></li>
@@ -92,9 +107,8 @@
 
                 <li><a class="dropdown-link" href="/resource/tax">Tax</a></li>
                 <li>
-                  <a class="dropdown-link" href="/resource/tools%20and%20technology"
-                    >Tools & Technology</a
-                  >
+                  <a class="dropdown-link" href="/resource/tools%20and%20technology"> Tools & Technology
+                    </a>
                 </li>
                 <li>
                   <a class="dropdown-link" href="/resource/education%20and%20CPE"

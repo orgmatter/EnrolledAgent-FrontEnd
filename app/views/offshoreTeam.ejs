@@ -23,7 +23,7 @@
               </h3>
             </div>
             <div class="page-heading_get-started">
-              <button class="btn get-started-btn">Get Started</button>
+              <a href="#offshore-form" class="btn get-started-btn" >Get Started</a>
             </div>
           </div>
         </div>
@@ -67,7 +67,7 @@
                     animi ex quia laborum mollitia similique quas incidunt fugit illum dicta esse
                     placeat minima optio ab voluptatum pariatur tenetur expedita doloremque.
                   </p>
-                  <a class="buttons btn-positioning" href="">Learn How to Grow Your Team</a>
+                  <a class="buttons btn-positioning" href="#offshore-form">Learn How to Grow Your Team</a>
                 </div>
               </div>
               </div>
@@ -106,7 +106,7 @@
                             </p>
                             <p class="card-text"><small class="text-muted"></small></p>
                           </div>
-                          <a class="buttons btn-center" href="">Get More Information</a>
+                          <a class="buttons btn-center" href="#offshore-form">Get More Information</a>
                         </div>
                       </div>
                     </div>
@@ -130,7 +130,7 @@
                               animi ex quia laborum mollitia similique quas incidunt fugit illum dicta esse
                               placeat minima optio ab voluptatum pariatur tenetur expedita doloremque.
                             </p>
-                            <a class="buttons btn-pull-left" href="">Get More Information</a>
+                            <a class="buttons btn-pull-left" href="#offshore-form">Get More Information</a>
                           </div>
                         </div>
                         <div class="col-md-6">
@@ -192,7 +192,7 @@
           </div>
         </div>
           <div class="get-started-button-div">
-            <button class="btn get-started-btn btn-pos-center top-bottom-margin">Get Started</button>
+            <a href="#offshore-form" class="btn get-started-btn btn-pos-center top-bottom-margin">Get Started</a>
           </div>
           
         </div>
@@ -231,7 +231,7 @@
         </div>
       </div>
     </div>
-    <form action="">
+    <form action="" id="offshore-form">
       <div class="enrolled-form">
         <div class="container">
           <div class="enrolled-form_title centered">
@@ -240,18 +240,20 @@
           </div>
           <div class="row form-wrapper">
             <div class="col-md-6">
-                <input type="text" placeholder="First Name*" required>
-                <input type="text" placeholder="Email Address*" required>
+                <input type="text" placeholder="First Name*" id="firstName" required />
+                <input type="email" placeholder="Email Address*" id="email" required />
                 <div class="small-inputs">
                   <div class="col-md-6">
-                    <input type="text" placeholder="City*" required class="small-inputs_area">
+                    <input type="text" placeholder="City*" required id="city" 
+                    class="small-inputs_area" />
                   </div>
                   <div class="col-md-6">
-                    <input type="text" placeholder="Zip Code*" required class="small-inputs_area small-inputs_area-pull-left">
+                    <input type="text" placeholder="Zip Code*" required id="zipCode" 
+                    class="small-inputs_area small-inputs_area-pull-left" />
                   </div>
                 </div>
-                <label for="inputState">Staff Needed (Select Multiple)</Select></label>
-                <select id="inputState" class="form-control">
+                <label for="staffNeeded">Staff Needed*</Select></label>
+                <select class="form-control" id="staffNeeded" required>
                   <option disabled selected>Nothing Selected</option>
                   <option value="Data Entry Specialist">Data Entry Specialist</option>
                   <option value="Bookkeeper">Bookkeeper</option>
@@ -262,7 +264,7 @@
                   <option value="Accounts Senior">Accounts Senior</option>
                   <option value="Manager">Manager</option>
                 </select>
-                <select id="inputState" class="form-control additional-top-margin">
+                <select id="businessSize" class="form-control additional-top-margin" required>
                   <option disabled selected>Size of Your Business</option>
                   <option value="1-5">1-5</option>
                   <option value="6-10">6-10</option>
@@ -271,16 +273,16 @@
                 </select>
             </div>
             <div class="col-md-6">
-              <input type="text" placeholder="Last Name*" required>
-              <input type="text" placeholder="Phone Number*" required>
-              <input type="text" required placeholder="State*"/>
-              <select id="inputState" class="form-control make-up-margin-for-label">
+              <input type="text" placeholder="Last Name*" id="lastName" required />
+              <input type="text" placeholder="Phone Number*" id="phone" required />
+              <input type="text" required placeholder="State*" id="state"/>
+              <select id="contactMethod" class="form-control make-up-margin-for-label" required>
                 <option disabled selected>Prefered Contact Method</option>
-                <option value="Phone Call">Phone Call</option>
-                <option value="Email">Email</option>
-                <option value="Text Message">Text Message</option>
+                <option value="phone">Phone Call</option>
+                <option value="email">Email</option>
+                <option value="text">Text Message</option>
               </select>
-              <select id="inputState" class="form-control additional-top-margin">
+              <select id="timeline" class="form-control additional-top-margin" required>
                 <option disabled selected>How soon are you planning to hire</option>
                 <option value="Less than 1 month">Less than 1 month</option>
                 <option value="1 to 3 months">1 to 3 months</option>
@@ -292,12 +294,18 @@
             <label for="optionalMessage" class="additional-left-mar-for-txt-lab">Optional Message</label>
             <textarea class="form-control optional-message" id="optionalMessage" rows="8"></textarea>
           </div>
-          <button class="btn get-started-btn btn-pull-center">Get Started</button>      
+          <button class="btn get-started-btn btn-pull-center" type="submit">Get Started</button>      
         </div>
       </div>
     </form>        
     <%- include("./partials/footer.ejs") %>
+    
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+    integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+    crossorigin="anonymous"></script>
     <script src="/javascripts/funfact.js"></script>
+          <script type="text/javascript" src="/javascripts/offshore.js"></script>
      <script src="/js/custom.js"></script>
   </body>
 </html>

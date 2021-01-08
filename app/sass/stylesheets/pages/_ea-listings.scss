@@ -106,8 +106,12 @@
    
   }
 
-  .subit-btn {
-    
+  .search-btn {
+    background-color: $main-blue;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 3px;
+
   }
 
   #premium .img img{
@@ -164,7 +168,8 @@
 
   #premium .b-tons {
     padding-top: 2rem;
-  
+      display: flex;
+    justify-content: flex-end;
 
   }
 

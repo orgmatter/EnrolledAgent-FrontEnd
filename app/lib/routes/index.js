@@ -103,7 +103,7 @@ router
     AgentController.popular,
     ResourceController.random,
     (req, res) => {
-      // console.log("locals", req.locals);
+       console.log("locals", req.locals);
       // extract message if this page was redirected to from another page
       if (req.app.locals && req.app.locals.message)
         req.locals.infoMessage = req.app.locals.message;
@@ -123,7 +123,7 @@ router
     res.render("newQuestions");
   })
   .get("/agent/:id", ReviewController.analysis, AgentController.get, (req, res) => {
-    // console.log("agent>>>>", req.locals);
+   console.log("agent>>>>", req.locals.agent.review);
     res.render("single-agent-details", { locals: req.locals });
   })
   .get(

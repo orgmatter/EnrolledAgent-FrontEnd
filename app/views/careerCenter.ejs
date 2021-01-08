@@ -244,31 +244,35 @@
                     We will get back to you with 1-2 business days
                 </div>
             </div>
-            <div class="ccenter__cb--form">
+            <form class="ccenter__cb--form" id="contact-form">
                 <div class="ccenter__form--input-group">
-                    <input type="text" placeholder="Full Name*" class="ccenter__form--input">
-                    <input type="email" placeholder="Email*" class="ccenter__form--input">
+                    <input type="text" placeholder="Full Name*" class="ccenter__form--input" id="fullName" required />
+                    <input type="email" placeholder="Email*" class="ccenter__form--input" id="email" required />
                 </div>
                 <div class="ccenter__form--input-group">
-                    <input type="text" placeholder="Subject*" class="ccenter__form--input">
-                    <input type="email" placeholder="Phone Number*" class="ccenter__form--input">
+                    <input type="text" placeholder="Subject*" class="ccenter__form--input" id="subject" required/>
+                    <input type="tel" placeholder="Phone Number*" class="ccenter__form--input" id="phone" required/>
                 </div>
                 <div class="ccenter__form--input-group">
-                    <textarea name="message" id=""  class="ccenter__form--textarea" placeholder="Message*"></textarea>
+                    <textarea name="message" id="message"  class="ccenter__form--textarea" placeholder="Message*" required></textarea>
                 </div>
                 <div class="ccenter__form--input-group">
-                    <button class="ccenter__form--button ccenter-btn">
+                    <button class="ccenter__form--button ccenter-btn" type="submit">
                         Submit Now
                         <span class="ccenter-btn-right-angle">
                             <img src="/assets/images/ccenter/right-arrow-white.svg" class="ccenter-btn-right-arrow">
                         </span>
                     </button>
                 </div>
-            </div>
+            </form>
         </section>
     </div>
     <%- include("./partials/footer.ejs") %>
-    <script type="text/javascript" src="/js/ccenter.js" ></script>
-     <script src="/js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+    integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+    crossorigin="anonymous"></script>
+          <script type="text/javascript" src="/javascripts/contact.js"></script>
+          <script src="/js/custom.js"></script>
 </body>
 </html>

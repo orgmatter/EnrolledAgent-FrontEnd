@@ -27,7 +27,7 @@
           <div class="row-1.col-md-4">
             <div class="input-text col-md-8">
               <p>Search:</p>
-              <input type="text" name="search" id="search" />
+              <input type="text" class="pl-10" name="search" id="search" />
               <button class="search-btn" onclick="search()">Search</button>
               <!-- <select name="cars" id="order">
                 <option value="volvo">Order by</option>
@@ -102,9 +102,10 @@
             function search() {
               const input = document.getElementById("search").value;
                console.log(input)
-              window.location = `/search-results/?search=${input}`;
+              window.location = `/search-results?search=${input}`;
+              input = "";
             }
-            function onload() {
+
               const input = document.getElementById("search");
               const urlParams = new URLSearchParams(window.location.search);
               const _search = urlParams.get('search');
@@ -112,11 +113,10 @@
               input.addEventListener("keyup", function (event) {
                 // Number 13 is the "Enter" key on the keyboard
                 if (event.keyCode === 13) {
-                  search()
+                 search()
                 }
               })
-              // console.log(_search)
-            }
+          
           </script>
     <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
     <script src="/javascripts/pagination.js"></script>

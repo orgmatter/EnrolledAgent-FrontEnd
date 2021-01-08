@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <%- include("./partials/head.ejs") %>
+<meta name="agentId" content=<%= locals.agent._id || "N/A"  %>  />
 
   <body>
     <%- include("./partials/header.ejs") %>
@@ -20,13 +21,13 @@
                   <%= locals.agent.city || "N/A" %>
                 </p>
                 <img class="star-img" src="/assets/files/star-rating.png" alt="" />
-                <small>2 reviews</small>
+                <small><%= locals.agent.reviewCount || "N/A" %> reviews</small>
                 <h5><b>Service Offered:</b> General Accounting Service.</h5>
-                <a href="/claim-listing" class="btn btn-lg b-ton">Is this your listing? Claim now</a>
+                <a <% if(locals.isAuthenticated) {%> href="/dashboard" <%}%> href="/login"  class="btn btn-lg b-ton">Is this your listing? Claim now</a>
               </div>
 
               <div class="btn-div">
-                <a href="tel:<%= locals.agent.phone%>" class="btn btn-primary btn-block b-ton">
+                <a href="tel:<%= locals.agent.phone || "N/A"%>" class="btn btn-primary btn-block b-ton">
                   Call Now</a>
               </div>
 
@@ -130,73 +131,72 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
+                      <form id="review-form">
                       <div class="modal-body">
-                        <form action="">
                           <div class="modal-body-div">
                             <label class="modal-body-div-label">Select Your Rating<span>*</span></label>
-                            <div class="rate">
-                              <input type="radio" id="star5" name="rate" value="5" />
+                            <div class="rate" id="rate">
+                              <input type="radio" class="star" id="star5" name="rate" value="5" />
                               <label for="star5" title="text">5 stars</label>
-                              <input type="radio" id="star4" name="rate" value="4" />
+                              <input type="radio" class="star" id="star4" name="rate" value="4" />
                               <label for="star4" title="text">4 stars</label>
-                              <input type="radio" id="star3" name="rate" value="3" />
+                              <input type="radio" class="star" id="star3" name="rate" value="3" />
                               <label for="star3" title="text">3 stars</label>
-                              <input type="radio" id="star2" name="rate" value="2.5" />
+                              <input type="radio" class="star" id="star2" name="rate" value="2" />
                               <label for="star2" title="text">2 stars</label>
-                              <input type="radio" id="star1" name="rate" value="1" />
+                              <input type="radio" class="star" id="star1" name="rate" value="1" />
                               <label for="star1" title="text">1 star</label>
                             </div>
                           </div>
                           <div class="modal-body-div">
                             <label class="modal-body-div-label">Your Review<span>*</span></label>
                             <textarea placeholder="Your review will let others know more about your Enrolled Agent"
-                            required  maxlength="1500"></textarea>
+                            required  maxlength="1500" id="message"></textarea>
                             <p>1500 maximum characters </p>
                           </div>
                           <div class="modal-body-div">
                             <div class="row">
                               <div class="col-md-6">
-                                <input class="modal-body-div-input" type="text" required placeholder="First Name*"/>
+                                <input class="modal-body-div-input" id="firstName" type="text" required 
+                                placeholder="First Name*" />
                               </div>
                               <div class="col-md-6 pl-20">
-                                <input class="modal-body-div-input" type="text" required placeholder="Last Name*"/>
+                                <input class="modal-body-div-input" id="lastName" type="text" required 
+                                placeholder="Last Name*" />
                               </div>
                             </div>
                           </div>
                           <div class="modal-body-div">
                             <div class="row">
                               <div class="col-md-6">
-                                <input class="modal-body-div-input" type="text" required placeholder="City*"/>
+                                <input class="modal-body-div-input" id="city" type="text" required placeholder="City*" />
                               </div>
                               <div class="col-md-6 pl-20">
-                                 <input class="modal-body-div-input" type="text" required placeholder="State*"/>
+                                 <input class="modal-body-div-input" id="state" type="text" required placeholder="State*" />
                               </div>
                             </div>
                           </div>
                           <div class="modal-body-div">
                             <div class="row">
                               <div class="col-md-6">
-                                <input class="modal-body-div-input" type="email" required placeholder="Email Address*"/>
-                              </div>
-                              <div class="col-md-6 pl-20">
-                                <select required>
-                                  <option disabled selected>Service Reviewed</option>
-                                  <option value=""></option>
-                                </select>
+                                <input class="modal-body-div-input" type="email" id="email" required 
+                                placeholder="Email Address*"/>
                               </div>
                             </div>
                           </div>
-                        </form>
+                        
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button class="btn btn-primary" type="submit">Submit</button>
                       </div>
+                    </form>
                     </div>
                   </div>
                 </div>
-                
-                <div class="review">
+                <% if (locals.agent.reviewCount > 0) { %>
+                  <% locals.agent.review.map((el, id) => { %>
+                    <div class="review" key=<%= id %>>
                   <div class="head row">
                     <div class="col-md-2 date text-center">
                       28 <br />
@@ -204,7 +204,8 @@
                     </div>
                     <div class="col-md-8">
                       <p>
-                        Reviewed by <b>Marc K.</b> in Brooklyn,NY <br />Accounting
+                        Reviewed by <b><%= el.firstName || "N/A" %> <%= el.lastName || "N/A" %></b> in <%= el.city || "N/A" %> 
+                        <p>Accounting</p>
                         <img src="/assets/files/star-rating.png" alt="" />
                       </p>
                     </div>
@@ -213,42 +214,13 @@
                     </div>
                   </div>
                   <div class="text">
-                    <p>
-                      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                      deserunt mollit anim id est eopksio laborum. Sed ut perspiciatis unde omnis
-                      istpoe natus error sit voluptatem.Excepteur sint occaecat cupidatat non
-                      proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum.
-                      Sed ut perspiciatis unde omnis istpoe natus error sit voluptatem.
-                    </p>
+                    <p><%= el.message  %> </p>
                   </div>
                 </div>
-
-                <div class="review">
-                  <div class="head row">
-                    <div class="col-md-2 date text-center">
-                      28 <br />
-                      FEB
-                    </div>
-                    <div class="col-md-8">
-                      <p>
-                        Reviewed by <b>Marc K.</b> in Brooklyn,NY <br />Accounting
-                        <img src="/assets/files/star-rating.png" alt="" />
-                      </p>
-                    </div>
-                    <div class="col-md-2 icon">
-                      <i class="fa fa-heart fa-2x"></i>
-                    </div>
-                  </div>
-                  <div class="text">
-                    <p>
-                      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                      deserunt mollit anim id est eopksio laborum. Sed ut perspiciatis unde omnis
-                      istpoe natus error sit voluptatem.Excepteur sint occaecat cupidatat non
-                      proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum.
-                      Sed ut perspiciatis unde omnis istpoe natus error sit voluptatem.
-                    </p>
-                  </div>
-                </div>
+                  <% }) %>
+                <% } else { %>
+                  <p>There are no reviews available for this agent</p>
+                <% } %> 
               </div>
             </main>
           </div>
@@ -258,19 +230,12 @@
       <!-- footer section -->
 
       <%- include("./partials/footer.ejs") %>
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script>
-
-          (async () => {
-            const response = await axios({
-              url: '/api/review',
-              method: 'post',
-              body: {agent: '', rating: 3, message: ''}
-            })
-
-            console.log(response)
-          })()
-        </script>
+        <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+    integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+    crossorigin="anonymous"></script>
+          <script type="text/javascript" src="/javascripts/review.js"></script>
+          <script src="/js/custom.js"></script>
   </body>
 
 </html>
