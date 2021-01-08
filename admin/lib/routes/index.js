@@ -17,6 +17,7 @@ router
   .use('/category', require('./category'))
   .use('/article', require('./article'))
   .use('/agent', require('./agent'))
+  .use('/user', require('./user'))
   .use('/question', require('./question'))
   
 

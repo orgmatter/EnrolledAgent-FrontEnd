@@ -30,6 +30,9 @@ class LicenceController extends BaseController {
             agentLastName,
             agentCity,
             agentZipcode,
+            agentPhone,
+            agentEmail,
+            agentstate,
             licence,
             message,
             preferredContact } = req.body
@@ -53,8 +56,6 @@ class LicenceController extends BaseController {
             )
         }
 
-
-
         await LicenseVerification.create({
             firstName,
             lastName,
@@ -64,10 +65,13 @@ class LicenceController extends BaseController {
             state,
             zipcode,
             firmName,
+            agentEmail,
             agentFirstName,
             agentLastName,
             agentCity,
             agentZipcode,
+            agentPhone,
+            agentstate,
             licence,
             message,
             preferredContact

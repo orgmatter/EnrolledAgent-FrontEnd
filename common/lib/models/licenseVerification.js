@@ -15,6 +15,8 @@ const LicenceVerificationSchema = new mongoose.Schema({
   state: String,
   zipcode: String,
   firmName: String,
+  agentPhone: String,
+  agentstate: String,
   transaction: {
     ref: 'transaction',
     type: Schema.ObjectId
@@ -25,9 +27,10 @@ const LicenceVerificationSchema = new mongoose.Schema({
   agentZipcode: String,
   licence: String,
   message: String,
+  agentEmail: String,
   preferredContact: {
-      type: String,
-      enum: ['phone', 'email', 'text']
+    type: String,
+    enum: ['phone', 'email', 'text']
 
   }
 }, { timestamps: true })
