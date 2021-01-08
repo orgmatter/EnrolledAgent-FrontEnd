@@ -3,7 +3,8 @@
   <%- include("./partials/head.ejs") %>
   
 
-  <body id="tax">
+  <body class="category-page">
+    <div id="tax">
       <%- include("./partials/header.ejs") %>
 <!-- tax page starts -->
 <div class="top-header">
@@ -105,7 +106,7 @@
 
 <section id="form">
   <div class="container">
-    <div class="row">
+    <div class="row"> 
       <div class="col-md-5 form-div1">
         <h2>Request a call Back</h2>
         <p>
@@ -113,29 +114,33 @@
           1-2 business days
         </p>
       </div>
-      <form class="col-md-7 form-div2">
+      <form class="col-md-7 form-div2" id="contact-form">
         <div class="row input-1">
           <div class="col-md-6 form-div2-formgroup ">
-            <input type="text" placeholder="Full Name*" required />
+            <input type="text" placeholder="Full Name*" id="fullName" required />
           </div>
           <div class="col-md-6 form-div2-formgroup">
-            <input type="email" placeholder="Email*" required />
+            <input type="email" placeholder="Email*" id="email" required />
           </div>
         </div>
         <div class="row ">
           <div class="col-md-6 form-div2-formgroup ">
-            <input type="text" placeholder="Subject*" required />
+            <input type="text" placeholder="Subject*" id="subject" required />
           </div>
           <div class="col-md-6 form-div2-formgroup">
-            <input type="tel" placeholder="Phone Number" />
+            <input type="tel" placeholder="Phone Number*" id="phone" required />
           </div>
         </div>
         <div class="row">
           <div class="col-md-12 form-div2-formtextarea">
-            <textarea placeholder="Message*"></textarea>
+            <textarea placeholder="Message*" required id="message"></textarea>
           </div>
         </div>
-        <button class="btn b-ton " type="submit">Submit Now <span>></span></button>
+        <button class="btn b-ton" type="submit">Submit Now
+          <span class="">
+              <img src="/assets/images/ccenter/right-arrow-white.svg" class="ccenter-btn-right-arrow">
+          </span>
+        </button>
       </form>
     </div>
   </div>
@@ -147,6 +152,12 @@
       <!-- footer section -->
       <%- include("./partials/footer.ejs") %>
     </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+    integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+    crossorigin="anonymous"></script>
+          <script type="text/javascript" src="/javascripts/contact.js"></script>
      <script src="/js/custom.js"></script>
     </body>
   </html>

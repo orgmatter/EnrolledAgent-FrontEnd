@@ -63,7 +63,7 @@ const handleSubmit = (e) => {
     })
     .catch((err) => {
       console.log(err);
-      notyf.error(err.response.data.message || "Something went wrong");
+      notyf.error(err.response.data.error.message || "Something went wrong");
     });
 };
 
