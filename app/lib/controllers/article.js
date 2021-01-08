@@ -241,7 +241,7 @@ class ArticleController extends BaseController {
                 query: { agent: agent._id },
                 page,
                 sort: {createdAt: -1},
-                populate: ['category']
+                populate: ['category', 'comment']
             }, (data) => {
                 req.locals.agentArticles = data
                 next()
@@ -255,7 +255,7 @@ class ArticleController extends BaseController {
     async get(req, res, next) {
         const { id } = req.params
         let resource = await Article.findById(id)
-        .populate(['category'])
+        .populate(['category', 'comment'])
         .exec()
         req.locals.article = resource
         next()
