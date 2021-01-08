@@ -21,7 +21,7 @@ class CityController {
         next()
     }
 
-     /**
+    /**
     * get all states
     * @param  {Express.Request} req
     * @param  {Express.Response} res
