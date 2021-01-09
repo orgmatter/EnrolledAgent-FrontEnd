@@ -17,7 +17,13 @@ module.exports = (server, view) => {
     // server.use(Express.static(path.resolve(config.STORAGE, 'assets')))
 
     server.use(logger('dev'))
-    server.use(Express.json())
+    server.use(Express.json({
+        verify: function (req, res, buf) {
+            if (req.originalUrl.startsWith("/webhook")) {
+                req.rawBody = buf.toString();
+            }
+        }
+    }))
     server.use(Express.urlencoded({ extended: true }))
     server.use(cors())
     server.use(helmet())

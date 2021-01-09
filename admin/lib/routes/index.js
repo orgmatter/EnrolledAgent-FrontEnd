@@ -19,6 +19,7 @@ router
   .use('/agent', require('./agent'))
   .use('/user', require('./user'))
   .use('/question', require('./question'))
+  .use('/config', require('./config'))
   
 
 
