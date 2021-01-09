@@ -186,7 +186,7 @@ class QuestionController extends BaseController {
         const data = await QuestionCategory.find({})
             .sort({ priority: -1 })
             .exec()
-        req.locals.resourceCategory = data
+        req.locals.questionCategory = data
         // console.log(data)
         next()
 
