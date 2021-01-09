@@ -34,7 +34,7 @@ module.exports = class LocalLoginStrategy {
                         )
                     }
                     User.findOne({
-                        email: email
+                        email: String(email).toLowerCase()
                         // domain: Constants.DOMAIN.customer
                     }).then((user) => { 
                         if(user){

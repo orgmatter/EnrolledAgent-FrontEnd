@@ -19,6 +19,6 @@ module.exports = {
   Helper: require('./lib/utils/helper'),
   DB: require('./lib/db'),
   Storages: require('./lib/utils/storage'),
-  SessionUtil: require('./lib/utils/session_util'),
+  SessionUtil: require('./lib/utils/sessionUtil'),
   FileManager: require('./lib/service/fileManager'),
 }

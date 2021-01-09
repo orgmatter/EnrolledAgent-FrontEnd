@@ -1,0 +1,10 @@
+
+<script>
+    window.addEventListener('load', (event) => {
+    console.log('page is fully loaded');
+    const message = '<%= locals.infoMessage %>'
+    if(message  && message.length > 0)
+    notyf.success(message);
+  });
+</script>
+

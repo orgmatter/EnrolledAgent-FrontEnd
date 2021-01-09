@@ -64,7 +64,7 @@ module.exports = async (req, res) => {
 
  
 
-  if (eventType === "payment_intent.succeeded") {
+  if (eventType === "charge.succeeded") {
     updateTransaction(data.object, true)
     console.log("💰 Payment captured!");
    return 

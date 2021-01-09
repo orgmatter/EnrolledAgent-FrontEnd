@@ -12,10 +12,31 @@ const QuestionController = require("../controllers/question");
 const ReviewController = require("../controllers/review");
 
 const Log = new Logger("App:Router");
+const exceptions = ['/login', '/logout', '/register', '/', '/google/callback', '/facebook/callback', '/linkedin/callback']
 
+const setRedirectCookie = (req, res, next) => {
+  if (req.isAuthenticated() && req.user) return res.redirect("/");
+  const referer = req.headers['referer']
+  if(referer){
+  const url = new URL(referer)
+  if (url && !exceptions.includes(url.pathname))
+    res.cookie('redirect-to', url.pathname)
+  }
+  next()
+}
+const checkRedirectCookie = (req, res, next) => {
+  const path = req.cookies['redirect-to']
+  if(path)
+  res.clearCookie('redirect-to')
+  console.log(path)
+  if(path && path.length > 1) return res.redirect(path)
+  next()
+
+}
 router
   .use((req, res, next) => {
     if (req.csrfToken) res.cookie("XSRF-TOKEN", req.csrfToken());
+    // console.log(req.cookies, req.headers['referer'], req.signedCookies)
     next();
   })
   .use("/api", require("./api"))
@@ -25,6 +46,7 @@ router
   .use((req, res, next) => {
     req.locals = { query: req.query };
     req.locals.pageTitle = "Home";
+    console.log(req.user)
     if (
       req.isAuthenticated() &&
       req.user &&
@@ -49,6 +71,7 @@ router
       "google",
       { scope: ["profile", "email"] },
       function (err, user, info) {
+        console.log('google', user, info, err)
         handleSocial(req, res, next, err, user, info);
       }
     )(req, res, next);
@@ -94,20 +117,22 @@ router
     }
   )
   .get("/search-results", AgentController.getAll, (req, res) => {
-     console.log("locals ", req.locals);
+    //  console.log("locals ", req.locals);
     res.render("search-results", { locals: req.locals });
   })
 
   .get(
     "/",
+    checkRedirectCookie,
     CityController.get,
     AgentController.popular,
     ResourceController.random,
     (req, res) => {
-       console.log("locals", req.locals);
+      //  console.log("locals", req.app.locals);
       // extract message if this page was redirected to from another page
       if (req.app.locals && req.app.locals.message)
         req.locals.infoMessage = req.app.locals.message;
+      delete req.app.locals.message  
       res.render("home", { locals: req.locals });
     }
   )
@@ -124,7 +149,7 @@ router
     res.render("newQuestions");
   })
   .get("/agent/:id", ReviewController.analysis, AgentController.get, (req, res) => {
-   console.log("agent>>>>", req.locals.agent.review);
+    //  console.log("agent>>>>", req.locals.agent.review);
     res.render("single-agent-details", { locals: req.locals });
   })
   .get(
@@ -218,12 +243,10 @@ router
     req.logout();
     res.redirect("/login");
   })
-  .get("/login", (req, res) => {
-    if (req.isAuthenticated() && req.user) return res.redirect("/");
+  .get("/login", setRedirectCookie, (req, res) => {
     res.render("login");
   })
-  .get("/register", (req, res) => {
-    if (req.isAuthenticated() && req.user) return res.redirect("/");
+  .get("/register", setRedirectCookie, (req, res) => {
     res.render("signup");
   })
 
@@ -238,7 +261,8 @@ router
     next();
   })
   .get("/dashboard", user, (req, res) => {
-    console.log("user>>>", req.locals);
+    // console.log("user>>>", req.locals);
+    res.clearCookie('redirect-to')
     res.render("dashboard/dashboardhome", {
       locals: req.locals,
       page_name: "dashboard",

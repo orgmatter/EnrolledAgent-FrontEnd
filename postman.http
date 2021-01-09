@@ -14,7 +14,7 @@ POST  http://localhost:3000/api/register HTTP/1.1
 content-type: application/json
 
 {
-    "email": "ekeh.wisdom@gmail.com",
+    "email": "abc@d.com",
     "password": "password",
     "firstName": "sdfghj",
     "lastName": "Dsghgdf",

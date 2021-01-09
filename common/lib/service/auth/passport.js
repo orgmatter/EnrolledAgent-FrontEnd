@@ -16,10 +16,12 @@ const Log = new Logger('Common:Passport')
 module.exports = (server, passport) => {
     // console.log('passport', passport)
     Log.info('initializing passport' + passport)
+    // console.log('deserializing user')
     server.use(passport.initialize())
     server.use(passport.session())
 
     passport.serializeUser((user, done) => {
+        // console.log('serializing user')
         if (Log.isDebugMode) Log.info('serializing user', user)
         console.log('serializing user', user)
         done(null, Helper.userToSession(user))

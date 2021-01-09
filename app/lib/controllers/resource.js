@@ -62,7 +62,7 @@ class ResourceController extends BaseController {
             .sort({ priority: -1 })
             .exec()
         req.locals.resourceCategory = data
-        console.log(data)
+        // console.log(data)
         next()
 
     }
