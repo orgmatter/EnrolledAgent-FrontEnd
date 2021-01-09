@@ -17,7 +17,8 @@ class CityController {
             .limit(64)
             .sort({ count: -1 })
             .exec()
-        req.locals.cities = city
+        if(city && city.length > 0)
+        req.locals.cities = city.sort((a, b) => a.name.localeCompare(b.name))
         next()
     }
 
