@@ -49,7 +49,7 @@
         </div>
         <div class="signup__social--btns">
           <div class="signup__social--btn">
-            <button class="signup__social--btn-facebook signup-btn">
+            <button class="signup__social--btn-facebook signup-btn" onclick="facebookLogin()">
               <span class="signup-btn-icon"
                 ><img
                   src="/assets/images/signup/facebook.svg"
@@ -59,7 +59,7 @@
             </button>
           </div>
           <div class="signup__social--btn">
-            <button class="signup__social--btn-google signup-btn">
+            <button class="signup__social--btn-google signup-btn" onclick="googleLogin()">
               <span class="signup-btn-icon"
                 ><img
                   src="/assets/images/signup/google.svg"
@@ -69,7 +69,7 @@
             </button>
           </div>
           <div class="signup__social--btn">
-            <button class="signup__social--btn-linkedin signup-btn">
+            <button class="signup__social--btn-linkedin signup-btn" onclick="linkedinLogin()">
               <span class="signup-btn-icon"
                 ><img
                   src="/assets/images/signup/linkedin.svg"
@@ -195,5 +195,16 @@
     ></script>
 
     <script type="text/javascript" src="/javascripts/signup.js"></script>
+    <script>
+      function googleLogin() {
+      window.location = 'google/callback'
+    }
+    function facebookLogin() {
+      window.location = 'facebook/callback'
+    }
+    function linkedinLogin() {
+      window.location = 'linkedin/callback'
+    }
+    </script>
   </body>
 </html>

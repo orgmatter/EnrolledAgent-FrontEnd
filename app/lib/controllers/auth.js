@@ -11,9 +11,10 @@ const {
   Constants,
   MailService,
   EmailTemplates,
-  Models: { User, LogModel, EmailList },
+  Models: { User, LogModel, EmailList, VerificationToken, ResetToken },
 } = require("common")
 const passport = require("passport");
+const uid = require("uid");
 const { locals } = require("..");
 
 const APP_URL = process.env.APP_URL
@@ -46,7 +47,7 @@ class AuthController {
    * @param  {Express.Response} res
    * @param  {function} next
    */
-  register = async function (req, res, next) {
+  register = async (req, res, next) => {
     const { body } = req
 
     log.info("register ", body)
@@ -89,18 +90,38 @@ class AuthController {
       )
     }
 
-
+    const verificationToken = uid(30)
 
     let user = new User({
-      email,
+      email: String(email).toLowerCase(),
       firstName,
       lastName,
     })
     user.setPassword(password)
+
     await user.save()
 
-    const token = jwt.signToken(user.tokenPayload(user))
-    const link = `${APP_URL}/verify/${token}`
+    if (subscribeToNewsletter)
+      EmailList.findOneAndUpdate({ email }, { email }, { upsert: true })
+
+    this.sendVerification(email, res, next)
+  }
+
+
+  /**
+ * Verify a users mail
+ * @param  {Express.Request} req
+ * @param  {Express.Response} res
+ * @param  {Function} next
+ */
+  sendVerification = async (email, res, next) => {
+    const user = await User.findOne({ email }).exec()
+
+    let verification = await VerificationToken.findOne({ user: user._id, token: { $exists: true } }).exec()
+
+    if (!verification || !verification.token)
+      verification = await VerificationToken.create({ user: user._id, token: uid(30) })
+    const link = `${APP_URL}/verify/${verification.token}`
 
 
     res.json({
@@ -116,18 +137,26 @@ class AuthController {
         template: EmailTemplates.VERIFY_EMAIL,
         reciever: email,
         subject: "Verify Your Email",
-        locals: { name: `${firstName} ${lastName}`, link },
+        locals: { name: `${user.firstName} ${user.lastName}`, link },
       },
       (res) => {
         if (res == null) return
         log.error("Error sending mail", res)
       }
     )
-    if (subscribeToNewsletter)
-      EmailList.create({ email })
+
   }
 
-
+  /**
+* Verify a users mail
+* @param  {Express.Request} req
+* @param  {Express.Response} res
+* @param  {Function} next
+*/
+  resendVerification = async (req, res, next) => {
+    const { email } = req.body
+    this.sendVerification(email, res, next)
+  }
 
 
   /**
@@ -138,19 +167,14 @@ class AuthController {
    */
   verify = async (req, res) => {
     const { token } = req.params
-    let decoded
-    try {
-      decoded = jwt.verifyToken(token, process.env.SECRET)
-    } catch (e) {
-      console.log("invalid token")
-      res.render("login", {
-        message: "invalid link, Could not Verify your mail",
-      })
-      return ""
-    }
-    // console.log(decoded)
-    const { email, name } = decoded
-    if (email) {
+    const verification = await VerificationToken.findOne({ token })
+      .populate('usr').exec()
+
+      // console.log(verification)
+      if (verification && verification.usr && verification.usr.email) {
+
+
+      const { email, firstName, lastName } = verification.usr
       const usr = await User.findOneAndUpdate(
         { email },
         { isEmailVerified: true }
@@ -161,7 +185,7 @@ class AuthController {
             template: EmailTemplates.WELCOME,
             reciever: email,
             subject: "Welcome ",
-            locals: { name },
+            locals: { name: `${firstName} ${lastName}` },
           },
           (res) => {
             if (res == null) return
@@ -169,10 +193,11 @@ class AuthController {
           }
         )
       }
-      res.locals = { ...req.locals, message: "Your email has been verified succesfully" }
+      req.app.locals.message = "Your email has been verified succesfully"
+      // res.locals = { ...req.locals, message: "Your email has been verified succesfully" }
       res.redirect("/")
     } else
-      res.locals = { ...req.locals, message: "invalid link, Could not Verify your mail" }
+      req.app.locals.message = "invalid link, Could not Verify your mail"
     res.redirect("/")
   }
 
@@ -347,10 +372,10 @@ class AuthController {
       return res.redirect('/');
       // return res.render('login', { message })
     }
-    req.logIn(user, function (err) { 
+    req.logIn(user, function (err) {
       // console.log(err)
-      return res.redirect('/'); 
-   });
+      return res.redirect('/');
+    });
     // Successful authentication, redirect home.
     // res.redirect('/');
   }

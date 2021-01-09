@@ -19,6 +19,7 @@ module.exports = {
   Review: require('./review'),
   Role: require('./role'),
   Resource: require('./resource'),
+  ResetToken: require('./resetToken'),
   Transaction: require('./transaction'),
   ResourceCategory: require('./resourceCategory'),
   Sponsor: require('./sponsor'),
@@ -27,4 +28,5 @@ module.exports = {
   QuestionCategory: require('./questionCategory'),
   User: require('./user'),
   Verification: require('./verification'),
+  VerificationToken: require('./verificationToken'),
 }

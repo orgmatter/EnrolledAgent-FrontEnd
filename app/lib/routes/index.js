@@ -16,15 +16,19 @@ const exceptions = ['/login', '/logout', '/register', '/', '/google/callback', '
 
 const setRedirectCookie = (req, res, next) => {
   if (req.isAuthenticated() && req.user) return res.redirect("/");
-  const referer = new URL(req.headers['referer'])
-  if (referer && !exceptions.includes(referer.pathname))
-    res.cookie('redirect-to', referer.pathname)
+  const referer = req.headers['referer']
+  if(referer){
+  const url = new URL(referer)
+  if (url && !exceptions.includes(url.pathname))
+    res.cookie('redirect-to', url.pathname)
+  }
   next()
 }
 const checkRedirectCookie = (req, res, next) => {
   const path = req.cookies['redirect-to']
+  if(path)
   res.clearCookie('redirect-to')
-
+  console.log(path)
   if(path && path.length > 1) return res.redirect(path)
   next()
 
@@ -32,7 +36,7 @@ const checkRedirectCookie = (req, res, next) => {
 router
   .use((req, res, next) => {
     if (req.csrfToken) res.cookie("XSRF-TOKEN", req.csrfToken());
-    console.log(req.cookies, req.headers['referer'], req.signedCookies)
+    // console.log(req.cookies, req.headers['referer'], req.signedCookies)
     next();
   })
   .use("/api", require("./api"))
@@ -124,10 +128,11 @@ router
     AgentController.popular,
     ResourceController.random,
     (req, res) => {
-      //  console.log("locals", req.locals);
+      //  console.log("locals", req.app.locals);
       // extract message if this page was redirected to from another page
       if (req.app.locals && req.app.locals.message)
         req.locals.infoMessage = req.app.locals.message;
+      delete req.app.locals.message  
       res.render("home", { locals: req.locals });
     }
   )
