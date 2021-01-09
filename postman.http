@@ -131,3 +131,18 @@ content-type: application/json
     "lastName": "Dsghgdf",
     "phone": "09902836879233"
 }
+
+
+###
+POST  http://localhost:3000/api/upgrade-account HTTP/1.1
+content-type: application/json
+
+# {
+#     "message": "Dsghghjgjhggdf",
+#      "email": "ekeh.wisdom@gmail.com",
+#     "body": "asdhfajfd adhjdghjh",
+#     "title": "sdfdffdf",
+#     "firstName": "sdfghj",
+#     "lastName": "Dsghgdf",
+#     "phone": "09902836879233"
+# }

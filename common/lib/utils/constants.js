@@ -9,8 +9,12 @@ module.exports = {
   },
   TRASACTION_STATUS: {
     pending: 'pending',
-    success: 'success',
+    succeeded: 'succeeded',
     failed: 'failed'
+  },
+  PATMENT_PORPOSE: {
+    verification: 'verification',
+    accounUpgrade: 'accounUpgrade'
   },
   ORDER_STATUS: {
     pending: 'pending',

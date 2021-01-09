@@ -68,8 +68,10 @@ const handleSubmit = (e) => {
     preferredContact: contactMethod.value
   };
 
-  console.log(data);
-
+  // console.log(data);
+  // document.getElementById("paymentModal").showModal();
+ 
+  // return
   axios({
     method: "POST",
     url: `${base_Url}/api/licence`,
@@ -84,12 +86,101 @@ const handleSubmit = (e) => {
   })
     .then((res) => {
       console.log(res);
-      notyf.success(res.data.message || "Message sent!");
+      // notyf.success(res.data.message || "Message sent!");
+      return setupStripeElements(res.data);
+    })
+    .then(function({ stripe, card, clientSecret }) {
+      $("#paymentModal").modal()
+      // document.querySelector("button").disabled = false;
+      // paymentModal
+      // Handle form submission.
+      var form = document.getElementById("payment-form");
+      form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        // Initiate payment when the submit button is clicked
+        pay(stripe, card, clientSecret);
+      });
+      // notyf.success(res.data.message || "Message sent!");
     })
     .catch((err) => {
       console.log(err.response);
       notyf.error(err.response.data.error.message || "Something went wrong");
     });
 };
+
+
+// Set up Stripe.js and Elements to use in checkout form
+var setupStripeElements = function(data) {
+  stripe = Stripe(data.publishableKey);
+  var elements = stripe.elements();
+  var style = {
+    base: {
+      color: "#01125a",
+      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+      fontSmoothing: "antialiased",
+      fontSize: "16px",
+      "::placeholder": {
+        color: "#aab7c4"
+      }
+    },
+    invalid: {
+      color: "#fa755a",
+      iconColor: "#fa755a"
+    }
+  };
+
+  var card = elements.create("card", { style: style });
+  card.mount("#card-element");
+
+  return {
+    stripe: stripe,
+    card: card,
+    clientSecret: data.clientSecret
+  };
+};
+
+
+/*
+ * Calls stripe.confirmCardPayment which creates a pop-up modal to
+ * prompt the user to enter extra authentication details without leaving your page
+ */
+var pay = function(stripe, card, clientSecret) {
+  // changeLoadingState(true);
+
+  // Initiate the payment.
+  // If authentication is required, confirmCardPayment will automatically display a modal
+  stripe
+    .confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: card
+      }
+    })
+    .then(function(result) {
+      if (result.error) {
+        // console.log(result.error)
+        notyf.error( result.error.message || 'Payment failed,');
+        // Show error to your customer
+        // showError(result.error.message);
+      } else {
+        // The payment has been processed!
+        orderComplete(clientSecret);
+      }
+    });
+};
+
+/* Shows a success / error message when the payment is complete */
+var orderComplete = function(clientSecret) {
+  $("#paymentModal").modal('hide')
+  // Just for the purpose of the sample, show the PaymentIntent response object
+  stripe.retrievePaymentIntent(clientSecret).then(function(result) {
+    var paymentIntent = result.paymentIntent;
+    var paymentIntentJson = JSON.stringify(paymentIntent, null, 2);
+    if(paymentIntentJson.status = 'succeeded'){
+      notyf.success('Payment Succesfull,');
+      notyf.success('Your verification has been submitted, you will be contacted appropriately');
+    } else notyf.error('Payment failed,');
+  });
+};
+
 
 licenseForm.addEventListener("submit", handleSubmit);

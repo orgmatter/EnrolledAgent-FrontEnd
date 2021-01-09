@@ -28,6 +28,7 @@ const AgentSchema = new Schema({
   email: String,
   bio: String,
   phone: String,
+  viewCount: Number,
   rating: { // to be calculated by cronjob
     type: Number,
     min: 1,
@@ -72,6 +73,10 @@ const AgentSchema = new Schema({
   premium: {
     type: Boolean,
     default: false
+  },
+  transaction: {
+    ref: 'transaction',
+    type: Schema.ObjectId
   },
   minServicePrice: {
     type: Number,
