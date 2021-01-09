@@ -88,7 +88,13 @@ router
     res.render("contact");
   })
   .get("/about-us", (req, res) => {
-    res.render("about");
+    res.render("about", {locals: req.locals});
+  })
+  .get("/privacy", (req, res) => {
+    res.render("privacy", {locals: req.locals});
+  })
+  .get("/terms", (req, res) => {
+    res.render("terms", {locals: req.locals});
   })
   .get("/unsubscribe", ContactController.unsubscribe)
   .get("/verify/:token", verify)
@@ -189,7 +195,8 @@ router
     CityController.get,
     ResourceController.getAll,
     (req, res) => {
-      res.render("category", {
+      console.log(req.locals.resource.data)
+      res.render("resource", {
         name: "Resources",
         description: 'Valuable services, products, tools, and whitepapers from our partners, hand selected by our staff.',
         locals: req.locals,
@@ -207,7 +214,7 @@ router
       description = req.locals.category.description
       if(req.locals.category && req.locals.category.name) 
       name = req.locals.category.name
-      res.render("category", {
+      res.render("resource", {
         name,
         description,
         locals: req.locals,
@@ -353,7 +360,7 @@ router.use((req, res) => {
   res.statusCode = 404;
   // console.log(req.url.split("/").pop());
   // res.render(req.path.split("/").pop(), { locals: req.locals }, (err, dat) => {
-  res.render("page_404");
+  res.render("page_404", {locals: req.locals});
   // else res.send(dat);
   // });
 });
