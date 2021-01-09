@@ -11,8 +11,12 @@
     <section id="ea-listings-top">
       <div class="container">
         <h1>Search Results</h1>
-        <p>Showing all enrolled agents in <%= locals.query.q.split(":")[1] %></p>
-
+        <% if(locals.query.q) { %>
+          <p>Showing all enrolled agents in <%= locals.query.q && locals.query.q.split(":")[1] || "N/A" %></p>
+        <%} else {%>
+          <p>Showing search results for <%= locals.query.search && locals.query.search || "N/A" %></p>
+        <%}%> 
+        
         <!-- <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p> -->
       </div>
     </section>
@@ -21,27 +25,21 @@
       <div class="container">
         <div class="row">
           <div class="row-1.col-md-4">
-            <div class="input-num col-md-4">
-              <input type="number" name="number" id="num" placeholder="10" />
-              <p>records per page</p>
-            </div>
             <div class="input-text col-md-8">
-              <p>search:</p>
-              <input type="text" name="search" id="search" />
-              <!-- <input type="text" name="" id="order" placeholder="Order By"> -->
-              <select name="cars" id="order">
+              <p>Search:</p>
+              <input type="text" class="pl-10" name="search" id="search" />
+              <button class="search-btn" onclick="search()">Search</button>
+              <!-- <select name="cars" id="order">
                 <option value="volvo">Order by</option>
                 <option value="saab">Zip Code</option>
                 <option value="mercedes">State</option>
                 <option value="audi">Rating</option>
-              </select>
+              </select> -->
 
-              <!-- <input type="text" name="" id="descend" placeholder="Descending"> -->
-
-              <select name="descend" id="descend">
+              <!-- <select name="descend" id="descend">
                 <option value="volvo">Descending</option>
                 <option value="saab">Ascending</option>
-              </select>
+              </select> -->
             </div>
           </div>
         </div>
@@ -62,11 +60,11 @@
         </div>
         <div class="col-md-4 col-sm-12 mid-div">
           <h4>Premium Member</h4>
-          <p><img src="/assets/files/star-rating.png" alt="" /> <span> 2 reviews</span></p>
+          <p><img src="/assets/files/star-rating.png" alt="" /> <span> <%= e.reviewCount %> reviews</span></p>
         </div>
         <div class="col-md-4 col-sm-12 b-tons">
           <a  href="/agent/<%= e._id %>" class="btn btn-lg btn-blu mt-2"> View profile</a>
-          <a href="" class="btn btn-lg btn-wht mt-2"> Website</a>
+          <!-- <a href="" class="btn btn-lg btn-wht mt-2"> Website</a> -->
         </div>
       </div>
       <% }) %>
@@ -100,8 +98,30 @@
     </section>
     <!-- footer section -->
     <%- include("./partials/footer.ejs") %>
+    <script>
+            function search() {
+              const input = document.getElementById("search").value;
+               console.log(input)
+              window.location = `/search-results?search=${input}`;
+              input = "";
+            }
+
+              const input = document.getElementById("search");
+              const urlParams = new URLSearchParams(window.location.search);
+              const _search = urlParams.get('search');
+              input.value = _search
+              input.addEventListener("keyup", function (event) {
+                // Number 13 is the "Enter" key on the keyboard
+                if (event.keyCode === 13) {
+                 search()
+                }
+              })
+          
+          </script>
     <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
     <script src="/javascripts/pagination.js"></script>
+    
     <script src="/js/custom.js"></script>
+
   </body>
 </html>

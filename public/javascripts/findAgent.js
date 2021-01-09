@@ -20,8 +20,6 @@ states.addEventListener("click", () => {
   res = false;
 });
 
-console.log(res);
-
 submitBtn.addEventListener("click", () => {
   if (zipInput.value !== "") {
     const payload = zipInput.value;
@@ -32,3 +30,17 @@ submitBtn.addEventListener("click", () => {
     }
   }
 });
+
+zipInput.addEventListener("keyup", function (event) {
+                // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+      if (zipInput.value !== "") {
+        const payload = zipInput.value;
+        if (res) {
+          location.href = `${baseUrl}/search-results?q=zipcode:${payload}`;
+        } else {
+          location.href = `${baseUrl}/search-results?q=state:${payload}`;
+        }
+    }
+  }
+})

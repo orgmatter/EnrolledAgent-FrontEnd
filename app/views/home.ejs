@@ -149,7 +149,7 @@
                 <div class="input">
                   <input id="zipInput" type='text' placeholder="Enter Your Zip Code" />
                 </div>
-                <button id="submitBtn" onclick="search()" class="btn2">Find</button>
+                <button id="submitBtn" class="btn2">Find</button>
                 <a class="btn3" href='/find-agent'>Advanced Search</a>
               </div>
               <div class="home-section-grid">
@@ -204,15 +204,14 @@
 Get the perfect fit for your needs by running a search through our up-to-date list of Enrolled Agents. Check out amazing reviews from Clients within your community. Have a peek into the profile of your Agent and lots more. Each EA listed is 100% authentic (in terms of profile accuracy and accreditation).
 
                 </p>
-                <a href="/find-agent">Search for Your Enrolled Agent</a>
+                <a href="/find-agent">Search for Your Enrolled Agent <span class="">
+              <img src="/assets/images/ccenter/right-arrow-white.svg" class="ccenter-btn-right-arrow">
+          </span></a>
               </div>
             </div>
             <div class="side2"></div>
           </div>
         </section>
-
-
-
 
         <!-- Section: Team -->
         <section id="team" class="bg-silver-light">
@@ -255,6 +254,13 @@ Get the perfect fit for your needs by running a search through our up-to-date li
                 <% })} %>
                
               </div>
+              <div class="row team-link-div">
+                <a href="/find-agent" class="team-link">Find More Local EAs
+                <span class="">
+                      <img src="/assets/images/ccenter/right-arrow-white.svg" class="ccenter-btn-right-arrow">
+                  </span>
+                </a>
+            </div>
             </div>
           </div>
         </section>
@@ -268,7 +274,9 @@ Get the perfect fit for your needs by running a search through our up-to-date li
                 <p>
 Would you have a quack attend to your medical issues? I know you wouldn't . How then do you take your tax issue to someone who isn't a tax-preparer? Of course, anyone who isn't a tax-preparer is a quack and is not qualified to handle your tax issues. Getting a good tax-preparer can be tasking, but we are here to ease that burden. We will connect you with a certified Enrolled Agent in your vicinity that can handle your tax and Internal Revenue Services Issue for $0. Yes, it is absolutely free.
                 </p>
-                <a href="#">Get Started</a>
+                <a href="#">Get Started <span class="">
+              <img src="/assets/images/ccenter/right-arrow-white.svg" class="ccenter-btn-right-arrow">
+          </span></a>
               </div>
               <div class="image-aside-div2">
                 <image src="/assets/files/image-right.png" alt="Enrolled-agent" />
@@ -278,6 +286,50 @@ Would you have a quack attend to your medical issues? I know you wouldn't . How 
         </section>
 
         <%- include("./partials/cities.ejs") %>
+
+         <section class="form">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-5 form-div1">
+                <h2>Request a call Back</h2>
+                <p>
+                  Please fill out the form and press the submit button. We will get back to you with
+                  1-2 business days
+                </p>
+              </div>
+              <form class="col-md-7 form-div2" id="contact-form">
+                <div class="row mb-30">
+                  <div class="col-md-6 form-div2-formgroup mr-20">
+                    <input type="text" placeholder="Full Name*" id="fullName" required />
+                  </div>
+                  <div class="col-md-6 form-div2-formgroup">
+                    <input type="email" placeholder="Email*" id="email" required />
+                  </div>
+                </div>
+                <div class="row mb-30">
+                  <div class="col-md-6 form-div2-formgroup mr-20">
+                    <input type="text" placeholder="Subject*" id="subject" required />
+                  </div>
+                  <div class="col-md-6 form-div2-formgroup">
+                    <input type="tel" placeholder="Phone Number*" id="phone" required/>
+                  </div>
+                </div>
+                <div class="row mb-50">
+                  <div class="col-md-12 form-div2-formtextarea">
+                    <textarea placeholder="Message*" id="message" required></textarea>
+                  </div>
+                </div>
+                <button type="submit">Submit Now
+                  <span class="">
+              <img src="/assets/images/ccenter/right-arrow-white.svg" class="ccenter-btn-right-arrow">
+          </span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+
 
        
          <%- include("./partials/newsletter.ejs") %>
@@ -397,29 +449,15 @@ Would you have a quack attend to your medical issues? I know you wouldn't . How 
               }
             }); /*ready*/
           </script>
+         <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+    integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+    crossorigin="anonymous"></script>
           <script type="text/javascript" src="/javascripts/findAgent.js"></script>
+          <script type="text/javascript" src="/javascripts/contact.js"></script>
           <script src="/js/custom.js"></script>
 
-          <script>
-            function search() {
-              const input = document.getElementById("search").value
-              // console.log(input)
-              window.location = `/ea-listings/?search=${input}`
-            }
-            function onload() {
-              const input = document.getElementById("search")
-              const urlParams = new URLSearchParams(window.location.search);
-              const _search = urlParams.get('search');
-              input.value = _search
-              input.addEventListener("keyup", function (event) {
-                // Number 13 is the "Enter" key on the keyboard
-                if (event.keyCode === 13) {
-                  search()
-                }
-              })
-              // console.log(_search)
-            }
-          </script>
+          
 
   </body>
 
