@@ -9,8 +9,9 @@ Middleware.MongoConnection;
 const server = express();
 
 Middleware.app(server, path.join(__dirname, "../views"));
-Passport(server, passport);
 server.use(express.static(path.join(__dirname,'../../public')))
+Passport(server, passport);
+
 const router = require("./routes");
 
 server.use(router);

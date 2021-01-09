@@ -10,6 +10,8 @@ const LicenceController = require("../../controllers/licence");
 
 router
   .post("/register", AuthController.register)
+  .post("/verify-mail/:token", AuthController.verify)
+  .post("/resend-verification", AuthController.resendVerification)
   .post("/changepass", AuthController.changePassword)
   .post("/subscribe", ContactController.subscribe)
   .post("/contact", ContactController.create)

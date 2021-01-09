@@ -60,6 +60,7 @@ exports.authenticateWithProvider = async function (user, provider, done) {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        isEmailVerified: true,
         imageUrl: user.imageUrl,
         providers: [provider],
     })
@@ -72,6 +73,7 @@ exports.authenticateWithProvider = async function (user, provider, done) {
         if (!usr.imageUrl || user.imageUrl) usr.imageUrl = user.imageUrl
     }
     usr.lastLogin = new Date()
+    usr.isEmailVerified = true
     await usr.save()
 
 
