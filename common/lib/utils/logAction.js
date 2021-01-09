@@ -37,5 +37,8 @@ module.exports = {
   AGENT_DELETED: 'agent.listing.approve',
   AGENT_DELETED: 'agent.liosting.decline',
 
+
+  CONFIG_UPDATED: 'config.updated',
+
   
 }

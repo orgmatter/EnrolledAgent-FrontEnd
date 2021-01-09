@@ -1,16 +1,10 @@
 const {
     Exception,
-    ErrorCodes,
-    ErrorMessage,
-    FileManager,
-    LogCategory,
-    LogAction,
-    Storages,
-    Validator,
-    Helper,
-    DB,
+    ErrorCodes, 
+    Validator, 
     Models: { LicenseVerification, },
 } = require("common");
+const Payment = require("payment_module");
 
 const BaseController = require("../controllers/baseController");
 
@@ -75,9 +69,13 @@ class LicenceController extends BaseController {
             licence,
             message,
             preferredContact
-        }).then()
+        }).then((doc)=> {
+            Payment.init('licence',  { licence: doc._id, email }, )
+            .then((result) => res.json(result))
+            .catch((err) => next(err))
+        })
 
-        res.json({ message: 'Your request has been submitted, your message will be attended to appropriately' })
+        // res.json({ message: 'Your request has been submitted, your message will be attended to appropriately' })
 
 
     }

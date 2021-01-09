@@ -3,6 +3,7 @@ module.exports = {
   AGENT: 'agent',
   ARTICLE: 'article',
   CATEGORY: 'category',
+  CONFIG: 'config',
   RESOURCE: 'resource',
   SPONSOR: 'sponsor',
   PAYMENT: 'payment',
