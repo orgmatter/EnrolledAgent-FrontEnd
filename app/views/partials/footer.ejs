@@ -45,10 +45,13 @@
         <div class="col-md-6 myFooter__top-section2">
           <div class="col-md-8 myFooter__top-section2-sub">
             <p class="myFooter__top-section2-sub-text">Join Our Mailing List</p>
-            <form class="myFooter__top-section2-sub-form">
-              <input class="myFooter__top-section2-sub-form-input" type="email" placeholder="Email Address" />
-              <input class="myFooter__top-section2-sub-form-submit" type="submit" value="Join" />
-            </form>
+            <form id="newsletter-form" class="myFooter__top-section2-sub-form">
+              <input class="myFooter__top-section2-sub-form-input" type="email"  id="newsletter-email" placeholder="Email Address" />
+              <!-- <input class="myFooter__top-section2-sub-form-submit" type="submit"  id="newsletter-email" value="Join" /> -->
+            <!-- <button class="myFooter__top-section2-sub-form-submit" onclick="subscribeToNews()" type="submit"   value="Join" >Join</button> -->
+          </form>
+          <button class="myFooter__top-section2-sub-form-submit" onclick="subscribeToNews()" type="submit" id="newsletter-join"  value="Join" >Join</button>
+
           </div>
           <div class="col-md-4 myFooter__top-section2-end">
             <div class="myFooter__top-section2-end-arrow">
@@ -88,3 +91,10 @@
     </div>
   </div>
 <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+  integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+  crossorigin="anonymous"></script>
+  <script src="/javascripts/newsletter.js"></script>
+

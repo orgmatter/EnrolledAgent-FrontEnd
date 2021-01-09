@@ -104,9 +104,17 @@
               <a>Resources</a>
               <ul class="dropdown my-dropdown">
                 <p class="category-header-text">View By Category</p>
+                <% if (typeof locals !=='undefined' && locals.resourceCategory && locals.resourceCategory.length> 0) { %>
+                  <% const {resourceCategory} = locals %>
+                  <% let length = resourceCategory.length %>
+                    <% for(let i=0; i < Math.min(5, length); i++) { %>
+                      <% const  {name, slug}  = resourceCategory[i] %>
 
-                <li><a class="dropdown-link" href="/resource/tax">Tax</a></li>
-                <li>
+                <li><a class="dropdown-link" href="/resource/<%= slug %>"><%= name %></a></li>
+                <% }} %>
+
+                <li><a class="dropdown-link" href="/resource">Browse All Categories</a></li>
+                <!-- <li>
                   <a class="dropdown-link" href="/resource/tools%20and%20technology"> Tools & Technology
                     </a>
                 </li>
@@ -123,7 +131,7 @@
                 </li>
                 <li>
                   <a class="dropdown-link" href="/resource">Browse All Resources</a>
-                </li>
+                </li> -->
 
                 <p class="category-header-text m-26">More</p>
                 <li>

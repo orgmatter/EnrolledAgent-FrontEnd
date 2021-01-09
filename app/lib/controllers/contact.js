@@ -145,7 +145,7 @@ class ContactController {
 
     res.json({
       data: {
-        infoMessage: `${email} has been subscribed to Enrolled Agents mailing list`,
+        message: `${email} has been subscribed to Enrolled Agents mailing list`,
       },
     })
   }
