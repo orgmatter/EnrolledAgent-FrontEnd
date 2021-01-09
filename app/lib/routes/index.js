@@ -82,7 +82,7 @@ router
     })(req, res, next);
   })
   .get("/career-center", (req, res) => {
-    res.render("careerCenter");
+    res.render("careerCenter", {locals: req.locals});
   })
   .get("/contact", (req, res) => {
     res.render("contact");
@@ -191,6 +191,7 @@ router
     (req, res) => {
       res.render("category", {
         name: "Resources",
+        description: 'Valuable services, products, tools, and whitepapers from our partners, hand selected by our staff.',
         locals: req.locals,
       });
     }
@@ -200,8 +201,15 @@ router
     CityController.get,
     ResourceController.getAll,
     (req, res) => {
+      let description = ''
+      let name = ''
+      if(req.locals.category && req.locals.category.description) 
+      description = req.locals.category.description
+      if(req.locals.category && req.locals.category.name) 
+      name = req.locals.category.name
       res.render("category", {
-        name: req.params.category,
+        name,
+        description,
         locals: req.locals,
       });
     }
