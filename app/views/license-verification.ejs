@@ -13,6 +13,11 @@
     <%- include("./partials/head.ejs") %>
   </head>
   <body class="">
+    <style>
+      .modal {
+    z-index: 100001 !important;
+  }
+    </style>
     <%- include("./partials/header.ejs") %>
     <div class="lvc8n">
       <div class="lvc8n-banner">
@@ -273,11 +278,37 @@
         license verification service.
       </div> -->
     </div>
+
+   
     <%- include("./partials/footer.ejs") %>
+
+    <div class="modal fade bd-example-modal-lg" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Continue with payment</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form id="payment-form" class="sr-payment-form">
+            <div class="sr-combo-inputs-row">
+              <div class="sr-input sr-card-element" id="card-element"></div>
+            </div>
+            <div class="sr-field-error" id="card-errors" role="alert"></div>
+            <button id="submit">
+              <div class="spinner hidden" id="spinner"></div>
+              <span id="button-text">Pay</span><span id="order-amount"></span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
     integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
     crossorigin="anonymous"></script>
+    <script src="https://js.stripe.com/v3/"></script>
     <script src="/javascripts/funfact.js"></script>
           <script type="text/javascript" src="/javascripts/license-verification.js"></script>
     <script src="/js/custom.js"></script>

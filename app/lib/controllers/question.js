@@ -138,7 +138,7 @@ class QuestionController extends BaseController {
             if (cat && cat._id) {
                 query = { category: cat._id }
                 req.locals.questionCategory = cat
-                console.log(cat)
+                // console.log(cat)
             } else res.redirect('/ask-ea')
         }
 
@@ -149,7 +149,7 @@ class QuestionController extends BaseController {
             populate: ['category', { path: 'answer', populate: { path: 'agent', select: { firstName: 1, lastName: 1 } } }]
         }, (data) => {
             req.locals.questions = data
-            console.log(data.data)
+            // console.log(data.data)
             next()
         })
 
@@ -172,7 +172,7 @@ class QuestionController extends BaseController {
             .sort({ createdAt: -1 })
             .exec()
         req.locals.questions = data
-        console.log(data)
+        // console.log(data)
         next()
     }
 
@@ -187,7 +187,7 @@ class QuestionController extends BaseController {
             .sort({ priority: -1 })
             .exec()
         req.locals.resourceCategory = data
-        console.log(data)
+        // console.log(data)
         next()
 
     }

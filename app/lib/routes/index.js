@@ -18,7 +18,8 @@ router
     if (req.csrfToken) res.cookie("XSRF-TOKEN", req.csrfToken());
     next();
   })
-  .use("/api", require("./api"));
+  .use("/api", require("./api"))
+  .use('/webhook', require("payment_module").Webhook);
 
 router
   .use((req, res, next) => {

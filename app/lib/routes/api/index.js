@@ -18,6 +18,7 @@ router
   .post("/claim-listing/:id", AgentController.claim)
   .put("/update-profile", FileManager.upload, AuthController.update)
   .put("/update-agent", FileManager.upload, AgentController.update)
+  .post("/upgrade-account", FileManager.none, AgentController.premium)
   .post("/licence", FileManager.none, LicenceController.create)
   .post("/ask", FileManager.none, QuestionController.create)
   .post("/offshore", FileManager.none, ContactController.offshore)

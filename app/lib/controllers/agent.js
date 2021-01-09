@@ -11,11 +11,39 @@ const {
   DB,
   Models: { Agent, City, State, ClaimListing, Log },
 } = require("common");
+const Payment = require("payment_module");
+const mongoose = require("mongoose");
 
 const BaseController = require("../controllers/baseController");
 Agent.syncIndexes();
 
 class AgentController extends BaseController {
+
+
+
+  async premium(req, res, next) {
+    if (!(req.isAuthenticated() && req.user))
+      return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
+
+    const agent = await Agent.findOne({ owner: mongoose.Types.ObjectId(req.user.id) }).exec()
+    console.log(agent)
+    if (!agent || !agent._id) {
+      res.status(422)
+      return next(
+        new Exception(
+          'Only verified agents can upgrade to premium',
+          ErrorCodes.REQUIRED
+        )
+      )
+    }
+
+
+    Payment.init('upgrade', { agent: agent._id, email: agent.email })
+      .then((result) => res.json(result))
+      .catch((err) => next(err))
+
+    // super.handleResult({ data: { message: 'Your request has been submitted, you will be  contacted appropriately' } }, res, next)
+  }
 
   async update(req, res, next) {
 
@@ -108,15 +136,17 @@ class AgentController extends BaseController {
       ])
       .exec();
     req.locals.agent = agent;
-    console.log(agent)
+    // console.log(agent)
     next();
+    if (agent)
+      Agent.findByIdAndUpdate(agent._id, { $inc: { viewCount: 1 } }).exec();
   }
 
   async getAll(req, res, next) {
     const { page, perpage, q, search } = req.query;
     let query = Helper.parseQuery(q) || {};
     if (search) query = { $text: { $search: search } };
-
+    // console.log(req.url)
     // query = {}
 
     DB.Paginate(
@@ -127,6 +157,7 @@ class AgentController extends BaseController {
         perPage: perpage,
         query,
         page,
+        sort: { viewCount: -1 },
         populate: [
           { path: "reviewCount", select: ["rating"] },
           { path: "owner", select: ["_id", "firstName"] },
@@ -134,7 +165,7 @@ class AgentController extends BaseController {
       },
       (data) => {
         req.locals.agents = data;
-        console.log(data);
+        // console.log(data);
         next();
       }
     );
@@ -170,11 +201,13 @@ class AgentController extends BaseController {
       (data) => {
         req.locals.agents = data;
         req.locals.city = _city;
-        console.log(req.locals, query);
+        // console.log(req.locals, query);
         next();
+        if (data && data.length > 0)
+          City.findByIdAndUpdate(_city._id, { $inc: { count: 1 } }).exec();
       }
     );
-    City.findByIdAndUpdate(_city._id, { $inc: { count: 1 } }).exec();
+
   }
 
 
