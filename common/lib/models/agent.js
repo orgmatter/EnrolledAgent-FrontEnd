@@ -70,13 +70,18 @@ const AgentSchema = new Schema({
   maxServicePrice: {
     type: Number,
   },
-  premium: {
+  adminPremium: { // indicates that this account was set premium by admin
     type: Boolean,
     default: false
   },
+  // accountIsPremium: { // indicates that this account was set premium by admin
+  //   type: Boolean,
+  //   default: false
+  // },
   transaction: {
     ref: 'transaction',
-    type: Schema.ObjectId
+    type: Schema.ObjectId,
+    index: true
   },
   minServicePrice: {
     type: Number,
@@ -99,9 +104,15 @@ AgentSchema.index({
 AgentSchema.virtual('isClaimed')
 .get(function () {
   // console.log(this.owner, this._id,  typeof this.owner, Validator.isMongoId(String(this.owner))  )
-  return (this.owner && Validator.isMongoId(String(this.owner)))
+  return (this.owner && Validator.isMongoId(String(this.owner))) 
 })
 
+
+AgentSchema.virtual('premium')
+.get(function () {
+  return (this.transaction && Validator.isMongoId(String(this.transaction))) || this.adminPremium
+})
+ 
 AgentSchema.virtual('reviewCount', {
   ref: 'review',
   localField: '_id',

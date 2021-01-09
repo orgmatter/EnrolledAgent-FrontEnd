@@ -16,7 +16,7 @@ const mongoose = require("mongoose");
 
 const BaseController = require("../controllers/baseController");
 Agent.syncIndexes();
-
+const SORT = { transaction: -1, adminPremium: -1, rating: -1  }
 class AgentController extends BaseController {
 
 
@@ -157,7 +157,8 @@ class AgentController extends BaseController {
         perPage: perpage,
         query,
         page,
-        sort: { viewCount: -1 },
+        // sort: { viewCount: -1 },
+        sort: SORT,
         populate: [
           { path: "reviewCount", select: ["rating"] },
           { path: "owner", select: ["_id", "firstName"] },
@@ -193,6 +194,7 @@ class AgentController extends BaseController {
         perPage: perpage,
         query,
         page,
+        sort: SORT,
         populate: [
           { path: "reviewCount", select: ["rating"] },
           { path: "owner", select: ["_id", "firstName"] },
@@ -228,7 +230,7 @@ class AgentController extends BaseController {
         { path: "reviewCount", select: ["rating"] },
         { path: "owner", select: ["_id", "firstName"] },
       ])
-      .sort()
+      .sort(SORT)
       .exec();
     req.locals.agents = data;
     next();
@@ -255,7 +257,7 @@ class AgentController extends BaseController {
         { path: "reviewCount", select: ["rating"] },
         { path: "owner", select: ["_id", "firstName"] },
       ])
-      .sort({ rating: -1 })
+      .sort(SORT)
       .exec();
     req.locals.popular = data;
     next();
@@ -278,7 +280,8 @@ class AgentController extends BaseController {
         { path: "reviewCount", select: ["rating"] },
         { path: "owner", select: ["_id", "firstName"] },
       ])
-      .sort({ rating: -1 })
+      .sort(SORT)
+      // .sort({ rating: -1 })
       .exec();
     req.locals.popular = data;
     next();
