@@ -78,7 +78,7 @@ class AuthController {
     } = body
 
 
-    if (await User.exists({ email })) {
+    if (await User.exists({ email: String(email).toLowerCase() })) {
       res.status(422)
       return next(
         new Exception(
@@ -339,7 +339,7 @@ class AuthController {
       else {
         message = err.message || 'Authentication failed'
       }
-      // console.log(err)
+      console.log(user, info, err)
       res.status(400)
       res.locals = { ...locals, message }
       if (String(req.url).includes('register'))
@@ -347,8 +347,12 @@ class AuthController {
       return res.redirect('/');
       // return res.render('login', { message })
     }
+    req.logIn(user, function (err) { 
+      // console.log(err)
+      return res.redirect('/'); 
+   });
     // Successful authentication, redirect home.
-    res.redirect('/');
+    // res.redirect('/');
   }
 
 }

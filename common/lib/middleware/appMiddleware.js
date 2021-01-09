@@ -6,7 +6,7 @@ const csrf = require('csurf')
 const path = require('path')
 const userAgent = require('express-useragent')
 const config = require('../config')
-const SessionUtil = require('../utils/session_util')
+const SessionUtil = require('../utils/sessionUtil')
 const helmet = require('helmet')
 
 // const passport = require('passport')

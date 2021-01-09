@@ -20,9 +20,9 @@ module.exports = async (Model, args) => {
         if(!firstName) firstName = 'Dummy'
         if(!lastName) lastName = 'Dummy'
         Model.create({ email, lastName, firstName, isEmailVerified: true })
-            .then((user) => {
-                user.setPassword(password)
-                user.save() 
+            .then(async (user) => {
+                await user.setPassword(password)
+                await user.save() 
                 console.log('user created', Helper.userToSession(user), 'password:', password)
                 exit(0)
             })

@@ -1,5 +1,5 @@
 const sharedsession = require("express-socket.io-session")
-const SessionUtil = require('../utils/session_util')
+const SessionUtil = require('../utils/sessionUtil')
 const cookieParser = require('cookie-parser')
 const config = require('../config')
 
