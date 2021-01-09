@@ -14,7 +14,7 @@ const {
 
 
 
-const sanitizeBody = (body)=> {
+const sanitizeBody = (body) => {
     delete body.status
     body[''] = ''
     return body
@@ -27,17 +27,9 @@ class ArticleController extends BaseController {
 
 
     async create(req, res, next) {
-        const { body, preview, author, title, sponsor, category, featured,  } = req.body
+        const { body, preview, author, title, sponsor, category, featured, } = req.body
 
-        if (!sponsor || !Validator.isMongoId(sponsor) || !(await Sponsor.exists({ _id: sponsor }))) {
-            res.status(422)
-            return next(
-                new Exception(
-                    'Please provide a valid sponsor',
-                    ErrorCodes.REQUIRED
-                )
-            )
-        }
+
 
         if (!category || !Validator.isMongoId(category) || !(await ArticleCategory.exists({ _id: category }))) {
             res.status(422)
@@ -59,10 +51,14 @@ class ArticleController extends BaseController {
             )
         }
 
-        const b = { body, author, title, preview, sponsor, category , featured}
+        const b = { body, author, title, preview, category, featured }
 
-        if(req.body.imageUrl && Validator.isUrl(req.body.imageUrl))
-        b.imageUrl = req.body.imageUrl
+        if (req.body.sponsor && Validator.isMongoId(req.body.sponsor) && (await Sponsor.exists({ _id: req.body.sponsor }))) {
+            b.sponsor = req.body.sponsor
+        }
+
+        if (req.body.imageUrl && Validator.isUrl(req.body.imageUrl))
+            b.imageUrl = req.body.imageUrl
 
 
 
@@ -94,10 +90,10 @@ class ArticleController extends BaseController {
         const { params: { id } } = req
         if (!BaseController.checkId('Invalid airticle id', req, res, next)) return
 
-       const body = sanitizeBody(req.body)
+        const body = sanitizeBody(req.body)
 
         let resource = await Article.findByIdAndUpdate(id, body || {}, { new: true })
-        .populate(['sponsor', 'category'])
+            .populate(['sponsor', 'category'])
 
         if (req.file) {
             const imageUrl = await FileManager.saveFile(
@@ -159,8 +155,8 @@ class ArticleController extends BaseController {
         }
 
         let resource = await Article.findByIdAndUpdate(id, { status }, { new: true })
-        .populate(['sponsor', 'category'])
-        .exec()
+            .populate(['sponsor', 'category'])
+            .exec()
         super.handleResult(resource, res, next)
         await Log.create({
             user: req.user.id,
@@ -176,8 +172,8 @@ class ArticleController extends BaseController {
     async get(req, res, next) {
         const { id } = req.params
         let resource = await Article.findById(id)
-        .populate(['sponsor', 'category'])
-        .exec()
+            .populate(['sponsor', 'category'])
+            .exec()
         super.handleResult(resource, res, next)
     }
 
