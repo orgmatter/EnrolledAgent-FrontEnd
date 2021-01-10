@@ -15,83 +15,39 @@
 <div id="card-section" class="container">
   <div class="row">
     <!-- card-1 -->
+    <% if (typeof locals !=='undefined' && locals.resource && locals.resource.data && locals.resource.data.length > 0) { %>
+      <% const {resource: {data}} = locals %>
+        <% for(let i=0; i < data.length; i++) { %>
+          <% const  {actionText, actionLink, title, category, imageUrl, sponsor, body }  = data[i] %>
     <div class="cards col-md-6 ">
       <div class='card-image-div'>
-      <img src="/assets/files/tax-img-holder-2.jpg" alt="broken">
+      <img src="<%= imageUrl %>" alt="broken">
       </div>
+    
       <h3>
         Excepteur sint occaecat cupidatat.
       </h3>
-      <small>Sponsored By: Sed ut Perspiciatis</small>
-      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. Sed ut perspiciatis unde omnis istpoe natus error sit voluptatem.</p>
-      <a href="#" class="btn btn-lg b-ton">View Details <span>></span></a>
+      <% if(category && category.name){ %>
+        <a href="/resource/<%= category.slug %>"> <small style="color: tomato;"><%= category.name %></small></a>
+        <% }%>
+        <br>
+        <% if(sponsor && sponsor.name){ %>
+         <small >Sponsored By: <%= sponsor.name %></small> 
+          <% }%>
+          <br>
+     
+      <p><%= body || '' %></p>
+      <a href="<%= actionLink || '#' %>" target="_blank" class="btn btn-lg b-ton"><%= actionText || 'View Details' %> <span>></span></a>
     </div>
-
-    <!-- card-2 -->
-    <div class="cards col-md-6 ">
-      <div class='card-image-div'>
-      <img src="/assets/files/coin-stack.jpg" alt="img">
+    <% }} else { %>
+      <div class="col-md-12 text-center">
+       <p>No resources found</p>
       </div>
-      <h3>
-        Excepteur sint occaecat cupidatat .
-      </h3>
-      <small>Sponsored By: Sed ut Perspiciatis</small>
-      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. Sed ut perspiciatis unde omnis istpoe natus error sit voluptatem.</p>
-      <a href="#" class="btn btn-lg b-ton">View Details <span>></span></a>
-    </div>
+    <% } %>
+    
+  
 
-    <!-- card-3 -->
-    <div class=" cards col-md-6 ">
-      <div class='card-image-div'>
-      <img src="/assets/files/tax-img-holder-2.jpg" alt="img">
-      </div>
-      <h3>
-        Excepteur sint occaecat cupidatat.
-      </h3>
-      <small>Sponsored By: Sed ut Perspiciatis</small>
-      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. Sed ut perspiciatis unde omnis istpoe natus error sit voluptatem.</p>
-      <a href="#" class="btn btn-lg b-ton">View Details <span>></span></a>
-    </div>
-
-    <!-- card -4 -->
-
-    <div class="cards col-md-6 ">
-      <div class='card-image-div'>
-      <img src="/assets/files/tax-img-4.jpg" alt="img">
-      </div>
-      <h3>
-        Excepteur sint occaecat cupidatat.
-      </h3>
-      <small>Sponsored By: Sed ut Perspiciatis</small>
-      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. Sed ut perspiciatis unde omnis istpoe natus error sit voluptatem.</p>
-      <a href="#" class="btn btn-lg b-ton">View Details <span>></span></a>
-    </div>
-
-    <!-- card-5 -->
-    <div class="cards col-md-6 ">
-      <div class='card-image-div'>
-      <img src="/assets/files/tax-img-5.jpg" alt="img">
-      </div>
-      <h3>
-        Excepteur sint occaecat cupidatat.
-      </h3>
-      <small>Sponsored By: Sed ut Perspiciatis</small>
-      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. Sed ut perspiciatis unde omnis istpoe natus error sit voluptatem.</p>
-      <a href="#" class="btn btn-lg b-ton">View Details <span>></span></a>
-    </div>
-
-    <!-- card-6 -->
-    <div class="cards col-md-6 ">
-      <div class='card-image-div'>
-      <img src="/assets/files/coin-stack.jpg" alt="img">
-      </div>
-      <h3>
-        Excepteur sint occaecat cupidatat.
-      </h3>
-      <small>Sponsored By: Sed ut Perspiciatis</small>
-      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est eopksio laborum. Sed ut perspiciatis unde omnis istpoe natus error sit voluptatem.</p>
-      <a href="#" class="btn btn-lg b-ton">View Details <span>></span></a>
-    </div>
+   
     <!-- end of row -->
   </div>
   <div class="pagination text-center">
@@ -99,6 +55,22 @@
     <div class="pagination__right"><a href="#">></a></div>
   </div>
 </div>
+<section id="bottom">
+  <div class="container contain">
+    <div class="row">
+     
+      <div class="col-md-12 text-center">
+        <% if( typeof locals.resource !=='undefined' && locals.resource) { %> <% const {perPage,
+        pages, page, total }=locals.resource %> <% const start=(perPage * page) - perPage +1 %> <%
+        const end=start + perPage -1 %>
+        <p>showing <%= start || 0%> to <%= Math.min(total || 0, end || 0) %> of <%= total || 0%> entries</p>
+        <% } %>
+        <% if( typeof locals.resource !=='undefined' ) { %> <% const { resource: {page, pages}, query}=locals %> <%- include("./partials/pagination.ejs", {page, pages, query }) %> <% } %>
+      </div>
+      
+  </div>
+  </div>
+</section>
 
 <!-- end of card section -->
 

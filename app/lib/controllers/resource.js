@@ -75,12 +75,16 @@ class ResourceController extends BaseController {
     * @param  {function} next
     */
     async random(req, _, next) {
+        const limit = 10
         const count = await Resource.estimatedDocumentCount().exec()
-        const random = Math.floor(Math.random() * count)
+        let skip = Math.floor(Math.random() * count)
+
+        if(count < limit- skip)skip = 0
+
 
         const data = await Resource.find({},)
-            .skip(random)
-            .limit(10)
+            // .skip(skip)
+            .limit(limit)
             .populate(['sponsor', 'category'])
             .exec()
         req.locals.resource = data

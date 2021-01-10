@@ -118,6 +118,7 @@ router
     "/find-agent",
     CityController.get,
     AgentController.popular,
+    ResourceController.random,
     (req, res) => {
       res.render("find-agent", { locals: req.locals });
     }
@@ -134,6 +135,7 @@ router
     AgentController.popular,
     ResourceController.random,
     (req, res) => {
+      console.log(req.locals)
       //  console.log("locals", req.app.locals);
       // extract message if this page was redirected to from another page
       if (req.app.locals && req.app.locals.message)
@@ -195,7 +197,7 @@ router
     CityController.get,
     ResourceController.getAll,
     (req, res) => {
-      console.log(req.locals.resource.data)
+      // console.log(req.locals.resource)
       res.render("resource", {
         name: "Resources",
         description: 'Valuable services, products, tools, and whitepapers from our partners, hand selected by our staff.',
