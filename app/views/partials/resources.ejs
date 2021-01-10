@@ -3,84 +3,32 @@
       <h2 class="resources-header">Resources</h2>
       <p class="resources-sub">Valuable information provided by our sponsors.</p>
       <div class="resources-grid">
+        <% if (typeof locals !=='undefined' && locals.resource && locals.resource.length > 0) { %>
+          <% const {resource} = locals %>
+            <% for(let i=0; i < Math.min(resource.length, 6); i++) { %>
+              <% const  {actionText, actionLink, title, category, imageUrl, sponsor, body }  = resource[i] %>
         <div class="resources-grid-box">
+          <% if(sponsor && sponsor.name){ %>
           <p class="resources-grid-box-intro">Provided By:</p>
-          <img class="resources-grid-box-image" src="/assets/files/stanbic.png" alt="stanbic-logo" />
-          <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
-          <p class="resources-grid-box-desc">
-            Save up to 20% on Quickfinder products. Find tax resources for efficiency and
-            accuracy, year-round...
+          <img class="resources-grid-box-image" src="<%= imageUrl %>" alt="stanbic-logo" />
+          <% }%>
+          <h3 class="resources-grid-box-topic"><%= title %></h3>
+          <p class="resources-grid-box-desc" style="overflow: hidden;  
+          text-overflow: ellipsis;
+          height: 100px; max-width: 200px;">
+           <%= body %>
           </p>
-          <div class="arrow">
-            <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
-          </div>
+          <!-- <div class="arrow"> -->
+            <a target="_blank" href=" <%= actionLink %>">   <%= actionText %></a>
+          <!-- </div> -->
         </div>
-        <div class="resources-grid-box">
-          <p class="resources-grid-box-intro">Provided By:</p>
-          <img class="resources-grid-box-image" src="/assets/files/stanbic.png" alt="stanbic-logo" />
-          <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
-          <p class="resources-grid-box-desc">
-            Save up to 20% on Quickfinder products. Find tax resources for efficiency and
-            accuracy, year-round...
-          </p>
-          <div class="arrow">
-            <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
-          </div>
-        </div>
-        <div class="resources-grid-box">
-          <p class="resources-grid-box-intro">Provided By:</p>
-          <img class="resources-grid-box-image" src="/assets/files/stanbic.png" alt="stanbic-logo" />
-          <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
-          <p class="resources-grid-box-desc">
-            Save up to 20% on Quickfinder products. Find tax resources for efficiency and
-            accuracy, year-round...
-          </p>
-          <div class="arrow">
-            <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
-          </div>
-        </div>
-        <div class="resources-grid-box">
-          <p class="resources-grid-box-intro">Provided By:</p>
-          <img class="resources-grid-box-image" src="/assets/files/stanbic.png" alt="stanbic-logo" />
-          <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
-          <p class="resources-grid-box-desc">
-            Save up to 20% on Quickfinder products. Find tax resources for efficiency and
-            accuracy, year-round...
-          </p>
-          <div class="arrow">
-            <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
-          </div>
-        </div>
-        <div class="resources-grid-box">
-          <p class="resources-grid-box-intro">Provided By:</p>
-          <img class="resources-grid-box-image" src="/assets/files/stanbic.png" alt="stanbic-logo" />
-          <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
-          <p class="resources-grid-box-desc">
-            Save up to 20% on Quickfinder products. Find tax resources for efficiency and
-            accuracy, year-round...
-          </p>
-          <div class="arrow">
-            <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
-          </div>
-        </div>
-        <div class="resources-grid-box">
-          <p class="resources-grid-box-intro">Provided By:</p>
-          <img class="resources-grid-box-image" src="/assets/files/stanbic.png" alt="stanbic-logo" />
-          <h3 class="resources-grid-box-topic">Build Your Perfect Quickfinder Library</h3>
-          <p class="resources-grid-box-desc">
-            Save up to 20% on Quickfinder products. Find tax resources for efficiency and
-            accuracy, year-round...
-          </p>
-          <div class="arrow">
-            <a href="#"><img src="/assets/files/down-arrow-small.svg" alt="arrow" /></a>
-          </div>
-        </div>
+        <% }} %>
       </div>
       <div class="btn-div">
-        <button>
-          See All Resources
-          <img src="/assets/files/down-arrow-small.svg" alt="arrow" />
-        </button>
+      <a href="/resource">  <button >
+        See All Resources
+        <img src="/assets/files/down-arrow-small.svg" alt="arrow" />
+      </button></a>
       </div>
     </div>
   </section>
