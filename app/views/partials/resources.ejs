@@ -2,8 +2,8 @@
     <div class="container-fluid">
       <h2 class="resources-header">Resources</h2>
       <p class="resources-sub">Valuable information provided by our sponsors.</p>
+       <% if (typeof locals !=='undefined' && locals.resource && locals.resource.length > 0) { %>
       <div class="resources-grid">
-        <% if (typeof locals !=='undefined' && locals.resource && locals.resource.length > 0) { %>
           <% const {resource} = locals %>
             <% for(let i=0; i < Math.min(resource.length, 6); i++) { %>
               <% const  {actionText, actionLink, title, category, imageUrl, sponsor, body }  = resource[i] %>
@@ -22,8 +22,11 @@
             <a target="_blank" href=" <%= actionLink %>">   <%= actionText %></a>
           <!-- </div> -->
         </div>
-        <% }} %>
       </div>
+        <% }} else { %>
+          <p style="text-align:center; font-size: 20px; margin: 20px">No resources available</p>
+        <% } %>
+      
       <div class="btn-div">
       <a href="/resource">  <button >
         See All Resources

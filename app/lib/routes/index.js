@@ -85,7 +85,7 @@ router
     res.render("careerCenter", {locals: req.locals});
   })
   .get("/contact", (req, res) => {
-    res.render("contact");
+    res.render("contact", { locals: req.locals });
   })
   .get("/about-us", (req, res) => {
     res.render("about", {locals: req.locals});
@@ -111,7 +111,7 @@ router
     res.render("singleBlog", { locals: req.locals.article });
   })
   .get("/ea-listings", AgentController.getAll, (req, res) => {
-    // console.log("locals are", req.locals.agents);
+     console.log("locals are", req.locals.agents);
     res.render("ea-listings", { locals: req.locals });
   })
   .get(
@@ -124,8 +124,8 @@ router
     }
   )
   .get("/search-results", AgentController.getAll, (req, res) => {
-    //  console.log("locals ", req.locals);
-    res.render("search-results", { locals: req.locals });
+    console.log("locals ", req.locals.agents.data );
+    res.render("search-results", { locals: req.locals});
   })
 
   .get(
@@ -145,19 +145,26 @@ router
     }
   )
   .get("/claim-listing", (req, res) => {
-    res.render("listings");
+    res.render("listings", { locals: req.locals });
   })
   .get("/ask-ea", QuestionController.getAll, (req, res) => {
-    res.render("askEA");
+    console.log("questions", req.params);
+    res.render("askEA", { locals: req.locals });
   })
   .get("/ask-ea/:category", QuestionController.getAll, (req, res) => {
-    res.render("askEA");
+    console.log("params", req.params);
+    res.render("askEACategory", { 
+      locals: req.locals,
+      name: req.params.category 
+    });
   })
-  .get("/new-question", (req, res) => {
-    res.render("newQuestions");
+  .get("/new-question", QuestionController.getAll, (req, res) => {
+    console.log("cate",req.locals);
+    res.render("newQuestions", { locals: req.locals });
   })
   .get("/agent/:id", ReviewController.analysis, AgentController.get, (req, res) => {
-    //  console.log("agent>>>>", req.locals.agent.review);
+     console.log("agent>>>>", req.locals);
+     // console.log("agent>>>>det", req.locals);
     res.render("single-agent-details", { locals: req.locals });
   })
   .get(
@@ -190,7 +197,7 @@ router
   //   res.render("city", { locals: req.locals });
   // })
   .get("/offshore-team", (req, res) => {
-    res.render("offshoreTeam");
+    res.render("offshoreTeam", { locals: req.locals });
   })
   .get(
     "/resource",
@@ -227,7 +234,7 @@ router
   //   res.render("category");
   // })
   .get("/practice-exchange", CityController.get, (req, res) => {
-    res.render("practiceExchange");
+    res.render("practiceExchange", { locals: req.locals });
   })
   .get(
     "/states/:state",
@@ -243,18 +250,19 @@ router
     CityController.get,
     AgentController.popular,
     (req, res) => {
-      res.render("find-agent");
+      res.render("find-agent", { locals: req.locals });
     }
   )
   .get("/need-accountant", (req, res) => {
-    res.render("need-accountant");
+    res.render("need-accountant", { locals: req.locals });
   })
   .get("/verification-service", (req, res) => {
-    res.render("verification-service");
+    res.render("verification-service", { locals: req.locals });
   })
 
   .get("/license-verification", (req, res) => {
-    res.render("license-verification");
+    console.log("license", req.locals);
+    res.render("license-verification", { locals: req.locals });
   })
   .get("/logout", (req, res) => {
     req.logout();

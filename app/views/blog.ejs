@@ -11,18 +11,18 @@
   </head>
   <body>
     <%- include("./partials/header.ejs") %>
+    
     <div class="blog">
       <div class="blog__section--main">
         <div id="blog-main" class="blog__main">
           <div class="blog__main--items">
             <div class="blog__main--article">
               <div class="blog__main--article-name">
-                <span class="blog-color-text-sky">Lorem ipsum</span> / Nov 21, 2020 / By EnrolledAgent
-              </div>
-              <div class="blog__main--article-head">Lorem ipsum </div>
-              <hr id="article-rule" class="blog__main--article-underline" />
-              <div id="blog-article-body" class="blog__main--article-body"> Lorem ipsum dolor sit amet, conse Lorem ipsum dolor sit amet, conse
-              </div>
+               <span class="blog-color-text-sky">Lorem ipsum</span> / Nov 21, 2020 / By <%= locals.articles && locals.articles.data && locals.articles.data[0].author || "N/A"%>
+             </div>
+             <div class="blog__main--article-head"><%= locals.articles.data && locals.articles.data[0].title || "N/A"%> </div>
+             <hr id="article-rule" class="blog__main--article-underline" />
+             <div id="blog-article-body" class="blog__main--article-body"><%= locals.articles.data && locals.articles.data[0].body || "N/A"%>
             </div>
           </div>
         </div>
