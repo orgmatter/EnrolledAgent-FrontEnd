@@ -148,3 +148,49 @@
     }
   }
 }
+
+.sr-combo-inputs-row{
+      margin: 30px 0 50px;
+      .card-payment-details {
+        input {
+          height: 40px;
+          border: 1px solid #333;
+          width: 300px;
+          padding: 0 10px;
+        }
+      }
+  }
+
+  .sr-payment-form {
+    button{
+      outline: none;
+      border: none;
+      background-color: $main-blue;
+      width: 150px;
+      height: 40px;
+      color: #fff;
+    }
+  }
+
+  .ElementsApp{
+    .CardField{
+      height: 100px;
+      &-postalCode{
+        width: 150px;
+      }
+      &-expiry, &-cvc, &-postalCode{
+        transform: none;
+      }
+      &-child{
+        height: 40px;
+        border: 1px solid #333;
+        padding: 10px;
+      }
+      &-input-wrapper{
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+  }

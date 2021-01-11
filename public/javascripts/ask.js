@@ -45,12 +45,13 @@ const handleSubmit = (e) => {
     lastName:  lastName.value,
     phone: phone.value,
     category: category.value,
-    title: title,
+    title: title.value,
   };
 
+  console.log(data);
   axios({
     method: "POST",
-    url: `${base_Url}/api/review`,
+    url: `${base_Url}/api/ask`,
     credentials: 'same-origin', // <-- includes cookies in the request
         headers: {
           "CSRF-Token":  getCookie('XSRF-TOKEN'), 

@@ -202,8 +202,10 @@
               <div class="image-aside2-div2">
                 <h2>The simplest way to search and access your next Enrolled Agent on the go anytime, anywhere.</h2>
                 <p>
-Get the perfect fit for your needs by running a search through our up-to-date list of Enrolled Agents. Check out amazing reviews from Clients within your community. Have a peek into the profile of your Agent and lots more. Each EA listed is 100% authentic (in terms of profile accuracy and accreditation).
-
+                    Get the perfect fit for your needs by running a search through our up-to-date list of 
+                    Enrolled Agents. Check out amazing reviews from Clients within your community. Have a peek 
+                    into the profile of your Agent and lots more. Each EA listed is 100% authentic (in terms 
+                    of profile accuracy and accreditation).
                 </p>
                 <a href="/find-agent">Search for Your Enrolled Agent <span class="">
               <img src="/assets/images/ccenter/right-arrow-white.svg" class="ccenter-btn-right-arrow">
@@ -232,7 +234,7 @@ Get the perfect fit for your needs by running a search through our up-to-date li
                 <div class="col-sm-6 col-md-3">
                   <div class="single-member maxwidth400 mb-30">
                     <div class="team-thumb">
-                      <img src="/assets/files/18270627@2x.png" alt="" class="img-fullwidth" />
+                      <img src="/assets/images/avatar.webp" alt="agent-avatar" class="img-fullwidth" />
                       <h4 class="text-uppercase font-raleway text-white font-20 line-bottom-center m-0">
                         <%= e.firstName %> <%= e.lastName %> <span class="text-white font-12 ml-5 small"></span>
                       </h4>
@@ -241,9 +243,12 @@ Get the perfect fit for your needs by running a search through our up-to-date li
                     <div class="team-bottom-part bg-white p-15 team-bottom">
                       <p class="mb-10 team-bottom-name"><%= e.city %>, <%= e.state %></p>
                       <div class="team-bottom-flex">
-                        <div class="team-bottom-flex-div1">
-                          <img src="/assets/files/stars.svg" alt="" class="img-fullwidth" />
-                          <p>2 Reviews</p>
+                        <div class="team-bottom-flex-div1 ">
+                          <!-- <img src="/assets/files/stars.svg" alt="" class="img-fullwidth" /> -->
+                          <div class="stars-outer" value=<%= e.rating || 0 %> >
+                            <div class="stars-inner"></div>
+                          </div>
+                          <p><%= e.reviewCount %> Reviews</p>
                         </div>
                         <div class="team-bottom-flex-div2">
                           <a href="/agent/<%= e._id %>">View Profile</a>
@@ -449,6 +454,17 @@ Would you have a quack attend to your medical issues? I know you wouldn't . How 
                   });
               }
             }); /*ready*/
+          </script>
+
+          <script>
+            const rateStars = document.querySelectorAll(".stars-outer");
+            rateStars.forEach((rateStar) => {
+              const val = rateStar.getAttribute("value");
+              const starTotal = 5;
+              const starPercentage = (val / starTotal) * 100;
+              const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
+              rateStar.querySelector(".stars-inner").style.width = starPercentageRounded;
+            });
           </script>
        
           <script type="text/javascript" src="/javascripts/findAgent.js"></script>

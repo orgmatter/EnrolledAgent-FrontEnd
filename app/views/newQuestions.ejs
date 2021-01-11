@@ -102,20 +102,10 @@
                 <option value="" disabled selected>
                   Select a Question Category
                 </option>
-                <option value="state1">Question 1</option>
-                <option value="state2">Question 2</option>
-                <option value="state3">Question 3</option>
-                <option value="state4">Question 4</option>
-                <option value="state5">Question 5</option>
-                <option value="state5">Question 6</option>
-                <option value="state5">Question 7</option>
-                <option value="state5">Question 8</option>
-                <option value="state5">Question 9</option>
-                <option value="state5">Question 10</option>
-                <option value="state5">Question 11</option>
-                <option value="state5">Question 12</option>
+                <% locals.questionCategory && locals.questionCategory.map((el,id) => { %>
+                  <option value=<%= el._id %>> <%= el.name || "N/A" %> </option>
+                <% }) %> 
               </select>
-              <!--                            <label for="state" class="form__label">Phone number*</label>-->
             </div>
           </div>
           <div class="form__row">
@@ -129,17 +119,6 @@
               />
               <label for="license" class="form__label">Question Title*</label>
             </div>
-            <!-- <div class="form__group">
-              <select name="state" id="agent-state" class="form__select">
-                <option value="" disabled selected>
-                  Preferred Contact Method
-                </option>
-                <option value="state1">email</option>
-                <option value="state2">Phone</option>
-                <option value="state5">wapp</option>
-              </select>
-                               <label for="state" class="form__label">Phone number*</label>-->
-            <!-- </div> -->
           </div>
           <div class="form__row">
             <div class="form__group form__group-full-width">
@@ -192,16 +171,12 @@
         </div>
       </div>
     </main>
-    <!-- <div class="lvc8n-contact__disclaimer">
-        <span style="font-weight: bold">Note:</span>
-        CPA directory's public CPA search should not be used for license verification purposes. Many
-        CAPs have opted out of the publicly accessible directory for various reasons including those
-        of privacy. Agencies and individuals that wish to verify a CPA's license should use this CPA
-        license verification service.
-      </div> -->
-    <!-- </div> -->
     <%- include("./partials/footer.ejs") %>
-    <script type="text/javascript" src="/js/ccenter.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+    integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/javascripts/ask.js"></script>
     <script src="/js/custom.js"></script>
   </body>
 </html>

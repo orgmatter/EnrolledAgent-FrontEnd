@@ -111,7 +111,7 @@ router
     res.render("singleBlog", { locals: req.locals.article });
   })
   .get("/ea-listings", AgentController.getAll, (req, res) => {
-    // console.log("locals are", req.locals.agents);
+     console.log("locals are", req.locals.agents);
     res.render("ea-listings", { locals: req.locals });
   })
   .get(
@@ -124,8 +124,8 @@ router
     }
   )
   .get("/search-results", AgentController.getAll, (req, res) => {
-    //  console.log("locals ", req.locals);
-    res.render("search-results", { locals: req.locals });
+    console.log("locals ", req.locals.agents.data );
+    res.render("search-results", { locals: req.locals});
   })
 
   .get(
@@ -148,17 +148,23 @@ router
     res.render("listings", { locals: req.locals });
   })
   .get("/ask-ea", QuestionController.getAll, (req, res) => {
+    console.log("questions", req.params);
     res.render("askEA", { locals: req.locals });
   })
   .get("/ask-ea/:category", QuestionController.getAll, (req, res) => {
-    res.render("askEA", { locals: req.locals });
+    console.log("params", req.params);
+    res.render("askEACategory", { 
+      locals: req.locals,
+      name: req.params.category 
+    });
   })
   .get("/new-question", QuestionController.getAll, (req, res) => {
     console.log("cate",req.locals);
     res.render("newQuestions", { locals: req.locals });
   })
   .get("/agent/:id", ReviewController.analysis, AgentController.get, (req, res) => {
-    //  console.log("agent>>>>", req.locals.agent.review);
+     console.log("agent>>>>", req.locals);
+     // console.log("agent>>>>det", req.locals);
     res.render("single-agent-details", { locals: req.locals });
   })
   .get(
@@ -255,6 +261,7 @@ router
   })
 
   .get("/license-verification", (req, res) => {
+    console.log("license", req.locals);
     res.render("license-verification", { locals: req.locals });
   })
   .get("/logout", (req, res) => {
