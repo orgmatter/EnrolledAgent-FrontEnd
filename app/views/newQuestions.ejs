@@ -14,10 +14,19 @@
   </head>
   <body class="">
     <%- include("./partials/header.ejs") %>
+    <section class="container-fluid category_jumbotron">
+        <div class="row">
+          <div class="col-12 category_jumbotron-div">
+            <h2>Submit Your Question</h2>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
+            <a href="/ask-ea">View Previous Questions</a>
+          </div>
+        </div>
+      </section>
     <main class="newQuestion row">
       <div class="lvc8n-contact left-side col-md-8">
         <div class="lvc8n-contact__head"></div>
-        <div class="lvc8n-contact__form">
+        <form id="askForm" class="lvc8n-contact__form">
           <div class="form__row">
             <div class="form__group">
               <input
@@ -25,6 +34,8 @@
                 name="agent-first-name"
                 class="form__input"
                 placeholder="First Name*"
+                id="firstName"
+                required
               />
               <label for="agent-first-name" class="form__label"
                 >First Name*</label
@@ -33,9 +44,10 @@
             <div class="form__group">
               <input
                 type="text"
-                id="agent-last-name"
                 class="form__input"
                 placeholder="Last Name*"
+                id="lastName"
+                required
               />
               <label for="agent-last-name" class="form__label"
                 >Last Name*</label
@@ -46,9 +58,10 @@
             <div class="form__group">
               <input
                 type="email"
-                id="agent-email"
+                id="email"
                 class="form__input"
                 placeholder="Email Address*"
+                required
               />
               <label for="agent-email" class="form__label"
                 >Email Address*</label
@@ -57,9 +70,10 @@
             <div class="form__group">
               <input
                 type="text"
-                id="agent-phone-number"
+                id="phone"
                 class="form__input"
                 placeholder="Phone Number*"
+                required
               />
               <label for="agent-phone-number" class="form__label"
                 >Phone number*</label
@@ -84,62 +98,42 @@
               <label for="agent-zip-code" class="form__label">Zip Code*</label>
             </div> -->
             <div class="form__group">
-              <select name="state" id="agent-state" class="form__select">
+              <select name="state" id="category" class="form__select">
                 <option value="" disabled selected>
                   Select a Question Category
                 </option>
-                <option value="state1">Question 1</option>
-                <option value="state2">Question 2</option>
-                <option value="state3">Question 3</option>
-                <option value="state4">Question 4</option>
-                <option value="state5">Question 5</option>
-                <option value="state5">Question 6</option>
-                <option value="state5">Question 7</option>
-                <option value="state5">Question 8</option>
-                <option value="state5">Question 9</option>
-                <option value="state5">Question 10</option>
-                <option value="state5">Question 11</option>
-                <option value="state5">Question 12</option>
+                <% locals.questionCategory && locals.questionCategory.map((el,id) => { %>
+                  <option value=<%= el._id %>> <%= el.name || "N/A" %> </option>
+                <% }) %> 
               </select>
-              <!--                            <label for="state" class="form__label">Phone number*</label>-->
             </div>
           </div>
           <div class="form__row">
             <div class="form__group">
               <input
                 type="text"
-                id="license"
+                id="title"
                 class="form__input"
                 placeholder="Question Title*"
+                required
               />
               <label for="license" class="form__label">Question Title*</label>
             </div>
-            <!-- <div class="form__group">
-              <select name="state" id="agent-state" class="form__select">
-                <option value="" disabled selected>
-                  Preferred Contact Method
-                </option>
-                <option value="state1">email</option>
-                <option value="state2">Phone</option>
-                <option value="state5">wapp</option>
-              </select>
-              <!--                            <label for="state" class="form__label">Phone number*</label>-->
-            <!-- </div> -->
           </div>
           <div class="form__row">
             <div class="form__group form__group-full-width">
               <label for="" class="form__textarea-label"
                 >Your Question Details (optional)</label
               >
-              <textarea name="" class="form__textarea"></textarea>
+              <textarea name="" class="form__textarea" id="message" required></textarea>
             </div>
           </div>
           <div class="lvc8n-contact__button">
-            <button class="lvc8n-btn lvc8n-contact__button-btn b-ton">
+            <button type="submit" class="lvc8n-btn lvc8n-contact__button-btn b-ton">
               Submit Your Question
             </button>
           </div>
-        </div>
+        </form id="askForm">
       </div>
 
       <div class="category_grid-side right-side col-md-3">
@@ -177,16 +171,12 @@
         </div>
       </div>
     </main>
-    <!-- <div class="lvc8n-contact__disclaimer">
-        <span style="font-weight: bold">Note:</span>
-        CPA directory's public CPA search should not be used for license verification purposes. Many
-        CAPs have opted out of the publicly accessible directory for various reasons including those
-        of privacy. Agencies and individuals that wish to verify a CPA's license should use this CPA
-        license verification service.
-      </div> -->
-    <!-- </div> -->
     <%- include("./partials/footer.ejs") %>
-    <script type="text/javascript" src="/js/ccenter.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+    integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/javascripts/ask.js"></script>
     <script src="/js/custom.js"></script>
   </body>
 </html>

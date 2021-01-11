@@ -30,13 +30,13 @@
     </section>
 
     <section id="premium" class="container">
-      <% if( typeof locals.agents !=='undefined' && locals.agents.data && locals.agents.data.length
-      > 0) { %> <% locals.agents.data.map((e,id)=> { %> <% const {firstName, lastName, _id, city,
-      reviewCount }=e %>
+      <% if( typeof locals.agents !=='undefined' && locals.agents.data && locals.agents.data.length > 0) { %> 
+      <% locals.agents.data.map((e,id)=> { %> 
+      <% const {firstName, lastName, _id, city, reviewCount, premium } = e %>
       <div class="row premium-box">
         <div class="col-md-4 col-sm-12">
           <div class="img col-md-5">
-            <img src="/assets/files/person-img.png" alt="rating" />
+            <img src="/assets/images/avatar.webp" alt="rating" />
           </div>
           <div class="txt col-md-7">
             <h3><%= firstName %> <%= lastName %></h3>
@@ -44,10 +44,13 @@
           </div>
         </div>
         <div class="col-md-4 col-sm-12 mid-div">
-          <!-- <h4>Premium Member</h4> -->
-          <h4></h4>
+          <% if(premium) { %>
+            <h4>Premium Member</h4>
+          <%}%>
           <p>
-            <img src="/assets/files/star-rating.png" alt="" />
+            <div class="stars-outer" id="client-stars" value=<%= e.rating || 0 %> >
+              <div class="stars-inner"></div>
+            </div>
             <span> <%= reviewCount %> reviews </span>
           </p>
         </div>

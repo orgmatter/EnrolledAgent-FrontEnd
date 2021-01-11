@@ -29,17 +29,6 @@
               <p>Search:</p>
               <input type="text" placeholder="Enter agent's first name, last name, city, state or zipcode" class="pl-10" name="search" id="search" />
               <button class="search-btn" onclick="search()">Search</button>
-              <!-- <select name="cars" id="order">
-                <option value="volvo">Order by</option>
-                <option value="saab">Zip Code</option>
-                <option value="mercedes">State</option>
-                <option value="audi">Rating</option>
-              </select> -->
-
-              <!-- <select name="descend" id="descend">
-                <option value="volvo">Descending</option>
-                <option value="saab">Ascending</option>
-              </select> -->
             </div>
           </div>
         </div>
@@ -51,7 +40,7 @@
       <div class="row premium-box">
         <div class="col-md-4 col-sm-12">
           <div class="img col-md-5">
-            <img src="/assets/files/person-img.png" alt="rating" />
+            <img src="/assets/images/avatar.webp" alt="agent image" />
           </div>
           <div class="txt col-md-7">
             <h3><%= e.firstName %> <%= e.lastName %></h3>
@@ -59,8 +48,14 @@
           </div>
         </div>
         <div class="col-md-4 col-sm-12 mid-div">
-          <h4>Premium Member</h4>
-          <p><img src="/assets/files/star-rating.png" alt="" /> <span> <%= e.reviewCount %> reviews</span></p>
+           <% if(e.premium) { %>
+                <h4>Premium Member</h4>
+           <%}%> 
+          <p>
+            <div class="stars-outer" id="client-stars" value=<%= e.rating || 0 %> >
+              <div class="stars-inner"></div>
+            </div>
+            <span> <%= e.reviewCount %> reviews</span></p>
         </div>
         <div class="col-md-4 col-sm-12 b-tons">
           <a  href="/agent/<%= e._id %>" class="btn btn-lg btn-blu mt-2"> View profile</a>
@@ -80,13 +75,6 @@
             <p>showing<span id="resNumber"> </span>of <%= locals.agents.total %> entries</p>
           </div>
           <div class="col-md-6 b-tons">
-            <!-- <div class="a btn b-ton-1 b-ton col-md-3 mt-5">← previous</div>
-            <div class="a btn b-ton b-ton-2 col-md-1 mt-5">1</div>
-            <div class="a btn b-ton b-ton-3 col-md-1 mt-5">2</div>
-            <div class="a btn b-ton b-ton-4 col-md-1 mt-5">3</div>
-            <div class="a btn b-ton b-ton-5 col-md-1 mt-5">4</div>
-            <div class="a btn b-ton b-ton-6 col-md-1 mt-5">5</div>
-            <div class="a btn b-ton-7 col-md-2 b-ton mt-5">next →</div> -->
             <nav class="MyPagination">
               <ul class="pagination">
                 <ul id="pagination" class="pagination-sm"></ul>
@@ -120,6 +108,17 @@
           </script>
     <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
     <script src="/javascripts/pagination.js"></script>
+    <script>
+            const clientStars = document.querySelectorAll("#client-stars");
+            clientStars.forEach((clientStar) => {
+              const val = clientStar.getAttribute("value");
+              const starTotal = 5;
+              console.log("value is", val);
+              const starPercentage = (val / starTotal) * 100;
+              const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
+              clientStar.querySelector(".stars-inner").style.width = starPercentageRounded;
+            });
+          </script>
     
     <script src="/js/custom.js"></script>
 

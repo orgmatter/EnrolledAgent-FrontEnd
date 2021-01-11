@@ -2,9 +2,19 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link href="/assets/files/favicon.png" rel="shortcut icon" type="image/png" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      href="/assets/files/favicon.png"
+      rel="shortcut icon"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap"
       rel="stylesheet"
@@ -30,26 +40,28 @@
         <div class="signup__head--main">
           <div class="signup__head--main-head">Create an Account</div>
           <div class="signup__head--main-body">
-            Are you an Enrolled Agent Looking to Advertise Your Practice for Free?
+            You can sign up for free using your favourite social platform.
           </div>
         </div>
         <div class="signup__head--text">
-          Claim your place in the nations largest directory of licensed and verified Enrolled
-          Agents. Creating your free account allows you to find and claim your listing, update your
-          contact details, and more. Your account provides you with free tools to help grow your
-          practice, stay in compliance, and build your online reputation.
+          Secure your place in the nation’s largest directory of licensed
+          Enrolled Agents. Creating a free account affords you the ability to:
+          claim your listing; update your contact details, etc. You also get to
+          access free tools that will aid you expand your practice, stay in
+          compliance, and build your online reputation.
         </div>
       </div>
       <div class="signup__social signup-card">
         <div class="signup__social--head">Social Signup</div>
         <div class="signup__social--text">
-          There is no need to provide any details when you sign up using your favorite social
-          platform. Choose the social login you want to use and follow the prompts to sign up for an
-          free account in just a few clicks.
+          You can sign up for free using your favourite social platform.
         </div>
         <div class="signup__social--btns">
           <div class="signup__social--btn">
-            <button class="signup__social--btn-facebook signup-btn" onclick="facebookLogin()">
+            <button
+              class="signup__social--btn-facebook signup-btn"
+              onclick="facebookLogin()"
+            >
               <span class="signup-btn-icon"
                 ><img
                   src="/assets/images/signup/facebook.svg"
@@ -59,7 +71,10 @@
             </button>
           </div>
           <div class="signup__social--btn">
-            <button class="signup__social--btn-google signup-btn" onclick="googleLogin()">
+            <button
+              class="signup__social--btn-google signup-btn"
+              onclick="googleLogin()"
+            >
               <span class="signup-btn-icon"
                 ><img
                   src="/assets/images/signup/google.svg"
@@ -69,7 +84,10 @@
             </button>
           </div>
           <div class="signup__social--btn">
-            <button class="signup__social--btn-linkedin signup-btn" onclick="linkedinLogin()">
+            <button
+              class="signup__social--btn-linkedin signup-btn"
+              onclick="linkedinLogin()"
+            >
               <span class="signup-btn-icon"
                 ><img
                   src="/assets/images/signup/linkedin.svg"
@@ -83,9 +101,9 @@
       <div class="signup__email signup-card">
         <div class="signup__email--head">Email Signup</div>
         <div class="signup__email--text">
-          Sign up for a free EnrolledAgent.com account to claim your profile, update your listing,
-          and get found by people looking for an Enrolled Agent just like you. Already have an
-          account?
+          Sign up for a free EnrolledAgent.com account to claim your profile,
+          update your listing, and get found by people looking for an Enrolled
+          Agent just like you. Already have an account?
           <a href="/login" class="signup-link">Login to your account</a>
         </div>
         <form class="signup__email--form" id="signup-form">
@@ -100,7 +118,9 @@
                   onblur="validateNonEmpty('firstname')"
                   placeholder="First Name"
                 />
-                <label for="firstname" class="signup-form__label"> First Name</label>
+                <label for="firstname" class="signup-form__label">
+                  First Name</label
+                >
               </div>
 
               <div class="signup-form__group">
@@ -112,7 +132,9 @@
                   onblur="validateNonEmpty('lastname')"
                   placeholder="Last Name"
                 />
-                <label for="lastname" class="signup-form__label"> Last Name</label>
+                <label for="lastname" class="signup-form__label">
+                  Last Name</label
+                >
               </div>
             </div>
 
@@ -126,7 +148,9 @@
                   onblur="validateEmail('email')"
                   placeholder="Email Address"
                 />
-                <label for="lastname" class="signup-form__label"> Email Address</label>
+                <label for="lastname" class="signup-form__label">
+                  Email Address</label
+                >
               </div>
               <div class="signup-form__group"></div>
             </div>
@@ -141,7 +165,9 @@
                   placeholder="Password"
                   onblur="validateNonEmpty('password')"
                 />
-                <label for="password" class="signup-form__label"> Password</label>
+                <label for="password" class="signup-form__label">
+                  Password</label
+                >
               </div>
 
               <div class="signup-form__group">
@@ -153,19 +179,30 @@
                   placeholder="Confirm Password"
                   onblur="validateConfirmPassword('confirmPassword')"
                 />
-                <label for="confirmPassword" class="signup-form__label"> Confirm Password</label>
+                <label for="confirmPassword" class="signup-form__label">
+                  Confirm Password</label
+                >
               </div>
             </div>
             <div class="signup-form__agreement">
               <div class="signup-form__checkboxs">
                 <div class="signup-form__checkbox--group">
-                  <input type="checkbox" id="terms" class="signup-form__checkbox" />
+                  <input
+                    type="checkbox"
+                    id="terms"
+                    class="signup-form__checkbox"
+                  />
                   <label for="terms" class="signup-form__checkbox--label"
                     >I agree to the terms of use and privacy policy.</label
                   >
                 </div>
                 <div class="signup-form__checkbox--group">
-                  <input type="checkbox" id="newsletter" class="signup-form__checkbox" checked />
+                  <input
+                    type="checkbox"
+                    id="newsletter"
+                    class="signup-form__checkbox"
+                    checked
+                  />
                   <label for="newsletter" class="signup-form__checkbox--label"
                     >Subscribe to our newsletter</label
                   >
@@ -178,7 +215,11 @@
               >
                 Create a Free Account
               </button>
-              <button id="signup-submit-btn" type="submit" style="display: none"></button>
+              <button
+                id="signup-submit-btn"
+                type="submit"
+                style="display: none"
+              ></button>
             </div>
           </div>
         </form>
@@ -197,14 +238,14 @@
     <script type="text/javascript" src="/javascripts/signup.js"></script>
     <script>
       function googleLogin() {
-      window.location = 'google/callback'
-    }
-    function facebookLogin() {
-      window.location = 'facebook/callback'
-    }
-    function linkedinLogin() {
-      window.location = 'linkedin/callback'
-    }
+        window.location = "google/callback";
+      }
+      function facebookLogin() {
+        window.location = "facebook/callback";
+      }
+      function linkedinLogin() {
+        window.location = "linkedin/callback";
+      }
     </script>
   </body>
 </html>
