@@ -374,10 +374,11 @@ class AuthController {
       }
       console.log(user, info, err)
       res.status(400)
+      req.session.error = message
       res.locals = { ...locals, message }
       if (String(req.url).includes('register'))
         return res.redirect('/register');
-      return res.redirect('/');
+      return res.redirect('/login');
       // return res.render('login', { message })
     }
     req.logIn(user, function (err) {
