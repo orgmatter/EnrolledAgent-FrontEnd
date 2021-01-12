@@ -70,6 +70,7 @@ const handleSubmit = (e) => {
 
   // console.log(data);
   // document.getElementById("paymentModal").showModal();
+  $("#paymentModal").modal()
  
   // return
   axios({
@@ -94,7 +95,11 @@ const handleSubmit = (e) => {
       // document.querySelector("button").disabled = false;
       // paymentModal
       // Handle form submission.
-      var form = document.getElementById("payment-form");
+      const form = document.getElementById("payment-form");
+      const postalCodeSpan = form.querySelector(".CardField-postalCode span");
+      postalCodeSpan.classList.add("InputContainer");
+      postalCodeSpan.innerHTML = "Postal Code";
+
       form.addEventListener("submit", function(event) {
         event.preventDefault();
         // Initiate payment when the submit button is clicked

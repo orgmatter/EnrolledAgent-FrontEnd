@@ -1,7 +1,7 @@
 .rate {
-        display: flex;
-        flex-direction: row-reverse;
-        align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
     justify-content: flex-end;
     height: 46px;
 }
@@ -33,3 +33,32 @@
 .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;
 }
+
+
+.stars-outer {
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+  &:before{
+  content: "\f006 \f006 \f006 \f006 \f006";
+}
+}
+ 
+#main-star.stars-outer::before, #main-star .stars-inner::before, 
+#client-stars.stars-outer::before, #client-stars .stars-inner::before {
+  font-size: 24px;
+}
+ 
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  &:before{
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color: #f8ce0b;
+}
+}
+ 

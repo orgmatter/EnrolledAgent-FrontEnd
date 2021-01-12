@@ -15,8 +15,8 @@
   <body class="">
     <style>
       .modal {
-    z-index: 100001 !important;
-  }
+        z-index: 100001 !important;
+      }
     </style>
     <%- include("./partials/header.ejs") %>
     <div class="lvc8n">
@@ -57,7 +57,9 @@
       <form id="license-form">
         <div class="lvc8n-contact container">
           <div class="lvc8n-contact__head">
-            <div class="lvc8n-contact__head--head">Your Contact Information</div>
+            <div class="lvc8n-contact__head--head">
+              Your Contact Information
+            </div>
             <div class="lvc8n-contact__head--text">
               Provide your basic details so that we can respond with your
               verification status
@@ -74,7 +76,9 @@
                   id="firstName"
                   required
                 />
-                <label for="first-name" class="form__label">First Name<span>*</span></label>
+                <label for="first-name" class="form__label"
+                  >First Name<span>*</span></label
+                >
               </div>
               <div class="form__group">
                 <input
@@ -84,7 +88,9 @@
                   placeholder="Last Name*"
                   required
                 />
-                <label for="last-name" class="form__label">Last Name<span>*</span></label>
+                <label for="last-name" class="form__label"
+                  >Last Name<span>*</span></label
+                >
               </div>
             </div>
             <div class="form__row">
@@ -96,7 +102,9 @@
                   placeholder="Email Address*"
                   required
                 />
-                <label for="email" class="form__label">Email Address<span>*</span></label>
+                <label for="email" class="form__label"
+                  >Email Address<span>*</span></label
+                >
               </div>
               <div class="form__group">
                 <input
@@ -128,7 +136,9 @@
                   placeholder="Zip Code*"
                   required
                 />
-                <label for="zip-code" class="form__label">Zip Code<span>*</span></label>
+                <label for="zip-code" class="form__label"
+                  >Zip Code<span>*</span></label
+                >
               </div>
               <div class="form__group">
                 <input
@@ -150,7 +160,7 @@
             <div class="lvc8n-contact__head--head">EA Information</div>
             <div class="lvc8n-contact__head--text">
               Give the details of the Enrolled Agent you wish to verify. You do
-              not need to fill all fields, any information you have is enough
+              not need to fill all fields, any information you have is enough.
             </div>
           </div>
           <div class="lvc8n-contact__form">
@@ -211,7 +221,9 @@
                   class="form__input form__input-small form__input-small-left"
                   placeholder="City*"
                 />
-                <label for="agent-city" class="form__label">City<span>*</span></label>
+                <label for="agent-city" class="form__label"
+                  >City<span>*</span></label
+                >
                 <input
                   type="text"
                   id="agent-zipCode"
@@ -228,9 +240,7 @@
                   placeholder="State"
                   required
                 />
-                <label for="phone-number" class="form__label"
-                  >State</label
-                > 
+                <label for="phone-number" class="form__label">State</label>
               </div>
             </div>
             <div class="form__row">
@@ -244,7 +254,11 @@
                 <label for="license" class="form__label">License Number</label>
               </div>
               <div class="form__group">
-                <select name="state" id="preferred-contact" class="form__select">
+                <select
+                  name="state"
+                  id="preferred-contact"
+                  class="form__select"
+                >
                   <option value="" disabled selected>
                     Preferred Contact Method
                   </option>
@@ -259,7 +273,11 @@
                 <label for="" class="form__textarea-label"
                   >Optional Message</label
                 >
-                <textarea name="" id="optionalMessage" class="form__textarea"></textarea>
+                <textarea
+                  name=""
+                  id="optionalMessage"
+                  class="form__textarea"
+                ></textarea>
               </div>
             </div>
           </div>
@@ -279,24 +297,41 @@
       </div> -->
     </div>
 
-   
     <%- include("./partials/footer.ejs") %>
 
-    <div class="modal fade bd-example-modal-lg" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div
+      class="modal fade bd-example-modal-lg"
+      id="paymentModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLongTitle"
+      aria-hidden="true"
+    >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Continue with payment</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title" id="exampleModalLongTitle">
+              Continue with payment
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <form id="payment-form" class="sr-payment-form">
             <div class="sr-combo-inputs-row">
+              <div class="card-payment-details">
+                <input type="text" name="fullName" id="fullName" placeholder="Full Name"/>
+                <input type="text" name="address" id="address" placeholder="Address" class="ml-30"/>
+              </div>
               <div class="sr-input sr-card-element" id="card-element"></div>
             </div>
             <div class="sr-field-error" id="card-errors" role="alert"></div>
-            <button id="submit">
+            <button id="submit" type='submit'>
               <div class="spinner hidden" id="spinner"></div>
               <span id="button-text">Pay</span><span id="order-amount"></span>
             </button>
@@ -305,12 +340,14 @@
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
-    integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
-    crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+      integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+      crossorigin="anonymous"
+    ></script>
     <script src="https://js.stripe.com/v3/"></script>
     <script src="/javascripts/funfact.js"></script>
-          <script type="text/javascript" src="/javascripts/license-verification.js"></script>
+    <script type="text/javascript" src="/javascripts/license-verification.js"></script>
     <script src="/js/custom.js"></script>
   </body>
 </html>
