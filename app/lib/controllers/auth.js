@@ -372,6 +372,7 @@ class AuthController {
       else {
         message = err.message || 'Authentication failed'
       }
+      if(err.code == 'user_cancelled_login')message = 'Authentication canceled'
       console.log(user, info, err)
       res.status(400)
       req.session.error = message
