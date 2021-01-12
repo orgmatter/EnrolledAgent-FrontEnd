@@ -7,7 +7,6 @@ const lName = document.getElementById("lastname");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const terms = document.getElementById("terms");
-
 const notyf = new Notyf({
   dismissible: true,
   ripple: true,
@@ -35,7 +34,10 @@ function getCookie(name) {
 }
 
 const handleSubmit = (e) => {
+  console.log(e)
+  e.stopImmediatePropagation();
   e.preventDefault();
+  // e.stopImmediatePropagation();
   if (terms.checked) {
     const data = {
       email: email.value,
@@ -76,4 +78,14 @@ const handleSubmit = (e) => {
   }
 };
 
-signUpForm.addEventListener("submit", handleSubmit);
+signUpForm.addEventListener("submit", handleSubmit); 
+
+// signUpForm.addEventListener("submit", function(e) {
+//   e.preventDefault();
+//   console.log("submit");
+// });
+
+// const button = document.querySelector("#signup-submit-btn");
+// button.addEventListener("click", function(e) {
+//   console.log("click");
+// });

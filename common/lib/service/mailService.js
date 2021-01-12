@@ -24,13 +24,13 @@ class MailService {
   /**
    * @param  {string} sender
    */
-  constructor(sender) {
-    this.sender = sender
+  constructor(sender =  config.DEFAULT_EMAIL_SENDER) {
+    this.sender = sender 
     this.email = new Email({
       message: {
         from: sender || config.DEFAULT_EMAIL_SENDER
       },
-      // send: true,
+      send: true,
       transport: client,
       views: {
         root: config.EMAIL_ROOT_FOLDER,
