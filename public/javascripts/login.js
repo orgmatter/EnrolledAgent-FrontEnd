@@ -55,11 +55,12 @@ const handleSubmit = (e) => {
     //   },
   })
     .then((res) => {
-      console.log(res);
-      notyf.success(res.data.data.message || "Login successful");
-      setTimeout(() => {
-        window.location.href = "/dashboard";
-      }, 500);
+      // console.log(res);
+      window.location.href = "/";
+      // notyf.success(res.data.data.message || "Login successful");
+      // setTimeout(() => {
+      //   window.location.href = "/";
+      // }, 500);
     })
     .catch((err) => {
       console.log(err);

@@ -12,6 +12,7 @@ module.exports = {
   Comment: require('./comment'),
   Contact: require('./contact'),
   EmailList: require('./email_list'),
+  Faq: require('./faq'),
   Firm: require('./firm'),
   Log: require('./log'),
   LicenseVerification: require('./licenseVerification'),

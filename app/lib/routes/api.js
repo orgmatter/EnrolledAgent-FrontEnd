@@ -1,12 +1,12 @@
 const router = require("express").Router();
 const { Logger, Middleware, FileManager } = require("common");
-const AuthController = require("../../controllers/auth");
-const ContactController = require("../../controllers/contact");
-const ReviewController = require("../../controllers/review");
-const AgentController = require("../../controllers/agent");
-const ArticleController = require("../../controllers/article");
-const QuestionController = require("../../controllers/question");
-const LicenceController = require("../../controllers/licence");
+const AuthController = require("../controllers/auth");
+const ContactController = require("../controllers/contact");
+const ReviewController = require("../controllers/review");
+const AgentController = require("../controllers/agent");
+const ArticleController = require("../controllers/article");
+const QuestionController = require("../controllers/question");
+const LicenceController = require("../controllers/licence");
 
 router
   .post("/register", AuthController.register)

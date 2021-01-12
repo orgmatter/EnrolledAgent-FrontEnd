@@ -10,7 +10,7 @@ const terms = document.getElementById("terms");
 const notyf = new Notyf({
   dismissible: true,
   ripple: true,
-  duration: 3000,
+  duration: 10000,
   position: {
     x: "right",
     y: "top",
@@ -63,11 +63,12 @@ const handleSubmit = (e) => {
       //   },
     })
       .then((res) => {
-        notyf.success(res.data.data.message || "Signup successful");
-        console.log(res);
-        setTimeout(() => {
-          window.location.href = "/login";
-        }, 500);
+        window.location.href = "/login";
+        // notyf.success(res.data.data.message || "Signup successful");
+        // console.log(res);
+        // setTimeout(() => {
+        //   window.location.href = "/login";
+        // }, 500);
       })
       .catch((err) => {
         notyf.error(err.response.data.error.message || "Something went wrong");
@@ -79,13 +80,4 @@ const handleSubmit = (e) => {
 };
 
 signUpForm.addEventListener("submit", handleSubmit); 
-
-// signUpForm.addEventListener("submit", function(e) {
-//   e.preventDefault();
-//   console.log("submit");
-// });
-
-// const button = document.querySelector("#signup-submit-btn");
-// button.addEventListener("click", function(e) {
-//   console.log("click");
-// });
+ 
