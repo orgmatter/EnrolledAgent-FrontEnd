@@ -28,7 +28,7 @@ const checkRedirectCookie = (req, res, next) => {
   const path = req.cookies['redirect-to']
   if(path)
   res.clearCookie('redirect-to')
-  console.log(path)
+  // console.log(path)
   if(path && path.length > 1) return res.redirect(path)
   next()
 
@@ -46,7 +46,7 @@ router
   .use((req, res, next) => {
     req.locals = { query: req.query };
     req.locals.pageTitle = "Home";
-    console.log(req.user)
+    // console.log(req.user)
     if (
       req.isAuthenticated() &&
       req.user &&
@@ -71,7 +71,7 @@ router
       "google",
       { scope: ["profile", "email"] },
       function (err, user, info) {
-        console.log('google', user, info, err)
+        // console.log('google', user, info, err)
         handleSocial(req, res, next, err, user, info);
       }
     )(req, res, next);
@@ -135,7 +135,7 @@ router
     AgentController.popular,
     ResourceController.random,
     (req, res) => {
-      console.log(req.locals)
+      // console.log(req.locals)
       //  console.log("locals", req.app.locals);
       // extract message if this page was redirected to from another page
       if (req.app.locals && req.app.locals.message)
