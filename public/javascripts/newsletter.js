@@ -2,7 +2,7 @@
 const notyfy = new Notyf({
   dismissible: true,
   ripple: true,
-  duration: 3000,
+  duration: 6000,
   position: {
     x: "right",
     y: "top",

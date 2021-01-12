@@ -104,7 +104,7 @@ class AuthController {
     if (subscribeToNewsletter)
       EmailList.findOneAndUpdate({ email }, { email }, { upsert: true })
 
-    this.sendVerification(email, res, next)
+    this.sendVerification(email, req, res, next)
   }
 
 
@@ -114,7 +114,7 @@ class AuthController {
  * @param  {Express.Response} res
  * @param  {Function} next
  */
-  sendVerification = async (email, res, next) => {
+  sendVerification = async (email, req, res, next) => {
     const user = await User.findOne({ email }).exec()
 
     let verification = await VerificationToken.findOne({ user: user._id, token: { $exists: true } }).exec()
@@ -123,12 +123,15 @@ class AuthController {
       verification = await VerificationToken.create({ user: user._id, token: uid(30) })
     const link = `${APP_URL}/verify/${verification.token}`
 
+    const message = `A mail has been sent to ${email}, please click the link to verify your account`
 
+    req.session.message = message
     res.json({
       data: {
-        message: `A mail has been sent to ${email}, please click the link to verify your account`,
+        message
       },
     })
+
     // send an email for user to verify account
 
     new MailService().sendMail(
@@ -155,7 +158,7 @@ class AuthController {
 */
   resendVerification = async (req, res, next) => {
     const { email } = req.body
-    this.sendVerification(email, res, next)
+    this.sendVerification(email, req, res, next)
   }
 
 
@@ -170,8 +173,8 @@ class AuthController {
     const verification = await VerificationToken.findOne({ token })
       .populate('usr').exec()
 
-      // console.log(verification)
-      if (verification && verification.usr && verification.usr.email) {
+    // console.log(verification)
+    if (verification && verification.usr && verification.usr.email) {
 
 
       const { email, firstName, lastName } = verification.usr
@@ -193,11 +196,11 @@ class AuthController {
           }
         )
       }
-      req.app.locals.message = "Your email has been verified succesfully"
+      req.session.message = "Your email has been verified succesfully"
       // res.locals = { ...req.locals, message: "Your email has been verified succesfully" }
       res.redirect("/")
     } else
-      req.app.locals.message = "invalid link, Could not Verify your mail"
+      req.session.error = "invalid link, Could not Verify your mail"
     res.redirect("/")
   }
 
@@ -237,7 +240,10 @@ class AuthController {
       user.isEmailVerified = true
       await user.save()
 
-      res.json({ data: { message: "Password Changed succesfully" } })
+      const message = "Password Changed succesfully"
+      req.session.message = message
+
+      res.json({ data: { message } })
     } else {
       next(
         new Exception(
@@ -340,7 +346,9 @@ class AuthController {
           res.status(400)
           return next(err)
         }
-        return res.json({ data: { message: `Welcome back ${user.firstName}` } })
+        const message = `Welcome back ${user.firstName}`
+        req.session.message = message
+        return res.json({ data: { message } })
       })
     })(req, res, next)
   }
@@ -374,6 +382,14 @@ class AuthController {
     }
     req.logIn(user, function (err) {
       // console.log(err)
+      if (err) {
+        const message = `Login Failed`
+        req.session.message = message
+      } else {
+        const message = `Welcome back ${user.firstName}`
+        req.session.message = message
+      }
+
       return res.redirect('/');
     });
     // Successful authentication, redirect home.

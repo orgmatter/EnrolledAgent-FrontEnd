@@ -1,10 +1,35 @@
-
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+  integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+  crossorigin="anonymous"></script>
 <script>
-    window.addEventListener('load', (event) => {
+  const toast = new Notyf({
+    dismissible: true,
+    ripple: true,
+    // duration: 3000,
+    position: {
+      x: "right",
+      y: "top",
+    },
+    types: [
+      {
+        className: "alert-message",
+        type: "success",
+      },
+      {
+        className: "alert-message",
+        type: "error",
+      },
+    ],
+  });
+
+  window.addEventListener('load', (event) => {
     console.log('page is fully loaded');
     const message = '<%= locals.infoMessage %>'
-    if(message  && message.length > 0)
-    notyf.success(message);
+    const errrorMessage = '<%= locals.errorMessage %>'
+    if (message && message.length > 0)
+    toast.success({message, duration: 10000},);
+    if (errrorMessage && errrorMessage.length > 0)
+    toast.error({message: errrorMessage, duration: 10000},);
   });
 </script>
-
