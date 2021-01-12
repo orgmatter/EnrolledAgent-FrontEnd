@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { handleSocial, verify } = require("../controllers/auth");
+const passport = require("passport");
 const exceptions = ['/login', '/logout', '/register', '/', '/google/callback', '/facebook/callback', '/linkedin/callback']
 
 
