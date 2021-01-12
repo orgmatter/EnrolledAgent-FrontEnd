@@ -30,7 +30,7 @@ class MailService {
       message: {
         from: sender || config.DEFAULT_EMAIL_SENDER
       },
-      send: true,
+      // send: true,
       transport: client,
       views: {
         root: config.EMAIL_ROOT_FOLDER,

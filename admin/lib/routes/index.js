@@ -14,6 +14,7 @@ router
   .use(require('./claim'))
   .use('/sponsor', require('./sponsor'))
   .use('/log', require('./log'))
+  .use('/faq', require('./faq'))
   .use('/category', require('./category'))
   .use('/article', require('./article'))
   .use('/agent', require('./agent'))
