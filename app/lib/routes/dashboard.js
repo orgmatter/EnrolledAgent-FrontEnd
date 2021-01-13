@@ -13,7 +13,7 @@ router
         if (!(req.isAuthenticated() && req.user)) return res.redirect("/login");
         next();
     })
-    .get("/", user, ReviewController.agent, QuestionController.myAnswers, 
+    .get("/", user, ReviewController.analysisForAgent, QuestionController.myAnswers, 
     ResourceController.random,  (req, res) => {
         console.log("user>>>", req.locals);
         res.clearCookie('redirect-to')
