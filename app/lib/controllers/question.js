@@ -7,6 +7,7 @@ const {
     ErrorMessage,
     Models: { QuestionCategory, Question, Answer, Agent },
 } = require("common");
+const { Types } = require("mongoose");
 
 const BaseController = require('./baseController');
 
@@ -176,18 +177,43 @@ class QuestionController extends BaseController {
         next()
     }
 
-     /**
-     * get question categorirs
-     * @param  {Express.Request} req
-     * @param  {Express.Response} res
-     * @param  {Function} next
-     */
+    /**
+    * get question categorirs
+    * @param  {Express.Request} req
+    * @param  {Express.Response} res
+    * @param  {Function} next
+    */
     async category(req, res, next) {
         const data = await QuestionCategory.find({})
             .sort({ priority: -1 })
             .exec()
         req.locals.questionCategory = data
         // console.log(data)
+        next()
+
+    }
+
+    /**
+     * my answers
+     * @param  {Express.Request} req
+     * @param  {Express.Response} res
+     * @param  {Function} next
+     */
+    async myAnswers(req, res, next) {
+        req.locals.myAnswers = []
+        if (!(req.isAuthenticated() && req.user))
+            return next()
+
+        let agent = await Agent.findOne({ owner: Types.ObjectId(req.user.id) }).exec()
+        if (!agent || !agent._id)
+            return next()
+
+        const data = await Answer.find({ agent: agent._id })
+            .populate('question')
+            .sort({ createdAt: -1 })
+            .exec()
+        req.locals.myAnswers = data
+        console.log(data)
         next()
 
     }
