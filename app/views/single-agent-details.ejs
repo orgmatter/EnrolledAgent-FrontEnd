@@ -29,8 +29,13 @@
                 </div>
                 <small><%= locals.agent.reviewCount || 0 %> reviews</small>
                 <h5><b>Service Offered:</b> General Accounting Service.</h5>
-                <a <% if(locals.isAuthenticated) {%> href="/claim-profile/<%= locals.agent._id %>" <%}%> href="/login"  class="btn btn-lg b-ton">Is this your listing? Claim now</a>
-              </div>
+                <% if(locals.agent.isClaimed) { %>
+                  <p class="btn btn-lg b-ton">Listing Claimed</p>
+                <%} else {%>
+                  <a <% if(locals.isAuthenticated) {%> href="/claim-profile/<%= locals.agent._id %>" <%}%> href="/login"  class="btn btn-lg b-ton">Is this your listing? Claim now</a>
+              
+                <%}%> 
+                </div>
 
               <div class="btn-div">
                 <a href="tel:<%= locals.agent.phone || "N/A"%>" class="btn btn-primary btn-block b-ton">

@@ -1,9 +1,10 @@
 const page_url = location.href;
 const url_match = page_url.match("enrolledagent.org");
 const base_Url = url_match ? "https://enrolledagent.org" : "http://localhost:3000";
-const answerForm = document.getElementById("answer-form");
-const id = document.querySelector('meta[name="agentId"]').getAttribute("content");
-const message = document.getElementById("mytextarea");
+const answerForm = document.getElementById("article-form");
+const heading = document.getElementById("heading");
+const category = document.getElementById("articleCategory");
+const image = document.getElementById("image");
 const btn = document.getElementById("submit-btn");
 const btnContent = btn.innerHTML;
 
@@ -45,44 +46,55 @@ function clearFormData() {
 
 const handleSubmit = (e) => {
   e.preventDefault();
-  const testt = tinyMCE.activeEditor.getContent();
-  console.log(testt);
+  const body = tinyMCE.activeEditor.getContent();
+
   const data = {
-    question: id,
-    message: testt,
+    title: heading.value,
+    body: body,
+    category: category.value,
+    avatar: image.files[0],
   };
+
+  getFormData(data);
+
+};
+
+const getFormData = (data) => {
+  const formData = new FormData();
+  formData.set('title', data.title);
+  formData.set('body', data.body);
+  formData.set('category', data.category);
+  formData.append('avatar', data.avatar);
 
   console.log(data);
   btn.setAttribute("disabled", "true");
   btn.innerHTML = spinner();
-  console.log("here");
+  
   axios({
     method: "POST",
-    url: `${base_Url}/api/answer`,
+    url: `${base_Url}/api/article`,
     credentials: 'same-origin', // <-- includes cookies in the request
         headers: {
           "CSRF-Token":  getCookie('XSRF-TOKEN'), 
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-    data: JSON.stringify(data),
+    data: formData,
 
   })
     .then((res) => {
       console.log(res);
-      console.log("here2");
       btn.innerHTML = btnContent;
       clearFormData();
       btn.removeAttribute("disabled");
-      notyf.success(res.data.message || "Message sent!");
+      notyf.success(res.data.message || "Article Upload Successful!");
     })
     .catch((err) => {
       console.log(err.response);
-      console.log("here instead");
       btn.innerHTML = btnContent;
       btn.removeAttribute("disabled");
       notyf.error(err.response.data.error.message || "Something went wrong");
     });
-};
+}
 
 answerForm.addEventListener("submit", handleSubmit);

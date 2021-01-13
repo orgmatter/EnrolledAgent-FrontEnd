@@ -45,11 +45,11 @@ function clearFormData() {
 
 const handleSubmit = (e) => {
   e.preventDefault();
-  const testt = tinyMCE.activeEditor.getContent();
-  console.log(testt);
+  const body = tinyMCE.activeEditor.getContent();
+
   const data = {
     question: id,
-    message: testt,
+    message: body,
   };
 
   console.log(data);
@@ -74,7 +74,7 @@ const handleSubmit = (e) => {
       btn.innerHTML = btnContent;
       clearFormData();
       btn.removeAttribute("disabled");
-      notyf.success(res.data.message || "Message sent!");
+      notyf.success(res.data.message || "Answer sent successfully!");
     })
     .catch((err) => {
       console.log(err.response);
