@@ -9,8 +9,6 @@ const {
 } = require("common");
 const { Types } = require("mongoose");
 
-const {Types} = require("mongoose");
-
 const BaseController = require('./baseController');
 
 const sanitizeBody = (body) => {
