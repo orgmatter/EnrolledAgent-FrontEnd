@@ -63,6 +63,9 @@ const AgentSchema = new Schema({
   owner: {
     type: { ref: 'user', type: Schema.ObjectId }
   },
+  stateLicenced: String,
+  licenceProof: String,
+  title: String,
   society: [String],
   education: [String],
   lang: [String],
@@ -102,17 +105,17 @@ AgentSchema.index({
 })
 
 AgentSchema.virtual('isClaimed')
-.get(function () {
-  // console.log(this.owner, this._id,  typeof this.owner, Validator.isMongoId(String(this.owner))  )
-  return (this.owner && Validator.isMongoId(String(this.owner))) 
-})
+  .get(function () {
+    // console.log(this.owner, this._id,  typeof this.owner, Validator.isMongoId(String(this.owner))  )
+    return (this.owner && Validator.isMongoId(String(this.owner)))
+  })
 
 
 AgentSchema.virtual('premium')
-.get(function () {
-  return (this.transaction && Validator.isMongoId(String(this.transaction))) || this.adminPremium
-})
- 
+  .get(function () {
+    return (this.transaction && Validator.isMongoId(String(this.transaction))) || this.adminPremium
+  })
+
 AgentSchema.virtual('reviewCount', {
   ref: 'review',
   localField: '_id',

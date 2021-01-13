@@ -16,6 +16,7 @@ module.exports = {
   Firm: require('./firm'),
   Log: require('./log'),
   LicenseVerification: require('./licenseVerification'),
+  ListingRequest: require('./listingRequest'),
   Offshore: require('./offshore'),
   Review: require('./review'),
   Role: require('./role'),

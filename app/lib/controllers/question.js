@@ -5,7 +5,7 @@ const {
     Exception,
     ErrorCodes,
     ErrorMessage,
-    Models: { QuestionCategory, Question, Answer },
+    Models: { QuestionCategory, Question, Answer, Agent },
 } = require("common");
 
 const BaseController = require('./baseController');
@@ -94,13 +94,13 @@ class QuestionController extends BaseController {
             res.status(422)
             return next(
                 new Exception(
-                    'message must not ne empty',
+                    'message must not be empty',
                     ErrorCodes.REQUIRED
                 )
             )
         }
 
-        await Answer.create({ agent, message, question })
+        await Answer.create({ agent: agent._id, message, question })
         super.handleResult({ message: 'Your question has been posted successfully' }, res, next)
 
     }

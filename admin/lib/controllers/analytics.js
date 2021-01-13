@@ -16,8 +16,8 @@ class AnalyticsController extends BaseController {
    
     async getAll(req, res, next) {
         const { page, perpage, q, search } = req.query
-        let query = Helper.parseQuery(q) || {}
-        if (search) query = { $text: { $search: search } }
+        let query = Helper.extractQuery(req.query) || {}
+        if (q) query = { title: { $regex: q, $options: 'i' } }
 
         DB.Paginate(res, next, Agent, {
             perPage: perpage,
