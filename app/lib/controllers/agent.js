@@ -142,6 +142,8 @@ class AgentController extends BaseController {
       Agent.findByIdAndUpdate(agent._id, { $inc: { viewCount: 1 } }).exec();
   }
 
+  
+
   async getAll(req, res, next) {
     const { page, perpage, q, search } = req.query;
     let query = Helper.parseQuery(q) || {};
