@@ -17,6 +17,12 @@
       data-toggle="collapse" href="#submenu1" aria-expanded="false">
       <a href="#" class="sidebar_bottom-item-link" >
         Ask an EA
+        <span class="dropIcon">
+            <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg" 
+            <% if (page_name === 'ask') { %>class="drop drop-active" <% } %> class="drop">
+                <path d="M9 1L4.82609 5L1 1" stroke-width="1.5" />
+            </svg>
+        </span>
       </a>
     </div>
     <div <% if (page_name === 'ask') { %>class="collapse show" <% } %> class="collapse" id="submenu1" aria-expanded="false">
@@ -32,16 +38,17 @@
                 class="sidebar_bottom-item-link">My Answers
             </a>
         </div>
-        <div class="sidebar_bottom-item">
-            <a href="/dashboard/my-leads"  <% if (sub_page_name === 'myLeads') { %>
-              class="sidebar_bottom-item-link sub-active" <% } %>
-                class="sidebar_bottom-item-link">My Leads
-            </a>
-        </div>
       </div>
     <div <% if (page_name === 'articles') {%>class="sidebar_bottom-item active"<%}%>class="sidebar_bottom-item" 
       data-toggle="collapse" href="#submenu2" aria-expanded="false">
-      <a href="#" class="sidebar_bottom-item-link">Articles</a>
+      <a href="#" class="sidebar_bottom-item-link">Articles
+        <span class="dropIcon">
+          <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg" 
+          <% if (page_name === 'articles') { %>class="drop drop-active" <% } %> class="drop">
+              <path d="M9 1L4.82609 5L1 1" stroke-width="1.5" />
+          </svg>
+        </span>
+      </a>
     </div>
     <div <% if (page_name === 'articles') { %>class="collapse show" <% } %> class="collapse" id="submenu2" aria-expanded="false">
         <div class="sidebar_bottom-item">

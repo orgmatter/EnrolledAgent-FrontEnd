@@ -57,6 +57,52 @@
           font-weight: 600;
           transition: .5s;
         }
+        svg {
+        margin-left: 20px;
+
+        path {
+          fill: #838282;
+        }
+
+        .active {
+          stroke: #0142a4;
+        }
+
+        .active-fill {
+          fill: #0142a4 !important;
+        }
+      }
+
+      svg.drop {
+        path {
+          stroke: #fff;
+          fill: none !important;
+        }
+      }
+
+      svg.drop-active {
+        path {
+          stroke: #fff !important;
+          fill: none !important;
+        }
+      }
+      &:hover {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      &:hover svg {
+        path {
+          fill: #fff !important;
+        }
+      }
+
+      &:hover svg.drop {
+        path {
+          stroke: #fff !important;
+          fill: none !important;
+        }
+      }
       }
     }
   }

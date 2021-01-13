@@ -233,7 +233,7 @@ class ArticleController extends BaseController {
         if (search) query = { title: { $regex: search, $options: 'i' } }
         let agent
         if (req.isAuthenticated() && req.user) {
-            agent = await Agent.findOne({ owner: req.user.id }).exec()
+            agent = await Agent.findOne({ owner: Types.ObjectId(req.user.id) }).exec()
         }
 
 

@@ -13,8 +13,7 @@ router
         if (!(req.isAuthenticated() && req.user)) return res.redirect("/login");
         next();
     })
-    .get("/", user, ReviewController.analysisForAgent, QuestionController.myAnswers, 
-    ResourceController.random,  (req, res) => {
+    .get("/", user, ReviewController.analysisForAgent, ResourceController.random,  (req, res) => {
         console.log("user>>>", req.locals);
         res.clearCookie('redirect-to')
         res.render("dashboard/dashboardhome", {
@@ -78,7 +77,8 @@ router
             sub_page_name: "answer",
         });
     })
-    .get("/my-answers", user, (req, res) => {
+    .get("/my-answers", user, QuestionController.myAnswers, (req, res) => {
+        console.log("answers!!!>>>", req.locals.myAnswers);
         res.render("dashboard/dashboardQ&A", {
             locals: req.locals,
             page_name: "ask",
