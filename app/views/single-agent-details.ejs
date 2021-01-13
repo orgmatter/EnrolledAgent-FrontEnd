@@ -27,9 +27,9 @@
                   <div class="stars-inner"></div>
                 </div>
                 </div>
-                <small><%= locals.agent.reviewCount || "N/A" %> reviews</small>
+                <small><%= locals.agent.reviewCount || 0 %> reviews</small>
                 <h5><b>Service Offered:</b> General Accounting Service.</h5>
-                <a <% if(locals.isAuthenticated) {%> href="/dashboard" <%}%> href="/login"  class="btn btn-lg b-ton">Is this your listing? Claim now</a>
+                <a <% if(locals.isAuthenticated) {%> href="/claim-profile/<%= locals.agent._id %>" <%}%> href="/login"  class="btn btn-lg b-ton">Is this your listing? Claim now</a>
               </div>
 
               <div class="btn-div">
@@ -193,7 +193,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button class="btn btn-primary" type="submit">Submit</button>
+                        <button class="btn btn-primary" type="submit" id="submit-btn">Submit</button>
                       </div>
                     </form>
                     </div>

@@ -198,6 +198,13 @@ router
         console.log("license", req.locals);
         res.render("license-verification", { locals: req.locals });
     })
+    .get("/claim-profile/:id", ReviewController.analysis, AgentController.get, (req, res) => {
+        console.log("listing >>>", req.locals);
+        res.render("claim-profile", { 
+            locals: req.locals,
+        });
+    })
+    
 
 
 module.exports = router

@@ -70,7 +70,7 @@
             <form>
               <div class="createArticle_middle-field">
                 <h4>Heading<span>*</span></h4>
-                <input type="text" required />
+                <input type="text" required id="heading"/>
                 <p>
                   This should describe your article topic. ie: 3 Tax Deductions
                   Tips
@@ -78,24 +78,24 @@
               </div>
               <div class="createArticle_middle-field">
                 <h4>Sub Heading</h4>
-                <input type="text" />
+                <input type="text" id="subHeading"/>
                 <p>Recommended as a best practice, appears under the title.</p>
-              </div>
-              <div class="createArticle_middle-field">
-                <h4>Body<span>*</span></h4>
-                <input type="text" required />
-                <p>The body of your article goes here</p>
-              </div>
-              <div class="createArticle_middle-field">
-                <h4>Category<span>*</span></h4>
-                <select name="articleCategory" id="articleCategory" required>
-                  <option>select an article category</option>
-                </select>
               </div>
               <div class="createArticle_middle-field">
                 <h4>Body<span>*</span></h4>
                 <textarea id="mytextarea" name="mytextarea" required></textarea>
                 <p>The body of your article goes here</p>
+              </div>
+              <div class="createArticle_middle-field">
+                <h4>Category<span>*</span></h4>
+                <select name="articleCategory" id="articleCategory" required>
+                  <option selected disabled>Select an article category</option>
+                  <% if (locals.articleCategory.length > 0) { %>
+                    <% locals.articleCategory.map((el, id) => { %>
+                      <option value=<%= el.name %> ><%= el.name %></option>
+                    <% }) %> 
+                  <%}%> 
+                </select>
               </div>
               <div class="createArticle_middle-field">
                 <h4>Video URL</h4>

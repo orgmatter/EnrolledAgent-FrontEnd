@@ -11,6 +11,8 @@ const lastName = document.getElementById("lastName");
 const city = document.getElementById("city");
 const state = document.getElementById("state");
 const message = document.getElementById("message");
+const btn = document.getElementById("submit-btn");
+const btnContent = btn.innerHTML;
 
 const notyf = new Notyf({
   dismissible: true,
@@ -44,6 +46,16 @@ function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
+function spinner() {
+  const markup = `<div class="lds-ring"><div></div><div></div><div></div><div></div></div>`;
+  
+  return markup;
+}
+
+function clearFormData() {
+  reviewForm.reset();
+}
+
 const handleSubmit = (e) => {
   e.preventDefault();
   const data = {
@@ -60,6 +72,9 @@ const handleSubmit = (e) => {
   const checked_rating = document.querySelector('input[name = "rate"]:checked');
 
 if(checked_rating !== null){ 
+  btn.setAttribute("disabled", "true");
+  btn.innerHTML = spinner();
+
   axios({
     method: "POST",
     url: `${base_Url}/api/review`,
@@ -74,10 +89,18 @@ if(checked_rating !== null){
   })
     .then((res) => {
       console.log(res);
+      btn.innerHTML = btnContent;
+      clearFormData();
+      btn.removeAttribute("disabled");
       notyf.success(res.data.message || "Message sent!");
+      setTimeout(() => {
+        window.location.reload();
+     },2000)
     })
     .catch((err) => {
       console.log(err.response);
+      btn.innerHTML = btnContent;
+      btn.removeAttribute("disabled");
       notyf.error(err.response.data.error.message || "Something went wrong");
     });
   } else {

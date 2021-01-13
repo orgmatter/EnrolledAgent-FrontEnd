@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<%- include("./partials/head.ejs") %>
+<meta name="agentId" content=<%= locals.agent._id || "N/A"  %>  />
+
+  <body>
+    <%- include("./partials/header.ejs") %>
+
+      <section id="single">
+        <div class="container">
+          <div class="row">
+            <aside class="col-md-4 part-1">
+              <div class="face-card cards">
+                <img src="/assets/images/avatar.webp" alt="img" />
+               <% if(locals.premium) { %>
+                <h4>Premium Member</h4>
+               <%}%> 
+                <h2>
+                  <%= locals.agent.firstName || "N/A" %>
+                    <%= locals.agent.lastName || "N/A" %>
+                </h2> 
+                <p>
+                  <%= locals.agent.city || "N/A" %>
+                </p>
+                <small><%= locals.agent.reviewCount || 0 %> reviews</small>
+                <h5><b>Service Offered:</b> General Accounting Service.</h5>
+                <a href="/agent/<%= locals.agent._id%>"  class="btn btn-lg b-ton">Back to Listing</a>
+              </div>
+
+              <div class="mt-40 personal-card cards text-center">
+                <h3><span>Personal</span> Info</h3>
+                <p><span>Address:</span>
+                  <%= locals.agent.address1 || "N/A" %>
+                </p>
+                <p><span>Phone number:</span>
+                  <%= locals.agent.phone || "N/A" %>
+                </p>
+                <p>
+                  <span>Social:</span>
+                  <a href="#"><i class="fa fa-instagram"></i></a>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                  <a href="#"><i class="fa fa-facebook-f"></i></a>
+                  <a href="#"><i class="fa fa-globe"></i></a>
+                </p>
+                <div class="b-ton-group">
+                  <a href="#" class="btn b-ton left">
+                    <i class="fa fa-map-marker-alt"></i> Get Direction</a>
+                  <!-- <a href="#" class="btn b-ton right">
+                    <i class="fa fa-download"></i> Download contact</a> -->
+                </div>
+              </div>
+
+            </aside>
+            <main class="col-md-7 part-2">
+              <div class="about">
+                <h3>
+                  <span>About </span>
+                  <%= locals.agent.firstName || "N/A" %>
+                    <%= locals.agent.lastName || "N/A" %>
+                </h3>
+                <p>
+                  <%= locals.agent.firstName || "N/A" %> <%= locals.agent.lastName || "N/A" %> is an 
+                  Enrolled Agent located in <%= locals.agent.city || "N/A" %>. <%= locals.agent.firstName || "N/A" %> <%= locals.agent.lastName || "N/A" %> 
+                  is a Tax Professional licensed at the Federal level by the Internal 
+                  Revenue Service (IRS) in the United States. The United States requirements 
+                  for an Enrolled Agent ensure that [Name] is not just greatly knowledgeable about 
+                  the practice but also has excellent work ethics. Enrolled Agents are specialized 
+                  Tax-preparer who may work in private industry, government, education, etc.  
+                  Enrolled Agents are skilled to help you with any financial decision, be it 
+                  personal or business.
+                </p>
+              </div>
+
+              <div class="mt-50 claim-listing">
+                  <h2>Congratulations: You are about to claim this listing!</h2>
+                  <p class="mt-10">Once your claim has been accepted, you will be able to update your listing details, 
+                      answer tax questions for new client leads, create articles to attract clients, and more. 
+                      To proceed with your claim, please complete the form below and click "Claim This Listing" 
+                      to get started.</p>
+                    <form class="mt-30 claim-listing-form" id="claim-listing-form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" id="role" placeholder="Job Role*" required /> 
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="company" placeholder="Company Name*" required /> 
+                            </div>
+                        </div>
+                        <div class="mt-30 row">
+                            <div class="col-md-6">
+                                <select name="size" id="size" required>
+                                    <option disabled selected>Company Size*</option>
+                                    <option value="0-3">0-3 Employees</option>
+                                    <option value="4-7">4-7 Employees</option>
+                                    <option value="8-15">8-15 Employees</option>
+                                    <option value="16-30">16-30 Employees</option>
+                                    <option value="31-50">31-50 Employees</option>
+                                    <option value="51-100">51-100 Employees</option>
+                                    <option value="101-500">101-500 Employees</option>
+                                    <option value="501-1000">501-1000 Employees</option>
+                                    <option value="1000+">1000+ Employees</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <select name="type" id="type" required>
+                                    <option disabled selected>Organization Type*</option>
+                                    <option value="Corporation">Corporation</option>
+                                    <option value="Accounting Firm">Accounting Firm</option>
+                                    <option value="Law Firm">Law Firm</option>
+                                    <option value="Government">Government</option>
+                                    <option value="Academic">Academic</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-30 row">
+                            <div class="col-md-6">
+                                <select name="revenue" id="revenue" required>
+                                    <option disabled selected>Company Revenue*</option>
+                                    <option value="Less than $100k"> Less than $100k</option>
+                                    <option value="Less than $500k">Less than $500k</option>
+                                    <option value="$501k - $1m">$501k - $1m</option>
+                                    <option value="$1m - $5m">$1m - $5m</option>
+                                    <option value="$5m - $10m">$5m - $10m</option>
+                                    <option value="$10m+">$10m+</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <select name="tax-returns" id="tax-returns" required>
+                                    <option disabled selected>Annual Tax Returns Prepared*</option>
+                                    <option value="Less than 100"> Less than 100</option>
+                                    <option value="101 - 200"> 101 - 200</option>
+                                    <option value="201 - 250"> 201 - 250</option>
+                                    <option value="251 - 400"> 251 - 400</option>
+                                    <option value="401 - 500"> 401 - 500</option>
+                                    <option value="501 - 800"> 501 - 800</option>
+                                    <option value="801 - 1,000"> 801 - 1,000</option>
+                                    <option value="1,001 - 2,500"> 1,001 - 2,500</option>
+                                    <option value="2,501 - 5,000"> 2,501 - 5,000</option>
+                                    <option value="5,001 - 7,500"> 5,001 - 7,500</option>
+                                    <option value="7,501 - 10,000"> 7,501 - 10,000</option>
+                                    <option value="10,000+"> 10,000+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-40 claim-listing-form-checkbox-div">
+                          <input type="checkbox" id="terms" required />
+                          <label for="terms" >I agree to the <a href="/terms">terms of use</a> and <a href="/privacy">privacy policy.</a></label>
+                        </div>
+                        <div class="mt-40 claim-listing-form-btn-div">
+                          <button type="submit" id="submit-btn">Claim This Listing</button>
+                        </div>
+                    </form>
+              </div>
+
+              
+            </main>
+          </div>
+        </div>
+      </section>
+
+      <!-- footer section -->
+
+      <%- include("./partials/footer.ejs") %>
+           <!-- <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+    integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+    crossorigin="anonymous"></script> -->
+          <script type="text/javascript" src="/javascripts/claim-profile.js"></script>
+          <script src="/js/custom.js"></script>
+  </body>
+
+</html>
