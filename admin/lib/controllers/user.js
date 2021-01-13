@@ -24,11 +24,6 @@ const sanitizeBody = function (body) {
 
 
 class UserController extends BaseController {
-
-  
-
-
-
   /**
    * update a user record, if a file was uploaded,
    * it saves the file to storge
@@ -326,7 +321,6 @@ class UserController extends BaseController {
     }, (data)=>{
         super.handleResultPaginated({...data}, res, next) 
     })
-
 }
 
 

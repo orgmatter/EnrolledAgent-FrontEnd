@@ -265,7 +265,7 @@ class AuthController {
   user = async function (req, res, next) {
     if (req.user && req.user.id) {
       const { id } = req.user
-      User.findById(id).then((doc) => {
+      User.findById(id, {salt: 0, hash:0}).then((doc) => {
         req.locals.user = doc
         next()
       })

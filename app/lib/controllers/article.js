@@ -12,6 +12,8 @@ const {
     Models: { Article, Agent, Log, ArticleCategory, Comment },
 } = require("common");
 
+const {Types} = require("mongoose");
+
 const BaseController = require('./baseController');
 
 const sanitizeBody = (body) => {
@@ -29,7 +31,7 @@ class ArticleController extends BaseController {
         if (!(req.isAuthenticated() && req.user))
             return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
 
-        let agent = await Agent.findOne({ owner: req.user.id }).exec()
+        let agent = await Agent.findOne({ owner: Types.ObjectId(req.user.id) }).exec()
         if (!agent || !agent._id) {
             res.status(422)
             return next(
@@ -96,7 +98,7 @@ class ArticleController extends BaseController {
         if (!(req.isAuthenticated() && req.user))
             return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
 
-        let agent = await Agent.findOne({ owner: req.user.id }).exec()
+        let agent = await Agent.findOne({ owner: Types.ObjectId(req.user.id) }).exec()
         if (!agent || !agent._id) {
             res.status(422)
             return next(
@@ -231,7 +233,7 @@ class ArticleController extends BaseController {
         if (search) query = { title: { $regex: search, $options: 'i' } }
         let agent
         if (req.isAuthenticated() && req.user) {
-            agent = await Agent.findOne({ owner: req.user.id }).exec()
+            agent = await Agent.findOne({ owner: Types.ObjectId(req.user.id) }).exec()
         }
 
 
@@ -288,7 +290,6 @@ class ArticleController extends BaseController {
             .exec()
         req.locals.latestArticle = data
         next()
-
     }
 
     async featured(req, res, next) {
@@ -297,10 +298,10 @@ class ArticleController extends BaseController {
             .sort({ createdAt: -1 })
             .populate(['category'])
             .exec()
-        req.locals.featuredArticle = data
+        req.locals.featuredArticle = data[0];
         next()
-
     }
+    
     /**
      * get Article categorirs
      * @param  {Express.Request} req

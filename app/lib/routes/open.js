@@ -43,8 +43,9 @@ router
     // .get('/linkedin/callback', passport.authenticate('linkedin'), handleSocial)
     // .get('/google/callback', passport.authenticate('google', { scope: ['profile', 'email'], }), handleSocial)
 
-    .get("/blog", ArticleController.getAll, (req, res) => {
-        // console.log("articles>>>", req.locals);
+    .get("/blog", ArticleController.getAll, ArticleController.featured, 
+    ArticleController.latest, (req, res) => {
+         console.log("articles>>>", req.locals);
         res.render("blog", { locals: req.locals });
     })
     .get("/blog/:id", ArticleController.get, (req, res) => {
@@ -64,7 +65,7 @@ router
             res.render("find-agent", { locals: req.locals });
         }
     )
-    .get("/search-results", AgentController.getAll, (req, res) => {
+    .get("/search-results",ReviewController.agent, AgentController.getAll, (req, res) => {
         console.log("locals ", req.locals.agents.data);
         res.render("search-results", { locals: req.locals });
     })
@@ -198,6 +199,13 @@ router
         console.log("license", req.locals);
         res.render("license-verification", { locals: req.locals });
     })
+    .get("/claim-profile/:id", ReviewController.analysis, AgentController.get, (req, res) => {
+        console.log("listing >>>", req.locals);
+        res.render("claim-profile", { 
+            locals: req.locals,
+        });
+    })
+    
 
 
 module.exports = router

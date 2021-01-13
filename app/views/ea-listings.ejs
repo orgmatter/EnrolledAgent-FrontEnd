@@ -73,24 +73,19 @@
             <a href="/ea-listings" class="btn btn-lg b-ton b-ton-blu"> View All EAs</a>
           </div>
           <div class="col-md-3">
-            <% if( typeof locals.agents !=='undefined' && locals.agents) { %> <% const {perPage,
-            pages, page, total }=locals.agents %> <% const start=(perPage * page) - perPage +1 %> <%
-            const end=start + perPage -1 %>
+            <% if( typeof locals.agents !=='undefined' && locals.agents) { %> 
+            <% const {perPage, pages, page, total }=locals.agents %> 
+            <% const start=(perPage * page) - perPage +1 %> 
+            <% const end=start + perPage -1 %>
             <p>showing <%= start || 0%> to <%= end || 0%> of <%= total || 0%> entries</p>
             <% } %>
           </div>
           <!-- <div class="col-md-6 b-tons"> -->
-          <% if( typeof locals.agents !=='undefined' ) { %> <% const { agents: {page, pages},
-          query}=locals %> <%- include("./partials/pagination.ejs", {page, pages, query }) %> <% }
-          %>
-          <!-- <div class="a btn b-ton-1 b-ton col-md-3 mt-5">← previous</div>
-            <div class="a btn b-ton b-ton-2 col-md-1 mt-5">1</div>
-            <div class="a btn b-ton b-ton-3 col-md-1 mt-5">2</div>
-            <div class="a btn b-ton b-ton-4 col-md-1 mt-5">3</div>
-            <div class="a btn b-ton b-ton-5 col-md-1 mt-5">4</div>
-            <div class="a btn b-ton b-ton-6 col-md-1 mt-5">5</div>
-            <div class="a btn b-ton-7 col-md-2 b-ton mt-5">next →</div> -->
-          <!-- </div> -->
+          <% if( typeof locals.agents !=='undefined' ) { %> 
+          <% const { agents: {page, pages},query}=locals %> 
+          <%- include("./partials/pagination.ejs", {page, pages, query }) %> 
+          <%}%>
+          
         </div>
       </div>
     </section>

@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="agentId" content=<%= locals.question._id || "N/A"  %>  />
     <title>Document</title>
     <link
       href="/assets/files/favicon.png"
@@ -15,6 +16,7 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" />
     <!-- CSS | Main style file -->
     <link href="/css/style-main.css" rel="stylesheet" type="text/css" />
@@ -50,33 +52,26 @@
           <div class="submitAnswer_top">
             <h2 class="submitAnswer_top-header">Submit an Answer</h2>
             <p>Can you help answer a tax enquiry?</p>
-Providing answers to our site visitors' tax questions enhances your profile reputation and raises your placement in our search results. <br>
-Your page will get more links and traffic as your profile will appear along with the answer you provided in our archive.
+              <p class="submitAnswer_top-desc">Providing answers to our site visitors' tax questions enhances your profile 
+                reputation and raises your placement in our search results. <br> Your page will 
+                get more links and traffic as your profile will appear along with the answer 
+                you provided in our archive.
             </p>
-            <a class="submitAnswer_top-btn" href="#">Back to Questions</a>
+            <a class="submitAnswer_top-btn" href="/dashboard/answer-questions">Back to Questions</a>
           </div>
           <div class="submitAnswer_middle">
             <p class="submitAnswer_middle-question">
-              <span>Question:</span> Installment Plan - Refund
+              <span>Question:</span> <%= locals.question.title || "N/A" %> 
             </p>
-            <p class="submitAnswer_middle-text">
-              I found out after settling a lawsuit that the $9,000 I would
-              receive would be considered income. So I did not submit this 1099
-              on my 2019 taxes. I was notified that they received it (the IRS)
-              and then they added it on to my taxes and I owe roughly $2,500. I
-              set up an installment plan to pay for this over the next year. My
-              question is; is that I show the IRS will owe me about a $9,000
-              refund this year - will they just take the $2,500 out of it or
-              will they not give me a refund at all - what happens exactly?
-              Thanks
-            </p>
+            <p class="submitAnswer_middle-text"><%= locals.question.body || "N/A" %></p>
             <p class="submitAnswer_middle-meta">
-              Asked by Dan F. on January 04, 2021
+              Asked by <%= locals.question.firstName %> <%= locals.question.lastName %>  on January 04, 2021
             </p>
-            <h5>Answer As<span>*</span></h5>
+            <h5>Answer As</h5>
             <div class="submitAnswer_middle-select">
               <select>
-                <option disabled>Select a Profile</option>
+                <option disabled selected>Select a Profile</option>
+                <option value="Enrolled Agents">Enrolled Agents</option>
               </select>
             </div>
             <p class="submitAnswer_middle-info">
@@ -88,12 +83,13 @@ Your page will get more links and traffic as your profile will appear along with
             <p class="submitAnswer_middle-info">
               Provide your answer to the question here.
             </p>
-            <form action="">
-              <textarea id="mytextarea" name="mytextarea"></textarea>
+            <form action="" id="answer-form">
+              <textarea id="mytextarea" name="mytextarea" ></textarea>
               <div class="submitAnswer_middle-btn-div">
                 <input
                   type="submit"
                   value="Submit"
+                  id="submit-btn"
                   class="createArticle_middle-btn-div-link"
                 />
               </div>
@@ -132,5 +128,10 @@ Your page will get more links and traffic as your profile will appear along with
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+  integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+  crossorigin="anonymous"></script>
+    <script src="/javascripts/answerQuestion.js"></script>
   </body>
 </html>

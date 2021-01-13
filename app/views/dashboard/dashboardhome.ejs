@@ -39,17 +39,13 @@
                 <%= locals.user.firstName %> <%= locals.user.lastName %>
               </p>
               <p class="dashboard-grid-div-role">Enrolled Agents</p>
-              <img src="/assets/files/stars.svg" alt="stars-icon" />
-              <p class="dashboard-grid-div-review">0 Review</p>
+                <div class="stars-outer" id="main-star" value=<%= locals.reviewAnalysis.avgRating || 0 %> >
+                  <div class="stars-inner"></div>
+                </div>
+              <p class="dashboard-grid-div-review"><%= locals.reviewAnalysis.count || 0%>  Reviews</p>
               <p class="dashboard-grid-div-service">
                 <span>Service Offered:</span> General Accounting Services
               </p>
-              <div class="dashboard-grid-div-review_link">
-                <a>Write a Review</a>
-              </div>
-              <div class="dashboard-grid-div-claim">
-                <a>Is this Your Listing ? Claim it Now!</a>
-              </div>
             </div>
             <div class="dashboard-grid-div2">
               <p class="dashboard-grid-div2-head">
@@ -62,164 +58,25 @@
                 service.
               </p>
 
-              <form class="dashboard-grid-div2-form">
+              <form class="dashboard-grid-div2-form" id="listing-form">
                 <div class="dashboard-grid-div2-form-div1">
                   <div class="dashboard-grid-div2-form-div1-select">
-                    <select>
-                      <option value="zip">Zip Code</option>
-                      <option value="state">State Code</option>
+                    <select id="select">
+                      <option id="zip" value="zip" selected>Zip Code</option>
+                      <option id="state" value="state">State</option>
                     </select>
                   </div>
-                  <input type="text" placeholder="Enter your zip code" />
+                  <input type="text" id="zipInput" placeholder="Enter your zip code*" required />
                 </div>
                 <div class="dashboard-grid-div2-form-div2">
-                  <input type="text" placeholder="Enter name" />
+                  <input type="text" id="name" placeholder="Enter last name*" required/>
                 </div>
-                <input
-                  class="dashboard-grid-div2-form-btn"
-                  type="submit"
-                  value="Create My Free Account"
-                />
+                <input class="dashboard-grid-div2-form-btn" type="submit" value="Claim My Profile" id="submit-btn" />
               </form>
             </div>
           </div>
         </section>
-        <section class="resources">
-          <div class="container-fluid">
-            <h2 class="resources-header">Resources</h2>
-            <p class="resources-sub">
-              Valuable information provided by our sponsors.
-            </p>
-            <div class="resources-grid">
-              <div class="resources-grid-box">
-                <p class="resources-grid-box-intro">Provided By:</p>
-                <img
-                  class="resources-grid-box-image"
-                  src="/assets/files/stanbic.png"
-                  alt="stanbic-logo"
-                />
-                <h3 class="resources-grid-box-topic">
-                  Build Your Perfect Quickfinder Library
-                </h3>
-                <p class="resources-grid-box-desc">
-                  Save up to 20% on Quickfinder products. Find tax resources for
-                  efficiency and accuracy, year-round...
-                </p>
-                <div class="arrow">
-                  <a href="#"
-                    ><img src="/assets/files/down-arrow-small.svg" alt="arrow"
-                  /></a>
-                </div>
-              </div>
-              <div class="resources-grid-box">
-                <p class="resources-grid-box-intro">Provided By:</p>
-                <img
-                  class="resources-grid-box-image"
-                  src="/assets/files/stanbic.png"
-                  alt="stanbic-logo"
-                />
-                <h3 class="resources-grid-box-topic">
-                  Build Your Perfect Quickfinder Library
-                </h3>
-                <p class="resources-grid-box-desc">
-                  Save up to 20% on Quickfinder products. Find tax resources for
-                  efficiency and accuracy, year-round...
-                </p>
-                <div class="arrow">
-                  <a href="#"
-                    ><img src="/assets/files/down-arrow-small.svg" alt="arrow"
-                  /></a>
-                </div>
-              </div>
-              <div class="resources-grid-box">
-                <p class="resources-grid-box-intro">Provided By:</p>
-                <img
-                  class="resources-grid-box-image"
-                  src="/assets/files/stanbic.png"
-                  alt="stanbic-logo"
-                />
-                <h3 class="resources-grid-box-topic">
-                  Build Your Perfect Quickfinder Library
-                </h3>
-                <p class="resources-grid-box-desc">
-                  Save up to 20% on Quickfinder products. Find tax resources for
-                  efficiency and accuracy, year-round...
-                </p>
-                <div class="arrow">
-                  <a href="#"
-                    ><img src="/assets/files/down-arrow-small.svg" alt="arrow"
-                  /></a>
-                </div>
-              </div>
-              <div class="resources-grid-box">
-                <p class="resources-grid-box-intro">Provided By:</p>
-                <img
-                  class="resources-grid-box-image"
-                  src="/assets/files/stanbic.png"
-                  alt="stanbic-logo"
-                />
-                <h3 class="resources-grid-box-topic">
-                  Build Your Perfect Quickfinder Library
-                </h3>
-                <p class="resources-grid-box-desc">
-                  Save up to 20% on Quickfinder products. Find tax resources for
-                  efficiency and accuracy, year-round...
-                </p>
-                <div class="arrow">
-                  <a href="#"
-                    ><img src="/assets/files/down-arrow-small.svg" alt="arrow"
-                  /></a>
-                </div>
-              </div>
-              <div class="resources-grid-box">
-                <p class="resources-grid-box-intro">Provided By:</p>
-                <img
-                  class="resources-grid-box-image"
-                  src="/assets/files/stanbic.png"
-                  alt="stanbic-logo"
-                />
-                <h3 class="resources-grid-box-topic">
-                  Build Your Perfect Quickfinder Library
-                </h3>
-                <p class="resources-grid-box-desc">
-                  Save up to 20% on Quickfinder products. Find tax resources for
-                  efficiency and accuracy, year-round...
-                </p>
-                <div class="arrow">
-                  <a href="#"
-                    ><img src="/assets/files/down-arrow-small.svg" alt="arrow"
-                  /></a>
-                </div>
-              </div>
-              <div class="resources-grid-box">
-                <p class="resources-grid-box-intro">Provided By:</p>
-                <img
-                  class="resources-grid-box-image"
-                  src="/assets/files/stanbic.png"
-                  alt="stanbic-logo"
-                />
-                <h3 class="resources-grid-box-topic">
-                  Build Your Perfect Quickfinder Library
-                </h3>
-                <p class="resources-grid-box-desc">
-                  Save up to 20% on Quickfinder products. Find tax resources for
-                  efficiency and accuracy, year-round...
-                </p>
-                <div class="arrow">
-                  <a href="#"
-                    ><img src="/assets/files/down-arrow-small.svg" alt="arrow"
-                  /></a>
-                </div>
-              </div>
-            </div>
-            <div class="btn-div">
-              <button>
-                See All Resources
-                <img src="/assets/files/down-arrow-small.svg" alt="arrow" />
-              </button>
-            </div>
-          </div>
-        </section>
+        <%- include("../partials/resources.ejs") %>
       </div>
     </div>
     <script
@@ -237,5 +94,16 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
+    <script>
+            const rateStars = document.querySelector("#main-star");
+            const val = rateStars.getAttribute("value");
+            const starTotal = 5;
+            
+            const starPercentage = (val / starTotal) * 100;
+            const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
+
+            rateStars.querySelector(".stars-inner").style.width = starPercentageRounded;
+          </script>
+    <script src="/javascripts/dashboardFindAgent.js"></script>
   </body>
 </html>

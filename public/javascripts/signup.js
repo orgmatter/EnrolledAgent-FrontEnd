@@ -7,6 +7,8 @@ const lName = document.getElementById("lastname");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const terms = document.getElementById("terms");
+const btn = document.getElementById("signup-btn");
+
 const notyf = new Notyf({
   dismissible: true,
   ripple: true,
@@ -33,11 +35,21 @@ function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
+function spinner() {
+    const markup = `<div class="lds-ring"><div></div><div></div><div></div><div></div></div>`;
+  
+    return markup;
+  }
+
+function clearFormData() {
+  signUpForm.reset();
+}
+
 const handleSubmit = (e) => {
   console.log(e)
   e.stopImmediatePropagation();
   e.preventDefault();
-  // e.stopImmediatePropagation();
+
   if (terms.checked) {
     const data = {
       email: email.value,
@@ -45,6 +57,9 @@ const handleSubmit = (e) => {
       firstName: fName.value,
       lastName: lName.value,
     };
+
+    btn.setAttribute("disabled", "true");
+    btn.innerHTML = spinner();
 
     axios({
       method: "POST",
@@ -56,23 +71,17 @@ const handleSubmit = (e) => {
           "Accept": "application/json"
         },
       data: JSON.stringify(data),
-      //   headers: {
-      //     "CSRF-Token": token,
-      //     Accept: "application/json",
-      //     "Content-Type": "application/json",
-      //   },
     })
       .then((res) => {
+        btn.textContent = "Sign up"
+        clearFormData();
+        btn.removeAttribute("disabled");
         window.location.href = "/login";
-        // notyf.success(res.data.data.message || "Signup successful");
-        // console.log(res);
-        // setTimeout(() => {
-        //   window.location.href = "/login";
-        // }, 500);
       })
       .catch((err) => {
+        btn.textContent = "Sign up"
+        btn.removeAttribute("disabled");
         notyf.error(err.response.data.error.message || "Something went wrong");
-        console.log(err.response.data.error.message);
       });
   } else {
     notyf.error("Please accept terms and conditions")

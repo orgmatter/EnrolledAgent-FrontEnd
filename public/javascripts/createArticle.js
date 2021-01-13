@@ -1,14 +1,10 @@
 const page_url = location.href;
 const url_match = page_url.match("enrolledagent.org");
 const base_Url = url_match ? "https://enrolledagent.org" : "http://localhost:3000";
-const askForm = document.getElementById("askForm");
-const email = document.getElementById("email");
-const firstName = document.getElementById("firstName");
-const lastName = document.getElementById("lastName");
-const phone = document.getElementById("phone");
-const category = document.getElementById("category");
-const title = document.getElementById("title");
-const message = document.getElementById("message");
+const answerForm = document.getElementById("article-form");
+const heading = document.getElementById("heading");
+const category = document.getElementById("articleCategory");
+const image = document.getElementById("image");
 const btn = document.getElementById("submit-btn");
 const btnContent = btn.innerHTML;
 
@@ -18,7 +14,7 @@ const notyf = new Notyf({
   duration: 3000,
   position: {
     x: "right",
-    y: "top",
+    y: "bottom",
   },
   types: [
     {
@@ -45,48 +41,60 @@ function spinner() {
   }
 
 function clearFormData() {
-  askForm.reset();
+  answerForm.reset();
 }
 
 const handleSubmit = (e) => {
   e.preventDefault();
+  const body = tinyMCE.activeEditor.getContent();
+
   const data = {
-    body: message.value,
-    email: email.value,
-    firstName: firstName.value,
-    lastName:  lastName.value,
-    phone: phone.value,
+    title: heading.value,
+    body: body,
     category: category.value,
-    title: title.value,
+    avatar: image.files[0],
   };
+
+  getFormData(data);
+
+};
+
+const getFormData = (data) => {
+  const formData = new FormData();
+  formData.set('title', data.title);
+  formData.set('body', data.body);
+  formData.set('category', data.category);
+  formData.append('avatar', data.avatar);
 
   console.log(data);
   btn.setAttribute("disabled", "true");
   btn.innerHTML = spinner();
-
+  
   axios({
     method: "POST",
-    url: `${base_Url}/api/ask`,
+    url: `${base_Url}/api/article`,
     credentials: 'same-origin', // <-- includes cookies in the request
         headers: {
           "CSRF-Token":  getCookie('XSRF-TOKEN'), 
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-    data: JSON.stringify(data),
+    data: formData,
 
-  }).then((res) => {
+  })
+    .then((res) => {
       console.log(res);
       btn.innerHTML = btnContent;
       clearFormData();
       btn.removeAttribute("disabled");
-      notyf.success(res.data.message || "Message sent!");
-    }).catch((err) => {
-      console.log(err);
+      notyf.success(res.data.message || "Article Upload Successful!");
+    })
+    .catch((err) => {
+      console.log(err.response);
       btn.innerHTML = btnContent;
       btn.removeAttribute("disabled");
       notyf.error(err.response.data.error.message || "Something went wrong");
     });
-};
+}
 
-askForm.addEventListener("submit", handleSubmit);
+answerForm.addEventListener("submit", handleSubmit);
