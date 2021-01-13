@@ -30,7 +30,8 @@ router
             sub_page_name: "messages",
         });
     })
-    .get("/my-articles", user, (req, res) => {
+    .get("/my-articles", user, ArticleController.agentArticles, (req, res) => {
+        console.log("articles>>>", req.locals);
         res.render("dashboard/dashboardarticle", {
             locals: req.locals,
             page_name: "articles",
