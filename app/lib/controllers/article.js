@@ -298,7 +298,7 @@ class ArticleController extends BaseController {
             .sort({ createdAt: -1 })
             .populate(['category'])
             .exec()
-        req.locals.featuredArticle = data
+        req.locals.featuredArticle = data[0];
         next()
     }
     

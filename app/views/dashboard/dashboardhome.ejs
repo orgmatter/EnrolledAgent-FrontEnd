@@ -39,8 +39,10 @@
                 <%= locals.user.firstName %> <%= locals.user.lastName %>
               </p>
               <p class="dashboard-grid-div-role">Enrolled Agents</p>
-              <img src="/assets/files/stars.svg" alt="stars-icon" />
-              <p class="dashboard-grid-div-review">0 Review</p>
+                <div class="stars-outer" id="main-star" value=<%= locals.reviewAnalysis.avgRating || 0 %> >
+                  <div class="stars-inner"></div>
+                </div>
+              <p class="dashboard-grid-div-review"><%= locals.reviewAnalysis.count || 0%>  Reviews</p>
               <p class="dashboard-grid-div-service">
                 <span>Service Offered:</span> General Accounting Services
               </p>
@@ -92,6 +94,16 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
+    <script>
+            const rateStars = document.querySelector("#main-star");
+            const val = rateStars.getAttribute("value");
+            const starTotal = 5;
+            
+            const starPercentage = (val / starTotal) * 100;
+            const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
+
+            rateStars.querySelector(".stars-inner").style.width = starPercentageRounded;
+          </script>
     <script src="/javascripts/dashboardFindAgent.js"></script>
   </body>
 </html>
