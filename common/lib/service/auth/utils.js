@@ -34,7 +34,7 @@ exports.authenticateUser = function (user, password, done) {
             )
         )
     }
-    if (!user.isActive) {
+    if (user.isActive != true) {
         return done(
             new Exception(
                 ErrorMessage.ACCOUNT_DEACTIVATED,

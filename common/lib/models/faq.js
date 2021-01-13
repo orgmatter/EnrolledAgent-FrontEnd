@@ -14,7 +14,9 @@ const FaqSchema = new Schema({
 
 FaqSchema.index({
     title: 'text',
+    message: 'text'
   })
+
 
 
 module.exports = mongoose.model('faq', FaqSchema);

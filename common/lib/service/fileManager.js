@@ -51,6 +51,19 @@ const csv = multer({
   }
 })
 
+const pdf = multer({
+  storage,
+  // file mimit is 1mb
+  // limits: { fileSize: 1024 * 1024 },
+  fileFilter(req, file, cb) {
+    if (
+      !file.originalname.match(/\.(pdf)$/i)
+    ) {
+      return cb(new Exception('Please upload a pdf file'))
+    } else cb(null, true)
+  }
+})
+
 
 const uploader2 = multer({
   storage,
@@ -104,6 +117,7 @@ generateHash = async function (file) {
 exports.none = multer().any()
 exports.upload = uploader.single('avatar')
 exports.csv = csv.single('doc')
+exports.pdf = pdf.single('doc')
 exports.any = uploader.any()
 exports.array = uploader.array('avatar[]')
 exports.fields = uploader2.fields([

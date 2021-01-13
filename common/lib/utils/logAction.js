@@ -13,6 +13,10 @@ module.exports = {
   ARTICLE_DELETED: 'article.deleted',
   ARTICLE_STATUS_CHANGED: 'article.status_changed',
 
+
+  APPROVE_LISTING_REQUEST: 'agent.listing.approve',
+  REJECT_LISTING_REQUEST: 'agent.listing.reject',
+
   RESOURCE_CREATED: 'resource.create',
   RESOURCE_UPDATED: 'resource.updated',
   RESOURCE_DELETED: 'resource.deleted',
