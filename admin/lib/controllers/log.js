@@ -50,9 +50,9 @@ class LogController extends BaseController {
 
 
     async getAll(req, res, next) {
-        const { page, perpage, q, search } = req.query
-        let query = Helper.parseQuery(q) || {}
-        if (search) query = { title: { $regex: search, $options: 'i' } }
+        const { page, perpage, q } = req.query
+        let query = Helper.extractQuery(req.query, ['category', 'action' ]) || {}
+        if (q) query = { $text: { $search: q } };
 
         DB.Paginate(res, next, Log, {
             perPage: perpage,

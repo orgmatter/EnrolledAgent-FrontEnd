@@ -91,6 +91,7 @@ exports.checkPayload = function (user, next) {
     return false
   }
 }
+
 /**
  * parse query as object
  * @param  {string} parameters
@@ -98,6 +99,31 @@ exports.checkPayload = function (user, next) {
  */
 exports.parseQuery = (parameters) => {
   if (parameters == null) return null
+  const a = String(parameters).split(',')
+  const b = {}
+  a.forEach((_) => {
+    const [c, d] = String(_).split(':')
+    b[c] = d
+  })
+  return b
+}
+
+/**
+ * parse query 
+ * @param  {string} parameters
+ * @return {object}
+ */
+exports.extractQuery = (parameters, fields = []) => {
+  if (parameters == null) return null
+  const query = {}
+  for (let index = 0; index < fields.length; index++) {
+    const element = fields[index];
+    if (parameters.hasOwnProperty(element)) {
+      query[element] = parameters[element]
+    }
+    return query
+  }
+
   const a = String(parameters).split(',')
   const b = {}
   a.forEach((_) => {
@@ -193,9 +219,9 @@ exports.getIp = (req) =>
 * returns a Promise that resolves after a delay
 * @return {Number} time in milliseconds
 */
-exports.delay = (time = 1000)=> {
-  return new Promise((resolve, reject)=>{
-    if(!time) reject('invalid time')
+exports.delay = (time = 1000) => {
+  return new Promise((resolve, reject) => {
+    if (!time) reject('invalid time')
     setTimeout(resolve, time)
   })
 }

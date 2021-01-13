@@ -16,6 +16,7 @@ router
   .use('/log', require('./log'))
   .use('/faq', require('./faq'))
   .use('/category', require('./category'))
+  .use('/listing-request', require('./listingRequest'))
   .use('/article', require('./article'))
   .use('/agent', require('./agent'))
   .use('/user', require('./user'))

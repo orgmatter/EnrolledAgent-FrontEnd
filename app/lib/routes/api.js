@@ -18,6 +18,7 @@ router
   .post("/login", AuthController.login)
   .post("/review", ReviewController.createReview)
   .post("/claim-listing/:id", AgentController.claim)
+  .post("/listing-request", FileManager.pdf, AgentController.createListing)
   .put("/update-profile", FileManager.upload, AuthController.update)
   .put("/update-agent", FileManager.upload, AgentController.update)
   .post("/upgrade-account", FileManager.none, AgentController.premium)
