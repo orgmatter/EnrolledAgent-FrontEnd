@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { user } = require("../controllers/auth");
 const ReviewController = require("../controllers/review");
+const QuestionController = require("../controllers/question");
 
 router
     // All endpoints after this are Authenticated
@@ -8,7 +9,7 @@ router
         if (!(req.isAuthenticated() && req.user)) return res.redirect("/login");
         next();
     })
-    .get("/", user, ReviewController.agent, (req, res) => {
+    .get("/", user, ReviewController.agent, QuestionController.myAnswers, (req, res) => {
         console.log("user>>>", req.locals);
         res.clearCookie('redirect-to')
         res.render("dashboard/dashboardhome", {
