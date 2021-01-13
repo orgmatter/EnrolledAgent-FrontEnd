@@ -1,7 +1,11 @@
 const router = require("express").Router();
 const { user } = require("../controllers/auth");
-const ReviewController = require("../controllers/review");
+const ContactController = require("../controllers/contact");
+const ResourceController = require("../controllers/resource");
+const ArticleController = require("../controllers/article");
+const AgentController = require("../controllers/agent");
 const QuestionController = require("../controllers/question");
+const ReviewController = require("../controllers/review");
 
 router
     // All endpoints after this are Authenticated
@@ -9,7 +13,8 @@ router
         if (!(req.isAuthenticated() && req.user)) return res.redirect("/login");
         next();
     })
-    .get("/", user, ReviewController.agent, QuestionController.myAnswers, (req, res) => {
+    .get("/", user, ReviewController.agent, QuestionController.myAnswers, 
+    ResourceController.random,  (req, res) => {
         console.log("user>>>", req.locals);
         res.clearCookie('redirect-to')
         res.render("dashboard/dashboardhome", {
@@ -49,7 +54,8 @@ router
             sub_page_name: "help",
         });
     })
-    .get("/submit-answer", user, (req, res) => {
+    .get("/submit-answer/:id", user, QuestionController.get, (req, res) => {
+        console.log("locals>>>", req.locals);
         res.render("dashboard/submitAnswer", {
             locals: req.locals,
             page_name: "ask",
@@ -57,13 +63,15 @@ router
         });
     })
     .get("/create-article", user, (req, res) => {
+        console.log("locals", req.locals);
         res.render("dashboard/createArticle", {
             locals: req.locals,
             page_name: "articles",
             sub_page_name: "newArticle",
         });
     })
-    .get("/answer-questions", user, (req, res) => {
+    .get("/answer-questions", user, QuestionController.getAll, (req, res) => {
+        console.log("question", req.locals.questions.data);
         res.render("dashboard/answerQuestion", {
             locals: req.locals,
             page_name: "ask",

@@ -27,7 +27,7 @@
       <div class="mainsection">
         <section class="createArticle">
           <div class="createArticle_top">
-            <h2 class="createArticle_top-header">Ask An EA</h2>
+            <h2 class="createArticle_top-header">Answer Questions</h2>
             <p>
               Earn reputation points and build your profile by providing answers
               to simple tax enquiries posted by our users.
@@ -43,24 +43,37 @@
             </div>
           </div>
           <div class="createArticle_card-div">
-            <div class="question-card">
-              <p class="question-card-text">
-                <span>Question:</span> Installment Plan - Refund
-              </p>
-              <div class="question-card-flex">
-                <div class="question-card-flex-1">
-                  <p class="question-card-flex-1-category">
-                    Payments and Penalties
-                  </p>
-                  <p class="question-card-flex-1-badge">Not Yet Answered</p>
-                </div>
-                <div class="question-card-flex-2">
-                  <a href="/submit-answer" class="question-card-flex-2-link"
-                    >Answer Question</a
-                  >
+            <% if(locals.questions.data.length > 0) { %>
+              <% locals.questions.data.map((el,id) => { %>
+              <div class="question-card" key=<%= id %> >
+                <p class="question-card-text">
+                  <span>Question:</span> <%= el.title %> 
+                </p>
+                <div class="question-card-flex">
+                  <div class="question-card-flex-1">
+                    <p class="question-card-flex-1-category">
+                      <%= el.body %>
+                    </p>
+                    <% if(!el.answer) {%> 
+                      <p class="question-card-flex-1-badge">Not Yet Answered</p>
+                    <% } else { %>
+                      <p class="question-card-flex-1-green">Answered</p>
+                    <% } %> 
+                  </div>
+                  <div class="question-card-flex-2">
+                    <% if(!el.answer) {%> 
+                    <a href="/dashboard/submit-answer/<%= el._id %>" class="question-card-flex-2-link"
+                      >Answer Question</a
+                    >
+                    <% } %> 
+                  </div>
                 </div>
               </div>
-            </div>
+             <% }) %> 
+            <%} else {%>
+              <p>No questions available. Check back later</p>
+            <%}%> 
+            
           </div>
         </section>
       </div>

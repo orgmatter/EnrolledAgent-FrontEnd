@@ -60,12 +60,16 @@
     <div class="row">
      
       <div class="col-md-12 text-center">
-        <% if( typeof locals.resource !=='undefined' && locals.resource) { %> <% const {perPage,
-        pages, page, total }=locals.resource %> <% const start=(perPage * page) - perPage +1 %> <%
-        const end=start + perPage -1 %>
+        <% if( typeof locals.resource !=='undefined' && locals.resource) { %> 
+        <% const {perPage, pages, page, total } = locals.resource %> 
+        <% const start=(perPage * page) - perPage +1 %> 
+        <% const end=start + perPage -1 %>
         <p>showing <%= start || 0%> to <%= Math.min(total || 0, end || 0) %> of <%= total || 0%> entries</p>
         <% } %>
-        <% if( typeof locals.resource !=='undefined' ) { %> <% const { resource: {page, pages}, query}=locals %> <%- include("./partials/pagination.ejs", {page, pages, query }) %> <% } %>
+        <% if( typeof locals.resource !=='undefined' ) { %> 
+          <% const { resource: {page, pages}, query}=locals %> 
+          <%- include("./partials/pagination.ejs", {page, pages, query }) %> 
+          <% } %>
       </div>
       
   </div>
@@ -108,7 +112,7 @@
             <textarea placeholder="Message*" required id="message"></textarea>
           </div>
         </div>
-        <button class="btn b-ton" type="submit">Submit Now
+        <button class="btn b-ton" type="submit" id="submit-btn">Submit Now
           <span class="">
               <img src="/assets/images/ccenter/right-arrow-white.svg" class="ccenter-btn-right-arrow">
           </span>

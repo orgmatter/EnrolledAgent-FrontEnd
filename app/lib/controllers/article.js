@@ -12,6 +12,8 @@ const {
     Models: { Article, Agent, Log, ArticleCategory, Comment },
 } = require("common");
 
+const {Types} = require("mongoose");
+
 const BaseController = require('./baseController');
 
 const sanitizeBody = (body) => {
@@ -29,7 +31,7 @@ class ArticleController extends BaseController {
         if (!(req.isAuthenticated() && req.user))
             return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
 
-        let agent = await Agent.findOne({ owner: req.user.id }).exec()
+        let agent = await Agent.findOne({ owner: Types.ObjectId(req.user.id) }).exec()
         if (!agent || !agent._id) {
             res.status(422)
             return next(
@@ -96,7 +98,7 @@ class ArticleController extends BaseController {
         if (!(req.isAuthenticated() && req.user))
             return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
 
-        let agent = await Agent.findOne({ owner: req.user.id }).exec()
+        let agent = await Agent.findOne({ owner: Types.ObjectId(req.user.id) }).exec()
         if (!agent || !agent._id) {
             res.status(422)
             return next(

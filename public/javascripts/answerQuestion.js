@@ -1,14 +1,9 @@
 const page_url = location.href;
 const url_match = page_url.match("enrolledagent.org");
 const base_Url = url_match ? "https://enrolledagent.org" : "http://localhost:3000";
-const askForm = document.getElementById("askForm");
-const email = document.getElementById("email");
-const firstName = document.getElementById("firstName");
-const lastName = document.getElementById("lastName");
-const phone = document.getElementById("phone");
-const category = document.getElementById("category");
-const title = document.getElementById("title");
-const message = document.getElementById("message");
+const answerForm = document.getElementById("answer-form");
+const id = document.querySelector('meta[name="agentId"]').getAttribute("content");
+const message = document.getElementById("mytextarea");
 const btn = document.getElementById("submit-btn");
 const btnContent = btn.innerHTML;
 
@@ -18,7 +13,7 @@ const notyf = new Notyf({
   duration: 3000,
   position: {
     x: "right",
-    y: "top",
+    y: "bottom",
   },
   types: [
     {
@@ -45,28 +40,25 @@ function spinner() {
   }
 
 function clearFormData() {
-  askForm.reset();
+  answerForm.reset();
 }
 
 const handleSubmit = (e) => {
   e.preventDefault();
+  const testt = tinyMCE.activeEditor.getContent();
+  console.log(testt);
   const data = {
-    body: message.value,
-    email: email.value,
-    firstName: firstName.value,
-    lastName:  lastName.value,
-    phone: phone.value,
-    category: category.value,
-    title: title.value,
+    question: id,
+    message: testt,
   };
 
   console.log(data);
   btn.setAttribute("disabled", "true");
   btn.innerHTML = spinner();
-
+  console.log("here");
   axios({
     method: "POST",
-    url: `${base_Url}/api/ask`,
+    url: `${base_Url}/api/answer`,
     credentials: 'same-origin', // <-- includes cookies in the request
         headers: {
           "CSRF-Token":  getCookie('XSRF-TOKEN'), 
@@ -75,18 +67,22 @@ const handleSubmit = (e) => {
         },
     data: JSON.stringify(data),
 
-  }).then((res) => {
+  })
+    .then((res) => {
       console.log(res);
+      console.log("here2");
       btn.innerHTML = btnContent;
       clearFormData();
       btn.removeAttribute("disabled");
       notyf.success(res.data.message || "Message sent!");
-    }).catch((err) => {
-      console.log(err);
+    })
+    .catch((err) => {
+      console.log(err.response);
+      console.log("here instead");
       btn.innerHTML = btnContent;
       btn.removeAttribute("disabled");
       notyf.error(err.response.data.error.message || "Something went wrong");
     });
 };
 
-askForm.addEventListener("submit", handleSubmit);
+answerForm.addEventListener("submit", handleSubmit);

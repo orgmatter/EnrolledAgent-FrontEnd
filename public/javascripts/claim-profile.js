@@ -1,14 +1,15 @@
 const page_url = location.href;
 const url_match = page_url.match("enrolledagent.org");
 const base_Url = url_match ? "https://enrolledagent.org" : "http://localhost:3000";
-const askForm = document.getElementById("askForm");
-const email = document.getElementById("email");
-const firstName = document.getElementById("firstName");
-const lastName = document.getElementById("lastName");
-const phone = document.getElementById("phone");
-const category = document.getElementById("category");
-const title = document.getElementById("title");
-const message = document.getElementById("message");
+const id = document.querySelector('meta[name="agentId"]').getAttribute("content");
+const claimForm = document.getElementById("claim-listing-form");
+const role = document.getElementById("role");
+const company = document.getElementById("company");
+const size = document.getElementById("size");
+const companyType = document.getElementById("type");
+const revenue = document.getElementById("revenue");
+const taxReturns = document.getElementById("tax-returns");
+const terms = document.getElementById("terms");
 const btn = document.getElementById("submit-btn");
 const btnContent = btn.innerHTML;
 
@@ -45,19 +46,20 @@ function spinner() {
   }
 
 function clearFormData() {
-  askForm.reset();
+  claimForm.reset();
 }
 
 const handleSubmit = (e) => {
   e.preventDefault();
+  e.stopImmediatePropagation();
+
   const data = {
-    body: message.value,
-    email: email.value,
-    firstName: firstName.value,
-    lastName:  lastName.value,
-    phone: phone.value,
-    category: category.value,
-    title: title.value,
+   jobRole: role.value,
+   companySize: size.value,
+   companyName: company.value,
+   companyRevenue: revenue.value,
+   organizationType: companyType.value,
+   annualTax: taxReturns.value
   };
 
   console.log(data);
@@ -66,7 +68,7 @@ const handleSubmit = (e) => {
 
   axios({
     method: "POST",
-    url: `${base_Url}/api/ask`,
+    url: `${base_Url}/api/claim-listing/${id}`,
     credentials: 'same-origin', // <-- includes cookies in the request
         headers: {
           "CSRF-Token":  getCookie('XSRF-TOKEN'), 
@@ -75,18 +77,20 @@ const handleSubmit = (e) => {
         },
     data: JSON.stringify(data),
 
-  }).then((res) => {
-      console.log(res);
+  })
+    .then((res) => {
+      console.log(res.data.data);
       btn.innerHTML = btnContent;
       clearFormData();
       btn.removeAttribute("disabled");
-      notyf.success(res.data.message || "Message sent!");
-    }).catch((err) => {
-      console.log(err);
+      notyf.success(res.data.data.data.message || "Message sent!");
+    })
+    .catch((err) => {
+      console.log(err.response);
       btn.innerHTML = btnContent;
       btn.removeAttribute("disabled");
       notyf.error(err.response.data.error.message || "Something went wrong");
     });
 };
 
-askForm.addEventListener("submit", handleSubmit);
+claimForm.addEventListener("submit", handleSubmit);
