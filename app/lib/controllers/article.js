@@ -290,7 +290,6 @@ class ArticleController extends BaseController {
             .exec()
         req.locals.latestArticle = data
         next()
-
     }
 
     async featured(req, res, next) {
@@ -301,8 +300,8 @@ class ArticleController extends BaseController {
             .exec()
         req.locals.featuredArticle = data
         next()
-
     }
+    
     /**
      * get Article categorirs
      * @param  {Express.Request} req

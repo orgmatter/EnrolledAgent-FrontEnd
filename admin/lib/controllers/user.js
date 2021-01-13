@@ -321,7 +321,6 @@ class UserController extends BaseController {
     }, (data)=>{
         super.handleResultPaginated({...data}, res, next) 
     })
-
 }
 
 
