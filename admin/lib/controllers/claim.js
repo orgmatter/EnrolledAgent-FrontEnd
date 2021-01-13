@@ -152,10 +152,7 @@ class ClaimController extends BaseController {
         }, (data) => {
             super.handleResultPaginated(data, res, next)
         })
-
     }
-
-
 }
 
 module.exports = new ClaimController()
