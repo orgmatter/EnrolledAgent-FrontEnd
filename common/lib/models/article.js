@@ -55,13 +55,13 @@ Article.set('toJSON', { virtuals: true })
 Article.virtual('comment', {
   ref: 'comment',
   localField: '_id',
-  foreignField: 'agent',
+  foreignField: 'article',
 })
 
 Article.virtual('commentCount', {
   ref: 'comment',
   localField: '_id',
-  foreignField: 'agent',
+  foreignField: 'article',
   count: true
 })
 

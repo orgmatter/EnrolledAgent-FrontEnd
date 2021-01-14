@@ -124,7 +124,7 @@ class QuestionController extends BaseController {
 
     async get(req, res, next) {
         const { id } = req.params
-        let resource = await Question.findById(id).exec()
+        let resource = await (await Question.findById(id)).populate(['category', { path: 'answer', populate: { path: 'agent', select: { firstName: 1, lastName: 1 } } }]);
         req.locals.question = resource
         next()
     }

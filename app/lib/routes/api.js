@@ -15,6 +15,7 @@ router
   .post("/changepass", AuthController.changePassword)
   .post("/subscribe", ContactController.subscribe)
   .post("/contact", ContactController.create)
+  .post("/contact-agent", ContactController.sendAgentMessage)
   .post("/login", AuthController.login)
   .post("/review", ReviewController.createReview)
   .post("/claim-listing/:id", AgentController.claim)

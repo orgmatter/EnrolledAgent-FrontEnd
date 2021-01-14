@@ -9,7 +9,7 @@ const {
   Validator,
   Helper,
   DB,
-  Models: { Agent, City, ListingRequest, ClaimListing, Log },
+  Models: { Agent, City, AgentMessage, ListingRequest, ClaimListing, Log },
 } = require("common");
 const Payment = require("payment_module");
 const mongoose = require("mongoose");
@@ -222,6 +222,39 @@ class AgentController extends BaseController {
         req.locals.agents = data;
         // console.log(data);
         next();
+      }
+    );
+  }
+
+  async getAgentMessages(req, res, next) {
+    req.locals.agentMessage = {}
+    const { page, perpage, q, search } = req.query
+    let query = Helper.parseQuery(q) || {}
+    if (search) query = { $text: { $search: search } }
+    let agent
+    if (req.isAuthenticated() && req.user) {
+        agent = await Agent.findOne({ owner: mongoose.Types.ObjectId(req.user.id) }).exec()
+    }
+
+    if (!agent  || agent._id) return  next()
+   
+    DB.Paginate(
+      res,
+      next,
+      AgentMessage,
+      {
+        perPage: perpage,
+        query,
+        page,
+        query: { agent: agent._id },
+        // sort: { viewCount: -1 },
+        // sort: SORT,
+        // populate: [],
+      },
+      (data) => {
+        req.locals.agentMessage = data
+        console.log(data)
+        next()
       }
     );
   }

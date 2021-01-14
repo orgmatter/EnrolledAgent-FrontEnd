@@ -84,7 +84,7 @@ const handleSubmit = (e) => {
   // document.getElementById("paymentModal").showModal();
   btn.setAttribute("disabled", "true");
   btn.innerHTML = spinner();
- 
+  $("#paymentModal").modal()
   // return
   axios({
     method: "POST",
