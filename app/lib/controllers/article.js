@@ -228,7 +228,7 @@ class ArticleController extends BaseController {
      * @param  {Function} next
      */
     async agentArticles(req, res, next) {
-        req.locals.agentArticles = {}
+        req.locals.agentArticles = {data: []}
         const { page, perpage, q, search } = req.query
         let query = Helper.parseQuery(q) || {}
         if (search) query = { title: { $regex: search, $options: 'i' } }
