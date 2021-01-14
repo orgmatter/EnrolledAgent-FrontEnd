@@ -8,7 +8,7 @@ const Validator = require('./validators')
 const Constants = require('./constants')
 const Logger = require('./logger')
 const log = new Logger('auth:porple')
-
+const paswordGenerator = require('generate-password');
 const moment = require('moment')
 const { reject } = require('async')
 /**
@@ -46,6 +46,7 @@ exports.userToSession = function (user, accountType) {
     email: user.email,
     imageUrl: user.imageUrl,
     firstName: user.firstName,
+    isSuperAdmin: user.isSuperAdmin || false,
     accountType: accountType || Constants.ACCOUNT_TYPE.user
   }
 }
@@ -175,6 +176,17 @@ exports.validateCompany = (scope, body, res, done) => {
   }
 
   return true
+}
+
+/**
+ * geenerate password
+ * @return {number}
+ */
+exports.generatePassword = function () {
+  return paswordGenerator.generate({
+    length: 7,
+    // numbers: true
+  })
 }
 
 /**

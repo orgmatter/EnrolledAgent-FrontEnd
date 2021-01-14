@@ -1,4 +1,4 @@
-const { DB, Models: { Subscription, Agent }, Validator } = require("common");
+const { DB, Models: { Subscription, Agent }, Validator, Helper } = require("common");
 const BaseCron = require("./baseCron");
 
 class RatingJob extends BaseCron {
@@ -21,12 +21,12 @@ class RatingJob extends BaseCron {
                     const { data, pages, page } = result
                     for (let index = 0; index < data.length; index++) {
                         const agent = data[index]
-                        console.log(agent)
+                        // console.log(agent)
                         if (agent && agent.review && agent.review.length > 0)
                             await this.updateRating(agent._id, agent.review)
-                        await setTimeout(function () { }, 100)
+                        // await setTimeout(function () { }, 100)
                     }
-                    await setTimeout(function () { }, 500)
+                    // await Helper.delay(500)
                     if (pages > page) {
                         // console.log('running job again', page)
                         this.runJob(page + 1, done)
@@ -53,7 +53,7 @@ class RatingJob extends BaseCron {
                 createdAt: 0,
                 updatedAt: 0
             },
-            populate: 'review'
+            populate: {path: 'review', select: {rating: 1}}
         }, (res) => done(null, res))
     }
 
@@ -65,7 +65,7 @@ class RatingJob extends BaseCron {
     async updateRating(id, review) {
         if (!review || review.length < 1) return
         let rating = 0
-        // console.log(id)
+        console.log(id, review)
         review.forEach((m) => {
             rating += Number(m.rating)
         })
@@ -74,6 +74,7 @@ class RatingJob extends BaseCron {
         await Agent.findByIdAndUpdate(id, {
             rating
         }).exec()
+        
     }
 }
 

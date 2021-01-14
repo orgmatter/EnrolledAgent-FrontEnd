@@ -160,3 +160,6 @@ content-type: application/json
     "stateLicenced": "Arizona"
 
 }
+
+###
+POST https://cpadirectory.com/articles

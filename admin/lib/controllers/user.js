@@ -20,6 +20,7 @@ const sanitizeBody = function (body) {
   delete body.isActive;
   delete body.isEmailVerified;
   delete body.accountType;
+  delete body.isSuperAdmin;
 }
 
 
