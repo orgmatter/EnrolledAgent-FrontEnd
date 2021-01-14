@@ -227,7 +227,7 @@ class AgentController extends BaseController {
   }
 
   async getAgentMessages(req, res, next) {
-    req.locals.agentMessage = {}
+    req.locals.agentMessage =  {data: []}
     const { page, perpage, q, search } = req.query
     let query = Helper.parseQuery(q) || {}
     if (search) query = { $text: { $search: search } }
@@ -253,7 +253,7 @@ class AgentController extends BaseController {
       },
       (data) => {
         req.locals.agentMessage = data
-        console.log(data)
+        // console.log(data)
         next()
       }
     );
