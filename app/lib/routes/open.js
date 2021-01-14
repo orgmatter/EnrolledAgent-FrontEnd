@@ -43,9 +43,9 @@ router
     // .get('/linkedin/callback', passport.authenticate('linkedin'), handleSocial)
     // .get('/google/callback', passport.authenticate('google', { scope: ['profile', 'email'], }), handleSocial)
 
-    .get("/blog", ArticleController.getAll, ArticleController.featured, 
+    .get("/blog",ArticleController.get, ArticleController.getAll, ArticleController.featured, 
     ArticleController.latest, (req, res) => {
-         console.log("articles>>>", req.locals.latestArticle);
+         console.log("articles>>>", req.locals);
         res.render("blog", { locals: req.locals });
     })
     .get("/blog/:id", ArticleController.get, (req, res) => {

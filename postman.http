@@ -125,18 +125,18 @@ content-type: application/json
 
 
 ###
-POST  http://localhost:3000/api/upgrade-account HTTP/1.1
+POST  http://localhost:3000/api/contact-agent HTTP/1.1
 content-type: application/json
 
-# {
-#     "message": "Dsghghjgjhggdf",
-#      "email": "ekeh.wisdom@gmail.com",
-#     "body": "asdhfajfd adhjdghjh",
-#     "title": "sdfdffdf",
-#     "firstName": "sdfghj",
-#     "lastName": "Dsghgdf",
-#     "phone": "09902836879233"
-# }
+{
+    "message": "Dsghghjgjhggdf",
+     "email": "ekeh.wisdom@gmail.com",
+    "body": "asdhfajfd adhjdghjh",
+    "subject": "sdfdffdf",
+    "name": "Dsghgdf",
+    "phone": "09902836879233",
+    "agent": "5ff5de1d36d3efe40a941e5a"
+}
 
 
 

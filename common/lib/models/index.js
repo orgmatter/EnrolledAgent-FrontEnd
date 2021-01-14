@@ -3,6 +3,7 @@
 module.exports = {
   AdminUser: require('./admin_user'),
   Agent: require('./agent'),
+  AgentMessage: require('./agentMessage'),
   Article: require('./article'),
   Answer: require('./answer'),
   ArticleCategory: require('./articleCategory'),
