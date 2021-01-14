@@ -9,10 +9,12 @@ const {
 router
   .use(require('./auth'))
   .use(Middleware.ExtractToken.token.unless([]))
-  .use(Middleware.ExtractToken.decodeData)
+  .use(Middleware.ExtractToken.decodeData) 
+  .use(require('./guard'))
   .use(require('./resource'))
   .use(require('./claim'))
   .use('/sponsor', require('./sponsor'))
+  .use('/analytic', require('./analytics'))
   .use('/log', require('./log'))
   .use('/faq', require('./faq'))
   .use('/category', require('./category'))
@@ -21,6 +23,8 @@ router
   .use('/agent', require('./agent'))
   .use('/user', require('./user'))
   .use('/question', require('./question'))
+  .use('/role', require('./role'))
+  .use('/staff', require('./staff'))
   .use('/config', require('./config'))
   
 

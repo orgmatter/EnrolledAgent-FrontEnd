@@ -8,4 +8,5 @@ module.exports = {
   SPONSOR: 'sponsor',
   PAYMENT: 'payment',
   QUESTION: 'question',
+  ROLE: 'role',
 }
