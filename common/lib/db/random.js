@@ -1,11 +1,7 @@
 module.exports = (res, next, Collection, options, done)=>{
   const {limit, populate, query, min} = options
 // Get the count of all users
-Collection.count(query).exec(function (err, count) {
-   
-
-  
-
+Collection.countDocuments(query).exec(function (err, count) {
     if(count <= (limit || 10)) return Collection.find(query)
     .populate(populate)
     .limit(limit || 10)

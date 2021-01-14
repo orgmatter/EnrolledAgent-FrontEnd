@@ -24,23 +24,25 @@ const Article = new Schema({
     type: Boolean,
     default: true
   },
+
+  byAdmin: {
+    type: Boolean,
+    default: false
+  },
+
   featured: {
     type: Boolean,
     default: false
   },
-  // user: {
-  //   ref: 'user',
-  //   type: Schema.ObjectId
-  // }, 
   agent: {
     ref: 'agent',
     type: Schema.ObjectId
-  }, 
+  },
   sponsor: {
     ref: 'sponsor',
     type: Schema.ObjectId
   },
-  title: {type: String, index: true},
+  title: { type: String, index: true },
   imageUrl: String,
 }, { timestamps: true })
 

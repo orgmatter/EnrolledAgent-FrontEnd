@@ -32,6 +32,10 @@ const UserSchema = new Schema({
     type: Boolean,
     default: true
   },
+  isSuperAdmin: {
+    type: Boolean,
+    default: false
+  },
   gender: {
     type: String,
     enum: ['male', 'female']

@@ -124,7 +124,7 @@ class QuestionController extends BaseController {
 
     async get(req, res, next) {
         const { id } = req.params
-        let resource = await Question.findById(id).exec()
+        let resource = await Question.findById(id).populate('answer')
         req.locals.question = resource
         next()
     }
