@@ -233,7 +233,7 @@ class AgentController extends BaseController {
     if (search) query = { $text: { $search: search } }
     let agent
     if (req.isAuthenticated() && req.user) {
-        agent = await Agent.findOne({ owner: Types.ObjectId(req.user.id) }).exec()
+        agent = await Agent.findOne({ owner: mongoose.Types.ObjectId(req.user.id) }).exec()
     }
 
     if (!agent  || agent._id) return  next()
