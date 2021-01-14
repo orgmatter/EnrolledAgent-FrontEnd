@@ -45,7 +45,7 @@ router
 
     .get("/blog", ArticleController.getAll, ArticleController.featured, 
     ArticleController.latest, (req, res) => {
-         console.log("articles>>>", req.locals);
+         console.log("articles>>>", req.locals.latestArticle);
         res.render("blog", { locals: req.locals });
     })
     .get("/blog/:id", ArticleController.get, (req, res) => {

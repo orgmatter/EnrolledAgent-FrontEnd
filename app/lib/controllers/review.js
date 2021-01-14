@@ -51,8 +51,9 @@ class ReviewController {
      * @param  {function} next
      */
     async agent(req, res, next) {
+        req.locals.review = []
         if (!(req.isAuthenticated() && req.user))
-            return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
+            return next()
 
         let agent = await Agent.findOne({ owner: Types.ObjectId(req.user.id) }).exec()
         // console.log(agent, req.user.id)
