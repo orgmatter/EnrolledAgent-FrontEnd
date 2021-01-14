@@ -135,7 +135,7 @@ class ContactController {
       )
     }
 
-    await AgentMessage.create({ name, email, subject, message, phone }).then()
+    await AgentMessage.create({ name, email, subject, message, phone, agent }).then()
 
     new MailService().sendMail(
       {

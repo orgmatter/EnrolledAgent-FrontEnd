@@ -228,6 +228,7 @@ class ArticleController extends BaseController {
      * @param  {Function} next
      */
     async agentArticles(req, res, next) {
+        req.locals.agentArticles = {}
         const { page, perpage, q, search } = req.query
         let query = Helper.parseQuery(q) || {}
         if (search) query = { title: { $regex: search, $options: 'i' } }
@@ -237,7 +238,7 @@ class ArticleController extends BaseController {
         }
 
 
-        if (agent && agent._id) {
+        if (!agent  || agent._id) return  next()
             DB.Paginate(res, next, Article, {
                 perPage: perpage,
                 query: { agent: agent._id },
@@ -248,19 +249,19 @@ class ArticleController extends BaseController {
                 req.locals.agentArticles = data
                 next()
             })
-        } else next()
+        
+
     }
 
 
 
     async get(req, res, next) {
         const { id } = req.params
-        // if (!id || !Validator.isMongoId(String(id))) return next()
-        let resource = await Article.findById('5feb11d015b6e0de7d4f9894')
+        if (!id || !Validator.isMongoId(String(id))) return next()
+        let resource = await Article.findById(id)
             .populate(['category', 'comment'])
             .exec()
         req.locals.article = resource
-        // console.log(resource)
         next()
 
     }

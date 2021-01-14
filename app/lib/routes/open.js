@@ -43,7 +43,7 @@ router
     // .get('/linkedin/callback', passport.authenticate('linkedin'), handleSocial)
     // .get('/google/callback', passport.authenticate('google', { scope: ['profile', 'email'], }), handleSocial)
 
-    .get("/blog",ArticleController.get, ArticleController.getAll, ArticleController.featured, 
+    .get("/blog", ArticleController.getAll, ArticleController.featured, 
     ArticleController.latest, (req, res) => {
          console.log("articles>>>", req.locals);
         res.render("blog", { locals: req.locals });
@@ -75,7 +75,7 @@ router
         checkRedirectCookie,
         CityController.get,
         AgentController.popular,
-        ResourceController.random,
+        ResourceController.random,AgentController.getAgentMessages,
         (req, res) => {
             // console.log(req.locals)
             //  console.log("locals", req.app.locals);
