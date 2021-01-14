@@ -7,8 +7,9 @@ const {
   Validator,
   Helper,
   DB,
-  Models: { Contact, AdminUser, EmailList, Offshore },
+  Models: { Contact, AgentMessage, Agent, AdminUser, EmailList, Offshore },
 } = require("common")
+const { Types: { ObjectId } } = require("mongoose")
 
 
 class ContactController {
@@ -70,6 +71,87 @@ class ContactController {
     }
 
     res.json({ message: 'Thank you for contacting us, your message will be attended to appropriately' })
+
+
+  }
+
+
+  /**
+      * send an agent a personal message
+      * @param  {Express.Request} req
+      * @param  {Express.Response} res
+      * @param  {Function} next
+      */
+  async sendAgentMessage(req, res, next) {
+    const { name, email, subject, message, phone, agent } = req.body
+
+    if (!agent || !Validator.isMongoId(String(agent)))
+      return next(
+        new Exception(
+          'Invalid request',
+          ErrorCodes.REQUIRED
+        )
+      )
+
+    let _agent = await Agent.findById(agent).exec()
+    if (!_agent || !_agent._id) {
+      res.status(422)
+      return next(
+        new Exception(
+          'Invalid request',
+          ErrorCodes.REQUIRED
+        )
+      )
+    }
+
+    if (!name || !email || !phone) {
+      res.status(422)
+      return next(
+        new Exception(
+          'Name and email is required',
+          ErrorCodes.REQUIRED
+        )
+      )
+    }
+
+    if (!Validator.email(email)) {
+      res.status(422)
+      return next(
+        new Exception(
+          'Please provide a valid email',
+          ErrorCodes.REQUIRED
+        )
+      )
+    }
+
+
+    if (!subject || !message) {
+      res.status(422)
+      return next(
+        new Exception(
+          'Subject and Message is required',
+          ErrorCodes.REQUIRED
+        )
+      )
+    }
+
+    await AgentMessage.create({ name, email, subject, message, phone, agent }).then()
+
+    new MailService().sendMail(
+      {
+        // secret: config.PUB_SUB_SECRET,
+        template: EmailTemplates.AGENT_CONTACT,
+        reciever: _agent.email,
+        subject: subject,
+        locals: { name: name, phone, message, userEmail: email },
+      },
+      (res) => {
+        if (res == null) return
+        log.error("Error sending mail", res)
+      }
+    )
+
+    res.json({ message: `Thank you for contacting ${_agent.firstName || ''} ${_agent.lastName || ''} us, your message will be attended to appropriately` })
 
 
   }

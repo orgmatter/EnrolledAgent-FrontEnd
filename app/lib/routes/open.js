@@ -45,7 +45,7 @@ router
 
     .get("/blog", ArticleController.getAll, ArticleController.featured, 
     ArticleController.latest, (req, res) => {
-         console.log("articles>>>", req.locals.latestArticle);
+         console.log("articles>>>", req.locals);
         res.render("blog", { locals: req.locals });
     })
     .get("/blog/:id", ArticleController.get, (req, res) => {
@@ -75,7 +75,7 @@ router
         checkRedirectCookie,
         CityController.get,
         AgentController.popular,
-        ResourceController.random,
+        ResourceController.random,AgentController.getAgentMessages,
         (req, res) => {
             // console.log(req.locals)
             //  console.log("locals", req.app.locals);
