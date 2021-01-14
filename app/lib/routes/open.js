@@ -49,7 +49,7 @@ router
         res.render("blog", { locals: req.locals });
     })
     .get("/blog/:id", ArticleController.get, (req, res) => {
-        console.log("articles>>>", req.locals);
+        console.log("articles>>>", req.locals.article);
         res.render("singleBlog", { locals: req.locals.article });
     })
     .get("/ea-listings", AgentController.getAll, (req, res) => {
@@ -89,16 +89,17 @@ router
     .get("/claim-listing", (req, res) => {
         res.render("listings", { locals: req.locals });
     })
-    .get("/ask-ea", QuestionController.getAll, (req, res) => {
-        console.log("questions", req.params);
+    .get("/ask-ea", QuestionController.getAll, ArticleController.latest, (req, res) => {
+        console.log("questions", req.locals);
         res.render("askEA", { locals: req.locals });
     })
-    .get("/ask-ea/:id", QuestionController.get, (req, res) => {
-        console.log("questions", req.params);
+    .get("/ask-ea/:id", QuestionController.get, ArticleController.latest, (req, res) => {
+        console.log("questions", req.locals);
         res.render("askEASingle", { locals: req.locals });
     })
-    .get("/ask-ea/:category", QuestionController.getAll, (req, res) => {
-        console.log("params", req.params);
+    .get("/ask-ea/category/:category", QuestionController.getAll, ArticleController.latest, 
+    (req, res) => {
+        console.log("params", req.locals);
         res.render("askEACategory", {
             locals: req.locals,
             name: req.params.category

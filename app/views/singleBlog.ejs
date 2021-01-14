@@ -53,14 +53,14 @@
                         </div>
                         <div class="media-body pl-15">
                           <div class="event-content pull-left flip">
-                            <span class="mb-10 text-gray-darkgray mr-10 font-13"
-                              ><i class="fa fa-commenting-o mr-5 text-theme-colored"></i> 214
-                              Comments</span
-                            >
+                            <span class="mb-10 text-gray-darkgray mr-10 font-13"> 
+                              <i class="fa fa-commenting-o mr-5 text-theme-colored"></i> 
+                              <%= locals.comment.length || 0 %> Comments
+                            </span>
                           </div>
                         </div>
                       </div>
-                      <p class="mb-15"><%= locals.body  %></p>
+                      <p class="mb-15"><%- locals.body  %></p>
                     
                       <div class="mt-30 mb-0">
                         <h5 class="pull-left flip mt-10 mr-20 text-theme-colored">Share:</h5>
@@ -80,7 +80,7 @@
                       </div>
                     </div>
                   </article>
-                  <div class="tagline p-0 pt-20 mt-5">
+                  <!-- <div class="tagline p-0 pt-20 mt-5">
                     <div class="row">
                       <div class="col-md-12">
                         <div class="tags pb-20">
@@ -92,7 +92,7 @@
                       </div>
                    
                     </div>
-                  </div>
+                  </div> -->
                   
                   <div class="comments-area">
                     <h5 class="comments-title mt-30">Comments</h5>
@@ -102,13 +102,9 @@
                       <li>
                         <div class="media comment-author">
                           <div class="media-body">
-                            <h5 class="media-heading comment-heading">John Doe says:</h5>
+                            <h5 class="media-heading comment-heading"><%= el.name %>  says:</h5>
                             <div class="comment-date">23/06/2014</div>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                              eiusmod tempor incididunt ut labore et dolore magna et sed aliqua. Ut
-                              enim ea commodo consequat...
-                            </p>
+                            <p><%= el.message %></p>
                           </div>
                         </div>
                       </li>

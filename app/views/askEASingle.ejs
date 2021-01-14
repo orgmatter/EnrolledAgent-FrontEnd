@@ -7,32 +7,41 @@
       <section class="container-fluid category_jumbotron">
         <div class="row">
           <div class="col-12 category_jumbotron-div">
-            <h2>Previous Questions</h2>
+            <h2>View Question</h2>
             <p>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
             <a href="/new-question">Ask new question</a>
+            <a href="/ask-ea" class="ml-20">View Previous Questions</a>
           </div>
         </div>
       </section>
       <section class="category_grid">
         <div class="category_grid-main">
-          <% locals.questions && locals.questions.data.map((el, id)=> { %>
-            <div class="category_grid-main-div">
+            <div class="category_grid-main-div" style="border-bottom: none;">
             <div class="category_grid-main-div-meta">
               <div class="category_grid-main-div-meta-div">
                 <div class="category_grid-main-div-meta-div-date">
                   <p>28 <br />FEB</p>
                 </div>
                 <div class="category_grid-main-div-meta-div-title">
-                  <h3 class="category-post-title"><%= el.title || "N/A"  %> </h3>
-                  <p class="category-post-author">by <%= el.firstName || "N/A"  %> <%= el.lastName || "N/A"  %> 
-                    <a href="/ask-ea/category/<%= el.category.slug %>">| Category: <%= el.category.name || "N/A"  %></a></p>
+                  <h3 class="category-post-title"><%= locals.question.title || "N/A"  %> </h3>
+                  <p class="category-post-author">by <%= locals.question.firstName || "N/A"  %> <%= locals.question.lastName || "N/A"  %> 
                 </div>
               </div>
-              <p class="category_grid-main-div-meta-desc"><%= el.body || "N/A"  %></p>
-              <a href="/ask-ea/<%= el._id %>" class="category_grid-main-div-meta-cta">Read More</a>
+              <p class="category_grid-main-div-meta-desc"><%= locals.question.body || "N/A"  %></p>
+              <div class="category_grid-main-div-meta-answer">
+                  <% if (locals.question.answer !== undefined) { %>
+                    <h4>Answer</h4> 
+                    <p>Answer body goes here</p>
+                    <p><span>Answer by:</span> Enrolled Agents</p>
+                  <%} else { %>
+                    <p>This question has not been answered. Are you an Enrolled Agent? 
+                        <a <% if(locals.isAuthenticated) {%> href="/dashboard/submit-answer/<%= locals.question._id %> "
+                        <%}%> href="/login">Click here to answer</a></p>
+                  <%}%> 
+                  
+              </div>
             </div>
           </div>
-          <% }) %> 
           
         </div>
         <div class="category_grid-side">
@@ -66,14 +75,6 @@
           <div class="category_grid-side-ads">
             <img src="/assets/files/13061.png" alt="enrolled-agent" />
           </div>
-        </div>
-      </section>
-      <section class="category_nav">
-        <div class="category_nav-div">
-          <img src="/assets/files/down-arrow-small.svg" alt="previous-button" />
-        </div>
-        <div class="category_nav-div2">
-          <img src="/assets/files/down-arrow-small.svg" alt="next-button" />
         </div>
       </section>
     </div>
