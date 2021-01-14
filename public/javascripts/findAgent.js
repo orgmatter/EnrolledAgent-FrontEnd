@@ -20,13 +20,19 @@ states.addEventListener("click", () => {
   res = false;
 });
 
+const clearForm = () => {
+  zipInput.value = " ";
+}
+
 submitBtn.addEventListener("click", () => {
   if (zipInput.value !== "") {
     const payload = zipInput.value;
     if (res) {
       location.href = `${baseUrl}/search-results?q=zipcode:${payload}`;
+      clearForm();
     } else {
       location.href = `${baseUrl}/search-results?q=state:${payload}`;
+      clearForm();
     }
   }
 });
@@ -38,8 +44,10 @@ zipInput.addEventListener("keyup", function (event) {
         const payload = zipInput.value;
         if (res) {
           location.href = `${baseUrl}/search-results?q=zipcode:${payload}`;
+          clearForm();
         } else {
           location.href = `${baseUrl}/search-results?q=state:${payload}`;
+          clearForm();
         }
     }
   }
