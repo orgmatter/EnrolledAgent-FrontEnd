@@ -150,47 +150,47 @@
 }
 
 .sr-combo-inputs-row{
-      margin: 30px 0 50px;
+      margin: 30px 0 50px!important;
       .card-payment-details {
         input {
-          height: 40px;
-          border: 1px solid #333;
-          width: 300px;
-          padding: 0 10px;
+          height: 40px!important;
+          border: 1px solid #333!important;
+          width: 300px!important;
+          padding: 0 10px!important;
         }
       }
   }
 
   .sr-payment-form {
     button{
-      outline: none;
-      border: none;
-      background-color: $main-blue;
-      width: 150px;
-      height: 40px;
-      color: #fff;
+      outline: none!important;
+      border: none!important;
+      background-color: $main-blue!important;
+      width: 150px!important;
+      height: 40px!important;
+      color: #fff!important;
     }
   }
 
   .ElementsApp{
     .CardField{
-      height: 100px;
+      height: 100px!important;
       &-postalCode{
-        width: 150px;
+        width: 150px!important;
       }
       &-expiry, &-cvc, &-postalCode{
-        transform: none;
+        transform: none!important;
       }
       &-child{
-        height: 40px;
-        border: 1px solid #333;
-        padding: 10px;
+        height: 40px!important;
+        border: 1px solid #333!important;
+        padding: 10px!important;
       }
       &-input-wrapper{
-        height: 80px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        height: 80px!important;
+        display: flex!important;
+        align-items: center!important;
+        justify-content: space-between!important;
       }
     }
   }

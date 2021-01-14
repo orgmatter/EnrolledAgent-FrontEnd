@@ -49,7 +49,7 @@ router
         res.render("blog", { locals: req.locals });
     })
     .get("/blog/:id", ArticleController.get, (req, res) => {
-        // console.log("articles>>>", req.locals);
+        console.log("articles>>>", req.locals);
         res.render("singleBlog", { locals: req.locals.article });
     })
     .get("/ea-listings", AgentController.getAll, (req, res) => {
@@ -93,6 +93,10 @@ router
         console.log("questions", req.params);
         res.render("askEA", { locals: req.locals });
     })
+    .get("/ask-ea/:id", QuestionController.get, (req, res) => {
+        console.log("questions", req.params);
+        res.render("askEASingle", { locals: req.locals });
+    })
     .get("/ask-ea/:category", QuestionController.getAll, (req, res) => {
         console.log("params", req.params);
         res.render("askEACategory", {
@@ -100,7 +104,7 @@ router
             name: req.params.category
         });
     })
-    .get("/new-question", QuestionController.getAll, (req, res) => {
+    .get("/new-question", (req, res) => {
         console.log("cate", req.locals);
         res.render("newQuestions", { locals: req.locals });
     })
