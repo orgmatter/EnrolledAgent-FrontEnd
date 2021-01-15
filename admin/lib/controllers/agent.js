@@ -125,6 +125,7 @@ class AgentController extends BaseController {
             perPage: perpage,
             query,
             page,
+            sort: {createdAt: -1},
             populate: [{ path: 'reviewCount', select: ['rating'] }, { path: 'owner', select: ['_id', 'firstName'] }]
         }, (data) => {
             super.handleResultPaginated(data, res, next)
