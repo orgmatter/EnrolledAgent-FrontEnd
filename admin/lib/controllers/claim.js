@@ -9,6 +9,7 @@ const {
     DB,
     Models: { Agent, ClaimListing },
 } = require("common")
+const {Types} = require("mongoose")
 
 const BaseController = require('../controllers/baseController');
 const STORAGE = process.env.STORAGE
@@ -89,6 +90,8 @@ class ClaimController extends BaseController {
         const claim = await ClaimListing.findByIdAndUpdate(id, { status: Constants.ARTICLE_STATUS.rejected },
             { new: true })
 
+        await Agent.findOneAndUpdate({ owner: Types.ObjectId(claim.user), },{owner: null }, {new: true}).exec()
+
         super.handleResult({ message: 'Listing request rejected succesfully' }, res, next)
     }
 
@@ -112,12 +115,12 @@ class ClaimController extends BaseController {
 
     }
 
- 
+
 
     async get(req, res, next) {
         const { id } = req.params
         let resource = await ClaimListing.findById(id)
-            .populate( [
+            .populate([
                 { path: 'user', select: { firstName: 1, lastName: 1, email: 1 } },
                 { path: 'agent', select: { firstName: 1, lastName: 1, email: 1 } }])
             .exec()
@@ -137,7 +140,7 @@ class ClaimController extends BaseController {
             perPage: perpage,
             query,
             page,
-            sort: {createdAt: -1},
+            sort: { createdAt: -1 },
             populate: [
                 { path: 'user', select: { firstName: 1, lastName: 1, email: 1 } },
                 { path: 'agent', select: { firstName: 1, lastName: 1, email: 1 } }]
@@ -148,3 +151,4 @@ class ClaimController extends BaseController {
 }
 
 module.exports = new ClaimController()
+//TODO: Dispatch email when listing is rejected

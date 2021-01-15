@@ -69,7 +69,7 @@ class LoistingRequestController extends BaseController {
         )
 
         
-        if(await Agent.exists({owner: request.user._id}))
+        if(await Agent.exists({owner: mongoose.Types.ObjectId(request.user._id)}))
         return next(
             new Exception(
                 'This user has previously claimed a listing',
