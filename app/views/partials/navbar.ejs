@@ -6,18 +6,18 @@
     <a href="/resource" class="navbar_div1-links">Resources</a>
   </div>
   <div class="navbar_div2">
-    <div class="navbar_div2-notification">
+    <!-- <div class="navbar_div2-notification">
       <img alt="enrolled-agents" src="/assets/files/bell.svg" />
       <div class="navbar_div2-notification-div"><p>6</p></div>
     </div>
-    <img alt="enrolled-agents" class="navbar_div2-divider" src="/assets/files/dots.svg" />
+    <img alt="enrolled-agents" class="navbar_div2-divider" src="/assets/files/dots.svg" /> -->
     <div class="navbar_div2-avatar">
-      <img alt="enrolled-agents-avatar" src="/assets/images/avatar.webp" />
+      <img alt="enrolled-agents-avatar" src=<%= locals.user.imageUrl || "/assets/images/avatar.webp" %>  />
     </div>
-    <img
+    <!-- <img
       alt="enrolled-agents"
       class="navbar_div2-dropdown"
       src="/assets/files/down-arrow-small.svg"
-    />
+    /> -->
   </div>
 </div>

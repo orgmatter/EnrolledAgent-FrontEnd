@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="agentCity" content=<%= locals.agentProfile && locals.agentProfile.city || "N/A"  %>  />
+    <meta name="agentState" content=<%= locals.agentProfile && locals.agentProfile.state || "N/A"  %>  />
+    <meta name="agentAddress" content=<%= locals.agentProfile && locals.agentProfile.address1|| "N/A"  %>  />
     <title>Document</title>
     <link
       href="/assets/files/favicon.png"
@@ -42,7 +45,7 @@
                     <div class="avatar__preview">
                       <img
                         id="avatar-preview"
-                        src="/assets/images/avatar.webp"
+                        src=<%= locals.user.imageUrl || "/assets/images/avatar.webp" %> 
                         alt="profile picture"
                         class="avatar__preview--image"
                       />
@@ -139,7 +142,6 @@
               </div>
             </form>
           </section>
-
           <% if (locals.agentProfile !== null) {%>
             <section class="asetup-form">
             <form id="update-agent-form">
@@ -149,7 +151,7 @@
                     <div class="avatar__preview">
                       <img
                         id="agent-avatar-preview"
-                        src="/assets/images/avatar.webp"
+                        src=<%= locals.agentProfile.imageUrl || "/assets/images/avatar.webp" %> 
                         alt="profile picture"
                         class="avatar__preview--image"
                       />
@@ -157,7 +159,7 @@
                     <div class="avatar__edit">
                       <input
                         id="agent-image"
-                        class="avatar__input disabled"
+                        class="avatar__input agentDisabled"
                         type="file"
                         accept=".png, .jpg, .jpeg .JPG"
                         disabled
@@ -180,9 +182,9 @@
                 </div>
               </div>
               <div class="form__row">
-                <div class="form__group">
+                <div class="form__group w-100">
                   <div class="form__details">
-                    <div class="form__details--head">Account Details</div>
+                    <div class="form__details--head ">Enrolled Agent Account Details</div>
                     <div class="form__details--text">
                       View and update your Enrolled Agent account details.
                     </div>
@@ -191,55 +193,67 @@
               </div>
               <div class="form__row">
                 <div class="form__group">
-                  <label for="agent-full-name" class="form__label">First Name</label>
+                  <label for="agent-first-name" class="form__label">First Name</label>
                   <input
                     type="text"
-                    id="first-name"
-                    name="full-name"
-                    class="form__input disabled"
-                    value=<%= locals.user.firstName %> 
+                    id="agent-first-name"
+                    name="first-name"
+                    class="form__input agentDisabled"
+                    value=<%= locals.agentProfile.firstName || "N/A" %> 
                     disabled
                   />
                 </div>
                 <div class="form__group">
-                  <label for="username" class="form__label">Last Name</label>
+                  <label for="agent-last-name" class="form__label">Last Name</label>
                   <input
                     type="text"
                     id="agent-last-name"
-                    class="form__input disabled"
-                    value=<%= locals.user.lastName %>
+                    class="form__input agentDisabled"
+                    value=<%= locals.agentProfile.lastName || "N/A" %>
                     disabled
                   />
                 </div>
               </div>
               <div class="form__row">
                 <div class="form__group">
-                  <label for="email" class="form__label">Email Address</label>
+                  <label for="phone" class="form__label">Phone</label>
                   <input
-                    type="text"
-                    id="email"
-                    class="form__input"
-                    value=<%= locals.user.email %>
+                    type="tel"
+                    id="phone"
+                    class="form__input agentDisabled"
+                    value=<%= locals.agentProfile.phone || "N/A" %>
                     disabled
                   />
                 </div>
                 <div class="form__group">
-                  <label for="account-created" class="form__label"
-                    >Account Created</label
-                  >
+                  <label for="zip-code" class="form__label">Zip Code</label>
                   <input
-                    type="text"
-                    id="account-created"
-                    class="form__input"
-                    value="Tuesday, November 6, 1900"
+                    type="number"
+                    id="zip-code"
+                    class="form__input agentDisabled"
+                    value=<%= locals.agentProfile.zipcode || "N/A" %>
                     disabled
                   />
                 </div>
               </div>
+              <div class="form__row">
+                <div class="form__group">
+                  <label for="city" class="form__label">City</label>
+                  <input
+                    type="text"
+                    id="city"
+                    class="form__input agentDisabled"
+                    value=<%= locals.agentProfile.city || "N/A" %>
+                    disabled
+                  />
+                </div>
+              </div>
+           
+              
             
               <div class="form__row">
                 <div class="form__group">
-                  <button type="submit" id="agent-submit-btn" class="asetup-btn form__button-btn asetup-form-main-btn disabled" disabled>
+                  <button type="submit" id="agent-submit-btn" class="asetup-btn form__button-btn asetup-form-main-btn agentDisabled" disabled>
                     Update Account
                   </button>
                 </div>
@@ -270,123 +284,65 @@
                   Help
                 </button>
               </div>
-              <div class="form__row">
-                <div class="form__group">
-                  <label
-                    for="phone-number"
-                    class="form__label form__label-contact"
-                    >Phone-number</label
-                  >
-                  <input
-                    type="text"
-                    id="phone-number"
-                    class="form__input"
-                    placeholder="(US) Phone Number"
-                  />
-                  <div class="form__input--info">
-                    Only US Numbers are Supported at this time.
+              <form id="preference-form">
+                <div class="form__row">
+                  <div class="form__group">
+                    <div class="form__input--head">Contact Me:</div>
+                    <div class="checkbox-div">
+                      <input type="checkbox" id="for-review" class="form__checkbox" 
+                      checked=<%= locals.agentProfile.preference.newReview %> />
+                      <label for="for-review" class="form__label form__checkbox-label" > 
+                        After a customer leaves a review
+                      </label>
+                    </div>
+                    <div class="checkbox-div">
+                      <input type="checkbox" id="for-message" class="form__checkbox" 
+                      checked=<%= locals.agentProfile.preference.messageReceived %> />
+                      <label for="for-message" class="form__label form__checkbox-label"> 
+                        When I receive a message
+                      </label>
+                    </div>
+                    <div class="checkbox-div">
+                      <input type="checkbox" id="for-published" class="form__checkbox" 
+                      checked=<%= locals.agentProfile.preference.articlePublished %> />
+                      <label for="for-published" class="form__label form__checkbox-label">
+                        When my article is published
+                      </label>
+                    </div>
+                    
                   </div>
                 </div>
-              </div>
-              <div class="form__row">
-                <div class="form__group">
-                  <div class="form__input--head">Contact Me:</div>
-                  <div class="">
-                    <input
-                      type="checkbox"
-                      id="for-review"
-                      class="form__checkbox"
-                    />
-                    <label
-                      for="for-review"
-                      class="form__label form__checkbox-label"
-                      >After a customer leaves a review</label
-                    >
-                  </div>
-                  <div class="">
-                    <input
-                      type="checkbox"
-                      id="for-message"
-                      class="form__checkbox"
-                    />
-                    <label
-                      for="for-message"
-                      class="form__label form__checkbox-label"
-                      >When I receive a message</label
-                    >
-                  </div>
-                  <div class="">
-                    <input
-                      type="checkbox"
-                      id="for-published"
-                      class="form__checkbox"
-                    />
-                    <label
-                      for="for-published"
-                      class="form__label form__checkbox-label"
-                      >When my article is published</label
-                    >
-                  </div>
-                  
-                </div>
-              </div>
-              <div class="form__row">
-                <div class="form__group">
-                  <div class="form__input--head">Newsletter Subscription:</div>
-                  <div class="">
-                    <input
-                      type="checkbox"
-                      id="after-review"
-                      class="form__checkbox"
-                    />
-                    <label
-                      for="after-review"
-                      class="form__label form__checkbox-label"
-                      >After a customer leaves a review</label
-                    >
+                
+                <div class="form__row">
+                  <div class="form__group">
+                    <div class="form__input--head">
+                      I prefer to be contacted by:
+                      <span>
+                        <button class="asetup-btn asetup-btn-icon">
+                          <img src="/assets/images/question.svg" alt="help" class="" />
+                        </button>
+                      </span>
+                    </div>
+                    <div class="">
+                      <select id="form-select" class="form__select">
+                        <option value="email" selected>Email</option>
+                        <option value="phone">Phone</option>
+                        <option value="text">Text</option>
+                      </select>
+                      <label for="form-select" class="form__label form__checkbox-label"> 
+                        After a customer leaves a review
+                      </label>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="form__row">
-                <div class="form__group">
-                  <div class="form__input--head">
-                    I prefer to be contacted by:
-                    <span>
-                      <button class="asetup-btn asetup-btn-icon">
-                        <img
-                          src="/assets/images/question.svg"
-                          alt="help"
-                          class=""
-                        />
-                      </button>
-                    </span>
-                  </div>
-                  <div class="">
-                    <select
-                      type="checkbox"
-                      id="after-review"
-                      class="form__select"
-                    >
-                      <option value="email" selected>Email</option>
-                      <option value="phone">Telephone</option>
-                    </select>
-                    <label
-                      for="after-review"
-                      class="form__label form__checkbox-label"
-                      >After a customer leaves a review</label
-                    >
+                <div class="form__row">
+                  <div class="form__group">
+                    <button type="submit" id="preferenceBtn" class="asetup-btn form__button-btn asetup-form-main-btn">
+                      Save Contact Preferences
+                    </button>
                   </div>
                 </div>
-              </div>
-              <div class="form__row">
-                <div class="form__group">
-                  <button
-                    class="asetup-btn form__button-btn asetup-form-main-btn"
-                  >
-                    Save Contact Preferences
-                  </button>
-                </div>
-              </div>
+              </form>
             </div>
           </section>
         </div>
@@ -412,6 +368,7 @@
   integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
   crossorigin="anonymous"></script>
     <script src="/javascripts/accountUpdate.js"></script>
-
+    <script src="/javascripts/agentUpdate.js"></script>
+<script src="/javascripts/contactPreference.js"></script>
   </body>
 </html>

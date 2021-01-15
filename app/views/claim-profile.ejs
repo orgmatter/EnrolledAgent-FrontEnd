@@ -11,7 +11,7 @@
           <div class="row">
             <aside class="col-md-4 part-1">
               <div class="face-card cards">
-                <img src="/assets/images/avatar.webp" alt="img" />
+                <img src=<%= locals.agent.imageUrl || "/assets/images/avatar.webp" %>  alt="img" />
                <% if(locals.premium) { %>
                 <h4>Premium Member</h4>
                <%}%> 
