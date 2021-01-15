@@ -119,7 +119,7 @@ const getFormData = (data) => {
       btn.innerHTML = btnContent;
       clearFormData();
       btn.removeAttribute("disabled");
-      notyf.success(res.data.message || "Message sent!");
+      notyf.success(res.data.data.message || "Message sent!");
     })
     .catch((err) => {
       console.log(err.response);

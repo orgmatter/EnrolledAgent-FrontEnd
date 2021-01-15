@@ -38,7 +38,7 @@ router
             sub_page_name: "myArticles",
         });
     })
-    .get("/account-settings", user, (req, res) => {
+    .get("/account-settings", user, AgentController.profile, (req, res) => {
         console.log("req.locals", req.locals);
         res.render("dashboard/account-setup", {
             locals: req.locals,

@@ -140,6 +140,114 @@
             </form>
           </section>
 
+          <% if (locals.agentProfile !== null) {%>
+            <section class="asetup-form">
+            <form id="update-agent-form">
+              <div class="form__row">
+                <div class="form__group w-100 flex">
+                  <div class="avatar">
+                    <div class="avatar__preview">
+                      <img
+                        id="agent-avatar-preview"
+                        src="/assets/images/avatar.webp"
+                        alt="profile picture"
+                        class="avatar__preview--image"
+                      />
+                    </div>
+                    <div class="avatar__edit">
+                      <input
+                        id="agent-image"
+                        class="avatar__input disabled"
+                        type="file"
+                        accept=".png, .jpg, .jpeg .JPG"
+                        disabled
+                      />
+                      <label class="avatar__label" for="agent-image">
+                        Change Image
+                        <span class="asetup-btn avatar__label--img">
+                            <img
+                              src="/assets/images/edit2.svg"
+                              alt="edit avatar"
+                            />
+                        </span>
+                      </label>
+                      <p>File size should not be larger than 1MB</p>
+                    </div>
+                  </div>
+                  <button class=" asetup-btn form__button-btn asetup-form-main-btn" id="agent-edit-btn">
+                    Edit Profile
+                  </button>
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__group">
+                  <div class="form__details">
+                    <div class="form__details--head">Account Details</div>
+                    <div class="form__details--text">
+                      View and update your Enrolled Agent account details.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__group">
+                  <label for="agent-full-name" class="form__label">First Name</label>
+                  <input
+                    type="text"
+                    id="first-name"
+                    name="full-name"
+                    class="form__input disabled"
+                    value=<%= locals.user.firstName %> 
+                    disabled
+                  />
+                </div>
+                <div class="form__group">
+                  <label for="username" class="form__label">Last Name</label>
+                  <input
+                    type="text"
+                    id="agent-last-name"
+                    class="form__input disabled"
+                    value=<%= locals.user.lastName %>
+                    disabled
+                  />
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__group">
+                  <label for="email" class="form__label">Email Address</label>
+                  <input
+                    type="text"
+                    id="email"
+                    class="form__input"
+                    value=<%= locals.user.email %>
+                    disabled
+                  />
+                </div>
+                <div class="form__group">
+                  <label for="account-created" class="form__label"
+                    >Account Created</label
+                  >
+                  <input
+                    type="text"
+                    id="account-created"
+                    class="form__input"
+                    value="Tuesday, November 6, 1900"
+                    disabled
+                  />
+                </div>
+              </div>
+            
+              <div class="form__row">
+                <div class="form__group">
+                  <button type="submit" id="agent-submit-btn" class="asetup-btn form__button-btn asetup-form-main-btn disabled" disabled>
+                    Update Account
+                  </button>
+                </div>
+              </div>
+            </form>
+          </section>
+          <%}%> 
+
           <section class="asetup-form asetup-form-contact">
             <div class="contact-preferences">
               <div class="form__details">
