@@ -16,7 +16,7 @@ const {
 
 const sanitizeBody = (body) => {
     delete body.byAdmin
-    delete body.status
+    // delete body.status
     body[''] = ''
     return body
 }

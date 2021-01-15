@@ -35,6 +35,7 @@ class AuthController {
     delete body._id
     delete body.salt
     delete body.hash
+    delete body.email
     delete body.isActive
     delete body.isEmailVerified
     delete body.accountType

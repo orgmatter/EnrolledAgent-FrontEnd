@@ -13,7 +13,7 @@ router
         if (!(req.isAuthenticated() && req.user)) return res.redirect("/login");
         next();
     })
-    .get("/", user, ReviewController.analysisForAgent, ResourceController.random,  (req, res) => {
+    .get("/", user, AgentController.profile, ReviewController.analysisForAgent, ResourceController.random,  (req, res) => {
         console.log("user>>>", req.locals);
         res.clearCookie('redirect-to')
         res.render("dashboard/dashboardhome", {

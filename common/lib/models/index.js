@@ -8,6 +8,7 @@ module.exports = {
   Answer: require('./answer'),
   ArticleCategory: require('./articleCategory'),
   City: require('./city'),
+  ContactPreference: require('./contactPreference'),
   Config: require('./config'),
   ClaimListing: require('./claimListing'),
   Comment: require('./comment'),

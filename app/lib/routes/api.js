@@ -20,6 +20,7 @@ router
   .post("/review", ReviewController.createReview)
   .post("/claim-listing/:id", AgentController.claim)
   .post("/listing-request", FileManager.pdf, AgentController.createListing)
+  .post("/contact-preference", FileManager.pdf, AgentController.contactPreference)
   .put("/update-profile", FileManager.upload, AuthController.update)
   .put("/update-agent", FileManager.upload, AgentController.update)
   .post("/upgrade-account", FileManager.none, AgentController.premium)
