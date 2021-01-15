@@ -23,7 +23,11 @@ const log = new Logger("auth:register")
 
 const jwt = new JwtManager(process.env.SECRET)
 
-sanitizeBody = function (body) {
+/**
+   * make sure protected content is not overriden
+   * @param  {string} body
+   */
+  const sanitizeBody =  (body)=> {
     delete body.updatedAt
     delete body.createdAt
     delete body._id
@@ -36,12 +40,6 @@ sanitizeBody = function (body) {
   }
 
 class AuthController {
-
-  /**
-   * make sure protected content is not overriden
-   * @param  {string} body
-   */
-  
 
 
   /**
@@ -93,7 +91,7 @@ class AuthController {
       )
     }
 
-    const verificationToken = uid(30)
+   
 
     let user = new User({
       email: String(email).toLowerCase(),
@@ -152,6 +150,49 @@ class AuthController {
     )
 
   }
+
+  /**
+ * Verify a users mail
+ * @param  {Express.Request} req
+ * @param  {Express.Response} res
+ * @param  {Function} next
+ */
+sendPasswordReset = async (req, res, next) => {
+  const {body: {email}} = req
+  const user = await User.findOne({ email }).exec()
+
+  let verification = await ReserToken.findOne({ user: user._id, token: { $exists: true } }).exec()
+  const verificationToken = uid(30)
+  if (!verification || !verification.token)
+    verification = await VerificationToken.create({ user: user._id, token: uid(30) })
+  const link = `${APP_URL}/verify/${verification.token}`
+
+  const message = `A mail has been sent to ${email}, please click the link to verify your account`
+
+  req.session.message = message
+  res.json({
+    data: {
+      message
+    },
+  })
+
+  // send an email for user to verify account
+
+  new MailService().sendMail(
+    {
+      // secret: config.PUB_SUB_SECRET,
+      template: EmailTemplates.VERIFY_EMAIL,
+      reciever: email,
+      subject: "Verify Your Email",
+      locals: { name: `${user.firstName} ${user.lastName}`, link },
+    },
+    (res) => {
+      if (res == null) return
+      log.error("Error sending mail", res)
+    }
+  )
+
+}
 
   /**
 * Verify a users mail
