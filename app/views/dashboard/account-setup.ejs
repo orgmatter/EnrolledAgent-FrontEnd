@@ -17,6 +17,7 @@
     />
 
     <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
     <!-- CSS | Main style file -->
     <link href="/css/style-main.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
@@ -30,139 +31,113 @@
           <section class="asetup-head">
             <div class="asetup-head__title">My Account</div>
             <div class="asetup-head__details">
-              Update account details forJuliet Willian
+              Update your account details
             </div>
           </section>
           <section class="asetup-form">
-            <div class="form__row">
-              <div class="form__group">
-                <div class="avatar">
-                  <div class="avatar__preview">
-                    <!--
+            <form id="update-profile-form">
+              <div class="form__row">
+                <div class="form__group w-100 flex">
+                  <div class="avatar">
+                    <div class="avatar__preview">
+                      <img
+                        id="avatar-preview"
+                        src="/assets/images/avatar.webp"
+                        alt="profile picture"
+                        class="avatar__preview--image"
+                      />
+                    </div>
+                    <div class="avatar__edit">
+                      <input
+                        id="image"
+                        class="avatar__input disabled"
+                        type="file"
+                        accept=".png, .jpg, .jpeg .JPG"
+                        disabled
+                      />
+                      <label class="avatar__label" for="image">
+                        Change Image
+                        <span class="asetup-btn avatar__label--img">
                             <img
-                                id="avatar-preview"
-                                src="/assets/images/img-placeholder.jpg"
-                                alt="profile picture"
-                                class="avatar__preview--image"
+                              src="/assets/images/edit2.svg"
+                              alt="edit avatar"
                             />
-                            -->
-                    <img
-                      id="avatar-preview"
-                      src="/assets/images/avatar.webp"
-                      alt="profile picture"
-                      class="avatar__preview--image"
-                    />
+                        </span>
+                      </label>
+                      <p>File size should not be larger than 1MB</p>
+                    </div>
                   </div>
-                  <div class="avatar__edit">
-                    <input
-                      id="avatar-input"
-                      class="avatar__input"
-                      type="file"
-                      accept=".png, .jpg, .jpeg .JPG"
-                    />
-                    <label class="avatar__label" for="avatar-input">
-                      Change Image
-                      <span class="">
-                        <button class="asetup-btn avatar__label--img">
-                          <img
-                            src="/assets/images/edit2.svg"
-                            alt="edit avatar"
-                          />
-                        </button>
-                      </span>
-                    </label>
+                  <button class=" asetup-btn form__button-btn asetup-form-main-btn" id="edit-btn">
+                    Edit Profile
+                  </button>
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__group">
+                  <div class="form__details">
+                    <div class="form__details--head">Account Details</div>
+                    <div class="form__details--text">
+                      View and update your personal account details.
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="form__row">
-              <div class="form__group">
-                <div class="form__details">
-                  <div class="form__details--head">Account Details</div>
-                  <div class="form__details--text">
-                    View and update your Enrolled Agent account details.
-                  </div>
+              <div class="form__row">
+                <div class="form__group">
+                  <label for="full-name" class="form__label">First Name</label>
+                  <input
+                    type="text"
+                    id="first-name"
+                    name="full-name"
+                    class="form__input disabled"
+                    value=<%= locals.user.firstName %> 
+                    disabled
+                  />
+                </div>
+                <div class="form__group">
+                  <label for="username" class="form__label">Last Name</label>
+                  <input
+                    type="text"
+                    id="last-name"
+                    class="form__input disabled"
+                    value=<%= locals.user.lastName %>
+                    disabled
+                  />
                 </div>
               </div>
-            </div>
-            <div class="form__row">
-              <div class="form__group">
-                <label for="full-name" class="form__label">Full Name</label>
-                <input
-                  type="text"
-                  id="full-name"
-                  name="full-name"
-                  class="form__input"
-                  value="Firstname Lastname"
-                  disabled
-                />
+              <div class="form__row">
+                <div class="form__group">
+                  <label for="email" class="form__label">Email Address</label>
+                  <input
+                    type="text"
+                    id="email"
+                    class="form__input"
+                    value=<%= locals.user.email %>
+                    disabled
+                  />
+                </div>
+                <div class="form__group">
+                  <label for="account-created" class="form__label"
+                    >Account Created</label
+                  >
+                  <input
+                    type="text"
+                    id="account-created"
+                    class="form__input"
+                    value="Tuesday, November 6, 1900"
+                    disabled
+                  />
+                </div>
               </div>
-              <div class="form__group">
-                <label for="username" class="form__label">Username</label>
-                <input
-                  type="text"
-                  id="username"
-                  class="form__input"
-                  value="Username"
-                  disabled
-                />
+            
+              <div class="form__row">
+                <div class="form__group">
+                  <button type="submit" id="submit-btn" class="asetup-btn form__button-btn asetup-form-main-btn disabled" disabled>
+                    Update Account
+                  </button>
+                </div>
               </div>
-            </div>
-            <div class="form__row">
-              <div class="form__group">
-                <label for="email" class="form__label">Email Address</label>
-                <input
-                  type="text"
-                  id="email"
-                  class="form__input"
-                  value="example@123.org"
-                  disabled
-                />
-              </div>
-              <div class="form__group">
-                <label for="account-created" class="form__label"
-                  >Account Created</label
-                >
-                <input
-                  type="text"
-                  id="account-created"
-                  class="form__input"
-                  value="Tuesday, November 6, 1900"
-                  disabled
-                />
-              </div>
-            </div>
-            <div class="form__row">
-              <div class="form__group">
-                <label for="verified" class="form__label">Verified</label>
-                <input
-                  type="text"
-                  id="verified"
-                  class="form__input"
-                  value="Tuesday, November 6, 1900"
-                  disabled
-                />
-              </div>
-              <div class="form__group">
-                <label for="last-login" class="form__label">Last Login</label>
-                <input
-                  type="text"
-                  id="last-login"
-                  class="form__input"
-                  value="Tuesday, November 6, 1900"
-                  disabled
-                />
-              </div>
-            </div>
-            <div class="form__row">
-              <div class="form__group">
-                <button
-                  class="asetup-btn form__button-btn asetup-form-main-btn"
-                >
-                  Send Password Reset
-                </button>
-              </div>
-            </div>
+            </form>
           </section>
 
           <section class="asetup-form asetup-form-contact">
@@ -244,18 +219,7 @@
                       >When my article is published</label
                     >
                   </div>
-                  <div class="">
-                    <input
-                      type="checkbox"
-                      id="for-new-accountant"
-                      class="form__checkbox"
-                    />
-                    <label
-                      for="for-new-accountant"
-                      class="form__label form__checkbox-label"
-                      >When an accountant is added to a firm I own.</label
-                    >
-                  </div>
+                  
                 </div>
               </div>
               <div class="form__row">
@@ -335,16 +299,11 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
-    <script>
-      var avatarUrl = "/assets/images/img-placeholder.jpg";
-      var uploadedImageSource;
-      document.getElementById("avatar-input").addEventListener("change", () => {
-        let imageFile = document.getElementById("avatar-input").files[0];
-        avatarUrl = URL.createObjectURL(imageFile);
-        /*
-    the above is not working tho I cannot edit ejs variable from here.
-     */
-      });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+  integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+  crossorigin="anonymous"></script>
+    <script src="/javascripts/accountUpdate.js"></script>
+
   </body>
 </html>
