@@ -248,9 +248,7 @@ class ArticleController extends BaseController {
             }, (data) => {
                 req.locals.agentArticles = data
                 next()
-            })
-        
-
+            })      
     }
 
 

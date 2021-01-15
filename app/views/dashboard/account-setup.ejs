@@ -262,6 +262,8 @@
           </section>
           <%}%> 
 
+          <% if(locals.agentProfile && locals.agentProfile.preference){ %> 
+
           <section class="asetup-form asetup-form-contact">
             <div class="contact-preferences">
               <div class="form__details">
@@ -345,6 +347,7 @@
               </form>
             </div>
           </section>
+          <% } %> 
         </div>
       </div>
     </div>
