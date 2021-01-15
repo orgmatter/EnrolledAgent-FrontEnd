@@ -54,7 +54,7 @@ class AgentController extends BaseController {
     if (!(req.isAuthenticated() && req.user))
       return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
 
-    let agent = await Agent.findOne({ owner:  mongoose.Types.ObjectId(req.user.id)  }).exec()
+    let agent = await Agent.findOne({ owner: mongoose.Types.ObjectId(req.user.id) }).exec()
     if (!agent || !agent._id) {
       res.status(422)
       return next(
@@ -94,12 +94,12 @@ class AgentController extends BaseController {
 
   async contactPreference(req, res, next) {
 
-    const body = req.body || { '': '' } 
+    const body = req.body || { '': '' }
 
     if (!(req.isAuthenticated() && req.user))
       return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
 
-    let agent = await Agent.findOne({ owner:  mongoose.Types.ObjectId(req.user.id)  }).exec()
+    let agent = await Agent.findOne({ owner: mongoose.Types.ObjectId(req.user.id) }).exec()
     if (!agent || !agent._id) {
       res.status(422)
       return next(
@@ -113,11 +113,11 @@ class AgentController extends BaseController {
       return next(new Exception('You can only update your own listing', ErrorCodes.NO_PRIVILEGE))
 
     body.agent = agent._id
-    await ContactPreference.findOneAndUpdate({agent:  agent._id}, body, {upsert: true})
+    await ContactPreference.findOneAndUpdate({ agent: agent._id }, body, { upsert: true })
     // agent = await Agent.findByIdAndUpdate(agent._id, body, { new: true })
 
-  
-    super.handleResult({message: 'Contact preference updated succesfully'}, res, next)
+
+    super.handleResult({ message: 'Contact preference updated succesfully' }, res, next)
     await Log.create({
       user: req.user.id,
       action: LogAction.AGENT_UPDATED,
@@ -172,12 +172,12 @@ class AgentController extends BaseController {
       return next(new Exception('Proof of licence is required', ErrorCodes.NO_PRIVILEGE))
     }
 
-    body.user =  req.user.id
+    body.user = req.user.id
     body.licenceProof = licenceProof
     delete body.agent
 
 
-     await ListingRequest.create(body)
+    await ListingRequest.create(body)
     // console.log(data)
 
     res.json({ data: { message: 'Your listing request has been submitted, you will be contacted appropriately' } })
@@ -196,6 +196,17 @@ class AgentController extends BaseController {
 
     if (!(req.isAuthenticated() && req.user))
       return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
+
+    let agent = await Agent.findOne({ owner: mongoose.Types.ObjectId(req.user.id) }).exec()
+    if (agent && agent._id) {
+      res.status(422)
+      return next(
+        new Exception(
+          'You have previously claimed a listing, you cannot claim another',
+          ErrorCodes.REQUIRED
+        )
+      )
+    }
 
 
     await ClaimListing.create({
@@ -238,15 +249,15 @@ class AgentController extends BaseController {
       return next()
 
     let agent = await Agent.findOne({ owner: mongoose.Types.ObjectId(req.user.id) })
-    .populate([
-      'preference',
-      { path: "review" },
-      { path: "reviewCount", select: ["rating"] },
-      { path: "owner", select: ["_id", "firstName"] },
-    ])
-    .exec();
+      .populate([
+        'preference',
+        { path: "review" },
+        { path: "reviewCount", select: ["rating"] },
+        { path: "owner", select: ["_id", "firstName"] },
+      ])
+      .exec();
     req.locals.agentProfile = agent;
-    next(); 
+    next();
   }
 
 
@@ -282,17 +293,17 @@ class AgentController extends BaseController {
   }
 
   async getAgentMessages(req, res, next) {
-    req.locals.agentMessage =  {data: []}
+    req.locals.agentMessage = { data: [] }
     const { page, perpage, q, search } = req.query
     let query = Helper.parseQuery(q) || {}
     if (search) query = { $text: { $search: search } }
     let agent
     if (req.isAuthenticated() && req.user) {
-        agent = await Agent.findOne({ owner: mongoose.Types.ObjectId(req.user.id) }).exec()
+      agent = await Agent.findOne({ owner: mongoose.Types.ObjectId(req.user.id) }).exec()
     }
 
-    if (!agent  || agent._id) return  next()
-   
+    if (!agent || agent._id) return next()
+
     DB.Paginate(
       res,
       next,
