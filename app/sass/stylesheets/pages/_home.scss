@@ -238,7 +238,11 @@ section#home {
   }
 
   .cta {
-    background-color: #000;
+    background-image: url("/assets/officialAssets/25552.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+
     &_body {
       padding: 110px 0 40px 65px;
       .row {
@@ -272,7 +276,7 @@ section#home {
             background: transparent;
             color: #fff;
             font-size: 15px;
-            &::placeholder {
+            &::placeholder { 
               color: #fff;
               font-size: 15px;
             }

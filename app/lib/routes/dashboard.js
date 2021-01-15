@@ -39,7 +39,7 @@ router
         });
     })
     .get("/account-settings", user, AgentController.profile, (req, res) => {
-        console.log("req.locals", req.locals);
+        console.log("req.locals", req.locals.agentProfile);
         res.render("dashboard/account-setup", {
             locals: req.locals,
             page_name: "account",
