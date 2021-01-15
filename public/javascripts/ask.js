@@ -9,6 +9,8 @@ const phone = document.getElementById("phone");
 const category = document.getElementById("category");
 const title = document.getElementById("title");
 const message = document.getElementById("message");
+const btn = document.getElementById("submit-btn");
+const btnContent = btn.innerHTML;
 
 const notyf = new Notyf({
   dismissible: true,
@@ -36,6 +38,16 @@ function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
+function spinner() {
+    const markup = `<div class="lds-ring"><div></div><div></div><div></div><div></div></div>`;
+  
+    return markup;
+  }
+
+function clearFormData() {
+  askForm.reset();
+}
+
 const handleSubmit = (e) => {
   e.preventDefault();
   const data = {
@@ -49,6 +61,9 @@ const handleSubmit = (e) => {
   };
 
   console.log(data);
+  btn.setAttribute("disabled", "true");
+  btn.innerHTML = spinner();
+
   axios({
     method: "POST",
     url: `${base_Url}/api/ask`,
@@ -60,13 +75,16 @@ const handleSubmit = (e) => {
         },
     data: JSON.stringify(data),
 
-  })
-    .then((res) => {
+  }).then((res) => {
       console.log(res);
+      btn.innerHTML = btnContent;
+      clearFormData();
+      btn.removeAttribute("disabled");
       notyf.success(res.data.message || "Message sent!");
-    })
-    .catch((err) => {
-      console.log(err.response);
+    }).catch((err) => {
+      console.log(err);
+      btn.innerHTML = btnContent;
+      btn.removeAttribute("disabled");
       notyf.error(err.response.data.error.message || "Something went wrong");
     });
 };

@@ -25,66 +25,43 @@
                 <div class="category_grid-main-div-meta-div-title">
                   <h3 class="category-post-title"><%= el.title || "N/A"  %> </h3>
                   <p class="category-post-author">by <%= el.firstName || "N/A"  %> <%= el.lastName || "N/A"  %> 
-                    <a href="/ask-ea/<%= el.category.slug %>">| Category: <%= el.category.name || "N/A"  %></a></p>
+                    <a href="/ask-ea/category/<%= el.category.slug %>">| Category: <%= el.category.name || "N/A"  %></a></p>
                 </div>
               </div>
               <p class="category_grid-main-div-meta-desc"><%= el.body || "N/A"  %></p>
-              <a href="#" class="category_grid-main-div-meta-cta">Read More</a>
+              <a href="/ask-ea/<%= el._id %>" class="category_grid-main-div-meta-cta">Read More</a>
             </div>
           </div>
           <% }) %> 
           
         </div>
         <div class="category_grid-side">
-          <div class="category_grid-side-archives">
+          <!-- <div class="category_grid-side-archives">
             <h4>Archives</h4>
             <a href="#">Excepteur sint occaecat</a>
             <a href="#">Excepteur sint occaecat</a>
             <a href="#">Excepteur sint occaecat</a>
             <a href="#">Excepteur sint occaecat</a>
             <a href="#">Excepteur sint occaecat</a>
-          </div>
+          </div> -->
           <div class="category_grid-side-ads">
             <img src="/assets/files/13061.png" alt="enrolled-agent" />
           </div>
           <div class="category_grid-side-recent">
             <h4>Recent Articles</h4>
-            <div class="category_grid-side-recent-div">
-              <a href="#">
-                <p>
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est eopksio laborum.
-                </p>
-                <p class="category_grid-side-recent-div-bold">Nov, 26, 2020</p>
-              </a>
-            </div>
-            <div class="category_grid-side-recent-div">
-              <a href="#">
-                <p>
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est eopksio laborum.
-                </p>
-                <p class="category_grid-side-recent-div-bold">Nov, 26, 2020</p>
-              </a>
-            </div>
-            <div class="category_grid-side-recent-div">
-              <a href="#">
-                <p>
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est eopksio laborum.
-                </p>
-                <p class="category_grid-side-recent-div-bold">Nov, 26, 2020</p>
-              </a>
-            </div>
-            <div class="category_grid-side-recent-div">
-              <a href="#">
-                <p>
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est eopksio laborum.
-                </p>
-                <p class="category_grid-side-recent-div-bold">Nov, 26, 2020</p>
-              </a>
-            </div>
+            <% if(locals.latestArticle.length > 0) { %>
+              <% locals.latestArticle.map((el,id) => { %>
+                <div class="category_grid-side-recent-div">
+                  <a href="/blog/<%= el._id %>">
+                    <h5 style="font-weight: bold;" class="mb-10"><%= el.title %></h5>
+                    <p class="category_grid-side-recent-div-truncate"> <%= el.body %></p>
+                    <p class="category_grid-side-recent-div-bold">Nov, 26, 2020</p>
+                  </a>
+                </div>
+              <% }) %> 
+            <%} else {%>
+              <p style="text-align: center;">No recent article available</p>
+            <%}%> 
           </div>
           <div class="category_grid-side-ads">
             <img src="/assets/files/13061.png" alt="enrolled-agent" />

@@ -348,3 +348,48 @@ font-weight: normal;
 .profile-ul{
     list-style-type: bullet;
 }
+
+.claim-listing{
+    h2{
+        font-size: 20px!important;
+    }
+    p{
+        font-size: 16px;
+        color: #000;
+    }
+    &-form{
+        input, select{
+            height: 40px;
+            width: 90%;
+            border: 1px solid #333;
+            padding: 5px 10px;
+        }
+        &-checkbox-div{
+            text-align: center;
+            input{
+                width: 12px;
+                height: 12px;
+            }
+            label{
+                font-weight: 400;
+            }
+        }
+        &-btn-div{
+            text-align: center;
+            button{
+                height: 40px;
+                background-color: $main-blue;
+                padding: 0 30px;
+                border-radius: 3px;
+                outline: none;
+                border: none;
+                color: #fff;
+                transition: .5s;
+                &:hover{
+                    transform: translateY(-5px);
+                }
+            }
+        }
+    }
+    
+}

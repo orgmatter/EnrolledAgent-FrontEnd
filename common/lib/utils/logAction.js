@@ -2,6 +2,8 @@ module.exports = {
   ACCOUNT_CREATED: 'user.create',
   ACCOUNT_DELETED: 'admin.user.delete',
   ACCOUNT_UPDATE: 'user.update',
+  ADMIN_ACCOUNT_CREATE: 'admin.user.create',
+  ADMIN_ACCOUNT_DELETE: 'admin.user.delete',
   ADMIN_ACCOUNT_UPDATE: 'admin.user.update',
   USER_LOGIN: 'user.login',
   USER_UPDATE: 'user.update',
@@ -13,10 +15,18 @@ module.exports = {
   ARTICLE_DELETED: 'article.deleted',
   ARTICLE_STATUS_CHANGED: 'article.status_changed',
 
+
+  APPROVE_LISTING_REQUEST: 'agent.listing.approve',
+  REJECT_LISTING_REQUEST: 'agent.listing.reject',
+
   RESOURCE_CREATED: 'resource.create',
   RESOURCE_UPDATED: 'resource.updated',
   RESOURCE_DELETED: 'resource.deleted',
   RESOURCE_STATUS_CHANGED: 'resource.status_changed',
+
+  ROLE_CREATED: 'role.create',
+  ROLE_UPDATED: 'role.updated',
+  ROLE_DELETED: 'role.deleted',
 
   SPONSOR_CREATED: 'sponor.create',
   SPONSOR_UPDATED: 'sponor.updated',

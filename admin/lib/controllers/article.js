@@ -15,6 +15,7 @@ const {
 
 
 const sanitizeBody = (body) => {
+    delete body.byAdmin
     delete body.status
     body[''] = ''
     return body
@@ -51,7 +52,7 @@ class ArticleController extends BaseController {
             )
         }
 
-        const b = { body, author, title, preview, category, featured }
+        const b = { body, author, title, preview, category, featured, byAdmin: true }
 
         if (req.body.sponsor && Validator.isMongoId(req.body.sponsor) && (await Sponsor.exists({ _id: req.body.sponsor }))) {
             b.sponsor = req.body.sponsor
@@ -181,8 +182,8 @@ class ArticleController extends BaseController {
 
     async getAll(req, res, next) {
         const { page, perpage, q, search } = req.query
-        let query = Helper.parseQuery(q) || {}
-        if (search) query = { title: { $regex: search, $options: 'i' } }
+        let query = Helper.extractQuery(req.query) || {}
+        if (q) query = { title: { $regex: q, $options: 'i' } }
 
         DB.Paginate(res, next, Article, {
             perPage: perpage,

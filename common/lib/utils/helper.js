@@ -8,7 +8,7 @@ const Validator = require('./validators')
 const Constants = require('./constants')
 const Logger = require('./logger')
 const log = new Logger('auth:porple')
-
+const paswordGenerator = require('generate-password');
 const moment = require('moment')
 const { reject } = require('async')
 /**
@@ -46,6 +46,7 @@ exports.userToSession = function (user, accountType) {
     email: user.email,
     imageUrl: user.imageUrl,
     firstName: user.firstName,
+    isSuperAdmin: user.isSuperAdmin || false,
     accountType: accountType || Constants.ACCOUNT_TYPE.user
   }
 }
@@ -91,6 +92,7 @@ exports.checkPayload = function (user, next) {
     return false
   }
 }
+
 /**
  * parse query as object
  * @param  {string} parameters
@@ -98,6 +100,31 @@ exports.checkPayload = function (user, next) {
  */
 exports.parseQuery = (parameters) => {
   if (parameters == null) return null
+  const a = String(parameters).split(',')
+  const b = {}
+  a.forEach((_) => {
+    const [c, d] = String(_).split(':')
+    b[c] = d
+  })
+  return b
+}
+
+/**
+ * parse query 
+ * @param  {string} parameters
+ * @return {object}
+ */
+exports.extractQuery = (parameters, fields = []) => {
+  if (parameters == null) return null
+  const query = {}
+  for (let index = 0; index < fields.length; index++) {
+    const element = fields[index];
+    if (parameters.hasOwnProperty(element)) {
+      query[element] = parameters[element]
+    }
+    return query
+  }
+
   const a = String(parameters).split(',')
   const b = {}
   a.forEach((_) => {
@@ -152,6 +179,17 @@ exports.validateCompany = (scope, body, res, done) => {
 }
 
 /**
+ * geenerate password
+ * @return {number}
+ */
+exports.generatePassword = function () {
+  return paswordGenerator.generate({
+    length: 7,
+    // numbers: true
+  })
+}
+
+/**
  * get random number of 6 characters
  * @return {number}
  */
@@ -193,9 +231,9 @@ exports.getIp = (req) =>
 * returns a Promise that resolves after a delay
 * @return {Number} time in milliseconds
 */
-exports.delay = (time = 1000)=> {
-  return new Promise((resolve, reject)=>{
-    if(!time) reject('invalid time')
+exports.delay = (time = 1000) => {
+  return new Promise((resolve, reject) => {
+    if (!time) reject('invalid time')
     setTimeout(resolve, time)
   })
 }

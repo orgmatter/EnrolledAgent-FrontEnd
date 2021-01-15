@@ -13,19 +13,22 @@
     <%- include("./partials/header.ejs") %>
     <div class="blog">
       <div class="blog__section--main">
-        <div id="blog-main" class="blog__main">
+        <% if(locals.featuredArticle) {%>
+          <div id="blog-main" class="blog__main">
           <div class="blog__main--items">
             <div class="blog__main--article">
               <div class="blog__main--article-name">
-                <span class="blog-color-text-sky">Lorem ipsum</span> / Nov 21, 2020 / By EnrolledAgent
+                <span class="blog-color-text-sky"><%= locals.featuredArticle.category.name %></span> / Nov 21, 2020 / By EnrolledAgent
               </div>
-              <div class="blog__main--article-head">Lorem ipsum </div>
+              <div class="blog__main--article-head"><%= locals.featuredArticle.title %> </div>
               <hr id="article-rule" class="blog__main--article-underline" />
-              <div id="blog-article-body" class="blog__main--article-body"> Lorem ipsum dolor sit amet, conse Lorem ipsum dolor sit amet, conse
+              <div id="blog-article-body" class="blog__main--article-body"> <%= locals.featuredArticle.body %>
               </div>
             </div>
           </div>
         </div>
+       <% }%> 
+        
         <div class="blog__articles">
           <div class="blog__articles--head">
             <div class="blog__articles--head-item">
@@ -39,7 +42,7 @@
             <% locals.articles.data.map((e,id) => { %>
             <div class="blog__article--card">
               <div class="blog__article--image">
-                <img src=<%=e.imageUrl || "N/A"%> alt="article image" class="blog__article--image-img" />
+                <img src=<%=e.imageUrl || "/assets/images/blog_fallback.jpeg"%> alt="article image" class="blog__article--image-img" />
               </div>
               <div class="blog__article--head"><%= e.title || "N/A"%></div>
               <div class="blog__article--details">
@@ -79,64 +82,37 @@
             <hr class="blog__sidebar--head-rule" />
           </div>
           <div class="blog__news--section">
-            <% if (locals.articles.total > 0) { %>
-            <a href="/blog/<%= locals.articles.data[0]._id %>" class="blog__news">
+            <% if (locals.latestArticle.length > 0) { %>
+              <% locals.latestArticle.map((el,id) => { %>
+                <a href="/blog/<%= el._id %>" class="blog__news">
               <div class="blog__news--image">
                 <img
-                  src=<%= locals.articles.data[0].imageUrl %> 
+                  src=<%= el.imageUrl || "/assets/images/blog_fallback.jpeg"%> 
                   alt="news image"
                   class="blog__news--image-img"
                 />
               </div>
               <div class="blog__news--text">
-                <div class="blog__news--text-head"><%= locals.articles.data[0].title %> </div>
+                <div class="blog__news--text-head"><%= el.title %> </div>
                 <div class="blog__news--text-details">
-                  <span class="blog-color-text-sky">Lorem ipsum</span> / Nov 01, 2020 / By <%= locals.articles.data[0].author %> 
+                  <span class="blog-color-text-sky"><%= el.category.name || "N/A" %> </span> / Nov 01, 2020 / By Enrolled Agents 
                 </div>
               </div>
             </a>
-            <a href="/blog/<%= locals.articles.data[1]._id %>" class="blog__news">
-              <div class="blog__news--image">
-                <img
-                  src=<%= locals.articles.data[1].imageUrl %>
-                  alt="news image"
-                  class="blog__news--image-img"
-                />
-              </div>
-              <div class="blog__news--text">
-                <div class="blog__news--text-head"><%= locals.articles.data[1].title %></div>
-                <div class="blog__news--text-details">
-                  <span class="blog-color-text-sky">Lorem ipsum</span> / Nov 01, 2020 / By <%= locals.articles.data[1].author %> 
-                </div>
-              </div>
-            </a>
-            <a href="/blog/<%= locals.articles.data[2]._id %>" class="blog__news">
-              <div class="blog__news--image">
-                <img
-                  src=<%= locals.articles.data[2].imageUrl %>
-                  alt="news image"
-                  class="blog__news--image-img"
-                />
-              </div>
-              <div class="blog__news--text">
-                <div class="blog__news--text-head"><%= locals.articles.data[2].title %></div>
-                <div class="blog__news--text-details">
-                  <span class="blog-color-text-sky">Lorem ipsum</span> / Nov 01, 2020 / By <%= locals.articles.data[2].author %> 
-                </div>
-              </div>
-            </a>
+              <% }) %> 
+            
             <%} else { %>
           <p>No articles available</p>
           <%}%>
           </div>
-          <div class="blog__scroll">
+          <!-- <div class="blog__scroll">
             <button class="blog__scroll--btn blog__scroll--btn-left">
               <img src="/assets/images/blog/left-arrow.svg" class="blog-btn" />
             </button>
             <button class="blog__scroll--btn blog__scroll--btn-right">
               <img src="/assets/images/blog/right-arrow.svg" class="blog-btn" />
             </button>
-          </div>
+          </div> -->
         </div>
         <div class="blog__sidebar--section blog__sidebar--section-head">
           <div class="blog__sidebar--head">
@@ -226,7 +202,7 @@
             </button>
           </div>
         </div>
-        <div class="blog__sidebar--section blog__sidebar--section-head">
+        <!-- <div class="blog__sidebar--section blog__sidebar--section-head">
           <div class="blog__social--section">
             <div class="blog__social">
               <div class="blog__social--image">
@@ -264,7 +240,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <%- include("./partials/footer.ejs") %>

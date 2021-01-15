@@ -10,6 +10,6 @@ const Contact = new Schema({
   name: String
 },  { timestamps: true })
 
-Contact.index({ title: 2, author: 1,  })
+// Contact.index({ title: 2, author: 1,  })
 
 module.exports = mongoose.model('contact', Contact)

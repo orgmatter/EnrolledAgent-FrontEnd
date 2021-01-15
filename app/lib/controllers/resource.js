@@ -27,6 +27,7 @@ class ResourceController extends BaseController {
     }
 
     async getAll(req, res, next) {
+        req.locals.resource =  {data: []}
         const { page, perpage, q, search } = req.query
         let query = Helper.parseQuery(q) || {}
         if (search) query = { $text: { $search: search } }

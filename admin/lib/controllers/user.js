@@ -3,6 +3,7 @@ const {
   FileManager, Storages, Helper,
   Exception, ErrorCodes, ErrorMessage,
   Models: { User, AdminUser },
+  Constants,
 } = require("common");
 const BaseController = require("./baseController");
 
@@ -19,13 +20,11 @@ const sanitizeBody = function (body) {
   delete body.isActive;
   delete body.isEmailVerified;
   delete body.accountType;
+  delete body.isSuperAdmin;
 }
 
 
 class UserController extends BaseController {
-
-
-
   /**
    * update a user record, if a file was uploaded,
    * it saves the file to storge
@@ -117,6 +116,43 @@ class UserController extends BaseController {
 
 
     res.json({ data: Helper.formatUser(user) })
+  }
+
+
+  deactivateAccount = async function (req, res, next) {
+    const { params: { id } } = req
+    const user = await User.findByIdAndUpdate(id, {isActive: false}).exec()
+    // console.log(user, company, email)
+    if (!(user != null && user.email != null)) {
+      res.statusCode = 422
+      return next(
+        new Exception(
+          ErrorMessage.ACCOUNT_NOT_FOUND,
+          ErrorCodes.ACCOUNT_NOT_FOUND
+        )
+      )
+    }
+
+
+    res.json({ data: {message: 'User account deactivated successfully'} })
+  }
+
+  activateAccount = async function (req, res, next) {
+    const { params: { id } } = req
+    const user = await User.findByIdAndUpdate(id, {isActive: true}).exec()
+    // console.log(user, company, email)
+    if (!(user != null && user.email != null)) {
+      res.statusCode = 422
+      return next(
+        new Exception(
+          ErrorMessage.ACCOUNT_NOT_FOUND,
+          ErrorCodes.ACCOUNT_NOT_FOUND
+        )
+      )
+    }
+
+
+    res.json({ data: {message: 'User account activated successfully'} })
   }
 
 
@@ -282,11 +318,10 @@ class UserController extends BaseController {
         perPage: perpage,
         query,
         page, 
-        projection: {salt: 1, hash: 1}
+        projections: {salt: 0, hash: 0}
     }, (data)=>{
         super.handleResultPaginated({...data}, res, next) 
     })
-
 }
 
 

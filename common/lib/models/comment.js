@@ -16,7 +16,6 @@ const CommentSchema = new mongoose.Schema({
     type: Schema.ObjectId
   },
   name: String,
-  // lastName: String,
   state: String,
   city: String,
   email: String,

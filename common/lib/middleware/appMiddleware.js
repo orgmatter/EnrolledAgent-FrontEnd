@@ -32,7 +32,15 @@ module.exports = (server, view) => {
     server.use(userAgent.express())
     server.use(cookieParser(config.SECRET))
     server.use(SessionUtil.newSession)
-    // server.use(csrf())
+    server.use(csrf())
+    server.use(function (err, req, res, next) {
+        if(req.headers['content-type'] == 'application/json') 
+        return res.status(401).json({message: err.message, code: 12304})
+        else next(err)
+        // console.log('errrrrrr', req.headers, err.message)
+        // console.error(err.stack)
+        // res.status(500).send('Something broke!')
+      }) 
 
     // view engine setup
     server.set('views', view)

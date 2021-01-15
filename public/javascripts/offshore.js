@@ -14,6 +14,8 @@ const contactMethod = document.getElementById("contactMethod");
 const timeline = document.getElementById("timeline");
 const phone = document.getElementById("phone");
 const optionalMessage = document.getElementById("optionalMessage");
+const btn = document.getElementById("submit-btn");
+const btnContent = btn.innerHTML;
 
 const notyf = new Notyf({
   dismissible: true,
@@ -41,6 +43,16 @@ function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
+function spinner() {
+    const markup = `<div class="lds-ring"><div></div><div></div><div></div><div></div></div>`;
+  
+    return markup;
+  }
+
+function clearFormData() {
+  offshoreForm.reset();
+}
+
 const handleSubmit = (e) => {
   e.preventDefault();
   const data = {
@@ -59,6 +71,8 @@ const handleSubmit = (e) => {
   };
 
   console.log(data);
+  btn.setAttribute("disabled", "true");
+  btn.innerHTML = spinner();
 
   axios({
     method: "POST",
@@ -74,10 +88,15 @@ const handleSubmit = (e) => {
   })
     .then((res) => {
       console.log(res);
+      btn.innerHTML = btnContent;
+      clearFormData();
+      btn.removeAttribute("disabled");
       notyf.success(res.data.message || "Message sent!");
     })
     .catch((err) => {
       console.log(err.response);
+      btn.innerHTML = btnContent;
+      btn.removeAttribute("disabled");
       notyf.error(err.response.data.error.message || "Something went wrong");
     });
 };

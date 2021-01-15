@@ -129,6 +129,7 @@
                 border-radius: 5px;
                 background-color: #fff;
                 padding: 19px 68px 22px 63px;
+                margin-bottom: 30px;
                 &-text{
                     font-size: 16px;
                     margin-bottom: 5px;
@@ -144,6 +145,14 @@
                         max-width: 50%;
                         &-badge{
                             background-color: #717171;
+                            font-size: 12px;
+                            color: #fff;
+                            padding: 5px 10px;
+                            text-align: center;
+                            border-radius: 3px;
+                        }
+                        &-green{
+                            background-color: rgb(22, 133, 22);
                             font-size: 12px;
                             color: #fff;
                             padding: 5px 10px;

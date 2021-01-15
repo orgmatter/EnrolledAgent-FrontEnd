@@ -12,6 +12,8 @@ const {
     Models: { Article, Agent, Log, ArticleCategory, Comment },
 } = require("common");
 
+const { Types } = require("mongoose");
+
 const BaseController = require('./baseController');
 
 const sanitizeBody = (body) => {
@@ -29,7 +31,7 @@ class ArticleController extends BaseController {
         if (!(req.isAuthenticated() && req.user))
             return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
 
-        let agent = await Agent.findOne({ owner: req.user.id }).exec()
+        let agent = await Agent.findOne({ owner: Types.ObjectId(req.user.id) }).exec()
         if (!agent || !agent._id) {
             res.status(422)
             return next(
@@ -96,7 +98,7 @@ class ArticleController extends BaseController {
         if (!(req.isAuthenticated() && req.user))
             return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
 
-        let agent = await Agent.findOne({ owner: req.user.id }).exec()
+        let agent = await Agent.findOne({ owner: Types.ObjectId(req.user.id) }).exec()
         if (!agent || !agent._id) {
             res.status(422)
             return next(
@@ -147,10 +149,10 @@ class ArticleController extends BaseController {
     }
 
     async comment(req, res, next) {
-        const { params: { id }, body: {phone, email, name, city, state, message} } = req
+        const { params: { id }, body: { phone, email, name, city, state, message } } = req
         if (!BaseController.checkId('Invalid article id', req, res, next)) return
 
-        if (!(await Article.exists({_id: id}))) {
+        if (!(await Article.exists({ _id: id }))) {
             res.status(422)
             return next(
                 new Exception(
@@ -160,7 +162,7 @@ class ArticleController extends BaseController {
             )
         }
 
-        if (!message ) {
+        if (!message) {
             res.status(422)
             return next(
                 new Exception(
@@ -169,10 +171,10 @@ class ArticleController extends BaseController {
                 )
             )
         }
- 
-        await Comment.create({article: id, phone, email, name, city, state, message})
 
-        super.handleResult({message: 'your comment was created successfully'}, res, next)
+        await Comment.create({ article: id, phone, email, name, city, state, message })
+
+        super.handleResult({ message: 'your comment was created successfully' }, res, next)
 
     }
 
@@ -226,27 +228,28 @@ class ArticleController extends BaseController {
      * @param  {Function} next
      */
     async agentArticles(req, res, next) {
+        req.locals.agentArticles = {data: []}
         const { page, perpage, q, search } = req.query
         let query = Helper.parseQuery(q) || {}
         if (search) query = { title: { $regex: search, $options: 'i' } }
         let agent
         if (req.isAuthenticated() && req.user) {
-            agent = await Agent.findOne({ owner: req.user.id }).exec()
+            agent = await Agent.findOne({ owner: Types.ObjectId(req.user.id) }).exec()
         }
 
 
-        if (agent && agent._id) {
+        if (!agent  || agent._id) return  next()
             DB.Paginate(res, next, Article, {
                 perPage: perpage,
                 query: { agent: agent._id },
                 page,
-                sort: {createdAt: -1},
-                populate: ['category', 'comment']
+                sort: { createdAt: -1 },
+                populate: ['category']
             }, (data) => {
                 req.locals.agentArticles = data
                 next()
             })
-        } else next()
+        
 
     }
 
@@ -254,9 +257,10 @@ class ArticleController extends BaseController {
 
     async get(req, res, next) {
         const { id } = req.params
+        if (!id || !Validator.isMongoId(String(id))) return next()
         let resource = await Article.findById(id)
-        .populate(['category', 'comment'])
-        .exec()
+            .populate(['category', 'comment'])
+            .exec()
         req.locals.article = resource
         next()
 
@@ -270,9 +274,9 @@ class ArticleController extends BaseController {
         DB.Paginate(res, next, Article, {
             perPage: perpage,
             query,
-            sort: {createdAt: -1},
+            sort: { createdAt: -1 },
             page,
-            populate: ['category']
+            populate: ['category',  ]
         }, (data) => {
             req.locals.articles = data
             next()
@@ -282,25 +286,24 @@ class ArticleController extends BaseController {
 
     async latest(req, res, next) {
         const data = await Article.find({},)
-            .limit(10)
+            .limit(3)
             .sort({ createdAt: -1 })
             .populate(['category'])
             .exec()
         req.locals.latestArticle = data
         next()
-
     }
 
     async featured(req, res, next) {
         const data = await Article.find({},)
-            .limit(10)
+            .limit(3)
             .sort({ createdAt: -1 })
-            .populate(['category'])
+            .populate(['category',])
             .exec()
-        req.locals.featuredArticle = data
+        req.locals.featuredArticle = data[0];
         next()
-
     }
+
     /**
      * get Article categorirs
      * @param  {Express.Request} req
@@ -332,7 +335,7 @@ class ArticleController extends BaseController {
             .skip(random)
             .limit(10)
             .sort({ createdAt: -1 })
-            .populate(['category'])
+            .populate(['category', 'comment'])
             .exec()
         req.locals.articles = data
         next()

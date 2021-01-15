@@ -9,14 +9,14 @@ const {
   Validator,
   Helper,
   DB,
-  Models: { Agent, City, State, ClaimListing, Log },
+  Models: { Agent, City, AgentMessage, ListingRequest, ClaimListing, Log },
 } = require("common");
 const Payment = require("payment_module");
 const mongoose = require("mongoose");
 
 const BaseController = require("../controllers/baseController");
 Agent.syncIndexes();
-const SORT = { transaction: -1, adminPremium: -1, rating: -1  }
+const SORT = { transaction: -1, adminPremium: -1, rating: -1 }
 class AgentController extends BaseController {
 
 
@@ -64,9 +64,6 @@ class AgentController extends BaseController {
         )
       )
     }
-
-
-
     if (!agent || agent.owner != req.user.id)
       return next(new Exception('You can only update your listing', ErrorCodes.NO_PRIVILEGE))
 
@@ -93,6 +90,61 @@ class AgentController extends BaseController {
       ip: Helper.getIp(req),
       message: 'Agent Updated'
     })
+  }
+
+  /**
+    * Submit a request for your listing to be added
+    * @param  {Express.Request} req
+    * @param  {Express.Response} res
+    * @param  {function} next
+ */
+  async createListing(req, res, next) {
+    // req.user = {id: '5ffdafd6b8a81f35855444e0'}
+
+    if (!(req.isAuthenticated() && req.user))
+      return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
+
+    const body = req.body || { '': '' }
+    delete body.status
+
+    if (!body.firstName || !body.lastName) {
+      return next(new Exception('First name and last name is required', ErrorCodes.NO_PRIVILEGE))
+    }
+
+    if (!body.email || !body.phone) {
+      return next(new Exception('Email and phone number is required', ErrorCodes.NO_PRIVILEGE))
+    }
+
+    if (!body.zipcode || !body.city || !body.state) {
+      return next(new Exception('zipcode, state and city is required', ErrorCodes.NO_PRIVILEGE))
+    }
+
+    if (!body.licence || !body.stateLicenced) {
+      return next(new Exception('licence, and state licenced state is required', ErrorCodes.NO_PRIVILEGE))
+    }
+
+    let licenceProof
+
+    if (req.file) {
+      licenceProof = await FileManager.saveFile(
+        Storages.DOCS,
+        req.file
+      )
+    }
+
+    if (!licenceProof) {
+      return next(new Exception('Proof of licence is required', ErrorCodes.NO_PRIVILEGE))
+    }
+
+    body.user =  req.user.id
+    body.licenceProof = licenceProof
+    delete body.agent
+
+
+     await ListingRequest.create(body)
+    // console.log(data)
+
+    res.json({ data: { message: 'Your listing request has been submitted, you will be contacted appropriately' } })
   }
 
 
@@ -142,6 +194,8 @@ class AgentController extends BaseController {
       Agent.findByIdAndUpdate(agent._id, { $inc: { viewCount: 1 } }).exec();
   }
 
+
+
   async getAll(req, res, next) {
     const { page, perpage, q, search } = req.query;
     let query = Helper.parseQuery(q) || {};
@@ -168,6 +222,39 @@ class AgentController extends BaseController {
         req.locals.agents = data;
         // console.log(data);
         next();
+      }
+    );
+  }
+
+  async getAgentMessages(req, res, next) {
+    req.locals.agentMessage =  {data: []}
+    const { page, perpage, q, search } = req.query
+    let query = Helper.parseQuery(q) || {}
+    if (search) query = { $text: { $search: search } }
+    let agent
+    if (req.isAuthenticated() && req.user) {
+        agent = await Agent.findOne({ owner: mongoose.Types.ObjectId(req.user.id) }).exec()
+    }
+
+    if (!agent  || agent._id) return  next()
+   
+    DB.Paginate(
+      res,
+      next,
+      AgentMessage,
+      {
+        perPage: perpage,
+        query,
+        page,
+        query: { agent: agent._id },
+        // sort: { viewCount: -1 },
+        // sort: SORT,
+        // populate: [],
+      },
+      (data) => {
+        req.locals.agentMessage = data
+        // console.log(data)
+        next()
       }
     );
   }

@@ -19,6 +19,8 @@ const agentLicense = document.getElementById("agent-license");
 const agentPhone = document.getElementById("agent-phone");
 const agentState = document.getElementById("agent-state");
 const agentEmail = document.getElementById("agent-email");
+const btn = document.getElementById("submit-btn");
+const btnContent = btn.innerHTML;
 
 const notyf = new Notyf({
   dismissible: true,
@@ -46,6 +48,16 @@ function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
+function spinner() {
+  const markup = `<div class="lds-ring"><div></div><div></div><div></div><div></div></div>`;
+  
+  return markup;
+}
+
+function clearFormData() {
+  licenseForm.reset();
+}
+
 const handleSubmit = (e) => {
   e.preventDefault();
   const data = {
@@ -70,8 +82,9 @@ const handleSubmit = (e) => {
 
   // console.log(data);
   // document.getElementById("paymentModal").showModal();
+  btn.setAttribute("disabled", "true");
+  btn.innerHTML = spinner();
   $("#paymentModal").modal()
- 
   // return
   axios({
     method: "POST",
@@ -88,6 +101,9 @@ const handleSubmit = (e) => {
     .then((res) => {
       console.log(res);
       // notyf.success(res.data.message || "Message sent!");
+      btn.innerHTML = btnContent;
+      clearFormData();
+      btn.removeAttribute("disabled");
       return setupStripeElements(res.data);
     })
     .then(function({ stripe, card, clientSecret }) {
@@ -109,6 +125,8 @@ const handleSubmit = (e) => {
     })
     .catch((err) => {
       console.log(err.response);
+      btn.innerHTML = btnContent;
+      btn.removeAttribute("disabled");
       notyf.error(err.response.data.error.message || "Something went wrong");
     });
 };

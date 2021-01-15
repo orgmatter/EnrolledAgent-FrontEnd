@@ -3,6 +3,7 @@
 module.exports = {
   AdminUser: require('./admin_user'),
   Agent: require('./agent'),
+  AgentMessage: require('./agentMessage'),
   Article: require('./article'),
   Answer: require('./answer'),
   ArticleCategory: require('./articleCategory'),
@@ -16,6 +17,7 @@ module.exports = {
   Firm: require('./firm'),
   Log: require('./log'),
   LicenseVerification: require('./licenseVerification'),
+  ListingRequest: require('./listingRequest'),
   Offshore: require('./offshore'),
   Review: require('./review'),
   Role: require('./role'),

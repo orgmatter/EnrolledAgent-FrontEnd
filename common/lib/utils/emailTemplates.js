@@ -7,4 +7,6 @@ module.exports = {
   LOGIN: 'login',
   VERIFY_EMAIL: 'verifyEmail',
   CONTACT: 'contact',
+  AGENT_CONTACT: 'agentContact',
+  NEW_STAFF_ADMIN: 'newAdmin'
 }
