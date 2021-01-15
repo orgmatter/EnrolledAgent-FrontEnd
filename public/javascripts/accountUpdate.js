@@ -111,7 +111,7 @@ const getFormData = (data) => {
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-    data: JSON.stringify(data),
+    data: formData,
 
   })
     .then((res) => {
@@ -119,7 +119,10 @@ const getFormData = (data) => {
       btn.innerHTML = btnContent;
       clearFormData();
       btn.removeAttribute("disabled");
-      notyf.success(res.data.data.message || "Message sent!");
+      notyf.success(res.data.data.message || "Account Updated!");
+      setTimeout(() => {
+        window.location.reload();
+     },2000)
     })
     .catch((err) => {
       console.log(err.response);

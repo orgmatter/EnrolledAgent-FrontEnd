@@ -55,7 +55,7 @@
                   >
                     <!-- MAIN IMAGE -->
                     <img
-                      src="/images/bg/bg1.jpg"
+                      src="/assets/officialAssets/13061.png"
                       alt=""
                       data-bgposition="center 30%"
                       data-bgfit="cover"
@@ -76,7 +76,7 @@
         data-transform_out="opacity:0;s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;" data-start="500"
         data-basealign="slide" data-responsive_offset="on" style="
                         z-index: 5;
-                        background-color: rgba(0, 0, 0, 0.7);
+                        background-color: rgba(0, 0, 0, 0.7)!important;
                       ">
         </div>
         </li>
@@ -85,7 +85,7 @@
           data-easeout="default" data-masterspeed="default" data-thumb="images/bg/bg2.jpg" data-rotate="0"
           data-fstransition="fade" data-saveperformance="off" data-title="Web Show" data-description="">
           <!-- MAIN IMAGE -->
-          <img src="/images/bg/bg2.jpg" alt="" data-bgposition="center center" data-bgfit="cover"
+          <img src="/assets/officialAssets/22.png" alt="" data-bgposition="center center" data-bgfit="cover"
             data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina />
           <!-- LAYERS -->
           <!-- LAYER NR. 1 -->
@@ -97,7 +97,7 @@
             data-transform_out="opacity:0;s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;" data-start="500"
             data-basealign="slide" data-responsive_offset="on" style="
                         z-index: 5;
-                        background-color: rgba(0, 0, 0, 0.7);
+                        background-color: rgba(0, 0, 0, 0.7)!important;
                       "></div>
         </li>
         <!-- SLIDE 3 -->
@@ -105,7 +105,7 @@
           data-easeout="default" data-masterspeed="default" data-thumb="/images/bg/bg3.jpg" data-rotate="0"
           data-fstransition="fade" data-saveperformance="off" data-title="Web Show" data-description="">
           <!-- MAIN IMAGE -->
-          <img src="/images/bg/bg3.jpg" alt="" data-bgposition="center 40%" data-bgfit="cover" data-bgrepeat="no-repeat"
+          <img src="/assets/officialAssets/11.png" alt="" data-bgposition="center 40%" data-bgfit="cover" data-bgrepeat="no-repeat"
             data-bgparallax="10" class="rev-slidebg" data-no-retina />
           <!-- LAYERS -->
           <!-- LAYER NR. 1 -->
@@ -117,7 +117,7 @@
             data-transform_out="opacity:0;s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;" data-start="500"
             data-basealign="slide" data-responsive_offset="on" style="
                         z-index: 5;
-                        background-color: rgba(0, 0, 0, 0.7);
+                        background-color: rgba(0, 0, 0, 0.7)!important;
                       "></div>
         </li>
         </ul>
@@ -233,7 +233,7 @@
                 <div class="col-sm-6 col-md-3">
                   <div class="single-member maxwidth400 mb-30">
                     <div class="team-thumb">
-                      <img src="/assets/images/avatar.webp" alt="agent-avatar" class="img-fullwidth" />
+                      <img src=<%= e.imageUrl || "/assets/images/avatar.webp" %>  alt="agent-avatar" class="img-fullwidth" />
                       <h4 class="text-uppercase font-raleway text-white font-20 line-bottom-center m-0">
                         <%= e.firstName %> <%= e.lastName %> <span class="text-white font-12 ml-5 small"></span>
                       </h4>

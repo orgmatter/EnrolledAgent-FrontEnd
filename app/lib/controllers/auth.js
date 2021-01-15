@@ -334,8 +334,6 @@ sendPasswordReset = async (req, res, next) => {
 
       User.findByIdAndUpdate(id, body, { new: true })
         .then(async (user) => {
-          console.log("file", req.file)
-          console.log("files", req.files)
           if (req.file) {
             const imageUrl = await FileManager.saveFile(
               Storages.PROFILE,
