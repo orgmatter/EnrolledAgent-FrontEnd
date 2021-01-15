@@ -9,7 +9,7 @@ const {
   Validator,
   Helper,
   DB,
-  Models: { Agent, City, AgentMessage, ListingRequest, ClaimListing, Log },
+  Models: { Agent, City, AgentMessage, ListingRequest, ContactPreference, ClaimListing, Log },
 } = require("common");
 const Payment = require("payment_module");
 const mongoose = require("mongoose");
@@ -54,12 +54,12 @@ class AgentController extends BaseController {
     if (!(req.isAuthenticated() && req.user))
       return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
 
-    let agent = await Agent.findOne({ owner: req.user.id }).exec()
+    let agent = await Agent.findOne({ owner:  mongoose.Types.ObjectId(req.user.id)  }).exec()
     if (!agent || !agent._id) {
       res.status(422)
       return next(
         new Exception(
-          'Only verified agents can delete articles',
+          'Only verified agents can update their profile',
           ErrorCodes.REQUIRED
         )
       )
@@ -82,6 +82,42 @@ class AgentController extends BaseController {
       await agent.save()
     }
     super.handleResult(agent, res, next)
+    await Log.create({
+      user: req.user.id,
+      action: LogAction.AGENT_UPDATED,
+      category: LogCategory.AGENT,
+      resource: agent._id,
+      ip: Helper.getIp(req),
+      message: 'Agent Updated'
+    })
+  }
+
+  async contactPreference(req, res, next) {
+
+    const body = req.body || { '': '' } 
+
+    if (!(req.isAuthenticated() && req.user))
+      return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
+
+    let agent = await Agent.findOne({ owner:  mongoose.Types.ObjectId(req.user.id)  }).exec()
+    if (!agent || !agent._id) {
+      res.status(422)
+      return next(
+        new Exception(
+          'Only verified agents can perform this operation',
+          ErrorCodes.REQUIRED
+        )
+      )
+    }
+    if (!agent || agent.owner != req.user.id)
+      return next(new Exception('You can only update your own listing', ErrorCodes.NO_PRIVILEGE))
+
+    body.agent = agent._id
+    await ContactPreference.findOneAndUpdate({agent:  agent._id}, body, {upsert: true})
+    // agent = await Agent.findByIdAndUpdate(agent._id, body, { new: true })
+
+  
+    super.handleResult({message: 'Contact preference updated succesfully'}, res, next)
     await Log.create({
       user: req.user.id,
       action: LogAction.AGENT_UPDATED,
@@ -182,6 +218,7 @@ class AgentController extends BaseController {
     let agent;
     if (Validator.isMongoId(id)) agent = await Agent.findById(id)
       .populate([
+        // 'preference',
         { path: "review" },
         { path: "reviewCount", select: ["rating"] },
         { path: "owner", select: ["_id", "firstName"] },
@@ -192,6 +229,24 @@ class AgentController extends BaseController {
     next();
     if (agent)
       Agent.findByIdAndUpdate(agent._id, { $inc: { viewCount: 1 } }).exec();
+  }
+
+
+  async profile(req, res, next) {
+    req.locals.agentProfile = {}
+    if (!(req.isAuthenticated() && req.user))
+      return next()
+
+    let agent = await Agent.findOne({ owner: mongoose.Types.ObjectId(req.user.id) })
+    .populate([
+      'preference',
+      { path: "review" },
+      { path: "reviewCount", select: ["rating"] },
+      { path: "owner", select: ["_id", "firstName"] },
+    ])
+    .exec();
+    req.locals.agentProfile = agent;
+    next(); 
   }
 
 

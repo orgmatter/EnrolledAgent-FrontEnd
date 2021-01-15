@@ -32,7 +32,7 @@ module.exports = (server, view) => {
     server.use(userAgent.express())
     server.use(cookieParser(config.SECRET))
     server.use(SessionUtil.newSession)
-    server.use(csrf())
+    // server.use(csrf())
     server.use(function (err, req, res, next) {
         if(req.headers['content-type'] == 'application/json') 
         return res.status(401).json({message: err.message, code: 12304})

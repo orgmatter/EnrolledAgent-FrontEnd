@@ -163,3 +163,17 @@ content-type: application/json
 
 ###
 POST https://cpadirectory.com/articles
+
+
+###
+
+POST  http://localhost:3000/api/contact-preference HTTP/1.1
+content-type: application/json
+
+{
+   "preferredContact": "email",
+  "articlePublished":  true,
+  "messageReceived":  true,
+  "newReview":  true
+
+}
