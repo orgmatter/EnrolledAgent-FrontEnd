@@ -121,7 +121,7 @@ class UserController extends BaseController {
 
   deactivateAccount = async function (req, res, next) {
     const { params: { id } } = req
-    const user = await User.findByIdAndUpdate(id, {isActive: false}).exec()
+    const user = await User.findByIdAndUpdate(id, { isActive: false }).exec()
     // console.log(user, company, email)
     if (!(user != null && user.email != null)) {
       res.statusCode = 422
@@ -134,12 +134,12 @@ class UserController extends BaseController {
     }
 
 
-    res.json({ data: {message: 'User account deactivated successfully'} })
+    res.json({ data: { message: 'User account deactivated successfully' } })
   }
 
   activateAccount = async function (req, res, next) {
     const { params: { id } } = req
-    const user = await User.findByIdAndUpdate(id, {isActive: true}).exec()
+    const user = await User.findByIdAndUpdate(id, { isActive: true }).exec()
     // console.log(user, company, email)
     if (!(user != null && user.email != null)) {
       res.statusCode = 422
@@ -152,7 +152,7 @@ class UserController extends BaseController {
     }
 
 
-    res.json({ data: {message: 'User account activated successfully'} })
+    res.json({ data: { message: 'User account activated successfully' } })
   }
 
 
@@ -315,14 +315,15 @@ class UserController extends BaseController {
     if (search) query = { title: { $regex: search, $options: 'i' } }
 
     DB.Paginate(res, next, User, {
-        perPage: perpage,
-        query,
-        page, 
-        projections: {salt: 0, hash: 0}
-    }, (data)=>{
-        super.handleResultPaginated({...data}, res, next) 
+      perPage: perpage,
+      query,
+      page,
+      sort: { createdAt: -1 },
+      projections: { salt: 0, hash: 0 }
+    }, (data) => {
+      super.handleResultPaginated({ ...data }, res, next)
     })
-}
+  }
 
 
 }

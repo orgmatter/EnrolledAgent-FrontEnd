@@ -249,6 +249,7 @@ class StaffController extends BaseController {
       perPage: perpage,
       query,
       page,
+      sort: {createdAt: -1},
       populate: ['role'],
       projections: { hash: 0, salt: 0 }
     }, (data) => {

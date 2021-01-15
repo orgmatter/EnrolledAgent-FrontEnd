@@ -28,7 +28,7 @@ class ArticleController extends BaseController {
 
 
     async create(req, res, next) {
-        const { body, preview, author, title, sponsor, category, featured, } = req.body
+        const { body, preview, author, title, sponsor, status, category, featured, } = req.body
 
 
 
@@ -52,7 +52,7 @@ class ArticleController extends BaseController {
             )
         }
 
-        const b = { body, author, title, preview, category, featured, byAdmin: true }
+        const b = { body, author, title, preview, category, featured, byAdmin: true, status }
 
         if (req.body.sponsor && Validator.isMongoId(req.body.sponsor) && (await Sponsor.exists({ _id: req.body.sponsor }))) {
             b.sponsor = req.body.sponsor
@@ -189,6 +189,7 @@ class ArticleController extends BaseController {
             perPage: perpage,
             query,
             page,
+            sort: {createdAt: -1},
             populate: ['sponsor', 'category']
         }, (data) => {
             super.handleResultPaginated(data, res, next)
