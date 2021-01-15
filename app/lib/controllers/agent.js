@@ -140,6 +140,17 @@ class AgentController extends BaseController {
     if (!(req.isAuthenticated() && req.user))
       return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
 
+      let agent = await Agent.findOne({ owner: mongoose.Types.ObjectId(req.user.id) }).exec()
+      if (agent && agent._id) {
+        res.status(422)
+        return next(
+          new Exception(
+            'You have previously claimed a listing, you cannot claim another',
+            ErrorCodes.REQUIRED
+          )
+        )
+      }
+
     const body = req.body || { '': '' }
     delete body.status
 
