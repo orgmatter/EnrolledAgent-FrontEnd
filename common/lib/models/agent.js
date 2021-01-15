@@ -129,4 +129,10 @@ AgentSchema.virtual('review', {
   foreignField: 'agent',
 })
 
+AgentSchema.virtual('preference', {
+  ref: 'contactPreference',
+  localField: '_id',
+  foreignField: 'agent',
+})
+
 module.exports = mongoose.model('agent', AgentSchema)
