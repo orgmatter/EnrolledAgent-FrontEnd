@@ -72,6 +72,15 @@ exports.authenticateWithProvider = async function (user, provider, done) {
 
         if (!usr.imageUrl || user.imageUrl) usr.imageUrl = user.imageUrl
     }
+    if (usr.isActive != true) {
+        return done(
+            new Exception(
+                ErrorMessage.ACCOUNT_DEACTIVATED,
+                ErrorCodes.ACCOUNT_DEACTIVATED
+            )
+        )
+    }
+
     usr.lastLogin = new Date()
     usr.isEmailVerified = true
     await usr.save()
