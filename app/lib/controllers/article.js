@@ -238,13 +238,13 @@ class ArticleController extends BaseController {
         }
 
 
-        if (!agent  || agent._id) return  next()
+        if (!agent  || !agent._id) return  next()
             DB.Paginate(res, next, Article, {
                 perPage: perpage,
-                query: { agent: agent._id },
+                query: { agent: Types.ObjectId(agent._id) },
                 page,
                 sort: { createdAt: -1 },
-                populate: ['category']
+                populate: ['category', 'comment']
             }, (data) => {
                 req.locals.agentArticles = data
                 next()
