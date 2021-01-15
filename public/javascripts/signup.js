@@ -43,7 +43,7 @@ function spinner() {
 
 function clearFormData() {
   signUpForm.reset();
-}
+} 
 
 const handleSubmit = (e) => {
   console.log(e)
