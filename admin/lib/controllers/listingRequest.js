@@ -150,6 +150,7 @@ class LoistingRequestController extends BaseController {
             perPage: perpage,
             query,
             page,
+            sort: {createdAt: -1},
             populate: [{path: 'user', select: { firstName: 1, lastName: 1, email: 1}}]
         }, (data) => {
             super.handleResultPaginated(data, res, next)

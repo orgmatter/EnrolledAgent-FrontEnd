@@ -181,6 +181,7 @@ class ResourceController extends BaseController {
             perPage: perpage,
             query,
             page,
+            sort: {createdAt: -1},
             populate: ['sponsor', 'category']
         }, (data) => {
             super.handleResultPaginated({ ...data }, res, next)

@@ -55,7 +55,7 @@ const CronJob = require('cron').CronJob
 // ).start()
 
 new CronJob(
-  '*/15 * * * *', // runs every 5 minute
+  '*/1 * * * *', // runs every 5 minute
   async function () {
     console.log('starting Rating job', moment())
     RatingJob.runJob(1, function (err) {

@@ -34,6 +34,7 @@ class SubscriptionController extends BaseController {
             perPage: perpage,
             query,
             page,
+            sort: {createdAt: -1},
             // populate: 
         }, (data) => {
             super.handleResultPaginated(data, res, next)

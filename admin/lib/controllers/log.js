@@ -58,6 +58,7 @@ class LogController extends BaseController {
             perPage: perpage,
             query,
             page,
+            sort: {createdAt: -1},
             populate: [{path: 'user', select: {email: 1, firstName: 1, lastName: 1}}]
         }, (data) => {
             super.handleResultPaginated(data, res, next)

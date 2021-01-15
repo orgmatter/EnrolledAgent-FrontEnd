@@ -99,6 +99,7 @@ class AgentController extends BaseController {
             perPage: perpage,
             query,
             page,
+            sort: {createdAt: -1},
             populate: ['reviewCount'],
         }, (data) => {
             super.handleResultPaginated({ ...data }, res, next)
