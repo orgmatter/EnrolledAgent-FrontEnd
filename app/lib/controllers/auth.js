@@ -38,9 +38,8 @@ const jwt = new JwtManager(process.env.SECRET)
     delete body.isEmailVerified
     delete body.accountType
   }
-class AuthController {
 
-  
+class AuthController {
 
 
   /**
@@ -159,7 +158,7 @@ class AuthController {
  * @param  {Function} next
  */
 sendPasswordReset = async (req, res, next) => {
-  const {body: {email}}
+  const {body: {email}} = req
   const user = await User.findOne({ email }).exec()
 
   let verification = await ReserToken.findOne({ user: user._id, token: { $exists: true } }).exec()
@@ -330,14 +329,13 @@ sendPasswordReset = async (req, res, next) => {
       body,
     } = req
 
-    if (
-      req.isAuthenticated() &&
-      Validator.isMongoId(String(id))
-    ) {
+    if ( req.isAuthenticated() && Validator.isMongoId(String(id))) {
       sanitizeBody(body)
 
       User.findByIdAndUpdate(id, body, { new: true })
         .then(async (user) => {
+          console.log("file", req.file)
+          console.log("files", req.files)
           if (req.file) {
             const imageUrl = await FileManager.saveFile(
               Storages.PROFILE,
