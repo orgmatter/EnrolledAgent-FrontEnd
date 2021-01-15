@@ -23,13 +23,7 @@ const log = new Logger("auth:register")
 
 const jwt = new JwtManager(process.env.SECRET)
 
-class AuthController {
-
-  /**
-   * make sure protected content is not overriden
-   * @param  {string} body
-   */
-  sanitizeBody = function (body) {
+sanitizeBody = function (body) {
     delete body.updatedAt
     delete body.createdAt
     delete body._id
@@ -40,6 +34,14 @@ class AuthController {
     delete body.isEmailVerified
     delete body.accountType
   }
+
+class AuthController {
+
+  /**
+   * make sure protected content is not overriden
+   * @param  {string} body
+   */
+  
 
 
   /**
@@ -280,20 +282,19 @@ class AuthController {
    * @param  {Express.Response} res
    * @param  {function} next
    */
-  update = async function (req, res, next) {
+  update = async (req, res, next) => {
     const {
       user: { id },
       body,
     } = req
 
-    if (
-      req.isAuthenticated() &&
-      Validator.isMongoId(String(id))
-    ) {
+    if ( req.isAuthenticated() && Validator.isMongoId(String(id))) {
       sanitizeBody(body)
 
       User.findByIdAndUpdate(id, body, { new: true })
         .then(async (user) => {
+          console.log("file", req.file)
+          console.log("files", req.files)
           if (req.file) {
             const imageUrl = await FileManager.saveFile(
               Storages.PROFILE,
