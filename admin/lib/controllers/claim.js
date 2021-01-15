@@ -89,7 +89,7 @@ class ClaimController extends BaseController {
         const claim = await ClaimListing.findByIdAndUpdate(id, { status: Constants.ARTICLE_STATUS.rejected },
             { new: true })
 
-        super.handleResult({message: 'Listing request rejected succesfully' }, res, next)
+        super.handleResult({ message: 'Listing request rejected succesfully' }, res, next)
     }
 
 
@@ -112,27 +112,16 @@ class ClaimController extends BaseController {
 
     }
 
-    async getAll(req, res, next) {
-        const { page, perpage, q, search } = req.query
-        let query = Helper.parseQuery(q) || {}
-        if (search) query = { $text: { $search: search } }
-
-        DB.Paginate(res, next, Agent, {
-            perPage: perpage,
-            query,
-            page,
-            populate: [{ path: 'reviewCount', select: ['rating'] }, { path: 'owner', select: ['_id', 'firstName'] }]
-        }, (data) => {
-            super.handleResultPaginated(data, res, next)
-        })
-    }
-
+ 
 
     async get(req, res, next) {
         const { id } = req.params
         let resource = await ClaimListing.findById(id)
-            .populate(['sponsor', 'category'])
+            .populate( [
+                { path: 'user', select: { firstName: 1, lastName: 1, email: 1 } },
+                { path: 'agent', select: { firstName: 1, lastName: 1, email: 1 } }])
             .exec()
+
 
         super.handleResult(resource, res, next)
     }
@@ -148,7 +137,9 @@ class ClaimController extends BaseController {
             perPage: perpage,
             query,
             page,
-            populate: ['sponsor', 'category']
+            populate: [
+                { path: 'user', select: { firstName: 1, lastName: 1, email: 1 } },
+                { path: 'agent', select: { firstName: 1, lastName: 1, email: 1 } }]
         }, (data) => {
             super.handleResultPaginated(data, res, next)
         })

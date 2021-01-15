@@ -1,3 +1,4 @@
+const { select } = require("async");
 const {
     Exception,
     ErrorCodes,
@@ -23,6 +24,43 @@ const sanitizeBody = (body) => {
 const BaseController = require('../controllers/baseController');
 
 class QuestionController extends BaseController {
+
+    /**
+     * answer a question
+     * @param  {Express.Request} req
+     * @param  {Express.Response} res
+     * @param  {Function} next
+     */
+    async answer(req, res, next) {
+        const { body: { message }, params: { id } } = req
+
+        if (!id || !Validator.isMongoId(id) || !(await Question.exists({ _id: id }))) {
+            res.status(422)
+            return next(
+                new Exception(
+                    'Question not found on the server',
+                    ErrorCodes.REQUIRED
+                )
+            )
+        }
+
+        if (!message) {
+            res.status(422)
+            return next(
+                new Exception(
+                    'message must not be empty',
+                    ErrorCodes.REQUIRED
+                )
+            )
+        }
+
+        const answer = await Answer.create({ message, question: id, byAdmin: true })
+
+        await Question.findByIdAndUpdate(id, { answer: answer.id }).exec()
+
+        super.handleResult({ message: 'Your answer has been posted successfully' }, res, next)
+
+    }
 
     /**
      * Set an answer as the answer to a question
@@ -113,7 +151,8 @@ class QuestionController extends BaseController {
 
     async get(req, res, next) {
         const { id } = req.params
-        let resource = await Question.findById(id).exec()
+        let resource = await Question.findById(id)
+            .populate([{ path: 'user', select: { firstName: 1, lastName: 1, email: 1 } }, 'answer', 'answers']).exec()
         super.handleResult(resource, res, next)
     }
 
@@ -128,7 +167,7 @@ class QuestionController extends BaseController {
             perPage: perpage,
             query,
             page,
-            populate: ['user', 'answer', 'answers']
+            populate: [{ path: 'user', select: { firstName: 1, lastName: 1, email: 1 } }, 'answer', 'answers']
         }, (data) => {
             super.handleResultPaginated(data, res, next)
         })
