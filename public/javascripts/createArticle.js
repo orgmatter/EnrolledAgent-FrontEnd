@@ -54,8 +54,14 @@ const handleSubmit = (e) => {
     category: category.value,
     avatar: image.files[0],
   };
-
-  getFormData(data);
+   const fileSize = Math.round(image.files[0].size / 1024);
+  if (fileSize > 1024) {
+      notyf.error('File size too large');
+      return;
+    } else {
+      getFormData(data);
+    }
+  
 
 };
 
