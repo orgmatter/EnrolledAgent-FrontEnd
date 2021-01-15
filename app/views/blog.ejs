@@ -48,7 +48,7 @@
               <div class="blog__article--details">
                 <span style="color: #5082f6">Lorem ipsum</span> / Nov 01, 2020 / By <%= e.author || "N/A"%>
               </div>
-              <div class="blog__article--body"><%= e.body || "N/A"%></div>
+              <div class="blog__article--body"><%- e.body || "N/A"%></div>
               <div class="blog__article--button">
                 <a href="/blog/<%= e._id %> " class="blog__article--button-btn">
                   Read More
