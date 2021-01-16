@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Logger, } = require("common");
+const { Logger, Helper } = require("common");
 const ResourceController = require("../controllers/resource");
 const ArticleController = require("../controllers/article");
 const QuestionController = require("../controllers/question");
@@ -18,7 +18,8 @@ router
   .use('/webhook', require("payment_module").Webhook)
 
   .use((req, _, next) => {
-    req.locals = { query: req.query, ...req.locals };
+    req.locals = { query: req.query, ...req.locals, 
+      capitalizeFirstLetter: Helper.capitalizeFirstLetter };
     req.locals.pageTitle = "Home";
     if (req.session.message) {
       req.locals.infoMessage = req.session.message;

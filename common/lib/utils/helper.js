@@ -60,8 +60,20 @@ exports.isSuperAdmin = function (id) {
   return id === config.SUPER_ADMIN
 }
 
+/**  capitalize the first  letter of every word in a string
+* @param  {object} user
+* @return {boolean}
+*/
+exports.capitalizeFirstLetter = (str) => {
+  str = str.toLowerCase().split(' ');
+  for (var i = 0; i < str.length; i++) {
+    str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+  }
+  return str.join(' ');
+}
+
 /**
- * user is admin
+* user is admin
  * @param  {object} user
  * @return {boolean}
  */

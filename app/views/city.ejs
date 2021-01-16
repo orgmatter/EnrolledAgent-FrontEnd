@@ -15,17 +15,15 @@
   />
 
   <body id="ea-listings">
-    <% function capitalizeFirstLetter(str) {%> <% str=str.toLowerCase().split(' '); %> <% for (var i
-    = 0; i < str.length; i++) {%> <% str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); %>
-    <% } %> <% return str.join(' '); %> <% } %> <%- include("./partials/header.ejs") %>
+  <%- include("./partials/header.ejs") %>
 
     <section id="ea-listings-top">
       <div class="container">
         <h1>Search Results</h1>
         <%if(locals.city && locals.city.name){%>
         <p>
-          Showing all enrolled agents in <%= capitalizeFirstLetter(locals.city.name) %>, <%=
-          capitalizeFirstLetter(locals.city.state) %>
+          Showing all enrolled agents in <%= locals.capitalizeFirstLetter(locals.city.name) %>, <%=
+          locals.capitalizeFirstLetter(locals.city.state) %>
         </p>
         <% } else {%>
         <p>No agents found</p>
@@ -91,7 +89,7 @@
             <% } else { %>
             <p>
               No Agents found in
-              <span id="resNumber"> in <%= capitalizeFirstLetter(locals.city.name) %> </span>
+              <span id="resNumber"> in <%= locals.capitalizeFirstLetter(locals.city.name) %> </span>
             </p>
             <% } %>
           </div>
