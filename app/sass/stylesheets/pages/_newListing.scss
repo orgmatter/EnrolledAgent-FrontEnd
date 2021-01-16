@@ -1,0 +1,191 @@
+.new-listing {
+  background: #f6f6f6;
+}
+.new-listing input,
+.new-listing select {
+  background: #fff;
+  border: 1px solid #ababab;
+  border-radius: 4px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.new-listing-name,
+.new-listing-details {
+  display: flex;
+  justify-content: space-around;
+  // flex-wrap: wrap;
+  // margin: ;
+}
+
+.new-listing-name input,
+.new-listing-details input {
+  width: 30%;
+}
+.small-text {
+  font-size: 14px;
+  color: black;
+  margin-left: 1rem;
+}
+
+.new-listing-state {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.new-listing-state select {
+  width: 50%;
+  margin-left: 1rem;
+}
+.new-listing-state input {
+  width: 60%;
+  margin-left: 1rem;
+}
+
+.new-listing-state .inner-address input,
+.new-listing-state .inner-address select {
+  width: 30%;
+}
+
+// .inner-address {
+//   // display: flex;
+//   // justify-content: space-around;
+// }
+
+.prof-text {
+  margin-left: 1rem;
+}
+
+.prof-text h4 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.prof-text small {
+  font-size: 14px;
+}
+
+.position,
+.listing-industries,
+.listing-lang {
+  display: flex;
+  margin-left: 1rem;
+  justify-content: space-between;
+  margin: 0 1rem;
+}
+.position input,
+.position select {
+  width: 48%;
+}
+
+.website {
+  display: block;
+  margin: 0 1rem;
+}
+
+.website input {
+  width: 60%;
+}
+
+.bio {
+  margin: 1rem;
+}
+.bio h5 {
+  font-size: 16px;
+  margin-bottom: 0.5rem;
+  color: #000;
+}
+
+.bio textarea {
+  width: 90%;
+  background: #fff;
+  border: 1px solid #ababab;
+  border-radius: 4px;
+}
+.listing-lang,
+.listing-industries {
+  margin: 0 1rem;
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+}
+
+.listing-industries select,
+.listing-lang select {
+  width: 400px;
+}
+
+.listing-select {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+}
+.listing-select select {
+  width: 400px;
+}
+
+.bottom {
+  padding-bottom: 5rem;
+}
+.bottom p span {
+  margin-left: 0.3rem;
+}
+.bottom .b-ton {
+  font-size: 16px;
+  color: #fff;
+  background: #01105b;
+  box-shadow: 0px 8px 18px #d463630f;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+}
+// .listing-lang label,
+// .listing-industries label {
+//   display: block;
+// }
+
+// nedia querries
+@media (max-width: 500px) {
+  .new-listing-name,
+  .new-listing-details,
+  .position,
+  .inner-address,
+  .listing-lang,
+  .listing-industries {
+    display: block;
+
+    // margin: ;
+  }
+
+  .new-listing-name input,
+  .new-listing-details input,
+  .position input,
+  .position select,
+  .listing-industries select,
+  .listing-lang select {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .new-listing-state {
+    display: block;
+  }
+
+  .new-listing-state input,
+  .new-listing-state select,
+  .new-listing-state .inner-address input,
+  .new-listing-state .inner-address select {
+    width: 100%;
+    margin-left: 0;
+  }
+  .new-listing-state .inner-address {
+    display: block;
+  }
+  .listing-select {
+    display: block;
+    width: 90%;
+  }
+  .listing-select select {
+    width: 100%;
+  }
+}
