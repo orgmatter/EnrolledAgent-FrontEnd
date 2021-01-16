@@ -65,20 +65,10 @@
             </p>
             <p class="submitAnswer_middle-text"><%= locals.question.body || "N/A" %></p>
             <p class="submitAnswer_middle-meta">
-              Asked by <%= locals.question.firstName %> <%= locals.question.lastName %>  on January 04, 2021
+              Asked by <%= locals.question.firstName %> <%= locals.question.lastName %>  on 
+              <%- locals.moment(locals.question.createdAt).format("MMMM D, YYYY")  %> 
             </p>
-            <h5>Answer As</h5>
-            <div class="submitAnswer_middle-select">
-              <select>
-                <option disabled selected>Select a Profile</option>
-                <option value="Enrolled Agents">Enrolled Agents</option>
-              </select>
-            </div>
-            <p class="submitAnswer_middle-info">
-              Choose the profile or firm who will answer this question. The
-              profile you select will earn the reputation points for answering
-              this question.
-            </p>
+            
             <h4>Your Answer</h4>
             <p class="submitAnswer_middle-info">
               Provide your answer to the question here.
@@ -96,9 +86,7 @@
             </form>
           </div>
           <div class="submitAnswer_footer">
-            <p class="submitAnswer_footer-red">
-              You will earn +1 reputation for this answer.
-            </p>
+            
             <p class="submitAnswer_footer-info">
               <span>Note:</span> By publishing your answer, you permit us to
               make editings as we so please, and post your content on our site.

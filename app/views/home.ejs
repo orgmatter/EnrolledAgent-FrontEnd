@@ -3,13 +3,7 @@
 <%- include("./partials/homeHead.ejs") %>
 
   <body class="home-body">
-    <% function capitalizeFirstLetter(str) {%>
-      <% str=str.toLowerCase().split(' '); %>
-  <%  for (var i = 0; i < str.length; i++) {%>
-    <% str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); %>
-  <% } %>
-  <%  return str.join(' '); %>
-  <% } %>
+    
     <div id="wrapper" class="clearfix home">
       <%- include("./partials/header.ejs") %>
       <!-- Start main-content -->
@@ -129,7 +123,7 @@
         <section class="home-section">
           <div class="container">
             <div class="row home-section-top">
-              <h2>Discover Your Next Enrolled Agent</h2>
+              <h2>Discover Your Next Enrolled Agent </h2>
               <p class='desc'>Browse through our directory of over 60,000+ professionals, and engage them for free.
 </p>
 

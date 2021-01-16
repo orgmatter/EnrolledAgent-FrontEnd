@@ -11,6 +11,7 @@
     "watch:sass": "npm run sass && npm run sass -- -w",
     "postdev": "npm run sass",
     "dev": "concurrently \"npm run watch:sass\" \"DEBUG=server,api,email-templates nodemon --ignore public,node-modules,upload\"",
+    "dev2": "DEBUG=server,api,email-templates nodemon --ignore public,node-modules,upload",
     "dev-win": "concurrently \"npm run watch:sass\" \"set DEBUG=server,api,email-templates && nodemon --ignore public,node-modules,upload\"",
     "lint": "eslint "
   },
@@ -40,6 +41,7 @@
     "express-session": "^1.17.1",
     "express-useragent": "^1.0.13",
     "helmet": "^3.23.3",
+    "moment": "^2.29.1",
     "mongoose": "^5.9.21",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
