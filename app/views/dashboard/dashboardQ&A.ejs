@@ -34,7 +34,8 @@
                   <div>
                     <h3 class="dashboard-grid-div2-question"><span>Question:</span> <%= el.question.title || "N/A" %> </h3>
                     <p> <%= el.question.body || "N/A" %> </p>
-                    <p>Asked by <%= el.question.firstName || "N/A" %> <%= el.question.lastName || "N/A" %> on Jan 4 2021</p>
+                    <p>Asked by <%= el.question.firstName || "N/A" %> <%= el.question.lastName || "N/A" %> on 
+                    <%- locals.moment(el.question.createdAt).format("MMM D, YYYY")  %></p>
                     <h3 class="dashboard-grid-div2-answer">Answer:</h3>
                     <p><%- el.message %></p>
                     <hr>

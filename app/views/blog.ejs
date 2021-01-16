@@ -18,7 +18,8 @@
           <div class="blog__main--items">
             <div class="blog__main--article">
               <div class="blog__main--article-name">
-                <span class="blog-color-text-sky"><%= locals.featuredArticle.category.name %></span> / Nov 21, 2020 / By EnrolledAgent
+                <span class="blog-color-text-sky"><%= locals.featuredArticle.category.name %></span> / 
+                <%- locals.moment(locals.featuredArticle.createdAt).format("MMM D, YYYY") %> / By EnrolledAgent
               </div>
               <div class="blog__main--article-head"><%= locals.featuredArticle.title %> </div>
               <hr id="article-rule" class="blog__main--article-underline" />
@@ -46,7 +47,7 @@
               </div>
               <div class="blog__article--head"><%= e.title || "N/A"%></div>
               <div class="blog__article--details">
-                <span style="color: #5082f6">Lorem ipsum</span> / Nov 01, 2020 / By <%= e.author || "N/A"%>
+                <span style="color: #5082f6">Lorem ipsum</span> / <%- locals.moment(e.createdAt).format("MMM DD, YYYY") %> / By <%= e.author || "N/A"%>
               </div>
               <div class="blog__article--body"><%- e.body || "N/A"%></div>
               <div class="blog__article--button">
@@ -95,7 +96,7 @@
               <div class="blog__news--text">
                 <div class="blog__news--text-head"><%= el.title %> </div>
                 <div class="blog__news--text-details">
-                  <span class="blog-color-text-sky"><%= el.category.name || "N/A" %> </span> / Nov 01, 2020 / By Enrolled Agents 
+                  <span class="blog-color-text-sky"><%= el.category.name || "N/A" %> </span> / <%- locals.moment(el.createdAt).format("MMM DD, YYYY") %> / By Enrolled Agents 
                 </div>
               </div>
             </a>

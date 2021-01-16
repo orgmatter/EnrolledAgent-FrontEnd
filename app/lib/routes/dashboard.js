@@ -23,8 +23,17 @@ router
         });
     })
 
-    .get("/messages", user, (req, res) => {
+    .get("/messages", user, AgentController.getAgentMessages, (req, res) => {
+        console.log("locals", req.locals.agentMessage);
         res.render("dashboard/dashboardmessages", {
+            locals: req.locals,
+            page_name: "messages",
+            sub_page_name: "messages",
+        });
+    })
+    .get("/messages/:id", user, AgentController.getAgentMessages, (req, res) => {
+        console.log("locals", req.locals);
+        res.render("dashboard/singleMessage", {
             locals: req.locals,
             page_name: "messages",
             sub_page_name: "messages",

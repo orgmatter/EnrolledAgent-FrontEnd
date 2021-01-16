@@ -92,7 +92,7 @@ if(checked_rating !== null){
       btn.innerHTML = btnContent;
       clearFormData();
       btn.removeAttribute("disabled");
-      notyf.success(res.data.message || "Message sent!");
+      notyf.success(res.data.message || "Review sent!");
       setTimeout(() => {
         window.location.reload();
      },2000)
