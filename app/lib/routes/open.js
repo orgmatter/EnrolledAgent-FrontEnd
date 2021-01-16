@@ -63,7 +63,7 @@ router
         }
     )
     .get("/search-results",ReviewController.agent, AgentController.getAll, (req, res) => {
-        console.log("locals ", req.locals.agents.data);
+        console.log("locals>>>>", req.locals.query);
         res.render("search-results", { locals: req.locals });
     })
 
@@ -103,7 +103,7 @@ router
       });
     }
   )
-  .get("/new-question", (req, res) => {
+  .get("/new-question", ArticleController.latest, (req, res) => {
     console.log("cate", req.locals);
     res.render("newQuestions", { locals: req.locals });
   })
@@ -220,11 +220,11 @@ router
     }
   )
 
-  //   .use((req, res, next) => {
-  //     if (!(req.isAuthenticated() && req.user)) return res.redirect("/login");
-  //     next();
-  //   })
-  .get("/newListing", (req, res) => {
+    .use((req, res, next) => {
+      if (!(req.isAuthenticated() && req.user)) return res.redirect("/login");
+      next();
+    })
+  .get("/new-listing", (req, res) => {
     res.render("newListing", {
       locals: req.locals,
       page_name: "new-listings",
