@@ -8,23 +8,17 @@
   <%- include("./partials/head.ejs") %>
 </head>
 
-<body class="">
-  <% function capitalizeFirstLetter(str) {%>
-    <% str=str.toLowerCase().split(' '); %>
-<%  for (var i = 0; i < str.length; i++) {%>
-<% str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); %>
-<% } %>
-<%  return str.join(' '); %>
-<% } %>
+<body  class="">
+   
     <%- include("./partials/header.ejs") %>
     <div class="findEA">
       <div class="findEA-banner">
         <div class="findEA-banner__item">
-          <div class="findEA-banner__item--head"><%= capitalizeFirstLetter(locals.state.name)  %> EAs</div>
+          <div class="findEA-banner__item--head"><%= locals.capitalizeFirstLetter(locals.state.name)  %> EAs</div>
           <div class="findEA-banner__item--text">
           
             <%if(locals.state && locals.state.name){%>
-             Find agent by city in <%= capitalizeFirstLetter(locals.state.name)  %> 
+             Find agent by city in <%= locals.capitalizeFirstLetter(locals.state.name)  %> 
            
             <% } %> 
           </div>
@@ -63,7 +57,7 @@
                           class="findEA-btn-right-arrow-left"
                         />
                       </span>
-                      <%= capitalizeFirstLetter(name || '') %>
+                      <%= locals.capitalizeFirstLetter(name || '') %>
                     </a>
                   </div> 
                     <% }} %> 
@@ -84,7 +78,7 @@
                           class="findEA-btn-right-arrow-left"
                         />
                       </span>
-                      <%= capitalizeFirstLetter(name || '') %>
+                      <%= locals.capitalizeFirstLetter(name || '') %>
                     </a>
                   </div> 
                     <% }} %> 
@@ -103,7 +97,7 @@
                           class="findEA-btn-right-arrow-left"
                         />
                       </span>
-                      <%= capitalizeFirstLetter(name || '') %>
+                      <%= locals.capitalizeFirstLetter(name || '') %>
                     </a>
                   </div> 
                     <% }} %> 
@@ -127,7 +121,7 @@
             </div>
             <div class="findEA-suggested">
               <div class="findEA-suggested__head">
-                <div class="findEA-suggested__head--head">Popular Agents in <%= capitalizeFirstLetter(locals.state.name)
+                <div class="findEA-suggested__head--head">Popular Agents in <%= locals.capitalizeFirstLetter(locals.state.name)
                     %>
                 </div>
 

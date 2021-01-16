@@ -143,7 +143,7 @@
         </div>
         <div class="category_grid-side-recent">
           <h4>Recent Articles</h4>
-          <% if(locals.latestArticle.length > 0) { %>
+          <% if(locals.latestArticle && locals.latestArticle.length > 0) { %>
               <% locals.latestArticle.map((el,id) => { %>
                 <div class="category_grid-side-recent-div">
                   <a href="/blog/<%= el._id %>">

@@ -276,9 +276,11 @@ class AgentController extends BaseController {
   async getAll(req, res, next) {
     const { page, perpage, q, search } = req.query;
     let query = Helper.parseQuery(q) || {};
-    if (search) query = { $text: { $search: search } };
+    if (search) query = { $text: { $search: search, $caseSensitive :false } };
     // console.log(req.url)
-    // query = {}
+    if(query.state)
+    query.state =  new RegExp(["^", query.state, "$"].join(""), "i");
+    // console.log(query)
 
     DB.Paginate(
       res,

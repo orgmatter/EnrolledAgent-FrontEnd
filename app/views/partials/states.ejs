@@ -1,10 +1,4 @@
-<% function capitalizeFirstLetter(str) {%>
-    <% str=str.toLowerCase().split(' '); %>
-<%  for (var i = 0; i < str.length; i++) {%>
-  <% str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); %>
-<% } %>
-<%  return str.join(' '); %>
-<% } %>
+ 
 
 <section class="states">
     <div class="container">
@@ -19,7 +13,7 @@
               <% for(let i=0; i < span; i++) { %>
                 <% const  {name, slug}  = states[i] %>
                   <a href="/agents/<%= slug %>">
-                    <%= capitalizeFirstLetter(name || '') %>
+                    <%= locals.capitalizeFirstLetter(name || '') %>
                   </a>
                   <% }} %> 
         </div>
@@ -31,7 +25,7 @@
               <% for(let i=16; i < span; i++) { %>
                 <% const  {name, slug}  = states[i] %>
                   <a href="/agents/<%= slug %>">
-                    <%= capitalizeFirstLetter(name || '') %>
+                    <%= locals.capitalizeFirstLetter(name || '') %>
                   </a>
                   <% }} %> 
         </div>
@@ -43,7 +37,7 @@
               <% for(let i=32; i < span; i++) { %>
                 <% const  {name, slug}  = states[i] %>
                 <a href="/agents/<%= slug %>">
-                    <%= capitalizeFirstLetter(name || '') %>
+                    <%= locals.capitalizeFirstLetter(name || '') %>
                   </a>
                   <% }} %> 
         </div>
@@ -53,7 +47,7 @@
               <% for(let i = 48; i < states.length; i++) { %>
                 <% const  {name, slug,}  = states[i] %>
                 <a href="/agents/<%= slug %>">
-                    <%= capitalizeFirstLetter(name || '') %>
+                    <%= locals.capitalizeFirstLetter(name || '') %>
                   </a>
                   <% }} %> 
         </div>
