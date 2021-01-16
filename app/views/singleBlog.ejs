@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <%- include("./partials/head.ejs") %>
-  <meta name="postId" content=<%= locals._id || "N/A"  %>  />
+  <meta name="postId" content=<%= locals.article._id || "N/A"  %>  />
   <body class="">
     <%- include("./partials/header.ejs") %>
     <div id="wrapper" class="clearfix">
@@ -10,18 +10,18 @@
         <!-- Section: inner-header -->
         <section
           class="inner-header divider layer-overlay overlay-dark-4"
-          data-bg-img=<%= locals.imageUrl || "/assets/images/blog_fallback.jpeg" %>
+          data-bg-img=<%= locals.article.imageUrl || "/assets/images/blog_fallback.jpeg" %>
         >
           <div class="container pt-120 pb-60">
             <!-- Section Content -->
             <div class="section-content blog-bg">
               <div class="row">
                 <div class="col-md-8 jumbo">
-                  <h2 class="text-theme-colored2 font-36"><%= locals.title  %></h2>
+                  <h2 class="text-theme-colored2 font-36"><%= locals.article.title  %></h2>
                   <ol class="breadcrumb text-left mt-10 white">
                     <li><a href="/">Home</a></li>
                     <li><a href="/blog">News & Articles</a></li>
-                    <li class="active"><%= locals.title  %> </li>
+                    <li class="active"><%= locals.article.title  %> </li>
                   </ol>
                 </div>
               </div>
@@ -47,20 +47,22 @@
                           class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15"
                         >
                           <ul>
-                            <li class="font-16 text-white font-weight-600">28</li>
-                            <li class="font-12 text-white text-uppercase">Feb</li>
+                            <li class="font-16 text-white font-weight-600 text-uppercase">
+                              <%- locals.moment(locals.article.createdAt).format("DD <br /> MMM") %>
+                            </li>
+                            
                           </ul>
                         </div>
                         <div class="media-body pl-15">
                           <div class="event-content pull-left flip">
                             <span class="mb-10 text-gray-darkgray mr-10 font-13"> 
                               <i class="fa fa-commenting-o mr-5 text-theme-colored"></i> 
-                              <%= locals.comment.length || 0 %> Comments
+                              <%= locals.article.comment.length || 0 %> Comments
                             </span>
                           </div>
                         </div>
                       </div>
-                      <p class="mb-15"><%- locals.body  %></p>
+                      <p class="mb-15"><%- locals.article.body  %></p>
                     
                       <div class="mt-30 mb-0">
                         <h5 class="pull-left flip mt-10 mr-20 text-theme-colored">Share:</h5>
@@ -96,14 +98,14 @@
                   
                   <div class="comments-area">
                     <h5 class="comments-title mt-30">Comments</h5>
-                    <% if (locals.comment.length > 0) {%>
+                    <% if (locals.article.comment.length > 0) {%>
                       <ul class="comment-list">
-                      <% locals.comment.map((el,id) => { %>  
+                      <% locals.article.comment.map((el,id) => { %>  
                       <li>
                         <div class="media comment-author">
                           <div class="media-body">
                             <h5 class="media-heading comment-heading"><%= el.name %>  says:</h5>
-                            <div class="comment-date">23/06/2014</div>
+                            <div class="comment-date"><%- locals.moment(el.createdAt).format("MM/ DD/ YYYY") %></div>
                             <p><%= el.message %></p>
                           </div>
                         </div>

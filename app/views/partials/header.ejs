@@ -147,7 +147,7 @@
                   <a class="dropdown-link" href="/resource">Resources for Accountants</a>
                 </li>
                 <li>
-                  <a class="dropdown-link" href="#">Create Your Free EA List</a>
+                  <a class="dropdown-link" <% if(locals.isAuthenticated)  { %> href="/new-listing" <% } %> href="/login">Create Your Free EA Listing</a>
                 </li>
               </ul>
             </li>
