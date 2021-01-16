@@ -3,6 +3,7 @@ const { Logger, Helper } = require("common");
 const ResourceController = require("../controllers/resource");
 const ArticleController = require("../controllers/article");
 const QuestionController = require("../controllers/question");
+const moment = require("moment");
 
 const Log = new Logger("App:Router");
 
@@ -20,6 +21,7 @@ router
   .use((req, _, next) => {
     req.locals = { query: req.query, ...req.locals, 
       capitalizeFirstLetter: Helper.capitalizeFirstLetter };
+    req.locals.moment = moment;
     req.locals.pageTitle = "Home";
     if (req.session.message) {
       req.locals.infoMessage = req.session.message;

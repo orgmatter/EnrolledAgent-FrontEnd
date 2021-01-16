@@ -9,39 +9,36 @@ const AgentController = require("../controllers/agent");
 const QuestionController = require("../controllers/question");
 const ReviewController = require("../controllers/review");
 
-
 const checkRedirectCookie = (req, res, next) => {
-    const path = req.cookies['redirect-to']
-    if (path)
-        res.clearCookie('redirect-to')
+  const path = req.cookies["redirect-to"];
+  if (path) res.clearCookie("redirect-to");
 
-    if (path && path.length > 1) return res.redirect(path)
-    next()
-
-}
+  if (path && path.length > 1) return res.redirect(path);
+  next();
+};
 
 router
 
-    .get("/career-center", (req, res) => {
-        res.render("careerCenter", { locals: req.locals });
-    })
-    .get("/contact", (req, res) => {
-        res.render("contact", { locals: req.locals });
-    })
-    .get("/about-us", (req, res) => {
-        res.render("about", { locals: req.locals });
-    })
-    .get("/privacy", (req, res) => {
-        res.render("privacy", { locals: req.locals });
-    })
-    .get("/terms", (req, res) => {
-        res.render("terms", { locals: req.locals });
-    })
-    .get("/unsubscribe", ContactController.unsubscribe)
-    .get("/verify/:token", verify)
+  .get("/career-center", (req, res) => {
+    res.render("careerCenter", { locals: req.locals });
+  })
+  .get("/contact", (req, res) => {
+    res.render("contact", { locals: req.locals });
+  })
+  .get("/about-us", (req, res) => {
+    res.render("about", { locals: req.locals });
+  })
+  .get("/privacy", (req, res) => {
+    res.render("privacy", { locals: req.locals });
+  })
+  .get("/terms", (req, res) => {
+    res.render("terms", { locals: req.locals });
+  })
+  .get("/unsubscribe", ContactController.unsubscribe)
+  .get("/verify/:token", verify)
 
-    // .get('/linkedin/callback', passport.authenticate('linkedin'), handleSocial)
-    // .get('/google/callback', passport.authenticate('google', { scope: ['profile', 'email'], }), handleSocial)
+  // .get('/linkedin/callback', passport.authenticate('linkedin'), handleSocial)
+  // .get('/google/callback', passport.authenticate('google', { scope: ['profile', 'email'], }), handleSocial)
 
     .get("/blog", ArticleController.getAll, ArticleController.featured, 
     ArticleController.latest, (req, res) => {
@@ -50,7 +47,7 @@ router
     })
     .get("/blog/:id", ArticleController.get, (req, res) => {
         console.log("articles>>>", req.locals.article);
-        res.render("singleBlog", { locals: req.locals.article });
+        res.render("singleBlog", { locals: req.locals });
     })
     .get("/ea-listings", AgentController.getAll, (req, res) => {
         console.log("locals are", req.locals.agents);
@@ -66,7 +63,7 @@ router
         }
     )
     .get("/search-results",ReviewController.agent, AgentController.getAll, (req, res) => {
-        console.log("locals ", req.locals.agents.data);
+        console.log("locals>>>>", req.locals.query);
         res.render("search-results", { locals: req.locals });
     })
 
@@ -75,7 +72,7 @@ router
         checkRedirectCookie,
         CityController.get,
         AgentController.popular,
-        ResourceController.random,AgentController.getAgentMessages,
+        ResourceController.random,
         (req, res) => {
             // console.log(req.locals)
             //  console.log("locals", req.app.locals);
@@ -99,118 +96,140 @@ router
     })
     .get("/ask-ea/category/:category", QuestionController.getAll, ArticleController.latest, 
     (req, res) => {
-        console.log("params", req.locals);
-        res.render("askEACategory", {
-            locals: req.locals,
-            name: req.params.category
-        });
-    })
-    .get("/new-question", (req, res) => {
-        console.log("cate", req.locals);
-        res.render("newQuestions", { locals: req.locals });
-    })
-    .get("/agent/:id", ReviewController.analysis, AgentController.get, (req, res) => {
-        console.log("agent>>>>", req.locals);
-        // console.log("agent>>>>det", req.locals);
-        res.render("single-agent-details", { locals: req.locals });
-    })
-    .get(
-        "/agents/all-states",
-        CityController.allStates,
-        CityController.get,
-        AgentController.get,
-        (req, res) => {
-            // console.log(req.locals);
-            res.render("states", { locals: req.locals });
-        }
-    )
-    .get(
-        "/agents/:state",
-        CityController.state,
-        CityController.forState,
-        AgentController.popularInState,
-        AgentController.get,
-        (req, res) => {
-            // console.log(req.locals);
-            res.render("single-state", { locals: req.locals });
-        }
-    )
-    .get("/agents/:state/:city", AgentController.city, (req, res) => {
-        // console.log(req.locals);
-        res.render("city", { locals: req.locals });
-    }) 
-    .get("/offshore-team", (req, res) => {
-        res.render("offshoreTeam", { locals: req.locals });
-    })
-    .get(
-        "/resource",
-        CityController.get,
-        ResourceController.getAll,
-        (req, res) => {
-            // console.log(req.locals.resource)
-            res.render("resource", {
-                name: "Resources",
-                description: 'Valuable services, products, tools, and whitepapers from our partners, hand selected by our staff.',
-                locals: req.locals,
-            });
-        }
-    )
-    .get(
-        "/resource/:category",
-        CityController.get,
-        ResourceController.getAll,
-        (req, res) => {
-            let description = ''
-            let name = ''
-            if (req.locals.category && req.locals.category.description)
-                description = req.locals.category.description
-            if (req.locals.category && req.locals.category.name)
-                name = req.locals.category.name
-            res.render("resource", {
-                name,
-                description,
-                locals: req.locals,
-            });
-        }
-    ) 
-    .get("/practice-exchange", CityController.get, (req, res) => {
-        res.render("practiceExchange", { locals: req.locals });
-    })
-    .get(
-        "/states/:state",
-        CityController.get,
-        AgentController.popular,
-        (req, res) => {
-            // console.log("data>>>>>", req.locals);
-            res.render("singleFirm", { locals: req.locals });
-        }
-    )
-    .get(
-        "/find-enrolled-agents",
-        CityController.get,
-        AgentController.popular,
-        (req, res) => {
-            res.render("find-agent", { locals: req.locals });
-        }
-    )
-    .get("/need-accountant", (req, res) => {
-        res.render("need-accountant", { locals: req.locals });
-    })
-    .get("/verification-service", (req, res) => {
-        res.render("verification-service", { locals: req.locals });
-    })
+      console.log("params", req.locals);
+      res.render("askEACategory", {
+        locals: req.locals,
+        name: req.params.category,
+      });
+    }
+  )
+  .get("/new-question", ArticleController.latest, (req, res) => {
+    console.log("cate", req.locals);
+    res.render("newQuestions", { locals: req.locals });
+  })
+  .get(
+    "/agent/:id",
+    ReviewController.analysis,
+    AgentController.get,
+    (req, res) => {
+      console.log("agent>>>>", req.locals);
+      // console.log("agent>>>>det", req.locals);
+      res.render("single-agent-details", { locals: req.locals });
+    }
+  )
+  .get(
+    "/agents/all-states",
+    CityController.allStates,
+    CityController.get,
+    AgentController.get,
+    (req, res) => {
+      // console.log(req.locals);
+      res.render("states", { locals: req.locals });
+    }
+  )
+  .get(
+    "/agents/:state",
+    CityController.state,
+    CityController.forState,
+    AgentController.popularInState,
+    AgentController.get,
+    (req, res) => {
+      // console.log(req.locals);
+      res.render("single-state", { locals: req.locals });
+    }
+  )
+  .get("/agents/:state/:city", AgentController.city, (req, res) => {
+    // console.log(req.locals);
+    res.render("city", { locals: req.locals });
+  })
+  .get("/offshore-team", (req, res) => {
+    res.render("offshoreTeam", { locals: req.locals });
+  })
+  .get(
+    "/resource",
+    CityController.get,
+    ResourceController.getAll,
+    (req, res) => {
+      // console.log(req.locals.resource)
+      res.render("resource", {
+        name: "Resources",
+        description:
+          "Valuable services, products, tools, and whitepapers from our partners, hand selected by our staff.",
+        locals: req.locals,
+      });
+    }
+  )
+  .get(
+    "/resource/:category",
+    CityController.get,
+    ResourceController.getAll,
+    (req, res) => {
+      let description = "";
+      let name = "";
+      if (req.locals.category && req.locals.category.description)
+        description = req.locals.category.description;
+      if (req.locals.category && req.locals.category.name)
+        name = req.locals.category.name;
+      res.render("resource", {
+        name,
+        description,
+        locals: req.locals,
+      });
+    }
+  )
+  .get("/practice-exchange", CityController.get, (req, res) => {
+    res.render("practiceExchange", { locals: req.locals });
+  })
+  .get(
+    "/states/:state",
+    CityController.get,
+    AgentController.popular,
+    (req, res) => {
+      // console.log("data>>>>>", req.locals);
+      res.render("singleFirm", { locals: req.locals });
+    }
+  )
+  .get(
+    "/find-enrolled-agents",
+    CityController.get,
+    AgentController.popular,
+    (req, res) => {
+      res.render("find-agent", { locals: req.locals });
+    }
+  )
+  .get("/need-accountant", (req, res) => {
+    res.render("need-accountant", { locals: req.locals });
+  })
+  .get("/verification-service", (req, res) => {
+    res.render("verification-service", { locals: req.locals });
+  })
 
-    .get("/license-verification", (req, res) => {
-        console.log("license", req.locals);
-        res.render("license-verification", { locals: req.locals });
-    })
-    .get("/claim-profile/:id", ReviewController.analysis, AgentController.get, (req, res) => {
-        console.log("listing >>>", req.locals);
-        res.render("claim-profile", { 
-            locals: req.locals,
-        });
-    })
-    
+  .get("/license-verification", (req, res) => {
+    console.log("license", req.locals);
+    res.render("license-verification", { locals: req.locals });
+  })
+  .get(
+    "/claim-profile/:id",
+    ReviewController.analysis,
+    AgentController.get,
+    (req, res) => {
+      console.log("listing >>>", req.locals);
+      res.render("claim-profile", {
+        locals: req.locals,
+      });
+    }
+  )
 
+    .use((req, res, next) => {
+      if (!(req.isAuthenticated() && req.user)) return res.redirect("/login");
+      next();
+    })
+  .get("/new-listing", (req, res) => {
+    res.render("newListing", {
+      locals: req.locals,
+      page_name: "new-listings",
+      sub_page_name: "new-listings",
+    });
+  });
 
-module.exports = router
+module.exports = router;

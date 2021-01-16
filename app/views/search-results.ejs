@@ -12,7 +12,13 @@
       <div class="container">
         <h1>Search Results</h1>
         <% if(locals.query.q) { %>
-          <p>Showing all enrolled agents in <%= locals.query.q && locals.query.q.split(":")[1] || "N/A" %></p>
+          <% if (locals.query.q.split(":")[1].includes("lastName")) {%>
+            <p>Showing search results for <%=  locals.query.q.split(",")[1].split(":")[1] || "N/A" %> in 
+              <%=  locals.query.q.split(":")[1].split(',')[0] || "N/A" %></p>
+          <%} else {%>
+            <p>Showing all enrolled agents in <%=  locals.query.q.split(":")[1] || "N/A" %></p>
+          <%}%> 
+          
         <%} else {%>
           <p>Showing search results for <%= locals.query.search && locals.query.search || "N/A" %></p>
         <%}%> 
@@ -36,33 +42,39 @@
     </section>
 
     <section id="premium" class="container">
-      <% locals.agents.data.map((e,id) => { %>
-      <div class="row premium-box">
-        <div class="col-md-4 col-sm-12">
-          <div class="img col-md-5">
-            <img src=<%= e.imageUrl || "/assets/images/avatar.webp" %>  alt="agent-image" />
-          </div>
-          <div class="txt col-md-7">
-            <h3><%= e.firstName %> <%= e.lastName %></h3>
-            <p><%= e.city %></p>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-12 mid-div">
-           <% if(e.premium) { %>
-                <h4>Premium Member</h4>
-           <%}%> 
-          <p>
-            <div class="stars-outer" id="client-stars" value=<%= e.rating || 0 %> >
-              <div class="stars-inner"></div>
+      <% if(locals.agents.data.length > 0) { %>
+          <% locals.agents.data.map((e,id) => { %>
+        <div class="row premium-box">
+          <div class="col-md-4 col-sm-12">
+            <div class="img col-md-5">
+              <img src=<%= e.imageUrl || "/assets/images/avatar.webp" %>  alt="agent-image" />
             </div>
-            <span> <%= e.reviewCount %> reviews</span></p>
+            <div class="txt col-md-7">
+              <h3><%= e.firstName %> <%= e.lastName %></h3>
+              <p><%= e.city %></p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-12 mid-div">
+            <% if(e.premium) { %>
+                  <h4>Premium Member</h4>
+            <%}%> 
+            <p>
+              <div class="stars-outer" id="client-stars" value=<%= e.rating || 0 %> >
+                <div class="stars-inner"></div>
+              </div>
+              <span> <%= e.reviewCount %> reviews</span>
+            </p>
+          </div>
+          <div class="col-md-4 col-sm-12 b-tons">
+            <a  href="/agent/<%= e._id %>" class="btn btn-lg btn-blu mt-2"> View profile</a>
+            <!-- <a href="" class="btn btn-lg btn-wht mt-2"> Website</a> -->
+          </div>
         </div>
-        <div class="col-md-4 col-sm-12 b-tons">
-          <a  href="/agent/<%= e._id %>" class="btn btn-lg btn-blu mt-2"> View profile</a>
-          <!-- <a href="" class="btn btn-lg btn-wht mt-2"> Website</a> -->
-        </div>
-      </div>
-      <% }) %>
+        <% }) %>
+      <% } else { %>
+        <p style="text-align: center;">There are no search results available</p>
+      <%}%> 
+      
     </section>
 
     <section id="bottom">

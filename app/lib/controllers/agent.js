@@ -315,7 +315,7 @@ class AgentController extends BaseController {
       agent = await Agent.findOne({ owner: mongoose.Types.ObjectId(req.user.id) }).exec()
     }
 
-    if (!agent || agent._id) return next()
+    if (!agent || !agent._id) return next()
 
     DB.Paginate(
       res,

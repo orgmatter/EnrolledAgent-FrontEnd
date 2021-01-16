@@ -38,9 +38,10 @@
                 </div>
 
               <div class="btn-div">
-                <a href="tel:<%= locals.agent.phone || "N/A"%>" class="btn btn-primary btn-block b-ton">
-                  Call Now</a>
+                <a href="tel:<%= locals.agent.phone || "N/A"%>">Call Now</a>
+                <a href="#" type="button" data-toggle="modal" data-target="#messageModal">Send Message</a>
               </div>
+              
 
               <div class="personal-card cards text-center">
                 <h3><span>Personal</span> Info</h3>
@@ -206,6 +207,56 @@
                     </div>
                   </div>
                 </div>
+
+                <!-- Message Modal -->
+                <div class="modal fade bd-example-modal-lg" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Send a message to <%= locals.agent.firstName || "N/A" %>
+                    <%= locals.agent.lastName || "N/A" %> in  <%= locals.agent.city || "N/A" %></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <form id="message-form">
+                      <div class="modal-body">
+                          <div class="modal-body-div mt-30">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <input class="modal-body-div-input" id="name" type="text" required placeholder="Name*" />
+                              </div>
+                              <div class="col-md-6 pl-20">
+                                <input class="modal-body-div-input" type="email" id="messageEmail" required 
+                                placeholder="Email Address*"/>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-body-div">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <input class="modal-body-div-input" id="subject" type="text" required placeholder="Subject*" />
+                              </div>
+                              <div class="col-md-6 pl-20">
+                                 <input class="modal-body-div-input" id="phone" type="tel" required placeholder="Phone*" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-body-div">
+                            <label class="modal-body-div-label">Your Message<span>*</span></label>
+                            <textarea placeholder="Your message here" required id="directMessage"></textarea>
+                          </div>  
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="submit" id="message-submit-btn">Submit</button>
+                      </div>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+
+                
                 <% if (locals.agent.reviewCount > 0) { %>
                   <% locals.agent.review.map((el, id) => { %>
                     <div class="review" key=<%= id %>>
@@ -270,6 +321,7 @@
             });
           </script>
           <script type="text/javascript" src="/javascripts/review.js"></script>
+          <script type="text/javascript" src="/javascripts/message.js"></script>
           <script src="/js/custom.js"></script>
   </body>
 
