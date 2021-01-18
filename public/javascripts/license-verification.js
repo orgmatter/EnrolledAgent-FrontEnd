@@ -111,7 +111,7 @@ const handleSubmit = (e) => {
       // paymentModal
       // Handle form submission.
       const form = document.getElementById("payment-form");
-      const postalCodeSpan = form.querySelector(".CardField-postalCode span");
+      // const postalCodeSpan = form.querySelector(".CardField-postalCode span");
       // postalCodeSpan.classList.add("InputContainer");
       // postalCodeSpan.innerHTML = "Postal Code";
 
