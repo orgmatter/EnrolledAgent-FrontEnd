@@ -1,7 +1,7 @@
 const { 
     Helper, 
     DB,
-    Models: { Payment },
+    Models: { Transaction },
 } = require("common");
 
 
@@ -21,7 +21,7 @@ class PaymentController extends BaseController {
 
     async get(req, res, next) {
         const { id } = req.params
-        let resource = await Payment.findById(id).exec()
+        let resource = await Transaction.findById(id).exec()
         super.handleResult(resource, res, next)
     }
 
@@ -30,7 +30,7 @@ class PaymentController extends BaseController {
         let query = Helper.extractQuery(req.query) || {}
         if (q) query = { title: { $regex: q, $options: 'i' } }
 
-        DB.Paginate(res, next, Payment, {
+        DB.Paginate(res, next, Transaction, {
             perPage: perpage,
             query,
             page,
