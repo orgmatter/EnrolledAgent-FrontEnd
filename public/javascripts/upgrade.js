@@ -1,25 +1,7 @@
 const page_url = location.href;
 const url_match = page_url.match("enrolledagent.org");
-const base_Url = url_match ? "https://enrolledagent.org" : "http://localhost:3000";
-const licenseForm = document.getElementById("license-form");
-const email = document.getElementById("email");
-const firstName = document.getElementById("firstName");
-const lastName = document.getElementById("lastName");
-const city = document.getElementById("city");
-const zipCode = document.getElementById("zipCode");
-const state = document.getElementById("state");
-const contactMethod = document.getElementById("preferred-contact");
-const phone = document.getElementById("phone");
-const optionalMessage = document.getElementById("optionalMessage");
-const agentFirstName = document.getElementById("agent-firstName");
-const agentLastName = document.getElementById("agent-lastName");
-const agentCity = document.getElementById("agent-city");
-const agentZipCode = document.getElementById("agent-zipCode");
-const agentLicense = document.getElementById("agent-license");
-const agentPhone = document.getElementById("agent-phone");
-const agentState = document.getElementById("agent-state");
-const agentEmail = document.getElementById("agent-email");
-const btn = document.getElementById("submit-btn");
+const BASE_Url = url_match ? "https://enrolledagent.org" : "http://localhost:3000";
+const btn = document.getElementById("upgrade-btn");
 const btnContent = btn.innerHTML;
 
 const notyf = new Notyf({
@@ -54,52 +36,27 @@ function spinner() {
   return markup;
 }
 
-function clearFormData() {
-  licenseForm.reset();
-}
 
-const handleSubmit = (e) => {
+const handleUpgrade = (e) => {
   e.preventDefault();
-  const data = {
-    message: optionalMessage.value,
-    email: email.value,
-    firstName: firstName.value,
-    lastName:  lastName.value,
-    phone: phone.value,
-    city: city.value,
-    state: state.value,
-    zipcode: zipCode.value,
-    agentFirstName: agentFirstName.value,
-    agentLastName: agentLastName.value,
-    agentCity: agentCity.value,
-    agentZipcode: agentZipCode.value,
-    agentPhone: agentPhone.value,
-    agentstate: agentState.value,
-    agentEmail: agentEmail.value,
-    licence: agentLicense.value,
-    preferredContact: contactMethod.value
-  };
-
   btn.setAttribute("disabled", "true");
   btn.innerHTML = spinner();
+
   // return
   axios({
     method: "POST",
-    url: `${base_Url}/api/licence`,
+    url: `${BASE_Url}/api/upgrade-account`,
     credentials: 'same-origin', // <-- includes cookies in the request
         headers: {
           "CSRF-Token":  getCookie('XSRF-TOKEN'), 
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-    data: JSON.stringify(data),
 
   })
     .then((res) => {
       console.log(res.data);
-      // notyf.success(res.data.message || "Message sent!");
       btn.innerHTML = btnContent;
-      clearFormData();
       btn.removeAttribute("disabled");
       const amount = document.getElementById("order-amount");
       amount.textContent = res.data.amount || "";
@@ -205,4 +162,4 @@ var orderComplete = function(clientSecret) {
 };
 
 
-licenseForm.addEventListener("submit", handleSubmit);
+btn.addEventListener("click", handleUpgrade);

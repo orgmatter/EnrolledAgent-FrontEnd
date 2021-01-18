@@ -40,61 +40,55 @@ router
   // .get('/linkedin/callback', passport.authenticate('linkedin'), handleSocial)
   // .get('/google/callback', passport.authenticate('google', { scope: ['profile', 'email'], }), handleSocial)
 
-    .get("/blog", ArticleController.getAll, ArticleController.featured, 
+  .get("/blog", ArticleController.getAll, ArticleController.featured,
     ArticleController.latest, (req, res) => {
-         console.log("articles>>>", req.locals);
-        res.render("blog", { locals: req.locals });
+      console.log("articles>>>", req.locals);
+      res.render("blog", { locals: req.locals });
     })
-    .get("/blog/:id", ArticleController.get, (req, res) => {
-        console.log("articles>>>", req.locals.article);
-        res.render("singleBlog", { locals: req.locals });
-    })
-    .get("/ea-listings", AgentController.getAll, (req, res) => {
-        console.log("locals are", req.locals.agents);
-        res.render("ea-listings", { locals: req.locals });
-    })
-    .get(
-        "/find-agent",
-        CityController.get,
-        AgentController.popular,
-        ResourceController.random,
-        (req, res) => {
-            res.render("find-agent", { locals: req.locals });
-        }
-    )
-    .get("/search-results",ReviewController.agent, AgentController.getAll, (req, res) => {
-        console.log("locals>>>>", req.locals.query);
-        res.render("search-results", { locals: req.locals });
-    })
+  .get("/blog/:id", ArticleController.get, (req, res) => {
+    console.log("articles>>>", req.locals.article);
+    res.render("singleBlog", { locals: req.locals });
+  })
+  .get("/ea-listings", AgentController.getAll, (req, res) => {
+    console.log("locals are", req.locals.agents);
+    res.render("ea-listings", { locals: req.locals });
+  })
+  .get(
+    "/find-agent",
+    CityController.get,
+    AgentController.popular,
+    ResourceController.random,
+    (req, res) => {
+      res.render("find-agent", { locals: req.locals });
+    }
+  )
+  .get("/search-results", ReviewController.agent, AgentController.getAll, (req, res) => {
+    console.log("locals>>>>", req.locals.query);
+    res.render("search-results", { locals: req.locals });
+  })
 
-    .get(
-        "/",
-        checkRedirectCookie,
-        CityController.get,
-        AgentController.popular,
-        ResourceController.random,
-        (req, res) => {
-            // console.log(req.locals)
-            //  console.log("locals", req.app.locals);
-            // extract message if this page was redirected to from another page
-            if (req.app.locals && req.app.locals.message)
-                req.locals.infoMessage = req.app.locals.message;
-            delete req.app.locals.message
-            res.render("home", { locals: req.locals });
-        }
-    )
-    .get("/claim-listing", (req, res) => {
-        res.render("listings", { locals: req.locals });
-    })
-    .get("/ask-ea", QuestionController.getAll, ArticleController.latest, (req, res) => {
-        console.log("questions", req.locals);
-        res.render("askEA", { locals: req.locals });
-    })
-    .get("/ask-ea/:id", QuestionController.get, ArticleController.latest, (req, res) => {
-        console.log("questions", req.locals);
-        res.render("askEASingle", { locals: req.locals });
-    })
-    .get("/ask-ea/category/:category", QuestionController.getAll, ArticleController.latest, 
+  .get(
+    "/",
+    checkRedirectCookie,
+    CityController.get,
+    AgentController.popular,
+    ResourceController.random,
+    (req, res) => { 
+      res.render("home", { locals: req.locals });
+    }
+  )
+  .get("/claim-listing", (req, res) => {
+    res.render("listings", { locals: req.locals });
+  })
+  .get("/ask-ea", QuestionController.getAll, ArticleController.latest, (req, res) => {
+    console.log("questions", req.locals);
+    res.render("askEA", { locals: req.locals });
+  })
+  .get("/ask-ea/:id", QuestionController.get, ArticleController.latest, (req, res) => {
+    console.log("questions", req.locals);
+    res.render("askEASingle", { locals: req.locals });
+  })
+  .get("/ask-ea/category/:category", QuestionController.getAll, ArticleController.latest,
     (req, res) => {
       console.log("params", req.locals);
       res.render("askEACategory", {
@@ -220,10 +214,10 @@ router
     }
   )
 
-    .use((req, res, next) => {
-      if (!(req.isAuthenticated() && req.user)) return res.redirect("/login");
-      next();
-    })
+  .use((req, res, next) => {
+    if (!(req.isAuthenticated() && req.user)) return res.redirect("/login");
+    next();
+  })
   .get("/new-listing", (req, res) => {
     res.render("newListing", {
       locals: req.locals,
