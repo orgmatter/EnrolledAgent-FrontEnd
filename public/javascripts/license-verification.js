@@ -80,8 +80,6 @@ const handleSubmit = (e) => {
     preferredContact: contactMethod.value
   };
 
-  // console.log(data);
-  // document.getElementById("paymentModal").showModal();
   btn.setAttribute("disabled", "true");
   btn.innerHTML = spinner();
   // return
@@ -98,11 +96,13 @@ const handleSubmit = (e) => {
 
   })
     .then((res) => {
-      console.log(res);
+      console.log(res.data);
       // notyf.success(res.data.message || "Message sent!");
       btn.innerHTML = btnContent;
       clearFormData();
       btn.removeAttribute("disabled");
+      const amount = document.getElementById("order-amount");
+      amount.textContent = res.data.amount || "";
       return setupStripeElements(res.data);
     })
     .then(function({ stripe, card, clientSecret }) {
