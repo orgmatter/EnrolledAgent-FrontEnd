@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { handleSocial, verify } = require("../controllers/auth");
+const { handleSocial, verify, passwordResetLink , passwordResetPage} = require("../controllers/auth");
 const passport = require("passport");
 const exceptions = ['/login', '/logout', '/register', '/', '/google/callback', '/facebook/callback', '/linkedin/callback']
 
@@ -21,6 +21,8 @@ router
         req.logout();
         res.redirect("/login",);
     })
+    .get("/reset/:token", passwordResetLink)
+    .get("/reset-password", passwordResetPage)
     .get("/login", setRedirectCookie, (req, res) => {
         res.render("login", { locals: req.locals });
     })
