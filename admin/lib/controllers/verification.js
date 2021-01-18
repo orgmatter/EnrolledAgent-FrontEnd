@@ -27,7 +27,7 @@ class SubscriptionController extends BaseController {
         if (from) {
             const start = moment(from)
             const end = moment(to)
-            query.createdAt = { gt: start, lt: end }
+            query.createdAt = { $gt: start, $lt: end }
             console.log(query)
         }
 
