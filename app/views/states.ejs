@@ -12,7 +12,8 @@
       <div class="main-content">
         <!-- Section: home -->
       
-        <div id="vmap" style="width: 800px; height: 400px; margin: auto; margin-top: 5%; margin-bottom: 5%; padding: 300px;">
+        <div id="vmap" style="width: 800px; height: 400px; margin: auto; margin-top: 5%; 
+        margin-bottom: 5%; padding: 300px;">
         </div>
 
         <div class="findEA-locations" style="height: 100%;">
@@ -96,26 +97,7 @@
                                                 
                                                 <script src="/js/custom.js"></script>
 
-                                                <script>
-                                                    function search() {
-                                                        const input = document.getElementById("search").value
-                                                        // console.log(input)
-                                                        window.location = `/ea-listings/?search=${input}`
-                                                    }
-                                                    function onload() {
-                                                        const input = document.getElementById("search")
-                                                        const urlParams = new URLSearchParams(window.location.search);
-                                                        const _search = urlParams.get('search');
-                                                        input.value = _search
-                                                        input.addEventListener("keyup", function (event) {
-                                                            // Number 13 is the "Enter" key on the keyboard
-                                                            if (event.keyCode === 13) {
-                                                                search()
-                                                            }
-                                                        })
-                                                        // console.log(_search)
-                                                    }
-                                                </script>
+                                               
  <script type="text/javascript" src="/javascripts/jvmap/jquery.vmap.min.js"></script>
     <script type="text/javascript" src="/javascripts/jvmap/maps/jquery.vmap.usa.js"></script>
     <script type="text/javascript">

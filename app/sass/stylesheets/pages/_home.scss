@@ -97,6 +97,12 @@ section#home {
           line-height: 20px;
           margin-bottom: 20px;
         }
+        &-btn{
+          height: 40px;
+          border-radius: 5px;
+          color: $main-blue;
+          padding: 0 30px;
+        }
         .arrow {
           background: #086cef;
           border: 1px solid #086cef;
