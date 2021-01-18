@@ -75,12 +75,11 @@ return new Promise(async (resolve, reject)=>{
     ))
   }
 
-  if (!paymentIntent) return done(
-    reject(new Exception(
+  if (!paymentIntent) return reject(new Exception(
       'Could not initialize payment, please try again',
       ErrorCodes.REQUIRED
     ))
-  )
+
 
 
   // eslint-disable-next-line new-cap

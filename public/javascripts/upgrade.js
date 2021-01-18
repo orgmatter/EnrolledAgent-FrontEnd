@@ -77,7 +77,7 @@ const handleUpgrade = (e) => {
       // notyf.success(res.data.message || "Message sent!");
     })
     .catch((err) => {
-      // console.log(err.response);
+       console.log(err);
       btn.innerHTML = btnContent;
       btn.removeAttribute("disabled");
       // notyf.error(err.response.data.error.message || "Something went wrong");
