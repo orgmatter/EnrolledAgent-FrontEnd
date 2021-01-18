@@ -153,7 +153,7 @@ class AgentController extends BaseController {
 
     const body = req.body || { '': '' }
     delete body.status
-
+      console.log(req.body, "!!!!");
     if (!body.firstName || !body.lastName) {
       return next(new Exception('First name and last name is required', ErrorCodes.NO_PRIVILEGE))
     }
