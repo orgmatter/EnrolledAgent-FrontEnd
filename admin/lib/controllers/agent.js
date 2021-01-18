@@ -21,6 +21,7 @@ const STORAGE = process.env.STORAGE
 const sanitizeBody = (body) => {
     delete body.rating
     delete body.owner
+    body[''] = ''
     return body
 }
 class AgentController extends BaseController {
@@ -71,10 +72,10 @@ class AgentController extends BaseController {
         const { params: { id } } = req
         if (!BaseController.checkId('Invalid agent id', req, res, next)) return
 
-        const body = sanitizeBody(req.body) || { '': '' }
+        const body = sanitizeBody(req.body)  
         // console.log(body)
 
-        let agent = await Agent.findByIdAndUpdate(id, body, { new: true })
+        let agent = await Agent.findByIdAndUpdate(id, body, { new: true }).exec()
 
         if (req.file) {
             const imageUrl = await FileManager.saveFile(

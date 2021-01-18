@@ -1,15 +1,29 @@
 <section class="cta">
-    <div class="cta_body">
-      <div class="row">
-        <div class="col-md-5 cta_body-1">
-          <p>Newsletter dolor sit amet,</p>
-          <h3>consetetur sadipscing elitr,</h3>
-        </div>
-        <div class="col-md-7 cta_body-2">
-          <div>
-            <input type="email" placeholder="Your email Address" />
-          </div>
-          </form>
-        </div>
+  <div class="cta_body">
+    <div class="row">
+      <div class="col-md-5 cta_body-1">
+        <p>Newsletter dolor sit amet,</p>
+        <h3>consetetur sadipscing elitr,</h3>
       </div>
-  </section>
+      <div class="col-md-7 cta_body-2">
+        <div>
+          <form id="newsletter-form2" onsubmit="subscribeToNews()">
+            <input id="newsletter-email2" type="email" placeholder="Your email Address" />
+          </form>
+
+        </div>
+        </form>
+      </div>
+    </div>
+</section>
+
+<script>
+  const formmmm = document.getElementById('newsletter-form2');
+
+  // Adds a listener for the "submit" event.
+  formmmm.addEventListener('submit', function (e) {
+
+    e.preventDefault();
+
+  });
+</script>

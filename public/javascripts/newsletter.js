@@ -25,28 +25,37 @@ function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
-const subscribeToNews = (e) => {
+const subscribeToNews = () => {
   // e.preventDefault();
-const email = document.getElementById("newsletter-email");
-const button = document.getElementById("newsletter-join");
+  const email1 = document.getElementById("newsletter-email");
+  const email2 = document.getElementById("newsletter-email2");
+  const button = document.getElementById("newsletter-join");
+  var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  let email
+
+  if (email1 && email1.value && email1.value.match(mailformat)) email = email1.value
+  if (email2 && email2.value && email2.value.match(mailformat)) email = email2.value
 
   const data = {
-    email: email.value,
+    email
   };
- console.log(email)
- if(!email.value) return
+  //  console.log(email)
+  if (!email) {
+    notyfy.error('Please provide a valid email address');
+    return
+  }
 
- button.disabled = true
- button.style.background  = '#4e6986'
- axios({
+  button.disabled = true
+  button.style.background = '#4e6986'
+  axios({
     method: "POST",
     url: `/api/subscribe`,
     credentials: 'same-origin', // <-- includes cookies in the request
-        headers: {
-          "CSRF-Token":  getCookie('XSRF-TOKEN'), 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
+    headers: {
+      "CSRF-Token": getCookie('XSRF-TOKEN'),
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
     data: JSON.stringify(data),
   })
     .then((res) => {
@@ -55,15 +64,25 @@ const button = document.getElementById("newsletter-join");
       // setTimeout(() => {
       //   window.location.href = "/dashboard";
       // }, 500);
-     button.disabled = false
-     button.style.background  = '#0d6bf0'
-     email.value = ''
+      button.disabled = false
+      button.style.background = '#0d6bf0'
+      email.value = ''
+      try {
+        email1.value = ''
+      } catch (error) {
+        
+      }
+      try {
+        email2.value = ''
+      } catch (error) {
+        
+      }
     })
     .catch((err) => {
       console.log(err);
       notyfy.error(err.response.data.error.message || "Something went wrong");
-     button.disabled = false
-     button.style.background  = '#0d6bf0'
-     email.value = ''
+      button.disabled = false
+      button.style.background = '#0d6bf0'
+      email.value = ''
     });
 }; 
