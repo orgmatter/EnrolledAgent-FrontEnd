@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Controller = require('../controllers/offshore')
+const Controller = require('../controllers/payment')
 
 router
     .get("/", Controller.getAll)
