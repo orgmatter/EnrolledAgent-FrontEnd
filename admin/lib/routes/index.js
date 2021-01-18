@@ -12,6 +12,7 @@ router
   .use(require('./resource'))
   .use(require('./claim'))
   .use('/sponsor', require('./sponsor'))
+  .use('/payment', require('./payment'))
   .use('/contact', require('./contact'))
   .use('/verification', require('./verification'))
   .use('/offshore', require('./offshore'))

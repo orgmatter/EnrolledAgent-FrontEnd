@@ -112,8 +112,8 @@ const handleSubmit = (e) => {
       // Handle form submission.
       const form = document.getElementById("payment-form");
       const postalCodeSpan = form.querySelector(".CardField-postalCode span");
-      postalCodeSpan.classList.add("InputContainer");
-      postalCodeSpan.innerHTML = "Postal Code";
+      // postalCodeSpan.classList.add("InputContainer");
+      // postalCodeSpan.innerHTML = "Postal Code";
 
       form.addEventListener("submit", function(event) {
         event.preventDefault();
@@ -123,7 +123,7 @@ const handleSubmit = (e) => {
       // notyf.success(res.data.message || "Message sent!");
     })
     .catch((err) => {
-      console.log(err.response);
+      console.log(err);
       btn.innerHTML = btnContent;
       btn.removeAttribute("disabled");
       notyf.error(err.response.data.error.message || "Something went wrong");
