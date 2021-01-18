@@ -177,3 +177,12 @@ content-type: application/json
   "newReview":  true
 
 }
+
+
+###
+POST  http://localhost:3000/api/send-reset HTTP/1.1
+content-type: application/json
+
+{
+  "email": "a@b.com"
+}
