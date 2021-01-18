@@ -1,5 +1,7 @@
 .new-listing {
   background: #f6f6f6;
+  margin: 50px auto;
+  padding: 30px 0;
 }
 .new-listing input,
 .new-listing select {
@@ -8,6 +10,10 @@
   border-radius: 4px;
   padding: 1rem;
   margin: 1rem 0;
+}
+
+.new-listing-details label{
+  display: block;
 }
 
 .new-listing-name,
@@ -112,8 +118,9 @@
 }
 
 .listing-industries select,
-.listing-lang select {
+.listing-lang input, .listing-lang select {
   width: 400px;
+  display: block;
 }
 
 .listing-select {
@@ -121,7 +128,7 @@
   width: 80%;
   justify-content: space-between;
 }
-.listing-select select {
+.listing-select input {
   width: 400px;
 }
 
