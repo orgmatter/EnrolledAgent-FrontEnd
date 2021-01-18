@@ -45,6 +45,7 @@ const ListingRequestShema = new Schema({
     industry: [String],
     googleBusiness: String,
     ptin: String,
+    position: String,
     stateLicenced: String,
     title: String,
     user: {
