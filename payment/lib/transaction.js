@@ -80,8 +80,6 @@ return new Promise(async (resolve, reject)=>{
       ErrorCodes.REQUIRED
     ))
 
-
-
   // eslint-disable-next-line new-cap
   const transaction = Transaction({
     ...paymentIntent,
