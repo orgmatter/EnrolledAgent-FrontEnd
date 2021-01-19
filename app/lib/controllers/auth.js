@@ -9,6 +9,7 @@ const {
   Helper,
   JwtManager,
   Constants,
+  PageAnalyticsService,
   MailService,
   EmailTemplates,
   Models: { User, LogModel, Config, EmailList, VerificationToken, ResetToken },
@@ -19,9 +20,8 @@ const { locals } = require("..");
 
 const APP_URL = process.env.APP_URL
 
-const log = new Logger("auth:register")
-
-const jwt = new JwtManager(process.env.SECRET)
+const log = new Logger("App:auth")
+ 
 
 /**
    * make sure protected content is not overriden
@@ -53,7 +53,7 @@ class AuthController {
       .exec()
     if (data && data.length > 0)
       req.locals.config = data
-    console.log(req.locals)
+    // log.info(req.locals)
     next()
 
   }
@@ -236,6 +236,7 @@ class AuthController {
 
     res.redirect('/reset-password');
 
+    PageAnalyticsService.inc('/verify-email')
   }
 
   /**
@@ -251,6 +252,7 @@ class AuthController {
       return res.render('resetPassword', { locals: req.locals });
 
     res.redirect('/')
+    PageAnalyticsService.inc('/reset-password')
 
   }
 
@@ -269,7 +271,7 @@ class AuthController {
     if (reset && reset.user)
       user = await User.findById(reset.user)
 
-    // console.log(reset, user, token)
+    // log.info(reset, user, token)
     if (!(reset && reset.token && user && user._id)) {
       // res.locals.infoMessage = 'Your reset link is either expired or invalid'
       return next(
@@ -324,7 +326,7 @@ class AuthController {
     const verification = await VerificationToken.findOne({ token })
       .populate('usr').exec()
 
-    // console.log(verification)
+    // log.info(verification)
     if (verification && verification.usr && verification.usr.email) {
 
 
@@ -368,7 +370,7 @@ class AuthController {
         body: { password, oldPassword },
       } = req
       const user = await User.findById(id).exec()
-      // console.log(user, company, email)
+      // log.info(user, company, email)
       if (!(user != null && user.email != null)) {
         res.statusCode = 422
         return next(
@@ -480,9 +482,9 @@ class AuthController {
    */
   login = async function (req, res, next) {
     passport.authenticate(Constants.DOMAIN.user, (err, user, info) => {
-      console.log(err, user, info)
+      log.info(err, user, info)
       if (err) {
-        console.log(err)
+        log.info(err)
         res.status(400)
         return next(err)
       }
@@ -512,7 +514,7 @@ class AuthController {
    * @param  {} info
    */
   handleSocial = function (req, res, next, err, user, info) {
-    // console.log(err, user, next)
+    // log.info(err, user, next)
     let message
     if (err) {
       if (err instanceof Exception)
@@ -521,7 +523,7 @@ class AuthController {
         message = err.message || 'Authentication failed'
       }
       if (err.code == 'user_cancelled_login') message = 'Authentication canceled'
-      console.log(user, info, err)
+      log.info(user, info, err)
       res.status(400)
       req.session.error = message
       res.locals = { ...locals, message }
@@ -531,7 +533,7 @@ class AuthController {
       // return res.render('login', { message })
     }
     req.logIn(user, function (err) {
-      // console.log(err)
+      // log.info(err)
       if (err) {
         const message = `Login Failed`
         req.session.message = message

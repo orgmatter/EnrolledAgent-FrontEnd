@@ -8,11 +8,13 @@ const {
     LogAction,
     Validator,
     Storages,
+    Logger,
     LogCategory,
     Models: { Article, Agent, Log, ArticleCategory, Comment },
 } = require("common");
 
 const { Types } = require("mongoose");
+const log = new Logger("App:article");
 
 const BaseController = require('./baseController');
 

@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const {  PageAnalyticsService, Logger } = require("common");
 
 const CityController = require("../controllers/city");
 const { verify } = require("../controllers/auth");
@@ -8,6 +9,8 @@ const ArticleController = require("../controllers/article");
 const AgentController = require("../controllers/agent");
 const QuestionController = require("../controllers/question");
 const ReviewController = require("../controllers/review");
+
+const Log = new Logger('App:open')
 
 const checkRedirectCookie = (req, res, next) => {
   const path = req.cookies["redirect-to"];
@@ -21,18 +24,23 @@ router
 
   .get("/career-center", (req, res) => {
     res.render("careerCenter", { locals: req.locals });
+    PageAnalyticsService.inc('/career-center')
   })
   .get("/contact", (req, res) => {
     res.render("contact", { locals: req.locals });
+    PageAnalyticsService.inc('/contact')
   })
   .get("/about-us", (req, res) => {
     res.render("about", { locals: req.locals });
+    PageAnalyticsService.inc('/about-u')
   })
   .get("/privacy", (req, res) => {
     res.render("privacy", { locals: req.locals });
+    PageAnalyticsService.inc('/privacy')
   })
   .get("/terms", (req, res) => {
     res.render("terms", { locals: req.locals });
+    PageAnalyticsService.inc('/terms')
   })
   .get("/unsubscribe", ContactController.unsubscribe)
   .get("/verify/:token", verify)
@@ -42,16 +50,19 @@ router
 
   .get("/blog", ArticleController.getAll, ArticleController.featured,
     ArticleController.latest, (req, res) => {
-      console.log("articles>>>", req.locals);
       res.render("blog", { locals: req.locals });
+      PageAnalyticsService.inc('/blog')
+      Log.info("articles>>>",  req.locals);
     })
   .get("/blog/:id", ArticleController.get, (req, res) => {
-    console.log("articles>>>", req.locals.article);
     res.render("singleBlog", { locals: req.locals });
+    PageAnalyticsService.inc('/blog/:blog-id')
+    Log.info("articles>>>", req.locals.article);
   })
   .get("/ea-listings", AgentController.getAll, (req, res) => {
-    console.log("locals are", req.locals.agents);
     res.render("ea-listings", { locals: req.locals });
+    PageAnalyticsService.inc('/ea-listings')
+    Log.info("locals are", req.locals.agents);
   })
   .get(
     "/find-agent",
@@ -60,11 +71,12 @@ router
     ResourceController.random,
     (req, res) => {
       res.render("find-agent", { locals: req.locals });
-    }
-  )
+      PageAnalyticsService.inc('/find-agent')
+    })
   .get("/search-results", ReviewController.agent, AgentController.getAll, (req, res) => {
-    console.log("locals>>>>", req.locals.query);
     res.render("search-results", { locals: req.locals });
+    PageAnalyticsService.inc('/career-center')
+    Log.info("locals>>>>", req.locals.query);
   })
 
   .get(
@@ -73,42 +85,50 @@ router
     CityController.get,
     AgentController.popular,
     ResourceController.random,
-    (req, res) => { 
+    (req, res) => {
       res.render("home", { locals: req.locals });
+      PageAnalyticsService.inc('/home')
     }
   )
   .get("/claim-listing", (req, res) => {
     res.render("listings", { locals: req.locals });
+    PageAnalyticsService.inc('/claim-listing')
   })
   .get("/ask-ea", QuestionController.getAll, ArticleController.latest, (req, res) => {
-    console.log("questions", req.locals);
+    Log.info("questions", req.locals);
     res.render("askEA", { locals: req.locals });
+    PageAnalyticsService.inc('/ask-ea')
+    Log.info("questions", req.locals);
   })
   .get("/ask-ea/:id", QuestionController.get, ArticleController.latest, (req, res) => {
-    console.log("questions", req.locals);
     res.render("askEASingle", { locals: req.locals });
+    PageAnalyticsService.inc('/ask-ea/:id')
+    Log.info("questions", req.locals);
   })
   .get("/ask-ea/category/:category", QuestionController.getAll, ArticleController.latest,
     (req, res) => {
-      console.log("params", req.locals);
       res.render("askEACategory", {
         locals: req.locals,
         name: req.params.category,
       });
+      PageAnalyticsService.inc('/ask-ea/category/:category')
+      Log.info("params", req.locals);
     }
   )
   .get("/new-question", ArticleController.latest, (req, res) => {
-    console.log("cate", req.locals);
     res.render("newQuestions", { locals: req.locals });
+    PageAnalyticsService.inc('/new-question')
+    Log.info("cate", req.locals);
   })
   .get(
     "/agent/:id",
     ReviewController.analysis,
     AgentController.get,
     (req, res) => {
-      console.log("agent>>>>", req.locals);
-      // console.log("agent>>>>det", req.locals);
+      //  Log.info("agent>>>>det", req.locals);
       res.render("single-agent-details", { locals: req.locals });
+      PageAnalyticsService.inc('/agent/:id')
+      Log.info("agent>>>>", req.locals);
     }
   )
   .get(
@@ -117,8 +137,9 @@ router
     CityController.get,
     AgentController.get,
     (req, res) => {
-      // console.log(req.locals);
+      //  Log.info(req.locals);
       res.render("states", { locals: req.locals });
+      PageAnalyticsService.inc('/agents/all-states')
     }
   )
   .get(
@@ -128,29 +149,32 @@ router
     AgentController.popularInState,
     AgentController.get,
     (req, res) => {
-      // console.log(req.locals);
+      //  Log.info(req.locals);
       res.render("single-state", { locals: req.locals });
+      PageAnalyticsService.inc('/agents/:state')
     }
   )
   .get("/agents/:state/:city", AgentController.city, (req, res) => {
-    // console.log(req.locals);
+    //  Log.info(req.locals);
     res.render("city", { locals: req.locals });
   })
   .get("/offshore-team", (req, res) => {
     res.render("offshoreTeam", { locals: req.locals });
+    PageAnalyticsService.inc('/agents/:state/:city')
   })
   .get(
     "/resource",
     CityController.get,
     ResourceController.getAll,
     (req, res) => {
-      // console.log(req.locals.resource)
+      //  Log.info(req.locals.resource)
       res.render("resource", {
         name: "Resources",
         description:
           "Valuable services, products, tools, and whitepapers from our partners, hand selected by our staff.",
         locals: req.locals,
       });
+      PageAnalyticsService.inc('/resource')
     }
   )
   .get(
@@ -169,18 +193,21 @@ router
         description,
         locals: req.locals,
       });
+      PageAnalyticsService.inc('/resource/:category')
     }
   )
   .get("/practice-exchange", CityController.get, (req, res) => {
     res.render("practiceExchange", { locals: req.locals });
+    PageAnalyticsService.inc('/practice-exchange')
   })
   .get(
     "/states/:state",
     CityController.get,
     AgentController.popular,
     (req, res) => {
-      // console.log("data>>>>>", req.locals);
+      //  Log.info("data>>>>>", req.locals);
       res.render("singleFirm", { locals: req.locals });
+      PageAnalyticsService.inc('/states/:state')
     }
   )
   .get(
@@ -189,28 +216,33 @@ router
     AgentController.popular,
     (req, res) => {
       res.render("find-agent", { locals: req.locals });
+      PageAnalyticsService.inc('/find-enrolled-agents')
     }
   )
   .get("/need-accountant", (req, res) => {
     res.render("need-accountant", { locals: req.locals });
+    PageAnalyticsService.inc('/need-accountant')
   })
   .get("/verification-service", (req, res) => {
     res.render("verification-service", { locals: req.locals });
+    PageAnalyticsService.inc('/verification-service')
   })
 
   .get("/license-verification", (req, res) => {
-    console.log("license", req.locals);
     res.render("license-verification", { locals: req.locals });
+    PageAnalyticsService.inc('/license-verification')
+    Log.info("license", req.locals);
   })
   .get(
     "/claim-profile/:id",
     ReviewController.analysis,
     AgentController.get,
     (req, res) => {
-      console.log("listing >>>", req.locals);
       res.render("claim-profile", {
         locals: req.locals,
       });
+      PageAnalyticsService.inc('/claim-profile/:id')
+      Log.info("listing >>>", req.locals);
     }
   )
 
@@ -224,6 +256,7 @@ router
       page_name: "new-listings",
       sub_page_name: "new-listings",
     });
+    PageAnalyticsService.inc('/new-listing')
   });
 
 module.exports = router;
