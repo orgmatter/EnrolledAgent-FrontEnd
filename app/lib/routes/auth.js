@@ -25,6 +25,10 @@ router
     })
     .get("/reset/:token", passwordResetLink)
     .get("/reset-password", passwordResetPage)
+    .get("/forgot-password", setRedirectCookie, (req, res) => {
+        res.render("forgotPassword", { locals: req.locals });
+        PageAnalyticsService.inc('/forgot-password')
+    })
     .get("/login", setRedirectCookie, (req, res) => {
         res.render("login", { locals: req.locals });
         PageAnalyticsService.inc('/login')
