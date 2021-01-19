@@ -9,7 +9,7 @@ class Logger {
    * @param  {string} namespace
    */
   constructor(namespace) {
-    this.debug = debug(`porple:${namespace}`)
+    this.debug = debug(`enrolled:${namespace}`)
     this.isDebugMode = process.env.NODE_ENV !== 'production'
   }
   /**

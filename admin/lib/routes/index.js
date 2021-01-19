@@ -29,6 +29,7 @@ router
   .use('/role', require('./role'))
   .use('/staff', require('./staff'))
   .use('/config', require('./config'))
+  .use('/page', require('./page'))
   
 
 

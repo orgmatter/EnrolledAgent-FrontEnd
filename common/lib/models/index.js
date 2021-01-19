@@ -20,6 +20,7 @@ module.exports = {
   LicenseVerification: require('./licenseVerification'),
   ListingRequest: require('./listingRequest'),
   Offshore: require('./offshore'),
+  PageView: require('./pageView'),
   Review: require('./review'),
   Role: require('./role'),
   Resource: require('./resource'),

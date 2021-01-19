@@ -8,11 +8,13 @@ const {
   Storages,
   Validator,
   Helper,
+  Logger,
   DB,
   Models: { Agent, City, AgentMessage, ListingRequest, ContactPreference, ClaimListing, Log },
 } = require("common");
 const Payment = require("payment_module");
 const mongoose = require("mongoose");
+const log = new Logger("App:agent");
 
 const BaseController = require("../controllers/baseController");
 Agent.syncIndexes();
@@ -26,7 +28,6 @@ class AgentController extends BaseController {
       return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
 
     const agent = await Agent.findOne({ owner: mongoose.Types.ObjectId(req.user.id) }).exec()
-    console.log(agent)
     if (!agent || !agent._id) {
       res.status(422)
       return next(
@@ -140,16 +141,16 @@ class AgentController extends BaseController {
     if (!(req.isAuthenticated() && req.user))
       return next(new Exception(ErrorMessage.NO_PRIVILEGE, ErrorCodes.NO_PRIVILEGE))
 
-      let agent = await Agent.findOne({ owner: mongoose.Types.ObjectId(req.user.id) }).exec()
-      if (agent && agent._id) {
-        res.status(422)
-        return next(
-          new Exception(
-            'You have previously claimed a listing, you cannot claim another',
-            ErrorCodes.REQUIRED
-          )
+    let agent = await Agent.findOne({ owner: mongoose.Types.ObjectId(req.user.id) }).exec()
+    if (agent && agent._id) {
+      res.status(422)
+      return next(
+        new Exception(
+          'You have previously claimed a listing, you cannot claim another',
+          ErrorCodes.REQUIRED
         )
-      }
+      )
+    }
 
     const body = req.body || { '': '' }
     delete body.status
@@ -189,7 +190,7 @@ class AgentController extends BaseController {
 
 
     await ListingRequest.create(body)
-    // console.log(data)
+    // log.info(data)
 
     res.json({ data: { message: 'Your listing request has been submitted, you will be contacted appropriately' } })
   }
@@ -247,7 +248,7 @@ class AgentController extends BaseController {
       ])
       .exec();
     req.locals.agent = agent;
-    // console.log(agent)
+    // log.info(agent)
     next();
     if (agent)
       Agent.findByIdAndUpdate(agent._id, { $inc: { viewCount: 1 } }).exec();
@@ -276,11 +277,11 @@ class AgentController extends BaseController {
   async getAll(req, res, next) {
     const { page, perpage, q, search } = req.query;
     let query = Helper.parseQuery(q) || {};
-    if (search) query = { $text: { $search: search, $caseSensitive :false } };
-    // console.log(req.url)
-    if(query.state)
-    query.state =  new RegExp(["^", query.state, "$"].join(""), "i");
-    // console.log(query)
+    if (search) query = { $text: { $search: search, $caseSensitive: false } };
+    // log.info(req.url)
+    if (query.state)
+      query.state = new RegExp(["^", query.state, "$"].join(""), "i");
+    // log.info(query)
 
     DB.Paginate(
       res,
@@ -299,7 +300,7 @@ class AgentController extends BaseController {
       },
       (data) => {
         req.locals.agents = data;
-        // console.log(data);
+        // log.info(data);
         next();
       }
     );
@@ -332,10 +333,28 @@ class AgentController extends BaseController {
       },
       (data) => {
         req.locals.agentMessage = data
-        // console.log(data)
+        // log.info(data)
         next()
       }
     );
+  }
+
+  async getAgentMessage(req, res, next) {
+    req.locals.agentMessage = {}
+    const { id } = req.params
+    if (!id || !Validator.isMongoId(String(id))) return next()
+    let agent
+    if (req.isAuthenticated() && req.user) {
+      agent = await Agent.findOne({ owner: mongoose.Types.ObjectId(req.user.id) }).exec()
+    }
+
+    if (!agent || !agent._id) return next()
+
+    let resource = await AgentMessage.findById(id)
+      .exec()
+    if (resource && resource.agent == agent._id)
+      req.locals.agentMessage = resource
+    next()
   }
 
 
@@ -369,7 +388,7 @@ class AgentController extends BaseController {
       (data) => {
         req.locals.agents = data;
         req.locals.city = _city;
-        // console.log(req.locals, query);
+        // log.info(req.locals, query);
         next();
         if (data && data.length > 0)
           City.findByIdAndUpdate(_city._id, { $inc: { count: 1 } }).exec();
