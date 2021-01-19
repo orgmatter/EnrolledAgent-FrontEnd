@@ -2,12 +2,9 @@ module.exports = {
     CAN_VIEW_ANALYTICS: 'can_view_analytics',
     CAN_VIEW_LOGS: 'can_view_logs',
 
-    CAN_VIEW_COMPANIES: 'can_view_companies',
-    CAN_VIEW_EDIT_COMPANY: 'can_view_edit_company',
     CAN_VIEW_USERS: 'can_view_users',
     CAN_VIEW_SUBSCRIBERS: 'can_view_subscribers',
-    CAN_VIEW_ADVERTISERS: 'can_view_advertisers',
-    CAN_VIEW_PAYMENTS: 'can_view_payments',
+    CAN_VIEW_PAYMENT: 'can_view_payment',
 
     CAN_VIEW_AGENT: 'can_view_agent',
     CAN_CREATE_AGENT: 'can_create_agent',
@@ -15,6 +12,7 @@ module.exports = {
     CAN_UPDATE_AGENT: 'can_update_agent',
     CAN_UPLOAD_AGENT: 'can_upload_agent',
     CAN_APPROVE_LISTING_CLAIM: 'can_approve_listing_claim',
+    
     CAN_REJECT_LISTING_CLAIM: 'can_reject_listing_claim',
 
     CAN_VIEW_ARTICLE: 'can_view_article',
@@ -22,7 +20,7 @@ module.exports = {
     CAN_DELETE_ARTICLE: 'can_delete_article',
     CAN_UPDATE_ARTICLE: 'can_update_article',
 
-    CAN_VIEW_: 'can_view_article',
+    CAN_VIEW_article: 'can_view_article',
     CAN_CREATE_ARTICLE: 'can_create_article',
     CAN_DELETE_ARTICLE: 'can_delete_article',
     CAN_UPDATE_ARTICLE: 'can_update_article',
@@ -60,6 +58,7 @@ module.exports = {
     CAN_UPDATE_CATEGORY: 'can_update_category',
     CAN_DELETE_CATEGORY: 'can_delete_category',
 
-
-  
+    CAN_VIEW_LOG: 'can_view_log',
+    CAN_CREATE_LOG: 'can_create_log',
+    CAN_DELETE_LOG: 'can_delete_log',
 }

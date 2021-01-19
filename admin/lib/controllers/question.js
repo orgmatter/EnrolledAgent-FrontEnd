@@ -151,6 +151,7 @@ class QuestionController extends BaseController {
 
     async get(req, res, next) {
         const { id } = req.params
+        if (!BaseController.checkId('Invalid question id', req, res, next)) return
         let resource = await Question.findById(id)
             .populate([{ path: 'user', select: { firstName: 1, lastName: 1, email: 1 } }, 'answer', 'answers']).exec()
         super.handleResult(resource, res, next)

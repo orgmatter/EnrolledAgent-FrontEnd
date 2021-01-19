@@ -11,7 +11,7 @@ const {
   Constants,
   MailService,
   EmailTemplates,
-  Models: { User, LogModel, EmailList, VerificationToken, ResetToken },
+  Models: { User, LogModel, Config, EmailList, VerificationToken, ResetToken },
 } = require("common")
 const passport = require("passport");
 const uid = require("uid");
@@ -27,19 +27,36 @@ const jwt = new JwtManager(process.env.SECRET)
    * make sure protected content is not overriden
    * @param  {string} body
    */
-  const sanitizeBody =  (body)=> {
-    delete body.updatedAt
-    delete body.createdAt
-    delete body._id
-    delete body.salt
-    delete body.hash
-    delete body.email
-    delete body.isActive
-    delete body.isEmailVerified
-    delete body.accountType
-  }
+const sanitizeBody = (body) => {
+  delete body.updatedAt
+  delete body.createdAt
+  delete body._id
+  delete body.salt
+  delete body.hash
+  delete body.email
+  delete body.isActive
+  delete body.isEmailVerified
+  delete body.accountType
+}
 
 class AuthController {
+
+  /**
+  * get question categorirs
+  * @param  {Express.Request} req
+  * @param  {Express.Response} res
+  * @param  {Function} next
+  */
+  async config(req, res, next) {
+    req.locals.config = {}
+    const data = await Config.find({}, { _id: 0, __v: 0, slug: 0, createdAt: 0, updatedAt: 0 })
+      .exec()
+    if (data && data.length > 0)
+      req.locals.config = data
+    console.log(req.locals)
+    next()
+
+  }
 
 
   /**
@@ -91,7 +108,7 @@ class AuthController {
       )
     }
 
-   
+
 
     let user = new User({
       email: String(email).toLowerCase(),
@@ -157,42 +174,132 @@ class AuthController {
  * @param  {Express.Response} res
  * @param  {Function} next
  */
-sendPasswordReset = async (req, res, next) => {
-  const {body: {email}} = req
-  const user = await User.findOne({ email }).exec()
+  sendPasswordReset = async (req, res, next) => {
+    const { body: { email } } = req
+    const message = `A reset link has been sent to your mail, please note that this link expires in 10 minutes`
+    let link
 
-  let verification = await ReserToken.findOne({ user: user._id, token: { $exists: true } }).exec()
-  const verificationToken = uid(30)
-  if (!verification || !verification.token)
-    verification = await VerificationToken.create({ user: user._id, token: uid(30) })
-  const link = `${APP_URL}/verify/${verification.token}`
+    const user = await User.findOne({ email }).exec()
+    if (user && user._id) {
+      await ResetToken.deleteMany({ user: user._id }).exec()
+      const reset = await ResetToken.create({ user: user._id, token: uid(30) })
 
-  const message = `A mail has been sent to ${email}, please click the link to verify your account`
-
-  req.session.message = message
-  res.json({
-    data: {
-      message
-    },
-  })
-
-  // send an email for user to verify account
-
-  new MailService().sendMail(
-    {
-      // secret: config.PUB_SUB_SECRET,
-      template: EmailTemplates.VERIFY_EMAIL,
-      reciever: email,
-      subject: "Verify Your Email",
-      locals: { name: `${user.firstName} ${user.lastName}`, link },
-    },
-    (res) => {
-      if (res == null) return
-      log.error("Error sending mail", res)
+      if (reset || reset.token)
+        link = `${APP_URL}/reset/${reset.token}`
     }
-  )
+    req.session.message = message
+    res.json({
+      data: {
+        message
+      },
+    })
+    // send an email for user to verify account
+    if (user && user._id && link) {
+      new MailService().sendMail(
+        {
+          // secret: config.PUB_SUB_SECRET,
+          template: EmailTemplates.RESET_EMAIL,
+          reciever: email,
+          subject: "Recover your account",
+          locals: { name: `${user.firstName} ${user.lastName}`, link },
+        },
+        (res) => {
+          if (res == null) return
+          log.error("Error sending mail", res)
+        }
+      )
+    }
 
-}
+  }
+
+  /**
+ * Validate email link to reset password
+ * @param  {Express.Request} req
+ * @param  {Express.Response} res
+ * @param  {Function} next
+ */
+  passwordResetLink = async (req, res, next) => {
+    const { params: { token } } = req
+
+    let reset = await ResetToken.findOne({ token }).exec()
+    if (!(reset && reset.token)) {
+      req.session.error = 'Your reset link is either epired or invalid'
+      return res.redirect('/')
+    }
+    reset.deleteOne().then(() => { })
+
+    const tokn = uid(32)
+    ResetToken.create({ user: reset.user, token: tokn })
+      .then(() => { })
+
+    req.session.resetToken = tokn
+
+    res.redirect('/reset-password');
+
+  }
+
+  /**
+  * Validate email link to reset password
+  * @param  {Express.Request} req
+  * @param  {Express.Response} res
+  * @param  {Function} next
+  */
+  passwordResetPage = async (req, res, next) => {
+    const { params: { token } } = req
+
+    if (req.session.resetToken && await ResetToken.exists({ token: req.session.resetToken }))
+      return res.render('resetPassword', { locals: req.locals });
+
+    res.redirect('/')
+
+  }
+
+
+  /**
+   * Reset password if a reset code exists in session
+   * @param  {Express.Request} req
+   * @param  {Express.Response} res
+   * @param  {Function} next
+   */
+  resetPassword = async (req, res, next) => {
+    const { body } = req;
+    const token = req.session.resetToken
+    let reset = await ResetToken.findOne({ token }).exec()
+    let user
+    if (reset && reset.user)
+      user = await User.findById(reset.user)
+
+    // console.log(reset, user, token)
+    if (!(reset && reset.token && user && user._id)) {
+      // res.locals.infoMessage = 'Your reset link is either expired or invalid'
+      return next(
+        new Exception(
+          'Your reset session is either expired or invalid, please try again',
+          ErrorCodes.REQUIRED_PASSWORD
+        )
+      )
+    }
+
+
+    if (!body.password) {
+      res.statusCode = 422;
+      return next(
+        new Exception(
+          ErrorMessage.REQUIRED_PASSWORD,
+          ErrorCodes.REQUIRED_PASSWORD
+        )
+      )
+    }
+    user.setPassword(body.password);
+    await user.save();
+
+    reset.deleteOne().then(() => { })
+    req.session.resetToken = null
+    req.session.message = "Password Changed succesfully"
+
+    res.json({ data: { message: "Password Changed succesfully" } });
+  }
+
 
   /**
 * Verify a users mail
@@ -309,7 +416,7 @@ sendPasswordReset = async (req, res, next) => {
   user = async function (req, res, next) {
     if (req.user && req.user.id) {
       const { id } = req.user
-      User.findById(id, {salt: 0, hash:0}).then((doc) => {
+      User.findById(id, { salt: 0, hash: 0 }).then((doc) => {
         req.locals.user = doc
         next()
       })
@@ -329,7 +436,7 @@ sendPasswordReset = async (req, res, next) => {
       body,
     } = req
 
-    if ( req.isAuthenticated() && Validator.isMongoId(String(id))) {
+    if (req.isAuthenticated() && Validator.isMongoId(String(id))) {
       sanitizeBody(body)
 
       User.findByIdAndUpdate(id, body, { new: true })
@@ -413,7 +520,7 @@ sendPasswordReset = async (req, res, next) => {
       else {
         message = err.message || 'Authentication failed'
       }
-      if(err.code == 'user_cancelled_login')message = 'Authentication canceled'
+      if (err.code == 'user_cancelled_login') message = 'Authentication canceled'
       console.log(user, info, err)
       res.status(400)
       req.session.error = message

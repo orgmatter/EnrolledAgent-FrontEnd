@@ -14,6 +14,8 @@ router
   .post("/verify-mail/:token", AuthController.verify)
   .post("/resend-verification", AuthController.resendVerification)
   .post("/changepass", AuthController.changePassword)
+  .post("/send-reset", AuthController.sendPasswordReset)
+  .post("/reset-password", AuthController.resetPassword)
   .post("/subscribe", ContactController.subscribe)
   .post("/contact", ContactController.create)
   .post("/contact-agent", ContactController.sendAgentMessage)

@@ -4,11 +4,14 @@ const {FileManager} = require('common')
 const UserController = require('../controllers/user')
 
 router
-    .get('/', UserController.getAll)
-    .get('/profile', UserController.profile)
-    .put('/', FileManager.upload, UserController.update)
-    .post('/activate/:id',  UserController.activateAccount)
-    .post('/deactivate/:id',  UserController.deactivateAccount)
+    .get('/user/', UserController.getAll)
+    .get('/user/profile', UserController.profile)
+    .get('/user/:id', UserController.get)
+    .put('/user/', FileManager.upload, UserController.update)
+    .post('/user/activate/:id',  UserController.activateAccount)
+    .post('/user/deactivate/:id',  UserController.deactivateAccount)
+    .post('/change-password',  UserController.changePassword)
+ 
     // .put('/', FileManager.upload, UserController.create)
    
 

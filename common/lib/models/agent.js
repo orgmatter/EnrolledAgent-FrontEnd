@@ -77,6 +77,10 @@ const AgentSchema = new Schema({
     type: Boolean,
     default: false
   },
+  allowContactMessage: { 
+    type: Boolean,
+    default: false
+  },
   // accountIsPremium: { // indicates that this account was set premium by admin
   //   type: Boolean,
   //   default: false

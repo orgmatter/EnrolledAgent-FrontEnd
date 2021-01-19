@@ -24,7 +24,7 @@ router
   .use('/listing-request', require('./listingRequest'))
   .use('/article', require('./article'))
   .use('/agent', require('./agent'))
-  .use('/user', require('./user'))
+  .use(require('./user'))
   .use('/question', require('./question'))
   .use('/role', require('./role'))
   .use('/staff', require('./staff'))

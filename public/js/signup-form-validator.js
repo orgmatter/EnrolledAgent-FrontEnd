@@ -60,3 +60,13 @@ function validateLoginForm(){
     document.getElementById("login-submit-btn").click();
   }
 }
+
+function validateResetForm(){
+  if(!(
+    !validateNonEmpty("confirm-password") &&
+    !validateNonEmpty('password') &&
+    !validateConfirmPassword("confirm-password")
+  )){
+    document.getElementById("reset-submit-btn").click();
+  }
+}
