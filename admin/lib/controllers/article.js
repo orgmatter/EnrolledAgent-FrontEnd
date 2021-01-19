@@ -172,6 +172,7 @@ class ArticleController extends BaseController {
 
     async get(req, res, next) {
         const { id } = req.params
+        if (!BaseController.checkId('Invalid article id', req, res, next)) return
         let resource = await Article.findById(id)
             .populate(['sponsor', 'category'])
             .exec()

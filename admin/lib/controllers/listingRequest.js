@@ -132,6 +132,7 @@ class LoistingRequestController extends BaseController {
 
     async get(req, res, next) {
         const { id } = req.params
+        if (!BaseController.checkId('Invalid request id', req, res, next)) return
         let resource = await ListingRequest.findById(id)
             .populate([{path: 'user', select: { firstName: 1, lastName: 1, email: 1}}])
             .exec()

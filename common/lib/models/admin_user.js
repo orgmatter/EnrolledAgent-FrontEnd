@@ -46,12 +46,17 @@ const UserSchema = new Schema({
   city: String,
   zipcode: String,
   imageUrl: String,
-   
-},  { timestamps: true })
+
+}, { timestamps: true })
 
 UserSchema.set('toObject', { virtuals: true })
 UserSchema.set('toJSON', { virtuals: true })
- 
+
+UserSchema.virtual('permissions')
+  .get(function () {
+    if (this.role && this.role.permissions) return this.role.permissions
+    return []
+  })
 
 UserSchema.methods.setPassword = function (password) {
   this.salt = crypto.randomBytes(16).toString('hex')
