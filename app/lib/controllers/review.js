@@ -105,7 +105,7 @@ class ReviewController {
                         avgRating = Number(avgRating)
                     }
                     req.locals.reviewAnalysis = { one, two, three, four, five, count, avgRating }
-                    console.log(req.locals.reviewAnalysis)
+                    // console.log(req.locals.reviewAnalysis)
                     // if (doc && doc[0] && doc[0].count) req.locals.monthlySub = doc[0].count;
                     next();
                 });
@@ -157,7 +157,7 @@ class ReviewController {
                         avgRating = Number(avgRating)
                     }
                     req.locals.reviewAnalysis = { one, two, three, four, five, count, avgRating }
-                    console.log(req.locals.reviewAnalysis)
+                    // console.log(req.locals.reviewAnalysis)
                     // if (doc && doc[0] && doc[0].count) req.locals.monthlySub = doc[0].count;
                     next();
                 });

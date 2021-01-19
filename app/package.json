@@ -10,7 +10,7 @@
     "sass": "node-sass  --output-style compressed sass/stylesheets/style.scss -o ../public/stylesheets/",
     "watch:sass": "npm run sass && npm run sass -- -w",
     "postdev": "npm run sass",
-    "dev": "concurrently \"npm run watch:sass\" \"DEBUG=server,api,email-templates nodemon --ignore public,node-modules,upload\"",
+    "dev": "concurrently \"npm run watch:sass\" \"DEBUG=server,api,email-templates,enrolled nodemon --ignore public,node-modules,upload\"",
     "dev2": "DEBUG=server,api,email-templates nodemon --ignore public,node-modules,upload",
     "dev-win": "concurrently \"npm run watch:sass\" \"set DEBUG=server,api,email-templates && nodemon --ignore public,node-modules,upload\"",
     "lint": "eslint "

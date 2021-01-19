@@ -11,6 +11,7 @@ module.exports = {
   JwtManager: require('./lib/service/jwtManager'),
   LogService: require('./lib/service/logService'),
   Logger: require('./lib/utils/logger'),
+  PageAnalyticsService: require('./lib/service/pageAnalytics'),
   PubSub: require('./lib/utils/pubSub'),
   Passport: require('./lib/service/auth/passport'),
   LogAction: require('./lib/utils/logAction'),
