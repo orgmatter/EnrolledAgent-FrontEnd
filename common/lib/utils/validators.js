@@ -14,8 +14,8 @@ exports.email = (value) => validator.isEmail(value || '')
  */
 exports.password = (value) =>
   validator.matches(
-      value,
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\d@$!%~#*?&^])[A-Za-z\d@$!%~*#?&^]{8,}$/
+      String(value),
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\d@$!%~#*?&^])[A-Za-z\d@$!._\-%~*#?&^]{6,}$/
   )
 
 /**

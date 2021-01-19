@@ -137,37 +137,25 @@
       </div>
 
       <div class="category_grid-side right-side col-md-3">
-        <div class="category_grid-side-archives">
-          <h4>Archives</h4>
-          <a href="#">Excepteur sint occaecat</a>
-          <a href="#">Excepteur sint occaecat</a>
-          <a href="#">Excepteur sint occaecat</a>
-          <a href="#">Excepteur sint occaecat</a>
-          <a href="#">Excepteur sint occaecat</a>
-        </div>
+        
         <div class="category_grid-side-ads">
           <img src="/assets/files/13061.png" alt="enrolled-agent" />
         </div>
         <div class="category_grid-side-recent">
           <h4>Recent Articles</h4>
-          <div class="category_grid-side-recent-div">
-            <a href="#">
-              <p>
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt mollit anim id est eopksio laborum.
-              </p>
-              <p class="category_grid-side-recent-div-bold">Nov, 26, 2020</p>
-            </a>
-          </div>
-          <div class="category_grid-side-recent-div">
-            <a href="#">
-              <p>
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt mollit anim id est eopksio laborum.
-              </p>
-              <p class="category_grid-side-recent-div-bold">Nov, 26, 2020</p>
-            </a>
-          </div>
+          <% if(locals.latestArticle && locals.latestArticle.length > 0) { %>
+              <% locals.latestArticle.map((el,id) => { %>
+                <div class="category_grid-side-recent-div">
+                  <a href="/blog/<%= el._id %>">
+                    <h5 style="font-weight: bold;" class="mb-10"><%= el.title %></h5>
+                    <p class="category_grid-side-recent-div-truncate"> <%- el.body %></p>
+                    <p class="category_grid-side-recent-div-bold"><%- locals.moment(el.createdAt).format("MMM DD, YYYY") %></p>
+                  </a>
+                </div>
+              <% }) %> 
+            <%} else {%>
+              <p style="text-align: center;">No recent article available</p>
+            <%}%> 
         </div>
       </div>
     </main>

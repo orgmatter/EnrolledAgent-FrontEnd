@@ -69,7 +69,7 @@ class LoistingRequestController extends BaseController {
         )
 
         
-        if(await Agent.exists({owner: request.user._id}))
+        if(await Agent.exists({owner: mongoose.Types.ObjectId(request.user._id)}))
         return next(
             new Exception(
                 'This user has previously claimed a listing',
@@ -132,6 +132,7 @@ class LoistingRequestController extends BaseController {
 
     async get(req, res, next) {
         const { id } = req.params
+        if (!BaseController.checkId('Invalid request id', req, res, next)) return
         let resource = await ListingRequest.findById(id)
             .populate([{path: 'user', select: { firstName: 1, lastName: 1, email: 1}}])
             .exec()
@@ -150,6 +151,7 @@ class LoistingRequestController extends BaseController {
             perPage: perpage,
             query,
             page,
+            sort: {createdAt: -1},
             populate: [{path: 'user', select: { firstName: 1, lastName: 1, email: 1}}]
         }, (data) => {
             super.handleResultPaginated(data, res, next)

@@ -41,6 +41,7 @@ class LogController extends BaseController {
    
     async get(req, res, next) {
         const { id } = req.params
+        if (!BaseController.checkId('Invalid log id', req, res, next)) return
         let resource = await Log.findById(id)
         .populate([{path: 'user', select: {email: 1, firstName: 1, lastName: 1}}])
         .exec()
@@ -58,6 +59,7 @@ class LogController extends BaseController {
             perPage: perpage,
             query,
             page,
+            sort: {createdAt: -1},
             populate: [{path: 'user', select: {email: 1, firstName: 1, lastName: 1}}]
         }, (data) => {
             super.handleResultPaginated(data, res, next)

@@ -6,10 +6,12 @@ const {
     Validator,
     Helper,
     DB,
+    Logger,
     Models: { Resource, ResourceCategory },
 } = require("common")
 
 const BaseController = require('../controllers/baseController')
+const log = new Logger("App:auth")
 
 Resource.ensureIndexes()
 

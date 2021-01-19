@@ -5,11 +5,13 @@ const {
     Exception,
     ErrorCodes,
     ErrorMessage,
+    Logger,
     Models: { QuestionCategory, Question, Answer, Agent },
 } = require("common");
 const { Types } = require("mongoose");
 
 const BaseController = require('./baseController');
+const log = new Logger("App:auth")
 
 const sanitizeBody = (body) => {
     delete body.user
@@ -71,7 +73,7 @@ class QuestionController extends BaseController {
 
         let agent = await Agent.findOne({ owner: Types.ObjectId(req.user.id) }).exec()
         if (!agent || !agent._id) {
-            console.log("agent", req.user);
+            log.info("agent", req.user);
             res.status(422)
             return next(
                 new Exception(
@@ -139,7 +141,7 @@ class QuestionController extends BaseController {
             if (cat && cat._id) {
                 query = { category: cat._id }
                 req.locals.questionCategory = cat
-                // console.log(cat)
+                // log.info(cat)
             } else res.redirect('/ask-ea')
         }
 
@@ -150,7 +152,7 @@ class QuestionController extends BaseController {
             populate: ['category', { path: 'answer', populate: { path: 'agent', select: { firstName: 1, lastName: 1 } } }]
         }, (data) => {
             req.locals.questions = data
-            // console.log(data.data)
+            // log.info(data.data)
             next()
         })
 
@@ -173,7 +175,7 @@ class QuestionController extends BaseController {
             .sort({ createdAt: -1 })
             .exec()
         req.locals.questions = data
-        // console.log(data)
+        // log.info(data)
         next()
     }
 
@@ -188,7 +190,7 @@ class QuestionController extends BaseController {
             .sort({ priority: -1 })
             .exec()
         req.locals.questionCategory = data
-        // console.log(data)
+        // log.info(data)
         next()
 
     }
@@ -213,7 +215,7 @@ class QuestionController extends BaseController {
             .sort({ createdAt: -1 })
             .exec()
         req.locals.myAnswers = data
-        console.log(data)
+        log.info(data)
         next()
 
     }

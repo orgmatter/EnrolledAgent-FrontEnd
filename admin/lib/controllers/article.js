@@ -16,7 +16,7 @@ const {
 
 const sanitizeBody = (body) => {
     delete body.byAdmin
-    delete body.status
+    // delete body.status
     body[''] = ''
     return body
 }
@@ -28,7 +28,7 @@ class ArticleController extends BaseController {
 
 
     async create(req, res, next) {
-        const { body, preview, author, title, sponsor, category, featured, } = req.body
+        const { body, preview, author, title, sponsor, status, category, featured, } = req.body
 
 
 
@@ -52,7 +52,7 @@ class ArticleController extends BaseController {
             )
         }
 
-        const b = { body, author, title, preview, category, featured, byAdmin: true }
+        const b = { body, author, title, preview, category, featured, byAdmin: true, status }
 
         if (req.body.sponsor && Validator.isMongoId(req.body.sponsor) && (await Sponsor.exists({ _id: req.body.sponsor }))) {
             b.sponsor = req.body.sponsor
@@ -172,8 +172,9 @@ class ArticleController extends BaseController {
 
     async get(req, res, next) {
         const { id } = req.params
+        if (!BaseController.checkId('Invalid article id', req, res, next)) return
         let resource = await Article.findById(id)
-            .populate(['sponsor', 'category'])
+            .populate(['sponsor', 'category', {path: 'agent', select: {firstName: 1, lastName: 1}}])
             .exec()
         super.handleResult(resource, res, next)
     }
@@ -189,7 +190,8 @@ class ArticleController extends BaseController {
             perPage: perpage,
             query,
             page,
-            populate: ['sponsor', 'category']
+            sort: {createdAt: -1},
+            populate: ['sponsor', 'category', {path: 'agent', select: {firstName: 1, lastName: 1}}]
         }, (data) => {
             super.handleResultPaginated(data, res, next)
         })

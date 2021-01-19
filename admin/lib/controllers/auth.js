@@ -48,6 +48,7 @@ class AuthController {
         }
 
         AdminUser.findOne({ email: email })
+        .populate('role')
             .then((user) => {
                
                 if (!(user != null && user.email != null)) {

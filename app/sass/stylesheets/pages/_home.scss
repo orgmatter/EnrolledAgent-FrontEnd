@@ -97,6 +97,12 @@ section#home {
           line-height: 20px;
           margin-bottom: 20px;
         }
+        &-btn{
+          height: 40px;
+          border-radius: 5px;
+          color: $main-blue;
+          padding: 0 30px;
+        }
         .arrow {
           background: #086cef;
           border: 1px solid #086cef;
@@ -123,12 +129,12 @@ section#home {
       text-align: center;
       h2 {
         font-family: "Baskerville Old Face" !important;
-        font-size: 80px;
+        font-size: 60px;
         line-height: 80px;
         color: #fff;
       }
       .desc {
-        font-size: 26px;
+        font-size: 22px;
         color: #bfbfbf;
       }
       &-input-div {
@@ -238,7 +244,11 @@ section#home {
   }
 
   .cta {
-    background-color: #000;
+    background-image: url("/assets/officialAssets/25552.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+
     &_body {
       padding: 110px 0 40px 65px;
       .row {
@@ -272,7 +282,7 @@ section#home {
             background: transparent;
             color: #fff;
             font-size: 15px;
-            &::placeholder {
+            &::placeholder { 
               color: #fff;
               font-size: 15px;
             }

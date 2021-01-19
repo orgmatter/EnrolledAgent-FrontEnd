@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Logger, Middleware, FileManager } = require("common");
+
 const AuthController = require("../controllers/auth");
 const ContactController = require("../controllers/contact");
 const ReviewController = require("../controllers/review");
@@ -13,6 +14,8 @@ router
   .post("/verify-mail/:token", AuthController.verify)
   .post("/resend-verification", AuthController.resendVerification)
   .post("/changepass", AuthController.changePassword)
+  .post("/send-reset", AuthController.sendPasswordReset)
+  .post("/reset-password", AuthController.resetPassword)
   .post("/subscribe", ContactController.subscribe)
   .post("/contact", ContactController.create)
   .post("/contact-agent", ContactController.sendAgentMessage)
@@ -20,6 +23,7 @@ router
   .post("/review", ReviewController.createReview)
   .post("/claim-listing/:id", AgentController.claim)
   .post("/listing-request", FileManager.pdf, AgentController.createListing)
+  .post("/contact-preference", FileManager.pdf, AgentController.contactPreference)
   .put("/update-profile", FileManager.upload, AuthController.update)
   .put("/update-agent", FileManager.upload, AgentController.update)
   .post("/upgrade-account", FileManager.none, AgentController.premium)

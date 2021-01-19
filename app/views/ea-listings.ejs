@@ -32,11 +32,11 @@
     <section id="premium" class="container">
       <% if( typeof locals.agents !=='undefined' && locals.agents.data && locals.agents.data.length > 0) { %> 
       <% locals.agents.data.map((e,id)=> { %> 
-      <% const {firstName, lastName, _id, city, reviewCount, premium } = e %>
+      <% const {firstName, lastName, _id, city, reviewCount, premium, imageUrl } = e %>
       <div class="row premium-box">
         <div class="col-md-4 col-sm-12">
           <div class="img col-md-5">
-            <img src="/assets/images/avatar.webp" alt="rating" />
+            <img src=<%= imageUrl || "/assets/images/avatar.webp" %>  alt="rating" />
           </div>
           <div class="txt col-md-7">
             <h3><%= firstName %> <%= lastName %></h3>

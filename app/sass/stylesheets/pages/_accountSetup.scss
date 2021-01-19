@@ -95,6 +95,7 @@
           width: 100%;
           height: 100%;
           border-radius: 100%;
+          object-fit: cover;
         }
       }
     }
@@ -171,41 +172,50 @@
       //text-align: center;
     }
 
-    input[type="checkbox"] + label {
-      display: block;
-      margin: 0.2rem;
-      cursor: pointer;
-      padding: 0.2rem;
-    }
-    input[type="checkbox"] {
-      display: none;
-    }
-    input[type="checkbox"] + label:before {
-      content: "\2714";
-      font-size: 1.25rem;
-      line-height: 1.25rem;
-      border: 1px solid #000;
-      border-radius: 0.2em;
-      display: inline-block;
-      width: 1rem;
-      height: 1rem;
-      padding-left: 0.05rem;
-      padding-bottom: 0.15rem;
-      margin-right: 0.2rem;
-      vertical-align: bottom;
-      color: transparent;
-      transition: 0.2s;
+    .checkbox-div{
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      input{
+        margin-right: 10px;
+      }
     }
 
-    input[type="checkbox"] + label:active:before {
-      transform: scale(0);
-    }
+    // input[type="checkbox"] + label {
+    //   display: block;
+    //   margin: 0.2rem;
+    //   cursor: pointer;
+    //   padding: 0.2rem;
+    // }
+    // input[type="checkbox"] {
+    //   display: none;
+    // }
+    // input[type="checkbox"] + label:before {
+    //   content: "\2714";
+    //   font-size: 1.25rem;
+    //   line-height: 1.25rem;
+    //   border: 1px solid #000;
+    //   border-radius: 0.2em;
+    //   display: inline-block;
+    //   width: 1rem;
+    //   height: 1rem;
+    //   padding-left: 0.05rem;
+    //   padding-bottom: 0.15rem;
+    //   margin-right: 0.2rem;
+    //   vertical-align: bottom;
+    //   color: transparent;
+    //   transition: 0.2s;
+    // }
 
-    input[type="checkbox"]:checked + label:before {
-      background-color: #2699fb;
-      border-color: #2699fb;
-      color: #fff;
-    }
+    // input[type="checkbox"] + label:active:before {
+    //   transform: scale(0);
+    // }
+
+    // input[type="checkbox"]:checked + label:before {
+    //   background-color: #2699fb;
+    //   border-color: #2699fb;
+    //   color: #fff;
+    // }
   }
   .help-button {
     margin: 2rem 0;
@@ -222,5 +232,16 @@
   }
   &-form-main-btn {
     margin: 2rem 0 1rem;
+  }
+
+  input[disabled], button[disabled]{
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
   }
 }

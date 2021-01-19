@@ -37,7 +37,7 @@
       </div>
     </section>
 
-    <section id="section-2">
+    <section id="section-2" class="mt-100 mb-150">
       <div class="img">
         <img src="/assets/files/section-2-img.png" alt="" />
       </div>
@@ -59,43 +59,59 @@
 
      
 
-    <section class="top-rated ">
-      <h3>Top Rated Enrolled Agents</h3>
-      <p>Licensed And Verified Enrolled Agents</p>
-      <div class="section-content team ">
-        <div class="row container pb-50">
-          <% if(locals.popular && locals.popular.length> 0){ %>
-            <% locals.popular.map((e, id)=> { %> 
-          <div class="container pb-50"> <div class="col-sm-6 col-md-3">
-            <div class="single-member maxwidth400 mb-30">
-              <div class="team-thumb">
-                <img src="/assets/files/18270627@2x.png" alt="" class="img-fullwidth" />
-                <h4 class="text-uppercase font-raleway text-white font-20 line-bottom-center m-0">
-                  <%= e.firstName %> <%= e.lastName %> <span class="text-white font-12 ml-5 small"></span>
-                </h4>
-
-              </div>
-              <div class="team-bottom-part bg-white p-15 team-bottom">
-                <p class="mb-10 team-bottom-name"><%= e.city %>, <%= e.state %></p>
-                <div class="team-bottom-flex">
-                  <div class="team-bottom-flex-div1">
-                    <img src="/assets/files/stars.svg" alt="" class="img-fullwidth" />
-                    <p>2 Reviews</p>
-                  </div>
-                  <div class="team-bottom-flex-div2">
-                    <a href="/agent/<%= e._id %>">View Profile</a>
-                  </div>
+    <section id="team" class="bg-silver-light">
+          <div class="container pb-50">
+            <div class="section-title text-center">
+              <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                  <h2 class="text-uppercase title">Top Rated Enrolled Agents</h2>
+                  <p class="desc">Licensed and Verified Enrolled Agents</p>
                 </div>
               </div>
             </div>
-          </div>
-          <% })} %>
-         
-        </div>
-      </div>
+            <div class="section-content team">
+              <div class="row">
+                <% if(locals.popular && locals.popular.length> 0){ %>
+                  <% locals.popular.map((e, id)=> { %>
+                <div class="col-sm-6 col-md-3">
+                  <div class="single-member maxwidth400 mb-30">
+                    <div class="team-thumb">
+                      <img src=<%= e.imageUrl || "/assets/images/avatar.webp" %>  alt="agent-avatar" class="img-fullwidth" />
+                      <h4 class="text-uppercase font-raleway text-white font-20 line-bottom-center m-0">
+                        <%= e.firstName %> <%= e.lastName %> <span class="text-white font-12 ml-5 small"></span>
+                      </h4>
 
-    
-    </section>
+                    </div>
+                    <div class="team-bottom-part bg-white p-15 team-bottom">
+                      <p class="mb-10 team-bottom-name"><%= e.city %>, <%= e.state %></p>
+                      <div class="team-bottom-flex">
+                        <div class="team-bottom-flex-div1 ">
+                          <!-- <img src="/assets/files/stars.svg" alt="" class="img-fullwidth" /> -->
+                          <div class="stars-outer" value=<%= e.rating || 0 %> >
+                            <div class="stars-inner"></div>
+                          </div>
+                          <p><%= e.reviewCount %> Reviews</p>
+                        </div>
+                        <div class="team-bottom-flex-div2">
+                          <a href="/agent/<%= e._id %>">View Profile</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% })} %>
+               
+              </div>
+              <div class="row team-link-div">
+                <a href="/find-agent" class="team-link">Find More Local EAs
+                <span class="">
+                      <img src="/assets/images/ccenter/right-arrow-white.svg" class="ccenter-btn-right-arrow">
+                  </span>
+                </a>
+            </div>
+            </div>
+          </div>
+        </section>
 
     <%- include("./partials/resources.ejs") %>
 
@@ -107,23 +123,14 @@
     <script src="/js/custom.js"></script>
 
     <script>
-      // function search() {
-      //   const input = document.getElementById("search").value;
-      //   window.location = `/ea-listings/?search=${input}`;
-      // }
-      // function onload() {
-      //   const input = document.getElementById("search");
-      //   const urlParams = new URLSearchParams(window.location.search);
-      //   const _search = urlParams.get("search");
-      //   input.value = _search;
-      //   input.addEventListener("keyup", function (event) {
-      //     // Number 13 is the "Enter" key on the keyboard
-      //     if (event.keyCode === 13) {
-      //       search();
-      //     }
-      //   });
-      //   // console.log(_search)
-      // }
-    </script>
+            const rateStars = document.querySelectorAll(".stars-outer");
+            rateStars.forEach((rateStar) => {
+              const val = rateStar.getAttribute("value");
+              const starTotal = 5;
+              const starPercentage = (val / starTotal) * 100;
+              const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
+              rateStar.querySelector(".stars-inner").style.width = starPercentageRounded;
+            });
+          </script>
   </body>
 </html>

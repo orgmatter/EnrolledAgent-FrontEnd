@@ -4,8 +4,6 @@ const {
    Middleware
 } = require("common");
 
-
-
 router
   .use(require('./auth'))
   .use(Middleware.ExtractToken.token.unless([]))
@@ -14,6 +12,11 @@ router
   .use(require('./resource'))
   .use(require('./claim'))
   .use('/sponsor', require('./sponsor'))
+  .use('/payment', require('./payment'))
+  .use('/contact', require('./contact'))
+  .use('/verification', require('./verification'))
+  .use('/offshore', require('./offshore'))
+  .use('/email-list', require('./subscribers'))
   .use('/analytic', require('./analytics'))
   .use('/log', require('./log'))
   .use('/faq', require('./faq'))
@@ -21,11 +24,12 @@ router
   .use('/listing-request', require('./listingRequest'))
   .use('/article', require('./article'))
   .use('/agent', require('./agent'))
-  .use('/user', require('./user'))
+  .use(require('./user'))
   .use('/question', require('./question'))
   .use('/role', require('./role'))
   .use('/staff', require('./staff'))
   .use('/config', require('./config'))
+  .use('/page', require('./page'))
   
 
 

@@ -49,10 +49,10 @@ class RatingJob extends BaseCron {
             perPage,
             query,
             page,
-            projections: {
-                createdAt: 0,
-                updatedAt: 0
-            },
+            // projections: {
+            //     createdAt: 0,
+            //     updatedAt: 0
+            // },
             populate: {path: 'review', select: {rating: 1}}
         }, (res) => done(null, res))
     }

@@ -77,6 +77,7 @@ class FaqController extends BaseController {
             perPage: perpage,
             query,
             page,
+            sort: {createdAt: -1},
         }, (data) => {
             super.handleResultPaginated({ ...data }, res, next)
         })

@@ -93,7 +93,20 @@
 
 #single .btn-div {
     margin: 5rem 0;
-
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: .5s;
+    a{
+        background-color: #2699FB;
+        color: #fff;
+        padding: 10px 30px;
+        border-radius: 3px;
+        &:hover{
+            transform: translateY(-5px);
+            transition: .5s;
+        }
+    }
 }
 
 #single .btn-div .b-ton {

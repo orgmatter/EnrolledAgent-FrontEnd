@@ -38,21 +38,16 @@
             <li class="m-0 pl-0 pr-10">
               <% if(locals.isAuthenticated)  { %>
                 
-              <a href="/logout" class="text-white"
-                ><i class="fa fa-user-o mr-5 text-white"></i> Logout</a
-              >
+              <a href="/logout" class="text-white"><i class="fa fa-user-o mr-5 text-white"></i> Logout</a>
              <% } else { %>
-              <a href="/register" class="text-white"
-                ><i class="fa fa-edit mr-5"></i>New Account</a
-              >
+              <a href="/register" class="text-white"><i class="fa fa-edit mr-5"></i>New Account</a>
              <%}%> 
               
             </li>
-            <li class="m-0 pl-0 pr-10">
+            <!-- <li class="m-0 pl-0 pr-10">
               <a href="/claim-listing" class="text-white">
-                <i class="fa fa-edit mr-5"></i>Enrolled Agent Start Here</a
-              >
-            </li>
+                <i class="fa fa-edit mr-5"></i>Enrolled Agent Start Here</a>
+            </li> -->
           </ul>
         </div>
       </div>
@@ -147,7 +142,7 @@
                   <a class="dropdown-link" href="/resource">Resources for Accountants</a>
                 </li>
                 <li>
-                  <a class="dropdown-link" href="#">Create Your Free EA List</a>
+                  <a class="dropdown-link" <% if(locals.isAuthenticated)  { %> href="/new-listing" <% } %> href="/login">Create Your Free EA Listing</a>
                 </li>
               </ul>
             </li>

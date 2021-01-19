@@ -80,11 +80,8 @@ const handleSubmit = (e) => {
     preferredContact: contactMethod.value
   };
 
-  // console.log(data);
-  // document.getElementById("paymentModal").showModal();
   btn.setAttribute("disabled", "true");
   btn.innerHTML = spinner();
-  $("#paymentModal").modal()
   // return
   axios({
     method: "POST",
@@ -99,11 +96,13 @@ const handleSubmit = (e) => {
 
   })
     .then((res) => {
-      console.log(res);
+      console.log(res.data);
       // notyf.success(res.data.message || "Message sent!");
       btn.innerHTML = btnContent;
       clearFormData();
       btn.removeAttribute("disabled");
+      const amount = document.getElementById("order-amount");
+      amount.textContent = res.data.amount || "";
       return setupStripeElements(res.data);
     })
     .then(function({ stripe, card, clientSecret }) {
@@ -112,9 +111,9 @@ const handleSubmit = (e) => {
       // paymentModal
       // Handle form submission.
       const form = document.getElementById("payment-form");
-      const postalCodeSpan = form.querySelector(".CardField-postalCode span");
-      postalCodeSpan.classList.add("InputContainer");
-      postalCodeSpan.innerHTML = "Postal Code";
+      // const postalCodeSpan = form.querySelector(".CardField-postalCode span");
+      // postalCodeSpan.classList.add("InputContainer");
+      // postalCodeSpan.innerHTML = "Postal Code";
 
       form.addEventListener("submit", function(event) {
         event.preventDefault();
@@ -124,7 +123,7 @@ const handleSubmit = (e) => {
       // notyf.success(res.data.message || "Message sent!");
     })
     .catch((err) => {
-      console.log(err.response);
+      console.log(err);
       btn.innerHTML = btnContent;
       btn.removeAttribute("disabled");
       notyf.error(err.response.data.error.message || "Something went wrong");

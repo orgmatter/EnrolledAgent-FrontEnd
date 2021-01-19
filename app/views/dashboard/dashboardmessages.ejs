@@ -15,6 +15,7 @@
     <!-- CSS | Main style file -->
     <link href="/css/style-main.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    
   </head>
   <body>
     <div class="layout">
@@ -24,134 +25,33 @@
         <section class="body">
         <div class="message-top">
           <h3>Messages</h3>
-          <p>View messages sent to your profiles by potential clients.</p>
+          <p>View messages sent to you by potential clients.</p>
         </div>
-        <section class="message-cards">
-          <div class="head-flex">
-            <div class="date">
-              28 <br />
-              FEB
+        <% if(locals.agentMessage && locals.agentMessage.data.length > 0) {%>
+        
+          <% locals.agentMessage.data.map((el,id) => { %>
+            <div class="message-cards" key=<%= id %> >
+              <div class="head-flex">
+                <div class="date"><%- locals.moment(el.createdAt).format("DD <br /> MMM") %></div>
+                <div class="title">
+                  <h4><%= el.subject || "" %> </h4>
+                  <small>by <%= el.name || "" %> </small>
+                </div>
+              </div>
+
+              <div class="content">
+                <p><%= el.message || "" %> </p>
+              </div>
+
+              <!-- <a href="#" class="message-link"> Read More</a> -->
             </div>
-            <div class="title">
-              <h4>Post Tittle Here</h4>
-              <small>by Anonymous user</small>
-            </div>
-          </div>
 
-          <div class="content">
-            <p>
-You do not have any messages yet
-            </p>
-          </div>
-
-          <a href="#" class="message-link"> Read More</a>
-        </section>
-
-        <hr />
-        <section class="message-cards">
-          <div class="head-flex">
-            <div class="date">
-              28 <br />
-              FEB
-            </div>
-            <div class="title">
-              <h4>Post Tittle Here</h4>
-              <small>by Anonymous user</small>
-            </div>
-          </div>
-
-          <div class="content">
-            <p>
-You do not have any messages yet
-            </p>
-          </div>
-
-          <a href="#" class="message-link"> Read More</a>
-        </section>
-        <hr />
-        <section class="message-cards">
-          <div class="head-flex">
-            <div class="date">
-              28 <br />
-              FEB
-            </div>
-            <div class="title">
-              <h4>Post Tittle Here</h4>
-              <small>by Anonymous user</small>
-            </div>
-          </div>
-
-          <div class="content">
-            <p>
-You do not have any messages yet
-            </p>
-          </div>
-
-          <a href="#" class="message-link"> Read More</a>
-        </section>
-        <hr />
-        <section class="message-cards">
-          <div class="head-flex">
-            <div class="date">
-              28 <br />
-              FEB
-            </div>
-            <div class="title">
-              <h4>Post Tittle Here</h4>
-              <small>by Anonymous user</small>
-            </div>
-          </div>
-
-          <div class="content">
-            <p>
-You do not have any messages yet
-            </p>
-          </div>
-
-          <a href="#" class="message-link"> Read More</a>
-        </section>
-        <hr />
-        <section class="message-cards">
-          <div class="head-flex">
-            <div class="date">
-              28 <br />
-              FEB
-            </div>
-            <div class="title">
-              <h4>Post Tittle Here</h4>
-              <small>by Anonymous user</small>
-            </div>
-          </div>
-
-          <div class="content">
-            <p>
-You do not have any messages yet
-            </p>
-          </div>
-
-          <a href="#" class="message-link"> Read More</a>
-        </section>
-        <hr />
-        <section class="message-cards ">
-          <div class="head-flex">
-            <div class="date">
-              28 <br />
-              FEB
-            </div>
-            <div class="title">
-              <h4>Post Tittle Here</h4>
-              <small>by Anonymous user</small>
-            </div>
-          </div>
-
-          <div class="content">
-            <p>
-You do not have any messages yet
-            </p>
-          </div>
-
-          <a href="#" class="message-link"> Read More</a>
-        </section>
+            <hr />
+         <% }) %> 
+        <%} else {%>
+          <p style="text-align: center;">You do not have any message</p>
+        <%}%> 
+        
       </div>
     </section>
     </div>
@@ -164,5 +64,7 @@ You do not have any messages yet
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
+    
+ 
   </body>
 </html>
