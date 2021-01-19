@@ -174,7 +174,7 @@ class ArticleController extends BaseController {
         const { id } = req.params
         if (!BaseController.checkId('Invalid article id', req, res, next)) return
         let resource = await Article.findById(id)
-            .populate(['sponsor', 'category'])
+            .populate(['sponsor', 'category', {path: 'agent', select: {firstName: 1, lastName: 1}}])
             .exec()
         super.handleResult(resource, res, next)
     }
@@ -191,7 +191,7 @@ class ArticleController extends BaseController {
             query,
             page,
             sort: {createdAt: -1},
-            populate: ['sponsor', 'category']
+            populate: ['sponsor', 'category', {path: 'agent', select: {firstName: 1, lastName: 1}}]
         }, (data) => {
             super.handleResultPaginated(data, res, next)
         })

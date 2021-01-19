@@ -246,7 +246,7 @@ class ArticleController extends BaseController {
             query: { agent: Types.ObjectId(agent._id) },
             page,
             sort: { createdAt: -1 },
-            populate: ['category', 'comment']
+            populate: ['category', 'comment', {path: 'agent', select: {firstName: 1, lastName: 1}}]
         }, (data) => {
             req.locals.agentArticles = data
             next()
@@ -259,7 +259,7 @@ class ArticleController extends BaseController {
         const { id } = req.params
         if (!id || !Validator.isMongoId(String(id))) return next()
         let resource = await Article.findById(id)
-            .populate(['category', 'comment'])
+            .populate(['category', 'comment', {path: 'agent', select: {firstName: 1, lastName: 1}}])
             .exec()
         req.locals.article = resource
         next()
@@ -278,7 +278,7 @@ class ArticleController extends BaseController {
             query,
             sort: { createdAt: -1 },
             page,
-            populate: ['category',]
+            populate: ['category', 'comment', {path: 'agent', select: {firstName: 1, lastName: 1}}]
         }, (data) => {
             req.locals.articles = data
             next()
@@ -300,7 +300,7 @@ class ArticleController extends BaseController {
         const data = await Article.find({ status: 'approved', featured: true },)
             .limit(3)
             .sort({ createdAt: -1 })
-            .populate(['category',])
+            .populate(['category', {path: 'agent', select: {firstName: 1, lastName: 1}}])
             .exec()
         if (data && data.length > 0)
             req.locals.featuredArticle = data[0];
@@ -335,7 +335,7 @@ class ArticleController extends BaseController {
             {
                 query: { status: 'approved' },
                 sort: { createdAt: -1 },
-                populate: ['category', 'comment']
+                populate: ['category', 'comment', {path: 'agent', select: {firstName: 1, lastName: 1}}]
             }, (data) => {
                 // console.log(doc);
                 req.locals.articles = data

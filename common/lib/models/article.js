@@ -6,7 +6,7 @@ const { Schema } = mongoose
 const Article = new Schema({
   body: String,
   preview: String,
-  author: String,
+  articleAuthor: String,
   status: {
     type: String,
     default: Constants.ARTICLE_STATUS.pending,
@@ -52,7 +52,11 @@ Article.set('toObject', { virtuals: true })
 Article.set('toJSON', { virtuals: true })
 
 
-
+Article.virtual('author')
+  .get(function () {
+    if (this.agent && this.agent._id) return `${this.agent.firstName || ''} ${this.agent.lastName || ''}`
+    return this.articleAuthor || 'Enrolled Agents'
+  })
 
 Article.virtual('comment', {
   ref: 'comment',
