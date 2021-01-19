@@ -11,7 +11,7 @@ const {
   Constants,
   MailService,
   EmailTemplates,
-  Models: { User, LogModel, EmailList, VerificationToken, ResetToken },
+  Models: { User, LogModel, Config, EmailList, VerificationToken, ResetToken },
 } = require("common")
 const passport = require("passport");
 const uid = require("uid");
@@ -40,6 +40,23 @@ const sanitizeBody = (body) => {
 }
 
 class AuthController {
+
+  /**
+  * get question categorirs
+  * @param  {Express.Request} req
+  * @param  {Express.Response} res
+  * @param  {Function} next
+  */
+  async config(req, res, next) {
+    req.locals.config = {}
+    const data = await Config.find({}, { _id: 0, __v: 0, slug: 0, createdAt: 0, updatedAt: 0 })
+      .exec()
+    if (data && data.length > 0)
+      req.locals.config = data
+    console.log(req.locals)
+    next()
+
+  }
 
 
   /**
@@ -207,7 +224,7 @@ class AuthController {
     let reset = await ResetToken.findOne({ token }).exec()
     if (!(reset && reset.token)) {
       req.session.error = 'Your reset link is either epired or invalid'
-      return  res.redirect('/')  
+      return res.redirect('/')
     }
     reset.deleteOne().then(() => { })
 
@@ -244,8 +261,8 @@ class AuthController {
    * @param  {Express.Response} res
    * @param  {Function} next
    */
-  resetPassword = async  (req, res, next) =>{
-    const { body } = req; 
+  resetPassword = async (req, res, next) => {
+    const { body } = req;
     const token = req.session.resetToken
     let reset = await ResetToken.findOne({ token }).exec()
     let user

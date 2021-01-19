@@ -95,6 +95,13 @@ class UserController extends BaseController {
         )
       )
     }
+    if (!Validator.password(password))
+      return next(
+        new Exception(
+          'Password must have atleast one lowercase character, an uppercase character, a number or a special character, and is at least 6 characters long',
+          ErrorCodes.REQUIRED_PASSWORD
+        )
+      )
     user.setPassword(password)
     await user.save()
 
@@ -184,7 +191,7 @@ class UserController extends BaseController {
       ResetToken.deleteMany({ user: user._id }).exec()
 
       const token = uid(32)
-      ResetToken.create({ user: user._id, token }) 
+      ResetToken.create({ user: user._id, token })
 
       // console.log(user, token)
 
@@ -214,7 +221,7 @@ class UserController extends BaseController {
    * @param  {Express.Response} res
    * @param  {Function} next
    */
-  passwordResetLink = async (req, res, next) =>{
+  passwordResetLink = async (req, res, next) => {
     const { params: { token } } = req;
 
     let reset = await ResetToken.findOne({ token }).exec()
@@ -233,7 +240,7 @@ class UserController extends BaseController {
     ResetToken.create({ user: reset.user, token: t })
       .then(() => { })
 
-      super.handleResult({token: t}, res, next)
+    super.handleResult({ token: t }, res, next)
   }
 
   /**
@@ -243,8 +250,7 @@ class UserController extends BaseController {
    * @param  {Function} next
    */
   async resetPassword(req, res, next) {
-    const { body: {token, password} } = req; 
-    console.log(Validator.password(password))
+    const { body: { token, password } } = req;
     let reset = await ResetToken.findOne({ token }).exec()
     let user
     if (reset && reset.user)
@@ -269,13 +275,13 @@ class UserController extends BaseController {
         )
       )
     }
-    if(!Validator.password(password))
-    return next(
-      new Exception(
-        'Password must have atleast one lowercase character, an uppercase character, a number or a special character, and is at least 6 characters long',
-        ErrorCodes.REQUIRED_PASSWORD
+    if (!Validator.password(password))
+      return next(
+        new Exception(
+          'Password must have atleast one lowercase character, an uppercase character, a number or a special character, and is at least 6 characters long',
+          ErrorCodes.REQUIRED_PASSWORD
+        )
       )
-    )
     user.setPassword(password);
     await user.save();
 
@@ -316,6 +322,14 @@ class UserController extends BaseController {
 
   }
 
+  async get(req, res, next) {
+    const { id } = req.params
+    if (!BaseController.checkId('Invalid user id', req, res, next)) return
+    let resource = await User.findById(id, {hash: 0, salt: 0})
+    .populate('role')
+      .exec()
+    super.handleResult(resource, res, next)
+  }
 
   async getAll(req, res, next) {
     const { page, perpage, q, search } = req.query

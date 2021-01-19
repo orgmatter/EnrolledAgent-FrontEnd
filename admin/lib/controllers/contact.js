@@ -21,6 +21,7 @@ class ContactController extends BaseController {
 
     async get(req, res, next) {
         const { id } = req.params
+        if (!BaseController.checkId('Invalid  id', req, res, next)) return
         let resource = await Contact.findById(id).exec()
         super.handleResult(resource, res, next)
     }

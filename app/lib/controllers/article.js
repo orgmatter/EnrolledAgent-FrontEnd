@@ -228,27 +228,27 @@ class ArticleController extends BaseController {
      * @param  {Function} next
      */
     async agentArticles(req, res, next) {
-        req.locals.agentArticles = {data: []}
+        req.locals.agentArticles = { data: [] }
         const { page, perpage, q, search } = req.query
         let query = Helper.parseQuery(q) || {}
-        if (search) query = { title: { $regex: search, $options: 'i' } }
+        if (search) query = { $text: { $search: search, $caseSensitive :false } };
         let agent
         if (req.isAuthenticated() && req.user) {
             agent = await Agent.findOne({ owner: Types.ObjectId(req.user.id) }).exec()
         }
 
 
-        if (!agent  || !agent._id) return  next()
-            DB.Paginate(res, next, Article, {
-                perPage: perpage,
-                query: { agent: Types.ObjectId(agent._id) },
-                page,
-                sort: { createdAt: -1 },
-                populate: ['category', 'comment']
-            }, (data) => {
-                req.locals.agentArticles = data
-                next()
-            })      
+        if (!agent || !agent._id) return next()
+        DB.Paginate(res, next, Article, {
+            perPage: perpage,
+            query: { agent: Types.ObjectId(agent._id) },
+            page,
+            sort: { createdAt: -1 },
+            populate: ['category', 'comment']
+        }, (data) => {
+            req.locals.agentArticles = data
+            next()
+        })
     }
 
 
@@ -267,14 +267,16 @@ class ArticleController extends BaseController {
     async getAll(req, res, next) {
         const { page, perpage, q, search } = req.query
         let query = Helper.parseQuery(q) || {}
-        if (search) query = { title: { $regex: search, $options: 'i' } }
+        if (search) query = { $text: { $search: search, $caseSensitive: false } };
+
+        query.status = 'approved'
 
         DB.Paginate(res, next, Article, {
             perPage: perpage,
             query,
             sort: { createdAt: -1 },
             page,
-            populate: ['category',  ]
+            populate: ['category',]
         }, (data) => {
             req.locals.articles = data
             next()
@@ -283,7 +285,7 @@ class ArticleController extends BaseController {
     }
 
     async latest(req, res, next) {
-        const data = await Article.find({},)
+        const data = await Article.find({ status: 'approved' },)
             .limit(3)
             .sort({ createdAt: -1 })
             .populate(['category'])
@@ -293,12 +295,13 @@ class ArticleController extends BaseController {
     }
 
     async featured(req, res, next) {
-        const data = await Article.find({},)
+        const data = await Article.find({ status: 'approved', featured: true },)
             .limit(3)
             .sort({ createdAt: -1 })
             .populate(['category',])
             .exec()
-        req.locals.featuredArticle = data[0];
+        if (data && data.length > 0)
+            req.locals.featuredArticle = data[0];
         next()
     }
 
@@ -326,17 +329,17 @@ class ArticleController extends BaseController {
     * @param  {function} next
     */
     async random(req, _, next) {
-        const count = await Article.estimatedDocumentCount().exec()
-        const random = Math.floor(Math.random() * count)
-
-        const data = await Article.find({},)
-            .skip(random)
-            .limit(10)
-            .sort({ createdAt: -1 })
-            .populate(['category', 'comment'])
-            .exec()
-        req.locals.articles = data
-        next()
+        DB.Random(res, next, Article,
+            {
+                query: { status: 'approved' },
+                sort: { createdAt: -1 },
+                populate: ['category', 'comment']
+            }, (data) => {
+                // console.log(doc);
+                req.locals.articles = data
+                next();
+            }
+        );
     }
 
 }
