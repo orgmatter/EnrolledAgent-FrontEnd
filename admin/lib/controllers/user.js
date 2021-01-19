@@ -1,10 +1,11 @@
 const {
   DB,
-  FileManager, Storages, Helper,
-  Exception, ErrorCodes, ErrorMessage,
-  Models: { User, AdminUser },
+  FileManager, Storages, Helper, Validator,
+  Exception, ErrorCodes, ErrorMessage, EmailTemplates, MailService,
+  Models: { User, AdminUser, ResetToken, VerificationToken },
   Constants,
 } = require("common");
+const uid = require("uid");
 const BaseController = require("./baseController");
 
 /**
@@ -157,156 +158,163 @@ class UserController extends BaseController {
 
 
 
-  // /**
-  //  * Send email link to reset password
-  //  * @param  {Express.Request} req
-  //  * @param  {Express.Response} res
-  //  * @param  {Function} next
-  //  */
-  // forgotPassword = async function (req, res, next) {
-  //   const { email } = req.body;
-  //   if (!Validator.email(email))
+  /**
+   * Send email link to reset password
+   * @param  {Express.Request} req
+   * @param  {Express.Response} res
+   * @param  {Function} next
+   */
+  forgotPassword = async function (req, res, next) {
+    const { email } = req.body;
+    if (!Validator.email(email))
 
-  //     // console.log(user, company, email)
-  //     if (!email || !Validator.email(email)) {
-  //       res.statusCode = 422;
-  //       return next(
-  //         new Exception(
-  //           ErrorMessage.REQUIRED_EMAIL,
-  //           ErrorCodes.REQUIRED_EMAIL
-  //         )
-  //       );
-  //     }
-  //   const user = await AdminUser.findOne({ email }).exec();
-  //   if (user) {
-  //     if (ResetToken.exists({ user: user._id }))
-  //       ResetToken.deleteMany({ user: user._id }).exec()
+      // console.log(user, company, email)
+      if (!email || !Validator.email(email)) {
+        res.statusCode = 422;
+        return next(
+          new Exception(
+            ErrorMessage.REQUIRED_EMAIL,
+            ErrorCodes.REQUIRED_EMAIL
+          )
+        );
+      }
+    const user = await AdminUser.findOne({ email }).exec();
+    if (user) {
 
-  //     const token = uid(32)
-  //     ResetToken.create({ user: user._id, token })
-  //       .then(() => { })
+      ResetToken.deleteMany({ user: user._id }).exec()
 
-  //     // console.log(user, token)
+      const token = uid(32)
+      ResetToken.create({ user: user._id, token }) 
 
-  //     const name = `${user.firstName} ${user.lastName}`
-  //     const link = `${process.env.ADMIN_URL}/reset_password/${token}`
+      // console.log(user, token)
 
-  //     new MailService().sendMail(
-  //       {
-  //         template: EmailTemplates.PASSWORD_RESET,
-  //         reciever: email,
-  //         subject: "Reset Password ",
-  //         locals: { name, link },
-  //       },
-  //       (res) => {
-  //         if (res == null) return;
-  //         log.error("Error sending mail", res);
-  //       }
-  //     );
-  //   }
+      const name = `${user.firstName} ${user.lastName}`
+      const link = `${process.env.ADMIN_URL}/reset/${token}`
 
-  //   res.json({ data: { message: "A reset link has been sent to your mail" } })
-  // }
+      new MailService().sendMail(
+        {
+          template: EmailTemplates.RESET_EMAIL,
+          reciever: email,
+          subject: "Reset Password ",
+          locals: { name, link },
+        },
+        (res) => {
+          if (res == null) return;
+          log.error("Error sending mail", res);
+        }
+      );
+    }
 
-  // /**
-  //  * Validate email link to reset password
-  //  * @param  {Express.Request} req
-  //  * @param  {Express.Response} res
-  //  * @param  {Function} next
-  //  */
-  // passwordResetLink = async function (req, res, next) {
-  //   const { params: { token } } = req;
+    res.json({ data: { message: "A reset link has been sent to your mail" } })
+  }
 
-  //   let reset = await ResetToken.findOne({ token }).exec()
-  //   if (!(reset && reset.token)) {
-  //     req.locals.infoMessage = 'Your reset link is either epired or invalid'
-  //     return req.isAuthenticated() ? res.redirect('/') : res.render('login', { locals: req.locals })
-  //   }
-  //   reset.deleteOne().then(() => { })
+  /**
+   * Validate email link to reset password
+   * @param  {Express.Request} req
+   * @param  {Express.Response} res
+   * @param  {Function} next
+   */
+  passwordResetLink = async (req, res, next) =>{
+    const { params: { token } } = req;
 
-  //   const tokn = uid(32)
-  //   ResetToken.create({ user: reset.user, token: tokn })
-  //     .then(() => { })
+    let reset = await ResetToken.findOne({ token }).exec()
+    if (!(reset && reset.token)) {
+      return next(
+        new Exception(
+          'Your reset link is either epired or invalid',
+          ErrorCodes.REQUIRED_PASSWORD
+        )
+      )
+    }
+    // const {token} = reset
+    reset.deleteOne().then(() => { })
 
-  //   req.session.resetToken = tokn
+    const t = uid(32)
+    ResetToken.create({ user: reset.user, token: t })
+      .then(() => { })
 
-  //   res.redirect('/reset-pword');
+      super.handleResult({token: t}, res, next)
+  }
 
-  // }
+  /**
+   * Reset password if a reset code exists in session
+   * @param  {Express.Request} req
+   * @param  {Express.Response} res
+   * @param  {Function} next
+   */
+  async resetPassword(req, res, next) {
+    const { body: {token, password} } = req; 
+    console.log(Validator.password(password))
+    let reset = await ResetToken.findOne({ token }).exec()
+    let user
+    if (reset && reset.user)
+      user = await AdminUser.findById(reset.user)
 
-  // /**
-  //  * Reset password if a reset code exists in session
-  //  * @param  {Express.Request} req
-  //  * @param  {Express.Response} res
-  //  * @param  {Function} next
-  //  */
-  // async resetPassword(req, res, next) {
-  //   const { body } = req; 
-  //   const token = req.session.resetToken
-  //   let reset = await ResetToken.findOne({ token }).exec()
-  //   let user
-  //   if (reset && reset.user)
-  //     user = await AdminUser.findById(reset.user) 
-
-  //   if (!(reset && reset.token && user && user._id)) {
-  //     return next(
-  //       new Exception(
-  //         'Your reset session is either expired or invalid, please try again',
-  //         ErrorCodes.REQUIRED_PASSWORD
-  //       )
-  //     )
-  //   }
-
-
-  //   if (!body.password) {
-  //     res.statusCode = 422;
-  //     return next(
-  //       new Exception(
-  //         ErrorMessage.REQUIRED_PASSWORD,
-  //         ErrorCodes.REQUIRED_PASSWORD
-  //       )
-  //     )
-  //   }
-  //   user.setPassword(body.password);
-  //   await user.save();
-
-  //   reset.deleteOne().then(() => { })
-  //   req.session.resetToken = null
-
-  //   res.json({ data: { message: "Password Changed succesfully" } });
-  // }
+    if (!(reset && reset.token && user && user._id)) {
+      return next(
+        new Exception(
+          'Your reset session is either expired or invalid, please try again',
+          ErrorCodes.REQUIRED_PASSWORD
+        )
+      )
+    }
 
 
+    if (!password) {
+      res.statusCode = 422;
+      return next(
+        new Exception(
+          ErrorMessage.REQUIRED_PASSWORD,
+          ErrorCodes.REQUIRED_PASSWORD
+        )
+      )
+    }
+    if(!Validator.password(password))
+    return next(
+      new Exception(
+        'Password must have atleast one lowercase character, an uppercase character, a number or a special character, and is at least 6 characters long',
+        ErrorCodes.REQUIRED_PASSWORD
+      )
+    )
+    user.setPassword(password);
+    await user.save();
 
-  // /**
-  //  * Get user roles
-  //  * @param  {Express.Request} req
-  //  * @param  {Express.Response} res
-  //  * @param  {function} next
-  //  */
-  // async staffRole(req, res, next) {
-  //   if (req.user && req.user.id)
-  //     AdminUser.findById(req.user.id)
-  //       .populate('role')
-  //       .then((doc) => {
-  //         if (doc) {
-  //           req.locals = req.locals || {};
-  //           let userPermissions = []
-  //           if (doc.superAdmin === true)
-  //             userPermissions = Object.values(Permission.ADMIN)
-  //           else if (doc.role && doc.role.permissions)
-  //             userPermissions = doc.role.permissions
-  //           if (!userPermissions) userPermissions = []
+    reset.deleteOne().then(() => { })
 
-  //           for (const [key, permission] of Object.entries(Permission.ADMIN)) {
-  //             req.locals[permission] = Helper.checkPermission(userPermissions || [], permission)
-  //           }
-  //         }
-  //         next();
-  //       })
-  //   else next()
+    res.json({ data: { message: "Password Changed succesfully" } });
+  }
 
-  // }
+
+
+  /**
+   * Get user roles
+   * @param  {Express.Request} req
+   * @param  {Express.Response} res
+   * @param  {function} next
+   */
+  async staffRole(req, res, next) {
+    if (req.user && req.user.id)
+      AdminUser.findById(req.user.id)
+        .populate('role')
+        .then((doc) => {
+          if (doc) {
+            req.locals = req.locals || {};
+            let userPermissions = []
+            if (doc.superAdmin === true)
+              userPermissions = Object.values(Permission.ADMIN)
+            else if (doc.role && doc.role.permissions)
+              userPermissions = doc.role.permissions
+            if (!userPermissions) userPermissions = []
+
+            for (const [key, permission] of Object.entries(Permission.ADMIN)) {
+              req.locals[permission] = Helper.checkPermission(userPermissions || [], permission)
+            }
+          }
+          next();
+        })
+    else next()
+
+  }
 
 
   async getAll(req, res, next) {
