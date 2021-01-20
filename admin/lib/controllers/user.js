@@ -266,7 +266,6 @@ class UserController extends BaseController {
       )
     }
 
-
     if (!password) {
       res.statusCode = 422;
       return next(
