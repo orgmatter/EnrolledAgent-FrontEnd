@@ -293,6 +293,7 @@ class AuthController {
       )
     }
     user.setPassword(body.password);
+    user.passwordChangedAt = new Date()
     await user.save();
 
     reset.deleteOne().then(() => { })
@@ -391,6 +392,7 @@ class AuthController {
       }
       user.setPassword(password)
       user.isEmailVerified = true
+      user.passwordChangedAt = new Date()
       await user.save()
 
       const message = "Password Changed succesfully"
