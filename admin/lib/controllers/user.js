@@ -103,6 +103,7 @@ class UserController extends BaseController {
         )
       )
     user.setPassword(password)
+    user.passwordChangedAt = new Date()
     await user.save()
 
     res.json({ data: { message: 'Password Changed succesfully' } })
@@ -283,6 +284,7 @@ class UserController extends BaseController {
         )
       )
     user.setPassword(password);
+    user.passwordChangedAt = new Date()
     await user.save();
 
     reset.deleteOne().then(() => { })

@@ -44,6 +44,7 @@ const UserSchema = new Schema({
   address: String,
   country: String,
   state: String,
+  passwordChangedAt: Date,
   city: String,
   zipcode: String,
   imageUrl: String,
