@@ -260,7 +260,9 @@
                   class="form__select"
                   required
                 >
-                  <option value="" disabled selected>Preferred Contact Method*</option>
+                  <option value="" disabled selected>
+                    Preferred Contact Method*
+                  </option>
                   <option value="email">Email</option>
                   <option value="phone">Phone Call</option>
                   <option value="text">Text Message</option>
@@ -324,13 +326,24 @@
           <form id="payment-form" class="sr-payment-form">
             <div class="sr-combo-inputs-row">
               <div class="card-payment-details">
-                <input type="text" name="fullName" id="fullName" placeholder="Full Name"/>
-                <input type="text" name="address" id="address" placeholder="Address" class="ml-30"/>
+                <input
+                  type="text"
+                  name="fullName"
+                  id="fullName"
+                  placeholder="Full Name"
+                />
+                <input
+                  type="text"
+                  name="address"
+                  id="address"
+                  placeholder="Address"
+                  class="ml-30"
+                />
               </div>
               <div class="sr-input sr-card-element" id="card-element"></div>
             </div>
             <div class="sr-field-error" id="card-errors" role="alert"></div>
-            <button id="submit" type='submit'>
+            <button id="submit" type="submit">
               <div class="spinner hidden" id="spinner"></div>
               <span id="button-text">Pay</span><span id="order-amount"></span>
             </button>
@@ -346,7 +359,10 @@
     ></script>
     <script src="https://js.stripe.com/v3/"></script>
     <script src="/javascripts/funfact.js"></script>
-    <script type="text/javascript" src="/javascripts/license-verification.js"></script>
+    <script
+      type="text/javascript"
+      src="/javascripts/license-verification.js"
+    ></script>
     <script src="/js/custom.js"></script>
   </body>
 </html>

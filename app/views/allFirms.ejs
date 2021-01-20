@@ -1,420 +1,645 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <link
-                href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap"
-                rel="stylesheet"
-        />
-        <%- include("./partials/head.ejs") %>
-    </head>
-    <body>
-        <%- include("./partials/header.ejs") %>
-        <!--
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <%- include("./partials/head.ejs") %>
+  </head>
+  <body>
+    <%- include("./partials/header.ejs") %>
+    <!--
             Input ALL YOUR PAGE CONTENT HERE
         -->
-        <div class="firms">
-            <div class="firms-banner">
-                <div class="firms-banner__item">
-                    <div class="firms-banner__item--head">
-                        Abbeville Accounting Firms
-                    </div>
-                    <div class="firms-banner__item--text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    </div>
-                </div>
-            </div>
-            <div class="firms-search">
-                <form action="" class="firms-search__form">
-                    <div class="form__group">
-                        <select name="records-per-page" id="" class="form__select firms-select">
-                            <option value="10" selected="selected">10</option>
-                            <option value="20">20</option>
-                            <option value="20">50</option>
-                            <option value="20">100</option>
-                            <option value="20">200</option>
-                        </select>
-                        <label for="records-per-page" class="form__label"> records per page</label>
-                    </div>
-                    <div class="form__row">
-                        <div class="form__group">
-                            <label for="search-ea" class="form__label">Search: </label>
-                            <input name="search-ea" type="text" class="form__input  firms-input">
-                        </div>
-                        <div class="form__group from__group-2">
-                            <select  id="" class="form__select firms-select">
-                                <option value="order-by" selected="selected">Order By</option>
-                                <option value="name">Name</option>
-                                <option value="experience">Experience</option>
-                                <option value="reputation">Reputation</option>
-                            </select>
-
-                            <select  id="" class="form__select firms-select">
-                                <option value="1" selected="selected">Ascending</option>
-                                <option value="-1">Descending</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="firms-members">
-                <div class="firms-member">
-                    <div class="firms-member__details">
-                        <div class="firms-member__image">
-                            <img src="/assets/images/firms/smiler.jpg" alt="member display picture" class="firms-member__image--img">
-                        </div>
-                        <div class="firms-member__detail">
-                            <div class="firms-member__detail--name">Michael Rosedale</div>
-                            <div class="firms-member__detail--location">Florence, AL</div>
-                        </div>
-                    </div>
-                    <div class="firms-member__rating">
-                        <div class="firms-member__rating--member-type">Premium Member</div>
-                        <div class="firms-member__rating--group">
-                            <div class="firms-member__rating--stars">
-                            <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                            <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                            <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                            <img src="/assets/images/firms/star-empty.svg" alt="Rating" class="firms-star-rating">
-                            <img src="/assets/images/firms/star-empty.svg" alt="Rating" class="firms-star-rating">
-                        </div>
-                            <div class="firms-member__rating--reviews">
-                                2 reviews
-                            </div>
-                        </div>
-                    </div>
-                    <div class="firms-member__button">
-                        <div class="firms-member__button--btn btn firms-btn firms-btn2">
-                            View profile
-                        </div>
-                    </div>
-                </div>
-                <div class="firms-member">
-                    <div class="firms-member__details">
-                        <div class="firms-member__image">
-                            <img src="/assets/images/firms/smiler.jpg" alt="member display picture" class="firms-member__image--img">
-                        </div>
-                        <div class="firms-member__detail">
-                            <div class="firms-member__detail--name">Michael Rosedale</div>
-                            <div class="firms-member__detail--location">Florence, AL</div>
-                        </div>
-                    </div>
-                    <div class="firms-member__rating">
-                        <div class="firms-member__rating--member-type">Premium Member</div>
-                        <div class="firms-member__rating--group">
-                            <div class="firms-member__rating--stars">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-empty.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-empty.svg" alt="Rating" class="firms-star-rating">
-                            </div>
-                            <div class="firms-member__rating--reviews">
-                                2 reviews
-                            </div>
-                        </div>
-                    </div>
-                    <div class="firms-member__button">
-                        <div class="firms-member__button--btn btn firms-btn firms-btn2">
-                            View profile
-                        </div>
-                    </div>
-                </div>
-                <div class="firms-member">
-                    <div class="firms-member__details">
-                        <div class="firms-member__image">
-                            <img src="/assets/images/firms/smiler.jpg" alt="member display picture" class="firms-member__image--img">
-                        </div>
-                        <div class="firms-member__detail">
-                            <div class="firms-member__detail--name">Michael Rosedale</div>
-                            <div class="firms-member__detail--location">Florence, AL</div>
-                        </div>
-                    </div>
-                    <div class="firms-member__rating">
-                        <div class="firms-member__rating--member-type">Premium Member</div>
-                        <div class="firms-member__rating--group">
-                            <div class="firms-member__rating--stars">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-empty.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-empty.svg" alt="Rating" class="firms-star-rating">
-                            </div>
-                            <div class="firms-member__rating--reviews">
-                                2 reviews
-                            </div>
-                        </div>
-                    </div>
-                    <div class="firms-member__button">
-                        <div class="firms-member__button--btn btn firms-btn firms-btn2">
-                            View profile
-                        </div>
-                    </div>
-                </div>
-                <div class="firms-member">
-                    <div class="firms-member__details">
-                        <div class="firms-member__image">
-                            <img src="/assets/images/firms/smiler.jpg" alt="member display picture" class="firms-member__image--img">
-                        </div>
-                        <div class="firms-member__detail">
-                            <div class="firms-member__detail--name">Michael Rosedale</div>
-                            <div class="firms-member__detail--location">Florence, AL</div>
-                        </div>
-                    </div>
-                    <div class="firms-member__rating">
-                        <div class="firms-member__rating--member-type">Premium Member</div>
-                        <div class="firms-member__rating--group">
-                            <div class="firms-member__rating--stars">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-empty.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-empty.svg" alt="Rating" class="firms-star-rating">
-                            </div>
-                            <div class="firms-member__rating--reviews">
-                                2 reviews
-                            </div>
-                        </div>
-                    </div>
-                    <div class="firms-member__button">
-                        <div class="firms-member__button--btn btn firms-btn firms-btn2">
-                            View profile
-                        </div>
-                    </div>
-                </div>
-                <div class="firms-member">
-                    <div class="firms-member__details">
-                        <div class="firms-member__image">
-                            <img src="/assets/images/firms/smiler.jpg" alt="member display picture" class="firms-member__image--img">
-                        </div>
-                        <div class="firms-member__detail">
-                            <div class="firms-member__detail--name">Michael Rosedale</div>
-                            <div class="firms-member__detail--location">Florence, AL</div>
-                        </div>
-                    </div>
-                    <div class="firms-member__rating">
-                        <div class="firms-member__rating--member-type">Premium Member</div>
-                        <div class="firms-member__rating--group">
-                            <div class="firms-member__rating--stars">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-empty.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-empty.svg" alt="Rating" class="firms-star-rating">
-                            </div>
-                            <div class="firms-member__rating--reviews">
-                                2 reviews
-                            </div>
-                        </div>
-                    </div>
-                    <div class="firms-member__button">
-                        <div class="firms-member__button--btn btn firms-btn firms-btn2">
-                            View profile
-                        </div>
-                    </div>
-                </div>
-                <div class="firms-member">
-                    <div class="firms-member__details">
-                        <div class="firms-member__image">
-                            <img src="/assets/images/firms/smiler.jpg" alt="member display picture" class="firms-member__image--img">
-                        </div>
-                        <div class="firms-member__detail">
-                            <div class="firms-member__detail--name">Michael Rosedale</div>
-                            <div class="firms-member__detail--location">Florence, AL</div>
-                        </div>
-                    </div>
-                    <div class="firms-member__rating">
-                        <div class="firms-member__rating--member-type">Premium Member</div>
-                        <div class="firms-member__rating--group">
-                            <div class="firms-member__rating--stars">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-empty.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-empty.svg" alt="Rating" class="firms-star-rating">
-                            </div>
-                            <div class="firms-member__rating--reviews">
-                                2 reviews
-                            </div>
-                        </div>
-                    </div>
-                    <div class="firms-member__button">
-                        <div class="firms-member__button--btn btn firms-btn firms-btn2">
-                            View profile
-                        </div>
-                    </div>
-                </div>
-                <div class="firms-member">
-                    <div class="firms-member__details">
-                        <div class="firms-member__image">
-                            <img src="/assets/images/firms/smiler.jpg" alt="member display picture" class="firms-member__image--img">
-                        </div>
-                        <div class="firms-member__detail">
-                            <div class="firms-member__detail--name">Michael Rosedale</div>
-                            <div class="firms-member__detail--location">Florence, AL</div>
-                        </div>
-                    </div>
-                    <div class="firms-member__rating">
-                        <div class="firms-member__rating--member-type">Premium Member</div>
-                        <div class="firms-member__rating--group">
-                            <div class="firms-member__rating--stars">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-empty.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-empty.svg" alt="Rating" class="firms-star-rating">
-                            </div>
-                            <div class="firms-member__rating--reviews">
-                                2 reviews
-                            </div>
-                        </div>
-                    </div>
-                    <div class="firms-member__button">
-                        <div class="firms-member__button--btn btn firms-btn firms-btn2">
-                            View profile
-                        </div>
-                    </div>
-                </div>
-                <div class="firms-member">
-                    <div class="firms-member__details">
-                        <div class="firms-member__image">
-                            <img src="/assets/images/firms/smiler.jpg" alt="member display picture" class="firms-member__image--img">
-                        </div>
-                        <div class="firms-member__detail">
-                            <div class="firms-member__detail--name">Michael Rosedale</div>
-                            <div class="firms-member__detail--location">Florence, AL</div>
-                        </div>
-                    </div>
-                    <div class="firms-member__rating">
-                        <div class="firms-member__rating--member-type">Premium Member</div>
-                        <div class="firms-member__rating--group">
-                            <div class="firms-member__rating--stars">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-empty.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-empty.svg" alt="Rating" class="firms-star-rating">
-                            </div>
-                            <div class="firms-member__rating--reviews">
-                                2 reviews
-                            </div>
-                        </div>
-                    </div>
-                    <div class="firms-member__button">
-                        <div class="firms-member__button--btn btn firms-btn firms-btn2">
-                            View profile
-                        </div>
-                    </div>
-                </div>
-                <div class="firms-member">
-                    <div class="firms-member__details">
-                        <div class="firms-member__image">
-                            <img src="/assets/images/firms/smiler.jpg" alt="member display picture" class="firms-member__image--img">
-                        </div>
-                        <div class="firms-member__detail">
-                            <div class="firms-member__detail--name">Michael Rosedale</div>
-                            <div class="firms-member__detail--location">Florence, AL</div>
-                        </div>
-                    </div>
-                    <div class="firms-member__rating">
-                        <div class="firms-member__rating--member-type">Premium Member</div>
-                        <div class="firms-member__rating--group">
-                            <div class="firms-member__rating--stars">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-empty.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-empty.svg" alt="Rating" class="firms-star-rating">
-                            </div>
-                            <div class="firms-member__rating--reviews">
-                                2 reviews
-                            </div>
-                        </div>
-                    </div>
-                    <div class="firms-member__button">
-                        <div class="firms-member__button--btn btn firms-btn firms-btn2">
-                            View profile
-                        </div>
-                    </div>
-                </div>
-                <div class="firms-member">
-                    <div class="firms-member__details">
-                        <div class="firms-member__image">
-                            <img src="/assets/images/firms/smiler.jpg" alt="member display picture" class="firms-member__image--img">
-                        </div>
-                        <div class="firms-member__detail">
-                            <div class="firms-member__detail--name">Michael Rosedale</div>
-                            <div class="firms-member__detail--location">Florence, AL</div>
-                        </div>
-                    </div>
-                    <div class="firms-member__rating">
-                        <div class="firms-member__rating--member-type">Premium Member</div>
-                        <div class="firms-member__rating--group">
-                            <div class="firms-member__rating--stars">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-filled.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-empty.svg" alt="Rating" class="firms-star-rating">
-                                <img src="/assets/images/firms/star-empty.svg" alt="Rating" class="firms-star-rating">
-                            </div>
-                            <div class="firms-member__rating--reviews">
-                                2 reviews
-                            </div>
-                        </div>
-                    </div>
-                    <div class="firms-member__button">
-                        <div class="firms-member__button--btn btn firms-btn firms-btn2">
-                            View profile
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="firms-pagination">
-                <div class="firms-pagination__button">
-                    <button class="firms-btn">
-                        View All Alabama firms
-                    </button>
-                </div>
-                <div class="firms-pagination__info">
-                    showing 1 to 10 of 57 entries
-                </div>
-                <div class="firms-pagination__buttons">
-                    <button class="firms-btn firms-pagination__buttons-btn">
-                        <span class="firms-btn-right-angle">
-                            <img src="/assets/images/firms/left-arrow.svg" alt="" class="firms-btn-right-arrow-left">
-                        </span>
-                        <span class="firms-pagination__buttons-txt">
-                            Previous
-                        </span>
-                    </button>
-                    <button class="firms-btn firms-pagination__buttons-btn firms-pagination__buttons-btn-selected">
-                        1
-                    </button>
-                    <button class="firms-btn firms-pagination__buttons-btn">
-                        2
-                    </button>
-                    <button class="firms-btn firms-pagination__buttons-btn">
-                        3
-                    </button>
-                    <button class="firms-btn firms-pagination__buttons-btn">
-                        4
-                    </button>
-                    <button class="firms-btn firms-pagination__buttons-btn">
-                        5
-                    </button>
-                    <button class="firms-btn firms-pagination__buttons-btn">
-                        <span class="firms-pagination__buttons-txt">
-                            Next
-                        </span>
-                        <span class="firms-btn-right-angle">
-                            <img src="/assets/images/firms/right-arrow.svg" alt="" class="firms-btn-right-arrow-right">
-                        </span>
-                    </button>
-                </div>
-            </div>
+    <div class="firms">
+      <div class="firms-banner">
+        <div class="firms-banner__item">
+          <div class="firms-banner__item--head">Abbeville Accounting Firms</div>
+          <div class="firms-banner__item--text">
+            Discover an accounting firm in Abbeville.
+          </div>
         </div>
+      </div>
+      <div class="firms-search">
+        <form action="" class="firms-search__form">
+          <div class="form__group">
+            <select
+              name="records-per-page"
+              id=""
+              class="form__select firms-select"
+            >
+              <option value="10" selected="selected">10</option>
+              <option value="20">20</option>
+              <option value="20">50</option>
+              <option value="20">100</option>
+              <option value="20">200</option>
+            </select>
+            <label for="records-per-page" class="form__label">
+              records per page</label
+            >
+          </div>
+          <div class="form__row">
+            <div class="form__group">
+              <label for="search-ea" class="form__label">Search: </label>
+              <input
+                name="search-ea"
+                type="text"
+                class="form__input firms-input"
+              />
+            </div>
+            <div class="form__group from__group-2">
+              <select id="" class="form__select firms-select">
+                <option value="order-by" selected="selected">Order By</option>
+                <option value="name">Name</option>
+                <option value="experience">Experience</option>
+                <option value="reputation">Reputation</option>
+              </select>
 
-        <%- include("./partials/footer.ejs") %>
-    </body>
+              <select id="" class="form__select firms-select">
+                <option value="1" selected="selected">Ascending</option>
+                <option value="-1">Descending</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="firms-members">
+        <div class="firms-member">
+          <div class="firms-member__details">
+            <div class="firms-member__image">
+              <img
+                src="/assets/images/firms/smiler.jpg"
+                alt="member display picture"
+                class="firms-member__image--img"
+              />
+            </div>
+            <div class="firms-member__detail">
+              <div class="firms-member__detail--name">Michael Rosedale</div>
+              <div class="firms-member__detail--location">Florence, AL</div>
+            </div>
+          </div>
+          <div class="firms-member__rating">
+            <div class="firms-member__rating--member-type">Premium Member</div>
+            <div class="firms-member__rating--group">
+              <div class="firms-member__rating--stars">
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-empty.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-empty.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+              </div>
+              <div class="firms-member__rating--reviews">2 reviews</div>
+            </div>
+          </div>
+          <div class="firms-member__button">
+            <div class="firms-member__button--btn btn firms-btn firms-btn2">
+              View profile
+            </div>
+          </div>
+        </div>
+        <div class="firms-member">
+          <div class="firms-member__details">
+            <div class="firms-member__image">
+              <img
+                src="/assets/images/firms/smiler.jpg"
+                alt="member display picture"
+                class="firms-member__image--img"
+              />
+            </div>
+            <div class="firms-member__detail">
+              <div class="firms-member__detail--name">Michael Rosedale</div>
+              <div class="firms-member__detail--location">Florence, AL</div>
+            </div>
+          </div>
+          <div class="firms-member__rating">
+            <div class="firms-member__rating--member-type">Premium Member</div>
+            <div class="firms-member__rating--group">
+              <div class="firms-member__rating--stars">
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-empty.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-empty.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+              </div>
+              <div class="firms-member__rating--reviews">2 reviews</div>
+            </div>
+          </div>
+          <div class="firms-member__button">
+            <div class="firms-member__button--btn btn firms-btn firms-btn2">
+              View profile
+            </div>
+          </div>
+        </div>
+        <div class="firms-member">
+          <div class="firms-member__details">
+            <div class="firms-member__image">
+              <img
+                src="/assets/images/firms/smiler.jpg"
+                alt="member display picture"
+                class="firms-member__image--img"
+              />
+            </div>
+            <div class="firms-member__detail">
+              <div class="firms-member__detail--name">Michael Rosedale</div>
+              <div class="firms-member__detail--location">Florence, AL</div>
+            </div>
+          </div>
+          <div class="firms-member__rating">
+            <div class="firms-member__rating--member-type">Premium Member</div>
+            <div class="firms-member__rating--group">
+              <div class="firms-member__rating--stars">
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-empty.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-empty.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+              </div>
+              <div class="firms-member__rating--reviews">2 reviews</div>
+            </div>
+          </div>
+          <div class="firms-member__button">
+            <div class="firms-member__button--btn btn firms-btn firms-btn2">
+              View profile
+            </div>
+          </div>
+        </div>
+        <div class="firms-member">
+          <div class="firms-member__details">
+            <div class="firms-member__image">
+              <img
+                src="/assets/images/firms/smiler.jpg"
+                alt="member display picture"
+                class="firms-member__image--img"
+              />
+            </div>
+            <div class="firms-member__detail">
+              <div class="firms-member__detail--name">Michael Rosedale</div>
+              <div class="firms-member__detail--location">Florence, AL</div>
+            </div>
+          </div>
+          <div class="firms-member__rating">
+            <div class="firms-member__rating--member-type">Premium Member</div>
+            <div class="firms-member__rating--group">
+              <div class="firms-member__rating--stars">
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-empty.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-empty.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+              </div>
+              <div class="firms-member__rating--reviews">2 reviews</div>
+            </div>
+          </div>
+          <div class="firms-member__button">
+            <div class="firms-member__button--btn btn firms-btn firms-btn2">
+              View profile
+            </div>
+          </div>
+        </div>
+        <div class="firms-member">
+          <div class="firms-member__details">
+            <div class="firms-member__image">
+              <img
+                src="/assets/images/firms/smiler.jpg"
+                alt="member display picture"
+                class="firms-member__image--img"
+              />
+            </div>
+            <div class="firms-member__detail">
+              <div class="firms-member__detail--name">Michael Rosedale</div>
+              <div class="firms-member__detail--location">Florence, AL</div>
+            </div>
+          </div>
+          <div class="firms-member__rating">
+            <div class="firms-member__rating--member-type">Premium Member</div>
+            <div class="firms-member__rating--group">
+              <div class="firms-member__rating--stars">
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-empty.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-empty.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+              </div>
+              <div class="firms-member__rating--reviews">2 reviews</div>
+            </div>
+          </div>
+          <div class="firms-member__button">
+            <div class="firms-member__button--btn btn firms-btn firms-btn2">
+              View profile
+            </div>
+          </div>
+        </div>
+        <div class="firms-member">
+          <div class="firms-member__details">
+            <div class="firms-member__image">
+              <img
+                src="/assets/images/firms/smiler.jpg"
+                alt="member display picture"
+                class="firms-member__image--img"
+              />
+            </div>
+            <div class="firms-member__detail">
+              <div class="firms-member__detail--name">Michael Rosedale</div>
+              <div class="firms-member__detail--location">Florence, AL</div>
+            </div>
+          </div>
+          <div class="firms-member__rating">
+            <div class="firms-member__rating--member-type">Premium Member</div>
+            <div class="firms-member__rating--group">
+              <div class="firms-member__rating--stars">
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-empty.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-empty.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+              </div>
+              <div class="firms-member__rating--reviews">2 reviews</div>
+            </div>
+          </div>
+          <div class="firms-member__button">
+            <div class="firms-member__button--btn btn firms-btn firms-btn2">
+              View profile
+            </div>
+          </div>
+        </div>
+        <div class="firms-member">
+          <div class="firms-member__details">
+            <div class="firms-member__image">
+              <img
+                src="/assets/images/firms/smiler.jpg"
+                alt="member display picture"
+                class="firms-member__image--img"
+              />
+            </div>
+            <div class="firms-member__detail">
+              <div class="firms-member__detail--name">Michael Rosedale</div>
+              <div class="firms-member__detail--location">Florence, AL</div>
+            </div>
+          </div>
+          <div class="firms-member__rating">
+            <div class="firms-member__rating--member-type">Premium Member</div>
+            <div class="firms-member__rating--group">
+              <div class="firms-member__rating--stars">
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-empty.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-empty.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+              </div>
+              <div class="firms-member__rating--reviews">2 reviews</div>
+            </div>
+          </div>
+          <div class="firms-member__button">
+            <div class="firms-member__button--btn btn firms-btn firms-btn2">
+              View profile
+            </div>
+          </div>
+        </div>
+        <div class="firms-member">
+          <div class="firms-member__details">
+            <div class="firms-member__image">
+              <img
+                src="/assets/images/firms/smiler.jpg"
+                alt="member display picture"
+                class="firms-member__image--img"
+              />
+            </div>
+            <div class="firms-member__detail">
+              <div class="firms-member__detail--name">Michael Rosedale</div>
+              <div class="firms-member__detail--location">Florence, AL</div>
+            </div>
+          </div>
+          <div class="firms-member__rating">
+            <div class="firms-member__rating--member-type">Premium Member</div>
+            <div class="firms-member__rating--group">
+              <div class="firms-member__rating--stars">
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-empty.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-empty.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+              </div>
+              <div class="firms-member__rating--reviews">2 reviews</div>
+            </div>
+          </div>
+          <div class="firms-member__button">
+            <div class="firms-member__button--btn btn firms-btn firms-btn2">
+              View profile
+            </div>
+          </div>
+        </div>
+        <div class="firms-member">
+          <div class="firms-member__details">
+            <div class="firms-member__image">
+              <img
+                src="/assets/images/firms/smiler.jpg"
+                alt="member display picture"
+                class="firms-member__image--img"
+              />
+            </div>
+            <div class="firms-member__detail">
+              <div class="firms-member__detail--name">Michael Rosedale</div>
+              <div class="firms-member__detail--location">Florence, AL</div>
+            </div>
+          </div>
+          <div class="firms-member__rating">
+            <div class="firms-member__rating--member-type">Premium Member</div>
+            <div class="firms-member__rating--group">
+              <div class="firms-member__rating--stars">
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-empty.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-empty.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+              </div>
+              <div class="firms-member__rating--reviews">2 reviews</div>
+            </div>
+          </div>
+          <div class="firms-member__button">
+            <div class="firms-member__button--btn btn firms-btn firms-btn2">
+              View profile
+            </div>
+          </div>
+        </div>
+        <div class="firms-member">
+          <div class="firms-member__details">
+            <div class="firms-member__image">
+              <img
+                src="/assets/images/firms/smiler.jpg"
+                alt="member display picture"
+                class="firms-member__image--img"
+              />
+            </div>
+            <div class="firms-member__detail">
+              <div class="firms-member__detail--name">Michael Rosedale</div>
+              <div class="firms-member__detail--location">Florence, AL</div>
+            </div>
+          </div>
+          <div class="firms-member__rating">
+            <div class="firms-member__rating--member-type">Premium Member</div>
+            <div class="firms-member__rating--group">
+              <div class="firms-member__rating--stars">
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-filled.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-empty.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+                <img
+                  src="/assets/images/firms/star-empty.svg"
+                  alt="Rating"
+                  class="firms-star-rating"
+                />
+              </div>
+              <div class="firms-member__rating--reviews">2 reviews</div>
+            </div>
+          </div>
+          <div class="firms-member__button">
+            <div class="firms-member__button--btn btn firms-btn firms-btn2">
+              View profile
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="firms-pagination">
+        <div class="firms-pagination__button">
+          <button class="firms-btn">View All Alabama firms</button>
+        </div>
+        <div class="firms-pagination__info">showing 1 to 10 of 57 entries</div>
+        <div class="firms-pagination__buttons">
+          <button class="firms-btn firms-pagination__buttons-btn">
+            <span class="firms-btn-right-angle">
+              <img
+                src="/assets/images/firms/left-arrow.svg"
+                alt=""
+                class="firms-btn-right-arrow-left"
+              />
+            </span>
+            <span class="firms-pagination__buttons-txt"> Previous </span>
+          </button>
+          <button
+            class="firms-btn firms-pagination__buttons-btn firms-pagination__buttons-btn-selected"
+          >
+            1
+          </button>
+          <button class="firms-btn firms-pagination__buttons-btn">2</button>
+          <button class="firms-btn firms-pagination__buttons-btn">3</button>
+          <button class="firms-btn firms-pagination__buttons-btn">4</button>
+          <button class="firms-btn firms-pagination__buttons-btn">5</button>
+          <button class="firms-btn firms-pagination__buttons-btn">
+            <span class="firms-pagination__buttons-txt"> Next </span>
+            <span class="firms-btn-right-angle">
+              <img
+                src="/assets/images/firms/right-arrow.svg"
+                alt=""
+                class="firms-btn-right-arrow-right"
+              />
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <%- include("./partials/footer.ejs") %>
+  </body>
 </html>
