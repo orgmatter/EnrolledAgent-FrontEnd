@@ -12,7 +12,7 @@ const passwordToast = new Notyf({
   duration: 3000,
   position: {
     x: "right",
-    y: "bottom",
+    y: "top",
   },
   types: [
     {
