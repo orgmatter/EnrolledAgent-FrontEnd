@@ -12,6 +12,7 @@ module.exports = {
   LogService: require('./lib/service/logService'),
   Logger: require('./lib/utils/logger'),
   PageAnalyticsService: require('./lib/service/pageAnalytics'),
+  Permission: require('./lib/utils/permissions'),
   PubSub: require('./lib/utils/pubSub'),
   Passport: require('./lib/service/auth/passport'),
   LogAction: require('./lib/utils/logAction'),
