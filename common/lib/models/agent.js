@@ -108,6 +108,8 @@ AgentSchema.index({
   lastName: 'text',
 })
 
+
+
 AgentSchema.virtual('isClaimed')
   .get(function () {
     // console.log(this.owner, this._id,  typeof this.owner, Validator.isMongoId(String(this.owner))  )

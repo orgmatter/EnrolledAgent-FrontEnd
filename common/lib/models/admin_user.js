@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const crypto = require('crypto')
 const Constants = require('../utils/constants')
+const Permission = require('../utils/permissions')
 const uid = require('uid')
 //
 const { Schema } = mongoose
@@ -54,6 +55,7 @@ UserSchema.set('toJSON', { virtuals: true })
 
 UserSchema.virtual('permissions')
   .get(function () {
+    if(this.isSuperAdmin == true) return Object.values(Permission)
     if (this.role && this.role.permissions) return this.role.permissions
     return []
   })
