@@ -35,6 +35,7 @@ const UserSchema = new Schema({
     city: String,
     ip: String,
     imageUrl: String,
+    passwordChangedAt: Date,
     lastLogin: Date,
     providers: [{
         type: String,
@@ -44,8 +45,8 @@ const UserSchema = new Schema({
             Constants.PROVIDERS.LINKEDIN,
         ]
     }]
-},  { timestamps: true })
- 
+}, { timestamps: true })
+
 
 UserSchema.methods.setPassword = function (password) {
     this.salt = crypto.randomBytes(16).toString('hex')
