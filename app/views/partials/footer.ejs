@@ -11,7 +11,7 @@
         <div class="col-sm-4 myFooter__top-section-flex">
           <p class="transform clearfix">Services</p>
           <div class="link-div">
-            <a href="/find-agent">Find a Local Accountant</a>
+            <a href="/find-agent">Find a Local Enrolled Agent</a>
             <a href="/ea-listings">All Enrolled Agents</a>
             <!-- <a href="#">Accounting Firms</a> -->
             <a href="/ask-ea">Ask a EA</a>
@@ -83,7 +83,7 @@
   <div class="pt-20 pb-20">
     <div class="row">
       <div class="col-md-12 text-center">
-        <p class="m-0">©EnrolledAgent.com | All Rights Reserved</p>
+        <p class="m-0">EnrolledAgent.com ©<span id="footerYear"></span> | All Rights Reserved</p>
       </div>
     </div>
   </div>
@@ -93,4 +93,9 @@
 
 
 <%- include("./info.ejs") %>
+<script>
+  const footerYear = new Date;
+  const footerYearSpan = document.getElementById("footerYear");
+  footerYearSpan.textContent = footerYear.getFullYear();
+</script>
 <script src="/javascripts/newsletter.js"></script>

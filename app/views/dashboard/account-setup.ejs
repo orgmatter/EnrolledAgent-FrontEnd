@@ -3,9 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="agentCity" content=<%= locals.agentProfile && locals.agentProfile.city || "N/A"  %>  />
-    <meta name="agentState" content=<%= locals.agentProfile && locals.agentProfile.state || "N/A"  %>  />
-    <meta name="agentAddress" content=<%= locals.agentProfile && locals.agentProfile.address1|| "N/A"  %>  />
+    <meta name="agentCity" content=<%= locals.agentProfile &&
+    locals.agentProfile.city || "N/A" %> /> <meta name="agentState" content=<%=
+    locals.agentProfile && locals.agentProfile.state || "N/A" %> /> <meta
+    name="agentAddress" content=<%= locals.agentProfile &&
+    locals.agentProfile.address1|| "N/A" %> />
     <title>Document</title>
     <link
       href="/assets/files/favicon.png"
@@ -20,7 +22,10 @@
     />
 
     <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"
+    />
     <!-- CSS | Main style file -->
     <link href="/css/style-main.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
@@ -33,9 +38,7 @@
         <div class="asetup">
           <section class="asetup-head">
             <div class="asetup-head__title">My Account</div>
-            <div class="asetup-head__details">
-              Update your account details
-            </div>
+            <div class="asetup-head__details">Update your account details</div>
           </section>
           <section class="asetup-form">
             <form id="update-profile-form">
@@ -43,12 +46,9 @@
                 <div class="form__group w-100 flex">
                   <div class="avatar">
                     <div class="avatar__preview">
-                      <img
-                        id="avatar-preview"
-                        src=<%= locals.user.imageUrl || "/assets/images/avatar.webp" %> 
-                        alt="profile picture"
-                        class="avatar__preview--image"
-                      />
+                      <img id="avatar-preview" src=<%= locals.user.imageUrl ||
+                      "/assets/images/avatar.webp" %> alt="profile picture"
+                      class="avatar__preview--image" />
                     </div>
                     <div class="avatar__edit">
                       <input
@@ -61,16 +61,19 @@
                       <label class="avatar__label" for="image">
                         Change Image
                         <span class="asetup-btn avatar__label--img">
-                            <img
-                              src="/assets/images/edit2.svg"
-                              alt="edit avatar"
-                            />
+                          <img
+                            src="/assets/images/edit2.svg"
+                            alt="edit avatar"
+                          />
                         </span>
                       </label>
                       <p>File size should not be larger than 1MB</p>
                     </div>
                   </div>
-                  <button class=" asetup-btn form__button-btn asetup-form-main-btn" id="edit-btn">
+                  <button
+                    class="asetup-btn form__button-btn asetup-form-main-btn"
+                    id="edit-btn"
+                  >
                     Edit Profile
                   </button>
                 </div>
@@ -95,7 +98,9 @@
                     class="form__input disabled"
                     value=<%= locals.user.firstName %> 
                     disabled
+                    required
                   />
+                  disabled />
                 </div>
                 <div class="form__group">
                   <label for="username" class="form__label">Last Name</label>
@@ -105,7 +110,9 @@
                     class="form__input disabled"
                     value=<%= locals.user.lastName %>
                     disabled
+                    required
                   />
+                  disabled />
                 </div>
               </div>
               <div class="form__row">
@@ -117,44 +124,42 @@
                     class="form__input"
                     value=<%= locals.user.email %>
                     disabled
+                    required
                   />
+                  disabled />
                 </div>
                 <div class="form__group">
-                  <label for="account-created" class="form__label"
-                    >Account Created</label
-                  >
-                  <input
-                    type="text"
-                    id="account-created"
-                    class="form__input"
-                    value="Tuesday, November 6, 1900"
-                    disabled
+                  <label for="account-created" class="form__label">Account Created</label>
+                  <input type="text" id="account-created" class="form__input" value="Tuesday, November 6, 1900"
+                    disabled required
                   />
                 </div>
               </div>
-            
+
               <div class="form__row">
                 <div class="form__group">
-                  <button type="submit" id="submit-btn" class="asetup-btn form__button-btn asetup-form-main-btn disabled" disabled>
+                  <button
+                    type="submit"
+                    id="submit-btn"
+                    class="asetup-btn form__button-btn asetup-form-main-btn disabled"
+                    disabled
+                  >
                     Update Account
                   </button>
                 </div>
               </div>
             </form>
           </section>
+
           <% if (locals.agentProfile !== null) {%>
-            <section class="asetup-form">
+          <section class="asetup-form">
             <form id="update-agent-form">
               <div class="form__row">
                 <div class="form__group w-100 flex">
                   <div class="avatar">
                     <div class="avatar__preview">
-                      <img
-                        id="agent-avatar-preview"
-                        src=<%= locals.agentProfile.imageUrl || "/assets/images/avatar.webp" %> 
-                        alt="profile picture"
-                        class="avatar__preview--image"
-                      />
+                      <img id="agent-avatar-preview" src=<%= locals.agentProfile.imageUrl || "/assets/images/avatar.webp" %> 
+                      alt="profile picture" class="avatar__preview--image" />
                     </div>
                     <div class="avatar__edit">
                       <input
@@ -167,16 +172,19 @@
                       <label class="avatar__label" for="agent-image">
                         Change Image
                         <span class="asetup-btn avatar__label--img">
-                            <img
-                              src="/assets/images/edit2.svg"
-                              alt="edit avatar"
-                            />
+                          <img
+                            src="/assets/images/edit2.svg"
+                            alt="edit avatar"
+                          />
                         </span>
                       </label>
                       <p>File size should not be larger than 1MB</p>
                     </div>
                   </div>
-                  <button class=" asetup-btn form__button-btn asetup-form-main-btn" id="agent-edit-btn">
+                  <button
+                    class="asetup-btn form__button-btn asetup-form-main-btn"
+                    id="agent-edit-btn"
+                  >
                     Edit Profile
                   </button>
                 </div>
@@ -184,7 +192,9 @@
               <div class="form__row">
                 <div class="form__group w-100">
                   <div class="form__details">
-                    <div class="form__details--head ">Enrolled Agent Account Details</div>
+                    <div class="form__details--head">
+                      Enrolled Agent Account Details
+                    </div>
                     <div class="form__details--text">
                       View and update your Enrolled Agent account details.
                     </div>
@@ -201,6 +211,7 @@
                     class="form__input agentDisabled"
                     value=<%= locals.agentProfile.firstName || "N/A" %> 
                     disabled
+                     required
                   />
                 </div>
                 <div class="form__group">
@@ -211,6 +222,7 @@
                     class="form__input agentDisabled"
                     value=<%= locals.agentProfile.lastName || "N/A" %>
                     disabled
+                     required
                   />
                 </div>
               </div>
@@ -223,6 +235,7 @@
                     class="form__input agentDisabled"
                     value=<%= locals.agentProfile.phone || "N/A" %>
                     disabled
+                     required
                   />
                 </div>
                 <div class="form__group">
@@ -233,6 +246,7 @@
                     class="form__input agentDisabled"
                     value=<%= locals.agentProfile.zipcode || "N/A" %>
                     disabled
+                     required
                   />
                 </div>
               </div>
@@ -245,15 +259,30 @@
                     class="form__input agentDisabled"
                     value=<%= locals.agentProfile.city || "N/A" %>
                     disabled
+                     required
                   />
                 </div>
+                <div class="form__group">
+                  <label for="contactMessage" class="form__label">Allow Messages</label>
+                  <select id="contactMessage" class="form__select agentDisabled" disabled required>
+                    <option value="false" <% if(locals.agentProfile.allowContactMessage === false) { %>
+                      selected
+                    <%} %> >No</option>
+                    <option value="true" <% if(locals.agentProfile.allowContactMessage === true) { %>
+                      selected
+                    <%} %> >Yes</option>
+                  </select>
+                </div>
               </div>
-           
-              
-            
+
               <div class="form__row">
                 <div class="form__group">
-                  <button type="submit" id="agent-submit-btn" class="asetup-btn form__button-btn asetup-form-main-btn agentDisabled" disabled>
+                  <button
+                    type="submit"
+                    id="agent-submit-btn"
+                    class="asetup-btn form__button-btn asetup-form-main-btn agentDisabled"
+                    disabled
+                  >
                     Update Account
                   </button>
                 </div>
@@ -262,6 +291,30 @@
           </section>
           <%}%> 
 
+          <section class="asetup-form">
+            <div class="form__row">
+              <div class="form__details--head">
+                Change your account password
+              </div>
+            </div>
+            <form id="password-form" class="form__row">
+                
+                <div class="form__group">
+                  <label for="old-password" class="form__label">Old Password</label>
+                  <input type="text" id="old-password" class="form__input" required/>
+                </div>
+                <div class="form__group">
+                  <label for="new-password" class="form__label">New Password</label>
+                  <input type="text" id="new-password" class="form__input" required/>
+                </div>
+                <div class="form__row">
+                  <div class="form__group">
+                    <button id="password-submit-btn" class="asetup-btn form__button-btn asetup-form-main-btn">Change</button>
+                  </div>
+                </div>
+              </form>
+          </section>
+
           <% if(locals.agentProfile && locals.agentProfile.preference){ %> 
 
           <section class="asetup-form asetup-form-contact">
@@ -269,11 +322,9 @@
               <div class="form__details">
                 <div class="form__details--head">Contact Preferences</div>
                 <div class="form__details--text">
-                  Contact Preferences Provide us details regarding your contact
-                  preferences: when and how you want updates about your account
-                  details. Select a suitable contact method and the actions
-                  you'd like to receive notifications. Add a phone number to
-                  your account if you would like to receive text messages.
+                  Provide us details regarding your contact preferences: when and how you want 
+                  updates about your account details. Select a suitable contact method and the 
+                  actions you'd like to receive notifications.
                 </div>
               </div>
               <div class="help-button">
@@ -291,37 +342,58 @@
                   <div class="form__group">
                     <div class="form__input--head">Contact Me:</div>
                     <div class="checkbox-div">
-                      <input type="checkbox" id="for-review" class="form__checkbox" 
-                      checked=<%= locals.agentProfile.preference.newReview %> />
-                      <label for="for-review" class="form__label form__checkbox-label" > 
+                      <input
+                        type="checkbox"
+                        id="for-review"
+                        class="form__checkbox"
+                        checked= <%=locals.agentProfile.preference.newReview%>
+                      />
+                      <label
+                        for="for-review"
+                        class="form__label form__checkbox-label"
+                      >
                         After a customer leaves a review
                       </label>
                     </div>
                     <div class="checkbox-div">
-                      <input type="checkbox" id="for-message" class="form__checkbox" 
-                      checked=<%= locals.agentProfile.preference.messageReceived %> />
-                      <label for="for-message" class="form__label form__checkbox-label"> 
+                      <input
+                        type="checkbox"
+                        id="for-message"
+                        class="form__checkbox"
+                        checked=<%= locals.agentProfile.preference.messageReceived %>
+                      />
+                      <label
+                        for="for-message"
+                        class="form__label form__checkbox-label"
+                      >
                         When I receive a message
                       </label>
                     </div>
                     <div class="checkbox-div">
-                      <input type="checkbox" id="for-published" class="form__checkbox" 
-                      checked=<%= locals.agentProfile.preference.articlePublished %> />
+                      <input
+                        type="checkbox"
+                        id="for-published"
+                        class="form__checkbox"
+                        checked=<%= locals.agentProfile.preference.articlePublished %>
+                      />
                       <label for="for-published" class="form__label form__checkbox-label">
                         When my article is published
                       </label>
                     </div>
-                    
                   </div>
                 </div>
-                
+
                 <div class="form__row">
                   <div class="form__group">
                     <div class="form__input--head">
                       I prefer to be contacted by:
                       <span>
                         <button class="asetup-btn asetup-btn-icon">
-                          <img src="/assets/images/question.svg" alt="help" class="" />
+                          <img
+                            src="/assets/images/question.svg"
+                            alt="help"
+                            class=""
+                          />
                         </button>
                       </span>
                     </div>
@@ -331,7 +403,10 @@
                         <option value="phone">Phone</option>
                         <option value="text">Text</option>
                       </select>
-                      <label for="form-select" class="form__label form__checkbox-label"> 
+                      <label
+                        for="form-select"
+                        class="form__label form__checkbox-label"
+                      >
                         After a customer leaves a review
                       </label>
                     </div>
@@ -339,7 +414,11 @@
                 </div>
                 <div class="form__row">
                   <div class="form__group">
-                    <button type="submit" id="preferenceBtn" class="asetup-btn form__button-btn asetup-form-main-btn">
+                    <button
+                      type="submit"
+                      id="preferenceBtn"
+                      class="asetup-btn form__button-btn asetup-form-main-btn"
+                    >
                       Save Contact Preferences
                     </button>
                   </div>
@@ -347,7 +426,7 @@
               </form>
             </div>
           </section>
-          <% } %> 
+          <% } %>
         </div>
       </div>
     </div>
@@ -367,11 +446,14 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
-  integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
-  crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+      integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+      crossorigin="anonymous"
+    ></script>
     <script src="/javascripts/accountUpdate.js"></script>
     <script src="/javascripts/agentUpdate.js"></script>
+    <script src="/javascripts/changePassword.js"></script>
 <script src="/javascripts/contactPreference.js"></script>
   </body>
 </html>

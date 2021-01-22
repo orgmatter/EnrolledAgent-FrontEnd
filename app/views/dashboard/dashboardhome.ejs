@@ -22,7 +22,10 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"
+    />
     <!-- CSS | Main style file -->
     <link href="/css/style-main.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
@@ -40,10 +43,12 @@
                 <%= locals.user.firstName %> <%= locals.user.lastName %>
               </p>
               <p class="dashboard-grid-div-role">Enrolled Agents</p>
-                <div class="stars-outer" id="main-star" value=<%= locals.reviewAnalysis.avgRating || 0 %> >
-                  <div class="stars-inner"></div>
-                </div>
-              <p class="dashboard-grid-div-review"><%= locals.reviewAnalysis.count || 0%>  Reviews</p>
+              <div class="stars-outer" id="main-star" value=<%=locals.reviewAnalysis.avgRating || 0 %> >
+                <div class="stars-inner"></div>
+              </div>
+              <p class="dashboard-grid-div-review">
+                <%= locals.reviewAnalysis.count || 0%> Reviews
+              </p>
               <p class="dashboard-grid-div-service">
                 <span>Service Offered:</span> General Accounting Services
               </p>
@@ -70,57 +75,85 @@
                   <input type="text" id="zipInput" placeholder="Enter your zip code*" required />
                 </div>
                 <div class="dashboard-grid-div2-form-div2">
-                  <input type="text" id="name" placeholder="Enter last name*" required/>
+                  <input type="text" id="name" placeholder="Enter last name*" required />
                 </div>
                 <input class="dashboard-grid-div2-form-btn" type="submit" value="Claim My Profile" id="submit-btn" />
               </form>
             </div>
           </div>
           <% if(locals.agentProfile && (locals.agentProfile.premium === false)) { %>
-            <section class="dashboard-grid-div upgrade">
-              <h4>Upgrade Your Account</h4>
-              <div>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae esse dolore 
-                  rem voluptatum doloribus ratione ut neque nemo hic debitis nulla eum illum sed 
-                  beatae fugiat, reiciendis vel, repellendus voluptates!
-                </p>
-                <input type="button" value="Upgrade Now" id="upgrade-btn"/>
-              </div>
-            </section>
-            <div class="modal fade bd-example-modal-lg" id="paymentModal" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">
-                      Continue with payment
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <form id="payment-form" class="sr-payment-form">
-                    <div class="sr-combo-inputs-row">
-                      <div class="card-payment-details">
-                        <input type="text" name="fullName" id="fullName" placeholder="Full Name"/>
-                        <input type="text" name="address" id="address" placeholder="Address" class="ml-30"/>
-                      </div>
-                      <div class="sr-input sr-card-element" id="card-element"></div>
-                    </div>
-                    <div class="sr-field-error" id="card-errors" role="alert"></div>
-                    <button id="submit" type='submit'>
-                      <div class="spinner hidden" id="spinner"></div>
-                      <span id="button-text">Pay</span><span id="order-amount"></span>
-                    </button>
-                  </form>
+          <section class="dashboard-grid-div upgrade">
+            <h4>Upgrade Your Account</h4>
+            <div>
+              <p>
+               Take advantage of our powerful listing features, free tools and services to 
+               expand your practice
+              </p>
+              <input type="button" value="Upgrade Now" id="upgrade-btn" />
+            </div>
+          </section>
+          <div
+            class="modal fade bd-example-modal-lg"
+            id="paymentModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLongTitle"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">
+                    Continue with payment
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                 </div>
+                <form id="payment-form" class="sr-payment-form">
+                  <div class="sr-combo-inputs-row">
+                    <div class="card-payment-details">
+                      <input
+                        type="text"
+                        name="fullName"
+                        id="fullName"
+                        placeholder="Full Name"
+                      />
+                      <input
+                        type="text"
+                        name="address"
+                        id="address"
+                        placeholder="Address"
+                        class="ml-30"
+                      />
+                    </div>
+                    <div
+                      class="sr-input sr-card-element"
+                      id="card-element"
+                    ></div>
+                  </div>
+                  <div
+                    class="sr-field-error"
+                    id="card-errors"
+                    role="alert"
+                  ></div>
+                  <button id="submit" type="submit">
+                    <div class="spinner hidden" id="spinner"></div>
+                    <span id="button-text">Pay</span> 
+                    <span id="order-amount"></span>
+                  </button>
+                </form>
               </div>
             </div>
+          </div>
           <%}%> 
-           <%- include("../partials/resources.ejs") %>
-        
+          <%- include("../partials/resources.ejs") %>
         </section>
-       
       </div>
     </div>
     <script
@@ -142,16 +175,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
   integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
   crossorigin="anonymous"></script>
+  <script src="https://js.stripe.com/v3/"></script>
     <script>
-            const rateStars = document.querySelector("#main-star");
-            const val = rateStars.getAttribute("value");
-            const starTotal = 5;
-            
-            const starPercentage = (val / starTotal) * 100;
-            const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
+      const rateStars = document.querySelector("#main-star");
+      const val = rateStars.getAttribute("value");
+      const starTotal = 5;
 
-            rateStars.querySelector(".stars-inner").style.width = starPercentageRounded;
-          </script>
+      const starPercentage = (val / starTotal) * 100;
+      const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+
+      rateStars.querySelector(".stars-inner").style.width = starPercentageRounded;
+    </script>
     <script src="/javascripts/dashboardFindAgent.js"></script>
     <script src="/javascripts/upgrade.js"></script>
   </body>

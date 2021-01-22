@@ -62,18 +62,18 @@
                   </div>
                   <div class="question-card-flex-2">
                     <% if(!el.answer) {%> 
-                    <a href="/dashboard/submit-answer/<%= el._id %>" class="question-card-flex-2-link"
-                      >Answer Question</a
-                    >
+                    <a href="/dashboard/submit-answer/<%= el._id %>" class="question-card-flex-2-link"> 
+                      Answer Question
+                    </a>
                     <% } %> 
                   </div>
                 </div>
               </div>
-             <% }) %> 
+            </div>
+            <% }) %> 
             <%} else {%>
-              <p>No questions available. Check back later</p>
-            <%}%> 
-            
+            <p>No questions available. Check back later</p>
+            <%}%>
           </div>
         </section>
       </div>
