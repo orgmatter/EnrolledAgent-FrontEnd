@@ -85,13 +85,14 @@
       <%}%> 
     </section>
 
-    <% if(locals.agents && locals.agents.data && locals.agents.pages > 1){ %> 
+     
     <section id="bottom">
       <div class="container contain">
         <div class="row">
           <div class="col-md-3">
             <a href="/ea-listings" class="btn btn-lg b-ton b-ton-blu"> View All EAs</a>
           </div>
+          <% if(locals.agents && locals.agents.data && locals.agents.data.length > 0){ %>
           <div class="col-md-3">
             <% const { page, pages, perPage, total} = locals.agents %>
                 <p> showing
@@ -100,6 +101,8 @@
                   </span>
                 </p>
           </div>
+           <% } %> 
+          <% if(locals.agents && locals.agents.data && locals.agents.pages > 1){ %>
           <div class="col-md-6 b-tons">
             <nav class="MyPagination">
               <ul class="pagination">
@@ -107,10 +110,11 @@
               </ul>
             </nav>
           </div>
+           <% } %> 
         </div>
       </div>
     </section>
-     <% } %> 
+    
     <!-- footer section -->
     <%- include("./partials/footer.ejs") %>
     <script>

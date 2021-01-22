@@ -127,11 +127,13 @@
         <% if( typeof locals.cities !== 'undefined' && locals.cities.data && locals.cities.data.length > 0 ) { %>
           <% const { cities: {page, pages, perPage, total}, query}=locals %>
             <div class="findEA-pagination__info">showing  <%= (((page || 0) -1) * (perPage || 0))+ 1 || 0%> to  <%=  Math.min((page || 1) * (perPage || 0), total) || 0%> of <%= total || 0%> entries</div>
+             <% if( typeof locals.cities !== 'undefined' && locals.cities.data && locals.cities.pages > 1 ) { %>
             <nav class="MyPagination">
               <ul class="pagination">
                 <ul id="pagination" class="pagination-sm"></ul>
               </ul>
             </nav>
+            <% } %> 
         <% } %>
       </div>
 

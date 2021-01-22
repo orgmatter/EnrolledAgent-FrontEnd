@@ -78,21 +78,24 @@
       <% } %>
     </section>
 
-    <% if(locals.agents && locals.agents.data && locals.agents.pages > 1){ %> 
+    
     <section id="bottom">
       <div class="container contain">
         <div class="row">
           <div class="col-md-3">
             <a href="/ea-listings" class="btn btn-lg b-ton b-ton-blu"> View All EAs</a>
           </div>
-          <div class="col-md-3">
-            <% if( typeof locals.agents !=='undefined' && locals.agents) { %> 
-            <% const {perPage, pages, page, total }=locals.agents %> 
-            <% const start=(perPage * page) - perPage +1 %> 
-            <% const end=start + perPage -1 %>
-            <p>showing <%= start || 0%> to <%= end || 0%> of <%= total || 0%> entries</p>
-            <% } %>
-          </div>
+          <% if(locals.agents && locals.agents.data && locals.agents.data.length > 0){ %> 
+            <div class="col-md-3">
+              <% if( typeof locals.agents !=='undefined' && locals.agents) { %> 
+              <% const {perPage, pages, page, total }=locals.agents %> 
+              <% const start=(perPage * page) - perPage +1 %> 
+              <% const end=start + perPage -1 %>
+              <p>showing <%= start || 0%> to <%= end || 0%> of <%= total || 0%> entries</p>
+              <% } %>
+            </div>
+          <% } %> 
+          <% if(locals.agents && locals.agents.data && locals.agents.pages > 1){ %> 
           <div class="col-md-6 b-tons">
             <nav class="MyPagination">
               <ul class="pagination">
@@ -100,10 +103,11 @@
               </ul>
             </nav>
           </div>
+          <% } %> 
         </div>
       </div>
     </section>
-    <% } %> 
+    
     <!-- footer section -->
     <%- include("./partials/footer.ejs") %>
     <script src="/js/custom.js"></script>
