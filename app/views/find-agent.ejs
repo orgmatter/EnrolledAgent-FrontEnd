@@ -76,16 +76,14 @@
         </div>
         <div class="section-content team">
           <div class="row">
-            <% if(locals.popular && locals.popular.length> 0){ %> <%
-            locals.popular.map((e, id)=> { %>
+            <% if(locals.popular && locals.popular.length> 0){ %> 
+            <% locals.popular.map((e, id)=> { %>
             <div class="col-sm-6 col-md-3">
               <div class="single-member maxwidth400 mb-30">
                 <div class="team-thumb">
                   <img src=<%= e.imageUrl || "/assets/images/avatar.webp" %>
                   alt="agent-avatar" class="img-fullwidth" />
-                  <h4
-                    class="text-uppercase font-raleway text-white font-20 line-bottom-center m-0"
-                  >
+                  <h4 class="text-uppercase font-raleway text-white font-20 line-bottom-center m-0">
                     <%= e.firstName %> <%= e.lastName %>
                     <span class="text-white font-12 ml-5 small"></span>
                   </h4>
@@ -97,8 +95,7 @@
                   <div class="team-bottom-flex">
                     <div class="team-bottom-flex-div1">
                       <!-- <img src="/assets/files/stars.svg" alt="" class="img-fullwidth" /> -->
-                      <div class="stars-outer" value="<%" ="e.rating" || 0 %>
-                        >
+                      <div class="stars-outer" value=<%=e.rating || 0 %>>
                         <div class="stars-inner"></div>
                       </div>
                       <p><%= e.reviewCount %> Reviews</p>
@@ -116,10 +113,7 @@
             <a href="/find-agent" class="team-link"
               >Find More Local EAs
               <span class="">
-                <img
-                  src="/assets/images/ccenter/right-arrow-white.svg"
-                  class="ccenter-btn-right-arrow"
-                />
+                <img src="/assets/images/ccenter/right-arrow-white.svg" class="ccenter-btn-right-arrow" />
               </span>
             </a>
           </div>

@@ -89,19 +89,19 @@ function removeURLParameter(url, parameter) {
   //   // window.location.search = search
   // });
 
-  const handlePageLength = (() => {
-    if (pages === 1) {
-      resNum.textContent = `1 - ${data.length}`;
-    } else if (pages > 1) {
-      const multiplier = (+page - 1) * 10;
-      const startNum = 1 + multiplier;
-      const endNum = +data.length;
-      resNum.textContent = `${startNum} - ${endNum}`;
-      // console.log("start", startNum);
-      // console.log("end", endNum);
-      // console.log(">>>", data.length);
-    }
-  })();
+  // const handlePageLength = (() => {
+  //   if (pages === 1) {
+  //     resNum.textContent = `1 - ${data.length}`;
+  //   } else if (pages > 1) {
+  //     const multiplier = (+page - 1) * 10;
+  //     const startNum = 1 + multiplier;
+  //     const endNum = +data.length;
+  //     resNum.textContent = `${startNum} - ${endNum}`;
+  //     // console.log("start", startNum);
+  //     // console.log("end", endNum);
+  //     // console.log(">>>", data.length);
+  //   }
+  // })();
 
   const addSuffix = () => {
     const search = window.location.search || "?page-1";

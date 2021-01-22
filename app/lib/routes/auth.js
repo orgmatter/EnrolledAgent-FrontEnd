@@ -24,7 +24,14 @@ router
         PageAnalyticsService.inc('/logout')
     })
     .get("/reset/:token", passwordResetLink)
-    .get("/reset-password", passwordResetPage)
+    .get("/reset-password", passwordResetPage, (req, res) => {
+        res.render("resetPassword", { locals: req.locals });
+        PageAnalyticsService.inc('/reset-password')
+    })
+    .get("/forgot-password", (req, res) => {
+        res.render("forgotPassword", { locals: req.locals });
+        PageAnalyticsService.inc('/forgot-password')
+    })
     .get("/login", setRedirectCookie, (req, res) => {
         res.render("login", { locals: req.locals });
         PageAnalyticsService.inc('/login')
