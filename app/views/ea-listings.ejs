@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <%- include("./partials/head.ejs") %>
+  <meta
+    name="pages"
+    content="<%= (locals.agents && locals.agents.pages)? locals.agents.pages : '' %> "
+  />
+  <meta
+    name="data"
+    content="<%= (locals.agents && locals.agents.pages)? locals.agents.data : ''%> "
+  />
+  <meta
+    name="page"
+    content="<%= (locals.agents && locals.agents.pages)? locals.agents.page : '' %> "
+  />
 
   <body onload="onload()" id="ea-listings">
     <%- include("./partials/header.ejs") %>
@@ -66,6 +78,7 @@
       <% } %>
     </section>
 
+    <% if(locals.agents && locals.agents.data && locals.agents.pages > 1){ %> 
     <section id="bottom">
       <div class="container contain">
         <div class="row">
@@ -80,15 +93,17 @@
             <p>showing <%= start || 0%> to <%= end || 0%> of <%= total || 0%> entries</p>
             <% } %>
           </div>
-          <!-- <div class="col-md-6 b-tons"> -->
-          <% if( typeof locals.agents !=='undefined' ) { %> 
-          <% const { agents: {page, pages},query}=locals %> 
-          <%- include("./partials/pagination.ejs", {page, pages, query }) %> 
-          <%}%>
-          
+          <div class="col-md-6 b-tons">
+            <nav class="MyPagination">
+              <ul class="pagination">
+                <ul id="pagination" class="pagination-sm"></ul>
+              </ul>
+            </nav>
+          </div>
         </div>
       </div>
     </section>
+    <% } %> 
     <!-- footer section -->
     <%- include("./partials/footer.ejs") %>
     <script src="/js/custom.js"></script>
@@ -112,5 +127,7 @@
         // console.log(_search)
       }
     </script>
+    <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
+    <script src="/javascripts/pagination.js"></script>
   </body>
 </html>

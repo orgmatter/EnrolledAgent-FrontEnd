@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <%- include("./partials/head.ejs") %>
-  
+      <meta
+    name="pages"
+    content="<%= (locals.resource && locals.resource.pages)? locals.resource.pages : '' %> "
+  />
+  <meta
+    name="data"
+    content="<%= (locals.resource && locals.resource.pages)? locals.resource.data : ''%> "
+  />
+  <meta
+    name="page"
+    content="<%= (locals.resource && locals.resource.pages)? locals.resource.page : '' %> "
+  />
 
   <body class="category-page">
     <div id="tax">
@@ -24,9 +35,7 @@
       <img src="<%= imageUrl %>" alt="broken">
       </div>
     
-      <h3>
-        Excepteur sint occaecat cupidatat.
-      </h3>
+      <h3><%= title %></h3>
       <% if(category && category.name){ %>
         <a href="/resource/<%= category.slug %>"> <small style="color: tomato;"><%= category.name %></small></a>
         <% }%>
@@ -44,35 +53,30 @@
        <p>No resources found</p>
       </div>
     <% } %>
-    
-  
-
-   
-    <!-- end of row -->
-  </div>
-  <div class="pagination text-center">
-    <div class="pagination__left"><a href="#"><</a></div>
-    <div class="pagination__right"><a href="#">></a></div>
   </div>
 </div>
 <section id="bottom">
   <div class="container contain">
-    <div class="row">
-     
-      <div class="col-md-12 text-center">
-        <% if( typeof locals.resource !=='undefined' && locals.resource) { %> 
-        <% const {perPage, pages, page, total } = locals.resource %> 
-        <% const start=(perPage * page) - perPage +1 %> 
-        <% const end=start + perPage -1 %>
-        <p>showing <%= start || 0%> to <%= Math.min(total || 0, end || 0) %> of <%= total || 0%> entries</p>
-        <% } %>
-        <% if( typeof locals.resource !=='undefined' ) { %> 
-          <% const { resource: {page, pages}, query}=locals %> 
-          <%- include("./partials/pagination.ejs", {page, pages, query }) %> 
-          <% } %>
+    <% if( typeof locals.resource !=='undefined' && locals.resource && locals.resource.data.length > 0) { %> 
+      <div class="row">
+        <div class="col-md-3 text-center">
+            <% const {perPage, pages, page, total } = locals.resource %> 
+            <% const start=(perPage * page) - perPage +1 %> 
+            <% const end=start + perPage -1 %>
+            <p>Showing <%= start || 0%> to <%= Math.min(total || 0, end || 0) %> 
+              of <%= total || 0%> resources.
+            </p> 
+        </div>
+        
+        <div class="col-md-9 text-center">
+          <nav class="MyPagination">
+            <ul class="pagination">
+              <ul id="pagination" class="pagination-sm"></ul>
+            </ul>
+          </nav> 
+        </div>
       </div>
-      
-  </div>
+    <% } %>
   </div>
 </section>
 
@@ -134,6 +138,8 @@
     integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
     crossorigin="anonymous"></script>
           <script type="text/javascript" src="/javascripts/contact.js"></script>
+          <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
+          <script src="/javascripts/pagination.js"></script>
      <script src="/js/custom.js"></script>
     </body>
   </html>
