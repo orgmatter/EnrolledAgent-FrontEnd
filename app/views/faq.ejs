@@ -56,20 +56,21 @@
     </section>
      
     
-    <% if(locals.faqs && locals.faqs.data && locals.faqs.pages > 1){ %> 
+   
     <section id="bottom">
       <div class="container contain">
         <div class="row">
+          <% if(locals.faqs && locals.faqs.data && locals.faqs.data.length > 0){ %> 
           <div class="col-md-3">
-            
               <% const { page, pages, perPage, total} = locals.faqs %>
-                <p> showing
+                <p> Showing
                   <span id="resNumber"> <%= (((page || 0) -1) * (perPage || 0))+ 1 || 0%> to 
                     <%= Math.min((page || 1) * (perPage || 0), total) || 0%> of <%= total || 0%> entries
                   </span>
-                </p>
-            
+                </p>  
           </div>
+          <% } %> 
+           <% if(locals.faqs && locals.faqs.data && locals.faqs.pages > 1){ %> 
           <div class="col-md-9">
             <nav class="MyPagination">
               <ul class="pagination">
@@ -77,11 +78,12 @@
               </ul>
             </nav>
           </div>
+          <% } %> 
           <!-- <div class="col-md-6 b-tons"> -->
         </div>
       </div>
     </section>
-    <% } %> 
+    
     <!-- footer section -->
     <%- include("./partials/footer.ejs") %>
     <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
