@@ -67,7 +67,7 @@
               of <%= total || 0%> resources.
             </p> 
         </div>
-        
+        <% if( typeof locals.resource !=='undefined' && locals.resource && locals.resource.pages > 1) { %>
         <div class="col-md-9 text-center">
           <nav class="MyPagination">
             <ul class="pagination">
@@ -75,6 +75,7 @@
             </ul>
           </nav> 
         </div>
+        <% } %>
       </div>
     <% } %>
   </div>

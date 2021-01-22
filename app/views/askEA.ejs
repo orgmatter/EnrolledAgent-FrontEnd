@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <%- include("./partials/head.ejs") %>
+    <meta
+    name="pages"
+    content="<%= (locals.questions && locals.questions.pages)? locals.questions.pages : '' %> "
+  />
+  <meta
+    name="data"
+    content="<%= (locals.questions && locals.questions.pages)? locals.questions.data : ''%> "
+  />
+  <meta
+    name="page"
+    content="<%= (locals.questions && locals.questions.pages)? locals.questions.page : '' %> "
+  />
   <body>
     <%- include("./partials/header.ejs") %>
     <div class="category">
@@ -61,11 +73,28 @@
         </div>
       </section>
       <section class="category_nav">
-        <div class="category_nav-div">
-          <img src="/assets/files/down-arrow-small.svg" alt="previous-button" />
-        </div>
-        <div class="category_nav-div2">
-          <img src="/assets/files/down-arrow-small.svg" alt="next-button" />
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3">
+              <% const { questions: {page, pages, perPage, total}} = locals %>
+            <p> Showing
+              <span id="resNumber"> <%= (((page || 0) -1) * (perPage || 0))+ 1 || 0%> to 
+                <%= Math.min((page || 1) * (perPage || 0), total) || 0%> of <%= total || 0%> entries
+              </span>
+            </p>
+            </div>
+            <% if(locals.questions && locals.questions.data && locals.questions.pages > 1){ %> 
+            <div class="col-md-9">
+              <div class="col-md-6 b-tons">
+                <nav class="MyPagination">
+                  <ul class="pagination">
+                    <ul id="pagination" class="pagination-sm"></ul>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+            <% } %> 
+          </div>
         </div>
       </section>
     </div>
