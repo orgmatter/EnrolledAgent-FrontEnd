@@ -58,7 +58,7 @@ router
     ArticleController.latest, (req, res) => {
       res.render("blog", { locals: req.locals });
       PageAnalyticsService.inc('/blog')
-      Log.info("articles>>>",  req.locals);
+      Log.info("articles>>>",  req.locals.articles.data);
     })
   .get("/blog/:id", ArticleController.get, (req, res) => {
     res.render("singleBlog", { locals: req.locals });

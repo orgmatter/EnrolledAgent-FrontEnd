@@ -82,6 +82,9 @@ section#home {
         &-image {
           max-width: 200px;
           max-height: 50px;
+          width: 200px;
+          height: 50px;
+          object-fit: cover;
         }
         &-topic {
           margin: 15px 0 8px;
@@ -89,6 +92,7 @@ section#home {
           font-weight: 600;
           font-family: Arial;
           line-height: 28px;
+          font-size: 20px;
         }
         &-desc {
           letter-spacing: 0px;
@@ -96,12 +100,16 @@ section#home {
           font-size: 15px;
           line-height: 20px;
           margin-bottom: 20px;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
         }
         &-btn{
           height: 40px;
           border-radius: 5px;
           color: $main-blue;
-          padding: 0 30px;
+          
         }
         .arrow {
           background: #086cef;
