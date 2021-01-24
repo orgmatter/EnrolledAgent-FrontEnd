@@ -27,6 +27,7 @@
       </section>
       <section class="category_grid">
         <div class="category_grid-main">
+          <% if (locals.questions && locals.questions.data && locals.questions.data.length > 0) {%> 
           <% locals.questions && locals.questions.data.map((el, id)=> { %>
             <div class="category_grid-main-div">
             <div class="category_grid-main-div-meta">
@@ -45,7 +46,9 @@
             </div>
           </div>
           <% }) %> 
-          
+          <% } else { %>
+            <p style="text-align: center;">No questions available. <a href="new-question">Be the first to ask a question</a></p>
+         <% } %> 
         </div>
         <div class="category_grid-side">
           <div class="category_grid-side-ads">
@@ -99,6 +102,8 @@
       </section>
     </div>
     <%- include("./partials/footer.ejs") %>
+    <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
+    <script src="/javascripts/pagination.js"></script>
     <script src="/js/custom.js"></script>
   </body>
 </html>

@@ -31,7 +31,7 @@
             <div class="blog__main--article">
               <div class="blog__main--article-name">
                 <span class="blog-color-text-sky"><%= locals.featuredArticle.category.name %></span> / 
-                <%- locals.moment(locals.featuredArticle.createdAt).format("MMM D, YYYY") %> / By EnrolledAgent
+                <%- locals.moment(locals.featuredArticle.createdAt).format("MMM D, YYYY") %> / By <%= locals.featuredArticle.author || "" %>
               </div>
               <div class="blog__main--article-head"><%= locals.featuredArticle.title %> </div>
               <hr id="article-rule" class="blog__main--article-underline" />
@@ -59,7 +59,7 @@
               </div>
               <div class="blog__article--head"><%= e.title || "N/A"%></div>
               <div class="blog__article--details">
-                <span style="color: #5082f6">Lorem ipsum</span> / <%- locals.moment(e.createdAt).format("MMM DD, YYYY") %> / By <%= e.author || "Enrolled Agents"%>
+                <span style="color: #5082f6"><%= e.category.name|| "N/A"%></span> / <%- locals.moment(e.createdAt).format("MMM DD, YYYY") %> / By <%= e.author || "Enrolled Agents"%>
               </div>
               <div class="blog__article--body"><%- e.body || "N/A"%></div>
               <div class="blog__article--button">
