@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="pages"
+      content="<%= (locals.agentMessage && locals.agentMessage.pages)? locals.agentMessage.pages : '' %> " />
+  <meta name="data"
+    content="<%= (locals.agentMessage && locals.agentMessage.pages)? locals.agentMessage.data : ''%> " />
+  <meta name="page"
+    content="<%= (locals.agentMessage && locals.agentMessage.pages)? locals.agentMessage.page : '' %> " />
     <title>Document</title>
     <link
       href="/assets/files/favicon.png"
@@ -48,6 +54,32 @@
 
             <hr />
          <% }) %> 
+         <section id="bottom">
+            <div class="container contain">
+              <div class="row">
+                <% if(locals.agentMessage && locals.agentMessage.data && locals.agentMessage.data.length > 0){ %> 
+                <div class="col-md-3">
+                    <% const { page, pages, perPage, total} = locals.agentMessage %>
+                      <p> Showing
+                        <span id="resNumber"> <%= (((page || 0) -1) * (perPage || 0))+ 1 || 0%> to 
+                          <%= Math.min((page || 1) * (perPage || 0), total) || 0%> of <%= total || 0%> entries
+                        </span>
+                      </p>  
+                </div>
+                <% } %> 
+                <% if(locals.agentMessage && locals.agentMessage.data && locals.agentMessage.pages > 1){ %> 
+                <div class="col-md-9">
+                  <nav class="MyPagination">
+                    <ul class="pagination">
+                      <ul id="pagination" class="pagination-sm"></ul>
+                    </ul>
+                  </nav>
+                </div>
+                <% } %> 
+                <!-- <div class="col-md-6 b-tons"> -->
+              </div>
+            </div>
+          </section>
         <%} else {%>
           <p style="text-align: center;">You do not have any message</p>
         <%}%> 
@@ -65,6 +97,7 @@
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
     
- 
+ <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
+    <script src="/javascripts/pagination.js"></script>
   </body>
 </html>

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { user } = require("../controllers/auth");
 const ContactController = require("../controllers/contact");
+const FaqController = require("../controllers/faq")
 const ResourceController = require("../controllers/resource");
 const ArticleController = require("../controllers/article");
 const AgentController = require("../controllers/agent");
@@ -53,7 +54,7 @@ router
         PageAnalyticsService.inc('/dashboard/my-articles')
         Log.info("articles>>>", req.locals);
     })
-    .get("/account-settings", user, AgentController.profile, AgentController.profile, (req, res) => {
+    .get("/account-settings", user, AgentController.profile, (req, res) => {
         res.render("dashboard/account-setup", {
             locals: req.locals,
             page_name: "account",
@@ -63,13 +64,14 @@ router
         Log.info("req.locals", req.locals.agentProfile);
     })
 
-    .get("/help", user, AgentController.profile, (req, res) => {
+    .get("/help", user, AgentController.profile, FaqController.getAll, (req, res) => {
         res.render("dashboard/faqs", {
             locals: req.locals,
             page_name: "help",
             sub_page_name: "help",
         });
         PageAnalyticsService.inc('/dashboard/help')
+        Log.info("req.locals", req.locals);
     })
     .get("/submit-answer/:id", user, AgentController.profile, QuestionController.get, (req, res) => {
         res.render("dashboard/submitAnswer", {

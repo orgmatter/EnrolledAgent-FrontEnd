@@ -85,8 +85,8 @@
       }
       &--text {
         margin-bottom: 30px;
-        font-weight: 600;
-        font-size: 1.2rem;
+        font-size: 22px;
+        // color: #bfbfbf;
       }
     }
   }
@@ -115,8 +115,6 @@
     }
     &__group {
       width: 300px;
-    }
-    &__item {
     }
   }
   &-pagination {
