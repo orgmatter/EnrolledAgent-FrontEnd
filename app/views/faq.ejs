@@ -39,14 +39,14 @@
         </div>
       </div>
     </section>
-
+ 
     <section id="premium" class="container">
       <% if( typeof locals.faqs !=='undefined' && locals.faqs.data && locals.faqs.data.length > 0) { %> 
       <% locals.faqs.data.map((e,id)=> { %> 
       <% const {title, message } = e %>
       <div class="row premium-box mb-30">
        <h4><%= title %> </h4>
-       <p><%= message %> </p>
+       <p><%- message %> </p>
       </div>
       <% })} else { %>
       <div>
