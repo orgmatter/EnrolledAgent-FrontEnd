@@ -197,7 +197,7 @@ class UserController extends BaseController {
       // console.log(user, token)
 
       const name = `${user.firstName} ${user.lastName}`
-      const link = `${process.env.ADMIN_URL}/reset/${token}`
+      const link = `${process.env.ADMIN_URL}/auth/reset/${token}`
 
       new MailService().sendMail(
         {
