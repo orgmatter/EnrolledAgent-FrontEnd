@@ -48,6 +48,9 @@
             display: block;
             color: #fff;
             line-height: 30px;
+            &:hover{
+              color: $main-lightblue;
+            }
           }
         }
       }
