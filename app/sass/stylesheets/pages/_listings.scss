@@ -69,7 +69,7 @@ body {
     top: 0;
     width: 100%;
     height: 898px;
-    background: url("/assets/images/bg1.png") top center no-repeat,
+    background: url("/assets/images/bg1.webp") top center no-repeat,
       url("/assets/images/bg2.png") top center no-repeat;
     background-blend-mode: multiply;
     background-size: cover;
@@ -244,7 +244,7 @@ body {
   }
 
   .card-deck_bg-image:hover {
-    background: url("/assets/images/bg1.png") top center no-repeat, #1775fa;
+    background: url("/assets/images/bg1.webp") top center no-repeat, #1775fa;
     background-blend-mode: multiply;
     background-size: cover;
     color: #ffffff;
