@@ -94,10 +94,11 @@
                 <h4>Category<span>*</span></h4>
                 <select name="articleCategory" id="articleCategory" required>
                   <option selected disabled>Select an article category</option>
-                  <% if (locals.articleCategory.length > 0) { %> <%
-                  locals.articleCategory.map((el, id) => { %>
-                  <option value="<%" ="el._id" %>><%= el.name %></option>
-                  <% }) %> <%}%>
+                  <% if (locals.articleCategory.length > 0) { %> 
+                  <% locals.articleCategory.map((el, id) => { %>
+                  <option value="<%= el._id %>" > <%= el.name %></option>
+                  <% }) %> 
+                  <%}%>
                 </select>
               </div>
               <div class="createArticle_middle-field">
