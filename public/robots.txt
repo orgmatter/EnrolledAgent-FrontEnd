@@ -1,0 +1,8 @@
+# start of file
+user-agent: *
+disallow: /assets/
+disallow: /css/
+disallow: /js/
+disallow: /javascript/
+disallow: /stylesheets/
+disallow: /fonts/ 
