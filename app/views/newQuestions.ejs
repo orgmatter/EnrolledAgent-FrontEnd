@@ -14,11 +14,11 @@
   </head>
   <body class="">
     <%- include("./partials/header.ejs") %>
-    <section class="container-fluid category_jumbotron">
+    <section class="container-fluid category_jumbotron newQuestionJumbo">
         <div class="row">
-          <div class="col-12 category_jumbotron-div">
+          <div class="col-12 category_jumbotron-div ">
             <h2>Submit Your Question</h2>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
+            <p>Need professional help with a specific issue or have general tax <br />questions? Feel free to reach out</p>
             <a href="/ask-ea">View Previous Questions</a>
           </div>
         </div>
@@ -139,7 +139,7 @@
       <div class="category_grid-side right-side col-md-3">
         
         <div class="category_grid-side-ads">
-          <img src="/assets/files/13061.png" alt="enrolled-agent" />
+          <img src="/assets/files/13061.webp" alt="enrolled-agent" />
         </div>
         <div class="category_grid-side-recent">
           <h4>Recent Articles</h4>
@@ -149,7 +149,7 @@
                   <a href="/blog/<%= el._id %>">
                     <h5 style="font-weight: bold;" class="mb-10"><%= el.title %></h5>
                     <p class="category_grid-side-recent-div-truncate"> <%- el.body %></p>
-                    <p class="category_grid-side-recent-div-bold"><%- locals.moment(el.createdAt).format("MMM DD, YYYY") %></p>
+                    <p class="category_grid-side-recent-div-bold"><%- locals.dayjs(el.createdAt).format("MMM DD, YYYY") %></p>
                   </a>
                 </div>
               <% }) %> 

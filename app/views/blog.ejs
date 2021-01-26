@@ -7,6 +7,18 @@
       href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap"
       rel="stylesheet"
     />
+      <meta
+    name="pages"
+    content="<%= (locals.articles && locals.articles.pages)? locals.articles.pages : '' %> "
+  />
+  <meta
+    name="data"
+    content="<%= (locals.articles && locals.articles.pages)? locals.articles.data : ''%> "
+  />
+  <meta
+    name="page"
+    content="<%= (locals.articles && locals.articles.pages)? locals.articles.page : '' %> "
+  />
     <%- include("./partials/head.ejs") %>
   </head>
   <body>
@@ -19,7 +31,7 @@
             <div class="blog__main--article">
               <div class="blog__main--article-name">
                 <span class="blog-color-text-sky"><%= locals.featuredArticle.category.name %></span> / 
-                <%- locals.moment(locals.featuredArticle.createdAt).format("MMM D, YYYY") %> / By EnrolledAgent
+                <%- locals.dayjs(locals.featuredArticle.createdAt).format("MMM D, YYYY") %> / By <%= locals.featuredArticle.author || "" %>
               </div>
               <div class="blog__main--article-head"><%= locals.featuredArticle.title %> </div>
               <hr id="article-rule" class="blog__main--article-underline" />
@@ -34,7 +46,7 @@
           <div class="blog__articles--head">
             <div class="blog__articles--head-item">
               <div class="blog__articles--head-head">Latest Articles</div>
-              <div class="blog__articles--head-text">Lorem ipsum dolor sit amet, conse</div>
+              <div class="blog__articles--head-text">Interesting articles on tax-related issues and finance</div>
             </div>
             <hr class="blog__articles--head-rule" />
           </div>
@@ -47,7 +59,7 @@
               </div>
               <div class="blog__article--head"><%= e.title || "N/A"%></div>
               <div class="blog__article--details">
-                <span style="color: #5082f6">Lorem ipsum</span> / <%- locals.moment(e.createdAt).format("MMM DD, YYYY") %> / By <%= e.author || "Enrolled Agents"%>
+                <span style="color: #5082f6"><%= e.category.name|| "N/A"%></span> / <%- locals.dayjs(e.createdAt).format("MMM DD, YYYY") %> / By <%= e.author || "Enrolled Agents"%>
               </div>
               <div class="blog__article--body"><%- e.body || "N/A"%></div>
               <div class="blog__article--button">
@@ -61,19 +73,31 @@
               </div>
             </div>
             <% }) %>
-
-            <div class="blog__scroll">
-              <button class="blog__scroll--btn blog__scroll--btn-left">
-                <img src="/assets/images/blog/left-arrow.svg" class="blog-btn" />
-              </button>
-              <button class="blog__scroll--btn blog__scroll--btn-right">
-                <img src="/assets/images/blog/right-arrow.svg" class="blog-btn" />
-              </button>
-            </div>
           </div>
           <%} else { %>
           <p>No articles available</p>
           <%}%>
+          <div class="row">
+              <% if(locals.articles && locals.articles.data && locals.articles.data.length > 0){ %>
+              <div class="col-md-3">
+                <% const { page, pages, perPage, total} = locals.articles %>
+                    <p> showing
+                      <span id="resNumber"> <%= (((page || 0) -1) * (perPage || 0))+ 1 || 0%> to 
+                        <%= Math.min((page || 1) * (perPage || 0), total) || 0%> of <%= total || 0%> entries
+                      </span>
+                    </p>
+              </div>
+              <% } %> 
+              <% if(locals.articles && locals.articles.data && locals.articles.pages > 1){ %>
+              <div class="col-md-9 b-tons">
+                <nav class="MyPagination">
+                  <ul class="pagination">
+                    <ul id="pagination" class="pagination-sm"></ul>
+                  </ul>
+                </nav>
+              </div>
+              <% } %> 
+            </div>
         </div>
       </div>
       <div class="blog__sidebar">
@@ -96,7 +120,7 @@
               <div class="blog__news--text">
                 <div class="blog__news--text-head"><%= el.title %> </div>
                 <div class="blog__news--text-details">
-                  <span class="blog-color-text-sky"><%= el.category.name || "N/A" %> </span> / <%- locals.moment(el.createdAt).format("MMM DD, YYYY") %> / By Enrolled Agents 
+                  <span class="blog-color-text-sky"><%= el.category.name || "N/A" %> </span> / <%- locals.dayjs(el.createdAt).format("MMM DD, YYYY") %> / By Enrolled Agents 
                 </div>
               </div>
             </a>
@@ -106,14 +130,6 @@
           <p>No articles available</p>
           <%}%>
           </div>
-          <!-- <div class="blog__scroll">
-            <button class="blog__scroll--btn blog__scroll--btn-left">
-              <img src="/assets/images/blog/left-arrow.svg" class="blog-btn" />
-            </button>
-            <button class="blog__scroll--btn blog__scroll--btn-right">
-              <img src="/assets/images/blog/right-arrow.svg" class="blog-btn" />
-            </button>
-          </div> -->
         </div>
         <div class="blog__sidebar--section blog__sidebar--section-head">
           <div class="blog__sidebar--head">
@@ -162,89 +178,15 @@
               <div class="blog__ad--text">Lorem ipsum dolor</div>
             </div>
           </div>
-          <div class="blog__scroll">
-            <button class="blog__scroll--btn blog__scroll--btn-left">
-              <img src="/assets/images/blog/left-arrow.svg" class="blog-btn" />
-            </button>
-            <button class="blog__scroll--btn blog__scroll--btn-right">
-              <img src="/assets/images/blog/right-arrow.svg" class="blog-btn" />
-            </button>
-          </div>
+          
         </div>
-        <div class="blog__sidebar--section blog__sidebar--section-head">
-          <div class="blog__sidebar--head">
-            <div class="blog__sidebar--head-text">Latest Comments</div>
-            <hr class="blog__sidebar--head-rule" />
-          </div>
 
-          <div class="blog__comment">
-            <div class="blog__comment--info">
-              <img
-                src="/assets/images/blog/commenter.png"
-                alt=""
-                class="blog__comment--info-commenter-img"
-              />
-              <span class="blog__comment--info-nomage">
-                <span class="blog__comment--info-commenter-name">Michael Rosedale</span> on
-                <span class="blog__comment--info-date">Nov 1 2020</span>
-              </span>
-            </div>
-            <div class="blog__comment--text">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-            </div>
-          </div>
 
-          <div class="blog__scroll">
-            <button class="blog__scroll--btn blog__scroll--btn-left">
-              <img src="/assets/images/blog/left-arrow.svg" class="blog-btn" />
-            </button>
-            <button class="blog__scroll--btn blog__scroll--btn-right">
-              <img src="/assets/images/blog/right-arrow.svg" class="blog-btn" />
-            </button>
-          </div>
-        </div>
-        <!-- <div class="blog__sidebar--section blog__sidebar--section-head">
-          <div class="blog__social--section">
-            <div class="blog__social">
-              <div class="blog__social--image">
-                <img src="/assets/images/blog/twitter.svg" alt="" class="blog__social--image-img" />
-              </div>
-              <div class="blog__social--details">
-                <div class="blog__social--details-head">12345</div>
-                <div class="blog__social--details-text">Followers</div>
-              </div>
-            </div>
-            <div class="blog__social">
-              <div class="blog__social--image">
-                <img
-                  src="/assets/images/blog/facebook.svg"
-                  alt=""
-                  class="blog__social--image-img"
-                />
-              </div>
-              <div class="blog__social--details">
-                <div class="blog__social--details-head">12345</div>
-                <div class="blog__social--details-text">Followers</div>
-              </div>
-            </div>
-            <div class="blog__social">
-              <div class="blog__social--image">
-                <img
-                  src="/assets/images/blog/instagram.svg"
-                  alt=""
-                  class="blog__social--image-img"
-                />
-              </div>
-              <div class="blog__social--details">
-                <div class="blog__social--details-head">12345</div>
-                <div class="blog__social--details-text">Followers</div>
-              </div>
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
     <%- include("./partials/footer.ejs") %>
+    <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
+    <script src="/javascripts/pagination.js"></script>
     <script type="text/javascript" src="/js/blog-page.js"></script>
     <script src="/js/custom.js"></script>
   </body>

@@ -9,6 +9,7 @@ const phone = document.getElementById("phone");
 // const address = document.getElementById("address");
 const city = document.getElementById("city");
 // const state = document.getElementById("state");
+const contactMessage = document.getElementById("contactMessage");
 const agentEditBtn = document.getElementById("agent-edit-btn");
 const agentImageInput = document.getElementById("agent-image");
 const agentImage = document.getElementById("agent-avatar-preview");
@@ -86,6 +87,7 @@ const handleAgentSubmit = (e) => {
     avatar: agentImageInput.files[0] || null,
     zipcode: zipCode.value,
     phone: phone.value,
+    allowContactMessage: contactMessage.value,
     // address: address.value,
     city: city.value,
     // state: state.value,
@@ -107,6 +109,7 @@ const getAgentFormData = (data) => {
   agentFormData.set('lastName', data.lastName);
   agentFormData.set('zipcode', data.zipcode);
   agentFormData.set('phone', data.phone);
+  agentFormData.set('allowContactMessage', data.allowContactMessage);
 //   agentFormData.set('address', data.address);
   agentFormData.set('city', data.city);
 //   agentFormData.set('state', data.state);

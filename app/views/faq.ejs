@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <%- include("./partials/head.ejs") %>
+  <meta
+    name="pages"
+    content="<%= (locals.faqs && locals.faqs.pages)? locals.faqs.pages : '' %> "
+  />
+  <meta
+    name="data"
+    content="<%= (locals.faqs && locals.faqs.pages)? locals.faqs.data : ''%> "
+  />
+  <meta
+    name="page"
+    content="<%= (locals.faqs && locals.faqs.pages)? locals.faqs.page : '' %> "
+  />
+
+  <body onload="onload()" id="ea-listings">
+    <%- include("./partials/header.ejs") %>
+
+    <section id="ea-listings-top">
+      <div class="container">
+        <h1>Frequently Asked Questions</h1>
+        <p>Browse through our list of frequently asked questions</p>
+      </div>
+    </section>
+
+      <section id="input">
+        <div class="container">
+          <div class="row">
+            <div class="row-1.col-md-4"> 
+              <div class="input-text col-md-8">
+                <p>search:</p>
+                <input type="text" name="search" id="search" />
+                <button onclick="search()" class="btn btn-lg b-ton b-ton-blu"> Search</button>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+    <section id="premium" class="container">
+      <% if( typeof locals.faqs !=='undefined' && locals.faqs.data && locals.faqs.data.length > 0) { %> 
+      <% locals.faqs.data.map((e,id)=> { %> 
+      <% const {title, message } = e %>
+      <div class="row premium-box mb-30">
+       <h4><%= title %> </h4>
+       <p><%- message %> </p>
+      </div>
+      <% })} else { %>
+      <div>
+        <p>There were 0 results found for your search critera.</p>
+      </div>
+      <% } %>
+    </section>
+     
+    
+   
+    <section id="bottom">
+      <div class="container contain">
+        <div class="row">
+          <% if(locals.faqs && locals.faqs.data && locals.faqs.data.length > 0){ %> 
+          <div class="col-md-3">
+              <% const { page, pages, perPage, total} = locals.faqs %>
+                <p> Showing
+                  <span id="resNumber"> <%= (((page || 0) -1) * (perPage || 0))+ 1 || 0%> to 
+                    <%= Math.min((page || 1) * (perPage || 0), total) || 0%> of <%= total || 0%> entries
+                  </span>
+                </p>  
+          </div>
+          <% } %> 
+           <% if(locals.faqs && locals.faqs.data && locals.faqs.pages > 1){ %> 
+          <div class="col-md-9">
+            <nav class="MyPagination">
+              <ul class="pagination">
+                <ul id="pagination" class="pagination-sm"></ul>
+              </ul>
+            </nav>
+          </div>
+          <% } %> 
+          <!-- <div class="col-md-6 b-tons"> -->
+        </div>
+      </div>
+    </section>
+    
+    <!-- footer section -->
+    <%- include("./partials/footer.ejs") %>
+    <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
+    <script src="/javascripts/pagination.js"></script>
+    <script src="/js/custom.js"></script>
+
+    <script>
+      function search() {
+        const input = document.getElementById("search").value;
+        window.location = `?search=${input}`;
+      }
+      function onload() {
+        const input = document.getElementById("search");
+        const urlParams = new URLSearchParams(window.location.search);
+        const _search = urlParams.get("search");
+        input.value = _search;
+        input.addEventListener("keyup", function (event) {
+          // Number 13 is the "Enter" key on the keyboard
+          if (event.keyCode === 13) {
+            search();
+          }
+        });
+        // console.log(_search)
+      }
+    </script>
+  </body>
+</html>

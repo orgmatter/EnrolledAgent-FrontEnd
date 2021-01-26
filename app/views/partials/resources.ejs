@@ -9,29 +9,27 @@
               <% const  {actionText, actionLink, title, category, imageUrl, sponsor, body }  = resource[i] %>
         <div class="resources-grid-box">
           <% if(sponsor && sponsor.name){ %>
-          <p class="resources-grid-box-intro">Provided By:</p>
-          <img class="resources-grid-box-image" src="<%= imageUrl %>" alt="stanbic-logo" />
+            <p class="resources-grid-box-intro">Provided By:</p>
+            <img class="resources-grid-box-image" src="<%= imageUrl %>" alt="broken-resource-image" />
           <% }%>
-          <h3 class="resources-grid-box-topic"><%= title %></h3>
-          <p class="resources-grid-box-desc" style="overflow: hidden;  
-          text-overflow: ellipsis;
-          height: 100px; max-width: 200px;">
-           <%- body %>
-          </p>
+            <h3 class="resources-grid-box-topic"><%= title %></h3>
+            <p class="resources-grid-box-desc"><%- body %></p>
           <!-- <div class="arrow"> -->
             <a target="_blank" class="resources-grid-box-btn" href=" <%= actionLink %>">   <%= actionText %></a>
           <!-- </div> -->
         </div>
-      </div>
+      
         <% }} else { %>
           <p style="text-align:center; font-size: 20px; margin: 20px">No resources available</p>
         <% } %>
-      
+      </div>
       <div class="btn-div">
-      <a href="/resource">  <button >
-        See All Resources
-        <img src="/assets/files/down-arrow-small.svg" alt="arrow" />
-      </button></a>
+      <a href="/resource">  
+        <button> See All Resources <span class="">
+              <img alt="" src="/assets/images/ccenter/right-arrow-white.svg" class="ccenter-btn-right-arrow">
+          </span>
+        </button>
+      </a>
       </div>
     </div>
   </section>

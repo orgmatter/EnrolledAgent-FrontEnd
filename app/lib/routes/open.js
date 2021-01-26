@@ -9,6 +9,7 @@ const ArticleController = require("../controllers/article");
 const AgentController = require("../controllers/agent");
 const QuestionController = require("../controllers/question");
 const ReviewController = require("../controllers/review");
+const FaqController = require("../controllers/faq")
 
 const Log = new Logger('App:open')
 
@@ -25,6 +26,11 @@ router
   .get("/career-center", (req, res) => {
     res.render("careerCenter", { locals: req.locals });
     PageAnalyticsService.inc('/career-center')
+  })
+  .get("/frequently-asked-questions", FaqController.getAll, (req, res) => {
+    res.render("faq", { locals: req.locals });
+    PageAnalyticsService.inc('/frequently-asked-questions');
+    Log.info("faq",  req.locals);
   })
   .get("/contact", (req, res) => {
     res.render("contact", { locals: req.locals });
@@ -52,7 +58,7 @@ router
     ArticleController.latest, (req, res) => {
       res.render("blog", { locals: req.locals });
       PageAnalyticsService.inc('/blog')
-      Log.info("articles>>>",  req.locals);
+      Log.info("articles>>>",  req.locals.articles.data);
     })
   .get("/blog/:id", ArticleController.get, (req, res) => {
     res.render("singleBlog", { locals: req.locals });

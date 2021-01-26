@@ -179,7 +179,7 @@
   }
   .resources {
     font-family: Arial;
-    padding: 25px 0 78px;
+    padding: 77px 0 78px;
     background-color: #f6f6f6;
     text-align: center;
     .container-fluid {
@@ -188,7 +188,7 @@
     }
     &-header {
       font-family: Arial;
-      margin-bottom: 0;
+      margin-bottom: 17px;
       font-size: 46px;
       line-height: 55px;
       color: #000;
@@ -217,10 +217,10 @@
       grid-column-gap: 40px;
       grid-row-gap: 50px;
       width: 1100px;
-      margin: 29px auto 75px;
+      margin: 59px auto 75px;
       &-box {
         background-color: #ffffff;
-        box-shadow: 0px 0px 10px #00000029;
+        box-shadow: 0px 8px 18px #0000000f;
         padding: 24px 22px 22px 28px;
         text-align: left;
         border-radius: 5px;
@@ -231,6 +231,9 @@
         &-image {
           max-width: 200px;
           max-height: 50px;
+          width: 200px;
+          height: 50px;
+          object-fit: cover;
         }
         &-topic {
           margin: 15px 0 8px;
@@ -238,6 +241,7 @@
           font-weight: 600;
           font-family: Arial;
           line-height: 28px;
+          font-size: 20px;
         }
         &-desc {
           letter-spacing: 0px;
@@ -245,6 +249,16 @@
           font-size: 15px;
           line-height: 20px;
           margin-bottom: 20px;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+        }
+        &-btn{
+          height: 40px;
+          border-radius: 5px;
+          color: $main-blue;
+          
         }
         .arrow {
           background: #086cef;

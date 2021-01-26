@@ -82,6 +82,9 @@ section#home {
         &-image {
           max-width: 200px;
           max-height: 50px;
+          width: 200px;
+          height: 50px;
+          object-fit: cover;
         }
         &-topic {
           margin: 15px 0 8px;
@@ -89,6 +92,7 @@ section#home {
           font-weight: 600;
           font-family: Arial;
           line-height: 28px;
+          font-size: 20px;
         }
         &-desc {
           letter-spacing: 0px;
@@ -96,12 +100,16 @@ section#home {
           font-size: 15px;
           line-height: 20px;
           margin-bottom: 20px;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
         }
         &-btn{
           height: 40px;
           border-radius: 5px;
           color: $main-blue;
-          padding: 0 30px;
+          
         }
         .arrow {
           background: #086cef;
@@ -244,8 +252,8 @@ section#home {
   }
 
   .cta {
-    background-image: url("/assets/officialAssets/25552.png");
-    background-size: contain;
+    background-image: url("/assets/officialAssets/25552.webp");
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 
@@ -264,7 +272,7 @@ section#home {
         }
         h3 {
           color: #fac207;
-          font-size: 42px;
+          font-size: 36px;
         }
       }
       &-2 {
@@ -467,7 +475,7 @@ section#home {
       padding-top: 100px;
       h2 {
         color: #000000;
-        font-size: 44px;
+        font-size: 30px;
         line-height: 50px;
         margin-bottom: 30px;
       }
@@ -501,11 +509,11 @@ section#home {
   #team {
     .title {
       color: #000;
-      font-size: 46px;
+      font-size: 30px;
     }
     .desc {
       color: $main-lightblue;
-      font-size: 26px;
+      font-size: 20px;
     }
     .team {
       &-link {
@@ -568,7 +576,7 @@ section#home {
   }
 
   .cities {
-    background-image: url("/assets/files/433.png"),
+    background-image: url("/assets/files/433.webp"),
       linear-gradient(rgba(12, 31, 124, 0.75), rgba(1, 16, 91, 0.75));
     background-blend-mode: overlay;
     height: 730px;

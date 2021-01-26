@@ -2,7 +2,7 @@ const page_url = location.href;
 const url_match = page_url.match("enrolledagent.org");
 const BASE_Url = url_match ? "https://enrolledagent.org" : "http://localhost:3000";
 const btn = document.getElementById("upgrade-btn");
-const btnContent = btn.innerHTML;
+const btnContent = btn && btn.innerHTML;
 
 const notyf = new Notyf({
   dismissible: true,
@@ -160,4 +160,6 @@ var orderComplete = function(clientSecret) {
 };
 
 
-btn.addEventListener("click", handleUpgrade);
+if(btn){
+  btn.addEventListener("click", handleUpgrade);
+}

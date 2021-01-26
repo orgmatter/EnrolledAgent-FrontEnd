@@ -3,12 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      href="/assets/files/favicon.png"
-      rel="shortcut icon"
-      type="image/png"
-    />
+    <meta name="pages"
+      content="<%= (locals.agentArticles && locals.agentArticles.pages)? locals.agentArticles.pages : '' %> " />
+  <meta name="data"
+    content="<%= (locals.agentArticles && locals.agentArticles.pages)? locals.agentArticles.data : ''%> " />
+  <meta name="page"
+    content="<%= (locals.agentArticles && locals.agentArticles.pages)? locals.agentArticles.page : '' %> " />
+    <title>My Articles</title>
+    <link href="/assets/files/favicon.png" rel="shortcut icon" type="image/png" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" />
@@ -27,11 +29,9 @@
           <h3>Articles Posted By You</h3>
           <p>Build your profile to increase your ranking in the search results by publishing quality tax-related articles.
           Publishing quality articles will increase your reputation on our site; increase your profile followings on our site; get your profile in front of more clients.
-          All your articles are  linked directly to your profile to allow your reader to instantly see your profile and listings</p>
+          All your articles are linked directly to your profile to allow your reader to instantly see your profile and listings</p>
 
-          <div class="b-ton">
-            <a href="/dashboard/help" class="b-ton"> <img src="/assets/files/info.png" alt=""> Help</a>
-          </div>
+       
         </div>
         <% if(locals.agentArticles.data.length > 0) {%> 
           <% locals.agentArticles.data.map((el,id) => { %>
@@ -39,7 +39,7 @@
               <img src=<%= el.imageUrl %>  alt="">
               <div class="text-part">
                 <div class="head-flex">
-                  <div class="date"><%- locals.moment(el.createdAt).format("DD <br /> MMM")  %></div>
+                  <div class="date"><%- locals.dayjs(el.createdAt).format("DD <br /> MMM")  %></div>
                   <div class="title">
                     <h4><%= el.title %> </h4>
                     <small>by <%= locals.user.firstName || "N/A"%> 
@@ -47,9 +47,7 @@
                   </div>
                 </div>
 
-                <div class="content">
-                  <p><%- el.body %> </p>
-                </div>
+                <div class="content"> <%- el.body %> </div>
                 <% if(el.status === 'pending') { %>
                   <p>NB: This article has not been published</p>
                 <%} else {%>
@@ -58,7 +56,33 @@
                 </div>
             </section>
             <hr />
-         <% }) %>   
+         <% }) %>  
+         <section id="bottom">
+            <div class="container contain">
+              <div class="row">
+                <% if(locals.agentArticles && locals.agentArticles.data && locals.agentArticles.data.length > 0){ %> 
+                <div class="col-md-3">
+                    <% const { page, pages, perPage, total} = locals.agentArticles %>
+                      <p> Showing
+                        <span id="resNumber"> <%= (((page || 0) -1) * (perPage || 0))+ 1 || 0%> to 
+                          <%= Math.min((page || 1) * (perPage || 0), total) || 0%> of <%= total || 0%> entries
+                        </span>
+                      </p>  
+                </div>
+                <% } %> 
+                <% if(locals.agentArticles && locals.agentArticles.data && locals.agentArticles.pages > 1){ %> 
+                <div class="col-md-9">
+                  <nav class="MyPagination">
+                    <ul class="pagination">
+                      <ul id="pagination" class="pagination-sm"></ul>
+                    </ul>
+                  </nav>
+                </div>
+                <% } %> 
+                <!-- <div class="col-md-6 b-tons"> -->
+              </div>
+            </div>
+          </section> 
         <% } else {%>
           <p style="text-align: center;">You do not have any articles. 
             <a href="/dashboard/create-article">Click here to write an article</a>
@@ -82,6 +106,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
+    <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
+    <script src="/javascripts/pagination.js"></script>
   </body>
 </html>
 

@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <%- include("./partials/head.ejs") %>
+    <meta
+    name="pages"
+    content="<%= (locals.questions && locals.questions.pages)? locals.questions.pages : '' %> "
+  />
+  <meta
+    name="data"
+    content="<%= (locals.questions && locals.questions.pages)? locals.questions.data : ''%> "
+  />
+  <meta
+    name="page"
+    content="<%= (locals.questions && locals.questions.pages)? locals.questions.page : '' %> "
+  />
   <body>
     <%- include("./partials/header.ejs") %>
     <div class="category">
@@ -8,13 +20,14 @@
         <div class="row">
           <div class="col-12 category_jumbotron-div">
             <h2>Previous Questions</h2>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
+            <p>Have a look at the questions asked by some of our users</p>
             <a href="/new-question">Ask new question</a>
           </div>
         </div>
       </section>
       <section class="category_grid">
         <div class="category_grid-main">
+          <% if (locals.questions && locals.questions.data && locals.questions.data.length > 0) {%> 
           <% locals.questions && locals.questions.data.map((el, id)=> { %>
             <div class="category_grid-main-div">
             <div class="category_grid-main-div-meta">
@@ -33,19 +46,13 @@
             </div>
           </div>
           <% }) %> 
-          
+          <% } else { %>
+            <p style="text-align: center;">No questions available. <a href="new-question">Be the first to ask a question</a></p>
+         <% } %> 
         </div>
         <div class="category_grid-side">
-          <!-- <div class="category_grid-side-archives">
-            <h4>Archives</h4>
-            <a href="#">Excepteur sint occaecat</a>
-            <a href="#">Excepteur sint occaecat</a>
-            <a href="#">Excepteur sint occaecat</a>
-            <a href="#">Excepteur sint occaecat</a>
-            <a href="#">Excepteur sint occaecat</a>
-          </div> -->
           <div class="category_grid-side-ads">
-            <img src="/assets/files/13061.png" alt="enrolled-agent" />
+            <img src="/assets/files/13061.webp" alt="enrolled-agent" />
           </div>
           <div class="category_grid-side-recent">
             <h4>Recent Articles</h4>
@@ -54,30 +61,49 @@
                 <div class="category_grid-side-recent-div">
                   <a href="/blog/<%= el._id %>">
                     <h5 style="font-weight: bold;" class="mb-10"><%= el.title %></h5>
-                    <p class="category_grid-side-recent-div-truncate"> <%- el.body %></p>
+                    <div class="category_grid-side-recent-div-truncate"> <%- el.body %></div>
                     <p class="category_grid-side-recent-div-bold">Nov, 26, 2020</p>
                   </a>
                 </div>
               <% }) %> 
             <%} else {%>
-              <p style="text-align: center;">No recent article available</p>
+              <p>No recent article available</p>
             <%}%> 
           </div>
           <div class="category_grid-side-ads">
-            <img src="/assets/files/13061.png" alt="enrolled-agent" />
+            <img src="/assets/files/13061.webp" alt="enrolled-agent" />
           </div>
         </div>
       </section>
       <section class="category_nav">
-        <div class="category_nav-div">
-          <img src="/assets/files/down-arrow-small.svg" alt="previous-button" />
-        </div>
-        <div class="category_nav-div2">
-          <img src="/assets/files/down-arrow-small.svg" alt="next-button" />
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3">
+              <% const { questions: {page, pages, perPage, total}} = locals %>
+            <p> Showing
+              <span id="resNumber"> <%= (((page || 0) -1) * (perPage || 0))+ 1 || 0%> to 
+                <%= Math.min((page || 1) * (perPage || 0), total) || 0%> of <%= total || 0%> entries
+              </span>
+            </p>
+            </div>
+            <% if(locals.questions && locals.questions.data && locals.questions.pages > 1){ %> 
+            <div class="col-md-9">
+              <div class="col-md-6 b-tons">
+                <nav class="MyPagination">
+                  <ul class="pagination">
+                    <ul id="pagination" class="pagination-sm"></ul>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+            <% } %> 
+          </div>
         </div>
       </section>
     </div>
     <%- include("./partials/footer.ejs") %>
+    <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
+    <script src="/javascripts/pagination.js"></script>
     <script src="/js/custom.js"></script>
   </body>
 </html>

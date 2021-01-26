@@ -79,10 +79,11 @@
             <% } else { %>
             <p>
               No Agents found in
-              <span id="resNumber"> in <%= locals.capitalizeFirstLetter(locals.city.name) %> </span>
+              <span> in <%= locals.capitalizeFirstLetter(locals.city.name) %> </span>
             </p>
             <% } %>
           </div>
+          <% if(locals.agents && locals.agents.data && locals.agents.pages > 1){ %> 
           <div class="col-md-6 b-tons">
             <nav class="MyPagination">
               <ul class="pagination">
@@ -90,6 +91,7 @@
               </ul>
             </nav>
           </div>
+           <% } %>
         </div>
       </div>
     </section>

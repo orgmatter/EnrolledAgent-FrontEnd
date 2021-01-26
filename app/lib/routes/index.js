@@ -4,7 +4,7 @@ const ResourceController = require("../controllers/resource");
 const ArticleController = require("../controllers/article");
 const AuthController = require("../controllers/auth");
 const QuestionController = require("../controllers/question");
-const moment = require("moment");
+const dayjs = require("dayjs");
 
 const Log = new Logger("App:Router");
 
@@ -22,7 +22,7 @@ router
   .use((req, _, next) => {
     req.locals = { query: req.query, ...req.locals, 
       capitalizeFirstLetter: Helper.capitalizeFirstLetter };
-    req.locals.moment = moment;
+    req.locals.dayjs = dayjs; 
     req.locals.pageTitle = "Home";
     if (req.session.message) {
       req.locals.infoMessage = req.session.message;

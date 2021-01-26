@@ -9,7 +9,9 @@
       <div class="container">
         <div class="row home-section-top">
           <h2>Find A Local Enrolled Agent</h2>
-          <p class="desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr,</p>
+          <p class="desc">
+            Enter your zip code to find an Enrolled Agent in your locality.
+          </p>
           <div class="row home-section-top-input-div">
             <div class="dropdown">
               <button
@@ -18,11 +20,15 @@
                 id="dropdownMenuButton"
                 data-toggle="dropdown"
                 aria-haspopup="true"
-                aria-expanded="false" 
+                aria-expanded="false"
               >
                 Zip Code
               </button>
-              <div class="dropdown-menu" id="search__dropdown" aria-labelledby="dropdownMenuButton">
+              <div
+                class="dropdown-menu"
+                id="search__dropdown"
+                aria-labelledby="dropdownMenuButton"
+              >
                 <p id="zip">Zip Code</p>
                 <p id="state">State</p>
               </div>
@@ -44,10 +50,11 @@
       <div class="text">
         <h3>Lorem ipsum dolor sit amet, consetetur sadip</h3>
         <p>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-          invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-          accusamundefined nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua. At vero eos et accusamundefined
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+          sed diam voluptua. At vero eos et accusamundefined nonumy eirmod
+          tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+          voluptua. At vero eos et accusamundefined
         </p>
 
         <a href="" class="btn b-ton-blu">Become An Expert <span>></span></a>
@@ -57,65 +64,64 @@
     <!-- popular cities section -->
     <%- include("./partials/cities.ejs") %>
 
-     
-
     <section id="team" class="bg-silver-light">
-          <div class="container pb-50">
-            <div class="section-title text-center">
-              <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                  <h2 class="text-uppercase title">Top Rated Enrolled Agents</h2>
-                  <p class="desc">Licensed and Verified Enrolled Agents</p>
-                </div>
-              </div>
+      <div class="container pb-50">
+        <div class="section-title text-center">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <h2 class="text-uppercase title">Top Rated Enrolled Agents</h2>
+              <p class="desc">Licensed Tax Professionals</p>
             </div>
-            <div class="section-content team">
-              <div class="row">
-                <% if(locals.popular && locals.popular.length> 0){ %>
-                  <% locals.popular.map((e, id)=> { %>
-                <div class="col-sm-6 col-md-3">
-                  <div class="single-member maxwidth400 mb-30">
-                    <div class="team-thumb">
-                      <img src=<%= e.imageUrl || "/assets/images/avatar.webp" %>  alt="agent-avatar" class="img-fullwidth" />
-                      <h4 class="text-uppercase font-raleway text-white font-20 line-bottom-center m-0">
-                        <%= e.firstName %> <%= e.lastName %> <span class="text-white font-12 ml-5 small"></span>
-                      </h4>
-
-                    </div>
-                    <div class="team-bottom-part bg-white p-15 team-bottom">
-                      <p class="mb-10 team-bottom-name"><%= e.city %>, <%= e.state %></p>
-                      <div class="team-bottom-flex">
-                        <div class="team-bottom-flex-div1 ">
-                          <!-- <img src="/assets/files/stars.svg" alt="" class="img-fullwidth" /> -->
-                          <div class="stars-outer" value=<%= e.rating || 0 %> >
-                            <div class="stars-inner"></div>
-                          </div>
-                          <p><%= e.reviewCount %> Reviews</p>
-                        </div>
-                        <div class="team-bottom-flex-div2">
-                          <a href="/agent/<%= e._id %>">View Profile</a>
-                        </div>
+          </div>
+        </div>
+        <div class="section-content team">
+          <div class="row">
+            <% if(locals.popular && locals.popular.length> 0){ %> 
+            <% locals.popular.map((e, id)=> { %>
+            <div class="col-sm-6 col-md-3">
+              <div class="single-member maxwidth400 mb-30">
+                <div class="team-thumb">
+                  <img src=<%= e.imageUrl || "/assets/images/avatar.webp" %>
+                  alt="agent-avatar" class="img-fullwidth" />
+                  <h4 class="text-uppercase font-raleway text-white font-20 line-bottom-center m-0">
+                    <%= e.firstName %> <%= e.lastName %>
+                    <span class="text-white font-12 ml-5 small"></span>
+                  </h4>
+                </div>
+                <div class="team-bottom-part bg-white p-15 team-bottom">
+                  <p class="mb-10 team-bottom-name">
+                    <%= e.city %>, <%= e.state %>
+                  </p>
+                  <div class="team-bottom-flex">
+                    <div class="team-bottom-flex-div1">
+                      <!-- <img src="/assets/files/stars.svg" alt="" class="img-fullwidth" /> -->
+                      <div class="stars-outer" value=<%=e.rating || 0 %>>
+                        <div class="stars-inner"></div>
                       </div>
+                      <p><%= e.reviewCount %> Reviews</p>
+                    </div>
+                    <div class="team-bottom-flex-div2">
+                      <a href="/agent/<%= e._id %>">View Profile</a>
                     </div>
                   </div>
                 </div>
-                <% })} %>
-               
               </div>
-              <div class="row team-link-div">
-                <a href="/find-agent" class="team-link">Find More Local EAs
-                <span class="">
-                      <img src="/assets/images/ccenter/right-arrow-white.svg" class="ccenter-btn-right-arrow">
-                  </span>
-                </a>
             </div>
-            </div>
+            <% })} %>
           </div>
-        </section>
+          <div class="row team-link-div">
+            <a href="/find-agent" class="team-link"
+              >Find More Local EAs
+              <span class="">
+                <img src="/assets/images/ccenter/right-arrow-white.svg" class="ccenter-btn-right-arrow" />
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <%- include("./partials/resources.ejs") %>
-
- 
 
     <!-- footer section -->
     <%- include("./partials/footer.ejs") %>
@@ -123,14 +129,18 @@
     <script src="/js/custom.js"></script>
 
     <script>
-            const rateStars = document.querySelectorAll(".stars-outer");
-            rateStars.forEach((rateStar) => {
-              const val = rateStar.getAttribute("value");
-              const starTotal = 5;
-              const starPercentage = (val / starTotal) * 100;
-              const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
-              rateStar.querySelector(".stars-inner").style.width = starPercentageRounded;
-            });
-          </script>
+      const rateStars = document.querySelectorAll(".stars-outer");
+      rateStars.forEach((rateStar) => {
+        const val = rateStar.getAttribute("value");
+        const starTotal = 5;
+        const starPercentage = (val / starTotal) * 100;
+        const starPercentageRounded = `${
+          Math.round(starPercentage / 10) * 10
+        }%`;
+        rateStar.querySelector(
+          ".stars-inner"
+        ).style.width = starPercentageRounded;
+      });
+    </script>
   </body>
 </html>

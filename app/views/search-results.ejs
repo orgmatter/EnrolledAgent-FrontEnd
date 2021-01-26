@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <%- include("./partials/head.ejs") %>
-  <meta name="pages" content="<%= locals.agents.pages %> " />
-  <meta name="data" content="<%= locals.agents.data %> " />
-  <meta name="page" content="<%= locals.agents.page %> " />
+  <meta
+    name="pages"
+    content="<%= (locals.agents && locals.agents.pages)? locals.agents.pages : '' %> "
+  />
+  <meta
+    name="data"
+    content="<%= (locals.agents && locals.agents.pages)? locals.agents.data : ''%> "
+  />
+  <meta
+    name="page"
+    content="<%= (locals.agents && locals.agents.pages)? locals.agents.page : '' %> "
+  />
 
   <body id="ea-listings">
     <%- include("./partials/header.ejs") %>
@@ -72,20 +81,28 @@
         </div>
         <% }) %>
       <% } else { %>
-        <p style="text-align: center;">There are no search results available</p>
+        <p style="text-align: center; margin-bottom: 50px;">There are no search results available</p>
       <%}%> 
-      
     </section>
 
+     
     <section id="bottom">
       <div class="container contain">
         <div class="row">
           <div class="col-md-3">
             <a href="/ea-listings" class="btn btn-lg b-ton b-ton-blu"> View All EAs</a>
           </div>
+          <% if(locals.agents && locals.agents.data && locals.agents.data.length > 0){ %>
           <div class="col-md-3">
-            <p>showing<span id="resNumber"> </span>of <%= locals.agents.total %> entries</p>
+            <% const { page, pages, perPage, total} = locals.agents %>
+                <p> showing
+                  <span id="resNumber"> <%= (((page || 0) -1) * (perPage || 0))+ 1 || 0%> to 
+                    <%= Math.min((page || 1) * (perPage || 0), total) || 0%> of <%= total || 0%> entries
+                  </span>
+                </p>
           </div>
+           <% } %> 
+          <% if(locals.agents && locals.agents.data && locals.agents.pages > 1){ %>
           <div class="col-md-6 b-tons">
             <nav class="MyPagination">
               <ul class="pagination">
@@ -93,9 +110,11 @@
               </ul>
             </nav>
           </div>
+           <% } %> 
         </div>
       </div>
     </section>
+    
     <!-- footer section -->
     <%- include("./partials/footer.ejs") %>
     <script>

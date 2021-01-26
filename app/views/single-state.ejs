@@ -6,6 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap" rel="stylesheet" />
   <%- include("./partials/head.ejs") %>
+    <meta
+    name="pages"
+    content="<%= (locals.cities && locals.cities.pages)? locals.cities.pages : '' %> "
+  />
+  <meta
+    name="data"
+    content="<%= (locals.cities && locals.cities.pages)? locals.cities.data : ''%> "
+  />
+  <meta
+    name="page"
+    content="<%= (locals.cities && locals.cities.pages)? locals.cities.page : '' %> "
+  />
 </head>
 
 <body  class="">
@@ -18,7 +30,7 @@
           <div class="findEA-banner__item--text">
           
             <%if(locals.state && locals.state.name){%>
-             Find agent by city in <%= locals.capitalizeFirstLetter(locals.state.name)  %> 
+             Get an Enrolled Agent in <%= locals.capitalizeFirstLetter(locals.state.name)  %> 
            
             <% } %> 
           </div>
@@ -107,18 +119,24 @@
       </div>
        
       
-      <div class="findEA-pagination">
+      <div class="container findEA-pagination">
+        
         <div class="findEA-pagination__button">
           <button class="findEA-btn">View All States</button>
-          
         </div>
-  <% if( typeof locals.cities !==' undefined' ) { %>
-      <% const { cities: {page, pages, perPage, total}, query}=locals %>
-        <div class="findEA-pagination__info">showing  <%= (((page || 0) -1) * (perPage || 0))+ 1 || 0%> to  <%=  Math.min((page || 1) * (perPage || 0), total) || 0%> of <%= total || 0%> entries</div>
-        <%- include("./partials/pagination.ejs", {page, pages, query }) %>
-          <% } %>
+        <% if( typeof locals.cities !== 'undefined' && locals.cities.data && locals.cities.data.length > 0 ) { %>
+          <% const { cities: {page, pages, perPage, total}, query}=locals %>
+            <div class="findEA-pagination__info">showing  <%= (((page || 0) -1) * (perPage || 0))+ 1 || 0%> to  <%=  Math.min((page || 1) * (perPage || 0), total) || 0%> of <%= total || 0%> entries</div>
+             <% if( typeof locals.cities !== 'undefined' && locals.cities.data && locals.cities.pages > 1 ) { %>
+            <nav class="MyPagination">
+              <ul class="pagination">
+                <ul id="pagination" class="pagination-sm"></ul>
+              </ul>
+            </nav>
+            <% } %> 
+        <% } %>
+      </div>
 
-            </div>
             <div class="findEA-suggested">
               <div class="findEA-suggested__head">
                 <div class="findEA-suggested__head--head">Popular Agents in <%= locals.capitalizeFirstLetter(locals.state.name)
@@ -165,6 +183,8 @@
               rateStar.querySelector(".stars-inner").style.width = starPercentageRounded;
             });
           </script>
+          <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
+          <script src="/javascripts/pagination.js"></script>
 </body>
 
 </html>

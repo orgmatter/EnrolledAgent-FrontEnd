@@ -103,6 +103,7 @@ class UserController extends BaseController {
         )
       )
     user.setPassword(password)
+    user.passwordChangedAt = new Date()
     await user.save()
 
     res.json({ data: { message: 'Password Changed succesfully' } })
@@ -196,7 +197,7 @@ class UserController extends BaseController {
       // console.log(user, token)
 
       const name = `${user.firstName} ${user.lastName}`
-      const link = `${process.env.ADMIN_URL}/reset/${token}`
+      const link = `${process.env.ADMIN_URL}/auth/reset/${token}`
 
       new MailService().sendMail(
         {
@@ -265,7 +266,6 @@ class UserController extends BaseController {
       )
     }
 
-
     if (!password) {
       res.statusCode = 422;
       return next(
@@ -283,6 +283,7 @@ class UserController extends BaseController {
         )
       )
     user.setPassword(password);
+    user.passwordChangedAt = new Date()
     await user.save();
 
     reset.deleteOne().then(() => { })

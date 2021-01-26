@@ -3,7 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta name="pages"
+      content="<%= (locals.questions && locals.questions.pages)? locals.questions.pages : '' %> " />
+  <meta name="data"
+    content="<%= (locals.questions && locals.questions.pages)? locals.questions.data : ''%> " />
+  <meta name="page"
+    content="<%= (locals.questions && locals.questions.pages)? locals.questions.page : '' %> " />
+    <title>Answer Questions</title>
     <link
       href="/assets/files/favicon.png"
       rel="shortcut icon"
@@ -38,9 +44,9 @@
               You earn a rep score (a determining factor used to order our
               search result) for every question you answer.
             </p>
-            <div class="createArticle_top-btn-div">
+            <!-- <div class="createArticle_top-btn-div">
               <a class="createArticle_top-btn-div-link" href="#">Help</a>
-            </div>
+            </div> -->
           </div>
           <div class="createArticle_card-div">
             <% if(locals.questions.data.length > 0) { %>
@@ -62,18 +68,44 @@
                   </div>
                   <div class="question-card-flex-2">
                     <% if(!el.answer) {%> 
-                    <a href="/dashboard/submit-answer/<%= el._id %>" class="question-card-flex-2-link"
-                      >Answer Question</a
-                    >
+                    <a href="/dashboard/submit-answer/<%= el._id %>" class="question-card-flex-2-link"> 
+                      Answer Question
+                    </a>
                     <% } %> 
                   </div>
                 </div>
               </div>
-             <% }) %> 
+            <% }) %> 
+            <section id="bottom">
+                <div class="container contain">
+                  <div class="row">
+                    <% if(locals.questions && locals.questions.data && locals.questions.data.length > 0){ %> 
+                    <div class="col-md-3">
+                        <% const { page, pages, perPage, total} = locals.questions %>
+                          <p> Showing
+                            <span id="resNumber"> <%= (((page || 0) -1) * (perPage || 0))+ 1 || 0%> to 
+                              <%= Math.min((page || 1) * (perPage || 0), total) || 0%> of <%= total || 0%> entries
+                            </span>
+                          </p>  
+                    </div>
+                    <% } %> 
+                    <% if(locals.questions && locals.questions.data && locals.questions.pages > 1){ %> 
+                    <div class="col-md-9">
+                      <nav class="MyPagination">
+                        <ul class="pagination">
+                          <ul id="pagination" class="pagination-sm"></ul>
+                        </ul>
+                      </nav>
+                    </div>
+                    <% } %> 
+                    <!-- <div class="col-md-6 b-tons"> -->
+                  </div>
+                </div>
+              </section>
+            </div>
             <%} else {%>
-              <p>No questions available. Check back later</p>
-            <%}%> 
-            
+            <p style="text-align: center;">No questions available. Check back later</p>
+            <%}%>
           </div>
         </section>
       </div>
@@ -93,5 +125,7 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
+    <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
+    <script src="/javascripts/pagination.js"></script>
   </body>
 </html>

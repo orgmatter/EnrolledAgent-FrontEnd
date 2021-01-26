@@ -99,6 +99,14 @@
   font-weight: normal;
   color: #000;
 }
+
+.mainsection .article-cards .head-flex .content {
+  overflow: hidden !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 5 !important;
+  -webkit-box-orient: vertical !important;
+}
+
 .mainsection .article-cards .head-flex .content p {
   font-size: 18px;
   font-weight: normal;
