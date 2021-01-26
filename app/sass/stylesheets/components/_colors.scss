@@ -5,8 +5,12 @@ $main-lightblue-hover: #095ece;
 
 html {
   scroll-behavior: smooth;
+  font-display: swap;
 }
 
+body{
+  font-display: swap;
+}
 .StripeElement {
   box-sizing: border-box;
 

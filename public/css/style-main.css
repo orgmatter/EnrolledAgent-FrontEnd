@@ -2,14 +2,6 @@
 /*------------------------------------------------------------------
 [Master Stylesheet]
 
-Project:        Consulting Pro
-Version:        2.0
-Created Date:   10.05.2017
-Last change:    10.05.2017
-Primary use:    Consulting Finance Corporate Business - ConsultingPro
-Author:         ThemeMascot
-URL:            http://themeforest.net/user/ThemeMascot
--------------------------------------------------------------------*/
 /*
 This file contains the common styles of this theme.
 */
@@ -78,13 +70,11 @@ This file contains the common styles of this theme.
 * Footer
 * ===============================================
 */
+
 @import "font-awesome.min.css";
 @import "font-awesome-animation.min.css";
 @import "pe-icon-7-stroke.css";
 @import "elegant-icons.css";
-/* @import "../css/icomoon.css"; */
-/* @import "../css/ionicons.css"; */
-/* @import "../css/stroke-gap-icons.css"; */
 @import "utility-classes.css";
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700|Roboto:100,300,400,500,700,900');
 /*

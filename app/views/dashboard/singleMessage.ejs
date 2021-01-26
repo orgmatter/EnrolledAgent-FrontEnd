@@ -32,7 +32,7 @@
           <% locals.agentMessage.data.map((el,id) => { %>
             <div class="message-cards" key=<%= id %> >
               <div class="head-flex">
-                <div class="date"><%- locals.moment(el.createdAt).format("DD <br /> MMM") %></div>
+                <div class="date"><%- locals.dayjs(el.createdAt).format("DD <br /> MMM") %></div>
                 <div class="title">
                   <h4><%= el.subject || "" %> </h4>
                   <small>by <%= el.name || "" %> </small>
