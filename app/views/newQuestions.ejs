@@ -149,7 +149,7 @@
                   <a href="/blog/<%= el._id %>">
                     <h5 style="font-weight: bold;" class="mb-10"><%= el.title %></h5>
                     <p class="category_grid-side-recent-div-truncate"> <%- el.body %></p>
-                    <p class="category_grid-side-recent-div-bold"><%- locals.moment(el.createdAt).format("MMM DD, YYYY") %></p>
+                    <p class="category_grid-side-recent-div-bold"><%- locals.dayjs(el.createdAt).format("MMM DD, YYYY") %></p>
                   </a>
                 </div>
               <% }) %> 

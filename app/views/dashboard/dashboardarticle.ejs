@@ -39,7 +39,7 @@
               <img src=<%= el.imageUrl %>  alt="">
               <div class="text-part">
                 <div class="head-flex">
-                  <div class="date"><%- locals.moment(el.createdAt).format("DD <br /> MMM")  %></div>
+                  <div class="date"><%- locals.dayjs(el.createdAt).format("DD <br /> MMM")  %></div>
                   <div class="title">
                     <h4><%= el.title %> </h4>
                     <small>by <%= locals.user.firstName || "N/A"%> 
