@@ -15,3 +15,344 @@
 .newQuestionJumbo.category_jumbotron {
   height: 370px;
 }
+
+@media (max-width: 775px) {
+  #about .private-terms {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
+  .offshoreTeam .background-image .page-heading_large-image {
+    height: auto;
+  }
+
+  .offshoreTeam .section-paddings {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .offshoreTeam .create-account .btn-positioning,
+  .offshoreTeam .create-account .neg-left-mar {
+    margin-left: unset;
+  }
+
+  .offshoreTeam .enrolled-form input,
+  .offshoreTeam .enrolled-form select {
+    height: 35px;
+    width: 90%;
+    margin: 5px auto;
+    padding-left: 10px;
+    border: 1px solid grey;
+    border-radius: 0;
+    display: inline-block;
+  }
+  .small-inputs {
+    display: flex;
+  }
+  .offshoreTeam .enrolled-form .small-inputs_area-pull-left {
+    margin-left: unset;
+  }
+
+  .offshoreTeam .enrolled-form .small-inputs_area {
+    width: 282px;
+  }
+
+  .offshoreTeam .enrolled-form label,
+  .offshoreTeam .enrolled-form .additional-left-mar-for-txt-lab {
+    margin-left: unset;
+  }
+  .offshoreTeam .enrolled-form .optional-message {
+    width: 100%;
+    margin-left: unset;
+  }
+  .offshoreTeam .btn-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+    text-align: center;
+  }
+  .offshoreTeam .btn-pull-center {
+    display: block;
+    margin: 0 auto 50px;
+  }
+  .offshoreTeam .create-account .btn-positioning {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 300px;
+    text-align: center;
+  }
+  .offshoreTeam .get-started-btn {
+    margin-top: 1rem;
+  }
+  .offshoreTeam .create-account .create-account_description {
+    padding: 0 1rem;
+  }
+  .offshoreTeam .video-section_div h2,
+  .offshoreTeam .video-section_div h4 {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .category_jumbotron-div h2 {
+    font-size: 2.3rem;
+  }
+
+  .category_jumbotron-div p {
+    font-size: 1.4rem;
+    color: #bfbfbf;
+    margin: 10px 1rem 50px;
+  }
+
+  .category-page #tax .top-header h1 {
+    font-size: 3rem;
+  }
+
+  .category-page #tax .top-header p {
+    font-size: 1.4rem;
+    margin: 0 1rem;
+  }
+
+  .category-page #tax .top-header {
+    height: 250px;
+  }
+
+  .category-page #cities-section h2 {
+    font-size: 2rem;
+  }
+
+  .category-page #cities-section p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .category-page #form h2 {
+    font-size: 2rem;
+  }
+
+  .category-page #form p {
+    font-size: 1.3rem;
+  }
+
+  .lvc8n-banner__head--head {
+    font-size: 2.5rem;
+  }
+  .lvc8n-contact__head--text {
+    margin-top: 1rem;
+  }
+  .lvc8n-banner__item {
+    height: 280px;
+  }
+  .lvc8n-banner__item {
+    padding: 4rem 2rem;
+  }
+
+  #ea-listings-top {
+    height: 280px;
+  }
+
+  #ea-listings-top h1 {
+    font-size: 3rem;
+  }
+
+  #ea-listings-top p {
+    font-size: 1.5rem;
+  }
+
+  #about .private-terms {
+    margin-left: 2.5rem;
+    margin-right: 1.5rem;
+  }
+  #single .part-2 .client .b-ton {
+    margin: 1rem;
+  }
+  #single .face-card h5 {
+    font-weight: normal;
+    font-size: 16px;
+    margin: 1rem;
+  }
+  single .part-2 .about h3,
+  #single .part-2 .accountant h3,
+  #single .part-2 .client h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000;
+  }
+
+  #single .part-2 .about,
+  #single .part-2 .accountant,
+  #single .part-2 .client h3 {
+    margin: 0 1rem;
+  }
+
+  .modal-body-div textarea {
+    height: 200px;
+    width: 100%;
+    margin: 10px auto;
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+  }
+
+  .modal-body-div-input,
+  .modal-body-div select {
+    width: 100%;
+    display: block;
+    margin: 1rem auto;
+    height: 45px;
+    border: 1px solid #222;
+    padding: 0 10px;
+  }
+
+  .pl-20 {
+    padding-left: 15px !important;
+  }
+
+  // off shore page
+  .offshoreTeam .enrolled-stats {
+    height: auto;
+    padding-bottom: 2rem;
+  }
+  .offshoreTeam .background-image .page-heading_large-image {
+    height: auto;
+  }
+
+  .offshoreTeam .background-image .page-heading_title {
+    font-size: 3rem;
+    line-height: 1.3;
+  }
+  .offshoreTeam .page-wrapper {
+    padding: 40px 18px;
+  }
+  .offshoreTeam .background-image .page-heading_get-started {
+    margin: 20px 0;
+  }
+
+  .offshoreTeam .get-started-btn {
+    padding: 15px 40px;
+  }
+
+  .offshoreTeam .enrolled-stats_section-tp-mg {
+    display: flex;
+    flex-direction: column;
+  }
+  .offshoreTeam .centered {
+    text-align: center;
+    width: 100%;
+  }
+  .offshoreTeam .enrolled-stats_section h2 {
+    font-size: 2.5rem;
+  }
+  .offshoreTeam .enrolled-stats_section h4 {
+    font-size: 1.5rem;
+  }
+  .offshoreTeam .create-account .btn-positioning,
+  .offshoreTeam .create-account .neg-left-mar {
+    margin-left: unset;
+  }
+  .offshoreTeam .section-paddings {
+    padding: 60px 2rem 30px;
+  }
+  .offshoreTeam .btn-center {
+    margin-left: unset;
+  }
+  .arrow-icon_image {
+    display: none;
+  }
+  .offshoreTeam .enrolled-procedures_steps-1-img {
+    margin: 10px auto 20px;
+  }
+  .offshoreTeam .video-section_div h2 {
+    font-size: 18px;
+    padding-left: 1rem;
+  }
+  .offshoreTeam .video-section_div h4 {
+    font-size: 16px;
+    padding-left: 1rem;
+  }
+  .offshoreTeam .bullet li {
+    font-size: 18px;
+  }
+  .offshoreTeam .enrolled-offers h2,
+  .offshoreTeam .enrolled-form h2 {
+    font-size: 2rem;
+  }
+  .offshoreTeam .enrolled-offers h5,
+  .offshoreTeam .enrolled-form h4 {
+    font-size: 1.3rem;
+  }
+  .offshoreTeam .enrolled-form input,
+  .offshoreTeam .enrolled-form select {
+    width: 100%;
+    margin: 5px auto;
+  }
+  .offshoreTeam .enrolled-form .small-inputs_area-pull-left {
+    margin-left: unset;
+  }
+  .offshoreTeam .enrolled-form .small-inputs_area {
+    width: 100%;
+  }
+  .offshoreTeam .enrolled-form label,
+  .offshoreTeam .enrolled-form .additional-left-mar-for-txt-lab {
+    margin-left: unset;
+  }
+  .offshoreTeam .enrolled-form .optional-message {
+    width: 100%;
+    margin-left: unset;
+    margin: 15px auto 40px;
+  }
+
+  // new listing page
+  .new-listing-name input,
+  .new-listing-details input,
+  .position input,
+  .position select,
+  .listing-industries select,
+  .new-listing-state input,
+  .new-listing-state select,
+  .new-listing-state .inner-address input,
+  .new-listing-state .inner-address select {
+    width: 90% !important;
+    display: block !important;
+    margin: 1rem auto !important;
+  }
+  .listing-lang input {
+    width: 100% !important;
+  }
+
+  new-listing-state input,
+  .new-listing-state select,
+  .new-listing-state .inner-address input,
+  .new-listing-state .inner-address select {
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .position {
+    margin: unset !important;
+  }
+  .website input {
+    width: 96% !important;
+    display: block !important;
+    margin: 0 auto !important;
+  }
+  .listing-select input {
+    width: 100% !important;
+  }
+
+  .small-text-div {
+    margin: 1rem;
+  }
+  .small-text {
+    margin: unset !important;
+  }
+
+  .category_jumbotron {
+    height: 200px;
+    display: block;
+    margin: auto;
+  }
+}

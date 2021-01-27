@@ -14,13 +14,13 @@
   <body>
     <%- include("./partials/header.ejs") %>
     <section class="container-fluid category_jumbotron">
-        <div class="row">
-          <div class="col-12 category_jumbotron-div">
-            <h2>Apply For New Listing</h2>
-            <p>Fill in your details in the form below to apply</p>
-          </div>
+      <div class="row">
+        <div class="col-12 category_jumbotron-div">
+          <h2>Apply For New Listing</h2>
+          <p>Fill in your details in the form below to apply</p>
         </div>
-      </section>
+      </div>
+    </section>
     <form class="new-listing container" id="listing-form">
       <div class="new-listing-name">
         <input type="text" placeholder="First Name*" required id="first-name" />
@@ -28,37 +28,56 @@
         <input type="text" placeholder="Last Name*" id="last-name" required />
       </div>
       <div class="new-listing-details">
-        <input type="text" placeholder="Email Address*" id="email" required/>
-        <input type="text" placeholder="Phone Number" id="phone" required/>
+        <input type="text" placeholder="Email Address*" id="email" required />
+        <input type="text" placeholder="Phone Number" id="phone" required />
         <input type="text" placeholder="Fax Number" id="fax" />
       </div>
-      <small class="small-text">
-        The email for your listing only. We will contact you at your account
-        email.
-      </small>
+      <div class="small-text-div">
+        <small class="small-text">
+          The email for your listing only. We will contact you at your account
+          email.
+        </small>
+      </div>
+
       <div class="new-listing-state">
         <select name="" id="country" class="input-style">
           <option value="United States" selected>United States</option>
         </select>
 
-        <input type="text" placeholder="Street Address*" id='address' required />
-        <input type="text" placeholder="Street Address 2" id='address2'/>
+        <input
+          type="text"
+          placeholder="Street Address*"
+          id="address"
+          required
+        />
+        <input type="text" placeholder="Street Address 2" id="address2" />
 
         <div class="inner-address">
-          <input type="text" placeholder="City*" required id='city'/>
-          <input type="text" class="input-style" placeholder="State*" required id='state'/>
-          <input type="text" placeholder="zip-code*" required id='zipCode' />
+          <input type="text" placeholder="City*" required id="city" />
+          <input
+            type="text"
+            class="input-style"
+            placeholder="State*"
+            required
+            id="state"
+          />
+          <input type="text" placeholder="zip-code*" required id="zipCode" />
         </div>
       </div>
       <div class="prof-text mt-30">
         <h4>Professional Details <small>(Optional)</small></h4>
       </div>
       <div class="position">
-        <input type="text" placeholder="Title*" required id="title"/>
-        <input type="text" placeholder="Position in Firm*" required id="position"/>
+        <input type="text" placeholder="Title*" required id="title" />
+        <input
+          type="text"
+          placeholder="Position in Firm*"
+          required
+          id="position"
+        />
       </div>
       <div class="website">
-        <input type="text" placeholder="Website Address" id="website"/> <br />
+        <input type="text" placeholder="Website Address" id="website" /> <br />
         <small>You must include the full URL ie: https://yoursite.com.</small>
       </div>
       <div class="bio">
@@ -76,26 +95,39 @@
 
         <div>
           <label for="service">Service Offered</label>
-           <input type="text" class="input-style" required id='service'/>
+          <input type="text" class="input-style" required id="service" />
         </div>
       </div>
-      
+
       <div class="prof-text mt-20">
         <h4>Proof of Licensure</h4>
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur, 
-          minus quidem cum iste est provident expedita eius harum earum voluptatibus 
-          inventore eum maxime mollitia, repudiandae, accusantium assumenda itaque aut fugit.
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur,
+          minus quidem cum iste est provident expedita eius harum earum
+          voluptatibus inventore eum maxime mollitia, repudiandae, accusantium
+          assumenda itaque aut fugit.
         </p>
 
         <small>State Licensed*</small>
         <div class="listing-select">
           <div>
-             <input type="text" required id='state-licensed' class="input-style" required />
+            <input
+              type="text"
+              required
+              id="state-licensed"
+              class="input-style"
+              required
+            />
           </div>
 
           <div>
-            <input type="text" required id='license-no' placeholder="License No*" class="input-style" />
+            <input
+              type="text"
+              required
+              id="license-no"
+              placeholder="License No*"
+              class="input-style"
+            />
           </div>
         </div>
         <div class="bottom">
@@ -104,16 +136,19 @@
             <input type="file" id="myFile" name="filename" />
           </div>
           <p>
-            <input type="checkbox" name="" id="terms" required/>
-            <label for='terms'>I agree to the terms of use and privacy policy.</label>
+            <input type="checkbox" name="" id="terms" required />
+            <label for="terms"
+              >I agree to the terms of use and privacy policy.</label
+            >
           </p>
-          <button type="submit" id="submit-btn" class="b-ton mt-30" >Create My Free Profile</button>
+          <button type="submit" id="submit-btn" class="b-ton mt-30">
+            Create My Free Profile
+          </button>
         </div>
       </div>
     </form>
     <%- include("./partials/footer.ejs") %>
     <script src="/javascripts/new-listing.js"></script>
     <script src="/js/custom.js"></script>
-
   </body>
 </html>
