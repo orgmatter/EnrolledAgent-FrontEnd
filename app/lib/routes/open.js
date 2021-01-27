@@ -155,7 +155,6 @@ router
     ReviewController.analysis,
     AgentController.get,
     (req, res) => {
-      //  Log.info("agent>>>>det", req.locals);
       res.render('single-agent-details', { locals: req.locals });
       PageAnalyticsService.inc('/agent/:id');
       Log.info('agent>>>>', req.locals);

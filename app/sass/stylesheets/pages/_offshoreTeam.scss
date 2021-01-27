@@ -121,7 +121,7 @@ img {
     margin: 20px 120px;
     @media (min-width: 1200px) {
       margin: 20px 500px;
-    }
+    } 
   }
 
   .page-heading {
@@ -545,15 +545,24 @@ img {
     font-weight: 600;
     color: #ffffff;
     padding-top: 50px;
+    @media (max-width: 767px) {
+      font-size: 26px;
+    }
   }
 
   h5 {
     font-size: 22px;
     padding-bottom: 30px;
+    @media (max-width: 767px) {
+      font-size: 16px;
+    }
   }
 
   h4 {
     font-size: 24px;
+    @media (max-width: 767px) {
+      font-size: 18px;
+    }
   }
 }
 
