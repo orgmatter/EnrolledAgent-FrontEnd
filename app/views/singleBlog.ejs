@@ -48,7 +48,7 @@
                         >
                           <ul>
                             <li class="font-16 text-white font-weight-600 text-uppercase">
-                              <%- locals.moment(locals.article.createdAt).format("DD <br /> MMM") %>
+                              <%- locals.dayjs(locals.article.createdAt).format("DD <br /> MMM") %>
                             </li>
                             
                           </ul>
@@ -105,7 +105,7 @@
                         <div class="media comment-author">
                           <div class="media-body">
                             <h5 class="media-heading comment-heading"><%= el.name %>  says:</h5>
-                            <div class="comment-date"><%- locals.moment(el.createdAt).format("MM/ DD/ YYYY") %></div>
+                            <div class="comment-date"><%- locals.dayjs(el.createdAt).format("MM/ DD/ YYYY") %></div>
                             <p><%= el.message %></p>
                           </div>
                         </div>

@@ -31,9 +31,7 @@
           Publishing quality articles will increase your reputation on our site; increase your profile followings on our site; get your profile in front of more clients.
           All your articles are linked directly to your profile to allow your reader to instantly see your profile and listings</p>
 
-          <!-- <div class="b-ton">
-            <a href="/dashboard/help" class="b-ton"> <img src="/assets/files/info.png" alt=""> Help</a>
-          </div> -->
+       
         </div>
         <% if(locals.agentArticles.data.length > 0) {%> 
           <% locals.agentArticles.data.map((el,id) => { %>
@@ -41,7 +39,7 @@
               <img src=<%= el.imageUrl %>  alt="">
               <div class="text-part">
                 <div class="head-flex">
-                  <div class="date"><%- locals.moment(el.createdAt).format("DD <br /> MMM")  %></div>
+                  <div class="date"><%- locals.dayjs(el.createdAt).format("DD <br /> MMM")  %></div>
                   <div class="title">
                     <h4><%= el.title %> </h4>
                     <small>by <%= locals.user.firstName || "N/A"%> 

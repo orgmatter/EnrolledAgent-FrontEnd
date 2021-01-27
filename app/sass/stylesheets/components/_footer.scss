@@ -9,22 +9,48 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    @include respond(smart-phone) {
+      height: 60px;
+    }
   }
   &__top {
     background-image: url("/assets/files/newFooter.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
     // background-size: 100% 100%;
     height: auto;
+    @include respond(smart-phone) {
+      padding: 70px 50px 40px!important;
+    }
     &-img {
       width: 400px;
+      height: auto;
+      @include respond(tab-land) {
+          width: 200px;
+          height: auto;
+        }
     }
     &-section {
       margin: 0;
       padding: 0;
+      @include respond(small-laptop) {
+          height: 150px;
+        }
+      @include respond(tab-land) {
+          height: auto;
+        }
       &-flex {
         display: flex;
         padding: 0;
+        @include respond(tab-land) {
+          margin-bottom: 20px;
+        }
         &:last-of-type {
           padding-left: 15px;
+          @include respond(tab-land) {
+          padding-left: 0;
+        }
         }
         .transform {
           transform: rotate(180deg);
@@ -56,7 +82,14 @@
       }
     }
     &-section2 {
+      @include respond(small-laptop) {
+          padding: 0!important;
+        }
       &-sub {
+        @include respond(small-laptop) {
+          padding: 0!important;
+          margin-bottom: 30px;
+        }
         &-text {
           font-size: 15px;
           margin-bottom: 12px;
@@ -94,9 +127,17 @@
       &-end {
         display: flex;
         flex-direction: column;
+        @include respond(small-laptop) {
+          flex-direction: row-reverse;
+          justify-content: space-between;
+          padding: 0 30px 0 0!important;
+        }
         &-arrow {
           align-self: flex-end;
           margin-bottom: 91px;
+          @include respond(small-laptop) {
+            margin-bottom: 0!important;
+          }
         }
         &-text {
           align-self: flex-end;

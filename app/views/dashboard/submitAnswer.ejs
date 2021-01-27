@@ -76,7 +76,7 @@
             <p class="submitAnswer_middle-meta">
               Asked by <%= locals.question.firstName %> <%=
               locals.question.lastName %> on <%-
-              locals.moment(locals.question.createdAt).format("MMMM D, YYYY") %>
+              locals.dayjs(locals.question.createdAt).format("MMMM D, YYYY") %>
             </p>
 
             <h4>Your Answer</h4>
