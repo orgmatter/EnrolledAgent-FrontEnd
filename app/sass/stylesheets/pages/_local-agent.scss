@@ -218,14 +218,14 @@
 }
 
 @media (max-width: 500px) {
-  #cities-section .city-group {
-    display: flex !important;
-    flex-wrap: wrap;
-  }
+  // #cities-section .city-group {
+  //   display: flex !important;
+  //   flex-wrap: wrap;
+  // }
 
-  #cities-section .city-row {
-    flex: 1 1 50%;
-  }
+  // #cities-section .city-row {
+  //   flex: 1 1 50%;
+  // }
 }
 
 #cities-section .cities-link {
