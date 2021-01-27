@@ -8,7 +8,7 @@
     font-family: Arial;
   }
   &_jumbotron {
-    background-image: url("/assets/files/categoryJumbobg.webp"),
+    background-image: url('/assets/files/categoryJumbobg.webp'),
       linear-gradient(rgba(0, 0, 0, 0.73), rgba(0, 0, 0, 0.73));
     background-blend-mode: overlay;
     background-position: center;
@@ -21,7 +21,7 @@
       text-align: center;
       h2 {
         color: #fff;
-        font-family: "Baskerville Old Face" !important;
+        font-family: 'Baskerville Old Face' !important;
         font-size: 60px;
         line-height: 80px;
         margin-top: 70px;
@@ -45,7 +45,7 @@
     display: grid;
     grid-template-columns: 66% 30%;
     grid-column-gap: 4%;
-    grid-template-areas: "main side";
+    grid-template-areas: 'main side';
     width: 1170px;
     margin: 50px auto 50px;
     &-main {
@@ -98,17 +98,17 @@
           &-desc {
             color: #000;
           }
-          &-answer{
+          &-answer {
             margin-top: 40px;
-            h4{
+            h4 {
               color: #000;
               font-weight: bold;
             }
-            p{
-               color: #000;
-               span{
-                 font-weight: bold;
-               }
+            p {
+              color: #000;
+              span {
+                font-weight: bold;
+              }
             }
           }
           &-cta {
@@ -168,7 +168,7 @@
             padding-bottom: 6px;
             border-bottom: 1px dotted #bfbfbf;
           }
-          &-truncate{
+          &-truncate {
             overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -213,77 +213,68 @@
   }
 }
 
-
-
 // media queries
 @media (max-width: 1170px) {
   .category_grid {
     display: grid;
     grid-template-columns: 66% 30%;
     grid-column-gap: 2%;
-    grid-template-areas: "main side";
+    grid-template-areas: 'main side';
     width: 100%;
     margin: 50px auto 50px;
-}
+  }
 }
 
 @media (max-width: 800px) {
-
   .category_grid {
     display: grid;
     grid-template-columns: 1fr;
     grid-column-gap: 4%;
     grid-template-areas:
-     "category_grid-main "
-     "category_grid-side";
+      'category_grid-main '
+      'category_grid-side';
     width: 90%;
     margin: 50px auto 50px;
   }
 }
 
 @media (max-width: 600px) {
-.category_jumbotron-div h2 {
+  .category_jumbotron-div h2 {
     color: #fff;
-    font-family: "Baskerville Old Face" !important;
+    font-family: 'Baskerville Old Face' !important;
     font-size: 3rem;
     line-height: 2rem;
     margin-top: 60px;
     font-weight: 500;
-}
+  }
 
-
-.category_jumbotron-div p {
+  .category_jumbotron-div p {
     font-size: 2rem;
     color: #bfbfbf;
     margin: 10px 0 50px;
-}
+  }
 
-
-.category_jumbotron-div a {
+  .category_jumbotron-div a {
     padding: 15px 30px;
     border: 2px solid #fff;
     border-radius: 3px;
     color: #fff;
     font-size: 18px;
+  }
+  // .category_grid {
+  //   grid-template-areas:
+  //   'category_grid-main'
+  //   'category_grid-side-archives';
+  // }
+
+  .category_grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column-gap: 4%;
+    grid-template-areas:
+      'category_grid-main '
+      'category_grid-side';
+    width: 90%;
+    margin: 50px auto 50px;
+  }
 }
-// .category_grid {
-//   grid-template-areas: 
-//   'category_grid-main'
-//   'category_grid-side-archives';
-// }
-
-
-
-.category_grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-column-gap: 4%;
-  grid-template-areas:
-   "category_grid-main "
-   "category_grid-side";
-  width: 90%;
-  margin: 50px auto 50px;
-}
-
-}
-
