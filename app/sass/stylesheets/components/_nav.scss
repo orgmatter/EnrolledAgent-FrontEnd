@@ -1,9 +1,10 @@
 .myNav {
   &_header {
     background-color: $main-blue;
-  }
+  } 
   .header-middle {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+    background-color: #fff!important;
     .menuzord-menu {
       .m-26 {
         margin-top: 50px;
@@ -82,5 +83,46 @@
   }
   #myNav {
     z-index: 1999 !important;
+  }
+
+  @include respond(laptop) {
+      .header-middle{
+        .menuzord{
+          padding: 0;
+          .col-xs-12, .col-sm-12 {
+              float: none!important;
+            }
+          #menuzord{
+            padding-right: 0;
+            .myNav-flex-item{
+              margin-right: 20px!important;
+            }
+
+            
+          }
+        }
+      }
+  }
+
+  @media (max-width: 365px) {
+    .header-middle{
+      min-height: 110px!important;
+    }
+    .menuzord .showhide {
+      float: left !important;
+    }
+  }
+
+  @include respond(small-laptop) {
+      &_header{
+        ul.my-left{
+          text-align: left!important;
+        }
+      }
+  }
+  @include respond(tab-land) {
+      &_header{
+        display: none;
+      }
   }
 }
