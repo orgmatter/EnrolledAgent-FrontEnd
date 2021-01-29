@@ -1,7 +1,1 @@
-$(document).ready(function () {
-  const $navbar = $("#myNav");
-
-  const stickyNavbar = (() => {
-    $navbar.sticky({ topSpacing: 0 });
-  })();
-});
+$(document).ready(function(){$("#myNav").sticky({topSpacing:0})});
