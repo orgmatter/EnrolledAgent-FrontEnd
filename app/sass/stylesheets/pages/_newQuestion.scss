@@ -15,6 +15,12 @@
 .newQuestionJumbo.category_jumbotron {
   height: 370px;
 }
+.search-btn {
+    height: 45px;
+    width: 180px;
+    padding: 0;
+    font-size: 20px;
+}
 
 @media (max-width: 775px) {
   #about .private-terms {
@@ -355,4 +361,17 @@
     display: block;
     margin: auto;
   }
+
+  #premium .b-tons {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: flex-start;
+}
+.search-btn {
+    height: 45px;
+    width: 150px;
+    margin: 10px 0 0;
+    padding: 0 !important;
+    font-size: 20px;
+}
 }
