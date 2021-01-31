@@ -249,3 +249,20 @@ exports.delay = (time = 1000) => {
     setTimeout(resolve, time)
   })
 }
+
+/**
+* extract parameters from aws file url
+* @return {String} url 
+*/
+exports.getAwsFileParamsFromUrl = (url) => {
+  if (url && String(url).includes('.s3.amazonaws.com')) {
+    url = url.replace('https://', '')
+    const Key = String(url).split('/').pop()
+    let Bucket = url.replace('/' + Key, '')
+    Bucket = Bucket.replace('.s3.amazonaws.com', '')
+    return {
+      Key, Bucket
+    }
+  }
+  return {}
+}

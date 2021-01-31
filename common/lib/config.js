@@ -21,6 +21,13 @@ if(process.env.NODE_ENV == 'production'){
   DB_OPTIONS.pass = process.env.DB_PASS
 }
 
+const AWS = {
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.AWS_REGION,
+  buckect: process.env.AWS_BUCKET
+}
+
 module.exports = {
   MAIL_API_KEY: process.env.MAIL_API_KEY,
   MAIL_DOMAIN_URL: process.env.MAIL_DOMAIN_URL,
@@ -30,6 +37,7 @@ module.exports = {
   SECRET: process.env.SECRET,
   DB_URL: `mongodb://${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`,
   DB_OPTIONS: DB_OPTIONS,
+  AWS,
   APP_URL: process.env.APP_URL,
   API_KEY: process.env.API_KEY,
   STORAGE: process.env.STORAGE,

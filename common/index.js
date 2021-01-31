@@ -1,4 +1,5 @@
 module.exports = {
+  AwsService: require('./lib/service/awsService'),
   Exception: require('./lib/utils/exception'),
   Validator: require('./lib/utils/validators'),
   Models: require('./lib/models'),
