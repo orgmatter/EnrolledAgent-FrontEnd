@@ -7,6 +7,7 @@ const {
     Helper,
     Constants,
     DB,
+    AwsService,
     LogAction,
     LogCategory,
     Models: { Article, Log, Sponsor, ArticleCategory },
@@ -30,7 +31,7 @@ class ArticleController extends BaseController {
     async create(req, res, next) {
         const { body, preview, author, title, sponsor, status, category, featured, } = req.body
 
-
+        // console.log(req.file)
 
         if (!category || !Validator.isMongoId(category) || !(await ArticleCategory.exists({ _id: category }))) {
             res.status(422)
@@ -66,10 +67,7 @@ class ArticleController extends BaseController {
         let resource = await Article.create(b)
 
         if (req.file) {
-            const imageUrl = await FileManager.saveFile(
-                Storages.ARTICLE,
-                req.file
-            )
+            const imageUrl = req.file.location
             resource.imageUrl = imageUrl
             await resource.save()
         }
@@ -97,11 +95,8 @@ class ArticleController extends BaseController {
             .populate(['sponsor', 'category'])
 
         if (req.file) {
-            const imageUrl = await FileManager.saveFile(
-                Storages.ARTICLE,
-                req.file
-            )
-            if (resource.imageUrl && imageUrl) FileManager.deleteFile(resource.imageUrl)
+            const imageUrl =  req.file.location 
+            if (resource.imageUrl && imageUrl) AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(resource.imageUrl))
 
             resource.imageUrl = imageUrl
             await resource.save()
@@ -125,7 +120,7 @@ class ArticleController extends BaseController {
         if (!BaseController.checkId('Invalid article id', req, res, next)) return
 
         let resource = await Article.findByIdAndDelete(id).exec()
-        if (resource && resource.imageUrl) FileManager.deleteFile(resource.imageUrl)
+        if (resource && resource.imageUrl)await  AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(resource.imageUrl))
         super.handleResult(resource, res, next)
         await Log.create({
             user: req.user.id,

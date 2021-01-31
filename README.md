@@ -48,3 +48,8 @@ ensure to set the full path to the public folder on your .env file
 4000 0000 0000 9995 -declind
 4000 0000 0000 9995 -success
 4000 0025 0000 3155 -requires authentication
+
+
+
+
+ 
