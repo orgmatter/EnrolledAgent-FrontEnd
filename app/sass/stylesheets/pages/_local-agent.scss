@@ -145,7 +145,7 @@
 
 @media (max-width: 800px) {
   #section-2 {
-    background: url(/assets/files/section-2-img.png) no-repeat center center/cover;
+    background: url("/assets/files/section-2-img.webp") no-repeat center center/cover;
     display: block;
     margin: 1rem 1.5rem;
   }
@@ -170,7 +170,7 @@
 // cities section
 
 #cities-section {
-  background-image: url("/assets/files/433.webp"),
+  background-image: url("https://enrolled-public.s3.amazonaws.com/assets/files/433.webp"),
     linear-gradient(rgba(1, 16, 91, 0.75), rgba(1, 16, 91, 0.75));
   background-blend-mode: overlay;
   height: 730px;
