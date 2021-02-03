@@ -5,6 +5,7 @@ const {
   FileManager,
   LogCategory,
   LogAction,
+  AwsService,
   Storages,
   Validator,
   Helper,
@@ -73,11 +74,8 @@ class AgentController extends BaseController {
     agent = await Agent.findByIdAndUpdate(agent._id, body, { new: true })
 
     if (req.file) {
-      const imageUrl = await FileManager.saveFile(
-        Storages.AGENT_PROFILE,
-        req.file
-      )
-      if (agent.imageUrl && imageUrl) FileManager.deleteFile(agent.imageUrl)
+      const imageUrl = req.file.location
+      if (agent.imageUrl && imageUrl) AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(agent.imageUrl))
 
       agent.imageUrl = imageUrl
       await agent.save()
@@ -174,10 +172,7 @@ class AgentController extends BaseController {
     let licenceProof
 
     if (req.file) {
-      licenceProof = await FileManager.saveFile(
-        Storages.DOCS,
-        req.file
-      )
+      licenceProof =  req.file.location
     }
 
     if (!licenceProof) {

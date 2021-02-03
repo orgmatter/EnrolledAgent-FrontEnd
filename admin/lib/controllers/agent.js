@@ -7,6 +7,7 @@ const {
     LogCategory,
     Validator,
     Constants,
+    AwsService,
     Helper,
     DB,
     CSVParser,
@@ -48,10 +49,7 @@ class AgentController extends BaseController {
         })
 
         if (req.file) {
-            const imageUrl = await FileManager.saveFile(
-                Storages.AGENT_PROFILE,
-                req.file
-            )
+            const imageUrl = req.file.location
             agent.imageUrl = imageUrl
             await agent.save()
         }
@@ -78,11 +76,8 @@ class AgentController extends BaseController {
         let agent = await Agent.findByIdAndUpdate(id, body, { new: true }).exec()
 
         if (req.file) {
-            const imageUrl = await FileManager.saveFile(
-                Storages.AGENT_PROFILE,
-                req.file
-            )
-            if (agent.imageUrl && imageUrl) FileManager.deleteFile(agent.imageUrl)
+            const imageUrl = req.file.location
+            if (agent.imageUrl && imageUrl) AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(agent.imageUrl))
 
             agent.imageUrl = imageUrl
             await agent.save()
@@ -120,7 +115,7 @@ class AgentController extends BaseController {
     async getAll(req, res, next) {
         const { page, perpage, q, search } = req.query
         let query = Helper.extractQuery(req.query, ['email', 'firstName', 'lastName', 'zipcode', 'city', 'state', 'licence', ]) || {}
-        if (q) query = { title: { $regex: q, $options: 'i' } }
+        if (search) query = { $text: { $search: search, $caseSensitive: false } };
 
         DB.Paginate(res, next, Agent, {
             perPage: perpage,

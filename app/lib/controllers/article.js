@@ -5,6 +5,7 @@ const {
     ErrorMessage,
     ErrorCodes,
     FileManager,
+    AwsService,
     LogAction,
     Validator,
     Storages,
@@ -72,10 +73,8 @@ class ArticleController extends BaseController {
         let resource = await Article.create(b)
 
         if (req.file) {
-            const imageUrl = await FileManager.saveFile(
-                Storages.ARTICLE,
-                req.file
-            )
+            const imageUrl = req.file.location
+           
             resource.imageUrl = imageUrl
             await resource.save()
         }
@@ -128,11 +127,8 @@ class ArticleController extends BaseController {
             .populate(['sponsor', 'category'])
 
         if (req.file) {
-            const imageUrl = await FileManager.saveFile(
-                Storages.ARTICLE,
-                req.file
-            )
-            if (resource.imageUrl && imageUrl) FileManager.deleteFile(resource.imageUrl)
+            const imageUrl = req.file.location
+            if (resource.imageUrl && imageUrl) AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(resource.imageUrl))
 
             resource.imageUrl = imageUrl
             await resource.save()
@@ -210,7 +206,7 @@ class ArticleController extends BaseController {
 
 
         let resource = await Article.findByIdAndDelete(id).exec()
-        if (resource && resource.imageUrl) FileManager.deleteFile(resource.imageUrl)
+        if (resource && resource.imageUrl) AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(resource.imageUrl))
 
         super.handleResult({ message: 'Article deleted succesfully' }, res, next)
         await Log.create({
