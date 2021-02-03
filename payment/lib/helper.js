@@ -96,7 +96,7 @@ exports.chargeSucces = async (data) => {
         }
            
         let startDate = moment().valueOf()
-        console.log('startDate', startDate)
+        // console.log('startDate', startDate)
         if(_sub && _sub.endDate ) startDate = _sub.endDate
         let endDate = Helper.calculateEndDate(duration, startDate)
         // if (duration == 'monthly')

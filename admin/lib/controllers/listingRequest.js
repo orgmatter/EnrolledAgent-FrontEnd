@@ -95,7 +95,7 @@ class LoistingRequestController extends BaseController {
 
         request.status = Constants.ARTICLE_STATUS.approved
         request.agent = a._id
-        console.log(request, a, b)
+        // console.log(request, a, b)
 
         await request.save() 
 

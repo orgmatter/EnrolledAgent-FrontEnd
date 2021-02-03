@@ -59,6 +59,7 @@ class AgentController extends BaseController {
     let agent = await Agent.findOne({ owner: mongoose.Types.ObjectId(req.user.id) }).exec()
     if (!agent || !agent._id) {
       res.status(422)
+      AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(req.file.location))
       return next(
         new Exception(
           'Only verified agents can update their profile',
@@ -142,6 +143,7 @@ class AgentController extends BaseController {
     let agent = await Agent.findOne({ owner: mongoose.Types.ObjectId(req.user.id) }).exec()
     if (agent && agent._id) {
       res.status(422)
+      AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(req.file.location))
       return next(
         new Exception(
           'You have previously claimed a listing, you cannot claim another',
@@ -154,18 +156,22 @@ class AgentController extends BaseController {
     delete body.status
 
     if (!body.firstName || !body.lastName) {
+      AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(req.file.location))
       return next(new Exception('First name and last name is required', ErrorCodes.NO_PRIVILEGE))
     }
 
     if (!body.email || !body.phone) {
+      AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(req.file.location))
       return next(new Exception('Email and phone number is required', ErrorCodes.NO_PRIVILEGE))
     }
 
     if (!body.zipcode || !body.city || !body.state) {
+      AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(req.file.location))
       return next(new Exception('zipcode, state and city is required', ErrorCodes.NO_PRIVILEGE))
     }
 
     if (!body.licence || !body.stateLicenced) {
+      AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(req.file.location))
       return next(new Exception('licence, and state licenced state is required', ErrorCodes.NO_PRIVILEGE))
     }
 
