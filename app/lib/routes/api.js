@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Logger, Middleware, FileManager } = require("common");
+const { Logger, Middleware, FileManager, AwsService, Storages } = require("common");
 
 const AuthController = require("../controllers/auth");
 const ContactController = require("../controllers/contact");
@@ -22,19 +22,19 @@ router
   .post("/login", AuthController.login)
   .post("/review", ReviewController.createReview)
   .post("/claim-listing/:id", AgentController.claim)
-  .post("/listing-request", FileManager.pdf, AgentController.createListing)
-  .post("/contact-preference", FileManager.pdf, AgentController.contactPreference)
-  .put("/update-profile", FileManager.upload, AuthController.update)
-  .put("/update-agent", FileManager.upload, AgentController.update)
+  .post("/listing-request",  AwsService.docs(Storages.DOCS).single('doc'), AgentController.createListing)
+  .post("/contact-preference",  AgentController.contactPreference)
+  .put("/update-profile",  AwsService.image(Storages.PROFILE).single('avatar'), AuthController.update)
+  .put("/update-agent",  AwsService.image(Storages.AGENT_PROFILE).single('avatar'), AgentController.update)
   .post("/upgrade-account", FileManager.none, AgentController.premium)
   .post("/licence", FileManager.none, LicenceController.create)
   .post("/ask", FileManager.none, QuestionController.create)
   .post("/offshore", FileManager.none, ContactController.offshore)
   .post("/answer", FileManager.none, QuestionController.answer)
-  .post("/article", FileManager.upload, ArticleController.create)
+  .post("/article",  AwsService.image(Storages.ARTICLE).single('avatar'), ArticleController.create)
   .post("/article/comment/:id", FileManager.none, ArticleController.comment)
-  .put("/article/:id", FileManager.upload, ArticleController.update)
-  .delete("/article/:id", FileManager.upload, ArticleController.delete)
+  .put("/article/:id",  AwsService.image(Storages.ARTICLE).single('avatar'), ArticleController.update)
+  .delete("/article/:id",   ArticleController.delete)
 
   .use(Middleware.Four04Handler)
   .use(Middleware.ErrorHandler);

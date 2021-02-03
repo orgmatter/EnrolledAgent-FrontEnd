@@ -1,7 +1,7 @@
 const {
   DB,
   FileManager, Storages, Helper, Validator,
-  Exception, ErrorCodes, ErrorMessage, EmailTemplates, MailService,
+  Exception, ErrorCodes, ErrorMessage, EmailTemplates, MailService, AwsService,
   Models: { User, AdminUser, ResetToken, VerificationToken },
   Constants,
 } = require("common");
@@ -38,39 +38,25 @@ class UserController extends BaseController {
       user: { id },
       body,
     } = req;
+    sanitizeBody(body);
 
-    if (
-      req.user
-    ) {
-      sanitizeBody(body);
+    AdminUser.findByIdAndUpdate(id, body, { new: true })
+      .then(async (user) => {
+        if (req.file) {
+          const imageUrl = req.file.location
 
-      AdminUser.findByIdAndUpdate(id, body, { new: true })
-        .then(async (user) => {
-          if (req.file) {
-            const imageUrl = await FileManager.saveFile(
-              Storages.PROFILE,
-              req.file
-            );
-            if (user.imageUrl && imageUrl) {
-              FileManager.deleteFile(user.imageUrl || "");
-            }
-            user.imageUrl = imageUrl;
-            user.save()
+          if (user.imageUrl && imageUrl) {
+            AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(user.imageUrl))
           }
-          res.json({ data: { message: 'profile updated successfully' } })
-        })
-        .catch((err) => {
-          next(err);
-        });
-    } else {
-      next(
-        new Exception(
-          // eslint-disable-next-line new-cap
-          ErrorMessage.NO_PRIVILEGE,
-          ErrorCodes.NO_PRIVILEGE
-        )
-      );
-    }
+          user.imageUrl = imageUrl;
+          user.save()
+        }
+        res.json({ data: { message: 'profile updated successfully' } })
+      })
+      .catch((err) => {
+        next(err);
+      });
+
   };
 
   changePassword = async function (req, res, next) {
@@ -326,8 +312,8 @@ class UserController extends BaseController {
   async get(req, res, next) {
     const { id } = req.params
     if (!BaseController.checkId('Invalid user id', req, res, next)) return
-    let resource = await User.findById(id, {hash: 0, salt: 0})
-    .populate('role')
+    let resource = await User.findById(id, { hash: 0, salt: 0 })
+      .populate('role')
       .exec()
     super.handleResult(resource, res, next)
   }

@@ -21,7 +21,6 @@ class CategoryController extends BaseController {
      create = async (req, res, next)=> {
         const { name, description , priority} = req.body
 
-        console.log(req.body)
 
         if (!name || !description) {
             res.status(422)

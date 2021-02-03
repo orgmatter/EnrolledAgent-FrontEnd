@@ -5,6 +5,7 @@ const {
     ErrorMessage,
     ErrorCodes,
     FileManager,
+    AwsService,
     LogAction,
     Validator,
     Storages,
@@ -35,6 +36,7 @@ class ArticleController extends BaseController {
 
         let agent = await Agent.findOne({ owner: Types.ObjectId(req.user.id) }).exec()
         if (!agent || !agent._id) {
+            AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(req.file.location))
             res.status(422)
             return next(
                 new Exception(
@@ -46,6 +48,7 @@ class ArticleController extends BaseController {
 
         if (!category || !Validator.isMongoId(category) || !(await ArticleCategory.exists({ _id: category }))) {
             res.status(422)
+            AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(req.file.location))
             return next(
                 new Exception(
                     'Please provide a valid category',
@@ -56,6 +59,7 @@ class ArticleController extends BaseController {
 
         if (!title || !body) {
             res.status(422)
+            AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(req.file.location))
             return next(
                 new Exception(
                     'title and body is required',
@@ -72,10 +76,8 @@ class ArticleController extends BaseController {
         let resource = await Article.create(b)
 
         if (req.file) {
-            const imageUrl = await FileManager.saveFile(
-                Storages.ARTICLE,
-                req.file
-            )
+            const imageUrl = req.file.location
+           
             resource.imageUrl = imageUrl
             await resource.save()
         }
@@ -103,6 +105,7 @@ class ArticleController extends BaseController {
         let agent = await Agent.findOne({ owner: Types.ObjectId(req.user.id) }).exec()
         if (!agent || !agent._id) {
             res.status(422)
+            AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(req.file.location))
             return next(
                 new Exception(
                     'Only verified agents can update articles',
@@ -128,11 +131,8 @@ class ArticleController extends BaseController {
             .populate(['sponsor', 'category'])
 
         if (req.file) {
-            const imageUrl = await FileManager.saveFile(
-                Storages.ARTICLE,
-                req.file
-            )
-            if (resource.imageUrl && imageUrl) FileManager.deleteFile(resource.imageUrl)
+            const imageUrl = req.file.location
+            if (resource.imageUrl && imageUrl) AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(resource.imageUrl))
 
             resource.imageUrl = imageUrl
             await resource.save()
@@ -210,7 +210,7 @@ class ArticleController extends BaseController {
 
 
         let resource = await Article.findByIdAndDelete(id).exec()
-        if (resource && resource.imageUrl) FileManager.deleteFile(resource.imageUrl)
+        if (resource && resource.imageUrl) AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(resource.imageUrl))
 
         super.handleResult({ message: 'Article deleted succesfully' }, res, next)
         await Log.create({

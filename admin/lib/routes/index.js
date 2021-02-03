@@ -9,7 +9,7 @@ router
   .use(Middleware.ExtractToken.token.unless([]))
   .use(Middleware.ExtractToken.decodeData) 
   .use(require('./guard'))
-  .use(require('./resource'))
+  .use('/resource', require('./resource'))
   .use(require('./claim'))
   .use('/sponsor', require('./sponsor'))
   .use('/payment', require('./payment'))

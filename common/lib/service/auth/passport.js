@@ -23,13 +23,13 @@ module.exports = (server, passport) => {
     passport.serializeUser((user, done) => {
         // console.log('serializing user')
         if (Log.isDebugMode) Log.info('serializing user', user)
-        console.log('serializing user', user)
+        // console.log('serializing user', user)
         done(null, Helper.userToSession(user))
     })
 
     passport.deserializeUser((user, done) => {
         if (Log.isDebugMode) Log.info('deserializing user', user)
-        console.log('deserializing user', user)
+        // console.log('deserializing user', user)
         done(null, user)
     })
 

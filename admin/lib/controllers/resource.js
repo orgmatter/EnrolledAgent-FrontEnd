@@ -6,9 +6,10 @@ const {
     Validator,
     Helper,
     LogAction,
+    AwsService,
     LogCategory,
     DB,
-    Models: { Resource, Sponsor, ResourceCategory },
+    Models: { Resource, Sponsor, ResourceCategory, Log },
 } = require("common");
 
 const BaseController = require('../controllers/baseController');
@@ -86,10 +87,7 @@ class ResourceController extends BaseController {
         let resource = await Resource.create(b)
 
         if (req.file) {
-            const imageUrl = await FileManager.saveFile(
-                Storages.RESOURCE,
-                req.file
-            )
+            const imageUrl = req.file.location
             resource.imageUrl = imageUrl
             await resource.save()
         }
@@ -124,11 +122,8 @@ class ResourceController extends BaseController {
         .populate(['sponsor', 'category'])
 
         if (req.file) {
-            const imageUrl = await FileManager.saveFile(
-                Storages.RESOURCE,
-                req.file
-            )
-            if (resource.imageUrl && imageUrl && !Validator.isUrl(resource.imageUrl)) FileManager.deleteFile(resource.imageUrl)
+            const imageUrl = req.file.location
+            if (resource.imageUrl && imageUrl) AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(resource.imageUrl))
 
             resource.imageUrl = imageUrl
             await resource.save()
@@ -150,7 +145,7 @@ class ResourceController extends BaseController {
         const { id } = req.params
         if (!BaseController.checkId('Invalid resource id', req, res, next)) return
         let resource = await Resource.findByIdAndDelete(id).exec()
-        if (resource && resource.imageUrl && !Validator.isUrl(resource.imageUrl)) FileManager.deleteFile(resource.imageUrl)
+        if (resource && resource.imageUrl)  AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(resource.imageUrl))
         super.handleResult(resource, res, next)
 
         await Log.create({
