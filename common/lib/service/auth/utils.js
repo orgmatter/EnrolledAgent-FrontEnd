@@ -2,6 +2,8 @@ const Helper = require('../../utils/helper')
 const ErrorMessage = require('../../utils/errorMessage')
 const ErrorCodes = require('../../utils/errorCodes')
 const Exception = require('../../utils/exception')
+const MailService = require('../../service/mailService')
+const EmailTemplates = require('../../utils/emailTemplates')
 const { User } = require('../../models')
 
 /**
@@ -52,18 +54,25 @@ exports.authenticateUser = function (user, password, done) {
  * @param  {string} provider
  */
 exports.authenticateWithProvider = async function (user, provider, done) {
+    let sendWelcome = false
     // console.log(user, provider)
     const { email } = user
     if (!email) done({ message: 'Sorry cannot validate your profile, please try again' })
     var usr = await User.findOne({ email })
-    if (!usr) usr = await User.create({
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        isEmailVerified: true,
-        imageUrl: user.imageUrl,
-        providers: [provider],
-    })
+    if (!usr) {
+        sendWelcome = true
+        usr = await User.create({
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            isEmailVerified: true,
+            imageUrl: user.imageUrl,
+            providers: [provider],
+        })
+    }
+
+    if (user.isEmailVerified != true) sendWelcome = true
+
 
 
     else {
@@ -87,4 +96,19 @@ exports.authenticateWithProvider = async function (user, provider, done) {
 
 
     done(null, Helper.userToSession(usr))
+    if (sendWelcome == true) {
+        // if(user.email)
+        new MailService().sendMail(
+          {
+            template: EmailTemplates.WELCOME,
+            reciever: usr.email,
+            subject: "Welcome ",
+            locals: { name: `${usr.firstName} ${usr.lastName}` },
+          },
+          (res) => {
+            if (res == null) return
+            log.error("Error sending mail", res)
+          }
+        )
+      }
 }
