@@ -4,6 +4,8 @@ const articleRule = document.getElementById("article-rule");
 const blogDiv = document.querySelector("#blog-main");
 const bgImg = blogDiv.getAttribute("bg-img");
 
+console.log(bgImg);
+
 blogDiv.style.backgroundImage = bgImg;
 
 document.getElementById("blog-main").addEventListener("mouseenter", () => {
