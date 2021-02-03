@@ -4,6 +4,7 @@ const {
     FileManager,
     Storages,
     Validator,
+    AwsService,
     LogAction,
     LogCategory,
     Helper,
@@ -17,7 +18,7 @@ class SponsorController extends BaseController {
 
     async create(req, res, next) {
         const { name, link } = req.body
-        console.log('status',req.body, req.headers, req.file, req.files)
+        // console.log('status',req.body, req.headers, req.file, req.files)
         if (!name || !link) {
             res.status(422)
             return next(
@@ -31,10 +32,7 @@ class SponsorController extends BaseController {
         let sponsor = await Sponsor.create({ name, link })
 
         if (req.file) {
-            const imageUrl = await FileManager.saveFile(
-                Storages.SPONSOR,
-                req.file
-            )
+            const imageUrl = req.file.location
             sponsor.imageUrl = imageUrl
             await sponsor.save()
         }
@@ -63,11 +61,8 @@ class SponsorController extends BaseController {
         let sponsor = await Sponsor.findByIdAndUpdate(id, body, { new: true }).exec()
 
         if (req.file) {
-            const imageUrl = await FileManager.saveFile(
-                Storages.SPONSOR,
-                req.file
-            )
-            if (sponsor.imageUrl && imageUrl) FileManager.deleteFile(sponsor.imageUrl)
+            const imageUrl = req.file.location
+            if (sponsor.imageUrl && imageUrl)  AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(sponsor.imageUrl))
 
             sponsor.imageUrl = imageUrl
             await sponsor.save()
@@ -91,13 +86,13 @@ class SponsorController extends BaseController {
         if (!BaseController.checkId('Invalid sponsor id', req, res, next)) return
 
         let sponsor = await Sponsor.findByIdAndDelete(id).exec()
-        if (sponsor  && sponsor.imageUrl) FileManager.deleteFile(sponsor.imageUrl)
+        if (sponsor  && sponsor.imageUrl)AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(sponsor.imageUrl))
         super.handleResult(sponsor, res, next)
         await Log.create({
             user: req.user.id,
             action: LogAction.SPONSOR_DELETED,
             category: LogCategory.SPONSOR,
-            resource: resource._id,
+            resource: sponsor._id,
             ip: Helper.getIp(req),
             message: 'Sponsor Deleted'
         })

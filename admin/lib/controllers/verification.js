@@ -24,7 +24,7 @@ class SubscriptionController extends BaseController {
         const { page, perpage, q, search, from, to } = req.query
         let query = Helper.extractQuery(req.query, ['licence', 'email', 'phone', 'city', 'state', 'zipcode',]) || {}
         // if (q) query = { title: { $regex: q, $options: 'i' } }
-        console.log('from', moment(from).local(), moment(to))
+        // console.log('from', moment(from).local(), moment(to))
         if (from) {
             const start = moment(from)
             const end = moment(to)

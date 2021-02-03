@@ -28,7 +28,7 @@ class FaqController extends BaseController {
         req.locals.resource = { data: [] }
         const { page, perpage, q, search } = req.query
         let query = Helper.parseQuery(q) || {}
-        if (search) query = { $text: { $search: search } }
+        if (search) query = { $text: { $search: search, $caseSensitive: false } };
        
         DB.Paginate(res, next, Faq, {
             perPage: perpage,

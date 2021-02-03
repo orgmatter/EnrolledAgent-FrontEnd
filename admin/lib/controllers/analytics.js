@@ -69,7 +69,7 @@ class AnalyticsController extends BaseController {
             // Promise.reject(new Error('an error'))
         ])
         .then((result)=> {
-            console.log(result)
+            // console.log(result)
             super.handleResult({
                 totalAgents: result[0].value,
                 totalUsers: result[1].value,

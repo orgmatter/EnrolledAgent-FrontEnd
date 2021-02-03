@@ -4,10 +4,11 @@ const {
   ErrorMessage,
   Storages,
   Logger,
-  FileManager,
+  // FileManager,
   Validator,
   Helper,
   JwtManager,
+  AwsService,
   Constants,
   PageAnalyticsService,
   MailService,
@@ -446,15 +447,10 @@ class AuthController {
       User.findByIdAndUpdate(id, body, { new: true })
         .then(async (user) => {
           if (req.file) {
-            const imageUrl = await FileManager.saveFile(
-              Storages.PROFILE,
-              req.file
-            )
-
-            // delete previous file
-            if (user.imageUrl && imageUrl) {
-              FileManager.deleteFile(user.imageUrl || "")
-            }
+            const imageUrl = req.file.location
+            if (user.imageUrl && imageUrl) AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(user.imageUrl))
+          
+            
             user.imageUrl = imageUrl
             user.save()
             req.session.passport.user = Helper.userToSession(user)

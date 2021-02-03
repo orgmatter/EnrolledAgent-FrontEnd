@@ -25,7 +25,7 @@ class AuthController {
         const { email, password } = req.body
 
         log.info(email, password)
-        console.log(req.body)
+        // console.log(req.body)
 
         if (!email || !password) {
             res.status(422)

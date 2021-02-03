@@ -15,7 +15,6 @@ class FaqController extends BaseController {
      create = async (req, res, next)=> {
         const { title, message } = req.body
 
-        console.log(req.body)
 
         if (!title || !message) {
             res.status(422)
@@ -58,7 +57,7 @@ class FaqController extends BaseController {
     }
 
      get = async (req, res, next) => {
-        console.log(super.delete )
+        // console.log(super.delete )
         const { id } = req.params
 
         if (!BaseController.checkId('Invalid faq id', req, res, next)) return

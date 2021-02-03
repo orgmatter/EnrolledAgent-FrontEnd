@@ -69,6 +69,18 @@ class AwsService {
     }
   })
 
+  docs = (folder = 'docs') => multer({
+    ...this.BASE(folder),
+    fileFilter(req, file, cb) {
+      // console.log(req,)
+      if (
+        !file.originalname.match(/\.(pdf|txt)$/i)
+      ) {
+        return cb(new Exception('file must be a document'))
+      } else cb(null, true)
+    }
+  })
+
   audio = multer({
     ...this.BASE('audio'),
     fileFilter(req, file, cb) {
