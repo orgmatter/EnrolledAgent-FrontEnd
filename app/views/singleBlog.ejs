@@ -10,7 +10,7 @@
         <!-- Section: inner-header -->
         <section
           class="inner-header divider layer-overlay overlay-dark-4"
-          data-bg-img=<%= locals.article.imageUrl || "/assets/images/blog_fallback.jpeg" %>
+          data-bg-img=<%= locals.article.imageUrl || "https://enrolled-public.s3.amazonaws.com/assets/images/blog_fallback.webp" %>
         >
           <div class="container pt-120 pb-60">
             <!-- Section Content -->
@@ -36,11 +36,7 @@
               <div class="col-md-8 col-md-offset-2">
                 <div class="blog-posts single-post">
                   <article class="post clearfix mb-0">
-                    <div class="entry-header">
-                      <!-- <div class="post-thumb thumb">
-                        <img src="/images/bg/bg2.jpg" alt="" class="img-responsive img-fullwidth" />
-                      </div> -->
-                    </div>
+                    <div class="entry-header"> </div>
                     <div class="entry-content">
                       <div class="entry-meta media no-bg no-border mt-15 pb-20">
                         <div
@@ -182,6 +178,6 @@
     </div>
     <%- include("./partials/footer.ejs") %>
     <script src="/javascripts/comment.js"></script>
-    <script src="/js/custom.js"></script>
+    <script src="/js/main.js"></script>
   </body>
 </html>

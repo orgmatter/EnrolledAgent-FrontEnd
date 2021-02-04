@@ -35,16 +35,7 @@
             <% } %> 
           </div>
           <div class="findEA-banner__item--button">
-            <!-- <button class="findEA-banner__item--button-btn findEA-btn">
-              Alabama Accounting Firns
-              <span class="findEA-btn-right-angle">
-                <img
-                  src="/assets/images/findEA/right-arrow-white.svg"
-                  alt=""
-                  class="findEA-btn-right-arrow-right"
-                />
-              </span>
-            </button> -->
+            
           </div>
         </div>
       </div>
@@ -150,7 +141,7 @@
                   <% locals.popular.map((e, id)=> { %>
                     <div class="findEA-suggested__item">
                       <div class="findEA-suggested__item--image">
-                        <img src=<%= e.imageUrl || "/assets/images/avatar.webp" %> alt=<%= e.firstName %> <%= e.lastName %>
+                        <img src=<%= e.imageUrl || "https://enrolled-public.s3.amazonaws.com/assets/images/avatar.webp" %> alt=<%= e.firstName %> <%= e.lastName %>
                           class="findEA-suggested__item--image-img" />
                       </div>
                       <div class="findEA-suggested__item--container">
@@ -171,7 +162,7 @@
             </div>
 
             <%- include("./partials/footer.ejs") %>
-              <script src="/js/custom.js"></script>
+              <script src="/js/main.js"></script>
               
               <script>
             const rateStars = document.querySelectorAll(".stars-outer");
