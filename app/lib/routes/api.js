@@ -18,6 +18,7 @@ router
   .post("/reset-password", AuthController.resetPassword)
   .post("/subscribe", ContactController.subscribe)
   .post("/contact", ContactController.create)
+  .post("/partner", ContactController.partner)
   .post("/contact-agent", ContactController.sendAgentMessage)
   .post("/login", AuthController.login)
   .post("/review", ReviewController.createReview)

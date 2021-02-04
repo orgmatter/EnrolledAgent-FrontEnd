@@ -21,6 +21,7 @@ module.exports = {
   ListingRequest: require('./listingRequest'),
   Offshore: require('./offshore'),
   PageView: require('./pageView'),
+  PartnerRequest: require('./partnerRequest'),
   Review: require('./review'),
   Role: require('./role'),
   Resource: require('./resource'),

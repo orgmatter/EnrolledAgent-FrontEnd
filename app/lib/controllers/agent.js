@@ -6,7 +6,8 @@ const {
   LogCategory,
   LogAction,
   AwsService,
-  Storages,
+  EmailTemplates,
+  MailService,
   Validator,
   Helper,
   Logger,
@@ -194,6 +195,24 @@ class AgentController extends BaseController {
     // log.info(data)
 
     res.json({ data: { message: 'Your listing request has been submitted, you will be contacted appropriately' } })
+
+    new MailService().sendMail(
+      {
+        // secret: config.PUB_SUB_SECRET,
+        template: EmailTemplates.INFO,
+        reciever: process.env.DEFAULT_EMAIL_SENDER,
+        subject: 'Listing Request',
+        locals: { message: `
+        <p>Hello Admin,  </p>
+        <p>A user just requested to list his profile, please visit the admin portal to check this out.</p><br>
+        <p></p>
+        `},
+      },
+      (res) => {
+        if (res == null) return
+        log.error("Error sending mail", res)
+      }
+    )
   }
 
 
@@ -235,6 +254,24 @@ class AgentController extends BaseController {
     })
 
     super.handleResult({ data: { message: 'Your request has been submitted, you will be  contacted appropriately' } }, res, next)
+
+    new MailService().sendMail(
+      {
+        // secret: config.PUB_SUB_SECRET,
+        template: EmailTemplates.INFO,
+        reciever: process.env.DEFAULT_EMAIL_SENDER,
+        subject: 'Listing Claim Request',
+        locals: { message: `
+        <p>Hello Admin,  </p>
+        <p>A new listing claim request has been sent, please visit the admin portal to check this out.</p><br>
+        <p></p>
+        `},
+      },
+      (res) => {
+        if (res == null) return
+        log.error("Error sending mail", res)
+      }
+    )
   }
 
   async get(req, res, next) {

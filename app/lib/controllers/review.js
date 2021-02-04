@@ -1,4 +1,4 @@
-const { DB, Models: { Agent, Review, Firm }, Validator, Exception, ErrorCodes, ErrorMessage } = require("common")
+const { DB, Models: { Agent, Review, Firm }, Validator, Exception, ErrorCodes, ErrorMessage, MailService, EmailTemplates } = require("common")
 const { Types } = require("mongoose")
 
 /**
@@ -40,6 +40,30 @@ class ReviewController {
         Review.create({ rating, message, agent, firm, user: usr, firstName, lastName, email, city, state })
             .then((doc) => {
                 res.json({ data: { message: 'your rating was added successfully' } })
+            })
+
+            Agent.findOne({ _id: agent })
+            .then((doc) => {
+                if(doc )
+                new MailService().sendMail(
+                    {
+                      // secret: config.PUB_SUB_SECRET,
+                      template: EmailTemplates.INFO,
+                      reciever: 'a@b.com',
+                      subject: 'New Review',
+                      locals: { message: `
+                      <p>Hello  ${doc.firstName, doc.lastName},  </p>
+                      <p>Your listing on <strong>enrolledagent.com </strong> is being noticed, you have a new review</p><br>
+                      <p>rating: ${rating}</p>
+                      <p>Message: ${message}</p>
+                      <p></p>
+                      `},
+                    },
+                    (res) => {
+                      if (res == null) return
+                      log.error("Error sending mail", res)
+                    }
+                  ) 
             })
     }
 

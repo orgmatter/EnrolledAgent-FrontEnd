@@ -1,7 +1,7 @@
 const { 
     Helper, 
     DB,
-    Models: { Contact },
+    Models: { Contact, PartnerRequest },
 } = require("common");
 
 
@@ -32,6 +32,23 @@ class ContactController extends BaseController {
         if (q) query = { title: { $regex: q, $options: 'i' } }
 
         DB.Paginate(res, next, Contact, {
+            perPage: perpage,
+            query,
+            page,
+            sort: {createdAt: -1},
+            // populate: 
+        }, (data) => {
+            super.handleResultPaginated(data, res, next)
+        })
+
+    }
+
+    async partnerReq(req, res, next) {
+        const { page, perpage, q, search } = req.query
+        let query = Helper.extractQuery(req.query) || {}
+        // if (q) query = { title: { $regex: q, $options: 'i' } }
+
+        DB.Paginate(res, next, PartnerRequest, {
             perPage: perpage,
             query,
             page,

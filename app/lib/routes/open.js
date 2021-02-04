@@ -15,7 +15,7 @@ const Log = new Logger('App:open');
 
 const checkRedirectCookie = (req, res, next) => {
   const path = req.cookies['redirect-to'];
-  if (path) res.clearCookie('redirect-to');
+   res.clearCookie('redirect-to');
 
   if (path && path.length > 1) return res.redirect(path);
   next();
