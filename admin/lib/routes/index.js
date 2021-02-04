@@ -13,7 +13,7 @@ router
   .use(require('./claim'))
   .use('/sponsor', require('./sponsor'))
   .use('/payment', require('./payment'))
-  .use('/contact', require('./contact'))
+  .use(require('./contact'))
   .use('/verification', require('./verification'))
   .use('/offshore', require('./offshore'))
   .use('/email-list', require('./subscribers'))
