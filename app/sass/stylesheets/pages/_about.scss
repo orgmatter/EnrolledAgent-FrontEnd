@@ -1,8 +1,49 @@
 .about {
+  &-funfact{
+    background-image: url("https://enrolled-public.s3.amazonaws.com/assets/files/about/4+(1).webp");
+     background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
   &_jumbotron {
-    background-image: url("/images/bg/bg1.jpg");
+    background-image: url("https://enrolled-public.s3.amazonaws.com/assets/files/about/about.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    height: 500px;
+    display: flex;
+    align-items: flex-end;
     h2 {
       color: #fff !important;
+      font-family: "Libre Baskerville", serif;
     }
   }
+}
+
+.privacy_jumbotron {
+  background-image: url("https://enrolled-public.s3.amazonaws.com/assets/files/about/privacy.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 300px;
+    display: flex;
+    align-items: flex-end;
+    h2 {
+      color: #fff !important;
+      font-family: "Libre Baskerville", serif;
+    }
+}
+
+.terms_jumbotron {
+  background-image: url("https://enrolled-public.s3.amazonaws.com/assets/files/about/terms2.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 300px;
+    display: flex;
+    align-items: flex-end;
+    h2 {
+      color: #fff !important;
+      font-family: "Libre Baskerville", serif;
+    }
 }

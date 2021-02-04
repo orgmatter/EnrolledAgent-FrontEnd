@@ -56,9 +56,6 @@ body {
     color: #ffffff;
   }
 
-  .contact-info {
-  }
-
   img {
     max-width: 100%;
     height: auto;
@@ -69,8 +66,8 @@ body {
     top: 0;
     width: 100%;
     height: 898px;
-    background: url("/assets/images/bg1.webp") top center no-repeat,
-      url("/assets/images/bg2.webp") top center no-repeat;
+    background: url("https://enrolled-public.s3.amazonaws.com/assets/images/bg1.webp") top center no-repeat,
+      url("https://enrolled-public.s3.amazonaws.com/assets/images/bg2.webp") top center no-repeat;
     background-blend-mode: multiply;
     background-size: cover;
   }

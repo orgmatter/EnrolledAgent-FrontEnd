@@ -26,9 +26,11 @@
     color: #fff;
     position: relative;
     margin-bottom: 1rem;
+    transition: .5s;
     &:hover {
       background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
         url("/assets/images/blog/news-img2.webp");
+        transition: .5s;
     }
     &--items {
       position: absolute;

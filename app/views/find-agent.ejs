@@ -45,12 +45,13 @@
 
     <section id="section-2" class="mt-100 mb-150">
       <div class="img">
-        <img src="/assets/files/section-2-img.webp" alt="" />
+        <img src="https://enrolled-public.s3.amazonaws.com/assets/files/section-2-img.webp" 
+        alt="Enrolled Agents" />
       </div>
       <div class="text">
         <h3>Want to save big on taxes?</h3>
         <p>
-          THe form of business structure you have determines how you will be taxed by the IRS. <br />Use
+          The form of business structure you have determines how you will be taxed by the IRS. <br />Use
           this free tax calculator to estimate your tax savings.
         </p>
 
@@ -95,7 +96,6 @@
                   </p>
                   <div class="team-bottom-flex">
                     <div class="team-bottom-flex-div1">
-                      <!-- <img src="/assets/files/stars.svg" alt="" class="img-fullwidth" /> -->
                       <div class="stars-outer" value=<%=e.rating || 0 %>>
                         <div class="stars-inner"></div>
                       </div>
@@ -127,7 +127,7 @@
     <!-- footer section -->
     <%- include("./partials/footer.ejs") %>
     <script type="text/javascript" src="/javascripts/findAgent.js"></script>
-    <script src="/js/custom.js"></script>
+    <script src="/js/main.js"></script>
 
     <script>
       const rateStars = document.querySelectorAll(".stars-outer");
