@@ -5,6 +5,8 @@ const {
     Exception,
     ErrorCodes,
     ErrorMessage,
+    MailService, 
+    EmailTemplates,
     Logger,
     Models: { QuestionCategory, Question, Answer, Agent },
 } = require("common");
@@ -57,6 +59,28 @@ class QuestionController extends BaseController {
         let resource = await Question.create(b)
         super.handleResult({ message: 'Your question has been posted successfully' }, res, next)
 
+        new MailService().sendMail(
+            {
+              // secret: config.PUB_SUB_SECRET,
+              template: EmailTemplates.INFO,
+              reciever: process.env.DEFAULT_EMAIL_SENDER,
+              subject: 'Question',
+              locals: { message: `
+              <p>Hello Admin,  </p>
+              <p>A user just posted a question, please visit the admin portal to check this out.</p><br>
+              <p>Name: ${firstName, lastName}</p>
+              <p>Email: ${email}</p>
+              <p>Phone: ${phone}</p>
+              <p>Title: ${title}</p>
+              <p>Message: ${body}</p>
+              `},
+            },
+            (res) => {
+              if (res == null) return
+              log.error("Error sending mail", res)
+            }
+          )
+
     }
     /**
      * Post an answer to a question,
@@ -104,7 +128,25 @@ class QuestionController extends BaseController {
         }
 
         await Answer.create({ agent: agent._id, message, question })
-        super.handleResult({ message: 'Your question has been posted successfully' }, res, next)
+        super.handleResult({ message: 'Your answer has been posted successfully, it will be publicly available if approved by the admin' }, res, next)
+
+        new MailService().sendMail(
+            {
+              // secret: config.PUB_SUB_SECRET,
+              template: EmailTemplates.INFO,
+              reciever: process.env.DEFAULT_EMAIL_SENDER,
+              subject: 'Question Answer',
+              locals: { message: `
+              <p>Hello Admin,  </p>
+              <p>An agent just answered a question, please visit the admin portal to check this out.</p><br>
+              
+              `},
+            },
+            (res) => {
+              if (res == null) return
+              log.error("Error sending mail", res)
+            }
+          )
 
     }
 
@@ -134,7 +176,7 @@ class QuestionController extends BaseController {
     async getAll(req, res, next) {
         const { query: { page, perpage, q, search }, params: { category } } = req
         let query = Helper.parseQuery(q) || {}
-        if (search) query = { $text: { $search: search } }
+        if (search) query = { $text: { $search: search, $caseSensitive: false } };
 
         if (category) {
             let cat = await QuestionCategory.findOne({ slug: category })

@@ -1,5 +1,6 @@
 const Constants = require('../utils/constants')
 const mongoose = require('mongoose')
+const Validator = require('../utils/validators')
 const { Schema } = mongoose
 
 const LicenceVerificationSchema = new mongoose.Schema({
@@ -33,7 +34,11 @@ const LicenceVerificationSchema = new mongoose.Schema({
     enum: ['phone', 'email', 'text']
 
   }
-}, { timestamps: true })
+}, { toJSON: { virtuals: true }, toObject: { virtuals: true }, timestamps: true })
 
+LicenceVerificationSchema.virtual('isPaymentValid')
+  .get(function () {
+    return (this.transaction && Validator.isMongoId(String(this.transaction)))
+  })
 
 module.exports = mongoose.model('licenceVerification', LicenceVerificationSchema)

@@ -7,7 +7,7 @@ const {
   Validator,
   Helper,
   DB,
-  Models: { Contact, AgentMessage, Agent, AdminUser, EmailList, Offshore },
+  Models: { Contact, PartnerRequest, AgentMessage, Agent, AdminUser, EmailList, Offshore },
 } = require("common")
 const { Types: { ObjectId } } = require("mongoose")
 
@@ -50,16 +50,15 @@ class ContactController {
 
     await Contact.create({ name, email, subject, message, phone }).then()
 
-    let admin = await AdminUser.find({}).exec()
 
-    if (admin && admin.length > 0) {
-      // console.log( admin.map(a=> a.email))
+   
+    res.json({ message: 'Thank you for contacting us, your message will be attended to appropriately' })
 
       new MailService().sendMail(
         {
           // secret: config.PUB_SUB_SECRET,
           template: EmailTemplates.CONTACT,
-          reciever: admin.map(a => a.email),
+          reciever: process.env.DEFAULT_EMAIL_SENDER,
           subject: subject,
           locals: { name: name, phone, message, userEmail: email },
         },
@@ -68,9 +67,96 @@ class ContactController {
           log.error("Error sending mail", res)
         }
       )
+
+      new MailService().sendMail(
+        {
+          // secret: config.PUB_SUB_SECRET,
+          template: EmailTemplates.INFO,
+          reciever: email,
+          subject: subject,
+          locals: { message: `
+          <p>Thank you for contacting, Enrolledagent.com</p>
+          <p>We have received your message, it will be attended to appropriately</p>`},
+        },
+        (res) => {
+          if (res == null) return
+          log.error("Error sending mail", res)
+        }
+      )
+    
+
+
+
+  }
+
+  async partner(req, res, next) {
+    const { name, firm, email, message, phone } = req.body
+
+    if (!name || !email || !phone) {
+      res.status(422)
+      return next(
+        new Exception(
+          'Name and email is required',
+          ErrorCodes.REQUIRED
+        )
+      )
     }
 
+    if (!Validator.email(email)) {
+      res.status(422)
+      return next(
+        new Exception(
+          'Please provide a valid email',
+          ErrorCodes.REQUIRED
+        )
+      )
+    }
+
+
+    
+
+    await PartnerRequest.create({ name, email, message, phone }).then()
+
+
+   
     res.json({ message: 'Thank you for contacting us, your message will be attended to appropriately' })
+
+      new MailService().sendMail(
+        {
+          // secret: config.PUB_SUB_SECRET,
+          template: EmailTemplates.INFO,
+          reciever: process.env.DEFAULT_EMAIL_SENDER,
+          subject: 'Parter Request',
+          locals: { message: `
+          <p>A user has indicated interest in becoming a partner with Enrolledagent.com, below is a summary.</p><br>
+          <p>Name: ${name}</p>
+          <p>Email: ${email}</p>
+          <p>Phone: ${phone}</p>
+          <p>Info: ${message}</p>`
+        },
+        },
+        (res) => {
+          if (res == null) return
+          log.error("Error sending mail", res)
+        }
+      )
+
+      new MailService().sendMail(
+        {
+          // secret: config.PUB_SUB_SECRET,
+          template: EmailTemplates.INFO,
+          reciever: email,
+          subject: "EnrolledAgent",
+          locals: { message: `
+          <p>Thank you for your interest in becoming a partner with Enrolledagent.com</p>
+          <p>We will get in touch with you as soon as possible</p>`},
+        },
+        (res) => {
+          if (res == null) return
+          log.error("Error sending mail", res)
+        }
+      )
+
 
 
   }
@@ -136,6 +222,7 @@ class ContactController {
     }
 
     await AgentMessage.create({ name, email, subject, message, phone, agent }).then()
+    res.json({ message: `Thank you for contacting ${_agent.firstName || ''} ${_agent.lastName || ''}, your message will be attended to appropriately` })
 
     new MailService().sendMail(
       {
@@ -150,8 +237,22 @@ class ContactController {
         log.error("Error sending mail", res)
       }
     )
+    new MailService().sendMail(
+      {
+        // secret: config.PUB_SUB_SECRET,
+        template: EmailTemplates.INFO,
+        reciever: process.env.DEFAULT_EMAIL_SENDER,
+        subject: subject,
+        locals: { message: `
+        <p>Thank you for contacting ${_agent.firstName || ''} ${_agent.lastName || ''} </p>
+        <p>your message will be attended to appropriately</p>`},
+      },
+      (res) => {
+        if (res == null) return
+        log.error("Error sending mail", res)
+      }
+    )
 
-    res.json({ message: `Thank you for contacting ${_agent.firstName || ''} ${_agent.lastName || ''} us, your message will be attended to appropriately` })
 
 
   }
@@ -197,8 +298,32 @@ class ContactController {
       message,
       preferredContact
     }).then()
+    
 
     res.json({ message: 'Your request has been submitted, your message will be attended to appropriately' })
+
+    new MailService().sendMail(
+      {
+        // secret: config.PUB_SUB_SECRET,
+        template: EmailTemplates.INFO,
+        reciever: process.env.DEFAULT_EMAIL_SENDER,
+        subject: 'Offshore Request',
+        locals: { message: `
+        <p>Hello Admin,  </p>
+        <p>A new offshore request has been sent, below is a summary.</p><br>
+        <p>Name: ${firstName, lastName}</p>
+        <p>Email: ${email}</p>
+        <p>Phone: ${phone}</p>
+        <p>Zipcode: ${zipcode}</p>
+        <p>Message: ${message}</p>
+        <p></p>
+        `},
+      },
+      (res) => {
+        if (res == null) return
+        log.error("Error sending mail", res)
+      }
+    )
 
 
   }
@@ -240,9 +365,9 @@ class ContactController {
 */
   unsubscribe = async (req, res, next) => {
     const { email } = req.query
-    const e = await EmailList.findOneAndUpdate({ email }, { unsubscribed: true }).exec()
+    const e = await EmailList.findOneAndUpdate({ email }, { unsubscribed: true }, {upsert: true, new: true}).exec()
     if (e)
-      req.app.locals.message = `${email} has been unsubscribed from recieving mails from Enrolled Agents`;
+      req.session.message = `${email} has been unsubscribed from recieving mails from Enrolled Agents`;
 
     res.redirect('/')
   }

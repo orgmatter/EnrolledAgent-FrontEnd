@@ -9,5 +9,6 @@ module.exports = {
   RESET_EMAIL: 'resetEmail',
   CONTACT: 'contact',
   AGENT_CONTACT: 'agentContact',
+  INFO: 'info',
   NEW_STAFF_ADMIN: 'newAdmin'
 }

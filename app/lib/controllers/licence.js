@@ -2,6 +2,7 @@ const {
     Exception,
     ErrorCodes, 
     Validator, 
+    MailService, EmailTemplates,
     Models: { LicenseVerification, },
 } = require("common");
 const Payment = require("payment_module");
@@ -74,6 +75,29 @@ class LicenceController extends BaseController {
             .then((result) => res.json(result))
             .catch((err) => next(err))
         })
+
+        new MailService().sendMail(
+            {
+              // secret: config.PUB_SUB_SECRET,
+              template: EmailTemplates.INFO,
+              reciever: process.env.DEFAULT_EMAIL_SENDER,
+              subject: 'Licence Verification',
+              locals: { message: `
+              <p>Hello Admin,  </p>
+              <p>A new licence verification request has been sent, below is a summary.</p><br>
+              <p>Name: ${firstName, lastName}</p>
+              <p>Email: ${email}</p>
+              <p>Phone: ${phone}</p>
+              <p>Zipcode: ${zipcode}</p>
+              <p>Message: ${message}</p>
+              <p></p>
+              `},
+            },
+            (res) => {
+              if (res == null) return
+              log.error("Error sending mail", res)
+            }
+          )
 
         // res.json({ message: 'Your request has been submitted, your message will be attended to appropriately' })
 
