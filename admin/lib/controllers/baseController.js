@@ -113,7 +113,7 @@ class BaseController {
     }
 
     /**
-     * Get all record on the database in paginateed format
+     * Get all record on the database in paginated format
      * @param  {Express.Request} req
      * @param  {Express.Response} res
      * @param  {Function} next

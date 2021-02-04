@@ -248,7 +248,10 @@ class AgentController extends BaseController {
         { path: "owner", select: ["_id", "firstName"] },
       ])
       .exec();
-    req.locals.agent = agent;
+    if(!agent) {
+      req.session.error = 'Agent not found'
+      return res.redirect('/ea-listings')
+     } req.locals.agent = agent;
     // log.info(agent)
     next();
     if (agent)
