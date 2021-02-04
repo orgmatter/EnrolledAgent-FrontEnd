@@ -12,11 +12,6 @@ p,h2,h1,h3,h4,h5,h6,div{
   font-weight: 600;
 }
 
-// p {
-//   font-size: 18px;
-//   font-weight: 300;
-// }
-
 a:hover,
 .btn:hover {
   color: orange;
@@ -98,7 +93,7 @@ img {
     width: 100%;
     height: 70vh;
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
-        url("https://enrolled-public.s3.amazonaws.com/assets/files/11.svg");
+        url("https://enrolled-public.s3.amazonaws.com/assets/officialAssets/11.webp");
     background-repeat: no-repeat;
   background-position: center center;
     background-size: cover;
@@ -496,7 +491,7 @@ img {
 
 .enrolled-offers {
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.74), rgba(0, 0, 0, 0.74)),
-        url("/assets/images/4.webp");
+        url("https://enrolled-public.s3.amazonaws.com/assets/images/4.webp");
     background-repeat: no-repeat;
   background-position: center center;
     background-size: cover;

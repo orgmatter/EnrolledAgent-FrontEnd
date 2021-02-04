@@ -1,8 +1,15 @@
 .contact {
   &_jumbotron {
-    background-image: url("/images/bg/bg1.jpg");
+    background-image: url("https://enrolled-public.s3.amazonaws.com/assets/files/about/3.webp");
+     background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 300px;
+     display: flex;
+    align-items: flex-end;
     h2 {
       color: #fff !important;
+      font-family: "Libre Baskerville", serif;
     }
   }
 }
