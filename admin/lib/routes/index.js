@@ -23,6 +23,7 @@ router
   .use('/category', require('./category'))
   .use('/listing-request', require('./listingRequest'))
   .use('/article', require('./article'))
+  .use('/news',  require('../controllers/agent').getAll)
   .use('/agent', require('./agent'))
   .use(require('./user'))
   .use('/question', require('./question'))
