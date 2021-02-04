@@ -32,6 +32,8 @@ class SubscriptionController extends BaseController {
             console.log(query)
         }
 
+        query.transaction = {$exists: true}
+
         DB.Paginate(res, next, LicenseVerification, {
             perPage: perpage,
             query,

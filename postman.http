@@ -186,3 +186,18 @@ content-type: application/json
 {
   "email": "a@b.com"
 }
+
+
+###
+
+POST  http://localhost:3000/api/partner HTTP/1.1
+content-type: application/json
+
+{
+    "message": "Dsghghjgjhggdf",
+     "email": "ekeh.wisdom@gmail.com",
+    "firm": "Mtn Nigeria",
+    "title": "sdfdffdf",
+    "name": "wizzy", 
+    "phone": "09902836879233" 
+}
