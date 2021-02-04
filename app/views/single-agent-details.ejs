@@ -11,7 +11,7 @@
           <div class="row">
             <aside class="col-md-4 part-1">
               <div class="face-card cards">
-                <img src=<%= locals.agent.imageUrl || "/assets/images/avatar.webp" %>  alt="img" />
+                <img src=<%= locals.agent.imageUrl || "https://enrolled-public.s3.amazonaws.com/assets/images/avatar.webp" %>  alt="img" />
                <% if(locals.premium) { %>
                 <h4>Premium Member</h4>
                <%}%> 
@@ -325,7 +325,7 @@
           </script>
           <script type="text/javascript" src="/javascripts/review.js"></script>
           <script type="text/javascript" src="/javascripts/message.js"></script>
-          <script src="/js/custom.js"></script>
+          <script src="/js/main.js"></script>
   </body>
 
 </html>

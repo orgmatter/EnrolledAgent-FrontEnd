@@ -273,5 +273,49 @@
         }
       }
     }
+    @include respond(laptop) {
+      &-header {
+        font-size: 40px;
+        line-height: 50px;
+      }
+      &-sub {
+        font-size: 20px;
+        line-height: 26px;
+      }
+      &-grid{
+        grid-column-gap: 20px;
+        width: 100%;
+        &-box {
+          width: 300px;
+          margin: 0 auto;
+          &-topic {
+          font-size: 18px;
+          line-height: 24px;
+        }
+        &-desc {
+          font-size: 14px;
+        }
+        }
+      }
+    }
+    @include respond(small-laptop) {
+      &-grid{
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+     @include respond(tab-land) {
+      &-grid{
+        display: block;
+        width: 100%;
+        &-box {
+          width: 70%;
+          min-width: 300px;
+          margin: 0 auto 30px;
+          &:nth-of-type(n+4){
+            display: none;
+          }
+        }
+      }
+    }
   }
 }
