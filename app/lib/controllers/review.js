@@ -74,6 +74,7 @@ class ReviewController {
      */
     analysis = async function (req, res, next) {
         const { params: { id }, } = req;
+        if (Validator.isMongoId(id)) {
         const agent = await Agent.findOne({ _id: id }).exec()
 
         if (agent && agent._id) {
@@ -109,7 +110,8 @@ class ReviewController {
                     // if (doc && doc[0] && doc[0].count) req.locals.monthlySub = doc[0].count;
                     next();
                 });
-        } else next()
+        }else next()
+     }else next()
     };
 
 
