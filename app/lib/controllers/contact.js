@@ -17,7 +17,7 @@ class ContactController {
   async create(req, res, next) {
     const { name, email, subject, message, phone } = req.body
 
-    if (!name || !email || !phone) {
+    if (!name || !email ) {
       res.status(422)
       return next(
         new Exception(
@@ -92,7 +92,7 @@ class ContactController {
   async partner(req, res, next) {
     const { name, firm, email, message, phone } = req.body
 
-    if (!name || !email || !phone) {
+    if (!name || !email ) {
       res.status(422)
       return next(
         new Exception(
@@ -115,7 +115,7 @@ class ContactController {
 
     
 
-    await PartnerRequest.create({ name, email, message, phone }).then()
+    await PartnerRequest.create({ name, firm,  email, message, phone }).then()
 
 
    
@@ -190,7 +190,7 @@ class ContactController {
       )
     }
 
-    if (!name || !email || !phone) {
+    if (!name || !email ) {
       res.status(422)
       return next(
         new Exception(
