@@ -23,91 +23,34 @@
         <p>Browse through our list of frequently asked questions</p>
       </div>
     </section>
-
-      <section id="input">
-        <div class="container">
-          <div class="row">
-            <div class="row-1.col-md-4"> 
-              <div class="input-text col-md-8">
-                <p>search:</p>
-                <input type="text" name="search" id="search" />
-                <button onclick="search()" class="btn btn-lg b-ton b-ton-blu"> Search</button>
-               
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
  
-    <section id="premium" class="container">
-      <% if( typeof locals.faqs !=='undefined' && locals.faqs.data && locals.faqs.data.length > 0) { %> 
-      <% locals.faqs.data.map((e,id)=> { %> 
-      <% const {title, message } = e %>
-      <div class="row premium-box mb-30">
-       <h4><%= title %> </h4>
-       <p><%- message %> </p>
+    <section id="premium" class="container pt-100 pb-100 faq-container">
+      <div class="faq-container-div1">
+        <h3>Getting Started</h3>
+        <% if( typeof locals.faqs !=='undefined' && locals.faqs.data && locals.faqs.data.length > 0) { %>
+          <% locals.faqs.data.map((e,id)=> { %> 
+          <% const {title, _id } = e %>
+          <a href="/frequently-asked-questions/<%= _id %> "> <%= title %> </a>
+          <% })} else { %>
+            <p>No FAQs available!</p>
+          <% } %>
       </div>
-      <% })} else { %>
-      <div>
-        <p>There were 0 results found for your search critera.</p>
-      </div>
-      <% } %>
-    </section>
-     
-    
-   
-    <section id="bottom">
-      <div class="container contain">
-        <div class="row">
-          <% if(locals.faqs && locals.faqs.data && locals.faqs.data.length > 0){ %> 
-          <div class="col-md-3">
-              <% const { page, pages, perPage, total} = locals.faqs %>
-                <p> Showing
-                  <span id="resNumber"> <%= (((page || 0) -1) * (perPage || 0))+ 1 || 0%> to 
-                    <%= Math.min((page || 1) * (perPage || 0), total) || 0%> of <%= total || 0%> entries
-                  </span>
-                </p>  
-          </div>
-          <% } %> 
-           <% if(locals.faqs && locals.faqs.data && locals.faqs.pages > 1){ %> 
-          <div class="col-md-9">
-            <nav class="MyPagination">
-              <ul class="pagination">
-                <ul id="pagination" class="pagination-sm"></ul>
-              </ul>
-            </nav>
-          </div>
-          <% } %> 
-          <!-- <div class="col-md-6 b-tons"> -->
-        </div>
+      <div class="faq-container-div2">
+        <% if (id) { %>
+          <h3><%= locals.faq.title %></h3>
+          <p><%- locals.faq.message %></p>
+        <% } else { %>
+          <h2>FAQs</h2>
+          <p class="faq-text">Welcome to our FAQ series, designed to help you get the most out of your CPAdirectory account.</p>
+          <a href="/contact" class="faq-btn">Contact Us For Assistance</a>
+        <% } %> 
+        
       </div>
     </section>
     
     <!-- footer section -->
     <%- include("./partials/footer.ejs") %>
-    <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
-    <script src="/javascripts/pagination.js"></script>
     <script src="/js/main.js"></script>
 
-    <script>
-      function search() {
-        const input = document.getElementById("search").value;
-        window.location = `?search=${input}`;
-      }
-      function onload() {
-        const input = document.getElementById("search");
-        const urlParams = new URLSearchParams(window.location.search);
-        const _search = urlParams.get("search");
-        input.value = _search;
-        input.addEventListener("keyup", function (event) {
-          // Number 13 is the "Enter" key on the keyboard
-          if (event.keyCode === 13) {
-            search();
-          }
-        });
-        // console.log(_search)
-      }
-    </script>
   </body>
 </html>

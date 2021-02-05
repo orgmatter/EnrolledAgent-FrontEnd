@@ -28,7 +28,18 @@ router
     PageAnalyticsService.inc('/career-center');
   })
   .get('/frequently-asked-questions', FaqController.getAll, (req, res) => {
-    res.render('faq', { locals: req.locals });
+    res.render('faq', { 
+      locals: req.locals,
+      id: false 
+    });
+    PageAnalyticsService.inc('/frequently-asked-questions');
+    Log.info('faq', req.locals.faqs.data);
+  })
+  .get('/frequently-asked-questions/:id', FaqController.getAll, FaqController.get, (req, res) => {
+    res.render('faq', { 
+      locals: req.locals,
+      id: true  
+    });
     PageAnalyticsService.inc('/frequently-asked-questions');
     Log.info('faq', req.locals);
   })
