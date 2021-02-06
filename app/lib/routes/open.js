@@ -210,8 +210,7 @@ router
       //  Log.info(req.locals.resource)
       res.render('resource', {
         name: 'Resources',
-        description:
-          'Valuable services, products, tools, and whitepapers from our partners, hand selected by our staff.',
+        description: 'Valuable services, products, tools, and whitepapers from our partners and selected by our staff.',
         locals: req.locals,
       });
       PageAnalyticsService.inc('/resource');

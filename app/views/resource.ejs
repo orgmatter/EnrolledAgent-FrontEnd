@@ -81,8 +81,9 @@
     <% } %>
   </div>
 </section>
-
-<button data-toggle="modal" data-target="#partnerModal">Click me</button>
+<div class="partner-banner">
+  <img data-toggle="modal" data-target="#partnerModal" class="partner-banner-img" src="https://enrolled-public.s3.amazonaws.com/assets/EA_Resources_Page.webp" alt="partner banner" />
+</div>
 <!-- Modal -->
   <div class="modal fade bd-example-modal-lg" id="partnerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -93,7 +94,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form id="review-form">
+        <form id="partner-form">
         <div class="modal-body">
             <div class="modal-body-div">
               <div class="row">
@@ -189,6 +190,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
     integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
     crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/javascripts/partner.js"></script>
           <script type="text/javascript" src="/javascripts/contact.js"></script>
           <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
           <script src="/javascripts/pagination.js"></script>

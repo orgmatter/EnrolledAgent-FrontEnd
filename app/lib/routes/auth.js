@@ -32,6 +32,10 @@ router
         res.render("forgotPassword", { locals: req.locals });
         PageAnalyticsService.inc('/forgot-password')
     })
+    .get("/resend-verification", (req, res) => {
+        res.render("resendVerification", { locals: req.locals });
+        PageAnalyticsService.inc('/resend-verification')
+    })
     .get("/login", setRedirectCookie, (req, res) => {
         res.render("login", { locals: req.locals });
         PageAnalyticsService.inc('/login')
