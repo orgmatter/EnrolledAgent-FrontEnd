@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xml:lang="en" xmlns= "http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -31,7 +31,7 @@
             <div class="blog__main--article">
               <div class="blog__main--article-name">
                 <span class="blog-color-text-sky"><%= locals.featuredArticle.category.name %></span> / 
-                <%- locals.dayjs(locals.featuredArticle.createdAt).format("MMM D, YYYY") %> / By <%= locals.featuredArticle.author || "" %>
+                <%- locals.dayjs(locals.featuredArticle.createdAt).format("MMM D, YYYY") %> / By <%= locals.featuredArticle.author || "EnrolledAgent.com" %>
               </div>
               <div class="blog__main--article-head"><%= locals.featuredArticle.title %> </div>
               <hr id="article-rule" class="blog__main--article-underline" />
@@ -55,11 +55,11 @@
             <% locals.articles.data.map((e,id) => { %>
             <div class="blog__article--card">
               <div class="blog__article--image">
-                <img src=<%=e.imageUrl || "/assets/images/blog_fallback.jpeg"%> alt="article image" class="blog__article--image-img" />
+                <img src=<%=e.imageUrl || "https://enrolled-public.s3.amazonaws.com/assets/images/blog_fallback.webp"%> alt="article image" class="blog__article--image-img" />
               </div>
               <div class="blog__article--head"><%= e.title || "N/A"%></div>
               <div class="blog__article--details">
-                <span style="color: #5082f6"><%= e.category.name|| "N/A"%></span> / <%- locals.dayjs(e.createdAt).format("MMM DD, YYYY") %> / By <%= e.author || "Enrolled Agents"%>
+                <span style="color: #5082f6"><%= e.category.name|| "N/A"%></span> / <%- locals.dayjs(e.createdAt).format("MMM DD, YYYY") %> / By <%= e.author || "EnrolledAgent.com"%>
               </div>
               <div class="blog__article--body"><%- e.body || "N/A"%></div>
               <div class="blog__article--button">
@@ -112,7 +112,7 @@
                 <a href="/blog/<%= el._id %>" class="blog__news">
               <div class="blog__news--image">
                 <img
-                  src=<%= el.imageUrl || "/assets/images/blog_fallback.jpeg"%> 
+                  src=<%= el.imageUrl || "https://enrolled-public.s3.amazonaws.com/assets/images/blog_fallback.webp"%> 
                   alt="news image"
                   class="blog__news--image-img"
                 />
@@ -139,55 +139,71 @@
           <div class="blog__ad--section">
             <div class="blog__ad">
               <div class="blog__ad--image">
-                <img
-                  src="https://enrolled-public.s3.amazonaws.com/assets/images/blog/ads1.webp"
+                <img data-toggle="modal" data-target="#partnerModal"
+                  src="https://enrolled-public.s3.amazonaws.com/assets/EA_Ad_Space.webp"
                   alt="advert image"
                   class="blog__ad--image-img"
                 />
               </div>
-              <div class="blog__ad--text">Lorem ipsum dolor</div>
+              <!-- <div class="blog__ad--text">Lorem ipsum dolor</div> -->
             </div>
-            <div class="blog__ad">
-              <div class="blog__ad--image">
-                <img
-                  src="https://enrolled-public.s3.amazonaws.com/assets/images/blog/ads2.webp"
-                  alt="advert image"
-                  class="blog__ad--image-img"
-                />
-              </div>
-              <div class="blog__ad--text">Lorem ipsum dolor</div>
-            </div>
-            <div class="blog__ad">
-              <div class="blog__ad--image">
-                <img
-                  src="https://enrolled-public.s3.amazonaws.com/assets/images/blog/ads1.webp"
-                  alt="advert image"
-                  class="blog__ad--image-img"
-                />
-              </div>
-              <div class="blog__ad--text">Lorem ipsum dolor</div>
-            </div>
-            <div class="blog__ad">
-              <div class="blog__ad--image">
-                <img
-                  src="https://enrolled-public.s3.amazonaws.com/assets/images/blog/ads2.webp"
-                  alt="advert image"
-                  class="blog__ad--image-img"
-                />
-              </div>
-              <div class="blog__ad--text">Lorem ipsum dolor</div>
-            </div>
-          </div>
-          
+          </div>         
         </div>
-
-
       </div>
+  <!-- Modal -->
+  <div class="modal fade bd-example-modal-lg" id="partnerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title mb-30" id="exampleModalLongTitle">Partnership Form </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="partner-form">
+        <div class="modal-body">
+            <div class="modal-body-div">
+              <div class="row">
+                <div class="col-md-6">
+                  <input class="modal-body-div-input" id="name" type="text" required 
+                  placeholder="Name*" />
+                </div>
+                <div class="col-md-6 pl-20">
+                  <input class="modal-body-div-input" id="email" type="email" required 
+                  placeholder="Email*" />
+                </div>
+              </div>
+            </div>
+            <div class="modal-body-div">
+              <div class="row">
+                <div class="col-md-6">
+                  <input class="modal-body-div-input" id="firmName" type="text" required placeholder="Firm Name*" />
+                </div>
+                <div class="col-md-6 pl-20">
+                    <input class="modal-body-div-input" id="phone" type="tel" required placeholder="Phone Number*" />
+                </div>
+              </div>
+            </div>
+            <div class="modal-body-div">
+              <label class="modal-body-div-label"> Message</label>
+              <textarea placeholder="Brief description of partnership interest" maxlength="1500" id="message"></textarea>
+              <p>1500 maximum characters </p>
+            </div>               
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button class="btn btn-primary" type="submit" id="submit-btn">Submit</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
     </div>
     <%- include("./partials/footer.ejs") %>
     <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
     <script src="/javascripts/pagination.js"></script>
     <script type="text/javascript" src="/js/blog-page.js"></script>
+    <script type="text/javascript" src="/javascripts/partner.js"></script>
     <script src="/js/main.js"></script>
   </body>
 </html>

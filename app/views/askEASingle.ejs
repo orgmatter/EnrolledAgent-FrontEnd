@@ -27,7 +27,7 @@
                   <p class="category-post-author">by <%= locals.question.firstName || "N/A"  %> <%= locals.question.lastName || "N/A"  %> 
                 </div>
               </div>
-              <p class="category_grid-main-div-meta-desc"><%= locals.question.body || "N/A"  %></p>
+              <p class="category_grid-main-div-meta-desc"><%- locals.question.body || "N/A"  %></p>
               <div class="category_grid-main-div-meta-answer">
                   <% if (locals.question.answer !== undefined) { %>
                     <h4>Answer</h4> 
@@ -47,7 +47,8 @@
         <div class="category_grid-side">
          
           <div class="category_grid-side-ads">
-            <img src="https://enrolled-public.s3.amazonaws.com/assets/files/13061.webp" alt="enrolled-agent" />
+            <img data-toggle="modal" data-target="#partnerModal"
+              src="https://enrolled-public.s3.amazonaws.com/assets/EA_Ad_Space.webp" alt="advert image"  />
           </div>
           <div class="category_grid-side-recent">
             <h4>Recent Articles</h4>
@@ -66,12 +67,62 @@
             <%}%> 
           </div>
           <div class="category_grid-side-ads">
-            <img src="https://enrolled-public.s3.amazonaws.com/assets/files/13061.webp" alt="enrolled-agent" />
+            <img data-toggle="modal" data-target="#partnerModal"
+              src="https://enrolled-public.s3.amazonaws.com/assets/EA_Ad_Space.webp" alt="advert image"  />
           </div>
         </div>
       </section>
+        <!-- Modal -->
+  <div class="modal fade bd-example-modal-lg" id="partnerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title mb-30" id="exampleModalLongTitle">Partnership Form </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="partner-form">
+        <div class="modal-body">
+            <div class="modal-body-div">
+              <div class="row">
+                <div class="col-md-6">
+                  <input class="modal-body-div-input" id="name" type="text" required 
+                  placeholder="Name*" />
+                </div>
+                <div class="col-md-6 pl-20">
+                  <input class="modal-body-div-input" id="email" type="email" required 
+                  placeholder="Email*" />
+                </div>
+              </div>
+            </div>
+            <div class="modal-body-div">
+              <div class="row">
+                <div class="col-md-6">
+                  <input class="modal-body-div-input" id="firmName" type="text" required placeholder="Firm Name*" />
+                </div>
+                <div class="col-md-6 pl-20">
+                    <input class="modal-body-div-input" id="phone" type="tel" required placeholder="Phone Number*" />
+                </div>
+              </div>
+            </div>
+            <div class="modal-body-div">
+              <label class="modal-body-div-label"> Message</label>
+              <textarea placeholder="Brief description of partnership interest" maxlength="1500" id="message"></textarea>
+              <p>1500 maximum characters </p>
+            </div>               
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button class="btn btn-primary" type="submit" id="submit-btn">Submit</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
     </div>
     <%- include("./partials/footer.ejs") %>
+    <script type="text/javascript" src="/javascripts/partner.js"></script>
     <script src="/js/main.js"></script>
   </body>
 </html>

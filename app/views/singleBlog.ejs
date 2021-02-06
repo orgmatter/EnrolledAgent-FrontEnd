@@ -39,9 +39,7 @@
                     <div class="entry-header"> </div>
                     <div class="entry-content">
                       <div class="entry-meta media no-bg no-border mt-15 pb-20">
-                        <div
-                          class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15"
-                        >
+                        <div class="entry-date media-left text-center pt-5 pr-15 pb-5 pl-15">
                           <ul>
                             <li class="font-16 text-white font-weight-600 text-uppercase">
                               <%- locals.dayjs(locals.article.createdAt).format("DD <br /> MMM") %>
@@ -55,6 +53,7 @@
                               <i class="fa fa-commenting-o mr-5 text-theme-colored"></i> 
                               <%= locals.article.comment.length || 0 %> Comments
                             </span>
+                            <p>By <%= locals.article.author || "EnrolledAgent.com" %></p>
                           </div>
                         </div>
                       </div>

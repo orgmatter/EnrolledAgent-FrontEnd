@@ -55,6 +55,7 @@
     <% } %>
   </div>
 </div>
+
 <section id="bottom">
   <div class="container contain">
     <% if( typeof locals.resource !=='undefined' && locals.resource && locals.resource.data.length > 0) { %> 
@@ -80,6 +81,57 @@
     <% } %>
   </div>
 </section>
+<div class="partner-banner">
+  <img data-toggle="modal" data-target="#partnerModal" class="partner-banner-img" src="https://enrolled-public.s3.amazonaws.com/assets/EA_Resources_Page.webp" alt="partner banner" />
+</div>
+<!-- Modal -->
+  <div class="modal fade bd-example-modal-lg" id="partnerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title mb-30" id="exampleModalLongTitle">Partnership Form </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="partner-form">
+        <div class="modal-body">
+            <div class="modal-body-div">
+              <div class="row">
+                <div class="col-md-6">
+                  <input class="modal-body-div-input" id="name" type="text" required 
+                  placeholder="Name*" />
+                </div>
+                <div class="col-md-6 pl-20">
+                  <input class="modal-body-div-input" id="email" type="email" required 
+                  placeholder="Email*" />
+                </div>
+              </div>
+            </div>
+            <div class="modal-body-div">
+              <div class="row">
+                <div class="col-md-6">
+                  <input class="modal-body-div-input" id="firmName" type="text" required placeholder="Firm Name*" />
+                </div>
+                <div class="col-md-6 pl-20">
+                    <input class="modal-body-div-input" id="phone" type="tel" required placeholder="Phone Number*" />
+                </div>
+              </div>
+            </div>
+            <div class="modal-body-div">
+              <label class="modal-body-div-label"> Message</label>
+              <textarea placeholder="Brief description of partnership interest" maxlength="1500" id="message"></textarea>
+              <p>1500 maximum characters </p>
+            </div>               
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button class="btn btn-primary" type="submit" id="submit-btn">Submit</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
 
 <!-- end of card section -->
 
@@ -138,6 +190,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
     integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
     crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/javascripts/partner.js"></script>
           <script type="text/javascript" src="/javascripts/contact.js"></script>
           <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
           <script src="/javascripts/pagination.js"></script>

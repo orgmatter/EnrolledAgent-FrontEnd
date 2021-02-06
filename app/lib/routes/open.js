@@ -28,7 +28,18 @@ router
     PageAnalyticsService.inc('/career-center');
   })
   .get('/frequently-asked-questions', FaqController.getAll, (req, res) => {
-    res.render('faq', { locals: req.locals });
+    res.render('faq', { 
+      locals: req.locals,
+      id: false 
+    });
+    PageAnalyticsService.inc('/frequently-asked-questions');
+    Log.info('faq', req.locals.faqs.data);
+  })
+  .get('/frequently-asked-questions/:id', FaqController.getAll, FaqController.get, (req, res) => {
+    res.render('faq', { 
+      locals: req.locals,
+      id: true  
+    });
     PageAnalyticsService.inc('/frequently-asked-questions');
     Log.info('faq', req.locals);
   })
@@ -199,8 +210,7 @@ router
       //  Log.info(req.locals.resource)
       res.render('resource', {
         name: 'Resources',
-        description:
-          'Valuable services, products, tools, and whitepapers from our partners, hand selected by our staff.',
+        description: 'Valuable services, products, tools, and whitepapers from our partners and selected by our staff.',
         locals: req.locals,
       });
       PageAnalyticsService.inc('/resource');
