@@ -255,4 +255,52 @@
   }
 
 
-
+.faq-container {
+  display: flex;
+  justify-content: space-between;
+  &-div1 {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    background-color: #f5f5f5;
+    padding: 30px 20px; 
+    h3{
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+    a {
+      color: $main-blue;
+      margin-bottom: 10px;
+      &:hover{
+        color: $main-lightblue;
+        text-decoration: underline;
+      }
+    }
+  }
+  &-div2 {
+    width: 60%;
+    background-color: #f5f5f5;
+    padding: 30px 50px; 
+    h2{
+      font-size: 50px;
+      margin-top: 50px;
+    }
+    h3{
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+    p{
+      color: #333;
+    }
+    p.faq-text{
+      font-size: 20px;
+      margin-bottom: 60px;
+    }
+    a.faq-btn{
+      background-color: $main-blue;
+      color: #fff;
+      padding: 20px 30px;
+      border-radius: 3px;
+    }
+  }
+}
