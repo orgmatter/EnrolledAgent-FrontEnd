@@ -22,7 +22,7 @@ const { locals } = require("..");
 const APP_URL = process.env.APP_URL
 
 const log = new Logger("App:auth")
- 
+
 
 /**
    * make sure protected content is not overriden
@@ -134,7 +134,15 @@ class AuthController {
  * @param  {Function} next
  */
   sendVerification = async (email, req, res, next) => {
+    const message = `A mail has been sent to ${email}, please click the link to verify your account`
     const user = await User.findOne({ email }).exec()
+
+    req.session.message = message
+
+    if (!user || !user._id)
+      return res.json({ data: { message } })
+
+
 
     let verification = await VerificationToken.findOne({ user: user._id, token: { $exists: true } }).exec()
 
@@ -142,9 +150,7 @@ class AuthController {
       verification = await VerificationToken.create({ user: user._id, token: uid(30) })
     const link = `${APP_URL}/verify/${verification.token}`
 
-    const message = `A mail has been sent to ${email}, please click the link to verify your account`
 
-    req.session.message = message
     res.json({
       data: {
         message
@@ -449,8 +455,8 @@ class AuthController {
           if (req.file) {
             const imageUrl = req.file.location
             if (user.imageUrl && imageUrl) AwsService.deleteFile(Helper.getAwsFileParamsFromUrl(user.imageUrl))
-          
-            
+
+
             user.imageUrl = imageUrl
             user.save()
             req.session.passport.user = Helper.userToSession(user)
