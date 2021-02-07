@@ -142,6 +142,9 @@ class AuthController {
     if (!user || !user._id)
       return res.json({ data: { message } })
 
+    if(user.isEmailVerified === true)  
+    return res.json({ data: { message: 'You account has already been verified' } })
+
 
 
     let verification = await VerificationToken.findOne({ user: user._id, token: { $exists: true } }).exec()
