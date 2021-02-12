@@ -26,7 +26,7 @@
     <div class="blog">
       <div class="blog__section--main">
         <% if(locals.featuredArticle) {%>
-          <div id="blog-main" class="blog__main" bg-img="<%= locals.featuredArticle.imageUrl %>">
+          <div id="blog-main" data-bg-img=<%= locals.featuredArticle.imageUrl || "https://enrolled-public.s3.amazonaws.com/assets/images/blog_fallback.webp" %> class="blog__main" bg-img="<%= locals.featuredArticle.imageUrl %>">
           <div class="blog__main--items">
             <div class="blog__main--article">
               <div class="blog__main--article-name">

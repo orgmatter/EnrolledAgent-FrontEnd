@@ -57,8 +57,9 @@
           <div class="submitAnswer_top">
             <h2 class="submitAnswer_top-header">Submit an Answer</h2>
             <p>Can you help answer a tax enquiry?</p>
-            <p class="submitAnswer_top-desc">
-Answering tax enquiries for our site visitors enhances your profile reputation, raises your placements in our search results as well as generating links and traffic to your page.
+            <p class="submitAnswer_top-desc">Answering tax enquiries for our site visitors enhances 
+              your profile reputation, raises your placements in our search results as well as 
+              generating links and traffic to your page.
             </p>
             <a class="submitAnswer_top-btn" href="/dashboard/answer-questions"
               >Back to Questions</a
@@ -72,9 +73,8 @@ Answering tax enquiries for our site visitors enhances your profile reputation, 
               <%= locals.question.body || "N/A" %>
             </p>
             <p class="submitAnswer_middle-meta">
-              Asked by <%= locals.question.firstName %> <%=
-              locals.question.lastName %> on <%-
-              locals.dayjs(locals.question.createdAt).format("MMMM D, YYYY") %>
+              Asked by <%= locals.question.firstName %> <%= locals.question.lastName %> on 
+              <%-locals.dayjs(locals.question.createdAt).format("MMMM D, YYYY") %>
             </p>
 
             <h4>Your Answer</h4>

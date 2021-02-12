@@ -18,11 +18,17 @@
     font-size: 20px;
 }
 
-.newQuestion .category_grid-side-recent-div{
+.newQuestion .category_grid-side-recent-div-truncate{
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+}
+
+.newQuestion .category_grid-side-recent{
+  h4, h5 {
+  font-family: Arial, Helvetica, sans-serif;
+  }
 }
 
 @media (max-width: 775px) {
