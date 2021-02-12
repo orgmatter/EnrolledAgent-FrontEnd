@@ -11,7 +11,7 @@
           <div class="row">
             <aside class="col-md-4 part-1">
               <div class="face-card cards">
-                <img src=<%= locals.agent.imageUrl || "/assets/images/avatar.webp" %>  alt="img" />
+                <img src=<%= locals.agent.imageUrl || "https://enrolled-public.s3.amazonaws.com/assets/images/avatar.webp" %>  alt="img" />
                <% if(locals.premium) { %>
                 <h4>Premium Member</h4>
                <%}%> 
@@ -166,8 +166,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
     integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
     crossorigin="anonymous"></script> -->
-          <script type="text/javascript" src="/javascripts/claim-profile.js"></script>
-          <script src="/js/main.js"></script>
+          <script type="text/javascript" src="https://enrolled-public.s3.amazonaws.com/javascripts/claim-profile.js"></script>
+          <script src="https://enrolled-public.s3.amazonaws.com/js/main.js"></script>
   </body>
 
 </html>

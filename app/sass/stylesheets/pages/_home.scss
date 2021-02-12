@@ -217,6 +217,10 @@ section#home {
           width: 140px;
           background-color: #fff;
           margin-right: 14px;
+          span{
+                width: 20px;
+                height: 20px;
+              }
         }
         .input {
           width: 530px;
@@ -325,8 +329,10 @@ section#home {
             display: block;
             width: 100%;
             .dropdown{
+              position: relative;
               width: 140px;
               margin: 0 auto 30px;
+              
             }
             .input{
               display: inline-flex;
