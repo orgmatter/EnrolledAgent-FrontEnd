@@ -48,11 +48,7 @@
       <p><%- body || '' %></p>
       <a href="<%= actionLink || '#' %>" target="_blank" class="btn btn-lg b-ton"><%= actionText || 'View Details' %> <span>></span></a>
     </div>
-    <% }} else { %>
-      <div class="col-md-12 text-center">
-       <p>No resources found</p>
-      </div>
-    <% } %>
+    <% }} %>
   </div>
 </div>
 
@@ -82,7 +78,8 @@
   </div>
 </section>
 <div class="partner-banner">
-  <img data-toggle="modal" data-target="#partnerModal" class="partner-banner-img" src="https://enrolled-public.s3.amazonaws.com/assets/EA_Resources_Page.webp" alt="partner banner" />
+  <img class="partner-banner-img" src="https://enrolled-public.s3.amazonaws.com/assets/EA_Ad_Space.webp" alt="partner banner" />
+  <button data-toggle="modal" data-target="#partnerModal" class="partner-banner-btn">Find Out More</button>
 </div>
 <!-- Modal -->
   <div class="modal fade bd-example-modal-lg" id="partnerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -191,9 +188,9 @@
     integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
     crossorigin="anonymous"></script>
     <script type="text/javascript" src="/javascripts/partner.js"></script>
-          <script type="text/javascript" src="/javascripts/contact.js"></script>
-          <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
-          <script src="/javascripts/pagination.js"></script>
+    <script type="text/javascript" src="/javascripts/contact.js"></script>
+    <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
+    <script src="/javascripts/pagination.js"></script>
      <script src="/js/main.js"></script>
     </body>
   </html>
