@@ -41,7 +41,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> 
 
     <section id="section-2" class="mt-100 mb-150">
       <div class="img">
@@ -50,8 +50,12 @@
       </div>
       <div class="text">
         <h3>Want to save big on taxes?</h3>
-        <p>
+        <p class="normal-text">
           The form of business structure you have determines how you will be taxed by the IRS. <br />Use
+          this free tax calculator to estimate your tax savings.
+        </p>
+        <p class="mobile-text">
+          The form of business structure you have determines how you will be taxed by the IRS. Use
           this free tax calculator to estimate your tax savings.
         </p>
 
@@ -135,12 +139,8 @@
         const val = rateStar.getAttribute("value");
         const starTotal = 5;
         const starPercentage = (val / starTotal) * 100;
-        const starPercentageRounded = `${
-          Math.round(starPercentage / 10) * 10
-        }%`;
-        rateStar.querySelector(
-          ".stars-inner"
-        ).style.width = starPercentageRounded;
+        const starPercentageRounded = `${ Math.round(starPercentage / 10) * 10 }%`;
+        rateStar.querySelector(".stars-inner").style.width = starPercentageRounded;
       });
     </script>
   </body>

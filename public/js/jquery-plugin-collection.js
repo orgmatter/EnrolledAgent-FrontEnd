@@ -1,7 +1,4 @@
-/*
-
-Necessary jQuery Collection
-*/
+/* Necessary jQuery Collection */
 
 /**
  * Table of Contents:
