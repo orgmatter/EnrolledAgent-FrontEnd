@@ -10,7 +10,7 @@
 .home-section {
   background-color: transparent;
   position: absolute;
-  top: 12vh;
+  top: 12vh; 
   left: 0;
   right: 0;
 
@@ -70,7 +70,7 @@
       .btn2 {
         width: 220px;
         background-color: $main-blue;
-        margin-right: 14px;
+        margin-left: 14px;
         color: #fff;
       }
       .btn3 {
@@ -78,6 +78,108 @@
         background-color: #fff;
       }
     }
+    @include respond(laptop) {
+        h2{
+          font-size: 40px!important; 
+          line-height: normal;
+        } 
+        .desc {
+          font-size: 18px!important;
+          width: 70%!important;
+          margin: 0 auto;
+        }
+        &-input-div {
+          height: auto;
+          width: 100%;
+          padding: 20px;
+          &-1{
+            margin: 30px auto;
+          }
+          &-2{
+            margin: 0 auto 30px;
+          }
+          .input{
+            margin-right: 0!important;
+          }
+        }     
+      }
+      @include respond(tab-land) {
+        &-input-div {
+          display: block;
+          button, .btn3{
+            font-size: 14px;
+          }
+          .btn1{
+            margin-right: 0;
+          }
+          .input{
+            width: 70%;
+            margin: 20px auto!important;
+            input, input::placeholder{
+              font-size: 14px;
+            }
+          }
+        }    
+      }
+      @include respond(tab-port) {
+        &-input-div {
+
+          .input{
+            width: 60%;
+          }
+        }    
+      }
+      @media (max-width: 540px) {
+        &-input-div {
+          .input{
+            width: 50%;
+          }
+        }    
+      }
+      @include respond(smart-phone) {
+        h2{
+          font-size: 30px!important; 
+          line-height: normal;
+        } 
+        .desc {
+          font-size: 16px!important;
+          width: 70%!important;
+          margin: 0 auto;
+        }  
+        &-input-div {
+          &-1{
+            display: block;
+            width: 100%;
+            .dropdown{
+              position: relative;
+              width: 140px;
+              margin: 0 auto 30px;
+              
+            }
+            .input{
+              display: inline-flex;
+              width: 70%;
+            }
+          }
+        }   
+      }
+      @include respond(smaller-phone) {
+        &-input-div {
+          .input{
+            width: 90%;
+          }
+          &-2{
+            display: contents;
+            .btn2{
+              margin: 0 auto 30px;
+              width: 200px;
+            }
+            .btn3 {
+              margin: 0 auto 30px;
+            }
+          }
+        }    
+      }
   }
 }
 
@@ -138,31 +240,126 @@
   margin-left: 2rem;
 }
 
-// section-2 media querry
-
-@media (max-width: 800px) {
-  #section-2 {
-    background: url("https://enrolled-public.s3.amazonaws.com/assets/files/section-2-img.webp") no-repeat center center/cover;
-    display: block;
-    margin: 1rem 1.5rem;
-  }
-  #section-2 img {
+#section-2 {
+  .mobile-text{
     display: none;
   }
-  #section-2 text {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-  }
+  @include respond(small-laptop) {
+      margin-top: 900px;
+      height: auto;
+      .text{
+        padding-top: 0;
+        h3{
+          font-size: 24px;
+          line-height: 36px;
+        }
+        p{
+          font-size: 16px;
+          line-height: 26px;
+          margin-bottom: 50px;
+        }
+      }
+    }
 
-  #section-2 .text h3 {
-    margin-left: 0;
-  }
+    @include respond(tab-land) {
+     display: block;
+     .mobile-text{
+        display: block;
+      }
+      .b-ton-blu{
+        margin: 0 auto;
+      }
+      .normal-text{
+        display: none;
+      }
+     .img {
+        margin: 0 auto;
+        width: 60%;
+      }
+      .text {
+        width: 90%;
+        margin: 0 auto;
+        text-align: center;
+        h3{
+          font-size: 24px;
+          line-height: 32px;
+          margin: 20px 0;
+          text-align: center!important;
+        }
+        p{
+          font-size: 14px;
+          margin-bottom: 40px;
+          text-align: center!important;
+        }
+        a{
+          font-size: 14px;
+          text-align: center!important;
+        }
+      }
+    }
 
-  #section-2 .b-ton-blu {
-    width: 230px;
-  }
+    @media (max-width: 800px) {
+      margin-top: 900px;
+      .flex{
+        display: block;
+        margin-top: 70px;
+      }
+      &-div1{
+        margin: 0 auto;
+        width: 60%;
+      }
+      &-div2{
+        width: 90%;
+        margin: 0 auto;
+        text-align: center;
+        h2{
+          font-size: 24px;
+          line-height: 32px;
+          margin: 20px 0;
+        }
+        p{
+          font-size: 14px;
+          margin-bottom: 40px;
+        }
+        a{
+          font-size: 14px;
+        }
+      }
+    }
+    @include respond(tab-port) {
+      .flex{
+        margin-top: 120px;
+      }
+    }
+    @include respond(smart-phone) {
+      .container-fluid{
+        padding: 140px 30px 50px!important;
+      }
+      .flex{
+        margin-top: 170px;
+      }
+      &-div1{
+        width: 70%;
+      }
+    }
+    @include respond(smaller-phone) {
+      
+      margin-bottom: 50px;
+      .flex{
+        margin-top: 280px;
+      }
+      &-div1{
+        width: 90%;
+      }
+      &-div2{
+        h2{
+          font-size: 20px;
+          line-height: 28px;
+        }
+      }
+    }
 }
+
 
 // cities section
 
@@ -511,6 +708,25 @@
         }
       }
     }
+    @include respond(tab-land) {
+      .title {
+        font-size: 22px;
+      }
+      .desc {
+        font-size: 18px;
+      }
+      .single-member.maxwidth400{
+        width: 300px;
+
+        .team-thumb{
+          .img-fullwidth{
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+          }
+        }
+      }
+    }
   }
 
   .cities{
@@ -550,3 +766,5 @@
       }
     }
 }
+
+ 
