@@ -72,7 +72,8 @@
     }
     &--text {
       @include respond(tab-land) {
-        text-align: justify;
+        text-align: center;
+        padding: 0 30px;
       }
     }
   }
@@ -90,6 +91,13 @@
       .signup-form {
         &__group {
           width: 48%;
+          @include respond(tab-land) {
+            margin: 0 auto;
+            input {
+              font-size: 14px;
+            }
+          }
+          
         }
         .special {
           width: 65%;
@@ -97,6 +105,9 @@
         &__checkboxs {
           margin: 0 auto !important;
           width: 50% !important;
+          @include respond(tab-land) {
+            width: 70% !important;
+          }
         }
         &__checkbox--group {
           justify-content: center;
@@ -109,6 +120,7 @@
     }
     &--text {
       margin: 20px 0;
+      padding: 0 10px;
     }
     &--btns {
       display: flex;
@@ -143,6 +155,7 @@
   &-card {
     box-shadow: 0 0 1rem rgba(#2114140f, 0.1);
     background-color: #fff;
+    text-align: center;
   }
   &-btn {
     height: 3rem;
@@ -248,7 +261,11 @@
       background-color: #01105b;
       border-radius: 5px;
       margin: 20px 0 10px;
-      font-size: 1.25rem;
+      font-size: 1rem;
+      @include respond(tab-port) {
+        font-size: 14px;
+      }
+
     }
   }
 }
@@ -310,7 +327,7 @@
     &__footer {
       display: none;
       @include respond(tab-port) {
-        display: block;
+        display: none;
       }
     }
   }
@@ -331,6 +348,7 @@
       margin-bottom: 40px;
       @include respond(tab-port) {
         margin-bottom: 20px;
+        text-align: center;
       }
       &-head {
         font-weight: 700;
@@ -345,6 +363,7 @@
         margin-bottom: 15px;
         @include respond(tab-land) {
           margin: 15px 0;
+          text-align: center;
         }
         .login-btn {
           height: 60px;
@@ -357,7 +376,7 @@
     &__footer {
       margin-top: 120px;
       @include respond(tab-port) {
-        display: none;
+        display: none!important;
       }
     }
   }
@@ -381,6 +400,10 @@
     }
     &__text {
       margin-top: 5rem;
+      @include respond(tab-port) {
+        margin-top: 1rem;
+        text-align: center;
+      }
       &-head {
         margin-bottom: 20px;
         font-weight: 700;
@@ -402,10 +425,17 @@
   form {
     margin-top: 5rem;
     width: 90%;
+    @include respond(tab-port) {
+        width: 90%;
+        margin: 2rem auto;
+    }
   }
   &-form {
     &__input {
       width: 100%;
+      @include respond(tab-land) {
+        font-size: 14px;
+    }
     }
     &__btn {
       // text-align: center;
@@ -422,3 +452,11 @@
   font-size: 0.75rem;
   color: red;
 }
+
+.login-center{
+  text-align: left;
+   @include respond(tab-land) {
+    text-align: center;
+  }
+}
+

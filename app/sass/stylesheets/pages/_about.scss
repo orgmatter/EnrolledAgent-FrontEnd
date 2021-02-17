@@ -10,14 +10,33 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top center;
-    height: 500px;
-    display: flex;
+    height: 400px;
+    display: flex; 
     align-items: flex-end;
     h2 {
       color: #fff !important;
       font-family: "Libre Baskerville", serif;
     }
+    @include respond(small-laptop) {
+      height: 300px
+    }
+    @include respond(tab-land) {
+      height: 200px
+    }
   }
+  
+    @include respond(tab-land) {
+      .mb-padding {
+        padding: 0 30px;
+      }
+      .mobile-container{
+        margin: 0
+      }
+      .mobile-display{
+        display: none!important;
+      }
+    }
+ 
 }
 
 .privacy_jumbotron {
@@ -32,6 +51,9 @@
       color: #fff !important;
       font-family: "Libre Baskerville", serif;
     }
+    @include respond(tab-land) {
+      height: 200px
+    }
 }
 
 .terms_jumbotron {
@@ -45,5 +67,8 @@
     h2 {
       color: #fff !important;
       font-family: "Libre Baskerville", serif;
+    }
+    @include respond(tab-land) {
+      height: 200px
     }
 }

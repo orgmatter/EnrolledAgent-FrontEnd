@@ -13,13 +13,14 @@
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap" rel="stylesheet" />
   <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <!-- <link rel="stylesheet" href="https://enrolled-public.s3.amazonaws.com/stylesheets/style.css" /> -->
+   <link rel="stylesheet" href="/stylesheets/style.css" />
   <title>Login | Enrolled Agents</title>
 </head>
 
 <body class="signup-body">
   <div class="login">
-    <div class="login__card">
+    <div class="login__card"> 
       <div class="login__card-left">
         <div class="login-left__banner">
           <a href="/" >
@@ -52,8 +53,11 @@
             </button>
           </div>
         </div> 
-        Need an account?
-        <a href="/register" class="login-left__footer-link signup-link">Signup for free</a>
+        <div class="login-center">
+          <span>Need an account?
+          <a href="/register" class="login-left__footer-link signup-link">Signup for free</a>
+          </span>
+        </div>
       </div>
     
       <div class="login__card-right">
@@ -130,8 +134,6 @@
   </div>
 
   <script>
-  
-
     function googleLogin() {
       window.location = 'google/callback'
     }
@@ -142,8 +144,8 @@
       window.location = 'linkedin/callback'
     }
   </script>
-  <script type="text/javascript" src="/js/validator.min.js"></script>
-  <script type="text/javascript" src="/js/signup-form-validator.js"></script>
+  <script type="text/javascript" src="https://enrolled-public.s3.amazonaws.com/js/validator.min.js"></script>
+  <script type="text/javascript" src="https://enrolled-public.s3.amazonaws.com/js/signup-form-validator.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
     integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
@@ -151,7 +153,7 @@
     
   <%- include("./partials/info.ejs") %>
 
-  <script type="text/javascript" src="/javascripts/login.js"></script>
+  <script type="text/javascript" src="https://enrolled-public.s3.amazonaws.com/javascripts/login.js"></script>
 
 </body>
 

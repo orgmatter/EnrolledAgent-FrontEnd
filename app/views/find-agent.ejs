@@ -41,7 +41,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> 
 
     <section id="section-2" class="mt-100 mb-150">
       <div class="img">
@@ -50,8 +50,12 @@
       </div>
       <div class="text">
         <h3>Want to save big on taxes?</h3>
-        <p>
+        <p class="normal-text">
           The form of business structure you have determines how you will be taxed by the IRS. <br />Use
+          this free tax calculator to estimate your tax savings.
+        </p>
+        <p class="mobile-text">
+          The form of business structure you have determines how you will be taxed by the IRS. Use
           this free tax calculator to estimate your tax savings.
         </p>
 
@@ -83,7 +87,7 @@
             <div class="col-sm-6 col-md-3">
               <div class="single-member maxwidth400 mb-30">
                 <div class="team-thumb">
-                  <img src=<%= e.imageUrl || "/assets/images/avatar.webp" %>
+                  <img src=<%= e.imageUrl || "https://enrolled-public.s3.amazonaws.com/assets/images/avatar.webp" %>
                   alt="agent-avatar" class="img-fullwidth" />
                   <h4 class="text-uppercase font-raleway text-white font-20 line-bottom-center m-0">
                     <%= e.firstName %> <%= e.lastName %>
@@ -126,8 +130,8 @@
 
     <!-- footer section -->
     <%- include("./partials/footer.ejs") %>
-    <script type="text/javascript" src="/javascripts/findAgent.js"></script>
-    <script src="/js/main.js"></script>
+    <script type="text/javascript" src="https://enrolled-public.s3.amazonaws.com/javascripts/findAgent.js"></script>
+    <script src="https://enrolled-public.s3.amazonaws.com/js/main.js"></script>
 
     <script>
       const rateStars = document.querySelectorAll(".stars-outer");
@@ -135,12 +139,8 @@
         const val = rateStar.getAttribute("value");
         const starTotal = 5;
         const starPercentage = (val / starTotal) * 100;
-        const starPercentageRounded = `${
-          Math.round(starPercentage / 10) * 10
-        }%`;
-        rateStar.querySelector(
-          ".stars-inner"
-        ).style.width = starPercentageRounded;
+        const starPercentageRounded = `${ Math.round(starPercentage / 10) * 10 }%`;
+        rateStar.querySelector(".stars-inner").style.width = starPercentageRounded;
       });
     </script>
   </body>

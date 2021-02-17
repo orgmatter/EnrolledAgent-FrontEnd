@@ -8,7 +8,7 @@
       <div class="main-content">
         <!-- Section: inner-header -->
         <section class="inner-header divider layer-overlay overlay-dark-4 about_jumbotron">
-          <div class="container pt-120 pb-60">
+          <div class="container pt-120 pb-60 mobile-container">
             <!-- Section Content -->
             <div class="section-content">
               <div class="row">
@@ -26,13 +26,13 @@
             <div class="section-content">
               <div class="row">
                 <div class="col">
-                  <p>
+                  <p class="mb-padding">
                     EnrolledAgent.com is an online marketplace for tax professionals. Our goal is to 
                     create an environment where anyone can access licensed tax professionals with ease. 
                     We also seek to promote the Enrolled Agent brand and be a resource platform for all 
                     tax professionals.
                   </p> 
-                  <p class="mt-10">
+                  <p class="mt-10 mb-padding">
                     EnrolledAgent.com LLC which owns EnrolledAgent.com is not affiliated with the 
                     Internal Revenue Service or any tax and accounting body.
                   </p>
@@ -49,14 +49,13 @@
             <div class="row">
               <div class="col-md-8 col-md-offset-2 text-center">
                 <h2 class="text-white">See Our Awesome Funfacts</h2>
-                <div class="diamond-line-centered-theme-colored2"></div>
-                
+                <div class="diamond-line-centered-theme-colored2 mobile-display"></div>
               </div>
             </div>
             <div class="row mt-30 text-center">
               <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
                 <div class="funfact">
-                  <i class="pe-7s-smile mb-20 text-white"></i>
+                  <i class="pe-7s-smile mb-20 text-white mobile-display"></i>
                   <h2
                     data-animation-duration="2000"
                     data-value="754"
@@ -69,7 +68,7 @@
               </div>
               <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
                 <div class="funfact">
-                  <i class="pe-7s-notebook mb-20 text-white"></i>
+                  <i class="pe-7s-notebook mb-20 text-white mobile-display"></i>
                   <h2
                     data-animation-duration="2000"
                     data-value="6"
@@ -82,7 +81,7 @@
               </div>
               <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
                 <div class="funfact">
-                  <i class="pe-7s-users mb-20 text-white"></i>
+                  <i class="pe-7s-users mb-20 text-white mobile-display"></i>
                   <h2
                     data-animation-duration="2000"
                     data-value="675"
@@ -95,7 +94,7 @@
               </div>
               <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
                 <div class="funfact">
-                  <i class="pe-7s-study mb-20 text-white"></i>
+                  <i class="pe-7s-study mb-20 text-white mobile-display"></i>
                   <h2
                     data-animation-duration="2000"
                     data-value="1248"
@@ -112,7 +111,7 @@
       </div>
     </div>
     <%- include("./partials/footer.ejs") %>
-    <script src="/javascripts/funfact.js"></script>
-    <script src="/js/main.js"></script>
+    <script src="https://enrolled-public.s3.amazonaws.com/javascripts/funfact.js"></script>
+    <script src="https://enrolled-public.s3.amazonaws.com/js/main.js"></script>
   </body>
 </html>
