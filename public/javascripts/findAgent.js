@@ -1,1 +1,70 @@
-const toggleBtn=document.getElementById("dropdownMenuButton"),zip=document.getElementById("zip"),states=document.getElementById("state"),zipInput=document.getElementById("zipInput"),submitBtn=document.getElementById("submitBtn"),inputDiv=document.querySelector(".input"),url=location.href,match=url.match("enrolledagent.org"),baseUrl=match?"https://enrolledagent.org":"http://localhost:3000";var res=!0;zip.addEventListener("click",()=>{toggleBtn.textContent="Zip Code",zipInput.placeholder="Enter zip code"}),states.addEventListener("click",()=>{toggleBtn.textContent="State",zipInput.placeholder="Enter state",res=!1});const clearForm=()=>{zipInput.value=" "};submitBtn.addEventListener("click",()=>{if(""!==zipInput.value){const e=zipInput.value;res?(location.href=`${baseUrl}/search-results?q=zipcode:${e}`,clearForm()):(location.href=`${baseUrl}/search-results?q=state:${e}`,clearForm())}}),zipInput.addEventListener("keyup",function(e){if(13===e.keyCode&&""!==zipInput.value){const e=zipInput.value;res?(location.href=`${baseUrl}/search-results?q=zipcode:${e}`,clearForm()):(location.href=`${baseUrl}/search-results?q=state:${e}`,clearForm())}});
+const toggleBtn = document.getElementById("dropdownMenuButton");
+const select = document.getElementById("select");
+const zip = document.getElementById("zip");
+const states = document.getElementById("state");
+const zipInput = document.getElementById("zipInput");
+const zipInputMobile = document.getElementById("zipInputMobile");
+const submitBtn = document.getElementById("submitBtn");
+const inputDiv = document.querySelector(".input");
+const url = location.href;
+const match = url.match("enrolledagent.org");
+const baseUrl = match ? "https://enrolledagent.org" : "http://localhost:3000";
+var res = true;
+
+zip.addEventListener("click", () => {
+  toggleBtn.innerHTML = getInnerState("Zip Code");
+  zipInput.placeholder = "Enter zip code";
+});
+
+const getInnerState = (val) => {
+    return `${val} <span> <img src= \'/assets/files/arrow-down.svg\' alt=\'icon\' class=\'my-dropdown-icon\'/> </span>`
+}
+
+states.addEventListener("click", () => {
+  toggleBtn.innerHTML = getInnerState("State");
+  zipInput.placeholder = "Enter state";
+  res = false;
+});
+
+const clearForm = () => {
+  zipInput.value = " ";
+  zipInputMobile.value = "";
+}
+
+submitBtn.addEventListener("click", () => {
+  if (zipInput.value !== "" || zipInputMobile.value !== "") {
+    const payload = zipInput.value.trim() || zipInputMobile.value.trim();
+    if (res) {
+      location.href = `${baseUrl}/search-results?q=zipcode:${payload}`;
+      clearForm();
+    } else {
+      location.href = `${baseUrl}/search-results?q=state:${payload}`;
+      clearForm();
+    }
+  }
+});
+
+zipInput.addEventListener("keyup", function (event) {
+                // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+      if (zipInput.value !== "") {
+        const payload = zipInput.value;
+        if (res) {
+          location.href = `${baseUrl}/search-results?q=zipcode:${payload}`;
+          clearForm();
+        } else {
+          location.href = `${baseUrl}/search-results?q=state:${payload}`;
+          clearForm();
+        }
+    }
+  }
+})
+
+select.addEventListener("change", () => {
+  if (select.value === "state"){
+    zipInputMobile.placeholder = "Enter state*";
+  } else {
+    zipInputMobile.placeholder = "Enter zip code*";
+  }
+});
+

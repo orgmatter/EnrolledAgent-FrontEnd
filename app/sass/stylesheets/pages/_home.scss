@@ -207,6 +207,9 @@ section#home {
           display: flex;
           width: 340px;
         }
+        &-3{
+          display: none;
+        }
         button {
           height: 50px;
           border-radius: 5px;
@@ -217,9 +220,14 @@ section#home {
           width: 140px;
           background-color: #fff;
           margin-right: 14px;
+          // display: flex;
+          // align-items: center;
           span{
-                width: 20px;
-                height: 20px;
+            margin-left: 10px;
+                img{
+                  width: 12px;
+                height: 12px;
+                }
               }
         }
         .input {
@@ -289,6 +297,31 @@ section#home {
       }
       @include respond(tab-land) {
         &-input-div {
+          &-1{
+            display: none;
+          }
+          &-3 {
+            margin-bottom: 20px;
+            display: flex;
+            width: 100%;
+            background-color: #fff;
+            height: 50px;
+            margin-top: 30px;
+            &-select{
+              padding: 0 10px;
+              width: 30%;
+              select{
+              border: none;
+              height: 50px;
+              }
+            }
+            input{
+              border: none;
+              padding: 0 10px;
+              margin-left: 20px;
+              width: 70%;
+            }
+          }
           button, .btn3{
             font-size: 14px;
           }
@@ -326,7 +359,7 @@ section#home {
         }  
         &-input-div {
           &-1{
-            display: block;
+            display: none;
             width: 100%;
             .dropdown{
               position: relative;
@@ -452,10 +485,19 @@ section#home {
         div {
           display: flex;
           align-items: flex-end;
+          justify-content: space-between;
           border-bottom: 1px solid #fff;
           width: 80%;
           height: 60px;
           padding: 0 10px 15px 10px;
+          form{
+            width: 100%;
+          }
+          img{
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+          }
           input {
             width: 80%;
             border: none;
@@ -903,6 +945,7 @@ section#home {
   }
   #search__dropdown p:hover{
     background-color:grey;
+    color: #fff;
   }
   #team {
     .title {

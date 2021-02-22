@@ -121,7 +121,7 @@
                   placeholder="Name*" />
                 </div>
                 <div class="col-md-6 pl-20">
-                  <input class="modal-body-div-input" id="email" type="email" required 
+                  <input class="modal-body-div-input" id="partnerEmail" type="email" required 
                   placeholder="Email*" />
                 </div>
               </div>
@@ -132,19 +132,19 @@
                   <input class="modal-body-div-input" id="firmName" type="text" required placeholder="Firm Name*" />
                 </div>
                 <div class="col-md-6 pl-20">
-                    <input class="modal-body-div-input" id="phone" type="tel" required placeholder="Phone Number*" />
+                    <input class="modal-body-div-input" id="partnerPhone" type="tel" required placeholder="Phone Number*" />
                 </div>
               </div>
             </div>
             <div class="modal-body-div">
               <label class="modal-body-div-label"> Message</label>
-              <textarea placeholder="Brief description of partnership interest" maxlength="1500" id="message"></textarea>
+              <textarea placeholder="Brief description of partnership interest" maxlength="1500" id="partnerMessage"></textarea>
               <p>1500 maximum characters </p>
             </div>               
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button class="btn btn-primary" type="submit" id="submit-btn">Submit</button>
+          <button class="btn btn-primary" type="submit" id="partner-submit-btn">Submit</button>
         </div>
       </form>
       </div>
@@ -154,7 +154,7 @@
     <%- include("./partials/footer.ejs") %>
     <script src="https://enrolled-public.s3.amazonaws.com/javascripts/plugin/jquery.simplePagination.js"></script>
     <script src="https://enrolled-public.s3.amazonaws.com/javascripts/pagination.js"></script>
-    <script type="text/javascript" src="https://enrolled-public.s3.amazonaws.com/javascripts/partner.js"></script>
+    <script type="text/javascript" src="https://enrolled-public.s3.amazonaws.com/js/partnerForm.js"></script>
     <script src="https://enrolled-public.s3.amazonaws.com/js/main.js"></script>
   </body>
 </html>
