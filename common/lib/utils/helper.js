@@ -266,3 +266,31 @@ exports.getAwsFileParamsFromUrl = (url) => {
   }
   return {}
 }
+
+/**
+* 
+*  
+*/
+exports.checkRedirectCookie = (req, res, next) => {
+  const path = req.cookies['redirect-to'];
+   res.clearCookie('redirect-to');
+
+  if (path && path.length > 1) return res.redirect(path);
+  next();
+}
+
+/**
+* 
+*  
+*/
+exports.setRedirectCookie = (req, res, next) => {
+const exceptions = ['/login', '/logout', '/register', '/', '/google/callback', '/facebook/callback', '/linkedin/callback']
+  if (req.isAuthenticated() && req.user) return res.redirect("/");
+  const referer = req.headers['referer']
+  if (referer) {
+      const url = new URL(referer)
+      if (url && !exceptions.includes(url.pathname))
+          res.cookie('redirect-to', url.pathname)
+  }
+  next()
+}
