@@ -278,13 +278,13 @@ class AgentController extends BaseController {
     const { id } = req.params;
     let agent;
     if (Validator.isMongoId(id)) agent = await Agent.findById(id)
-      .populate([
-        // 'preference',
+      .populate([ 
         { path: "review" },
         { path: "reviewCount", select: ["rating"] },
         { path: "owner", select: ["_id", "firstName"] },
       ])
-      .exec();
+      .exec()
+     else return next() 
     if(!agent) {
       req.session.error = 'Agent not found'
       return res.redirect('/ea-listings')

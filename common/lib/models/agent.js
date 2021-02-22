@@ -41,6 +41,7 @@ const AgentSchema = new Schema({
   stateSlug: { type: String, slug: "state", index: true, transform: v => generateSlug(v) },
   citySlug: { type: String, slug: "city", index: true, transform: v => generateSlug(v) },
   address1: String,
+  stateCode: String,
   address2: String,
   address3: String,
   country: { type: String, index: true },

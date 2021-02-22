@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { PageAnalyticsService, Logger } = require('common');
+const { PageAnalyticsService, Logger, Helper } = require('common');
 
 const CityController = require('../controllers/city');
 const { verify } = require('../controllers/auth');
@@ -13,13 +13,13 @@ const FaqController = require('../controllers/faq');
 
 const Log = new Logger('App:open');
 
-const checkRedirectCookie = (req, res, next) => {
-  const path = req.cookies['redirect-to'];
-   res.clearCookie('redirect-to');
+// const checkRedirectCookie = (req, res, next) => {
+//   const path = req.cookies['redirect-to'];
+//    res.clearCookie('redirect-to');
 
-  if (path && path.length > 1) return res.redirect(path);
-  next();
-};
+//   if (path && path.length > 1) return res.redirect(path);
+//   next();
+// };
 
 router
 
@@ -109,7 +109,7 @@ router
 
   .get(
     '/',
-    checkRedirectCookie,
+    Helper.checkRedirectCookie,
     CityController.get,
     AgentController.popular,
     ResourceController.random,

@@ -1,45 +1,109 @@
-const { Models: { AdminUser, User, Agent, City, State, Sponsor, Resource, Article, ResourceCategory }, Validator, Logger, Helper } = require('common')
+const { Models: { Agent, City, State, }, DB, Logger, Helper } = require('common')
 const CITY = require('../data/cities.json')
 const STATES = require('../data/states.json')
 const STATE_LIST = require('../data/statesList.json')
 const args = require('../commands');
 
 
-const log = new Logger('seeder') 
+const log = new Logger('seeder')
 
 
-const createStates = async (done) => {
-    await State.deleteMany({},).exec()
-
-    for (const state of STATE_LIST) {
-        await State.create({
-            name: state.name,
-            abbreviation: state.abbreviation
-        })
-        console.log(state)
+const createCity = async (agent) => {
+    try {
+        console.log('create city ')
+        await City.findOneAndUpdate({
+            name: agent.city
+        }, {
+            name: agent.city,
+            abbreviation: agent.stateCode,
+            state: STATES[agent.stateCode],
+        }, { upsert: true }).exec()
+    } catch (error) {
+        console.log(error)
     }
-    done()
+}
 
+const createState = async (agent) => {
+    console.log('create state ')
+    const name = STATES[agent.stateCode]
+    try {
+        await State.findOneAndUpdate({
+            abbreviation: agent.stateCode
+        }, {
+            name,
+            abbreviation: agent.stateCode
+        }, { upsert: true }).exec()
 
+    } catch (error) {
+        console.log(error)
+    }
 
 }
 
-const createCities = async (done) => {
-    await City.deleteMany({}).exec()
-
-    for (const { city, state } of CITY) {
-        await City.create({
-            name: city,
-            abbreviation: state.abbreviation,
-            state,
-        })
-        console.log(state, city)
-    }
-    done()
+/**
+   * get adverts
+   * @param  {Number} page
+   * @param  {Number} perPage
+   * @param  {object} query
+   * @param  {function} done
+   */
+const getAgents = async (page = 1, perPage = 1000, query, done) => {
+    DB.Paginate({}, done, Agent, {
+        perPage,
+        query,
+        page,
+        projections: {
+            state: 1,
+            city: 1,
+            stateCode: 1
+        },
+    }, (res) => done(null, res))
 }
 
+
+
+/**
+     * for every agent compute rating
+     * @param {Number} page
+     * @param {function} done
+     */
+const runJob = async (page = 1, done) => {
+    getAgents(
+        page,
+        1,
+        {},
+        async (err, result) => {
+            // console.log(err, result)
+            if (err) {
+                console.log(err)
+                done(err)
+            } else {
+                const { data, pages, page } = result
+                for (let index = 0; index < data.length; index++) {
+                    const agent = data[index]
+
+                    if (agent && agent.state) {
+                        // console.log(agent)
+                        await createCity(agent)
+                        await createState(agent)
+                    }
+                }
+                await Helper.delay(500)
+                if (pages > page) {
+                    console.log('running job again', page)
+                    runJob(page + 1, done)
+                } else done()
+            }
+        }
+    )
+}
 
 module.exports = async () => {
-    await createStates(() => console.log('Created States'))
-    await createCities(() => console.log('Created Cities'))
+    await City.deleteMany({}).exec()
+    await State.deleteMany({}).exec()
+
+    runJob(1, () => console.log('Created States and cities'))
+
+    // await createStates(() => console.log('Created States'))
+    // await createCities(() => console.log('Created Cities'))
 }

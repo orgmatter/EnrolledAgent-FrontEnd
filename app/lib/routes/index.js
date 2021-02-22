@@ -48,7 +48,7 @@ router
 
 
   .use(require('./auth'))
-  .use(require('./open'))
+  .use( Helper.checkRedirectCookie, require('./open'))
   .use('/dashboard', require('./dashboard'))
 
   // catch 404
