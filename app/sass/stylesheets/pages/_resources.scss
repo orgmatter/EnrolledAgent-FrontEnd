@@ -25,6 +25,10 @@ h6 {
   font-size: 80px;
   text-transform: capitalize;
   font-family: "Baskerville Old Face" !important;
+  @include respond(smart-phone) {
+    font-size: 46px;
+  }
+
 }
 
 #tax .top-header p {
@@ -32,6 +36,9 @@ h6 {
   font-size: 30px;
   font-family: Arial, Helvetica, sans-serif;
   letter-spacing: 0px;
+  @include respond(smart-phone) {
+    font-size: 24px;
+  }
 }
 
 #card-section {
@@ -174,17 +181,6 @@ h6 {
   font-size: 16px;
 }
 
-@media (max-width: 500px) {
-  // #cities-section .city-group {
-  //   display: flex !important;
-  //   flex-wrap: wrap;
-  // }
-
-  // #cities-section .city-row {
-  //   flex: 1 1 50%;
-  // }
-}
-
 #cities-section .cities-link {
   color: #fff;
   font-size: 16px;
@@ -299,6 +295,9 @@ h6 {
       text-align: center;
       margin-bottom: 30px;
       position: relative;
+      @include respond(smart-phone) {
+        margin-bottom: 0;
+      }
 
   &-img{
     margin: 0 auto;
@@ -313,6 +312,10 @@ h6 {
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
+  @include respond(smart-phone) {
+    bottom: 0;
+  }
+
   }
 }
 }

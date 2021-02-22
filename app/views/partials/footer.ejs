@@ -23,7 +23,7 @@
           <div class="link-div">
             <a href="/login">Log in</a>
             <a href="/register">Sign Up</a>
-            <a href="/ea-listings">Free Enrolled Agents Listings</a>
+            <a href="/ea-listings">Free Enrolled Agent Listings</a>
             <a href="/frequently-asked-questions">Frequently Asked Questions</a>
             <!-- <a href="/career-center">EA Career Center</a> -->
           </div> 
@@ -41,7 +41,7 @@
       <div class="col-md-6 myFooter__top-section2">
         <div class="col-md-8 myFooter__top-section2-sub">
           <p class="myFooter__top-section2-sub-text">Join Our Mailing List</p>
-          <form id="newsletter-form" class="myFooter__top-section2-sub-form">
+          <form id="newsletter-form" onsubmit="subscribeToNews()" class="myFooter__top-section2-sub-form">
             <input class="myFooter__top-section2-sub-form-input" type="email" id="newsletter-email"
               placeholder="Email Address" />
           </form>
@@ -96,4 +96,5 @@
   const footerYearSpan = document.getElementById("footerYear");
   footerYearSpan.textContent = footerYear.getFullYear();
 </script>
-<script src="https://enrolled-public.s3.amazonaws.com/javascripts/newsletter.js"></script>
+<!-- <script src="https://enrolled-public.s3.amazonaws.com/javascripts/newsletter.js"></script> -->
+<script src="/javascripts/newsletter.js"></script>
