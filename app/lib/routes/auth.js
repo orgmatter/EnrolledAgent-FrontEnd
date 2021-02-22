@@ -1,21 +1,12 @@
 const router = require("express").Router();
 const { handleSocial, verify, passwordResetLink, passwordResetPage } = require("../controllers/auth");
 const passport = require("passport");
-const exceptions = ['/login', '/logout', '/register', '/', '/google/callback', '/facebook/callback', '/linkedin/callback']
-const { PageAnalyticsService } = require("common");
+// const exceptions = ['/login', '/logout', '/register', '/', '/google/callback', '/facebook/callback', '/linkedin/callback']
+const { PageAnalyticsService, Helper } = require("common");
 
 
 
-const setRedirectCookie = (req, res, next) => {
-    if (req.isAuthenticated() && req.user) return res.redirect("/");
-    const referer = req.headers['referer']
-    if (referer) {
-        const url = new URL(referer)
-        if (url && !exceptions.includes(url.pathname))
-            res.cookie('redirect-to', url.pathname)
-    }
-    next()
-}
+
 router
 
     .get("/logout", (req, res) => {
@@ -36,11 +27,11 @@ router
         res.render("resendVerification", { locals: req.locals });
         PageAnalyticsService.inc('/resend-verification')
     })
-    .get("/login", setRedirectCookie, (req, res) => {
+    .get("/login",  Helper.setRedirectCookie, (req, res) => {
         res.render("login", { locals: req.locals });
         PageAnalyticsService.inc('/login')
     })
-    .get("/register", setRedirectCookie, (req, res) => {
+    .get("/register",  Helper.setRedirectCookie, (req, res) => {
         res.render("signup", { locals: req.locals });
         PageAnalyticsService.inc('/register')
     })
