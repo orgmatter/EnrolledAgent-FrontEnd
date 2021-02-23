@@ -63,6 +63,7 @@ class ResourceController extends BaseController {
     async category(req, res, next) {
         const data = await ResourceCategory.find({})
             .sort({ priority: -1 })
+            .lean()
             .exec()
         req.locals.resourceCategory = data
         // console.log(data)
@@ -89,6 +90,7 @@ class ResourceController extends BaseController {
             // .skip(skip)
             .limit(limit)
             .populate(['sponsor', 'category'])
+            .lean()
             .exec()
         req.locals.resource = data
         next()
