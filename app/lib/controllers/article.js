@@ -4,11 +4,11 @@ const {
     Exception,
     ErrorMessage,
     ErrorCodes,
-    FileManager,
+    Constants,
     AwsService,
     LogAction,
     Validator,
-    Storages,
+    RedisService,
     Logger,
     LogCategory,
     Models: { Article, Agent, Log, ArticleCategory, Comment },
@@ -77,7 +77,7 @@ class ArticleController extends BaseController {
 
         if (req.file) {
             const imageUrl = req.file.location
-           
+
             resource.imageUrl = imageUrl
             await resource.save()
         }
@@ -233,7 +233,7 @@ class ArticleController extends BaseController {
         req.locals.agentArticles = { data: [] }
         const { page, perpage, q, search } = req.query
         let query = Helper.parseQuery(q) || {}
-        if (search) query = { $text: { $search: search, $caseSensitive :false } };
+        if (search) query = { $text: { $search: search, $caseSensitive: false } };
         let agent
         if (req.isAuthenticated() && req.user) {
             agent = await Agent.findOne({ owner: Types.ObjectId(req.user.id) }).exec()
@@ -246,7 +246,7 @@ class ArticleController extends BaseController {
             query: { agent: Types.ObjectId(agent._id) },
             page,
             sort: { createdAt: -1 },
-            populate: ['category', 'comment', {path: 'agent', select: {firstName: 1, lastName: 1}}]
+            populate: ['category', 'comment', { path: 'agent', select: { firstName: 1, lastName: 1 } }]
         }, (data) => {
             req.locals.agentArticles = data
             next()
@@ -259,7 +259,7 @@ class ArticleController extends BaseController {
         const { id } = req.params
         if (!id || !Validator.isMongoId(String(id))) return next()
         let resource = await Article.findById(id)
-            .populate(['category', 'comment', {path: 'agent', select: {firstName: 1, lastName: 1}}])
+            .populate(['category', 'comment', { path: 'agent', select: { firstName: 1, lastName: 1 } }])
             .exec()
         req.locals.article = resource
         next()
@@ -278,7 +278,7 @@ class ArticleController extends BaseController {
             query,
             sort: { createdAt: -1 },
             page,
-            populate: ['category', 'comment', {path: 'agent', select: {firstName: 1, lastName: 1}}]
+            populate: ['category', 'comment', { path: 'agent', select: { firstName: 1, lastName: 1 } }]
         }, (data) => {
             req.locals.articles = data
             next()
@@ -300,7 +300,7 @@ class ArticleController extends BaseController {
         const data = await Article.find({ status: 'approved', featured: true },)
             .limit(3)
             .sort({ createdAt: -1 })
-            .populate(['category', {path: 'agent', select: {firstName: 1, lastName: 1}}])
+            .populate(['category', { path: 'agent', select: { firstName: 1, lastName: 1 } }])
             .exec()
         if (data && data.length > 0)
             req.locals.featuredArticle = data[0];
@@ -314,9 +314,16 @@ class ArticleController extends BaseController {
      * @param  {Function} next
      */
     async category(req, res, next) {
-        const data = await ArticleCategory.find({})
-            .sort({ priority: -1 })
-            .exec()
+        let data;
+        data = await RedisService.get(Constants.CACHE_KEYS.ARTICLE_CATEGORY)
+        if (data)
+            data = JSON.parse(data)
+        if (!data) {
+            data = await ArticleCategory.find({})
+                .sort({ priority: -1 })
+                .lean()
+                .exec()
+        }
         req.locals.articleCategory = data
         // console.log(data)
         next()
@@ -335,7 +342,7 @@ class ArticleController extends BaseController {
             {
                 query: { status: 'approved' },
                 sort: { createdAt: -1 },
-                populate: ['category', 'comment', {path: 'agent', select: {firstName: 1, lastName: 1}}]
+                populate: ['category', 'comment', { path: 'agent', select: { firstName: 1, lastName: 1 } }]
             }, (data) => {
                 // console.log(doc);
                 req.locals.articles = data

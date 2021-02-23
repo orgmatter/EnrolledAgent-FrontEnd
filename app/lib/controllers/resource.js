@@ -2,8 +2,8 @@ const {
     Exception,
     ErrorCodes,
     FileManager,
-    Storages,
-    Validator,
+    RedisService,
+    Constants,
     Helper,
     DB,
     Logger,
@@ -21,15 +21,15 @@ class ResourceController extends BaseController {
     async get(req, res, next) {
         const { id } = req.params
         let resource = await Resource.findById(id)
-        .populate(['sponsor', 'category'])
-        .exec()
+            .populate(['sponsor', 'category'])
+            .exec()
         req.locals.resource = resource
         next()
 
     }
 
     async getAll(req, res, next) {
-        req.locals.resource =  {data: []}
+        req.locals.resource = { data: [] }
         const { page, perpage, q, search } = req.query
         let query = Helper.parseQuery(q) || {}
         if (search) query = { $text: { $search: search } }
@@ -45,7 +45,7 @@ class ResourceController extends BaseController {
             perPage: perpage,
             query,
             page,
-            populate: ['sponsor', 'category'] 
+            populate: ['sponsor', 'category']
         }, (data) => {
             req.locals.resource = data
             // console.log(data)
@@ -54,17 +54,23 @@ class ResourceController extends BaseController {
 
     }
 
-     /**
-     * get resource categorirs
-     * @param  {Express.Request} req
-     * @param  {Express.Response} res
-     * @param  {Function} next
-     */
+    /**
+    * get resource categorirs
+    * @param  {Express.Request} req
+    * @param  {Express.Response} res
+    * @param  {Function} next
+    */
     async category(req, res, next) {
-        const data = await ResourceCategory.find({})
-            .sort({ priority: -1 })
-            .lean()
-            .exec()
+        let data;
+        data = await RedisService.get(Constants.CACHE_KEYS.RESOURCE_CATEGORY)
+        if (data)
+            data = JSON.parse(data)
+        if (!data) {
+            data = await ResourceCategory.find({})
+                .sort({ priority: -1 })
+                .lean()
+                .exec()
+        }
         req.locals.resourceCategory = data
         // console.log(data)
         next()
@@ -79,19 +85,26 @@ class ResourceController extends BaseController {
     * @param  {function} next
     */
     async random(req, _, next) {
-        const limit = 10
-        const count = await Resource.estimatedDocumentCount().exec()
-        let skip = Math.floor(Math.random() * count)
+        let data;
+        data = await RedisService.get(Constants.CACHE_KEYS.RANDOM_RESOURCES)
+        if (data)
+            data = JSON.parse(data)
 
-        if(count < limit- skip)skip = 0
+        if (!data) {
+            const limit = 10
+            const count = await Resource.estimatedDocumentCount().exec()
+            let skip = Math.floor(Math.random() * count)
+
+            if (count < limit - skip) skip = 0
 
 
-        const data = await Resource.find({},)
-            // .skip(skip)
-            .limit(limit)
-            .populate(['sponsor', 'category'])
-            .lean()
-            .exec()
+            data = await Resource.find({},)
+                // .skip(skip)
+                .limit(limit)
+                .populate(['sponsor', 'category'])
+                .lean()
+                .exec()
+        }
         req.locals.resource = data
         next()
     }

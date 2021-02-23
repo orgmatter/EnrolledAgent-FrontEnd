@@ -7,7 +7,7 @@ const {
   // FileManager,
   Validator,
   Helper,
-  JwtManager,
+  RedisService,
   AwsService,
   Constants,
   PageAnalyticsService,
@@ -50,8 +50,14 @@ class AuthController {
   */
   async config(req, res, next) {
     req.locals.config = {}
-    const data = await Config.find({}, { _id: 0, __v: 0, slug: 0, createdAt: 0, updatedAt: 0 })
-      .exec()
+    let data;
+    data = await RedisService.get(Constants.CACHE_KEYS.CONFIG)
+    if (data) data = JSON.parse(data)
+    if (!data) {
+      data = await Config.find({}, { _id: 0, __v: 0, slug: 0, createdAt: 0, updatedAt: 0 })
+        .lean()
+        .exec()
+    }
     if (data && data.length > 0)
       req.locals.config = data
     // log.info(req.locals)
@@ -142,8 +148,8 @@ class AuthController {
     if (!user || !user._id)
       return res.json({ data: { message } })
 
-    if(user.isEmailVerified === true)  
-    return res.json({ data: { message: 'You account has already been verified' } })
+    if (user.isEmailVerified === true)
+      return res.json({ data: { message: 'You account has already been verified' } })
 
 
 

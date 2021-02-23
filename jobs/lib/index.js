@@ -1,4 +1,5 @@
 const RatingJob = require('./cron/rating')
+const CacheJob = require('./cron/cache')
 const moment = require('moment')
 const CronJob = require('cron').CronJob
 // const time = process.env.JOB
@@ -59,6 +60,18 @@ new CronJob(
   async function () {
     console.log('starting Rating job', moment())
     RatingJob.runJob(1, function (err) {
+      console.log('Rating job finished', Date(), err)
+    })
+  },
+  null,
+  true
+).start()
+
+new CronJob(
+  '*/1 * * * *', // runs every 5 minute
+  async function () {
+    console.log('starting Cache job', moment())
+    CacheJob.runJob(1, function (err) {
       console.log('Rating job finished', Date(), err)
     })
   },

@@ -46,4 +46,13 @@ module.exports = {
     approved: 'approved',
     rejected: 'rejected'
   }, 
+  CACHE_KEYS: {
+    ARTICLE_CATEGORY: 'articlecategory',
+    QUESTION_CATEGORY: 'questioncategory',
+    RESOURCE_CATEGORY: 'resourcecategory',
+    CONFIG: 'config',
+    POPULAR_AGENTS: 'popularagents',
+    RATED_CITIES: 'ratedcities',
+    RANDOM_RESOURCES: 'randomresources',
+  }, 
 }
