@@ -22,30 +22,50 @@ const Log = new Logger('App:open');
 // };
 
 router
+.get('/', (req, res) => {
+  res.render('contact', { locals: req.locals });
+  PageAnalyticsService.inc('/contact');
+})
+  .get(
+    '/contact',
+    Helper.checkRedirectCookie,
+    (req, res) => {
+      Promise.allSettled([
+        new Promise((resolve, reject) => {
+          CityController.get(req, res, () => resolve())
+        }),
+        new Promise((resolve, reject) => {
+          AgentController.popular(req, res, () => resolve())
+        }),
+        new Promise((resolve, reject) => {
+          ResourceController.random(req, res, () => resolve())
+        })])
+        .then(val => {
+          res.render('home', { locals: req.locals });
+          PageAnalyticsService.inc('/home');
+        })
+    }
+  )
 
   .get('/career-center', (req, res) => {
     res.render('careerCenter', { locals: req.locals });
     PageAnalyticsService.inc('/career-center');
   })
   .get('/frequently-asked-questions', FaqController.getAll, (req, res) => {
-    res.render('faq', { 
+    res.render('faq', {
       locals: req.locals,
-      id: false 
+      id: false
     });
     PageAnalyticsService.inc('/frequently-asked-questions');
     Log.info('faq', req.locals.faqs.data);
   })
   .get('/frequently-asked-questions/:id', FaqController.getAll, FaqController.get, (req, res) => {
-    res.render('faq', { 
+    res.render('faq', {
       locals: req.locals,
-      id: true  
+      id: true
     });
     PageAnalyticsService.inc('/frequently-asked-questions');
     Log.info('faq', req.locals);
-  })
-  .get('/contact', (req, res) => {
-    res.render('contact', { locals: req.locals });
-    PageAnalyticsService.inc('/contact');
   })
   .get('/about-us', (req, res) => {
     res.render('about', { locals: req.locals });
@@ -107,28 +127,7 @@ router
     }
   )
 
-  .get(
-    '/',
-    Helper.checkRedirectCookie,
-    // CityController.get,
-    // AgentController.popular,
-    // ResourceController.random,
-    (req, res) => {
-      Promise.allSettled([
-        new Promise((resolve, reject) => {
-          CityController.get(req, res, () => resolve())
-        }),
-        new Promise((resolve, reject) => {
-          AgentController.popular(req, res, () => resolve())
-        }),
-        new Promise((resolve, reject) => {
-          ResourceController.random(req, res, () => resolve())
-        })])
-        .then(val =>{
-      res.render('home', { locals: req.locals });
-      PageAnalyticsService.inc('/home');})
-    }
-  )
+
   .get('/claim-listing', (req, res) => {
     res.render('listings', { locals: req.locals });
     PageAnalyticsService.inc('/claim-listing');

@@ -5,7 +5,7 @@ const {
     Exception,
     ErrorCodes,
     ErrorMessage,
-    MailService, 
+    MailService,
     EmailTemplates,
     Logger,
     Models: { QuestionCategory, Question, Answer, Agent },
@@ -61,11 +61,12 @@ class QuestionController extends BaseController {
 
         new MailService().sendMail(
             {
-              // secret: config.PUB_SUB_SECRET,
-              template: EmailTemplates.INFO,
-              reciever: process.env.DEFAULT_EMAIL_SENDER,
-              subject: 'Question',
-              locals: { message: `
+                // secret: config.PUB_SUB_SECRET,
+                template: EmailTemplates.INFO,
+                reciever: process.env.DEFAULT_EMAIL_SENDER,
+                subject: 'Question',
+                locals: {
+                    message: `
               <p>Hello Admin,  </p>
               <p>A user just posted a question, please visit the admin portal to check this out.</p><br>
               <p>Name: ${firstName, lastName}</p>
@@ -76,10 +77,10 @@ class QuestionController extends BaseController {
               `},
             },
             (res) => {
-              if (res == null) return
-              log.error("Error sending mail", res)
+                if (res == null) return
+                log.error("Error sending mail", res)
             }
-          )
+        )
 
     }
     /**
@@ -132,21 +133,22 @@ class QuestionController extends BaseController {
 
         new MailService().sendMail(
             {
-              // secret: config.PUB_SUB_SECRET,
-              template: EmailTemplates.INFO,
-              reciever: process.env.DEFAULT_EMAIL_SENDER,
-              subject: 'Question Answer',
-              locals: { message: `
+                // secret: config.PUB_SUB_SECRET,
+                template: EmailTemplates.INFO,
+                reciever: process.env.DEFAULT_EMAIL_SENDER,
+                subject: 'Question Answer',
+                locals: {
+                    message: `
               <p>Hello Admin,  </p>
               <p>An agent just answered a question, please visit the admin portal to check this out.</p><br>
               
               `},
             },
             (res) => {
-              if (res == null) return
-              log.error("Error sending mail", res)
+                if (res == null) return
+                log.error("Error sending mail", res)
             }
-          )
+        )
 
     }
 
@@ -168,7 +170,7 @@ class QuestionController extends BaseController {
 
     async get(req, res, next) {
         const { id } = req.params
-        let resource = await (await Question.findById(id)).populate(['category', { path: 'answer', populate: { path: 'agent', select: { firstName: 1, lastName: 1 } } }]);
+        let resource = await Question.findById(id).populate(['category', { path: 'answer', populate: { path: 'agent', select: { firstName: 1, lastName: 1 } } }]);
         req.locals.question = resource
         next()
     }
