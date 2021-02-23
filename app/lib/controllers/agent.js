@@ -179,7 +179,7 @@ class AgentController extends BaseController {
     let licenceProof
 
     if (req.file) {
-      licenceProof =  req.file.location
+      licenceProof = req.file.location
     }
 
     if (!licenceProof) {
@@ -202,7 +202,8 @@ class AgentController extends BaseController {
         template: EmailTemplates.INFO,
         reciever: process.env.DEFAULT_EMAIL_SENDER,
         subject: 'Listing Request',
-        locals: { message: `
+        locals: {
+          message: `
         <p>Hello Admin,  </p>
         <p>A user just requested to list his profile, please visit the admin portal to check this out.</p><br>
         <p></p>
@@ -261,7 +262,8 @@ class AgentController extends BaseController {
         template: EmailTemplates.INFO,
         reciever: process.env.DEFAULT_EMAIL_SENDER,
         subject: 'Listing Claim Request',
-        locals: { message: `
+        locals: {
+          message: `
         <p>Hello Admin,  </p>
         <p>A new listing claim request has been sent, please visit the admin portal to check this out.</p><br>
         <p></p>
@@ -278,17 +280,18 @@ class AgentController extends BaseController {
     const { id } = req.params;
     let agent;
     if (Validator.isMongoId(id)) agent = await Agent.findById(id)
-      .populate([ 
+      .populate([
         { path: "review" },
         { path: "reviewCount", select: ["rating"] },
         { path: "owner", select: ["_id", "firstName"] },
       ])
+      .lean()
       .exec()
-     else return next() 
-    if(!agent) {
+    else return next()
+    if (!agent) {
       req.session.error = 'Agent not found'
       return res.redirect('/ea-listings')
-     } req.locals.agent = agent;
+    } req.locals.agent = agent;
     // log.info(agent)
     next();
     if (agent)
@@ -308,6 +311,7 @@ class AgentController extends BaseController {
         { path: "reviewCount", select: ["rating"] },
         { path: "owner", select: ["_id", "firstName"] },
       ])
+      .lean()
       .exec();
     req.locals.agentProfile = agent;
     next();
@@ -392,6 +396,7 @@ class AgentController extends BaseController {
     if (!agent || !agent._id) return next()
 
     let resource = await AgentMessage.findById(id)
+      .lean()
       .exec()
     if (resource && resource.agent == agent._id)
       req.locals.agentMessage = resource
@@ -432,7 +437,9 @@ class AgentController extends BaseController {
         // log.info(req.locals, query);
         next();
         if (data && data.length > 0)
-          City.findByIdAndUpdate(_city._id, { $inc: { count: 1 } }).exec();
+          City.findByIdAndUpdate(_city._id, { $inc: { count: 1 } })
+            .lean()
+            .exec();
       }
     );
 
@@ -457,6 +464,7 @@ class AgentController extends BaseController {
         { path: "owner", select: ["_id", "firstName"] },
       ])
       .sort(SORT)
+      .lean()
       .exec();
     req.locals.agents = data;
     next();
@@ -484,6 +492,7 @@ class AgentController extends BaseController {
         { path: "owner", select: ["_id", "firstName"] },
       ])
       .sort(SORT)
+      .lean()
       .exec();
     req.locals.popular = data;
     next();
@@ -507,6 +516,7 @@ class AgentController extends BaseController {
         { path: "owner", select: ["_id", "firstName"] },
       ])
       .sort(SORT)
+      .lean()
       // .sort({ rating: -1 })
       .exec();
     req.locals.popular = data;

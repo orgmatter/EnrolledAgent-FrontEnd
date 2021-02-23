@@ -26,6 +26,7 @@ module.exports = async (res, next, Collection, options, done) => {
       .limit(pp)
       .sort(sort)
       .populate(populate)
+      .lean()
       .exec()]
   )
     .then(result => {

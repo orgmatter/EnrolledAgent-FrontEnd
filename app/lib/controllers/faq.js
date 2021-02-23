@@ -14,6 +14,7 @@ class FaqController extends BaseController {
     async get(req, res, next) {
         const { id } = req.params
         let resource = await Faq.findById(id)
+        .lean()
             .exec()
         req.locals.faq = resource
         next()

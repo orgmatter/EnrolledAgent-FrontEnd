@@ -22,12 +22,12 @@ const Log = new Logger('App:open');
 // };
 
 router
-.get('/', (req, res) => {
+.get('/contact', (req, res) => {
   res.render('contact', { locals: req.locals });
   PageAnalyticsService.inc('/contact');
 })
   .get(
-    '/contact',
+    '/',
     Helper.checkRedirectCookie,
     (req, res) => {
       Promise.allSettled([

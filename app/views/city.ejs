@@ -78,9 +78,11 @@
             </p>
             <% } else { %>
             <p>
-              No Agents found in
+              No Agents found 
+              <%if(locals.city && locals.city.name){%>
               <span> in <%= locals.capitalizeFirstLetter(locals.city.name) %> </span>
-            </p>
+            <% } %>
+          </p>
             <% } %>
           </div>
           <% if(locals.agents && locals.agents.data && locals.agents.pages > 1){ %> 
