@@ -16,6 +16,7 @@ class CityController {
         const city = await City.find({})
             .limit(64)
             .sort({ count: -1 })
+            .lean()
             .exec()
         if(city && city.length > 0)
         req.locals.cities = city.sort((a, b) => a.name.localeCompare(b.name))
