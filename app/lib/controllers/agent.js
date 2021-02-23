@@ -2,13 +2,14 @@ const {
   Exception,
   ErrorCodes,
   ErrorMessage,
-  FileManager,
+  Constants,
   LogCategory,
   LogAction,
   AwsService,
   EmailTemplates,
   MailService,
   Validator,
+  RedisService,
   Helper,
   Logger,
   DB,
@@ -505,10 +506,15 @@ class AgentController extends BaseController {
    * @param  {function} next
    */
   async popular(req, _, next) {
+    let data ;
+    data = await RedisService.get(Constants.CACHE_KEYS.POPULAR_AGENTS)
+    if(data)
+    data = JSON.parse(data)
+    if(!data){
     const count = await Agent.estimatedDocumentCount().exec();
     const random = Math.floor(Math.random() * count);
 
-    const data = await Agent.find({})
+     data = await Agent.find({})
       .skip(random)
       .limit(4)
       .populate([
@@ -519,6 +525,7 @@ class AgentController extends BaseController {
       .lean()
       // .sort({ rating: -1 })
       .exec();
+  }
     req.locals.popular = data;
     next();
   }

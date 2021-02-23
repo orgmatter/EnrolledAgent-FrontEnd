@@ -7,6 +7,7 @@ const {
     ErrorMessage,
     MailService,
     EmailTemplates,
+    RedisService, Constants,
     Logger,
     Models: { QuestionCategory, Question, Answer, Agent },
 } = require("common");
@@ -230,9 +231,15 @@ class QuestionController extends BaseController {
     * @param  {Function} next
     */
     async category(req, res, next) {
-        const data = await QuestionCategory.find({})
-            .sort({ priority: -1 })
-            .exec()
+        let data;
+        data = await RedisService.get(Constants.CACHE_KEYS.QUESTION_CATEGORY)
+        if (data)
+            data = JSON.parse(data)
+        if (!data) {
+            data = await QuestionCategory.find({})
+                .sort({ priority: -1 })
+                .exec()
+        }
         req.locals.questionCategory = data
         // log.info(data)
         next()

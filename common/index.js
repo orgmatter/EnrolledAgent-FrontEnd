@@ -24,4 +24,5 @@ module.exports = {
   Storages: require('./lib/utils/storage'),
   SessionUtil: require('./lib/utils/sessionUtil'),
   FileManager: require('./lib/service/fileManager'),
+  RedisService: require('./lib/service/redisService'),
 }
