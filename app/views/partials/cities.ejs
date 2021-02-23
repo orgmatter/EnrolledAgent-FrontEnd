@@ -47,12 +47,12 @@
         </div>
       </div>
       <div class="row city-select">
-        <select>
+        <select id="city-select">
           <option disabled selected>Select City</option>
           <% if (typeof locals !=='undefined' && locals.cities && locals.cities.length > 0) { %>   
             <% locals.cities.map((el,id) => { %>
               <option value="<%= el.stateSlug %>/<%= el.slug %>"><%= locals.capitalizeFirstLetter(el.name || "") %> </option>
-            <%})%>
+            <%})%> 
             <% } %> 
         </select>
       </div>

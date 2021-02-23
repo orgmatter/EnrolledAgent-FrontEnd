@@ -110,12 +110,23 @@ router
   .get(
     '/',
     Helper.checkRedirectCookie,
-    CityController.get,
-    AgentController.popular,
-    ResourceController.random,
+    // CityController.get,
+    // AgentController.popular,
+    // ResourceController.random,
     (req, res) => {
+      Promise.allSettled([
+        new Promise((resolve, reject) => {
+          CityController.get(req, res, () => resolve())
+        }),
+        new Promise((resolve, reject) => {
+          AgentController.popular(req, res, () => resolve())
+        }),
+        new Promise((resolve, reject) => {
+          ResourceController.random(req, res, () => resolve())
+        })])
+        .then(val =>{
       res.render('home', { locals: req.locals });
-      PageAnalyticsService.inc('/home');
+      PageAnalyticsService.inc('/home');})
     }
   )
   .get('/claim-listing', (req, res) => {
@@ -285,11 +296,12 @@ router
     }
   )
 
-  .use((req, res, next) => {
-    if (!(req.isAuthenticated() && req.user)) return res.redirect('/login');
-    next();
-  })
+  // .use((req, res, next) => {
+  //   if (!(req.isAuthenticated() && req.user)) return res.redirect('/login');
+  //   next();
+  // })
   .get('/new-listing', (req, res) => {
+    if (!(req.isAuthenticated() && req.user)) return res.redirect('/login');
     res.render('newListing', {
       locals: req.locals,
       page_name: 'new-listings',

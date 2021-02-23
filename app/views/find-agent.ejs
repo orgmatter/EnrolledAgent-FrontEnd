@@ -23,6 +23,9 @@
                 aria-expanded="false"
               >
                 Zip Code
+                <span>
+                  <img src="/assets/files/arrow-down.svg" alt="icon" class="my-dropdown-icon"/>
+                </span>
               </button>
               <div
                 class="dropdown-menu"
@@ -36,6 +39,15 @@
             <div class="input">
               <input type="text" placeholder="Enter zip code" id="zipInput" />
             </div>
+            <div class="home-section-top-input-div-3" id="mobile__dropdown">
+                  <div class="home-section-top-input-div-3-select">
+                    <select id="select">
+                      <option id="zip" value="zip" selected>Zip Code</option>
+                      <option id="state" value="state">State</option>
+                    </select>
+                  </div>
+                  <input type="text" id="zipInputMobile" placeholder="Enter your zip code*" required />
+                </div>
             <button class="btn2" id="submitBtn">Find</button>
             <!-- <button class="btn3">Advanced Search</button> -->
           </div>
@@ -130,7 +142,8 @@
 
     <!-- footer section -->
     <%- include("./partials/footer.ejs") %>
-    <script type="text/javascript" src="https://enrolled-public.s3.amazonaws.com/javascripts/findAgent.js"></script>
+    <!-- <script type="text/javascript" src="https://enrolled-public.s3.amazonaws.com/javascripts/findAgent.js"></script> -->
+    <script type="text/javascript" src="/javascripts/findAgent.js"></script>
     <script src="https://enrolled-public.s3.amazonaws.com/js/main.js"></script>
 
     <script>
@@ -143,5 +156,6 @@
         rateStar.querySelector(".stars-inner").style.width = starPercentageRounded;
       });
     </script>
+    <script type="text/javascript" src="/javascripts/city.js"></script>
   </body>
 </html>
