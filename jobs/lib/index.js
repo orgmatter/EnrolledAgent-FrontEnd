@@ -68,7 +68,7 @@ new CronJob(
 ).start()
 
 new CronJob(
-  '*/1 * * * *', // runs every 5 minute
+  '*/15 * * * *', // runs every 5 minute
   async function () {
     console.log('starting Cache job', moment())
     CacheJob.runJob(1, function (err) {
