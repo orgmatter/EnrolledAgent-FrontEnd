@@ -11,6 +11,7 @@ const log = new Logger('seeder')
 const createCity = async (agent) => {
     try {
         console.log('create city ')
+        if(agent.city && agent.city.length > 1 && agent.stateCode && agent.stateCode.length > 1)
         await City.findOneAndUpdate({
             name: agent.city
         }, {
@@ -26,7 +27,9 @@ const createCity = async (agent) => {
 const createState = async (agent) => {
     console.log('create state ')
     const name = STATES[agent.stateCode]
+   
     try {
+        if(name && name.length > 1 && agent.stateCode && agent.stateCode.length > 1)
         await State.findOneAndUpdate({
             abbreviation: agent.stateCode
         }, {
