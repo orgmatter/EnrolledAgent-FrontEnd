@@ -285,11 +285,12 @@ router
     }
   )
 
-  .use((req, res, next) => {
-    if (!(req.isAuthenticated() && req.user)) return res.redirect('/login');
-    next();
-  })
+  // .use((req, res, next) => {
+  //   if (!(req.isAuthenticated() && req.user)) return res.redirect('/login');
+  //   next();
+  // })
   .get('/new-listing', (req, res) => {
+    if (!(req.isAuthenticated() && req.user)) return res.redirect('/login');
     res.render('newListing', {
       locals: req.locals,
       page_name: 'new-listings',

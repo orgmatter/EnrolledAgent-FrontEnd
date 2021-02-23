@@ -20,9 +20,11 @@ router
   .use('/webhook', require("payment_module").Webhook)
 
   .use((req, _, next) => {
-    req.locals = { query: req.query, ...req.locals, 
-      capitalizeFirstLetter: Helper.capitalizeFirstLetter };
-    req.locals.dayjs = dayjs; 
+    req.locals = {
+      query: req.query, ...req.locals,
+      capitalizeFirstLetter: Helper.capitalizeFirstLetter
+    };
+    req.locals.dayjs = dayjs;
     req.locals.pageTitle = "Home";
     if (req.session.message) {
       req.locals.infoMessage = req.session.message;
@@ -38,18 +40,32 @@ router
   })
 
   /// store categories to locals
-  .use(ArticleController.category,
-    ResourceController.category,
-    QuestionController.category,
-    AuthController.config,
+  .use(
     (req, res, next) => {
-      next();
+      Promise.allSettled([
+        new Promise((resolve, reject) => {
+          ArticleController.category(req, res, () => resolve())
+        }),
+        new Promise((resolve, reject) => {
+          ResourceController.category(req, res, () => resolve())
+        }),
+        new Promise((resolve, reject) => {
+          QuestionController.category(req, res, () => resolve())
+        }),
+        new Promise((resolve, reject) => {
+          AuthController.config(req, res, () => resolve())
+        })])
+        .then(val => next())
+      // next();
     })
 
 
   .use(require('./auth'))
-  .use( Helper.checkRedirectCookie, require('./open'))
+ 
+  // .use(require('./open'))
+  .use(Helper.checkRedirectCookie, require('./open'))
   .use('/dashboard', require('./dashboard'))
+  
 
   // catch 404
   .use(require('./four04'))
