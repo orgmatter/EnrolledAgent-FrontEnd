@@ -70,7 +70,7 @@ const getAgents = async (page = 1, perPage = 1000, query, done) => {
 const runJob = async (page = 1, done) => {
     getAgents(
         page,
-        1,
+        1000,
         {},
         async (err, result) => {
             // console.log(err, result)
