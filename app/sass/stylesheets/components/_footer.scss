@@ -10,7 +10,7 @@
     align-items: center;
     justify-content: center;
     @include respond(smart-phone) {
-      height: 60px;
+      height: auto;
     }
   }
   &__top {
