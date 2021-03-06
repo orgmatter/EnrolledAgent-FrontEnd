@@ -3,10 +3,22 @@ html {
 }
 .home-section-top-input-div-3-select select{
   background-color: white;
+    // -webkit-appearance: none;
 }
-select, option {
-  -webkit-appearance: none;
+.home-section-top-input-div-3-select:after {
+  content: '\0025BC';
+  font: normal normal normal 12px/1 FontAwesome;
+  color: white;
+  right: 14px;
+  top: 4px;
+  height: 26px;
+  padding: 15px 0px 0px 8px;
+  position: absolute;
+  pointer-events: none;
 }
+// select, option {
+//   -webkit-appearance: none;
+// }
 section#home {
   position: relative;
 
