@@ -130,6 +130,8 @@ class AgentController extends BaseController {
     }
 
     async upload(req, res, next) {
+       return res.json({ data: { message: 'This action is not available at the moment' } })
+
         let file
         if (req.file) {
             file = await FileManager.saveFile(
