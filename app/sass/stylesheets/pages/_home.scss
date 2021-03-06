@@ -4,6 +4,9 @@ html {
 .home-section-top-input-div-3-select select{
   background-color: white;
 }
+select, option {
+  -webkit-appearance: none;
+}
 section#home {
   position: relative;
 
