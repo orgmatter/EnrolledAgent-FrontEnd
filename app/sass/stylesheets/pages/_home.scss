@@ -1,7 +1,13 @@
 html {
   overflow-x: hidden;
 }
-
+.home-section-top-input-div-3-select select{
+  background-color: white;
+    -webkit-appearance: none;
+}
+// select, option {
+//   -webkit-appearance: none;
+// }
 section#home {
   position: relative;
 

@@ -1,0 +1,721 @@
+[33m969b0e8[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/reverted[m[33m, [m[1;31morigin/dev[m[33m)[m Merge branch 'dev' into 'master'
+[33m6a3368d[m Update style.css
+[33m4bbbe2b[m Update _footer.scss
+[33m1e1d26a[m Merge branch 'dev' into 'master'
+[33m252e329[m Merge branch 'admin' into 'dev'
+[33m00458a7[m deferred some scripts and stylesheets
+[33m899dc86[m Merge branch 'dev' into 'master'
+[33me241e6a[m Merge branch 'admin' into 'dev'
+[33md9f7949[m increased cache cron job time to 15 mins
+[33m64c0390[m Merge branch 'dev' into 'master'
+[33m3902a56[m Merge branch 'admin' into 'dev'
+[33m1c2177e[m caching critical requests to redis
+[33mb238fb9[m Merge branch 'dev' into 'master'
+[33ma776656[m Merge branch 'admin' into 'dev'
+[33m155db36[m fixed bug in city.ejs
+[33mb3431c8[m Merge branch 'dev' into 'master'
+[33mad9cc65[m Merge branch 'admin' into 'dev'
+[33m67c55ff[m Merge branch 'dev' into admin
+[33mf6240ec[m fixed bug
+[33mc039806[m Merge branch 'dev' into 'master'
+[33m75543e8[m Update style.css
+[33me72cee3[m Merge branch 'dev' into 'master'
+[33mc0ecc1a[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m9bb9077[m rev slider fix
+[33m3353c1d[m Merge branch 'dev' into 'master'
+[33m17c915b[m Merge branch 'admin' into 'dev'
+[33m3d3a2de[m updated city seeder
+[33m17d0836[m Merge branch 'dev' into 'master'
+[33m1dec688[m Merge branch 'admin' into 'dev'
+[33m6eb3cf7[m updated city seeder
+[33m3492342[m Merge branch 'dev' into 'master'
+[33m96cc0e4[m Merge branch 'admin' into 'dev'
+[33mfb39cf2[m minified layer.css
+[33m9a119ac[m Merge branch 'dev' into 'master'
+[33m57b9f3a[m Merge branch 'admin' into 'dev'
+[33mda600d6[m reduced homepage pload time
+[33m6f9b794[m reduced homepage pload time
+[33ma4ee45d[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m6153c81[m initialize map
+[33ma948818[m fix mobile view for find agent
+[33mda571ef[m Merge branch 'dev' into 'master'
+[33m6b7e2c9[m Merge branch 'admin' into 'dev'
+[33m35e96ac[m fixed merge conflicts
+[33m10510b5[m updated city and states seeder
+[33mbbe7bef[m Merge branch 'ft-dashboard-new' into 'dev'
+[33mf217d76[m content correction
+[33mc633012[m Merge branch 'dev' into 'master'
+[33mfb33000[m Merge branch 'chyke007-master-patch-60491' into 'dev'
+[33mec7f832[m Update public/stylesheets/style.css
+[33m406a210[m Merge branch 'dev' into 'master'
+[33ma16dc04[m Merge branch 'ft-dashboard-new' into 'dev'
+[33md8cd2a3[m ui fixes
+[33m55feaef[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m93615c9[m fix js links
+[33m001d07d[m Merge branch 'dev' into 'master'
+[33m514e34d[m Merge branch 'ft-dashboard-new' into 'dev'
+[33mf652684[m text changes
+[33mc91733d[m Merge branch 'dev' into 'master'
+[33mdb77d91[m Merge branch 'admin' into 'dev'
+[33maef7e45[m fixed news route for admin
+[33m6d11e6f[m Merge branch 'dev' into 'master'
+[33m6339a87[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m087eaae[m typo changes
+[33m9bdaace[m typo
+[33m5904a4a[m Merge branch 'dev' into 'master'
+[33m3780dab[m Merge branch 'admin' into 'dev'
+[33m8a4aa46[m check for already verified email in email verification
+[33m5dc85af[m Merge branch 'dev' into 'master'
+[33mfa6b308[m Merge branch 'admin' into 'dev'
+[33m3dbbee1[m fixed bug with email verification
+[33m2f15035[m Merge branch 'dev' into 'master'
+[33m57c7a6d[m Merge branch 'ft-dashboard-new' into 'dev'
+[33maba3068[m updated content
+[33mdd26b35[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m8681860[m resend verification
+[33ma26a0b1[m partner form
+[33m2b25887[m Merge branch 'dev' into 'master'
+[33m9cf2195[m Merge branch 'admin' into 'dev'
+[33m3d9e36c[m fixed ommision in partner
+[33mdcb898e[m Merge branch 'dev' into 'master'
+[33m8990441[m Merge branch 'admin' into 'dev'
+[33m6a255a4[m added partner endpoint for admin
+[33m1c0f920[m added partner endpoint
+[33mb0e6d56[m Merge branch 'dev' into 'master'
+[33mad23756[m Merge branch 'admin' into 'dev'
+[33mb26647a[m fixed login page showing language
+[33mb0627e9[m Merge branch 'dev' into admin
+[33md7605ee[m added /news route for admin
+[33m99964fd[m added fix for invalid agent id
+[33m4ae6def[m Merge branch 'dev' into 'master'
+[33m8cb65b1[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m224febe[m signup content fix
+[33m772634d[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m13ffb4f[m corrections and link replacements
+[33m733dd5c[m Merge branch 'about-page' into 'dev'
+[33mad351be[m about page coontent update
+[33m78a52c7[m about page
+[33m5742af2[m Merge branch 'dev' into 'master'
+[33m818eafd[m Merge branch 'admin' into 'dev'
+[33mee5d8e0[m added welcome email for social login
+[33mbdf77af[m Merge branch 'dev' into 'master'
+[33ma476426[m Merge branch 'admin' into 'dev'
+[33me88bb02[m removed console log
+[33m6868b9c[m updated all file upload to use Aws S3 bucket
+[33mfbb9aaf[m Merge branch 'dev' into 'master'
+[33ma80a55d[m Merge branch 'ft-dashboard-new' into 'dev'
+[33md1d31e9[m blog fix
+[33m1cbcd62[m blog fix
+[33m99321cb[m Merge branch 'dev' into 'master'
+[33mcfb1768[m Merge branch 'ft-dashboard-new' into 'dev'
+[33mae8e313[m blog fix
+[33m7f0f126[m blog bg fix
+[33mceba86d[m Merge branch 'dev' into 'master'
+[33m47fd7eb[m Merge branch 'admin' into 'dev'
+[33md8cb3a8[m implemented aws upload for admin articles
+[33mcebe037[m referenced two images from aws
+[33mf1746da[m Merge branch 'dev' into 'master'
+[33mfc0bf3d[m Merge branch 'admin' into 'dev'
+[33m4a92953[m Merge branch 'dev' into admin
+[33m18cf440[m removed admin assets
+[33mb3707e6[m Merge branch 'dev' into 'master'
+[33m287c7d9[m Merge branch 'updating-cont' into 'dev'
+[33m2862f11[m contents updates
+[33macdae01[m changes
+[33mad61f1c[m Merge branch 'dev' of gitlab.com:bamyx-it-solutions/enrolled-agents into dev
+[33m502b7b2[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m40bc2a1[m minified scripts
+[33mf2e5228[m Merge branch 'search-page' into 'dev'
+[33me49f720[m conflicts
+[33m05965a4[m commit
+[33me42ff53[m  commit
+[33mb7221bf[m search pages media querry
+[33m2831bd0[m Merge branch 'dev' into 'master'
+[33mf9109ce[m Merge branch 'admin' into 'dev'
+[33mfcf802f[m resized some images
+[33m0fa118c[m Ensure text remains visible during webfont load
+[33mfde6951[m minified reset.css
+[33m1f312db[m Merge branch 'dev' into 'master'
+[33m615662e[m Merge branch 'admin' into 'dev'
+[33m796dd44[m merged dev
+[33m16dca60[m make resource not show html
+[33m53a5eff[m Merge branch 'dev' into 'master'
+[33mcc7c9ff[m Merge branch 'ft-dashboard-new' into 'dev'
+[33me2a96fb[m responsiveness
+[33m9862739[m responsiveness
+[33mf61986c[m Merge branch 'responsiveness' into 'dev'
+[33m6603c7b[m media querries
+[33m1657368[m conflicts
+[33m1d8fc47[m commit
+[33mdc4aa8f[m  commit
+[33m4667e22[m Merge branch 'dev' into 'master'
+[33me40b2ee[m adding files
+[33m9f658b6[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m555e914[m moment uninstall
+[33m85a0576[m Merge branch 'dev' into 'master'
+[33m2252d0b[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m3fa74e1[m home fix
+[33m52616d8[m Merge branch 'dev' into 'master'
+[33mbc58fbd[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m2efda33[m home fix
+[33m12a3878[m home fix
+[33m879346b[m Merge branch 'dev' into 'master'
+[33m1452f43[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m8086587[m fix
+[33mfaa9f10[m fix
+[33m6f47ed0[m Merge branch 'dev' into 'master'
+[33mf0355cb[m Merge branch 'admin' into 'dev'
+[33m77e7ebc[m added alt for all image tag on homepage
+[33mecd85ae[m added alt for all image tag on homepage
+[33ma6d00f0[m Merge branch 'dev' into 'master'
+[33m8b4833f[m Merge branch 'admin' into 'dev'
+[33m5d62d27[m added robots.txt
+[33m210b7e9[m Merge branch 'dev' into 'master'
+[33m7171431[m Merge branch 'ft-dashboard-new' into 'dev'
+[33mcfa6256[m content fix
+[33ma2b7ae9[m Merge branch 'dev' into 'master'
+[33me6eba8d[m Merge branch 'admin' into 'dev'
+[33m0d716ef[m modified reset password link for admin
+[33m98cb4da[m Merge branch 'dev' into 'master'
+[33mf19fa6b[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m8431b10[m fixes
+[33ma8c931c[m fixes
+[33mad09873[m contact address
+[33m8d4d772[m homepage fix
+[33m5f22080[m Merge branch 'dev' into 'master'
+[33m148658b[m Merge branch 'admin' into 'dev'
+[33m52db041[m commented out some libraries
+[33m0405a38[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m85f1551[m contact address
+[33m97d2c29[m Merge branch 'ft-dashboard-new' into 'dev'
+[33md71ac26[m privacy
+[33me5b6b33[m Merge branch 'dev' into 'master'
+[33m083b3b4[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m346c20f[m terms
+[33me52120f[m terms
+[33mb7663eb[m Merge branch 'dev' into 'master'
+[33m954e095[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m3a0f7be[m demo commit
+[33mcfb7dfa[m message turn off
+[33mfb3d403[m reset-password
+[33m7fb791e[m reset-password
+[33mc352944[m fix
+[33m92dfc44[m Merge branch 'content-update' into 'dev'
+[33mfb058f3[m css
+[33me1a624c[m  i updated more contents
+[33m651a368[m conflicts
+[33mdf41c08[m commit
+[33m165a9b0[m  commit
+[33m066865a[m Merge branch 'dev' into 'master'
+[33me3c4d9e[m Merge branch 'admin' into 'dev'
+[33me38e4da[m added passwordChangedAt field to user model
+[33me7e8c38[m added passwordChanged
+[33m00de2b7[m Merge branch 'dev' into 'master'
+[33mb28194a[m Merge branch 'admin' into 'dev'
+[33mfdde349[m added all permissions for super admin
+[33m5f39b48[m Merge branch 'dev' of gitlab.com:bamyx-it-solutions/enrolled-agents into dev
+[33ma3f216e[m Merge branch 'admin' into 'dev'
+[33ma85e3bb[m added author field to article
+[33m7f8db7e[m Merge branch 'dev' into 'master'
+[33m56d03a6[m Merge branch 'admin' into 'dev'
+[33medae034[m added page analytics
+[33md59547b[m Merge branch 'dev' into 'master'
+[33m8ae408e[m Merge branch 'admin' into 'dev'
+[33m4476a67[m added config to locals
+[33m825bdcb[m added password reset to admin
+[33m6eb69c2[m Merge branch 'admin' into 'dev'
+[33mcfc73fc[m added password reset to app
+[33m9701b81[m Merge branch 'admin' into 'dev'
+[33m42a4a9b[m added allowContactMessage to agent model
+[33mac70479[m Merge branch 'admin' into 'dev'
+[33m322f8ad[m Merge branch 'admin' into 'master'
+[33mc1c8acb[m fixed homepage newsletter
+[33mbfa77da[m fixed newsletter
+[33me6e694d[m Merge branch 'ft-dashboard-new' into 'dev'
+[33mc75a713[m fix
+[33m81a8d60[m license verification fix
+[33me54361e[m Merge branch 'dev' into 'master'
+[33meb014c5[m Merge branch 'admin' into 'dev'
+[33m843326a[m added payment route
+[33mf320c98[m Merge branch 'dev' into 'master'
+[33m596dcd9[m Merge branch 'admin' into 'dev'
+[33m78f66d3[m added payment route
+[33m1afb1dc[m Merge branch 'dev' into 'master'
+[33m3f1dc88[m Merge branch 'ft-dashboard-new' into 'dev'
+[33mdf02926[m upgrade
+[33m2426587[m upgrade
+[33mebe6eb3[m Merge branch 'admin' into 'dev'
+[33mad89c41[m Merge branch 'dev' into admin
+[33m5daa9dc[m added position to listing request model
+[33m1dfa2a7[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m9165a1c[m new-listing
+[33mf825fd4[m Merge branch 'dev' into 'master'
+[33m16952be[m Merge branch 'admin' into 'dev'
+[33me93f88a[m Merge branch 'admin' into 'master'
+[33m097be4f[m fixed conflicts
+[33m1a6cc22[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m29b0085[m dashboard message integration
+[33m10a4257[m added case insensitive search for state
+[33mb25ae86[m message ft
+[33mb7c3b00[m message ft
+[33me66b505[m Merge branch 'message-ft' into 'dev'
+[33m8343b86[m[33m ([m[1;31morigin/message-ft[m[33m)[m rebase
+[33mfd1dbb9[m  new listing page
+[33mf951e1d[m commit
+[33m5b81091[m conflicts
+[33mcbafbe2[m commit
+[33mbabe11a[m  commit
+[33mca1a267[m Merge branch 'dev' into 'master'
+[33mda50bac[m Merge branch 'admin' into 'dev'
+[33ma2c223c[m Merge branch 'dev' into admin
+[33m763f571[m added functionality to unlink a claim when reject is clicked
+[33m754e432[m Merge branch 'ft-dashboard-new' into 'dev'
+[33me6ad9f5[m profile fix
+[33mc2bef9e[m profile fix
+[33mc3e235e[m fixed bug with double claim request
+[33mec0286d[m fixed bug with double claim request
+[33m5eac68e[m Merge branch 'dev' into 'master'
+[33m3aaaf65[m Merge branch 'ft-dashboard-new' into 'dev'
+[33mfadc6bb[m profile fix
+[33mfa4aec7[m Merge branch 'dev' into 'master'
+[33me3e2c91[m Merge branch 'admin' into 'dev'
+[33m3c699d5[m Merge branch 'admin' into 'master'
+[33ma0c36f6[m Merge branch 'dev' into 'master'
+[33m57ce396[m fixed bug with agent article not showing
+[33m56dde0c[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m533146a[m profile fix
+[33mfbf647f[m profile fix
+[33mfca20d8[m Merge branch 'admin' into 'master'
+[33me8401ea[m added fix to support html in  article body
+[33m069bacc[m Merge branch 'dev' into 'master'
+[33m5e07f3b[m Merge branch 'admin' into 'dev'
+[33md23c4ca[m added fix to support html in featured article
+[33m77cf6cd[m Merge branch 'dev' into 'master'
+[33m9a4e610[m Merge branch 'admin' into 'dev'
+[33m89f0bf0[m Merge branch 'dev' into admin
+[33m3142d66[m sorting data by created
+[33ma59de09[m Merge branch 'dev' into 'master'
+[33mfb4291f[m Merge branch 'ft-dashboard-new' into 'dev'
+[33mb3065d7[m Profile change
+[33ma992539[m Merge branch 'dev' into 'master'
+[33m0d576f1[m Merge branch 'ft-dashboard-new' into 'dev'
+[33ma74b2ad[m dashboard implementation
+[33m5119aed[m dashboard implementation
+[33m50d160f[m contact page
+[33m67d53fe[m contact page
+[33me275ffd[m Merge branch 'dev' into 'master'
+[33m228a69c[m Merge branch 'admin' into 'dev'
+[33md642f45[m added contact, offshore and verification routes on admin
+[33m97c5e83[m Merge branch 'dev' into 'master'
+[33m5e84e37[m Merge branch 'admin' into 'dev'
+[33ma0b4134[m added check for deactivated user in social authentication
+[33mca26532[m Merge branch 'dev' into 'master'
+[33mdbec77f[m Merge branch 'admin' into 'dev'
+[33m8382148[m Merge branch 'admin' into 'master'
+[33m7de8fe8[m merged conflict from dev
+[33m1b81c9d[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m3e270b9[m added email list
+[33m576eee9[m agent update
+[33me67324b[m profile update
+[33m5d0f7a1[m profile update
+[33m8b3575a[m Merge branch 'dev' into 'master'
+[33mff691aa[m Merge branch 'admin' into 'dev'
+[33mc5cf0f2[m Merge branch 'dev' into admin
+[33m046932a[m added contact preference
+[33m80573d3[m conflicts
+[33maebd057[m Merge branch 'dev' of gitlab.com:bamyx-it-solutions/enrolled-agents into dev
+[33mba76d4a[m commit
+[33m8ca53c5[m  commit
+[33m8432961[m Merge branch 'dev' into 'master'
+[33m237778b[m Merge branch 'ft-dashboard-new' into 'dev'
+[33mfc05552[m dashboard integration
+[33me5c1c5d[m dashboard integration
+[33m69e1533[m dashboard integration
+[33m7fc7737[m dashboard integration
+[33m12e9bca[m Merge branch 'admin' into 'dev'
+[33m90cd26f[m Merge branch 'admin' into 'master'
+[33m1ae2d28[m fixed bug with undefined
+[33m75bc21a[m Merge branch 'dev' into 'master'
+[33m31739b7[m Merge branch 'admin' into 'dev'
+[33m78408a9[m merged dev into admin
+[33m06f3916[m added roles and staff management
+[33m7f4c953[m Merge branch 'dev' into 'master'
+[33m74fabb4[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m1ff61bb[m dashboard integration
+[33m3536fa3[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m338ff62[m dashboard integration
+[33me914d80[m dashboard integration
+[33m2a17f9f[m Merge branch 'admin' into 'dev'
+[33m99b74c2[m added agent message controller
+[33mb17c2b3[m added agent message controller
+[33m7a326ed[m Merge branch 'dev' into 'master'
+[33m0629f78[m Merge branch 'admin' into 'dev'
+[33mef85caa[m fixed issue with search page not showing for a user not authenticated
+[33m8e8a458[m Merge branch 'dev' into 'master'
+[33m39dc72e[m Merge branch 'ft-dashboard-new' into 'dev'
+[33mbaeaf23[m dashboard implementation
+[33m11e051b[m dashboard integration
+[33m396ff18[m dashboard integration
+[33mea2baa7[m dashboard integration
+[33m837a20a[m Merge branch 'admin' into 'dev'
+[33mc432578[m added review analysis for agent
+[33m23afacc[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m8b48d11[m dashboard integration
+[33md0c709a[m dashboard integration
+[33m8875632[m dashboard integration
+[33mc455a32[m Merge branch 'admin' into 'dev'
+[33m7101650[m added my answers function
+[33m3c24b24[m Merge branch 'dev' into 'master'
+[33m2390c44[m Merge branch 'admin' into 'dev'
+[33m0e07bc0[m added activate and deactivate user account
+[33m3b19246[m Merge branch 'admin' into 'dev'
+[33m38a9922[m added listing request
+[33m3ba769e[m Merge branch 'admin' into 'dev'
+[33m990bf87[m added function to get reviews for currently logged in agent
+[33mee6a75d[m Merge branch 'dev' into 'master'
+[33m2f442a6[m Merge branch 'admin' into 'dev'
+[33m7f643aa[m added error for social auth error
+[33mbf12be8[m Merge branch 'dev' into 'master'
+[33m316ec1d[m Merge branch 'admin' into 'dev'
+[33m341978b[m added error for social auth error
+[33m0e64e60[m Merge branch 'admin' into 'dev'
+[33mddbefe8[m Merge branch 'admin' into 'master'
+[33mdd6ac3d[m fixed omited import in auth router
+[33ma69ef38[m Merge branch 'dev' into 'master'
+[33mf1928fe[m Merge branch 'admin' into 'dev'
+[33m7ce4c8a[m separated routes into separate folders
+[33m2c6d82e[m Merge branch 'dev' into 'master'
+[33m4abeea0[m Merge branch 'admin' into 'dev'
+[33m6275e52[m fixed double submit of signup form
+[33mcbc91fc[m fixed double submit of signup form
+[33mfd3fe31[m Merge branch 'dev' into 'master'
+[33mf378ddd[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m8bddf10[m blog revert
+[33m8388c33[m Merge branch 'dev' into 'master'
+[33mc1d7549[m Merge branch 'ft-dashboard-new' into 'dev'
+[33mb39b59c[m demo commit
+[33m98d2818[m rebasing
+[33m8d16393[m rebasing
+[33md856e31[m ask ea
+[33m1449241[m Merge branch 'demo-branch-new' into 'dev'
+[33mb626044[m changed content
+[33m803088a[m commit
+[33mf526438[m Merge branch 'dev' into 'master'
+[33m28230ae[m Merge branch 'admin' into 'dev'
+[33mfc9c3b1[m implemented resources from db
+[33m952cac1[m renamed category to resource
+[33mdf9ad47[m Merge branch 'dev' into 'master'
+[33mc450189[m Merge branch 'admin' into 'dev'
+[33m9fd3ebb[m implemented newsletter
+[33mc270ad5[m implemented newsletter
+[33mf6b9238[m Merge branch 'dev' into 'master'
+[33m53363a3[m Merge branch 'admin' into 'dev'
+[33m6f7592e[m sorted city alphabetically
+[33m1b3bbff[m Merge branch 'dev' into 'master'
+[33maba9cd0[m Merge branch 'admin' into 'dev'
+[33ma434ee3[m added + symbol on homepage
+[33mf32e596[m Merge branch 'dev' into 'master'
+[33mec43608[m Merge branch 'admin' into 'dev'
+[33m04ec498[m edited typo for search placeholder
+[33m8e2a5e9[m Merge branch 'dev' into 'master'
+[33m408be2c[m Merge branch 'admin' into 'dev'
+[33m39a6797[m added verification mail
+[33m942424e[m added auto redirect to previous page before login page
+[33md1dd2ed[m Merge branch 'dev' into 'master'
+[33me090444[m Merge branch 'admin' into 'dev'
+[33m2d8e131[m configured agent search to sort by highest rating, and premium agents
+[33m074dc42[m Merge branch 'admin' into 'dev'
+[33m902fb38[m added payment integration
+[33m7f2932d[m added payment integration
+[33mc91529b[m Merge branch 'dev' into 'master'
+[33m09c15ea[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m1b32347[m integration
+[33m643ac8f[m integration
+[33m41d04c0[m review implementation
+[33m96d73ee[m integrations
+[33mbc34c81[m integrations
+[33m85a59aa[m rating implementation
+[33m1522bc8[m review implementation
+[33ma918e18[m Merge branch 'dev' into 'master'
+[33m3dc1cde[m Merge branch 'admin' into 'dev'
+[33m312d11f[m added admin profile routes
+[33mca5ba2c[m Merge branch 'dev' into 'master'
+[33m7220724[m Merge branch 'admin' into 'dev'
+[33m0a93282[m populated comments for single article
+[33m28036ae[m replace firstName and lastName with name in comments
+[33m86e95ad[m Merge branch 'dev' into 'master'
+[33m19b2710[m Merge branch 'admin' into 'dev'
+[33mb6967a2[m Merge branch 'admin' into 'master'
+[33mea9422d[m added offshore endpoint
+[33mb2f70eb[m Merge branch 'admin' into 'dev'
+[33m0cd9651[m updated article and update agent endpoint
+[33mb5797de[m updated article and update agent endpoint
+[33md762d46[m Merge branch 'dev' into 'master'
+[33ma5d6003[m Merge branch 'admin' into 'dev'
+[33m64537b4[m Merge branch 'admin' into 'master'
+[33m5740e5e[m updated question endpoints
+[33m6a50523[m Merge branch 'dev' into admin
+[33me74d595[m addded payment module
+[33m83a4ec3[m Merge branch 'page-contents' into 'dev'
+[33ma48208e[m addded newQuestion page
+[33mce0cc2a[m Merge branch 'dev' into 'master'
+[33m02738bc[m pages content updated
+[33m5b5b13e[m styles
+[33m7731b3f[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m73e3b04[m signup fix
+[33mbbab110[m Merge branch 'dev' into 'master'
+[33mb93244b[m Merge branch 'admin' into 'dev'
+[33m8383f0f[m merged dev
+[33m3323d30[m removed console.log messages
+[33m1536b68[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m9a85108[m demo fix
+[33mdfe8069[m Merge branch 'dev' into admin
+[33m53e4673[m added review , and claim listing
+[33mf4e5fce[m Merge branch 'dev' into 'master'
+[33m58ece79[m Merge branch 'ft-dashboard-new' into 'dev'
+[33m754173c[m dashboard implementation
+[33ma6eaa53[m dashboard implementation
+[33m0308dfd[m dashboard changes
+[33m85d32be[m dashboard pages implementation
+[33mcb5b784[m dashboard pages implementation
+[33m67dfc91[m dashboard screens
+[33m1c52dd6[m Merge branch 'accountFaqs' into 'dev'
+[33mb63862c[m account-setup
+[33m3b2d034[m accountFaqs
+[33m3bdfdee[m faqs-page
+[33m4817f46[m rebase dev
+[33m3bc9fc3[m Merge branch 'dev' into 'master'
+[33mde8df17[m Merge branch 'admin' into 'dev'
+[33m99b5aea[m added question api for admin
+[33maeeff26[m Merge branch 'admin' into 'dev'
+[33m49185fd[m fixed bug with login
+[33m23e93fa[m Merge branch 'dev' into 'master'
+[33m9f3aec6[m Merge branch 'admin' into 'dev'
+[33md3cb55f[m change login payload
+[33m452ba98[m Merge branch 'new-dashboard' into 'dev'
+[33m0376ea3[m  updated the branch
+[33m3c0a9f3[m dashboard message and dasshboard article page
+[33m5b67739[m dashboard message and articles
+[33m259709b[m Merge branch 'myAnswersDashboard' into 'dev'
+[33m66c25b8[m dashboard message and dasshboard article page
+[33mc471e2a[m updated the stylesheet
+[33m16cc0f5[m finished working on the screen 35 and 36
+[33md230cf7[m dashboard message and articles
+[33m5e14b20[m Merge branch 'dev' of https://gitlab.com/bamyx-it-solutions/enrolled-agents into dev
+[33m220aba7[m committed the modified jason file
+[33m08da388[m Merge branch 'dev' into 'master'
+[33m5eb9369[m Merge branch 'admin' into 'dev'
+[33m68eb9c7[m updated mongo config
+[33mefbb865[m Merge branch 'admin' into 'master'
+[33m89f3be5[m added formdata support
+[33m02cabd4[m update my local branch
+[33mf64d7c0[m commited the staged changes
+[33mcbe26e5[m Merge branch 'dev' into 'master'
+[33m8d610b6[m Merge branch 'admin' into 'dev'
+[33m244be93[m fixed bug with admin login
+[33mdf8dbc5[m Merge branch 'dev' into 'master'
+[33md5565f8[m Merge branch 'admin' into 'dev'
+[33m23f0978[m added sync indexes
+[33m87ffb2c[m Merge branch 'dev' into 'master'
+[33md5a8eaf[m Merge branch 'admin' into 'dev'
+[33m8f7356e[m added sync indexes
+[33m9ab8d99[m Merge branch 'admin' into 'dev'
+[33m0fc29d4[m Merge branch 'admin' into 'master'
+[33m49207de[m implemented agent seeder
+[33mab16537[m Merge branch 'dev' into 'master'
+[33m43624bd[m Merge branch 'test-branch' into 'dev'
+[33m0ec1159[m test demo
+[33m9aed759[m Merge branch 'test-branch' into 'dev'
+[33m54875a9[m test demo
+[33m935fd75[m test demo
+[33mf73a741[m merged files
+[33md0355bb[m merged files
+[33mf33f0d9[m push before reconciling
+[33m2c8613d[m Merge branch 'ay' into 'dev'
+[33m74ffb89[m UI fixes, implement map search
+[33m02ae149[m Merge branch 'dev' into 'master'
+[33m3e2eafb[m Merge branch 'ay' into 'dev'
+[33m58da70a[m UI Fixes
+[33m4002c29[m Added site url to logo
+[33m130d136[m Merge branch 'dev' into 'master'
+[33ma2a4913[m Merge branch 'admin' into 'dev'
+[33me470ae4[m fixed typo in import
+[33m376dd67[m Merge branch 'dev' into 'master'
+[33mc72cf5b[m fixed merge conflicts with admin
+[33mb3c7592[m added question category schema
+[33md058dd7[m implemented cities and state routes
+[33m34181ec[m sorted out the css issues
+[33mf484426[m Merge branch 'admin' into 'dev'
+[33m07b22bd[m Merge branch 'admin' into 'master'
+[33mb703bb8[m fixed imports
+[33m9d98bf1[m Merge branch 'dev' into 'master'
+[33madbb679[m Merge branch 'admin' into 'dev'
+[33m48aa378[m added resource, category and article endpoints
+[33m416bff1[m Merge branch 'dev' into 'master'
+[33md8142c5[m Merge branch 'admin' into 'dev'
+[33m5405e4b[m converted admin to only api
+[33mb888030[m Merge branch 'demo-branch' into 'dev'
+[33mc673c46[m commit fixes
+[33m6ca1718[m commit fixes
+[33m49867e9[m Merge branch 'dev' into 'master'
+[33m2446812[m Merge branch 'dev' into 'master'
+[33mceae463[m final commit
+[33m7b8a1cb[m reconciled files
+[33mbdcc4b2[m demo-branch
+[33m8ac1d30[m Merge branch 'dev' into 'master'
+[33mdec102a[m fixed typo
+[33m95e5e22[m Merge branch 'dev' into 'master'
+[33m83cfd1e[m added search to find page
+[33mab97766[m Merge branch 'demo-branch' into 'master'
+[33m314b1ee[m linked agent details page
+[33me3f5514[m merged conflicts
+[33m17bf276[m enabled search for listings page
+[33m2ce8bae[m fixed login page showing under footer
+[33m378f04d[m merged conflicts
+[33m2e48f4e[m single agent page
+[33m84b472a[m Merge branch 'demo-branch' into 'master'
+[33m3af0ce1[m working on admin
+[33m8583aa1[m demo-new
+[33m5946c4d[m demo commit
+[33m6a730fb[m demo commit
+[33md7e160e[m new demo
+[33md34e2f6[m new demo
+[33m18cfe23[m demo changes
+[33m88f0d27[m initial commit for demo
+[33m40547dd[m updated route
+[33mea450fa[m local agent page updated
+[33mc2f39cf[m updating
+[33m754fe52[m local agent page in progress
+[33mc0c9999[m local agent page
+[33ma1e4e37[m Added page for blog and articles
+[33ma674fd6[m Added page for blog and articles
+[33m4c317a6[m Added page for blog and articles
+[33mc5abbe8[m Added page for blog and articles
+[33m3390253[m Created all agents view, agents profile
+[33mf35a083[m Worked on the admin sidebar
+[33m642371f[m Change admin homepage route
+[33m89399eb[m page 16 built and made responsive
+[33m61171e7[m media querry for category
+[33m20d1b4f[m updating ...
+[33m4d443df[m Merge branch 'dev' into new-demo :wq # especially if it merges an updated upstream into a topic branch.
+[33m3858a07[m fixed typo
+[33m1e2df0f[m added firm controller, added question model
+[33m985e8c2[m Merge branch 'page-11' into 'dev'
+[33ma1dd7d3[m Added page for blog and articles
+[33m2924aee[m Added page for blog and articles
+[33m71115f7[m Added page for blog and articles
+[33mbe8da98[m Added page for blog and articles
+[33mbfa3dbd[m Created all agents view, agents profile
+[33meb7a4b9[m Worked on the admin sidebar
+[33ma057c9f[m Change admin homepage route
+[33mcf7d3a6[m Merge branch 'dev' into 'master'
+[33md33110e[m Merge branch 'admin-dashboard' into 'dev'
+[33md7c3707[m Added page for blog and articles
+[33m0aff605[m page 16 built and made responsive
+[33m0c6c45a[m Merge branch 'dev' into 'master'
+[33m44de486[m Merge branch 'admin-dashboard' into 'dev'
+[33m9c8fe3a[m Added page for blog and articles
+[33m1e574b6[m Merge branch 'dev' into 'master'
+[33m3afb385[m Merge branch 'admin-dashboard' into 'dev'
+[33mead6b4e[m Added page for blog and articles
+[33ma7fb880[m Merge branch 'admin-dashboard' into 'dev'
+[33m9e8f94b[m Added page for blog and articles
+[33me1f1624[m Merge branch 'admin-dashboard' into 'dev'
+[33m4869a71[m Created all agents view, agents profile
+[33mb638878[m Worked on the admin sidebar
+[33m6ecce13[m Change admin homepage route
+[33mfff2fa9[m media querry for category
+[33mbc7c7a9[m updating ...
+[33m1d1386f[m Merge branch 'new-demo' into 'master'
+[33m5cafa45[m fixed typo
+[33mea7d1b8[m Merge branch 'new-demo' into 'master'
+[33mfa4c46d[m regenerated css
+[33mdfdfc80[m Merged conflicts
+[33mf8ffb5b[m merged changes
+[33m953052e[m merge branches
+[33me4ebb16[m merge all branches and reconcile conflicts
+[33med7594d[m merge all branches and reconcile conflicts
+[33mdd2949a[m merge all branches and reconcile conflicts
+[33mda2065e[m tax page from chibuzor
+[33m17abc78[m fixes
+[33m50b4e36[m fixes
+[33m6977a23[m make login redirect to home page
+[33m30b9478[m fixes
+[33m568c90a[m demo
+[33mf42610d[m demo
+[33m00b8fc1[m demo
+[33m3d1b543[m dashboard page implementation
+[33m6ae0a8e[m working files
+[33m315b3c4[m working files
+[33mfcaa49e[m about to start responsiveness
+[33mca459d6[m about to start responsiveness
+[33m0a9a3e1[m accidentally deleted all css code
+[33me15a93c[m implemented authentication and registration
+[33mc20a45c[m Admin login page
+[33m21bb084[m added the asset folder
+[33m63c7bc6[m added seed data for resource and articles
+[33m9af9a77[m added controllers for agents, sponsor, resource and articles
+[33m09d7eef[m basic implementation of career center page
+[33m55f12f3[m make login redirect to home page
+[33mc17c6e3[m demo
+[33m6095e96[m demo
+[33m133eb87[m demo
+[33m82162d2[m dashboard page implementation
+[33m645463f[m working files
+[33mc57deab[m working files
+[33m3c320e7[m about to start responsiveness
+[33mc23a090[m about to start responsiveness
+[33m1bcdc3c[m accidentally deleted all css code
+[33m91ddba3[m implemented authentication and registration
+[33mb37688e[m Merge branch 'latest-merge' into 'dev'
+[33m121b7ef[m working files
+[33mb4fc22b[m working files
+[33m87f3d44[m Admin login page
+[33m46f0829[m Merge branch 'admin' into 'dev'
+[33m42bb529[m Developed login page for admin
+[33m0e34dcd[m Added Admin template
+[33m5ff65ed[m Merge branch 'latest-merge' into 'dev'
+[33m3c87309[m adjustments
+[33ma84cfde[m Merge branch 'latest-merge' into 'master'
+[33m4cc06f7[m homepage
+[33m2441d90[m homepage-implementation
+[33m6d7744e[m homepage implementation
+[33m1edfff7[m homepage implementation
+[33m0e9ef80[m done implementing basic UI
+[33m3d6a21b[m done implementing desktop-size pages about to start responsiveness tweak.
+[33m9da0d2e[m my first push
+[33m60f6fdc[m initial commit
+[33m016c7ef[m my initial commit
+[33md18cbb3[m Added some assets to the documents
+[33ma6eb296[m homepage
+[33mb9af08d[m homepage
+[33m68ccb6b[m homepage
+[33mb15527d[m homepage-implementation
+[33m58ffdda[m homepage
+[33m0b8c1fd[m homepage implementation
+[33m876fb57[m homepage implementation
+[33m286bec5[m my first push
+[33m8c2b01f[m initial commit
+[33m1e25e55[m my initial commit
+[33m1b3b968[m Added some assets to the documents
+[33m7fb4abf[m Merge branch 'login/signup' into 'master'
+[33m16b9616[m done implementing basic UI
+[33m0cb351b[m done with desktop pages
+[33m80d0576[m done implementing desktop-size pages about to start responsiveness tweak.
+[33m61963cc[m test output
+[33m2134a94[m template added
+[33m67facdc[m source files
+[33mff852d9[m here
+[33m15c024f[m fix style issue
+[33m93dfe1a[m fix style issue
+[33m4f5da92[m adjust gitignore
+[33m9813b05[m added login integration links to readme files
+[33m50a9962[m added instructions to readme
+[33m7608f26[m finished initial project setup
+[33m11cf07f[m finished initial project setup
+[33maf20ebf[m Merged in Clean-up-branch (pull request #1)
+[33mf4f98db[m last set of cleaned up files
+[33m90316df[m second batch of cleaned up codes
+[33m4447b1a[m first batch of cleaned up files
+[33m57bbc9d[m my first commit
+[33m4f7c104[m Initial Commit
