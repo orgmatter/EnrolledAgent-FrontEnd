@@ -26,7 +26,7 @@
     <div class="blog">
       <div class="blog__section--main">
         <% if(locals.featuredArticle) {%>
-          <div id="blog-main" data-bg-img=<%= locals.featuredArticle.imageUrl || "https://enrolled-public.s3.amazonaws.com/assets/images/blog_fallback.webp" %> class="blog__main" bg-img="<%= locals.featuredArticle.imageUrl %>">
+          <div id="blog-main" data-bg-img=<%= locals.featuredArticle.imageUrl || "/assets/images/blog_fallback.webp" %> class="blog__main" bg-img="<%= locals.featuredArticle.imageUrl %>">
           <div class="blog__main--items">
             <div class="blog__main--article">
               <div class="blog__main--article-name">
@@ -55,7 +55,7 @@
             <% locals.articles.data.map((e,id) => { %>
             <div class="blog__article--card">
               <div class="blog__article--image">
-                <img src=<%=e.imageUrl || "https://enrolled-public.s3.amazonaws.com/assets/images/blog_fallback.webp"%> alt="article image" class="blog__article--image-img" />
+                <img src=<%=e.imageUrl || "/assets/images/blog_fallback.webp"%> alt="article image" class="blog__article--image-img" />
               </div>
               <div class="blog__article--head"><%= e.title || "N/A"%></div>
               <div class="blog__article--details">
@@ -112,7 +112,7 @@
                 <a href="/blog/<%= el._id %>" class="blog__news">
               <div class="blog__news--image">
                 <img
-                  src=<%= el.imageUrl || "https://enrolled-public.s3.amazonaws.com/assets/images/blog_fallback.webp"%> 
+                  src=<%= el.imageUrl || "/assets/images/blog_fallback.webp"%> 
                   alt="news image"
                   class="blog__news--image-img"
                 />
@@ -140,7 +140,7 @@
             <div class="blog__ad">
               <div class="blog__ad--image">
                 <img data-toggle="modal" data-target="#partnerModal"
-                  src="https://enrolled-public.s3.amazonaws.com/assets/EA_Ad_Space.webp"
+                  src="/assets/EA_Ad_Space.webp"
                   alt="advert image"
                   class="blog__ad--image-img"
                 />
@@ -200,10 +200,10 @@
   </div>
     </div>
     <%- include("./partials/footer.ejs") %>
-    <script src="https://enrolled-public.s3.amazonaws.com/javascripts/plugin/jquery.simplePagination.js"></script>
-    <script src="https://enrolled-public.s3.amazonaws.com/javascripts/pagination.js"></script>
-    <script type="text/javascript" src="https://enrolled-public.s3.amazonaws.com/js/blog-page.js"></script>
-    <script type="text/javascript" src="https://enrolled-public.s3.amazonaws.com/js/partnerForm.js"></script>
-    <script src="https://enrolled-public.s3.amazonaws.com/js/main.js"></script>
+    <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
+    <script src="/javascripts/pagination.js"></script>
+    <script type="text/javascript" src="/js/blog-page.js"></script>
+    <script type="text/javascript" src="/javascripts/partnerForm.js"></script>
+    <script src="/js/main.js"></script>
   </body>
 </html>
