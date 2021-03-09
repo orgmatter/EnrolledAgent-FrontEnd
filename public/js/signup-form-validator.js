@@ -21,7 +21,7 @@ function validateSignupForm() {
     return (validateNonEmpty("firstname") && validateNonEmpty("lastname") && validateNonEmpty("email") && validatePassword("password") && validateConfirmPassword("confirmPassword"))
 }
 function validateLoginForm() {
-    (validateEmail("email") || validateNonEmpty("password")) && document.getElementById("login-submit-btn").click();
+    return (validateEmail("email") && validateNonEmpty("password"));
 }
 function validateResetForm() {
     (validateNonEmpty("confirm-password") || validateNonEmpty("password") || validateConfirmPassword("confirmPassword")) && document.getElementById("reset-submit-btn").click();
