@@ -95,6 +95,14 @@ class AuthController {
       )
     }
 
+    //Add validation fo body 
+    const isValid = Helper.validateAuthBody(
+      ["email", "password", "firstname", "lastName"],
+      body,
+      res,
+      next
+    );
+    if (!isValid) return false;
     const {
       email,
       password,

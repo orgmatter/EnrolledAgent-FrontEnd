@@ -5,6 +5,8 @@ module.exports = {
   UNKNOWN: 'an unexpeccted error has occured',
   INVALID_EMAIL: 'please use a valid email',
   INVALID_NAME: 'Business name must be more than 2 characters',
+  INVALID_FIRST_NAME: 'First name must be more than 2 characters',
+  INVALID_LAST_NAME: 'Last name must be more than 2 characters',
   REQUIRED_EMAIL: 'email is required',
   WRONG_PORTAL: 'You are not authorised to login to this portal',
   REQUIRED_EMAIL_PASSWORD: 'email and password are required',

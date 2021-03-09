@@ -7,8 +7,6 @@ const zipInputMobile = document.getElementById("zipInputMobile");
 const submitBtn = document.getElementById("submitBtn");
 const inputDiv = document.querySelector(".input");
 const url = location.href;
-const match = url.match("enrolledagent.org");
-const baseUrl = match ? "https://enrolledagent.org" : "http://localhost:3000";
 var res = true;
 
 zip.addEventListener("click", () => {
@@ -32,13 +30,14 @@ const clearForm = () => {
 }
 
 submitBtn.addEventListener("click", () => {
+   
   if (zipInput.value !== "" || zipInputMobile.value !== "") {
     const payload = zipInput.value.trim() || zipInputMobile.value.trim();
     if (res) {
-      location.href = `${baseUrl}/search-results?q=zipcode:${payload}`;
+      location.href = `/search-results?q=zipcode:${payload}`;
       clearForm();
     } else {
-      location.href = `${baseUrl}/search-results?q=state:${payload}`;
+      location.href = `/search-results?q=state:${payload}`;
       clearForm();
     }
   }
@@ -50,10 +49,10 @@ zipInput.addEventListener("keyup", function (event) {
       if (zipInput.value !== "") {
         const payload = zipInput.value;
         if (res) {
-          location.href = `${baseUrl}/search-results?q=zipcode:${payload}`;
+          location.href = `/search-results?q=zipcode:${payload}`;
           clearForm();
         } else {
-          location.href = `${baseUrl}/search-results?q=state:${payload}`;
+          location.href = `/search-results?q=state:${payload}`;
           clearForm();
         }
     }

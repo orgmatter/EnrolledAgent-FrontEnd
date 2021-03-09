@@ -1,5 +1,6 @@
 /**
  * Wisdom Ekeh ekeh.wisdom@gmail.com C2020
+ * Nwachukwu Chibuike work@chibuikenwa.con
  */
 
 const validator = require('validator')
