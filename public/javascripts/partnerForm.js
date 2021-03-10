@@ -1,6 +1,3 @@
-const partner_page_url = location.href;
-const partner_url_match = partner_page_url.match("enrolledagent.org");
-const partner_base_Url = partner_url_match ? "https://enrolledagent.org" : "http://localhost:3000";
 const partnerForm = document.getElementById("partner-form");
 const partner_email = document.getElementById("partnerEmail");
 const partner_fullName = document.getElementById("name");
@@ -62,7 +59,7 @@ const handlePartnerSubmit = (e) => {
 
   axios({
     method: "POST",
-    url: `${partner_base_Url}/partner`,
+    url: `/partner`,
     credentials: 'same-origin', // <-- includes cookies in the request
         headers: {
           "CSRF-Token":  getCookie('XSRF-TOKEN'), 

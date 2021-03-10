@@ -34,7 +34,7 @@ class ReviewController {
             return next(new Exception("Please select an appropriate rating", ErrorCodes.REQUIRED));
         if (firm) type = 'firm'
         if (await Review.exists({ email, agent }))
-            return next(new Exception("You have previously reviewd this " + type, ErrorCodes.REQUIRED));
+            return next(new Exception("You have previously reviewed this " + type, ErrorCodes.REQUIRED));
 
 
         Review.create({ rating, message, agent, firm, user: usr, firstName, lastName, email, city, state })
