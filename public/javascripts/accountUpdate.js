@@ -3,6 +3,7 @@ const updateForm = document.getElementById("update-profile-form"),
     lastName = document.getElementById("last-name"),
     editBtn = document.getElementById("edit-btn"),
     imageInput = document.getElementById("image"),
+    imageLabel = document.getElementById("image-label"),
     image = document.getElementById("avatar-preview"),
     btn = document.getElementById("submit-btn"),
     btnContent = btn.innerHTML,
@@ -16,6 +17,14 @@ const updateForm = document.getElementById("update-profile-form"),
             { className: "alert-message", type: "error" },
         ],
     });
+
+//
+imageLabel.addEventListener("click", function(){
+    if(imageInput.disabled){
+        notyf.error("Click on the Edit Profile button to enable editing of your profile");
+    }
+})
+
 function getCookie(e) {
     const t = `; ${document.cookie}`.split(`; ${e}=`);
     if (2 === t.length) return t.pop().split(";").shift();
