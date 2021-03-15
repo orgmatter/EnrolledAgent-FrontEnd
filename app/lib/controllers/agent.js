@@ -288,7 +288,7 @@ class AgentController extends BaseController {
       ])
       .lean()
       .exec()
-    else return next()
+    else next()
     if (!agent) {
       req.session.error = 'Agent not found'
       return res.redirect('/ea-listings')

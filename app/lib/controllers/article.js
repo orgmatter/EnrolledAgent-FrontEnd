@@ -257,10 +257,16 @@ class ArticleController extends BaseController {
 
     async get(req, res, next) {
         const { id } = req.params
-        if (!id || !Validator.isMongoId(String(id))) return next()
-        let resource = await Article.findById(id)
+        let resource;
+        if (id && Validator.isMongoId(String(id))) resource = await Article.findById(id)
             .populate(['category', 'comment', { path: 'agent', select: { firstName: 1, lastName: 1 } }])
             .exec()
+        else next()
+        
+        if (!resource) {
+            req.session.error = 'Article not found'
+            return res.redirect('/blog')
+        }
         req.locals.article = resource
         next()
 

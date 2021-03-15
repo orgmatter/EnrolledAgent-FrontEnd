@@ -56,7 +56,7 @@
         <div class="row premium-box">
           <div class="col-md-4 col-sm-12">
             <div class="img col-md-5">
-              <img src=<%= e.imageUrl || "https://enrolled-public.s3.amazonaws.com/assets/images/avatar.webp" %>  alt="agent-image" />
+              <img src=<%= e.imageUrl || "/assets/images/avatar.webp" %>  alt="agent-image" />
             </div>
             <div class="txt col-md-7">
               <h3><%= e.firstName %> <%= e.lastName %></h3>
@@ -137,8 +137,8 @@
               })
           
           </script>
-    <script src="https://enrolled-public.s3.amazonaws.com/javascripts/plugin/jquery.simplePagination.js"></script>
-    <script src="https://enrolled-public.s3.amazonaws.com/javascripts/pagination.js"></script>
+    <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
+    <script src="/javascripts/pagination.js"></script>
     <script>
             const clientStars = document.querySelectorAll("#client-stars");
             clientStars.forEach((clientStar) => {
@@ -151,7 +151,7 @@
             });
           </script>
     
-    <script src="https://enrolled-public.s3.amazonaws.com/js/main.js"></script>
+    <script src="/js/main.js"></script>
 
   </body>
 </html>

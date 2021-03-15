@@ -1,6 +1,6 @@
 #local-agent-top {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%),
-    url("https://enrolled-public.s3.amazonaws.com/assets/files/page-15-top-img.webp") no-repeat center center/cover;
+    url("/assets/files/page-15-top-img.webp") no-repeat center center/cover;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -415,7 +415,7 @@
 // cities section
 
 #cities-section {
-  background-image: url("https://enrolled-public.s3.amazonaws.com/assets/files/433.webp"),
+  background-image: url("/assets/files/433.webp"),
     linear-gradient(rgba(1, 16, 91, 0.75), rgba(1, 16, 91, 0.75));
   background-blend-mode: overlay;
   height: 730px;

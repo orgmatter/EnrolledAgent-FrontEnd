@@ -95,6 +95,14 @@ class AuthController {
       )
     }
 
+    //Add validation fo body 
+    const isValid = Helper.validateAuthBody(
+      ["email", "password", "firstname", "lastName"],
+      body,
+      res,
+      next
+    );
+    if (!isValid) return false;
     const {
       email,
       password,
@@ -308,6 +316,18 @@ class AuthController {
         )
       )
     }
+
+    if (!Validator.password(body.password)) {
+      res.statusCode = 422;
+      return next(
+        new Exception(
+          ErrorMessage.INVALID_PASSWORD,
+          ErrorCodes.INVALID_PASSWORD
+        )
+      )
+    }
+
+    
     user.setPassword(body.password);
     user.passwordChangedAt = new Date()
     await user.save();

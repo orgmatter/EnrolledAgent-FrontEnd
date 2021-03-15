@@ -190,6 +190,86 @@ exports.validateCompany = (scope, body, res, done) => {
   return true
 }
 
+
+/**
+ * @param  {[string]} scope
+ * @param  {object} body
+ * @param  {Express.Response} res
+ * @param  {function(err, result)} done
+ * @return {function(err, result)}
+ */
+ exports.validateAuthBody = (scope, body, res, done) => {
+  const { email, password, firstName, lastName } = body;
+  if (scope.includes("email")) {
+    if (!(email && Validator.email(email))) {
+      log.error("invalid email", { file: "helper.js validateBody(email)" });
+      res.status(422);
+      if (done) {
+        done(
+          new Exception(
+            ErrorMessage.INVALID_EMAIL,
+            ErrorCodes.INVALID_EMAIL
+          )
+        );
+      }
+      return false;
+    }
+  }
+  if (scope.includes("password")) {
+    if (!(password && Validator.password(password))) {
+      log.error("invalid password", {
+        file: "helper.js validateBody(password)",
+      });
+      res.status(422);
+      if (done) {
+        done(
+          new Exception(
+            ErrorMessage.INVALID_PASSWORD,
+            ErrorCodes.INVALID_PASSWORD
+          )
+        );
+      }
+      return false;
+    }
+  }
+
+  if (scope.includes("firstName")) {
+    if (!(firstName && Validator.checkLen(firstName, 2))) {
+      log.error("invalid firstName", { file: "helper.js validateBody(firstName)" });
+      res.status(422);
+      if (done) {
+        done(
+          new Exception(
+            ErrorMessage.INVALID_FIRST_NAME,
+            ErrorCodes.INVALID_FIRST_NAME
+          )
+        );
+      }
+      return false;
+    }
+  }
+
+ 
+
+  if (scope.includes("lastName")) {
+    if (!(lastName && Validator.checkLen(lastName, 2))) {
+      log.error("invalid lastName", { file: "helper.js validateBody(lastName)" });
+      res.status(422);
+      if (done) {
+        done(
+          new Exception(
+            ErrorMessage.INVALID_LAST_NAME,
+            ErrorCodes.INVALID_LAST_NAME
+          )
+        );
+      }
+      return false;
+    }
+  }
+
+  return true;
+}
+
 /**
  * geenerate password
  * @return {number}

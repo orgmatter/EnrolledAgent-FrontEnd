@@ -57,7 +57,7 @@
 
     <section id="section-2" class="mt-100 mb-150">
       <div class="img">
-        <img src="https://enrolled-public.s3.amazonaws.com/assets/files/section-2-img.webp" 
+        <img src="/assets/files/section-2-img.webp" 
         alt="Enrolled Agents" />
       </div>
       <div class="text">
@@ -99,7 +99,7 @@
             <div class="col-sm-6 col-md-3">
               <div class="single-member maxwidth400 mb-30">
                 <div class="team-thumb">
-                  <img src=<%= e.imageUrl || "https://enrolled-public.s3.amazonaws.com/assets/images/avatar.webp" %>
+                  <img src=<%= e.imageUrl || "/assets/images/avatar.webp" %>
                   alt="agent-avatar" class="img-fullwidth" />
                   <h4 class="text-uppercase font-raleway text-white font-20 line-bottom-center m-0">
                     <%= e.firstName %> <%= e.lastName %>
@@ -142,9 +142,9 @@
 
     <!-- footer section -->
     <%- include("./partials/footer.ejs") %>
-    <!-- <script type="text/javascript" src="https://enrolled-public.s3.amazonaws.com/javascripts/findAgent.js"></script> -->
+    <!-- <script type="text/javascript" src="/javascripts/findAgent.js"></script> -->
     <script type="text/javascript" src="/javascripts/findAgent.js"></script>
-    <script src="https://enrolled-public.s3.amazonaws.com/js/main.js"></script>
+    <script src="/js/main.js"></script>
 
     <script>
       const rateStars = document.querySelectorAll(".stars-outer");

@@ -1,12 +1,12 @@
 .about {
   &-funfact{
-    background-image: url("https://enrolled-public.s3.amazonaws.com/assets/files/about/4+(1).webp");
+    background-image: url("/assets/files/about/4.webp");
      background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
   }
   &_jumbotron {
-    background-image: url("https://enrolled-public.s3.amazonaws.com/assets/files/about/about.webp");
+    background-image: url("/assets/files/about/about.webp");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top center;
@@ -40,7 +40,7 @@
 }
 
 .privacy_jumbotron {
-  background-image: url("https://enrolled-public.s3.amazonaws.com/assets/files/about/privacy.webp");
+  background-image: url("/assets/files/about/privacy.webp");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -57,7 +57,7 @@
 }
 
 .terms_jumbotron {
-  background-image: url("https://enrolled-public.s3.amazonaws.com/assets/files/about/terms2.webp");
+  background-image: url("/assets/files/about/terms2.webp");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
