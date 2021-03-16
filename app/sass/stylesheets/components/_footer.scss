@@ -100,6 +100,9 @@
         &-form {
           &-input {
             width: 300px;
+            @include respond(smart-phone) {
+              width: 80%;
+            }
             display: block;
             height: 49px;
             border-radius: 8px;
