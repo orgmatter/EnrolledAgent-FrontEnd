@@ -32,6 +32,10 @@
                 <p><span>Address:</span>
                   <%= locals.agent.address1 || "N/A" %>
                 </p>
+                <p >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <%= locals.agent.state || "" %>, <%= locals.agent.stateCode || "" %> <%= locals.agent.zipcode || "" %> 
+                </p>
                 <p><span>Phone number:</span>
                   <%= locals.agent.phone || "N/A" %>
                 </p>
@@ -43,8 +47,9 @@
                   <a href="#"><i class="fa fa-globe"></i></a>
                 </p>
                 <div class="b-ton-group">
-                  <a href="#" class="btn b-ton left">
-                    <i class="fa fa-map-marker-alt"></i> Get Direction</a>
+                 <a href="#" id="getDirection" class="btn b-ton left">
+                      <i class="fa fa-map-marker"></i> Get Directions</a>
+                   
                   <!-- <a href="#" class="btn b-ton right">
                     <i class="fa fa-download"></i> Download contact</a> -->
                 </div>
@@ -168,6 +173,17 @@
     crossorigin="anonymous"></script> -->
           <script type="text/javascript" src="/javascripts/claim-profile.js"></script>
           <script src="/js/main.js"></script>
+          <script type="text/javascript">
+            var address =  "<%= locals.agent.address1 %>";
+            address = address.split(' ').join("+");
+            var stat = "<%= locals.agent.state %>";
+            var stateCode = "<%= locals.agent.stateCode %>";
+            var zipcode = "<%= locals.agent.zipcode %>";
+            var url = "https://www.google.com/maps/place/"+address+",+"+stat+",+"+stateCode+"+"+zipcode
+            document.getElementById("getDirection").addEventListener("click",function(){
+             window.open(url)
+           })
+            </script>
   </body>
 
 </html>
