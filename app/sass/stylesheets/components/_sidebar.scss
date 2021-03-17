@@ -1,7 +1,11 @@
 .sidebar {
+  @include respond(small-laptop) {
+    display: none;
+  }
   &_top {
     padding: 20px 40px;
     text-align: center;
+    overflow: hidden;
     &-avatar-div {
       margin: 50px auto 20px;
       border-radius: 50%;
