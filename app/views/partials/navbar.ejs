@@ -1,4 +1,41 @@
 <div class="navbar">
+  <div class="navbar_mobile">
+    <h2><a href="/"><img src="/assets/files/sharpLogo.png" alt="Enrolled Agent Logo"></a></h2>
+    <div id="menu-btn">
+
+      <em></em>
+      <em></em>
+      <em></em>
+    </div>
+    
+  </div>
+  <div id="navbar_mobile_ul">
+    <ul>
+      <li class="myNav-flex-item mr-50"><a href="/dashboard">My Listing</a></li>
+      <li class="myNav-flex-item mr-50">
+        <a href="#" onclick="showSubs(this)">Ask an EA<span class="indicator"><i class="fa fa-angle-right show"></i> <i class="fa fa-angle-down"></i></span></a>
+        <ul class="dropdown my-dropdown" style="right: auto; display: none;">
+          <li>
+            <a class="dropdown-link" href="/dashboard/answer-questions">Answer Tax Questions</a>
+          </li>
+          <li><a class="dropdown-link" href="/dashboard/my-answers">My Answers</a></li>
+        </ul>
+      </li>
+     <li class="myNav-flex-item">
+        <a href="#" onclick="showSubs(this)">Articles<span class="indicator"><i class="fa fa-angle-right show"></i> <i class="fa fa-angle-down"></i></span></a>
+        <ul class="dropdown my-dropdown" style="right: 0px; display: none;">
+          <li>
+            <a class="dropdown-link" href="/dashboard/create-article">New Article</a>
+          </li>
+          <li>
+           <a class="dropdown-link" href="/dashboard/my-articles">My Articles</a>
+          </li>
+        </ul>
+      </li>
+      <li class="myNav-flex-item mr-50"><a href="/dashboard/messages">My Messages</a></li>
+      <li class="myNav-flex-item mr-50"><a href="/dashboard/account-settings">Account Details</a></li>
+    </ul>
+  </div>
   <div class="navbar_div1">
     <a href="/find-agent" class="navbar_div1-links">Find an Enrolled Agent</a>
     <a href="/new-question" class="navbar_div1-links">Ask an EA</a>
@@ -21,3 +58,52 @@
     /> -->
   </div>
 </div>
+<script>
+  var show = false;
+  var menu_btn = document.getElementById("menu-btn");
+  function toggleMenu() {
+     var navbar_mobile_ul = document.getElementById("navbar_mobile_ul")
+    if (!show) {
+
+      navbar_mobile_ul.setAttribute("class","show")
+      show=true
+      // Set Menu State
+    } else {
+      navbar_mobile_ul.removeAttribute("class","show")
+      show=false
+    }
+
+  }
+  menu_btn.addEventListener("click",toggleMenu)
+  
+  function showSubs(e){
+    var el = e.nextSibling,i=1;
+    while (el) {
+      if(i==2) break;
+      el = el.nextSibling;
+      i++;
+    }
+
+    var fa_right = e.children[0].children[0]
+    var fa_down = e.children[0].children[1];
+
+    if(el.style.display == "block"){
+
+      fa_right.setAttribute("class","fa fa-angle-right show")
+      fa_down.removeAttribute("class","show")
+      return el.style.display="none"
+    }
+
+    //Hide other sub menus
+    var allDropdowns = document.querySelectorAll('.my-dropdown');
+    
+    for (var j=0; j < allDropdowns.length; j++) {
+      allDropdowns[j].style.display = 'none';
+    }
+
+    //Sets active element to its normal state
+    fa_down.setAttribute("class","fa fa-angle-down show")
+    fa_right.removeAttribute("class","show")
+    return el.style.display="block"
+  }
+</script>
