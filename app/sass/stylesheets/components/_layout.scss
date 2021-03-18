@@ -16,6 +16,7 @@
   width: 80vw;
   @include respond(small-laptop) {
     width: 100vw;
+    margin-top: 10%;
   }
   // min-height: calc(100vh - 61px);
   height: 100%!important;
@@ -41,14 +42,23 @@
   @include respond(small-laptop) {
     width: 100vw;
     .navbar_mobile{
-      display: block;
+      display: flex;
+      width: 100%;
       justify-content: space-between;
+      div{
+        float: right;
+        display: flex;
+        flex-direction: column;
+        cursor:pointer;
+        margin: 10px 0;
+      }
       em {
         width: 20px;
         height: 3px;
         margin: 3.5px 20px 0;
         float: right;
         background: #777;
+      }
     }
     .navbar_div1, .navbar_div2{
       display: none;
