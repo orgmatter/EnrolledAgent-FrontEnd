@@ -43,11 +43,18 @@
       display: grid;
       grid-template-columns: 38.7% 59.7%;
       grid-column-gap: 1.6%;
+      @include respond(small-laptop) {
+        display: flex !important;
+        flex-direction: column;
+      }
       &-div {
         background-color: #fff;
         box-shadow: 0px 0px 10px #00000029;
         border-radius: 5px;
         padding: 35px 0 70px 37px;
+        @include respond(small-laptop) {
+          margin-bottom: 3rem;
+        }
         &-name {
           color: #000;
           font-size: 32px;
