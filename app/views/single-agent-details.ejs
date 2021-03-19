@@ -49,13 +49,8 @@
               <div class="personal-card cards text-center">
                 <h3><span>Personal</span> Info</h3>
                 <p><span>Address:</span></p>
-                <p>
-                  <%= locals.agent.address1 || "N/A" %>
-                </p>
-                <p >
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <%= locals.agent.city || "" %>, <%= locals.agent.stateCode || "" %> <%= locals.agent.zipcode || "" %> 
-                </p>
+                <p><%= locals.agent.address1 || "N/A" %></p>
+                <p><%= locals.agent.city || "" %>, <%= locals.agent.stateCode || "" %> <%= locals.agent.zipcode || "" %></p>
                 <p><span>Phone number:</span>
                   <%= locals.agent.phone || "N/A" %>
                 </p>
