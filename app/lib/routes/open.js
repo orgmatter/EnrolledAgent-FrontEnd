@@ -208,10 +208,10 @@ router
     //  Log.info(req.locals);
     res.render('city', { locals: req.locals });
   })
-  .get('/offshore-team', (req, res) => {
-    res.render('offshoreTeam', { locals: req.locals });
-    PageAnalyticsService.inc('/agents/:state/:city');
-  })
+  // .get('/offshore-team', (req, res) => {
+  //   res.render('offshoreTeam', { locals: req.locals });
+  //   PageAnalyticsService.inc('/agents/:state/:city');
+  // })
   .get(
     '/resource',
     CityController.get,
