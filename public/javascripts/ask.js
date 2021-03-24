@@ -43,3 +43,11 @@ const handleSubmit = (e) => {
             });
 };
 askForm.addEventListener("submit", handleSubmit);
+
+//
+var x = document.getElementsByClassName("category_grid-side-recent-div-truncate");
+var i;
+for (i = 0; i < x.length; i++) {
+  x[i].innerHTML = x[i].innerText.substring(0,100) + '...';
+}
+
