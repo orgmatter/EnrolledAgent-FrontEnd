@@ -255,7 +255,7 @@ class AgentController extends BaseController {
       user: req.user.id
     })
 
-    super.handleResult({ data: { message: 'Your request has been submitted, you will be  contacted appropriately' } }, res, next)
+    super.handleResult({ data: { message: 'Your request has been submitted, you will be  contacted shortly' } }, res, next)
 
     new MailService().sendMail(
       {
@@ -286,7 +286,7 @@ class AgentController extends BaseController {
         { path: "reviewCount", select: ["rating"] },
         { path: "owner", select: ["_id", "firstName"] },
       ])
-      .lean()
+      // .lean()
       .exec()
     else next()
     if (!agent) {
