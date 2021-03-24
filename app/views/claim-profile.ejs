@@ -32,9 +32,7 @@
                 <p><span>Address:</span>
                   <%= locals.agent.address1 || "N/A" %>
                 </p>
-                <p >
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <%= locals.agent.state || "" %>, <%= locals.agent.stateCode || "" %> <%= locals.agent.zipcode || "" %> 
+                <p ><%= locals.agent.state || "" %>, <%= locals.agent.stateCode || "" %> <%= locals.agent.zipcode || "" %> 
                 </p>
                 <p><span>Phone number:</span>
                   <%= locals.agent.phone || "N/A" %>

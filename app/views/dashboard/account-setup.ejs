@@ -10,7 +10,7 @@
     locals.agentProfile && locals.agentProfile.state || "N/A" %> /> <meta
     name="agentAddress" content=<%= locals.agentProfile &&
     locals.agentProfile.address1|| "N/A" %> />
-    <title>Document</title>
+    <title>Account Setup</title>
     <link
       href="/assets/files/favicon.webp"
       rel="shortcut icon"
@@ -38,6 +38,7 @@
       <%-include("../partials/navbar.ejs")%>
       <div class="mainsection">
         <div class="asetup">
+          <% if (locals.agentProfile == null) {%>
           <section class="asetup-head">
             <div class="asetup-head__title">My Account</div>
             <div class="asetup-head__details">Update your account details</div>
@@ -151,7 +152,8 @@
               </div>
             </form>
           </section>
-
+          <%}%> 
+          
           <% if (locals.agentProfile !== null) {%>
           <section class="asetup-form">
             <form id="update-agent-form">

@@ -59,7 +59,7 @@ const handlePartnerSubmit = (e) => {
 
   axios({
     method: "POST",
-    url: `/partner`,
+    url: `/api/partner`,
     credentials: 'same-origin', // <-- includes cookies in the request
         headers: {
           "CSRF-Token":  getCookie('XSRF-TOKEN'), 
