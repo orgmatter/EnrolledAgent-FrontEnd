@@ -75,7 +75,7 @@ class ContactController {
           reciever: email,
           subject: subject,
           locals: { message: `
-          <p>Thank you for contacting, Enrolledagent.com</p>
+          <p>Thank you for contacting, EnrolledAgent.com</p>
           <p>We have received your message, it will be attended to appropriately</p>`},
         },
         (res) => {
@@ -128,7 +128,7 @@ class ContactController {
           reciever: process.env.DEFAULT_EMAIL_SENDER,
           subject: 'Parter Request',
           locals: { message: `
-          <p>A user has indicated interest in becoming a partner with Enrolledagent.com, below is a summary.</p><br>
+          <p>A user has indicated interest in becoming a partner with EnrolledAgent.com, below is a summary.</p><br>
           <p>Name: ${name}</p>
           <p>Email: ${email}</p>
           <p>Phone: ${phone}</p>
@@ -148,7 +148,7 @@ class ContactController {
           reciever: email,
           subject: "EnrolledAgent",
           locals: { message: `
-          <p>Thank you for your interest in becoming a partner with Enrolledagent.com</p>
+          <p>Thank you for your interest in becoming a partner with EnrolledAgent.com</p>
           <p>We will get in touch with you as soon as possible</p>`},
         },
         (res) => {

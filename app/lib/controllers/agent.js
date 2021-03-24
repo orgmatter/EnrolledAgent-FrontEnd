@@ -312,7 +312,7 @@ class AgentController extends BaseController {
         { path: "reviewCount", select: ["rating"] },
         { path: "owner", select: ["_id", "firstName"] },
       ])
-      .lean()
+      // .lean()
       .exec();
     req.locals.agentProfile = agent;
     next();

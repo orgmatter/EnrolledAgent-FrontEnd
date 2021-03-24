@@ -5,7 +5,7 @@
     <meta charset="UTF-8"><meta name="google" content="notranslate">
   <meta http-equiv="Content-Language" content="en">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Dashboard</title>
     <link
       href="/assets/files/favicon.webp"
       rel="shortcut icon"
@@ -56,29 +56,37 @@
               </p>
             </div>
             <div class="dashboard-grid-div2">
-              <p class="dashboard-grid-div2-head">
-                Claim Your Listing!
-              </p>
-              <p class="dashboard-grid-div2-desc"> Excited about advertising your practice as a 
-                licensed Tax Expert for free? <br />Show your practice before thousands of potential 
-                clients by claiming your listing.  <br />Attract customers seeking your services in 
-                their area.
-              </p>
-              <form class="dashboard-grid-div2-form" id="listing-form">
-                <div class="dashboard-grid-div2-form-div1">
-                  <div class="dashboard-grid-div2-form-div1-select">
-                    <select id="select">
-                      <option id="zip" value="zip" selected>Zip Code</option>
-                      <option id="state" value="state">State</option>
-                    </select>
-                  </div>
-                  <input type="text" id="zipInput" placeholder="Enter your zip code*" required />
-                </div>
-                <div class="dashboard-grid-div2-form-div2">
-                  <input type="text" id="name" placeholder="Enter last name*" required />
-                </div>
-                <input class="dashboard-grid-div2-form-btn" type="submit" value="Claim My Profile" id="submit-btn" />
-              </form>
+              <% if(locals.agentProfile && locals.agentProfile.isClaimed) { %>
+                <p class="dashboard-grid-div2-desc"> 
+
+                </p>
+                <%}%> 
+                <%if(!locals.agentProfile || !locals.agentProfile.isClaimed) { %> 
+                  <p class="dashboard-grid-div2-head">
+                    Claim Your Listing! 
+                    
+                  </p>
+                  <p class="dashboard-grid-div2-desc"> Excited about advertising your practice as a 
+                    licensed Tax Expert for free? <br />Show your practice before thousands of potential 
+                    clients by claiming your listing.  <br />Attract customers seeking your services in 
+                    their area.
+                  </p>
+                  <form class="dashboard-grid-div2-form" id="listing-form">
+                    <div class="dashboard-grid-div2-form-div1">
+                      <div class="dashboard-grid-div2-form-div1-select">
+                        <select id="select">
+                          <option id="zip" value="zip" selected>Zip Code</option>
+                          <option id="state" value="state">State</option>
+                        </select>
+                      </div>
+                      <input type="text" id="zipInput" placeholder="Enter your zip code*" required />
+                    </div>
+                    <div class="dashboard-grid-div2-form-div2">
+                      <input type="text" id="name" placeholder="Enter last name*" required />
+                    </div>
+                    <input class="dashboard-grid-div2-form-btn" type="submit" value="Claim My Profile" id="submit-btn" />
+                  </form>
+                <%}%> 
             </div>
           </div>
           <% if(locals.agentProfile && (locals.agentProfile.premium === false)) { %>
