@@ -1,6 +1,21 @@
 const updateForm = document.getElementById("update-profile-form"),
     firstName = document.getElementById("first-name"),
     lastName = document.getElementById("last-name"),
+    website = document.getElementById("website"),
+    address = document.getElementById("address"),
+    city = document.getElementById("city"),
+    state = document.getElementById("state"),
+    phoneNumber = document.getElementById("phone-number"),
+    fax = document.getElementById("fax"),
+    serviceOffered = document.getElementById("service-offered"),
+    bio = document.getElementById("bio"),
+    taxServices = document.getElementById("tax-services"),
+    industrySpecialities = document.getElementById("industry-specialities"),
+    professionalMemberships = document.getElementById("professional-memberships"),
+    instagram = document.getElementById("instagram"),
+    facebook = document.getElementById("facebook"),
+    twitter = document.getElementById("twitter"),
+    zipCode = document.getElementById("zip-code"),
     editBtn = document.getElementById("edit-btn"),
     imageInput = document.getElementById("image"),
     imageLabel = document.getElementById("image-label"),
@@ -63,8 +78,6 @@ const handleSubmit = (e) => {
         t.set("firstName", e.firstName),
             t.set("lastName", e.lastName),
             t.append("avatar", e.avatar),
-            console.log(e),
-            console.log("here"),
             btn.setAttribute("disabled", "true"),
             (btn.innerHTML = spinner()),
             axios({ method: "PUT", url: `/api/update-profile`, credentials: "same-origin", headers: { "CSRF-Token": getCookie("XSRF-TOKEN"), "Content-Type": "application/json", Accept: "application/json" }, data: t })
@@ -79,7 +92,7 @@ const handleSubmit = (e) => {
                         }, 2e3);
                 })
                 .catch((e) => {
-                    console.log(e.response), (btn.innerHTML = btnContent), btn.removeAttribute("disabled"), notyf.error(e.response.data.error.message || "Something went wrong");
+                    (btn.innerHTML = btnContent), btn.removeAttribute("disabled"), notyf.error(e.response.data.error.message || "Something went wrong");
                 });
     };
 updateForm.addEventListener("submit", handleSubmit);
