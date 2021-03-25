@@ -120,7 +120,6 @@
     <script>
             function search() {
               const input = document.getElementById("search").value;
-               console.log(input)
               window.location = `/search-results?search=${input}`;
               input = "";
             }
@@ -144,7 +143,7 @@
             clientStars.forEach((clientStar) => {
               const val = clientStar.getAttribute("value");
               const starTotal = 5;
-              console.log("value is", val);
+             
               const starPercentage = (val / starTotal) * 100;
               const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
               clientStar.querySelector(".stars-inner").style.width = starPercentageRounded;
