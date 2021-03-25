@@ -167,6 +167,7 @@ router
     }
   )
   .get('/new-question', ArticleController.latest, (req, res) => {
+    if (!(req.isAuthenticated() && req.user)) return res.redirect('/login');
     res.render('newQuestions', { locals: req.locals });
     PageAnalyticsService.inc('/new-question');
     Log.info('cate', req.locals);
