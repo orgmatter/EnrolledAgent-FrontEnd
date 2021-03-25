@@ -56,9 +56,9 @@
                 </p>
                 <p>
                   <span>Social:</span>
-                  <a href=<%= locals.agent.instagram || "#" %>><i class="fa fa-instagram"></i></a>
-                  <a href=<%= locals.agent.twitter || "#" %>><i class="fa fa-twitter"></i></a>
-                  <a href=<%= locals.agent.facebook || "#" %>><i class="fa fa-facebook-f"></i></a>
+                  <a href=<%= locals.agent.instagram && `instagram.com/${locals.agent.instagram}` %>><i class="fa fa-instagram"></i></a>
+                  <a href=<%= locals.agent.twitter && `instagram.com/${locals.agent.twitter}` %>><i class="fa fa-twitter"></i></a>
+                  <a href=<%= locals.agent.facebook && `instagram.com/${locals.agent.facebook}` %>><i class="fa fa-facebook-f"></i></a>
                   <a href=<%= locals.agent.website || "#" %>><i class="fa fa-globe"></i></a>
                 </p>
                 <div class="b-ton-group">
