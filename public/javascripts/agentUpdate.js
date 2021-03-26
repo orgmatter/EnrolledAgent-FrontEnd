@@ -66,10 +66,10 @@ const handleAgentSubmit = (e) => {
             console.log("here"),
             agentBtn.setAttribute("disabled", "true"),
             (agentBtn.innerHTML = agentSpinner()),
-            axios({ method: "PUT", url: `${base_URL}/api/update-agent`, credentials: "same-origin", headers: { "CSRF-Token": getCookie("XSRF-TOKEN"), "Content-Type": "application/json", Accept: "application/json" }, data: t })
+            axios({ method: "PUT", url: `/api/update-agent`, credentials: "same-origin", headers: { "CSRF-Token": getCookie("XSRF-TOKEN"), "Content-Type": "application/json", Accept: "application/json" }, data: t })
                 .then((e) => {
                     console.log(e),
-                        (agentBtn.innerHTML = btnContent),
+                        // (agentBtn.innerHTML = btnContent),
                         clearAgentFormData(),
                         agentBtn.removeAttribute("disabled"),
                         toast.success(e.data.data.message || "Agent Account Updated!"),
@@ -78,7 +78,7 @@ const handleAgentSubmit = (e) => {
                         }, 2e3);
                 })
                 .catch((e) => {
-                    console.log(e.response), (agentBtn.innerHTML = btnContent), agentBtn.removeAttribute("disabled"), toast.error(e.response.data.error.message || "Something went wrong");
+                    console.log(e.response), /*(agentBtn.innerHTML = btnContent),*/ agentBtn.removeAttribute("disabled"), toast.error(e.response.data.error.message || "Something went wrong");
                 });
     };
     agentForm && agentForm.addEventListener("submit", handleAgentSubmit);

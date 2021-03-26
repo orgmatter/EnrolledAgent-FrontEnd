@@ -1,12 +1,12 @@
-const updateForm = document.getElementById("update-profile-form"),
+const updateForm = document.getElementById("update-profile-form") || null,
     firstName = document.getElementById("first-name"),
     lastName = document.getElementById("last-name"),
-    editBtn = document.getElementById("edit-btn"),
+    editBtn = document.getElementById("edit-btn") || null,
     imageInput = document.getElementById("image"),
-    imageLabel = document.getElementById("image-label"),
+    imageLabel = document.getElementById("image-label") || null ,
     image = document.getElementById("avatar-preview"),
-    btn = document.getElementById("submit-btn"),
-    btnContent = btn.innerHTML,
+    btn = document.getElementById("submit-btn") || null,
+    btnContent = btn && btn.innerHTML,
     notyf = new Notyf({
         dismissible: !0,
         ripple: !0,
@@ -19,7 +19,7 @@ const updateForm = document.getElementById("update-profile-form"),
     });
 
 //
-imageLabel.addEventListener("click", function(){
+imageLabel && imageLabel.addEventListener("click", function(){
     if(imageInput.disabled){
         notyf.error("Click on the Edit Profile button to enable editing of your profile");
     }
@@ -42,7 +42,7 @@ const handleEdit = (e) => {
         }),
         notyf.success("You can edit your profile now");
 };
-editBtn.addEventListener("click", handleEdit),
+editBtn && editBtn.addEventListener("click", handleEdit),
     imageInput &&
         imageInput.addEventListener("change", (e) => {
             e.preventDefault();
@@ -82,4 +82,4 @@ const handleSubmit = (e) => {
                     console.log(e.response), (btn.innerHTML = btnContent), btn.removeAttribute("disabled"), notyf.error(e.response.data.error.message || "Something went wrong");
                 });
     };
-updateForm.addEventListener("submit", handleSubmit);
+updateForm && updateForm.addEventListener("submit", handleSubmit);
