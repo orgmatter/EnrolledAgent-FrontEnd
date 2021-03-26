@@ -76,6 +76,7 @@ const handleAgentSubmit = (e) => {
             avatar: agentImageInput.files[0] || null, 
             zipcode: zipCode.value, 
             phone: phone.value, 
+            bio: bio.value,
             allowContactMessage: contactMessage.value, 
             city: city.value,
             state: state.value,
@@ -103,6 +104,7 @@ const handleAgentSubmit = (e) => {
             t.set("allowContactMessage", e.allowContactMessage),
             t.set("city", e.city),
             t.set("state", e.state),
+            t.set("bio",e.bio),
             t.set("fax", e.fax),
             t.set("industry", e.industry),
             t.set("instagram", e.instagram),
@@ -115,15 +117,14 @@ const handleAgentSubmit = (e) => {
             t.set("taxServices", e.taxServices),
             t.set("membership", e.membership),
             t.append("avatar", e.avatar),
-            console.log(e),
-            console.log("here"),
+            console.log(e);
             agentBtn.setAttribute("disabled", "true"),
             (agentBtn.innerHTML = agentSpinner()),
             axios({ method: "PUT", url: `/api/update-agent`, credentials: "same-origin", headers: { "CSRF-Token": getCookie("XSRF-TOKEN"), "Content-Type": "application/json", Accept: "application/json" }, data: t })
                 .then((e) => {
                     console.log(e),
                         // (agentBtn.innerHTML = btnContent),
-                        clearAgentFormData(),
+                        // clearAgentFormData(),
                         agentBtn.removeAttribute("disabled"),
                         toast.success(e.data.data.message || "Agent Account Updated!"),
                         setTimeout(() => {
