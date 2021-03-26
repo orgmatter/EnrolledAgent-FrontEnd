@@ -21,6 +21,7 @@ const agentForm = document.getElementById("update-agent-form"),
     contactMessage = document.getElementById("contactMessage"),
     agentEditBtn = document.getElementById("agent-edit-btn"),
     agentImageInput = document.getElementById("agent-image"),
+    agentImageLabel = document.getElementById("agent-image-label") || null ,
     agentImage = document.getElementById("agent-avatar-preview"),
     agentBtn = document.getElementById("agent-submit-btn") ,
     agentBtnContent = agentBtn && agentBtn.innerHTML,
@@ -44,6 +45,12 @@ function agentSpinner() {
 function clearAgentFormData() {
     agentForm.reset();
 }
+
+agentImageLabel && agentImageLabel.addEventListener("click", function(){
+    if(agentImageInput.disabled){
+        notyf.error("Click on the Edit Profile button to enable editing of your profile");
+    }
+})
 const handleAgentEdit = (e) => {
     e.preventDefault(),
         document.querySelectorAll(".agentDisabled").forEach((e) => {
