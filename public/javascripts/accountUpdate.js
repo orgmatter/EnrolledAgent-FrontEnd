@@ -63,8 +63,6 @@ const handleSubmit = (e) => {
         t.set("firstName", e.firstName),
             t.set("lastName", e.lastName),
             t.append("avatar", e.avatar),
-            console.log(e),
-            console.log("here"),
             btn.setAttribute("disabled", "true"),
             (btn.innerHTML = spinner()),
             axios({ method: "PUT", url: `/api/update-profile`, credentials: "same-origin", headers: { "CSRF-Token": getCookie("XSRF-TOKEN"), "Content-Type": "application/json", Accept: "application/json" }, data: t })
@@ -79,7 +77,7 @@ const handleSubmit = (e) => {
                         }, 2e3);
                 })
                 .catch((e) => {
-                    console.log(e.response), (btn.innerHTML = btnContent), btn.removeAttribute("disabled"), notyf.error(e.response.data.error.message || "Something went wrong");
+                    (btn.innerHTML = btnContent), btn.removeAttribute("disabled"), notyf.error(e.response.data.error.message || "Something went wrong");
                 });
     };
 updateForm && updateForm.addEventListener("submit", handleSubmit);
