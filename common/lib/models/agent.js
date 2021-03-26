@@ -56,6 +56,18 @@ const AgentSchema = new Schema({
   twitter: String,
   instagram: String,
   googleBusiness: String,
+  serviceOffered: {
+    type: String,
+    default: ""
+  },
+  taxServices: {
+    type: String,
+    default: ""
+  },
+  membership: {
+    type: String,
+    default: ""
+  },
   ptin: String,
   showAddress: {
     type: Boolean,

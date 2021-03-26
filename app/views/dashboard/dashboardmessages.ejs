@@ -43,7 +43,7 @@
                 <div class="date"><%- locals.dayjs(el.createdAt).format("DD <br /> MMM") %></div>
                 <div class="title">
                   <h4><%= el.subject || "" %> </h4>
-                  <small>by <%= el.name || "" %> </small>
+                  <small>by <%= el.name || "" %> | <%= el.email || "" %> | <%= el.phone || "" %></small>
                 </div>
               </div>
 
