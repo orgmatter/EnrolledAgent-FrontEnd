@@ -273,11 +273,6 @@ router
     res.render('need-accountant', { locals: req.locals });
     PageAnalyticsService.inc('/need-accountant');
   })
-  .get('/verification-service', (req, res) => {
-    res.render('verification-service', { locals: req.locals });
-    PageAnalyticsService.inc('/verification-service');
-  })
-
   .get('/license-verification', (req, res) => {
     res.render('license-verification', { locals: req.locals });
     PageAnalyticsService.inc('/license-verification');
