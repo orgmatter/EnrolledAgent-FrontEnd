@@ -26,7 +26,10 @@ class CacheJob extends BaseCron {
         const count = await Agent.estimatedDocumentCount().exec();
         const random = Math.floor(Math.random() * count);
 
-        const data = await Agent.find({})
+        const data = await Agent.find({ $or: [
+            { isActive: { $exists: false }},
+            { isActive: true }
+          ]})
             .skip(random)
             .limit(4)
             .populate([

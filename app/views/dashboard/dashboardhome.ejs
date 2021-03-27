@@ -89,7 +89,7 @@
                 <%}%> 
             </div>
           </div>
-          <% if(locals.agentProfile && (locals.agentProfile.premium === false)) { %>
+          <% if(locals.agentProfile && (locals.agentProfile.premium === false) && locals.agentProfile.isActive != false) { %>
           <section class="dashboard-grid-div upgrade">
             <h4>Upgrade Your Account</h4>
             <div>

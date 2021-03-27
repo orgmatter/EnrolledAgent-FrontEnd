@@ -149,7 +149,7 @@
           </section>
           <%}%> 
           
-          <% if (locals.agentProfile !== null) {%>
+          <% if (locals.agentProfile !== null && locals.agentProfile.isActive != false ) {%>
           <section class="asetup-form">
             <form id="update-agent-form">
               <div class="form__row">
@@ -311,13 +311,13 @@
                 </div>
                 <div class="form__group">
                   <label for="bio" class="form__label">Bio</label>
-                  <input
-                    type="text"
+                  <textarea
                     id="bio"
                     class="form__input agentDisabled"
                     disabled
-                    value="<%= locals.agentProfile.bio || "" %>"
-                  />
+                    rows="8"
+                    cols="40"
+                   ><%= locals.agentProfile.bio || "" %></textarea>
                   
                 </div>
               </div>
@@ -341,6 +341,19 @@
                     class="form__input agentDisabled"
                     disabled
                     value="<%= locals.agentProfile.industry || "" %>"
+                  />
+                  
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__group">
+                  <label for="skills" class="form__label">Specialties and Skills</label>
+                  <input
+                    type="text"
+                    id="skills"
+                    class="form__input agentDisabled"
+                    disabled
+                    value="<%= locals.agentProfile.skills || "" %>"
                   />
                   
                 </div>
@@ -480,7 +493,7 @@
               </form>
           </section>
 
-          <% if(locals.agentProfile && locals.agentProfile.preference){ %> 
+          <% if(locals.agentProfile && locals.agentProfile.preference && locals.agentProfile.isActive != false){ %> 
 
           <section class="asetup-form asetup-form-contact">
             <div class="contact-preferences">

@@ -45,7 +45,8 @@ module.exports = {
   AGENT_UPDATED: 'agent.updated',
   AGENT_DELETED: 'agent.deleted',
   AGENT_DELETED: 'agent.listing.approve',
-  AGENT_DELETED: 'agent.liosting.decline',
+  AGENT_DELETED: 'agent.listing.decline',
+  AGENT_STATUS_CHANGED: 'agent.status',
 
 
   CONFIG_UPDATED: 'config.updated',
