@@ -292,6 +292,10 @@ class AgentController extends BaseController {
     if (!agent) {
       req.session.error = 'Agent not found'
       return res.redirect('/ea-listings')
+    } 
+    if (agent.isActive == false) {
+      req.session.error = 'Agent not found'
+      return res.redirect('/ea-listings')
     } req.locals.agent = agent;
     // log.info(agent)
     next();
@@ -327,7 +331,7 @@ class AgentController extends BaseController {
     // log.info(req.url)
     if (query.state)
       query.state = new RegExp(["^", query.state, "$"].join(""), "i");
-    // log.info(query)
+    log.info(query)
 
     DB.Paginate(
       res,
@@ -335,7 +339,12 @@ class AgentController extends BaseController {
       Agent,
       {
         perPage: perpage,
-        query,
+        query:{...query, 
+          $or: [
+            { isActive: { $exists: false }},
+            { isActive: true }
+          ],
+},
         page,
         // sort: { viewCount: -1 },
         sort: SORT,
@@ -424,7 +433,11 @@ class AgentController extends BaseController {
       Agent,
       {
         perPage: perpage,
-        query,
+        query: {...query , 
+          $or: [
+            { isActive: { $exists: false }},
+            { isActive: true }
+          ]},
         page,
         sort: SORT,
         populate: [
@@ -457,7 +470,10 @@ class AgentController extends BaseController {
     const count = await Agent.estimatedDocumentCount().exec();
     const random = Math.floor(Math.random() * count);
 
-    const data = await Agent.find({})
+    const data = await Agent.find({  $or: [
+      { isActive: { $exists: false }},
+      { isActive: true }
+    ] })
       .skip(random)
       .limit(10)
       .populate([
@@ -481,11 +497,14 @@ class AgentController extends BaseController {
     const {
       params: { state },
     } = req;
-    const query = {} || { stateSlug: state }; // TODO: ADD CORRECT QUERY WHEN DATABASE IS SEEDED CORRECTLY
+    const query = { } || { stateSlug: state }; // TODO: ADD CORRECT QUERY WHEN DATABASE IS SEEDED CORRECTLY
     const count = await Agent.estimatedDocumentCount(query).exec();
     const random = Math.floor(Math.random() * count);
 
-    const data = await Agent.find(query)
+    const data = await Agent.find({...query, $or: [
+      { isActive: { $exists: false }},
+      { isActive: true }
+    ]})
       .skip(random)
       .limit(6)
       .populate([
@@ -514,7 +533,10 @@ class AgentController extends BaseController {
     const count = await Agent.estimatedDocumentCount().exec();
     const random = Math.floor(Math.random() * count);
 
-     data = await Agent.find({})
+     data = await Agent.find({$or: [
+      { isActive: { $exists: false }},
+      { isActive: true }
+    ]})
       .skip(random)
       .limit(4)
       .populate([
