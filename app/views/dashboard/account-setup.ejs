@@ -149,7 +149,7 @@
           </section>
           <%}%> 
           
-          <% if (locals.agentProfile !== null) {%>
+          <% if (locals.agentProfile !== null && locals.agentProfile.isActive != false ) {%>
           <section class="asetup-form">
             <form id="update-agent-form">
               <div class="form__row">
@@ -480,7 +480,7 @@
               </form>
           </section>
 
-          <% if(locals.agentProfile && locals.agentProfile.preference){ %> 
+          <% if(locals.agentProfile && locals.agentProfile.preference && locals.agentProfile.isActive != false){ %> 
 
           <section class="asetup-form asetup-form-contact">
             <div class="contact-preferences">
