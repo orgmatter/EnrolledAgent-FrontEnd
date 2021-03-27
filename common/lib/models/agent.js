@@ -64,6 +64,10 @@ const AgentSchema = new Schema({
     type: String,
     default: ""
   },
+  skills: {
+    type: String,
+    default: ""
+  },
   membership: {
     type: String,
     default: ""

@@ -139,7 +139,7 @@
                 <% if(locals.agent && locals.agent.skills) {%>
                   <p><%= locals.agent && locals.agent.skills %> </p>
                   <% } %>
-                  <% if(!locals.agent || !locals.agent.bio) {%>
+                  <% if(!locals.agent || !locals.agent.skills) {%>
                     <p>
                       In order to find out more about Enrolled Agents and their skills, contact them directly 
                       as the skills are not listed on EnrolledAgent.com. <%= locals.agent.firstName || "" %>
@@ -159,10 +159,10 @@
                   </p>
                   <% } %>
                <p class="mt-3 profile-bold">Industry Specialties</p>
-               <% if(locals.agent && locals.agent.industry) {%>
+               <% if(locals.agent && locals.agent.industry  && locals.agent.industry[0]) {%>
                 <p><%= locals.agent && locals.agent.industry %> </p>
                 <% } %>
-                <% if(!locals.agent || !locals.agent.industry) {%>
+                <% if(!locals.agent || !locals.agent.industry || !locals.agent.industry[0]) {%>
                 <p>There are no details of Industry Specialties for <%= locals.agent.firstName || "" %>
                     <%= locals.agent.lastName || "" %>.
                 </p>
