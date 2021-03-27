@@ -86,6 +86,10 @@ const AgentSchema = new Schema({
   maxServicePrice: {
     type: Number,
   },
+  isActive: {
+    type: Boolean,
+    default: true
+},
   adminPremium: { // indicates that this account was set premium by admin
     type: Boolean,
     default: false

@@ -93,6 +93,25 @@ class AgentController extends BaseController {
         })
     }
 
+    async updateStatus(req,res,next) {
+        const { id } = req.params
+
+        if (!BaseController.checkId('Invalid agent id', req, res, next)) return
+        let agent = await Agent.findById(id).exec()
+
+        agent = await Agent.findByIdAndUpdate(id, {isActive: !agent.isActive}, { new: true }).exec()
+
+
+        super.handleResult(agent, res, next)
+        await Log.create({
+            user: req.user.id,
+            action: LogAction.AGENT_STATUS_CHANGED,
+            category: LogCategory.AGENT,
+            resource: agent._id,
+            ip: Helper.getIp(req),
+            message: 'Agent status changed'
+        })
+    }
 
     async get(req, res, next) {
         const { id } = req.params

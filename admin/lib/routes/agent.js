@@ -7,6 +7,7 @@ router
     .get('/', AgentController.getAll)
     .get('/:id', AgentController.get)
     .put('/:id', AwsService.image(Storages.AGENT_PROFILE).single('avatar'), AgentController.update)
+    .put('/status/:id', AgentController.updateStatus)
     .post('/',  AwsService.image(Storages.AGENT_PROFILE).single('avatar'), AgentController.create)
     .post('/upload', FileManager.csv, AgentController.upload)
     // .post('/', FileManager.csv, AgentController.create)
