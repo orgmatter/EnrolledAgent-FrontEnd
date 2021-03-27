@@ -213,6 +213,18 @@ router
   //   res.render('offshoreTeam', { locals: req.locals });
   //   PageAnalyticsService.inc('/agents/:state/:city');
   // })
+  // })
+  .get(
+    '/who-is-an-agent',
+    (req, res) => {
+      res.render('who-is-an-agent', {
+        name: 'Who is an Enrolled Agent',
+        description: 'Who is an Enrolled Agent, what do they do, how can they help you.',
+        locals: req.locals,
+      });
+      PageAnalyticsService.inc('/who-is-an-agent');
+    }
+  )
   .get(
     '/resource',
     CityController.get,

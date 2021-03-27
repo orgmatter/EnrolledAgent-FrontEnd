@@ -311,13 +311,13 @@
                 </div>
                 <div class="form__group">
                   <label for="bio" class="form__label">Bio</label>
-                  <input
-                    type="text"
+                  <textarea
                     id="bio"
-                    class="form__input agentDisabled"
+                    class="agentDisabled"
                     disabled
-                    value="<%= locals.agentProfile.bio || "" %>"
-                  />
+                    rows="4"
+                    cols="50"
+                   ><%= locals.agentProfile.bio || "" %></textarea>
                   
                 </div>
               </div>
