@@ -87,7 +87,7 @@
                     <%= locals.agent.lastName || "" %>
                 </h3>
                 <% if(locals.agent && locals.agent.bio) {%>
-                  <p><%= locals.agent && locals.agent.bio %> </p>
+                  <pre class="bg-white mt-10" style="white-space: pre-wrap;"><%= locals.agent && locals.agent.bio %> </pre>
                   <% } %>
                   <% if(!locals.agent || !locals.agent.bio) {%>
                     <p>
