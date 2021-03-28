@@ -76,7 +76,7 @@ const handleAgentSubmit = (e) => {
             lastName: agentLastName.value, 
             avatar: agentImageInput.files[0] || null, 
             zipcode: zipCode.value, 
-            address1: address.value,
+            address: address.value,
             phone: phone.value, 
             bio: bio.value,
             allowContactMessage: contactMessage.value, 
