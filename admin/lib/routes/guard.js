@@ -18,7 +18,7 @@ router
         req.isSuperAdmin = usr.isSuperAdmin === true
 
         if (usr && usr.role)
-            req.permissions = user.role.permissions
+            req.permissions = usr.role.permissions
         next()
     })
 

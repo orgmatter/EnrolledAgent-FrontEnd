@@ -1,7 +1,7 @@
 {
   "name": "payment_module",
   "version": "0.0.1",
-  "description": "The Payment module for Enrolled Agents App",
+  "description": "The Payment module for Enrolled Agent App",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
