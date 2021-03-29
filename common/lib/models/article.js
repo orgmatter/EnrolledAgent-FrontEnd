@@ -55,7 +55,7 @@ Article.set('toJSON', { virtuals: true })
 Article.virtual('author')
   .get(function () {
     if (this.agent && this.agent._id) return `${this.agent.firstName || ''} ${this.agent.lastName || ''}`
-    return this.articleAuthor || 'Enrolled Agents'
+    return this.articleAuthor || ''
   })
 
 Article.virtual('comment', {

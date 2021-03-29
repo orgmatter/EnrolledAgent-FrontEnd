@@ -32,7 +32,7 @@
                   <% if (locals.question.answer !== undefined) { %>
                     <h4>Answer</h4> 
                     <p>Answer body goes here</p>
-                    <p><span>Answer by:</span> Enrolled Agents</p>
+                    <p><span>Answer by:</span> Enrolled Agent</p>
                   <%} else { %>
                     <p>This question has not been answered. Are you an Enrolled Agent? 
                         <a <% if(locals.isAuthenticated) {%> href="/dashboard/submit-answer/<%= locals.question._id %> "
