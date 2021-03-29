@@ -310,13 +310,17 @@
                   />
                 </div>
                 <div class="form__group">
-                  <label for="bio" class="form__label">Bio</label>
+                  <label for="bio" class="form__label">Bio</label><br/>
                   <textarea
                     id="bio"
                     class="form__input agentDisabled"
                     disabled
                     rows="8"
                     cols="40"
+                    style="resize: auto;
+                    margin: 0px;
+                    width: 322px;
+                    height: 390px;"
                    ><%= locals.agentProfile.bio || "" %></textarea>
                   
                 </div>
