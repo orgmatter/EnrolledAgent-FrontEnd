@@ -70,7 +70,11 @@ class FaqController extends BaseController {
      getAll = async (req, res, next) =>{
         const { page, perpage, q, search } = req.query
         let query = Helper.extractQuery(req.query, ['title', 'message']) || {}
-        if (q) query = { $text: { $search: q } };
+        if (search) query = { $or: [
+            { title: { $regex: search, $options: 'i'} },
+            { message: { $regex: search, $options: 'i'} }
+          ] }
+        
 
         DB.Paginate(res, next, Faq, {
             perPage: perpage,

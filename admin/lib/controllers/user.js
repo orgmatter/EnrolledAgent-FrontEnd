@@ -321,7 +321,11 @@ class UserController extends BaseController {
   async getAll(req, res, next) {
     const { page, perpage, q, search } = req.query
     let query = Helper.parseQuery(q) || {}
-    if (search) query = { title: { $regex: search, $options: 'i' } }
+    if (search) query = { $or: [
+      { firstName: { $regex: search, $options: 'i'} },
+      { lastName: { $regex: search, $options: 'i'} },
+      { email: { $regex: search, $options: 'i'} }
+    ] }
 
     DB.Paginate(res, next, User, {
       perPage: perpage,

@@ -90,7 +90,7 @@ class CategoryController extends BaseController {
      getAll = async (req, res, next) =>{
         const { page, perpage, q, search } = req.query
         let query = Helper.parseQuery(q) || {}
-        if (search) query = { title: { $regex: search, $options: 'i' } }
+        if (search) query = { name: { $regex: search, $options: 'i' } }
 
         DB.Paginate(res, next, this.Model, {
             perPage: perpage,
