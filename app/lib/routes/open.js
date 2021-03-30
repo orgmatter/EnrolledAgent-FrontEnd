@@ -215,14 +215,14 @@ router
   // })
   // })
   .get(
-    '/who-is-an-agent',
+    '/what-is-an-agent',
     (req, res) => {
-      res.render('who-is-an-agent', {
-        name: 'Who is an Enrolled Agent',
-        description: 'Who is an Enrolled Agent, what do they do, how can they help you.',
+      res.render('what-is-an-agent', {
+        name: 'What is an Enrolled Agent',
+        description: 'What is an Enrolled Agent, what do they do, how can they help you.',
         locals: req.locals,
       });
-      PageAnalyticsService.inc('/who-is-an-agent');
+      PageAnalyticsService.inc('/what-is-an-agent');
     }
   )
   .get(
