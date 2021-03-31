@@ -32,7 +32,12 @@
           <% const  {actionText, actionLink, title, category, imageUrl, sponsor, body }  = data[i] %>
     <div class="cards col-md-6 ">
       <div class='card-image-div'>
+        <% if(imageUrl){ %>
        <img src="<%= imageUrl %>" alt="broken">
+       <% }%>
+       <% if(!imageUrl){ %>
+        <img src="/images/pattern1.png" alt="broken">
+        <% }%>
       </div>
     
       <h3><%= title %></h3>
@@ -45,7 +50,7 @@
           <% }%>
           <br>
      
-      <p><%- body || '' %></p>
+       <div class="resource-body"><%- body || '' %></div>
       <a href="<%= actionLink || '#' %>" target="_blank" class="btn btn-lg b-ton"><%= actionText || 'View Details' %> <span>></span></a>
     </div>
     <% }} %>
@@ -193,5 +198,13 @@
     <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
     <script src="/javascripts/pagination.js"></script>
      <script src="/js/main.js"></script>
+     <script>
+       var x = document.getElementsByClassName("resource-body");
+        var i;
+        for (i = 0; i < x.length; i++) {
+          x[i].innerHTML = x[i].innerText.substring(0,300) + '...';
+        }
+
+     </script>
     </body>
   </html>
