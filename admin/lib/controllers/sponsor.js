@@ -110,9 +110,9 @@ class SponsorController extends BaseController {
     }
 
     async getAll(req, res, next) {
-        const { page, perpage, q, search } = req.query
+        const { page, perpage, search } = req.query
         let query = Helper.extractQuery(req.query) || {}
-        if (q) query = { title: { $regex: q, $options: 'i' } }
+        if (search) query = { name: { $regex: search, $options: 'i' } }
 
         DB.Paginate(res, next, Sponsor, {
             perPage: perpage,
