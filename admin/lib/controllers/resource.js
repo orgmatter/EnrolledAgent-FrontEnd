@@ -170,7 +170,7 @@ class ResourceController extends BaseController {
     async getAll(req, res, next) {
         const { page, perpage, q, search } = req.query
         let query = Helper.extractQuery(req.query) || {}
-        if (q) query = { title: { $regex: q, $options: 'i' } }
+        if (search) query = { title: { $regex: search, $options: 'i' } }
 
         DB.Paginate(res, next, Resource, {
             perPage: perpage,
