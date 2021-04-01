@@ -9,7 +9,7 @@
               <% const  {actionText, actionLink, title, category, imageUrl, sponsor, body }  = resource[i] %>
         <div class="resources-grid-box">
           <% if(sponsor && sponsor.name){ %>
-            <p class="resources-grid-box-intro">Provided By:</p>
+            <p class="resources-grid-box-intro">Provided By: <%= sponsor.name %></p>
             <img class="resources-grid-box-image" src="<%= imageUrl %>" alt="broken-resource-image" />
           <% }%>
             <h3 class="resources-grid-box-topic"><%= title %></h3>

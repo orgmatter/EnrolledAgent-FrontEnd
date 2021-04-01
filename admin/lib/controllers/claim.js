@@ -4,16 +4,19 @@ const {
     FileManager,
     Storages,
     Validator,
+    EmailTemplates,
+    MailService,
     Constants,
     Helper,
+    Logger,
     DB,
-    Models: { Agent, ClaimListing },
+    Models: { Agent, ClaimListing, User },
 } = require("common")
 const {Types} = require("mongoose")
 
 const BaseController = require('../controllers/baseController');
 const STORAGE = process.env.STORAGE
-
+const log = new Logger("App:claim");
 
 class ClaimController extends BaseController {
 
@@ -80,6 +83,29 @@ class ClaimController extends BaseController {
         Agent.findByIdAndUpdate(claim.agent, { owner: claim.user }).exec()
 
         super.handleResult({ message: 'Listing request approved succesfully' }, res, next)
+
+        //Send user mail informing them of approval
+        let user = await User.findById(claim.user)
+        log.info(" sending mail");
+
+        new MailService().sendMail(
+            {
+              
+              template: EmailTemplates.INFO,
+              reciever: user.email || process.env.DEFAULT_EMAIL_SENDER,
+              subject: 'Account Approved',
+              locals: {
+                message: `
+              <p>Congratulations,  </p>
+              <p>Your account has been claimed successfully, you can now edit your profile.</p><br>
+              <p></p>
+              `},
+            },
+            (res) => {
+              if (res == null) return
+              log.error("Error sending mail", res)
+            }
+          )
     }
 
 
