@@ -125,7 +125,9 @@
                        provides professional services as an Enrolled Agent to clients in the following languages:
                 </p>
                 <ul class="profile-ul">
-                  <li>English</li>
+                  <% if(!locals.agent || !locals.agent.lang[0]) {%>
+                    <li>English</li>
+                  <%}%>
                   <% if(locals.agent && locals.agent.lang && locals.agent.lang[0]) {%>
                   <% for(i=0; i< locals.agent.lang[0].split(',').length; i++){%>
                   
