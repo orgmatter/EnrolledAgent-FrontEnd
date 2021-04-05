@@ -289,6 +289,42 @@ router
     }
   )
   .get(
+    '/resource/tax-and-business',
+    (req, res) => {
+      //  Log.info(req.locals.resource)
+      res.render('widget/tax-and-business', {
+        name: 'Tax and business',
+        description: 'Tax and business',
+        locals: req.locals,
+      });
+      PageAnalyticsService.inc('/resource/tax-and-business');
+    }
+  )
+  .get(
+    '/resource/tax-planning',
+    (req, res) => {
+      //  Log.info(req.locals.resource)
+      res.render('widget/tax-planning', {
+        name: 'Tax Planning',
+        description: 'Tax Planning',
+        locals: req.locals,
+      });
+      PageAnalyticsService.inc('/resource/tax-planning');
+    }
+  )
+  .get(
+    '/resource/taxvid-playlist',
+    (req, res) => {
+      //  Log.info(req.locals.resource)
+      res.render('widget/taxvid-playlist', {
+        name: 'Tax Video Playlist',
+        description: 'Tax Video Playlist',
+        locals: req.locals,
+      });
+      PageAnalyticsService.inc('/resource/taxvid-playlist');
+    }
+  )
+  .get(
     '/resource/:category',
     CityController.get,
     ResourceController.getAll,
