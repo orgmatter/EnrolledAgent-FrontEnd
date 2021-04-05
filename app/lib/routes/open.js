@@ -239,6 +239,55 @@ router
       PageAnalyticsService.inc('/resource');
     }
   )
+  //Widgets
+  .get(
+    '/resource/client-resource',
+    (req, res) => {
+      //  Log.info(req.locals.resource)
+      res.render('widget/client-resource', {
+        name: 'client Resources',
+        description: 'Client resource widget.',
+        locals: req.locals,
+      });
+      PageAnalyticsService.inc('/resource/client-resource');
+    }
+  )
+  .get(
+    '/resource/client-update',
+    (req, res) => {
+      //  Log.info(req.locals.resource)
+      res.render('widget/client-update', {
+        name: 'client Update',
+        description: 'Client update widget.',
+        locals: req.locals,
+      });
+      PageAnalyticsService.inc('/resource/client-update');
+    }
+  )
+  .get(
+    '/resource/firmvid',
+    (req, res) => {
+      //  Log.info(req.locals.resource)
+      res.render('widget/firmvid', {
+        name: 'FirmVid',
+        description: 'FirmVid',
+        locals: req.locals,
+      });
+      PageAnalyticsService.inc('/resource/firmvid');
+    }
+  )
+  .get(
+    '/resource/tax-tips',
+    (req, res) => {
+      //  Log.info(req.locals.resource)
+      res.render('widget/tax-tips', {
+        name: 'Tax Tips',
+        description: 'Tax Tips',
+        locals: req.locals,
+      });
+      PageAnalyticsService.inc('/resource/tax-tips');
+    }
+  )
   .get(
     '/resource/:category',
     CityController.get,
