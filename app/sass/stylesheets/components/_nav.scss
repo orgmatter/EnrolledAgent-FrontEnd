@@ -1,6 +1,10 @@
 .myNav {
   &_header {
     background-color: $main-blue;
+
+    .fa {
+      color: #fff !important;
+    }
   } 
   .header-middle {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
