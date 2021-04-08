@@ -264,18 +264,18 @@ router
       PageAnalyticsService.inc('/resource/client-update');
     }
   )
-  .get(
-    '/resource/firmvid',
-    (req, res) => {
-      //  Log.info(req.locals.resource)
-      res.render('widget/firmvid', {
-        name: 'FirmVid',
-        description: 'FirmVid',
-        locals: req.locals,
-      });
-      PageAnalyticsService.inc('/resource/firmvid');
-    }
-  )
+  // .get(
+  //   '/resource/firmvid',
+  //   (req, res) => {
+  //     //  Log.info(req.locals.resource)
+  //     res.render('widget/firmvid', {
+  //       name: 'FirmVid',
+  //       description: 'FirmVid',
+  //       locals: req.locals,
+  //     });
+  //     PageAnalyticsService.inc('/resource/firmvid');
+  //   }
+  // )
   .get(
     '/resource/tax-tips',
     (req, res) => {
@@ -312,18 +312,18 @@ router
       PageAnalyticsService.inc('/resource/tax-planning');
     }
   )
-  .get(
-    '/resource/taxvid-playlist',
-    (req, res) => {
-      //  Log.info(req.locals.resource)
-      res.render('widget/taxvid-playlist', {
-        name: 'Tax Video Playlist',
-        description: 'Tax Video Playlist',
-        locals: req.locals,
-      });
-      PageAnalyticsService.inc('/resource/taxvid-playlist');
-    }
-  )
+  // .get(
+  //   '/resource/taxvid-playlist',
+  //   (req, res) => {
+  //     //  Log.info(req.locals.resource)
+  //     res.render('widget/taxvid-playlist', {
+  //       name: 'Tax Video Playlist',
+  //       description: 'Tax Video Playlist',
+  //       locals: req.locals,
+  //     });
+  //     PageAnalyticsService.inc('/resource/taxvid-playlist');
+  //   }
+  // )
   .get(
     '/resource/:category',
     CityController.get,
