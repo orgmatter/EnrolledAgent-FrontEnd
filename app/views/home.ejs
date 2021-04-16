@@ -9,6 +9,22 @@
           align-items: center;
    }
   </style>
+  <script>
+    setTimeout(function(){
+      var oScript = document.createElement("script");
+                       oScript.src = "https://widget.resourcesforclients.com/taxvid/tv.js?u=EWQnSrF7zKH2";
+      document.getElementById("widget").appendChild(oScript);
+    },8000)
+    //Opens up the playlist video list
+    setTimeout(function(){
+      if ($("#ccc-vidsvc-wrapper-playlist").is(":hidden")) {
+        $("#ccc-vidsvc-wrapper-playlist").removeClass('hidden').slideDown("slow");
+          $("#ccc-vidsvc-playlist-arrow").addClass("fa-rotate-90");
+          $("#ccc-vidsvc-wrapper-player").addClass("move-left");
+
+        }
+      },20000)
+  </script>
   <body class="home-body">
     
     <div id="wrapper" class="clearfix home">
@@ -256,8 +272,8 @@
             </div>
          </section>
 
-         
-          <script src="https://widget.resourcesforclients.com/taxvid/tv.js?u=EWQnSrF7zKH2" type="text/javascript" defer></script>
+         <section class="container pb-50" id="widget">
+         </section>
          <br/>
         <section class="image-aside2">
           <div class="container-fluid">
