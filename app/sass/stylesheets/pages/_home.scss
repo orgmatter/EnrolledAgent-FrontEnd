@@ -915,7 +915,7 @@ section#home {
     }
     @include respond(tab-port) {
       .flex{
-        margin-top: 120px;
+        margin-top: 10px;
       }
     }
     @include respond(smart-phone) {
@@ -923,7 +923,7 @@ section#home {
         padding: 140px 30px 50px!important;
       }
       .flex{
-        margin-top: 170px;
+        margin-top: 10px;
       }
       &-div1{
         width: 70%;
@@ -933,7 +933,7 @@ section#home {
       
       margin-bottom: 50px;
       .flex{
-        margin-top: 280px;
+        margin-top: 10px;
       }
       &-div1{
         width: 90%;
