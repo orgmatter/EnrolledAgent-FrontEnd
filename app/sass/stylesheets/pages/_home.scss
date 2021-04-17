@@ -791,7 +791,7 @@ section#home {
     
     height: 900px;
     .container-fluid {
-      padding: 2px 30px 150px;
+      padding: 140px 30px 150px;
     }
     .side {
       position: absolute;
@@ -920,7 +920,7 @@ section#home {
     }
     @include respond(smart-phone) {
       .container-fluid{
-        padding: 140px 30px 50px!important;
+        padding: 20px 30px 50px!important;
       }
       .flex{
         margin-top: 10px;
