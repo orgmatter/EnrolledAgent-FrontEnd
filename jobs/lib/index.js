@@ -79,4 +79,16 @@ new CronJob(
   true
 ).start()
 
+new CronJob(
+  '*/29 * * * *', // runs every 29 minute
+  async function () {
+    console.log('starting Cache Flush job', moment())
+    CacheJob.flushAll(function (err) {
+      console.log('Flushed all keys', Date(), err)
+    })
+  },
+  null,
+  true
+).start()
+
 

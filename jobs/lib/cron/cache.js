@@ -13,12 +13,17 @@ class CacheJob extends BaseCron {
         await this.popularAgents()
         await this.ratedCities()
         await this.randomResources()
-        await this.flushAll()
-
+        
         await this.config()
         await this.articleCategory()
         await this.questionCategory()
         await this.resourceCategory()
+    }
+
+    async flushAll(done){
+        await this.flushAll()
+        done()
+
     }
 
     async popularAgents() {
