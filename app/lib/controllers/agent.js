@@ -326,6 +326,20 @@ class AgentController extends BaseController {
 
   async getAll(req, res, next) {
     const { page, perpage, q, search } = req.query;
+    
+    let cacheKey = req.url.substring(1),cachedData;
+    cacheKey = Constants.CACHE_KEYS.AGENTS+cacheKey
+    console.log(cacheKey)
+    
+    cachedData = await RedisService.get(cacheKey)
+   
+    if(cachedData){
+      cachedData = JSON.parse(cachedData)
+      req.locals.agents = cachedData;
+      next();
+      return;
+    }
+
     let query = Helper.parseQuery(q) || {};
     if (search) query = { $text: { $search: search, $caseSensitive: false } };
     // log.info(req.url)
@@ -355,6 +369,7 @@ class AgentController extends BaseController {
       },
       (data) => {
         req.locals.agents = data;
+        RedisService.save(cacheKey, JSON.stringify(data))
         // log.info(data);
         next();
       }
