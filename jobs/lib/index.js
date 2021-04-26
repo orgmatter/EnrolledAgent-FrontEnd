@@ -68,11 +68,11 @@ new CronJob(
 ).start()
 
 new CronJob(
-  '*/15 * * * *', // runs every 5 minute
+  '*/15 * * * *', // runs every 15 minute
   async function () {
     console.log('starting Cache job', moment())
     CacheJob.runJob(1, function (err) {
-      console.log('Rating job finished', Date(), err)
+      console.log('Caching job finished', Date(), err)
     })
   },
   null,

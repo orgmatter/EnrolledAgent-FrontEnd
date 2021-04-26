@@ -51,6 +51,7 @@ module.exports = {
     QUESTION_CATEGORY: 'questioncategory',
     RESOURCE_CATEGORY: 'resourcecategory',
     CONFIG: 'config',
+    AGENTS: 'agents',
     POPULAR_AGENTS: 'popularagents',
     RATED_CITIES: 'ratedcities',
     RANDOM_RESOURCES: 'randomresources',

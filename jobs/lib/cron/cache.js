@@ -13,6 +13,7 @@ class CacheJob extends BaseCron {
         await this.popularAgents()
         await this.ratedCities()
         await this.randomResources()
+        await this.flushAll()
 
         await this.config()
         await this.articleCategory()
@@ -110,6 +111,10 @@ class CacheJob extends BaseCron {
         if (data)
             await RedisService.save(Constants.CACHE_KEYS.RANDOM_RESOURCES, JSON.stringify(data))
 
+    }
+
+    async flushAll (){
+        await RedisService.flush()
     }
 
 
