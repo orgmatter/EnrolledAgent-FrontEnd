@@ -8,11 +8,13 @@
     <section id="local-agent-top">
       <div class="container">
         <div class="row home-section-top">
+          
           <h2>Find A Local Enrolled Agent</h2>
           <p class="desc">
             Enter your zip code to find an Enrolled Agent in your area
           </p>
           <div class="row home-section-top-input-div">
+            <div class="row home-section-top-input-div-form">
             <div class="dropdown">
               <button
                 class="btn btn1 dropdown-toggle"
@@ -45,12 +47,17 @@
                       <option id="zip" value="zip" selected>Zip Code</option>
                       <option id="state" value="state">State</option>
                     </select>
-                  </div>
+                  </div> 
+                  
                   <img src='/images/flat-color-icons-svg/expand.svg' style="width:10px; left: -10px;"/>
                   <input type="text" id="zipInputMobile" placeholder="Enter your zip code*" required />
                 </div>
+                
             <button class="btn2" id="submitBtn">Find</button>
-            <!-- <button class="btn3">Advanced Search</button> -->
+            </div>
+            <div class="input">
+              <input type="text" placeholder="Enter lastname" id="lastNameInput">
+            </div>
           </div>
         </div>
       </div>
