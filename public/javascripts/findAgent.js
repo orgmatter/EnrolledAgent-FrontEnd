@@ -3,6 +3,7 @@ const select = document.getElementById("select");
 const zip = document.getElementById("zip");
 const states = document.getElementById("state");
 const zipInput = document.getElementById("zipInput");
+const lastNameInput = document.getElementById("lastNameInput");
 const zipInputMobile = document.getElementById("zipInputMobile");
 const submitBtn = document.getElementById("submitBtn");
 const inputDiv = document.querySelector(".input");
@@ -27,37 +28,41 @@ states.addEventListener("click", () => {
 const clearForm = () => {
   zipInput.value = " ";
   zipInputMobile.value = "";
+  lastNameInput.value = "";
 }
 
-submitBtn.addEventListener("click", () => {
-   
-  if (zipInput.value !== "" || zipInputMobile.value !== "") {
-    const payload = zipInput.value.trim() || zipInputMobile.value.trim();
-    if (res) {
-      location.href = `/search-results?q=zipcode:${payload}`;
-      clearForm();
-    } else {
-      location.href = `/search-results?q=state:${payload}`;
-      clearForm();
-    }
-  }
-});
+function EnterKey(event,state) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13 || state == 'submit') {
+    if (zipInput.value.trim() !== "" || zipInputMobile.value.trim() !== "") {
+      
+      const payload = zipInput.value.trim() || zipInputMobile.value.trim();
+      let url = null
+      let lastNameValue = lastNameInput.value.trim() !== '' ? lastNameInput.value.trim() : null
 
-zipInput.addEventListener("keyup", function (event) {
-                // Number 13 is the "Enter" key on the keyboard
-    if (event.keyCode === 13) {
-      if (zipInput.value !== "") {
-        const payload = zipInput.value;
-        if (res) {
-          location.href = `/search-results?q=zipcode:${payload}`;
-          clearForm();
-        } else {
-          location.href = `/search-results?q=state:${payload}`;
-          clearForm();
-        }
+      if (res) {
+        url  = `/search-results?q=zipcode:${payload}`;
+        if(lastNameValue) url = `${url},lastName:${lastNameInput.value.trim()}`
+  
+        location.href = url;
+        clearForm();
+      } else {
+        url = `/search-results?q=state:${payload}`;
+        if(lastNameValue) url = `${url},lastName:${lastNameInput.value.trim()}`
+  
+        location.href = url;
+        clearForm();
+      }
     }
   }
-})
+}
+
+
+zipInput.addEventListener("keyup", EnterKey)
+
+lastNameInput.addEventListener("keyup", EnterKey)
+
+submitBtn.addEventListener("click", function(e){EnterKey(e,'submit')});
 
 select.addEventListener("change", () => {
   if (select.value === "state"){

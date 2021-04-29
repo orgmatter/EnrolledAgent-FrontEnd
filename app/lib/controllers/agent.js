@@ -342,7 +342,7 @@ class AgentController extends BaseController {
 
     let query = Helper.parseQuery(q) || {};
     if (search) query = { $text: { $search: search, $caseSensitive: false } };
-    // log.info(req.url)
+    
     if (query.state)
       query.state = new RegExp(["^", query.state, "$"].join(""), "i");
     log.info(query)
