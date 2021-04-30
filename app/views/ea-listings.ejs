@@ -44,7 +44,7 @@
     <section id="premium" class="container">
       <% if( typeof locals.agents !=='undefined' && locals.agents.data && locals.agents.data.length > 0) { %> 
       <% locals.agents.data.map((e,id)=> { %> 
-      <% const {firstName, lastName, _id, city, reviewCount, premium, imageUrl } = e %>
+      <% const {firstName, lastName, _id, city, reviewCount, premium, imageUrl, rating } = e %>
       <div class="row premium-box">
         <div class="col-md-4 col-sm-12">
           <div class="img col-md-5">
@@ -60,7 +60,7 @@
             <h4>Premium Member</h4>
           <%}%>
           <p>
-            <div class="stars-outer" id="client-stars" value=<%= e.rating || 0 %> >
+            <div class="stars-outer" id="client-stars" value="<%= rating || 0 %>" >
               <div class="stars-inner"></div>
             </div>
             <span> <%= reviewCount %> reviews </span>
@@ -130,6 +130,17 @@
         });
         // console.log(_search)
       }
+    </script>
+     <script>
+      const clientStars = document.querySelectorAll("#client-stars");
+      clientStars.forEach((clientStar) => {
+        const val = clientStar.getAttribute("value");
+        const starTotal = 5;
+       
+        const starPercentage = (val / starTotal) * 100;
+        const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
+        clientStar.querySelector(".stars-inner").style.width = starPercentageRounded;
+      });
     </script>
     <script src="/javascripts/plugin/jquery.simplePagination.js"></script>
     <script src="/javascripts/pagination.js"></script>
