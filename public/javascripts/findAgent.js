@@ -4,6 +4,7 @@ const zip = document.getElementById("zip");
 const states = document.getElementById("state");
 const zipInput = document.getElementById("zipInput");
 const lastNameInput = document.getElementById("lastNameInput");
+const lastNameInputMobile = document.getElementById("lastNameInputMobile");
 const zipInputMobile = document.getElementById("zipInputMobile");
 const submitBtn = document.getElementById("submitBtn");
 const inputDiv = document.querySelector(".input");
@@ -29,6 +30,11 @@ const clearForm = () => {
   zipInput.value = " ";
   zipInputMobile.value = "";
   lastNameInput.value = "";
+  lastNameInputMobile.value = "";
+}
+
+function getLastNameValue(){
+  return lastNameInput.value.trim() || lastNameInputMobile.value.trim()
 }
 
 function EnterKey(event,state) {
@@ -38,17 +44,17 @@ function EnterKey(event,state) {
       
       const payload = zipInput.value.trim() || zipInputMobile.value.trim();
       let url = null
-      let lastNameValue = lastNameInput.value.trim() !== '' ? lastNameInput.value.trim() : null
+      let lastNameValue = getLastNameValue() !== '' ? getLastNameValue() : null
 
       if (res) {
         url  = `/search-results?q=zipcode:${payload}`;
-        if(lastNameValue) url = `${url},lastName:${lastNameInput.value.trim()}`
+        if(lastNameValue) url = `${url},lastName:${getLastNameValue()}`
   
         location.href = url;
         clearForm();
       } else {
         url = `/search-results?q=state:${payload}`;
-        if(lastNameValue) url = `${url},lastName:${lastNameInput.value.trim()}`
+        if(lastNameValue) url = `${url},lastName:${getLastNameValue()}`
   
         location.href = url;
         clearForm();
@@ -61,6 +67,11 @@ function EnterKey(event,state) {
 zipInput.addEventListener("keyup", EnterKey)
 
 lastNameInput.addEventListener("keyup", EnterKey)
+
+
+zipInputMobile.addEventListener("keyup", EnterKey)
+
+lastNameInputMobile.addEventListener("keyup", EnterKey)
 
 submitBtn.addEventListener("click", function(e){EnterKey(e,'submit')});
 
