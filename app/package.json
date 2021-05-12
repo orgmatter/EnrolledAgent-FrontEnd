@@ -19,7 +19,7 @@
     "type": "git",
     "url": "git+ssh://git@gitlab.com/bamyx-it-solutions/enrolled-agents.git"
   },
-  "author": "Wisdom Ekeh",
+  "author": "Bamyx Technologies",
   "license": "ISC",
   "bugs": {
     "url": "https://gitlab.com/bamyx-it-solutions/enrolled-agents/issues"
