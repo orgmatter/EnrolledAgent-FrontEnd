@@ -250,7 +250,12 @@
 
 
 }
-
+#lastNameInput{
+  text-transform: capitalize !important;
+}
+#lastNameInputMobile{
+  text-transform: capitalize !important;
+}
 #section-2 {
   display: flex;
   justify-content: center;
@@ -261,7 +266,7 @@
 #section-2 .img {
   flex-grow: 1;
   width: 100%;
-}
+} 
 
 #section-2 .text {
   flex-grow: 1;
