@@ -11,7 +11,7 @@ const {
 
 const camelCase = require('camelize')
 const moment = require('moment')
-const { strictEqual } = require('should')
+//const { strictEqual } = require('should')
 // const config = require('../config')
 
 exports.handleResponse = (res, next, err, result) => {

@@ -34,7 +34,9 @@ const clearForm = () => {
 }
 
 function getLastNameValue(){
-  return lastNameInput.value.trim() || lastNameInputMobile.value.trim()
+  return lastNameInput.value.trim() || lastNameInputMobile.value.trim(),  
+  lastNameInput.value[0].toUpperCase() + lastNameInput.value.slice(1) || 
+  lastNameInputMobile.value[0].toUpperCase() + lastNameInputMobile.value.slice(1);
 }
 
 function EnterKey(event,state) {
