@@ -2,14 +2,16 @@
   <!-- Meta Tags -->
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <meta name="description" content="Enrolled Agent" />
+  <meta name="description" content= "<%= typeof(description)  !== "undefined" ? description : 'Enrolled Agent'  %>" />
   <meta charset="UTF-8"><meta name="google" content="notranslate">
   <meta http-equiv="Content-Language" content="en">
   <meta name="keywords"
     content="consulting,finance,advisor,consultant,business,service,insurance,agency"
   />
   <meta name="Enrolled Agent" content="Enrolled Agent" />
-  <title>EnrolledAgent.com</title>
+  <title>
+    <%= typeof(title) !== "undefined"  ? title: 'EnrolledAgent.com' %> 
+  </title>
 
   <link href="/assets/files/favicon.png" rel="shortcut icon" type="image/png" />
 

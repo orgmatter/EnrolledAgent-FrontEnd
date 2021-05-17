@@ -215,7 +215,7 @@ router
   // })
   // })
   .get(
-    '/what-is-an-agent',
+    '/what-is-enrolled-agent',
     (req, res) => {
       res.render('what-is-an-agent', {
         name: 'What is an Enrolled Agent',

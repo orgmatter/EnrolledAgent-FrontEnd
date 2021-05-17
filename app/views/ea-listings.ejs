@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <%- include("./partials/head.ejs") %>
+  <%- include("./partials/head.ejs", {title: 'Enrolled Agent Listing | IRS Enrolled Agent List', description: 'Looking for the enrolled agent listing for your tax assistance then visit Enrolled Agent. The website has the list of all the verified irs enrolled agent.'}) %>
   <meta
     name="pages"
     content="<%= (locals.agents && locals.agents.pages)? locals.agents.pages : '' %> "
