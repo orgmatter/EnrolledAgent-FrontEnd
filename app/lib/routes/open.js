@@ -200,8 +200,28 @@ router
     AgentController.popularInState,
     AgentController.get,
     (req, res) => {
+      let title = '';
+      let description = '';
+      switch(req.locals.state.name) {
+        case 'Michigan': 
+          title = 'Florida EA | Find Michigan Enrolled Agent';
+          description = 'Looking for Michigan ea tax preparers at lowest rates then Enrolled Agent is the solution for all needs. We have a list of verified enrolled agents for tax assistance.';
+          break;
+        case 'Florida': 
+          title = 'Florida EA | Find Florida Enrolled Agent';
+          description = 'Searching for Florida EA for all your tax assistance requirements then visit Enrolled Agent. Here you will find the list of verified enrolled agents of Florida.';
+          break;
+      case 'Massachusetts': 
+      title = 'Massachusetts EA | Find enrolled agent Massachusetts';
+      description = 'Searching for Massachusetts EA for your tax preparation requirements then visit Enrolled Agent. Here you will find verified list of all enrolled agents of Massachusetts.';
+      break;
+      default:
+        title ='EnrolledAgent.com';
+        description = 'Enrolled Agent'
+      }
+      console.log(title, 'title', description)
       //  Log.info(req.locals);
-      res.render('single-state', { locals: req.locals });
+      res.render('single-state', { locals: req.locals, title: title, description: description });
       PageAnalyticsService.inc('/agents/:state');
     }
   )
