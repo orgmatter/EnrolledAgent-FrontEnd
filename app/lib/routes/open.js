@@ -204,7 +204,7 @@ router
       let description = '';
       switch(req.locals.state.name) {
         case 'Michigan': 
-          title = 'Florida EA | Find Michigan Enrolled Agent';
+          title = 'Michigan EA | Find Michigan Enrolled Agent';
           description = 'Looking for Michigan ea tax preparers at lowest rates then Enrolled Agent is the solution for all needs. We have a list of verified enrolled agents for tax assistance.';
           break;
         case 'Florida': 
