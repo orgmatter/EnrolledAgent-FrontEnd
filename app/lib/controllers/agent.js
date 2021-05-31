@@ -566,7 +566,36 @@ class AgentController extends BaseController {
     req.locals.popular = data;
     next();
   }
+  findAgentsByZipCode(zipCode, type) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const regex = new RegExp(zipCode, 'i');
+        let agents = [];
+        if(type === 'zip') {
+          agents = await Agent.find({"zipcode":regex}).limit(20);
+        } else {
+          agents = await Agent.find({"state":regex}).limit(20);
+        }
+        if(agents.length > 0)  {
+          let results = [];
+          agents.forEach(agen => {
+            let obj = {
+              label: `${agen.city}, ${agen.state}, ${agen.zipcode}`
+            }
+            results.push(obj)
+          });
+          
+          resolve(results)
+        } else {
+          resolve([])
+        }
+      } catch (error) {
+        rejec(error)
+      }
+    })
+  }
 }
+
 
 module.exports = new AgentController();
 

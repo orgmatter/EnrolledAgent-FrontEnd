@@ -162,8 +162,8 @@
                       </button>
                     
                     <div class="dropdown-menu" id="search__dropdown" aria-labelledby="dropdownMenuButton">
-                      <p id="zip">Zip Code</p>
-                      <p id="state">State</p>
+                      <p id="zip" onclick="selectSearchType('zip')">Zip Code</p>
+                      <p id="state" onclick="selectSearchType('state')">State</p>
                     </div>
                   </div>
                   <div class="input">
@@ -385,6 +385,7 @@
           <script type="text/javascript">
             var tpj = jQuery;
             var revapi34;
+            searchType = 'zip'
             tpj(document).ready(function () {
               if (tpj("#rev_slider_home").revolution == undefined) {
                 revslider_showDoubleJqueryError("#rev_slider_home");
@@ -486,7 +487,39 @@
               }
             }); /*ready*/
           </script>
-
+          <script>
+            function selectSearchType(type) {
+              searchType = type;
+            }
+          </script>
+          <script>
+              $(function() {
+                $('#zipInput').autocomplete({
+                  source: function(req, res) {
+                    $.ajax({
+                      url: `zipCodeAutoComplete/?type=${searchType}`,
+                      dataType: 'jsonp',
+                      type: 'GET',
+                      data: req,
+                      success: function(data){
+                        console.log(data)
+                       res(data)
+                      },
+                      error: function(error) {
+                        console.log(error)
+                      }
+                    });
+                  },
+                  minLength: 1,
+                  select: function(event, ui) {
+                    console.log(ui)
+                    if(ui.item) {
+                      $('#zipInput').text(ui.item.label)
+                    }
+                  }
+                });
+              })
+          </script>
           <script>
             const rateStars = document.querySelectorAll(".stars-outer");
             rateStars.forEach((rateStar) => {

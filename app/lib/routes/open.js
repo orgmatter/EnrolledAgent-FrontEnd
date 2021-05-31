@@ -420,6 +420,15 @@ router
       sub_page_name: 'new-listings',
     });
     PageAnalyticsService.inc('/new-listing');
-  });
+  })
+  .get('/zipCodeAutoComplete', (req,res) => {
+    const zipCode = req.query['term'];
+    const searchType = req.query['type'];
+    AgentController.findAgentsByZipCode(zipCode,searchType).then(list => {
+      res.jsonp(list);
+    })
+  })
+  
+  ;
 
 module.exports = router;
