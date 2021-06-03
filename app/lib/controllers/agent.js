@@ -594,6 +594,52 @@ class AgentController extends BaseController {
       }
     })
   }
+
+  findAgentsBylastName(zipCode, type, lastName) {
+    return new Promise(async(resolve, reject) => {
+      try {
+        let firstSearchValue = '';
+        const regex = new RegExp(lastName, 'i');
+        if(type === "zip" && zipCode !=="") {
+          firstSearchValue = zipCode.split(',')[2].trim()
+        } else if (type !== 'zip' && zipCode !=="") {
+          firstSearchValue = zipCode.split(',')[1].trim()
+        } else {
+          firstSearchValue = ''
+        }
+        let agents = [];
+        if(type === 'zip') {
+          if(firstSearchValue !=="") {
+            agents = await Agent.find({"lastName":regex, "zipcode": firstSearchValue}).limit(20);
+          } else {
+            agents = await Agent.find({"lastName":regex}).limit(20);
+          }
+        } else if(type !== 'zip') {
+          if(firstSearchValue !=="") {
+            agents = await Agent.find({"lastName":regex, "state": firstSearchValue}).limit(20);
+          } else {
+            agents = await Agent.find({"lastName":regex}).limit(20);
+          }
+        }
+
+        if(agents.length > 0)  {
+          let results = [];
+          agents.forEach(agen => {
+            let obj = {
+              label: `${agen.firstName}, ${agen.lastName}`
+            }
+            results.push(obj)
+          });
+          
+          resolve(results)
+        } else {
+          resolve([])
+        }
+      } catch (error) {
+        reject(error)
+      }
+    })
+  }
 }
 
 

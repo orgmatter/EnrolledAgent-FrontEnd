@@ -12,7 +12,7 @@
     "postdev": "npm run sass",
     "dev": "concurrently \"npm run watch:sass\" \"DEBUG=server,api,email-templates,enrolled nodemon --ignore public,node-modules,upload\"",
     "dev2": "DEBUG=server,api,email-templates nodemon --ignore public,node-modules,upload",
-    "dev-win": "concurrently \"npm run watch:sass\" \"set DEBUG=server,api,email-templates && nodemon --ignore public,node-modules,upload\"",
+    "dev-win": "\"set DEBUG=server,api,email-templates && nodemon --ignore public,node-modules,upload\"",
     "lint": "eslint "
   },
   "repository": {

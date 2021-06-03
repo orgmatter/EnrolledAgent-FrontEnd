@@ -169,6 +169,9 @@
                   <div class="input">
                     <input id="zipInput" type='text' placeholder="Enter Your Zip Code" />
                   </div>
+                  <div class="input">
+                    <input type="text" placeholder="Enter Lastname" id="lastNameInput">
+                  </div>
                 </div>
                 <div class="home-section-top-input-div-3" id="mobile__dropdown">
                   <div class="home-section-top-input-div-3-select">
@@ -182,7 +185,7 @@
                 </div>
                 <div class="home-section-top-input-div-2">
                   <button id="submitBtn" class="btn2">Find</button>
-                  <a class="btn3" href='/find-agent'>Advanced Search</a>
+                  <!-- <a class="btn3" href='/find-agent'>Advanced Search</a> -->
                 </div>
               </div>
               <div class="home-section-grid">
@@ -515,6 +518,34 @@
                     console.log(ui)
                     if(ui.item) {
                       $('#zipInput').text(ui.item.label)
+                    }
+                  }
+                });
+              })
+
+              $(function() {
+                const zipCodeValue  = $('#zipInput').val();
+                $('#lastNameInput').autocomplete({
+                  source: function(req, res) {
+                    $.ajax({
+                      url: `lastNameAutoComplete/?type=${searchType}&value=${$('#zipInput').val()}`,
+                      dataType: 'jsonp',
+                      type: 'GET',
+                      data: req,
+                      success: function(data){
+                        console.log(data)
+                       res(data)
+                      },
+                      error: function(error) {
+                        console.log(error)
+                      }
+                    });
+                  },
+                  minLength: 1,
+                  select: function(event, ui) {
+                    console.log(ui)
+                    if(ui.item) {
+                      $('#lastNameInput').text(ui.item.label)
                     }
                   }
                 });

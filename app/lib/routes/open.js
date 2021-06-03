@@ -428,6 +428,15 @@ router
       res.jsonp(list);
     })
   })
+  .get('/lastNameAutoComplete', (req,res) => {
+    const zipCode = req.query['value'];
+    const searchType = req.query['type'];
+    const lastName = req.query['term'];
+    console.log(zipCode, searchType)
+    AgentController.findAgentsBylastName(zipCode,searchType,lastName).then(list => {
+      res.jsonp(list);
+    })
+  })
   
   ;
 
