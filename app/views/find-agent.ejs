@@ -15,29 +15,6 @@
           </p>
           <div class="home-section-top-input-div">
             <div class="row home-section-top-input-div-form">
-            <!-- <div class="dropdown">
-              <button
-                class="btn btn1 dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Zip Code
-                <span>
-                  <img src="/assets/files/arrow-down.svg" alt="icon" class="my-dropdown-icon"/>
-                </span>
-              </button>
-              <div
-                class="dropdown-menu"
-                id="search__dropdown"
-                aria-labelledby="dropdownMenuButton"
-              >
-                <p id="zip" onclick="selectSearchType('zip')">Zip Code</p>
-                <p id="state" onclick="selectSearchType('state')">State</p>
-              </div>
-            </div> -->
             <div class="input">
               <input type="text" placeholder="Enter zip code" id="zipInput" />
             </div>
@@ -186,63 +163,7 @@
               window.location.href = url
             }
     </script>
-     <script>
-      $(function() {
-        searchType = 'zip'
-        $('#zipInput').autocomplete({
-          source: function(req, res) {
-            $.ajax({
-              url: `zipCodeAutoComplete/?type=${searchType}`,
-              dataType: 'jsonp',
-              type: 'GET',
-              data: req,
-              success: function(data){
-                console.log(data)
-               res(data)
-              },
-              error: function(error) {
-                console.log(error)
-              }
-            });
-          },
-          minLength: 1,
-          select: function(event, ui) {
-            console.log(ui)
-            if(ui.item) {
-              $('#zipInput').text(ui.item.label)
-            }
-          }
-        });
-      })
-
-      $(function() {
-        const zipCodeValue  = $('#zipInput').val();
-        $('#lastNameInput').autocomplete({
-          source: function(req, res) {
-            $.ajax({
-              url: `lastNameAutoComplete/?type=${searchType}&value=${$('#zipInput').val()}`,
-              dataType: 'jsonp',
-              type: 'GET',
-              data: req,
-              success: function(data){
-                console.log(data)
-               res(data)
-              },
-              error: function(error) {
-                console.log(error)
-              }
-            });
-          },
-          minLength: 1,
-          select: function(event, ui) {
-            console.log(ui)
-            if(ui.item) {
-              $('#lastNameInput').text(ui.item.label)
-            }
-          }
-        });
-      })
-  </script>
+    
     <script type="text/javascript" src="/javascripts/city.js"></script>
   </body>
 </html>
