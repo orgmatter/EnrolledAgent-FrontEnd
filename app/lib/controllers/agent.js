@@ -329,23 +329,25 @@ class AgentController extends BaseController {
     
     let cacheKey = req.url.substring(1),cachedData;
     cacheKey = Constants.CACHE_KEYS.AGENTS+cacheKey
-    console.log(cacheKey)
-    
     cachedData = await RedisService.get(cacheKey)
-   
+    
     if(cachedData){
       cachedData = JSON.parse(cachedData)
       req.locals.agents = cachedData;
       next();
       return;
     }
-
+    
     let query = Helper.parseQuery(q) || {};
     if (search) query = { $text: { $search: search, $caseSensitive: false } };
-    
     if (query.state)
       query.state = new RegExp(["^", query.state, "$"].join(""), "i");
     log.info(query)
+    Object.keys(query).forEach(querKey => {
+      if(query[querKey] ==="") {
+        delete query[querKey]
+      }
+    });
 
     DB.Paginate(
       res,
@@ -571,16 +573,20 @@ class AgentController extends BaseController {
       try {
         const regex = new RegExp(zipCode, 'i');
         let agents = [];
-        if(type === 'zip') {
-          agents = await Agent.find({"zipcode":regex}).limit(20);
-        } else {
-          agents = await Agent.find({"state":regex}).limit(20);
-        }
+        agents = await Agent.find({
+          $or:[{
+            "zipcode": regex
+          },{
+            "state": regex
+          },{
+            "city": regex
+          }]
+        }).limit(20)
         if(agents.length > 0)  {
           let results = [];
           agents.forEach(agen => {
             let obj = {
-              label: `${agen.city}, ${agen.state}, ${agen.zipcode}`
+              label:  ` ${agen.city}, ${agen.state}, ${agen.zipcode}` 
             }
             results.push(obj)
           });
@@ -600,33 +606,37 @@ class AgentController extends BaseController {
       try {
         let firstSearchValue = '';
         const regex = new RegExp(lastName, 'i');
-        if(type === "zip" && zipCode !=="") {
-          firstSearchValue = zipCode.split(',')[2].trim()
-        } else if (type !== 'zip' && zipCode !=="") {
-          firstSearchValue = zipCode.split(',')[1].trim()
-        } else {
-          firstSearchValue = ''
-        }
         let agents = [];
-        if(type === 'zip') {
-          if(firstSearchValue !=="") {
-            agents = await Agent.find({"lastName":regex, "zipcode": firstSearchValue}).limit(20);
-          } else {
-            agents = await Agent.find({"lastName":regex}).limit(20);
-          }
-        } else if(type !== 'zip') {
-          if(firstSearchValue !=="") {
-            agents = await Agent.find({"lastName":regex, "state": firstSearchValue}).limit(20);
-          } else {
-            agents = await Agent.find({"lastName":regex}).limit(20);
-          }
+        if(zipCode !=="") {
+          const zip = zipCode.split(',')[2].trim();
+          const state = zipCode.split(',')[1].trim();
+          const city = zipCode.split(',')[0].trim();
+          console.log(city,state,zip)
+          agents = await Agent.find({"lastName":regex, zipcode: zip, state: state, city: city}).limit(20);
+        } else {
+          agents = await Agent.find({"lastName":regex}).limit(20);
         }
+
+        console.log(agents)
+        // if(type === 'zip') {
+        //   if(firstSearchValue !=="") {
+        //     agents = await Agent.find({"lastName":regex, "zipcode": firstSearchValue}).limit(20);
+        //   } else {
+        //     agents = await Agent.find({"lastName":regex}).limit(20);
+        //   }
+        // } else if(type !== 'zip') {
+        //   if(firstSearchValue !=="") {
+        //     agents = await Agent.find({"lastName":regex, "state": firstSearchValue}).limit(20);
+        //   } else {
+        //     agents = await Agent.find({"lastName":regex}).limit(20);
+        //   }
+        // }
 
         if(agents.length > 0)  {
           let results = [];
           agents.forEach(agen => {
             let obj = {
-              label: `${agen.firstName}, ${agen.lastName}`
+              label: `${agen.lastName}`
             }
             results.push(obj)
           });

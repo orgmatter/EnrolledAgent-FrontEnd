@@ -152,7 +152,7 @@
 
               <div class="row home-section-top-input-div">
                 <div class="home-section-top-input-div-1">
-                  <div class="dropdown">
+                  <!-- <div class="dropdown">
                     <button class="btn btn1 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">
                       Zip Code
@@ -165,9 +165,9 @@
                       <p id="zip" onclick="selectSearchType('zip')">Zip Code</p>
                       <p id="state" onclick="selectSearchType('state')">State</p>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="input">
-                    <input id="zipInput" type='text' placeholder="Enter Your Zip Code" />
+                    <input id="zipInput" type='text' placeholder="Enter a ZIP Code OR City & State" />
                   </div>
                   <div class="input">
                     <input type="text" placeholder="Enter Lastname" id="lastNameInput">
@@ -184,7 +184,7 @@
                   <input type="text" id="zipInputMobile" placeholder="Enter your zip code*" required />
                 </div>
                 <div class="home-section-top-input-div-2">
-                  <button id="submitBtn" class="btn2">Find</button>
+                  <button id="submitBtn" class="btn2" onclick="handleFindButtn()">Find</button>
                   <!-- <a class="btn3" href='/find-agent'>Advanced Search</a> -->
                 </div>
               </div>
@@ -490,9 +490,24 @@
               }
             }); /*ready*/
           </script>
+
           <script>
             function selectSearchType(type) {
               searchType = type;
+            }
+
+            function handleFindButtn() {
+              let zipCode = '';
+              let lastName  = '';
+              if($('#zipInput').val()) {
+                zipCode = $('#zipInput').val().split(',')[2].trim()
+              }
+              if($('#lastNameInput').val()) {
+                lastName = $('#lastNameInput').val();
+              }
+              let url = window.location.href;
+              url = `search-results?q=zipcode:${zipCode},lastName:${lastName}`;
+              window.location.href = url
             }
           </script>
           <script>

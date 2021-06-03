@@ -15,7 +15,7 @@
           </p>
           <div class="home-section-top-input-div">
             <div class="row home-section-top-input-div-form">
-            <div class="dropdown">
+            <!-- <div class="dropdown">
               <button
                 class="btn btn1 dropdown-toggle"
                 type="button"
@@ -34,18 +34,18 @@
                 id="search__dropdown"
                 aria-labelledby="dropdownMenuButton"
               >
-                <p id="zip">Zip Code</p>
-                <p id="state">State</p>
+                <p id="zip" onclick="selectSearchType('zip')">Zip Code</p>
+                <p id="state" onclick="selectSearchType('state')">State</p>
               </div>
-            </div>
+            </div> -->
             <div class="input">
               <input type="text" placeholder="Enter zip code" id="zipInput" />
             </div>
             <div class="home-section-top-input-div-3" id="mobile__dropdown">
                   <div class="home-section-top-input-div-3-select">
                     <select id="select">
-                      <option id="zip" value="zip" selected>Zip Code</option>
-                      <option id="state" value="state">State</option>
+                      <option id="zip" value="zip" selected onclick="selectSearchType('zip')">Zip Code</option>
+                      <option id="state" value="state" onclick="selectSearchType('zip')">State</option>
                     </select>
                   </div> 
                   
@@ -55,7 +55,7 @@
                 </div>
                 <input type="text" placeholder="Enter Lastname" id="lastNameInputMobile">
                 
-            <button class="btn2" id="submitBtn">Find</button>
+            <button class="btn2" id="submitBtn" type="button" onclick="handleFindButtn()">Find</button>
             </div>
             <div class="input" id="lastNameInputDiv">
               <input type="text" placeholder="Enter Lastname" id="lastNameInput">
@@ -166,6 +166,83 @@
         rateStar.querySelector(".stars-inner").style.width = starPercentageRounded;
       });
     </script>
+    <script>
+      function selectSearchType(type) {
+        searchType = type;
+      }
+    </script>
+    <script>
+      function handleFindButtn() {
+              let zipCode = '';
+              let lastName  = '';
+              if($('#zipInput').val()) {
+                zipCode = $('#zipInput').val().split(',')[2].trim()
+              }
+              if($('#lastNameInput').val()) {
+                lastName = $('#lastNameInput').val();
+              }
+              let url = window.location.href;
+              url = `search-results?q=zipcode:${zipCode},lastName:${lastName}`;
+              window.location.href = url
+            }
+    </script>
+     <script>
+      $(function() {
+        searchType = 'zip'
+        $('#zipInput').autocomplete({
+          source: function(req, res) {
+            $.ajax({
+              url: `zipCodeAutoComplete/?type=${searchType}`,
+              dataType: 'jsonp',
+              type: 'GET',
+              data: req,
+              success: function(data){
+                console.log(data)
+               res(data)
+              },
+              error: function(error) {
+                console.log(error)
+              }
+            });
+          },
+          minLength: 1,
+          select: function(event, ui) {
+            console.log(ui)
+            if(ui.item) {
+              $('#zipInput').text(ui.item.label)
+            }
+          }
+        });
+      })
+
+      $(function() {
+        const zipCodeValue  = $('#zipInput').val();
+        $('#lastNameInput').autocomplete({
+          source: function(req, res) {
+            $.ajax({
+              url: `lastNameAutoComplete/?type=${searchType}&value=${$('#zipInput').val()}`,
+              dataType: 'jsonp',
+              type: 'GET',
+              data: req,
+              success: function(data){
+                console.log(data)
+               res(data)
+              },
+              error: function(error) {
+                console.log(error)
+              }
+            });
+          },
+          minLength: 1,
+          select: function(event, ui) {
+            console.log(ui)
+            if(ui.item) {
+              $('#lastNameInput').text(ui.item.label)
+            }
+          }
+        });
+      })
+  </script>
     <script type="text/javascript" src="/javascripts/city.js"></script>
   </body>
 </html>
