@@ -36,39 +36,29 @@
       </div>
     </section>
 
-    <section id="input">
-      <div class="container">
-        <div class="row home-section-top">
-          
-          <h2>Find A Local Enrolled Agent</h2>
-          <p class="desc">
-            Search:
-          </p>
-          <div class="home-section-top-input-div">
-            <div class="row home-section-top-input-div-form">
-            <div class="input">
-              <input type="text" placeholder="Enter zip code" id="zipInput" />
-            </div>
-            <div class="home-section-top-input-div-3" id="mobile__dropdown">
-                  <div class="home-section-top-input-div-3-select">
-                    <select id="select">
-                      <option id="zip" value="zip" selected onclick="selectSearchType('zip')">Zip Code</option>
-                      <option id="state" value="state" onclick="selectSearchType('zip')">State</option>
-                    </select>
-                  </div> 
-                  
-                  <img src='/images/flat-color-icons-svg/expand.svg' style="width:10px; left: -10px;"/>
-                  <input type="text" id="zipInputMobile" placeholder="Enter your zip code*" required />
-                  <br/>
-                </div>
-                <input type="text" placeholder="Enter Lastname" id="lastNameInputMobile">
-                
-            <button class="btn2" id="submitBtn" type="button" onclick="handleFindButtn()">Find</button>
-            </div>
-            <div class="input" id="lastNameInputDiv">
-              <input type="text" placeholder="Enter Lastname" id="lastNameInput">
-            </div>
+    <section id="input" class="search_input">
+      <div class="row home-section-top-input-div">
+        <div class="home-section-top-input-div-1">
+          <div class="input">
+            <input id="zipInput" type='text' placeholder="Enter a ZIP Code OR City & State" />
           </div>
+          <div class="input">
+            <input type="text" placeholder="Enter Lastname" id="lastNameInput">
+          </div>
+        </div>
+        <div class="home-section-top-input-div-3" id="mobile__dropdown">
+          <div class="home-section-top-input-div-3-select">
+            <select id="select">
+              <option id="zip" value="zip" selected>Zip Code</option>
+              <option id="state" value="state">State</option>
+            </select>
+          </div>
+          <img src='/images/flat-color-icons-svg/expand.svg' style="width:10px; left: -10px;" alt="What is an EA for Taxes"/>
+          <input type="text" id="zipInputMobile" placeholder="Enter your zip code*" required />
+        </div>
+        <div class="home-section-top-input-div-2">
+          <button id="submitBtn" class="btn2" onclick="handleFindButtn()">Find</button>
+          <!-- <a class="btn3" href='/find-agent'>Advanced Search</a> -->
         </div>
       </div>
     </section>
