@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-<%- include("./partials/head.ejs") %>
+<%- include("./partials/head.ejs",
+  {title: `About ${firstName} ${lastName} - Enrolled Agent`, description: `Read about ${firstName} ${lastName} Enrolled Agent and know about his details like educational qualification, specialities and skills.  Read about him and hire him for your tax services.`}) %>
 <meta name="agentId" content=<%= locals.agent._id || "N/A"  %>  />
 
   <body>

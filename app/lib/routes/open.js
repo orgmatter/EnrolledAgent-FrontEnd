@@ -177,7 +177,7 @@ router
     ReviewController.analysis,
     AgentController.get,
     (req, res) => {
-      res.render('single-agent-details', { locals: req.locals });
+      res.render('single-agent-details', { locals: req.locals, firstName: req.locals.agent.firstName, lastName:  req.locals.agent.lastName});
       PageAnalyticsService.inc('/agent/:id');
       Log.info('agent>>>>', req.locals);
     }
@@ -227,7 +227,7 @@ router
   )
   .get('/agents/:state/:city', AgentController.city, (req, res) => {
     //  Log.info(req.locals);
-    res.render('city', { locals: req.locals });
+    res.render('city', { locals: req.locals, city: req.locals.city.name, state: req.locals.city.state });
   })
   // .get('/offshore-team', (req, res) => {
   //   res.render('offshoreTeam', { locals: req.locals });
