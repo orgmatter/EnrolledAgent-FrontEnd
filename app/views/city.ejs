@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <%- include("./partials/head.ejs") %>
+  <%- include("./partials/head.ejs", {title: `${city}, ${state} - Find Tax Expert`}) %>
   <meta
     name="pages"
     content="<%= (locals.agents && locals.agents.pages)? locals.agents.pages : '' %> "

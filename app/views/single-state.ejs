@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap" rel="stylesheet" />
-  <%- include("./partials/head.ejs") %>
+  <%- include("./partials/head.ejs", {title: title, description: description}) %>
     <meta
     name="pages"
     content="<%= (locals.cities && locals.cities.pages)? locals.cities.pages : '' %> "
@@ -26,7 +26,7 @@
     <div class="findEA">
       <div class="findEA-banner">
         <div class="findEA-banner__item">
-          <div class="findEA-banner__item--head"><%= locals.capitalizeFirstLetter(locals.state.name)  %> EAs</div>
+          <h1 class="findEA-banner__item--head">Find an Enrolled Agent (EA) in <%= locals.capitalizeFirstLetter(locals.state.name)  %> </h1>
           <div class="findEA-banner__item--text">
           
             <%if(locals.state && locals.state.name){%>
