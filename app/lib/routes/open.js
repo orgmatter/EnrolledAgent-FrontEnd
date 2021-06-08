@@ -177,7 +177,7 @@ router
     ReviewController.analysis,
     AgentController.get,
     (req, res) => {
-      res.render('single-agent-details', { locals: req.locals });
+      res.render('single-agent-details', { locals: req.locals, firstName: req.locals.agent.firstName, lastName:  req.locals.agent.lastName});
       PageAnalyticsService.inc('/agent/:id');
       Log.info('agent>>>>', req.locals);
     }
@@ -200,14 +200,34 @@ router
     AgentController.popularInState,
     AgentController.get,
     (req, res) => {
+      let title = '';
+      let description = '';
+      switch(req.locals.state.name) {
+        case 'Michigan': 
+          title = 'Michigan EA | Find Michigan Enrolled Agent';
+          description = 'Looking for Michigan ea tax preparers at lowest rates then Enrolled Agent is the solution for all needs. We have a list of verified enrolled agents for tax assistance.';
+          break;
+        case 'Florida': 
+          title = 'Florida EA | Find Florida Enrolled Agent';
+          description = 'Searching for Florida EA for all your tax assistance requirements then visit Enrolled Agent. Here you will find the list of verified enrolled agents of Florida.';
+          break;
+      case 'Massachusetts': 
+      title = 'Massachusetts EA | Find enrolled agent Massachusetts';
+      description = 'Searching for Massachusetts EA for your tax preparation requirements then visit Enrolled Agent. Here you will find verified list of all enrolled agents of Massachusetts.';
+      break;
+      default:
+        title ='EnrolledAgent.com';
+        description = 'Enrolled Agent'
+      }
+      console.log(title, 'title', description)
       //  Log.info(req.locals);
-      res.render('single-state', { locals: req.locals });
+      res.render('single-state', { locals: req.locals, title: title, description: description });
       PageAnalyticsService.inc('/agents/:state');
     }
   )
   .get('/agents/:state/:city', AgentController.city, (req, res) => {
     //  Log.info(req.locals);
-    res.render('city', { locals: req.locals });
+    res.render('city', { locals: req.locals, city: req.locals.city.name, state: req.locals.city.state });
   })
   // .get('/offshore-team', (req, res) => {
   //   res.render('offshoreTeam', { locals: req.locals });
@@ -215,7 +235,7 @@ router
   // })
   // })
   .get(
-    '/what-is-an-agent',
+    '/what-is-enrolled-agent',
     (req, res) => {
       res.render('what-is-an-agent', {
         name: 'What is an Enrolled Agent',
@@ -400,6 +420,24 @@ router
       sub_page_name: 'new-listings',
     });
     PageAnalyticsService.inc('/new-listing');
-  });
+  })
+  .get('/zipCodeAutoComplete', (req,res) => {
+    const zipCode = req.query['term'];
+    const searchType = req.query['type'];
+    AgentController.findAgentsByZipCode(zipCode,searchType).then(list => {
+      res.jsonp(list);
+    })
+  })
+  .get('/lastNameAutoComplete', (req,res) => {
+    const zipCode = req.query['value'];
+    const searchType = req.query['type'];
+    const lastName = req.query['term'];
+    console.log(zipCode, searchType)
+    AgentController.findAgentsBylastName(zipCode,searchType,lastName).then(list => {
+      res.jsonp(list);
+    })
+  })
+  
+  ;
 
 module.exports = router;

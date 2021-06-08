@@ -73,7 +73,7 @@
                     <!-- MAIN IMAGE -->
                     <img
                       src="/assets/files/13061.webp"
-                      alt=""
+                      alt="What Does an Enrolled Agent do"
                       data-bgposition="center 30%"
                       data-bgfit="cover"
                       data-bgrepeat="no-repeat"
@@ -102,7 +102,7 @@
           data-easeout="default" data-masterspeed="default" data-thumb="images/bg/bg2.jpg" data-rotate="0"
           data-fstransition="fade" data-saveperformance="off" data-title="Web Show" data-description="">
           <!-- MAIN IMAGE -->
-          <img alt="" src="/assets/officialAssets/22.webp" alt="" data-bgposition="center center" data-bgfit="cover"
+          <img alt="Find a Tax Professional" src="/assets/officialAssets/22.webp"  data-bgposition="center center" data-bgfit="cover"
             data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina />
           <!-- LAYERS -->
           <!-- LAYER NR. 1 -->
@@ -122,7 +122,7 @@
           data-easeout="default" data-masterspeed="default" data-thumb="/images/bg/bg3.jpg" data-rotate="0"
           data-fstransition="fade" data-saveperformance="off" data-title="Web Show" data-description="">
           <!-- MAIN IMAGE -->
-          <img alt="" src="/assets/officialAssets/11.webp" alt="" data-bgposition="center 40%" data-bgfit="cover" data-bgrepeat="no-repeat"
+          <img alt="IRS Enrolled Agent Search" src="/assets/officialAssets/11.webp" data-bgposition="center 40%" data-bgfit="cover" data-bgrepeat="no-repeat"
             data-bgparallax="10" class="rev-slidebg" data-no-retina />
           <!-- LAYERS -->
           <!-- LAYER NR. 1 -->
@@ -146,28 +146,17 @@
         <section class="home-section">
           <div class="container">
             <div class="row home-section-top">
-              <h2>Discover Your Next Tax Expert </h2>
+              <h1>Find Your Next Enrolled Agent </h1>
               <p class='desc'>Browse through our directory of over 60,000 professionals and engage them for free.
               </p>
 
               <div class="row home-section-top-input-div">
                 <div class="home-section-top-input-div-1">
-                  <div class="dropdown">
-                    <button class="btn btn1 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false">
-                      Zip Code
-                      <span>
-                       <img src="/assets/files/arrow-down.svg" alt="icon" class="my-dropdown-icon"/>
-                      </span>
-                      </button>
-                    
-                    <div class="dropdown-menu" id="search__dropdown" aria-labelledby="dropdownMenuButton">
-                      <p id="zip">Zip Code</p>
-                      <p id="state">State</p>
-                    </div>
+                  <div class="input">
+                    <input id="zipInput" type='text' placeholder="Enter a ZIP Code OR City & State" />
                   </div>
                   <div class="input">
-                    <input id="zipInput" type='text' placeholder="Enter Your Zip Code" />
+                    <input type="text" placeholder="Enter Lastname" id="lastNameInput">
                   </div>
                 </div>
                 <div class="home-section-top-input-div-3" id="mobile__dropdown">
@@ -177,18 +166,18 @@
                       <option id="state" value="state">State</option>
                     </select>
                   </div>
-                  <img src='/images/flat-color-icons-svg/expand.svg' style="width:10px; left: -10px;"/>
+                  <img src='/images/flat-color-icons-svg/expand.svg' style="width:10px; left: -10px;" alt="What is an EA for Taxes"/>
                   <input type="text" id="zipInputMobile" placeholder="Enter your zip code*" required />
                 </div>
                 <div class="home-section-top-input-div-2">
-                  <button id="submitBtn" class="btn2">Find</button>
-                  <a class="btn3" href='/find-agent'>Advanced Search</a>
+                  <button id="submitBtn" class="btn2" onclick="handleFindButtn()">Find</button>
+                  <!-- <a class="btn3" href='/find-agent'>Advanced Search</a> -->
                 </div>
               </div>
               <div class="home-section-grid">
                 <div class="card-div">
                   <div class="top">
-                    <img alt="" src='/assets/files/049.svg' alt='Enrolled-agent-icon' />
+                    <img alt="Find Tax Agent" src='/assets/files/049.svg' />
                   </div>
                   <div class="bottom">
                     <h3>60,000+</h3>
@@ -197,7 +186,7 @@
                 </div>
                 <div class="card-div">
                   <div class="top">
-                    <img alt="" src='/assets/files/048.svg' alt='Enrolled-agent-icon' />
+                    <img  src='/assets/files/048.svg' alt='EA' />
                   </div>
                   <div class="bottom">
                     <h3>Convenient</h3>
@@ -206,7 +195,7 @@
                 </div>
                 <div class="card-div">
                   <div class="top">
-                    <img alt="" src='/assets/files/verified.svg' alt='Enrolled-agent-icon' />
+                    <img src='/assets/files/verified.svg' alt='Tax preparer' />
                   </div>
                   <div class="bottom">
                     <h3>Verified</h3>
@@ -237,7 +226,7 @@
                 <div class="col-sm-6 col-md-3">
                   <div class="single-member maxwidth400 mb-30">
                     <div class="team-thumb">
-                      <img  alt="" src=<%= e.imageUrl || "/assets/images/avatar.webp" %>  alt="agent-avatar" class="img-fullwidth" />
+                      <img  alt="Tax Assistance" src=<%= e.imageUrl || "/assets/images/avatar.webp" %> class="img-fullwidth" />
                       <h4 class="text-uppercase font-raleway text-white font-20 line-bottom-center m-0">
                         <%= e.firstName %> <%= e.lastName %> <span class="text-white font-12 ml-5 small"></span>
                       </h4>
@@ -265,7 +254,7 @@
               <div class="row team-link-div">
                 <a href="/find-agent" class="team-link">Find More Local EAs
                 <span class="">
-                      <img alt="" src="/assets/images/ccenter/right-arrow-white.svg" class="ccenter-btn-right-arrow">
+                      <img alt="Find an Enrolled Agent" src="/assets/images/ccenter/right-arrow-white.svg" class="ccenter-btn-right-arrow">
                   </span>
                 </a>
             </div>
@@ -284,7 +273,7 @@
               </div>
               <div class="image-aside2-div2">
                 <h2>The simplest way to search and access your next Tax Expert on the go anytime, anywhere.</h2>
-                <p>Search our online directory of licensed and verified Enrolled Agents. See details of 
+                <p>Search our online directory of licensed and <a href="/license-verification">verified Enrolled Agents</a>. See details of 
                   the Enrolled Agents and find the one that best suits your needs. Read reviews from 
                   clients served to in your community. All Enrolled Agents listed have been appraised 
                   to ensure accurate profile and licensure.
@@ -316,7 +305,7 @@
           </span></a>
               </div>
               <div class="image-aside-div2">
-                <image src="/assets/images/Group+6138.webp" alt="Enrolled-agent" />
+                <image src="/assets/images/Group+6138.webp" alt="What is Enrolled Agent" />
               </div>
             </div>
           </div>
@@ -385,6 +374,7 @@
           <script type="text/javascript">
             var tpj = jQuery;
             var revapi34;
+            searchType = 'zip'
             tpj(document).ready(function () {
               if (tpj("#rev_slider_home").revolution == undefined) {
                 revslider_showDoubleJqueryError("#rev_slider_home");
@@ -487,6 +477,81 @@
             }); /*ready*/
           </script>
 
+          <script>
+            function selectSearchType(type) {
+              searchType = type;
+            }
+
+            function handleFindButtn() {
+              let zipCode = '';
+              let lastName  = '';
+              if($('#zipInput').val()) {
+                zipCode = $('#zipInput').val().split(',')[2].trim()
+              }
+              if($('#lastNameInput').val()) {
+                lastName = $('#lastNameInput').val();
+              }
+              let url = window.location.href;
+              url = `search-results?q=zipcode:${zipCode},lastName:${lastName}`;
+              window.location.href = url
+            }
+          </script>
+          <script>
+              $(function() {
+                $('#zipInput').autocomplete({
+                  source: function(req, res) {
+                    $.ajax({
+                      url: `zipCodeAutoComplete/?type=${searchType}`,
+                      dataType: 'jsonp',
+                      type: 'GET',
+                      data: req,
+                      success: function(data){
+                        console.log(data)
+                       res(data)
+                      },
+                      error: function(error) {
+                        console.log(error)
+                      }
+                    });
+                  },
+                  minLength: 1,
+                  select: function(event, ui) {
+                    console.log(ui)
+                    if(ui.item) {
+                      $('#zipInput').text(ui.item.label)
+                    }
+                  }
+                });
+              })
+
+              $(function() {
+                const zipCodeValue  = $('#zipInput').val();
+                $('#lastNameInput').autocomplete({
+                  source: function(req, res) {
+                    $.ajax({
+                      url: `lastNameAutoComplete/?type=${searchType}&value=${$('#zipInput').val()}`,
+                      dataType: 'jsonp',
+                      type: 'GET',
+                      data: req,
+                      success: function(data){
+                        console.log(data)
+                       res(data)
+                      },
+                      error: function(error) {
+                        console.log(error)
+                      }
+                    });
+                  },
+                  minLength: 1,
+                  select: function(event, ui) {
+                    console.log(ui)
+                    if(ui.item) {
+                      $('#lastNameInput').text(ui.item.label)
+                    }
+                  }
+                });
+              })
+          </script>
           <script>
             const rateStars = document.querySelectorAll(".stars-outer");
             rateStars.forEach((rateStar) => {
